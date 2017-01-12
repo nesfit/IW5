@@ -1,22 +1,22 @@
-# Programování v .NET a C# IW5/MW5 
+# ProgramovÃ¡nÃ­ v .NET a C# IW5/MW5 
 
-# Aktuality k predmetu
-  - **12.01.2016** | *Jan Pluskal* | Cvicení zacnou v tıdnu od 6.2.2017 (první tıden semestru) znacení tıdne sudı/lichı je podle kalendáre (ISO 8601) - tıden od 6.2.2016 je SUDİ.
+# Aktuality k pÅ™edmÄ›tu
+  - **12.01.2016** | *Jan Pluskal* | CviÄenÃ­ zaÄnou v tÃ½dnu od 6.2.2017 (prvnÃ­ tÃ½den semestru) znaÄenÃ­ tÃ½dne sudÃ½/lichÃ½ je podle kalendÃ¡Å™e (ISO 8601) - tÃ½den od 6.2.2016 je SUDÃ.
 
-# Prednášky
-| Fakulta        | Místnost   | Cas  |
+# PÅ™ednÃ¡Å¡ky
+| Fakulta        | MÃ­stnost   | ÄŒas  |
 | -------------  |-------------| -----|
 | Fekt     |  |  |
 | Fit     | D0206 | 16:00-17:50 |
 
-# Cvicení 
-Všechny cvicení se konají v APS, Ucebna 2
-| Fakulta          | Cas  |
+# CviÄenÃ­ 
+VÅ¡echny cviÄenÃ­ se konajÃ­ v APS, UÄebna 2
+| Fakulta          | ÄŒas  |
 | ------------- | -----|
 | Fekt     | St 14:00-15:50 S   |
 | Fekt     | St 16:00-17:50 S/L |
 | Fekt     | St 18:00-19:50 S/L |
-| Fit      | Ct 8:00-9:50   S/L |
-| Fit      | Ct 10:00-11:50 S/L |
-| Fit      | Ct 13:00-14:50 S/L |
-| Fit      | Ct 15:00-16:50 S/L |
+| Fit      | ÄŒt 8:00-9:50   S/L |
+| Fit      | ÄŒt 10:00-11:50 S/L |
+| Fit      | ÄŒt 13:00-14:50 S/L |
+| Fit      | ÄŒt 15:00-16:50 S/L |
