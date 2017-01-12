@@ -11,6 +11,7 @@
 
 # Cvičení 
 Všechny cvičení se konají v APS, Učebna 2
+
 | Fakulta          | Čas  |
 | ------------- | -----|
 | Fekt     | St 14:00-15:50 S   |
