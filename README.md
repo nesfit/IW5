@@ -7,7 +7,7 @@
 
 | Fakulta | Místnost | Čas         |
 | ------- |----------| ----------- |
-| Fekt    |          |             |
+| Fekt    | T010     | 13:00-14:50 |
 | Fit     | D0206    | 16:00-17:50 |
 
 # Cvičení 
@@ -15,13 +15,13 @@ Všechny cvičení se konají v APS, Učebna 2
 
 | Fakulta  | Čas                |
 | -------- | ------------------ |
-| Fekt     | St 14:00-15:50 S/L |
+| FIT      | St 12:00-13:50 S/L |
+| FIT      | St 14:00-15:50 S/L |
 | Fekt     | St 16:00-17:50 S/L |
 | Fekt     | St 18:00-19:50 S/L |
 | Fit      | Čt 8:00-9:50   S/L |
 | Fit      | Čt 10:00-11:50 S/L |
-| Fit      | Čt 13:00-14:50 S/L |
-| Fit      | Čt 15:00-16:50 S/L |
+| Fit      | Čt 12:00-13:50 S/L |
 
 # Učebny
 **POZOR**, výuka probíhá v areálu vysokoškolských kolejí *Purkyňova 93* [Mapa](http://www.pocitacoveskoleni.cz/kontakt.html) v prvním patře bloku *B3*  v prostorách Školicího střediska IT Brno (ApS Brno s.r.o.). Pro přístup k učebnám zazvoňte na odpovídající zvonek vedle prosklených dveří přímo naproti schodišti. Učebny jsou na konci chodby po levé straně.
