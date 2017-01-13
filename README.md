@@ -1,4 +1,8 @@
 # Programování v .NET a C# IW5/MW5 
+# Odkazy
+ * [Fórum IW5](http://fitiw5-forum.northeurope.cloudapp.azure.com/index.php) Studentské fórum k předmětu IW5. Všechny Vaše dotazy směřujte jen zde! 
+ * [Wiki predmětu z minulých let](http://www.fit.vutbr.cz/study/courses/IW1/public/info/doku.php?id=iw5) Dříve používaná Wiki k předmětu nahrazená GitHubem.
+  
 
 # Aktuality k předmětu
   - **12.01.2016** | *Jan Pluskal* | Cvičení začnou v týdnu od 6.2.2017 (první týden semestru) značení týdne sudý/lichý je podle kalendáře (ISO 8601) - týden od 6.2.2016 je SUDÝ.
@@ -11,7 +15,7 @@
 | Fit     | D0206    | 16:00-17:50 |
 
 # Cvičení 
-Všechny cvičení se konají v APS, Učebna 2
+Všechny cvičení se konají v APS, Učebna 2.
 
 | Fakulta  | Čas                |
 | -------- | ------------------ |
