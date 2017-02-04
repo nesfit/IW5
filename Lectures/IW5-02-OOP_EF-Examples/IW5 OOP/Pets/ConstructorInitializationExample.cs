@@ -19,14 +19,14 @@ namespace IW5_OOP.Pets
 
         public class Cat : Pet
         {
-            private readonly int _livesLeft = 9; //1
+            private readonly int _livesLeft = 9; //2
             private int _age;
 
             public Cat(string name) : base()//3
             { 
                 this.Name = name;//7
             }
-            public Cat(string name, int livesLeft) : this(name)//2
+            public Cat(string name, int livesLeft) : this(name)//1
             { 
                 this._livesLeft = livesLeft;//8
             }
