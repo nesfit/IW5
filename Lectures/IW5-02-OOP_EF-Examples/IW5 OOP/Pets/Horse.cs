@@ -4,9 +4,25 @@ namespace IW5_OOP.Pets
 {
     public sealed class Horse : Animal
     {
-        public enum HorseColor { Siml = 0, Palomino, Ryzak }
+        public enum HorseColor
+        {
+            Siml = 0,
+            Palomino,
+            Ryzak
+        }
+
         [Flags]
-        public enum HorseType { None=0, Racing=1, Breeding=2, ForSosages=4 }
+        public enum HorseType
+        {
+            None = 0,
+            Racing = 1,
+            Breeding = 2,
+            ForSosages = 4
+        }
+
+        private HorseColor _color;
+
+        private readonly int _numberOfLegs = 4;
 
         public HorseColor Color
         {
@@ -14,10 +30,7 @@ namespace IW5_OOP.Pets
             set { _color = value; }
         }
 
-        public HorseType Type {get; set; }
-
-        private int _numberOfLegs = 4;
-        private HorseColor _color;
+        public HorseType Type { get; set; }
 
         public override void Draw()
         {
@@ -26,7 +39,7 @@ namespace IW5_OOP.Pets
 
         public void SetColor(int color)
         {
-            Color = (HorseColor)color;
+            Color = (HorseColor) color;
         }
 
         public void SetColor(string color)

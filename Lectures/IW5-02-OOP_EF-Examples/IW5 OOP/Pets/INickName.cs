@@ -7,6 +7,5 @@ namespace IW5_OOP.Pets
 
     public interface IDrawableNickname : INickName, IDraw
     {
-        
     }
 }

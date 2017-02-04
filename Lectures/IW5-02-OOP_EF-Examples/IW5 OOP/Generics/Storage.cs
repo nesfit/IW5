@@ -1,28 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace IW5_OOP.Generics
 {
     /// <summary>
-    /// Invariance example
-    /// Tackling Invariance Using Covariance and Contravariance in C#
-    /// http://www.c-sharpcorner.com/UploadFile/24b242/tackling-invariance-using-covariance-and-contra-variance-in/
+    ///     Invariance example
+    ///     Tackling Invariance Using Covariance and Contravariance in C#
+    ///     http://www.c-sharpcorner.com/UploadFile/24b242/tackling-invariance-using-covariance-and-contra-variance-in/
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class Storage<T>:IDepositor<T>, IRetreiver<T>
+    public class Storage<T> : IDepositor<T>, IRetreiver<T>
     {
-        private readonly List<T> _inventory = new List<T>(); 
+        private readonly List<T> _inventory = new List<T>();
+
         void IDepositor<T>.StoreItems(T item)
         {
-            this._inventory.Add(item);
+            _inventory.Add(item);
         }
 
         IEnumerable<T> IRetreiver<T>.GetItems()
         {
-          return this._inventory;
+            return _inventory;
         }
     }
 

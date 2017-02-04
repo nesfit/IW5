@@ -21,5 +21,4 @@ namespace IW5_OOP.Pets
             return $"Name = {NickName}";
         }
     }
-    
 }

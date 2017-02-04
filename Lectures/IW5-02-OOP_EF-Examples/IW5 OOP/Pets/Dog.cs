@@ -9,15 +9,15 @@ namespace IW5_OOP.Pets
             NickName = nickName;
         }
 
+        public void Bite(string who)
+        {
+            Console.WriteLine($"Bitting: {who}.");
+        }
+
         public override void Draw()
         {
             base.Draw();
             Console.WriteLine($"The Dog`s name is {NickName}.");
-        }
-
-        public void Bite(string who)
-        {
-            Console.WriteLine($"Bitting: {who}.");
         }
     }
 }
