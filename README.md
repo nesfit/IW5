@@ -27,6 +27,18 @@ Všechny cvičení se konají v APS, Učebna 2. Cvičení začnou v *týdnu od 6
 | Fit      | Čt 11:00-12:50 S/L |
 | Fit      | Čt 13:00-14:50 S/L |
 
+# Nástroje použity ve cvičeních
+
+| Nástroj  |  Typ   | Popis |
+| -------- |  ------| -------|
+| [Visual Studio 2015](https://e5.onthehub.com/WebStore/OfferingDetails.aspx?o=0e34bbfd-e242-e611-941e-b8ca3a5db7a1&pmv=00000000-0000-0000-0000-000000000000&ws=95f320d0-826f-e011-971f-0030487d8897&vsro=8) | Samostatný program | Hlavní vývojové prostředí pro .Net |
+|[Resharper](https://www.jetbrains.com/resharper/) | Doplněk | Nástroje na lepší produktivitu, refaktorování…  |
+|[Code metrices](https://visualstudiogallery.msdn.microsoft.com/369d38e1-53d3-4f5c-9351-a0560162a6d9) | Doplněk | Zobrazování složitosti jednotlivých metod |
+|[Postifx templates](https://github.com/controlflow/resharper-postfix) | Doplněk | Plynulé doplňování částí kódu bez nutnosti vracení se |
+|[Mnemonic Live Templates](https://github.com/JetBrains/mnemonics) | Doplněk | Doplňování částí kódu |
+|[LinqPad](http://www.linqpad.net/) | Samostatný program  | Nástroj na přístup do databáze přes Linq, SQL… |
+|[DotPeek](https://www.jetbrains.com/decompiler/) | Samostatný program  | Dekompilátor C# kódu |
+
 # Učebny
 **POZOR**, výuka probíhá v areálu vysokoškolských kolejí *Purkyňova 93* [Mapa](http://www.pocitacoveskoleni.cz/kontakt.html) v prvním patře bloku *B3*  v prostorách Školicího střediska IT Brno (ApS Brno s.r.o.). Pro přístup k učebnám zazvoňte na odpovídající zvonek vedle prosklených dveří přímo naproti schodišti. Učebny jsou na konci chodby po levé straně.
 
