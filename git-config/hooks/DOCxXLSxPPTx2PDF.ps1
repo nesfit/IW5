@@ -1,5 +1,4 @@
-﻿
-$folderpath =  $(get-location) 
+﻿$folderpath =  $(get-location)
  Add-type -AssemblyName office
 #Convert Word formats to pdf
 $wdFormatPDF = 17
