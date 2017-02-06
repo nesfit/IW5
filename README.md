@@ -43,3 +43,9 @@ Označení učeben oproti značení FIT:
 * ```<connectionStrings> 
       <add name="TasksContext" connectionString="Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog=TasksDB;MultipleActiveResultSets=True;Integrated Security=True;" providerName="System.Data.SqlClient" />
       </connectionStrings>```
+      
+# Výuka - bodové rozdělení
+|      Typ výuky     | Maximální bodový zisk |
+| ------------------ | --------------------- |
+| Počítačová cvičení |                    30 |
+| Projekt            |                    70 |
