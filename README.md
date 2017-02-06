@@ -33,3 +33,13 @@ Všechny cvičení se konají v APS, Učebna 2. Cvičení začnou v *týdnu od 6
 Označení učeben oproti značení FIT:
 * B0302006 = Učebna 1
 * B0302007 = Učebna 2 
+
+# Q&A
+* Q: Mohu přijít na cvičení i jindy, než mám zapsáno?
+* A: Ano, přijít můžete na kterékoli cvičení v daném 14 denním bloku. Využívejte tuto možnost jen ve zvláštních případech. Do prezence se zapište na druhou stránku a uveďte do které skupiny patříte. Pokud bude na cvičení víc studentů než je počítačů, pak u počítačů mají přednost ti, kteří mají danou hodinu zapsanou. Vzhledem k tomu, že se výuka opakuje v sudém/lichém týdnu, tak pokud budete např. nemocní, můžete si cvičení nahradit v následujícím týdnu.
+* Q: Slyšel jsem, že lze uznat místo projektu i bakalářskou práci nebo projekt do jiného předmětu napsaný v C#, je to pravda?
+* A: Ano, ale projekt musí splňovat obecná kriteria (správný datový návrh, včetně dědičnosti a modifikátorů přistupu, SOLID a CleanCode) a musí být v C#. Je bezpodmínečně nutné upozornit na to cvičícího v prvním běhu cvičení.
+* Q: Connection string pouzivany v cvicenich.
+* ```<connectionStrings> 
+      <add name="TasksContext" connectionString="Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog=TasksDB;MultipleActiveResultSets=True;Integrated Security=True;" providerName="System.Data.SqlClient" />
+      </connectionStrings>```
