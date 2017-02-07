@@ -20,9 +20,9 @@ namespace IW5_OOP.Pets
             ForSosages = 4
         }
 
-        private HorseColor _color;
-
         private readonly int _numberOfLegs = 4;
+
+        private HorseColor _color;
 
         public HorseColor Color
         {

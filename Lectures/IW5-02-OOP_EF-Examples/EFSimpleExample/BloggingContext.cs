@@ -4,7 +4,7 @@ namespace EFSimpleExample
 {
     public class BloggingContext : DbContext
     {
-        public BloggingContext():base("EFSimpleExample")
+        public BloggingContext() : base("EFSimpleExample")
         {
         }
 
