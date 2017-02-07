@@ -20,7 +20,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp
 {
-    internal class Program
+    internal partial class Program
     {
         /// <summary>
         /// function Main - has to be static, has to have a name "Main", doesn't have to return a value
@@ -36,6 +36,8 @@ namespace ConsoleApp
             ShowIf(5);
 
             GetInput();
+
+            Calculator();
 
             // stop the program at the end
             WaitForPressedKey();
@@ -123,8 +125,9 @@ namespace ConsoleApp
         /// mathematical assembly implemented by students them selves.
         /// Writes results on console.
         /// </summary>
-        private static void Calculator()
+        private static void Calculator(int operand1, int operand2, MathOperation mathOperation )
         {
+
         }
     }
 }
