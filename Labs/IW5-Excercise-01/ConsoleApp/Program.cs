@@ -125,9 +125,21 @@ namespace ConsoleApp
         /// mathematical assembly implemented by students them selves.
         /// Writes results on console.
         /// </summary>
-        private static void Calculator(int operand1, int operand2, MathOperation mathOperation )
+        private static int Calculator(int operand1, int operand2, MathOperation mathOperation )
         {
-
+            switch (mathOperation)
+            {
+                case MathOperation.Addition:
+                    return operand1 + operand2;
+                case MathOperation.Subtraction:
+                    return operand1 - operand2;
+                case MathOperation.Multiplication:
+                    return operand1 * operand2;
+                case MathOperation.Division:
+                    return operand1 / operand2;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(mathOperation), mathOperation, null);
+            }
         }
     }
 }
