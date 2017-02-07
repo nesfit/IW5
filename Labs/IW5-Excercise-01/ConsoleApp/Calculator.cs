@@ -14,16 +14,36 @@ namespace ConsoleApp
             switch (mathOperation)
             {
                 case Program.MathOperation.Addition:
-                    return operand1 + operand2;
+                    return Add(operand1, operand2);
                 case Program.MathOperation.Subtraction:
-                    return operand1 - operand2;
+                    return Substract(operand1, operand2);
                 case Program.MathOperation.Multiplication:
-                    return operand1 * operand2;
+                    return Multiply(operand1, operand2);
                 case Program.MathOperation.Division:
-                    return operand1 / operand2;
+                    return Divide(operand1, operand2);
                 default:
                     throw new ArgumentOutOfRangeException(nameof(mathOperation), mathOperation, null);
             }
+        }
+
+        private static int Divide(int operand1, int operand2)
+        {
+            return operand1 / operand2;
+        }
+
+        private static int Multiply(int operand1, int operand2)
+        {
+            return operand1 * operand2;
+        }
+
+        private static int Substract(int operand1, int operand2)
+        {
+            return operand1 - operand2;
+        }
+
+        private static int Add(int operand1, int operand2)
+        {
+            return operand1 + operand2;
         }
     }
 }
