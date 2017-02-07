@@ -13,13 +13,19 @@
 // - pozor na deleni nulou!
 
 
+using System.ComponentModel;
+
 namespace Calculator
 {
     public enum MathOperation
         {
-            Addition,
-            Subtraction,
-            Multiplication,
-            Division
+        [Description("+")]
+        Addition,
+        [Description("-")]
+        Subtraction,
+        [Description("*")]
+        Multiplication,
+        [Description("/")]
+        Division
         }
 }

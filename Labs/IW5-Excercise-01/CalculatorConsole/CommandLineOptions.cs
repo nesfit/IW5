@@ -11,10 +11,10 @@ namespace CalculatorConsole
     /// </summary>
     internal class CommandLineOptions
     {
-        [Option('f', "first", Required = true, HelpText = "The first operand.")]
+        [Option('f', "first", Required = false, HelpText = "The first operand.")]
         public int? First { get; set; }
 
-        [Option('s', "second", Required = true, HelpText = "The second operand.")]
+        [Option('s', "second", Required = false, HelpText = "The second operand.")]
         public int? Second { get; set; }
 
         [Option('o', "operation", Required = true, HelpText = "The operation.")]
@@ -24,7 +24,7 @@ namespace CalculatorConsole
         public bool Verbose { get; set; }
 
         [HelpOption]
-        public string GetUsage()
+        public static string GetUsage()
         {
             var help = new HelpText
             {
@@ -35,7 +35,7 @@ namespace CalculatorConsole
             };
             help.AddPreOptionsLine("<<license details here.>>");
             help.AddPreOptionsLine("Usage: app -f 4 -s 3");
-            help.AddOptions(this);
+            help.AddOptions(new CommandLineOptions());
             return help;
         }
     }
