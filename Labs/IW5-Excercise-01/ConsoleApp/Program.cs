@@ -37,7 +37,7 @@ namespace ConsoleApp
 
             GetInput();
 
-            Calculator();
+            Calculator.Calculate();
 
             // stop the program at the end
             WaitForPressedKey();
@@ -118,28 +118,6 @@ namespace ConsoleApp
         {
             Console.WriteLine("Press any key...");
             Console.ReadKey();
-        }
-
-        /// <summary>
-        /// Calculates basic mathematical operations (+,-,*,/) on given operands using 
-        /// mathematical assembly implemented by students them selves.
-        /// Writes results on console.
-        /// </summary>
-        private static int Calculator(int operand1, int operand2, MathOperation mathOperation )
-        {
-            switch (mathOperation)
-            {
-                case MathOperation.Addition:
-                    return operand1 + operand2;
-                case MathOperation.Subtraction:
-                    return operand1 - operand2;
-                case MathOperation.Multiplication:
-                    return operand1 * operand2;
-                case MathOperation.Division:
-                    return operand1 / operand2;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(mathOperation), mathOperation, null);
-            }
         }
     }
 }

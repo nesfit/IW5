@@ -17,7 +17,7 @@ namespace ConsoleApp
 {
     internal partial class Program
     {
-        enum MathOperation
+        internal enum MathOperation
         {
             Addition,
             Subtraction,
