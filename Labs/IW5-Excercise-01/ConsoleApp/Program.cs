@@ -37,7 +37,7 @@ namespace ConsoleApp
 
             GetInput();
 
-            Calculator.Calculate();
+            Calculate();
 
             // stop the program at the end
             WaitForPressedKey();
@@ -118,6 +118,19 @@ namespace ConsoleApp
         {
             Console.WriteLine("Press any key...");
             Console.ReadKey();
+        }
+
+        /// <summary>
+        /// Calculates basic mathematical operations (+,-,*,/) on given operands using 
+        /// mathematical assembly implemented by students them selves.
+        /// Writes results on console.
+        /// </summary>
+        private static void Calculate()
+        {
+            var operand1 = 1;
+            var operand2 = 2;
+            var sum = Calculator.Calculate(operand1,operand2,MathOperation.Addition);
+            Console.WriteLine($"{operand1}+{operand2}={sum}");
         }
     }
 }
