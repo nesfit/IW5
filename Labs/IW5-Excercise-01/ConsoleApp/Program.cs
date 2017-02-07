@@ -17,6 +17,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Calculator;
 
 namespace ConsoleApp
 {
@@ -129,7 +130,7 @@ namespace ConsoleApp
         {
             var operand1 = 1;
             var operand2 = 2;
-            var sum = Calculator.Calculate(operand1,operand2,MathOperation.Addition);
+            var sum = Calculator.Calculator.Calculate(operand1,operand2, MathOperation.Addition);
             Console.WriteLine($"{operand1}+{operand2}={sum}");
         }
     }

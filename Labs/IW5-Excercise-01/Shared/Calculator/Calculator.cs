@@ -1,23 +1,23 @@
 using System;
 
-namespace ConsoleApp
+namespace Calculator
 {
-    internal class Calculator
+    public class Calculator
     {
         /// <summary>
         /// Calculates basic mathematical operations (+,-,*,/)
         /// </summary>
-        internal static int Calculate(int operand1, int operand2, Program.MathOperation mathOperation)
+        public static int Calculate(int operand1, int operand2, MathOperation mathOperation)
         {
             switch (mathOperation)
             {
-                case Program.MathOperation.Addition:
+                case MathOperation.Addition:
                     return Add(operand1, operand2);
-                case Program.MathOperation.Subtraction:
+                case MathOperation.Subtraction:
                     return Substract(operand1, operand2);
-                case Program.MathOperation.Multiplication:
+                case MathOperation.Multiplication:
                     return Multiply(operand1, operand2);
-                case Program.MathOperation.Division:
+                case MathOperation.Division:
                     return Divide(operand1, operand2);
                 default:
                     throw new ArgumentOutOfRangeException(nameof(mathOperation), mathOperation, null);

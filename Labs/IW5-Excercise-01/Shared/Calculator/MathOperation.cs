@@ -13,16 +13,13 @@
 // - pozor na deleni nulou!
 
 
-namespace ConsoleApp
+namespace Calculator
 {
-    internal partial class Program
-    {
-        internal enum MathOperation
+    public enum MathOperation
         {
             Addition,
             Subtraction,
             Multiplication,
             Division
         }
-    }
 }
