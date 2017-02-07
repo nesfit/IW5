@@ -9,6 +9,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{4BF0D4
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator", "Shared\Calculator\Calculator.csproj", "{8467F95E-ED81-4070-A8F0-ED66539BDC61}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalculatorConsole", "CalculatorConsole\CalculatorConsole.csproj", "{D3D80BA6-5801-416C-95C2-EB11936749F0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,10 @@ Global
 		{8467F95E-ED81-4070-A8F0-ED66539BDC61}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8467F95E-ED81-4070-A8F0-ED66539BDC61}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8467F95E-ED81-4070-A8F0-ED66539BDC61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3D80BA6-5801-416C-95C2-EB11936749F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3D80BA6-5801-416C-95C2-EB11936749F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3D80BA6-5801-416C-95C2-EB11936749F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3D80BA6-5801-416C-95C2-EB11936749F0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
