@@ -5,9 +5,7 @@ namespace ConsoleApp
     internal class Calculator
     {
         /// <summary>
-        /// Calculates basic mathematical operations (+,-,*,/) on given operands using 
-        /// mathematical assembly implemented by students them selves.
-        /// Writes results on console.
+        /// Calculates basic mathematical operations (+,-,*,/)
         /// </summary>
         internal static int Calculate(int operand1, int operand2, Program.MathOperation mathOperation)
         {
