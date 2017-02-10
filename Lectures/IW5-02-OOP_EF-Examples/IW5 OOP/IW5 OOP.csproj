@@ -49,6 +49,7 @@
     <Compile Include="Generics\GenericsExample.cs" />
     <Compile Include="Generics\CommonStack.cs" />
     <Compile Include="Generics\Storage.cs" />
+    <Compile Include="PartialClass.cs" />
     <Compile Include="Pets\Cat.cs" />
     <Compile Include="Pets\ConstructorInitializationExample.cs" />
     <Compile Include="Pets\Dog.cs" />
