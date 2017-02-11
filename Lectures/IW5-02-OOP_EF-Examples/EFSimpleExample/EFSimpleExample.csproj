@@ -52,9 +52,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Blog.cs" />
+    <Compile Include="Models\Blog.cs" />
     <Compile Include="BloggingContext.cs" />
-    <Compile Include="Post.cs" />
+    <Compile Include="Models\Post.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

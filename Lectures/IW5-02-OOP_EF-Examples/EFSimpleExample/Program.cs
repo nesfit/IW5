@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
 
+using EFSimpleExample.Models;
+
 namespace EFSimpleExample
 {
     /// <summary>
@@ -29,22 +31,21 @@ namespace EFSimpleExample
                 foreach (var item in query)
                     Console.WriteLine(item.Name);
 
-                // Create and save a new Blog 
-                Console.Write($"Enter a Title \\n content for a new Post assigned to the {blog.Name} blog: ");
+                // Create and save a new Post 
+                Console.Write($"Enter a title of a new Post assigned to the {blog.Name} blog: ");
                 var title = Console.ReadLine();
+                Console.Write($"Enter a content of a {title} post: ");
                 var content = Console.ReadLine();
 
                 var post = new Post {Title = title, Content = content, Blog = blog};
+
                 db.Posts.Add(post);
                 db.SaveChanges();
 
                 Console.WriteLine($"All posts for the {blog.Name} blog:");
-
                 foreach (var postItem in blog.Posts)
                 {
-                    Console.WriteLine(postItem.Title);
-                    Console.WriteLine(postItem.Content);
-                    Console.WriteLine();
+                    Console.WriteLine($"{postItem.Title} - {postItem.Content}");
                 }
 
                 Console.WriteLine("Press any key to exit...");
