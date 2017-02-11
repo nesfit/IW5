@@ -1,0 +1,3 @@
+#!/bin/sh
+c:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -ExecutionPolicy Bypass ".\git-config\hooks\DOCxXLSxPPTx2PDF.ps1"
+git add *.pdf
