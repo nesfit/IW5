@@ -6,6 +6,7 @@
   
 
 # Aktuality k předmětu
+  - **13.02.2016** | *Jan Pluskal* | Registrace týmů na projekty pro [FEKT](http://goo.gl/cBXSLd).
   - **12.01.2016** | *Jan Pluskal* | Cvičení začnou v týdnu od 6.2.2017 (první týden semestru) značení týdne sudý/lichý je podle kalendáře (ISO 8601) - týden od 6.2.2016 je SUDÝ.
 
 # Přednášky
