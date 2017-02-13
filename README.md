@@ -2,6 +2,7 @@
 # Odkazy
  * [Fórum IW5](http://fitiw5-forum.northeurope.cloudapp.azure.com/index.php) Studentské fórum k předmětu IW5. Všechny Vaše dotazy směřujte jen zde! 
  * [Wiki predmětu z minulých let](http://www.fit.vutbr.cz/study/courses/IW1/public/info/doku.php?id=iw5) Dříve používaná Wiki k předmětu nahrazená GitHubem.
+ * [FEKT](http://goo.gl/cBXSLd) Registrace týmu na projekt.
   
 
 # Aktuality k předmětu
@@ -61,3 +62,8 @@ Označení učeben oproti značení FIT:
 | ------------------ | --------------------- |
 | Počítačová cvičení |                    30 |
 | Projekt            |                    70 |
+
+# Užitečné odkazy
+* [Entity framework tutorial](http://www.entityframeworktutorial.net/code-first/entity-framework-code-first.aspx)
+* [R. C. Martin SOLID](https://youtu.be/TMuno5RZNeE?t=757) Bob Martin SOLID Principles of Object Oriented and Agile Design 
+
