@@ -45,11 +45,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Events\BaseStockPriceBroadcaster.cs" />
+    <Compile Include="Events\Customer.cs" />
     <Compile Include="Exceptions\CustomException.cs" />
     <Compile Include="DelegateExamples.cs" />
-    <Compile Include="EventExamples.cs" />
+    <Compile Include="Events\EventExamples.cs" />
     <Compile Include="Exceptions\ExceptionExamples.cs" />
+    <Compile Include="Events\GenericHandlerStockPriceBroadcaster.cs" />
     <Compile Include="LambdaExpressions.cs" />
+    <Compile Include="Events\PriceChangedEventArgs.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -61,6 +65,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

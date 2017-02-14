@@ -1,4 +1,5 @@
 ﻿
+using AdvancedConstructsInCsharp.Events;
 using AdvancedConstructsInCsharp.Exceptions;
 
 namespace AdvancedConstructsInCsharp
@@ -8,9 +9,9 @@ namespace AdvancedConstructsInCsharp
     static void Main(string[] args)
     {
       ExceptionExamples.RunExamples();
-      //DelegateExamples.RunExamples();
-      //EventExamples.RunExamples();
-      //LambdaExpressions.RunExamples();
+      DelegateExamples.RunExamples();
+      EventExamples.RunExamples();
+      LambdaExpressions.RunExamples();
     }
   }
 }
