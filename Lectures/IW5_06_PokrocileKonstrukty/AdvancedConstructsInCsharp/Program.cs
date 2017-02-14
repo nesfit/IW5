@@ -1,4 +1,6 @@
 ﻿
+using AdvancedConstructsInCsharp.Exceptions;
+
 namespace AdvancedConstructsInCsharp
 {
   public class Program
