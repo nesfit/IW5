@@ -29,6 +29,9 @@ Všechny cvičení se konají v APS, Učebna 2. Cvičení začnou v *týdnu od 6
 | Fit      | Čt 11:00-12:50 S/L |
 | Fit      | Čt 13:00-14:50 S/L |
 
+# Videa ze cvičení
+ * [Implementace Calculator](https://youtu.be/vwnAV5BUaug) a pouziti klavesovych zkratek Resharperu.
+
 # Nástroje použity ve cvičeních
 
 | Nástroj  |  Typ   | Popis |
