@@ -70,4 +70,5 @@ Označení učeben oproti značení FIT:
 # Užitečné odkazy
 * [Entity framework tutorial](http://www.entityframeworktutorial.net/code-first/entity-framework-code-first.aspx)
 * [R. C. Martin SOLID](https://youtu.be/TMuno5RZNeE?t=757) Bob Martin SOLID Principles of Object Oriented and Agile Design 
+* [Resharper features](https://www.jetbrains.com/resharper/features/) and how to use them.
 
