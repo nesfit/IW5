@@ -12,7 +12,7 @@ namespace IW5_03_Tests
             using (var db = new TasksDbContext())
             {
                 string connectionString = db.Database.Connection.ConnectionString;
-                Debug.WriteLine("Used connection string: '{0}'", connectionString);
+                Debug.WriteLine($"Used connection string: '{connectionString}'");
 
                 var toAdd = new UserTask()
                 {
