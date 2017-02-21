@@ -7,6 +7,8 @@ namespace Tests
     [TestClass]
     public class DatabaseStoreTests
     {
+        // the only think you need to do to fix this test is to update the connection string in app.config
+        // see also www.connectionstrings.com
         [TestMethod]
         public void ValidName_Add_AddsToDatabase()
         {
