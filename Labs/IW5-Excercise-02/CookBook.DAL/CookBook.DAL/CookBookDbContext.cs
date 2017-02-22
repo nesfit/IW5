@@ -16,7 +16,7 @@ namespace CookBook.DAL
 
         public override int SaveChanges()
         {
-            //FixAttachedEntities();
+            FixAttachedEntities();
             return base.SaveChanges();
         }
 
