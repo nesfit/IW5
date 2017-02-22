@@ -11,3 +11,6 @@ namespace CookBook.DAL.Entities
         public TimeSpan Duration { get; set; }
     }
 }
+
+
+https://github.com/fitiw/5
