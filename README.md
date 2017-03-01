@@ -29,6 +29,9 @@ Všechny cvičení se konají v APS, Učebna 2. Cvičení začnou v *týdnu od 6
 | Fit      | Čt 11:00-12:50 S/L |
 | Fit      | Čt 13:00-14:50 S/L |
 
+# Videa ze cvičení
+ * [Implementace Calculator](https://youtu.be/vwnAV5BUaug) a pouziti klavesovych zkratek Resharperu.
+
 # Nástroje použity ve cvičeních
 
 | Nástroj  |  Typ   | Popis |
@@ -67,4 +70,5 @@ Označení učeben oproti značení FIT:
 # Užitečné odkazy
 * [Entity framework tutorial](http://www.entityframeworktutorial.net/code-first/entity-framework-code-first.aspx)
 * [R. C. Martin SOLID](https://youtu.be/TMuno5RZNeE?t=757) Bob Martin SOLID Principles of Object Oriented and Agile Design 
+* [Resharper features](https://www.jetbrains.com/resharper/features/) and how to use them.
 
