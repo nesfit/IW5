@@ -60,6 +60,8 @@ Označení učeben oproti značení FIT:
 * ```<connectionStrings> 
       <add name="TasksContext" connectionString="Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog=TasksDB;MultipleActiveResultSets=True;Integrated Security=True;" providerName="System.Data.SqlClient" />
       </connectionStrings>```
+* Q: Jak přidat členy týmu?
+* A: https://www.youtube.com/watch?v=g73PJOWJzqA
       
 # Výuka - bodové rozdělení
 |      Typ výuky     | Maximální bodový zisk |
