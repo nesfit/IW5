@@ -12,10 +12,10 @@
 
 # Přednášky
 
-| Fakulta | Místnost | Čas         |
-| ------- |----------| ----------- |
-| Fekt    | T010     | 13:00-14:50 |
-| Fit     | D0206    | 16:00-17:50 |
+| Fakulta | Místnost | Čas            |
+| ------- |----------| -------------- |
+| Fekt    | T010     | Po 13:00-14:50 |
+| Fit     | D0206    | Po 16:00-17:50 |
 
 # Cvičení 
 Všechny cvičení se konají v APS, Učebna 2. Cvičení začnou v *týdnu od 6.2.2017* (první týden semestru) značení týdne sudý/lichý je podle kalendáře (ISO 8601) - týden od 6.2.2016 je SUDÝ.
