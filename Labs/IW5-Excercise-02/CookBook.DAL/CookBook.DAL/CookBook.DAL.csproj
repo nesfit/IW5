@@ -50,11 +50,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CookBookDbContext.cs" />
+    <Compile Include="Entities\IngredientEntityAmount.cs" />
     <Compile Include="Entities\Base\Implementation\EntityBase.cs" />
     <Compile Include="Entities\Base\Interface\IEntity.cs" />
     <Compile Include="Entities\FoodType.cs" />
     <Compile Include="Entities\IngredientEntity.cs" />
     <Compile Include="Entities\RecipeEntity.cs" />
+    <Compile Include="Entities\Unit.cs" />
     <Compile Include="Migrations\201703052255249_Init.cs" />
     <Compile Include="Migrations\201703052255249_Init.Designer.cs">
       <DependentUpon>201703052255249_Init.cs</DependentUpon>
