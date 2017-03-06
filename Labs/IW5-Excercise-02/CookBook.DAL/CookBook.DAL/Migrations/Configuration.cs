@@ -50,8 +50,6 @@
             };
             context.Ingredients.AddOrUpdate(i => i.Id, egg);
 
-            //var test = context.Ingredients.FirstOrDefault();
-
             context.Recipes.AddOrUpdate(
                 r => r.Id,
                 new RecipeEntity
