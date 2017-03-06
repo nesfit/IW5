@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace CookBook.DAL.Entities
 {
-    public class IngredientEntityAmount : EntityBase
+    public class IngredientAmountEntity : EntityBase
     {
         [Required]
         public double Amount { get; set; }
@@ -11,5 +11,7 @@ namespace CookBook.DAL.Entities
         public Unit Unit { get; set; }
         [Required]
         public IngredientEntity Ingredient { get; set; }
+        [Required]
+        public RecipeEntity RecipeEntity { get; set; }
     }
 }

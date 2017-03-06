@@ -12,7 +12,6 @@ namespace CookBook.DAL.Entities
         public FoodType Type { get; set; }
         public string Description { get; set; }
         public TimeSpan Duration { get; set; }
-        [Required]
-        public virtual ICollection<IngredientEntityAmount> Ingredients { get; set; } = new List<IngredientEntityAmount>();
+        public virtual ICollection<IngredientAmountEntity> Ingredients { get; set; } = new List<IngredientAmountEntity>();
     }
 }
