@@ -58,17 +58,9 @@
     <Compile Include="Entities\IngredientEntity.cs" />
     <Compile Include="Entities\RecipeEntity.cs" />
     <Compile Include="Entities\Unit.cs" />
-    <Compile Include="Migrations\201703052255249_Init.cs" />
-    <Compile Include="Migrations\201703052255249_Init.Designer.cs">
-      <DependentUpon>201703052255249_Init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703060839276_IngredientAmountEntity.cs" />
-    <Compile Include="Migrations\201703060839276_IngredientAmountEntity.Designer.cs">
-      <DependentUpon>201703060839276_IngredientAmountEntity.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703060851297_AddedPropertiesIngredientEntity.cs" />
-    <Compile Include="Migrations\201703060851297_AddedPropertiesIngredientEntity.Designer.cs">
-      <DependentUpon>201703060851297_AddedPropertiesIngredientEntity.cs</DependentUpon>
+    <Compile Include="Migrations\201703061916184_Init.cs" />
+    <Compile Include="Migrations\201703061916184_Init.Designer.cs">
+      <DependentUpon>201703061916184_Init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -78,14 +70,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201703052255249_Init.resx">
-      <DependentUpon>201703052255249_Init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703060839276_IngredientAmountEntity.resx">
-      <DependentUpon>201703060839276_IngredientAmountEntity.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703060851297_AddedPropertiesIngredientEntity.resx">
-      <DependentUpon>201703060851297_AddedPropertiesIngredientEntity.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201703061916184_Init.resx">
+      <DependentUpon>201703061916184_Init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

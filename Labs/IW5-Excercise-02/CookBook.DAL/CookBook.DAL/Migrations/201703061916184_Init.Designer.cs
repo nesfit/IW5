@@ -13,7 +13,7 @@ namespace CookBook.DAL.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201703052255249_Init"; }
+            get { return "201703061916184_Init"; }
         }
         
         string IMigrationMetadata.Source
