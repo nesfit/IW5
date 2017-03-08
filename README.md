@@ -6,15 +6,16 @@
   
 
 # Aktuality k předmětu
+  - **02.03.2016** | *Jan Pluskal* | Nepropadejte panice! Identita pro učitelský účet, který přidáte do Vašich repozitářů je v řešení.
   - **13.02.2016** | *Jan Pluskal* | Registrace týmů na projekty pro [FEKT](http://goo.gl/cBXSLd).
   - **12.01.2016** | *Jan Pluskal* | Cvičení začnou v týdnu od 6.2.2017 (první týden semestru) značení týdne sudý/lichý je podle kalendáře (ISO 8601) - týden od 6.2.2016 je SUDÝ.
 
 # Přednášky
 
-| Fakulta | Místnost | Čas         |
-| ------- |----------| ----------- |
-| Fekt    | T010     | 13:00-14:50 |
-| Fit     | D0206    | 16:00-17:50 |
+| Fakulta | Místnost | Čas            |
+| ------- |----------| -------------- |
+| Fekt    | T010     | Po 13:00-14:50 |
+| Fit     | D0206    | Po 16:00-17:50 |
 
 # Cvičení 
 Všechny cvičení se konají v APS, Učebna 2. Cvičení začnou v *týdnu od 6.2.2017* (první týden semestru) značení týdne sudý/lichý je podle kalendáře (ISO 8601) - týden od 6.2.2016 je SUDÝ.
@@ -60,6 +61,8 @@ Označení učeben oproti značení FIT:
 * ```<connectionStrings> 
       <add name="TasksContext" connectionString="Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog=TasksDB;MultipleActiveResultSets=True;Integrated Security=True;" providerName="System.Data.SqlClient" />
       </connectionStrings>```
+* Q: Jak přidat členy týmu?
+* A: https://www.youtube.com/watch?v=g73PJOWJzqA
       
 # Výuka - bodové rozdělení
 |      Typ výuky     | Maximální bodový zisk |
@@ -71,4 +74,5 @@ Označení učeben oproti značení FIT:
 * [Entity framework tutorial](http://www.entityframeworktutorial.net/code-first/entity-framework-code-first.aspx)
 * [R. C. Martin SOLID](https://youtu.be/TMuno5RZNeE?t=757) Bob Martin SOLID Principles of Object Oriented and Agile Design 
 * [Resharper features](https://www.jetbrains.com/resharper/features/) and how to use them.
+* [Pro Git book](https://git-scm.com/book/en/v2)
 
