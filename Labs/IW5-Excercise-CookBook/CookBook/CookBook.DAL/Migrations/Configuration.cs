@@ -20,7 +20,6 @@
                 Name = "Tmavá čokoláda",
                 Description = "Tmavá čokoláda s 80% kakaa.",
             };
-            context.Ingredients.AddOrUpdate(i => i.Id, darkChocolate);
 
             var wholeMilk = new IngredientEntity
             {
@@ -28,7 +27,6 @@
                 Name = "Plnotučné mlieko",
                 Description = "Plnotučné mlieko so 4% tuku.",
             };
-            context.Ingredients.AddOrUpdate(i => i.Id, wholeMilk);
 
             var almondFlour = new IngredientEntity
             {
@@ -36,7 +34,6 @@
                 Name = "Mandlová múka",
                 Description = "Najemno umletá mandlová múka",
             };
-            context.Ingredients.AddOrUpdate(i => i.Id, almondFlour);
 
             var egg = new IngredientEntity
             {
@@ -44,13 +41,15 @@
                 Name = "Vajíčko",
                 Description = "Slepačie vajíčko.",
             };
-            context.Ingredients.AddOrUpdate(i => i.Id, egg);
 
+            context.Ingredients.AddOrUpdate(i => i.Id, wholeMilk, darkChocolate, almondFlour, egg);
+
+            var chocolateCakeId = new Guid("cb8db9b3-799c-4ef2-9d85-ce32a9ffa843");
             context.Recipes.AddOrUpdate(
                 r => r.Id,
                 new RecipeEntity
                 {
-                    Id = new Guid("cb8db9b3-799c-4ef2-9d85-ce32a9ffa843"),
+                    Id = chocolateCakeId,
                     Name = "Čokoládová torta",
                     Duration = TimeSpan.FromMinutes(30),
                     Type = FoodType.Dessert,
@@ -61,28 +60,32 @@
                             Id = new Guid("1d2e7873-3e35-4d40-877c-a3d0d78de3c0"),
                             Amount = 0.5,
                             Unit = Unit.Kg,
-                            Ingredient = darkChocolate
+                            RecipeId = chocolateCakeId,
+                            IngredientId = darkChocolate.Id
                         },
                         new IngredientAmountEntity
                         {
                             Id = new Guid("2711f535-3566-446c-9ac6-58261efe3fa3"),
                             Amount = 0.3,
                             Unit = Unit.L,
-                            Ingredient = wholeMilk
+                            RecipeId = chocolateCakeId,
+                            IngredientId = wholeMilk.Id
                         },
                         new IngredientAmountEntity
                         {
                             Id = new Guid("c8cdbff9-6692-42ad-93aa-69cb56f95019"),
                             Amount = 5,
                             Unit = Unit.Pieces,
-                            Ingredient = egg
+                            RecipeId = chocolateCakeId,
+                            IngredientId = egg.Id
                         },
                         new IngredientAmountEntity
                         {
                             Id = new Guid("b417ad46-b94c-487e-8cc1-97ebd7551b13"),
                             Amount = 7,
                             Unit = Unit.Spoon,
-                            Ingredient = almondFlour
+                            RecipeId = chocolateCakeId,
+                            IngredientId = almondFlour.Id
                         }
                     }
                 });
