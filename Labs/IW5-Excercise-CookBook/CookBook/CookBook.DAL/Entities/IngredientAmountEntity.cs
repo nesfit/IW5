@@ -1,5 +1,6 @@
-﻿using CookBook.DAL.Entities.Base.Implementation;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
+using CookBook.DAL.Entities.Base.Implementation;
 
 namespace CookBook.DAL.Entities
 {
@@ -9,9 +10,13 @@ namespace CookBook.DAL.Entities
         public double Amount { get; set; }
         [Required]
         public Unit Unit { get; set; }
+
         [Required]
-        public IngredientEntity Ingredient { get; set; }
+        public Guid IngredientId { get; set; }
+        public virtual IngredientEntity Ingredient { get; set; }
+
         [Required]
-        public RecipeEntity RecipeEntity { get; set; }
+        public Guid RecipeId { get; set; }
+        public virtual RecipeEntity Recipe { get; set; }
     }
 }

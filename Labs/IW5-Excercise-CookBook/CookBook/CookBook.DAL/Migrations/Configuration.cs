@@ -19,7 +19,6 @@
                 Id = new Guid("5abdfee1-c970-4afd-aff8-aa3cfef8b1ac"),
                 Name = "Tmavá čokoláda",
                 Description = "Tmavá čokoláda s 80% kakaa.",
-                Color = Color.Black
             };
             context.Ingredients.AddOrUpdate(i => i.Id, darkChocolate);
 
@@ -28,7 +27,6 @@
                 Id = new Guid("83041385-cb60-401b-bf11-cc5ffb8bc570"),
                 Name = "Plnotučné mlieko",
                 Description = "Plnotučné mlieko so 4% tuku.",
-                Color = Color.White
             };
             context.Ingredients.AddOrUpdate(i => i.Id, wholeMilk);
 
@@ -37,7 +35,6 @@
                 Id = new Guid("cb181669-4e02-449f-bf02-ab6020dfecb4"),
                 Name = "Mandlová múka",
                 Description = "Najemno umletá mandlová múka",
-                Color = Color.Yellow
             };
             context.Ingredients.AddOrUpdate(i => i.Id, almondFlour);
 
@@ -46,7 +43,6 @@
                 Id = new Guid("012ac89a-94e3-4bc2-94b5-c9b05fc83375"),
                 Name = "Vajíčko",
                 Description = "Slepačie vajíčko.",
-                Color = Color.Orange
             };
             context.Ingredients.AddOrUpdate(i => i.Id, egg);
 
