@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -11,59 +11,71 @@ namespace CleanCodeSample
     {
         static void Main(string[] args)
         {
-            TestAddition();
-
-            // Waiting for input from user
-            Console.ReadKey();
+            Stuff();
         }
-        
-        private static void TestAddition()
-        {
-            var firstInputForAddition = ReadNumberInput("Zadejte 1. číslo pro sčítání: ");
-            var secondInputForAddition = ReadNumberInput("Zadejte 2. číslo pro sčítání: ");
-            var userAnswer = ReadNumberInput("Zadejte Vaši odpověď: ");
 
-            var result = firstInputForAddition + secondInputForAddition;
+        // Calculating addition operation
+        private static void Stuff()
+        {
+            // FIrst number for addition
+            int n1;
+            // Second number for addition
+            int n2;
+            // Answer from the user
+            int a;
+            // Correct answer
+            int r;
+
+            // Asking user to input a number
+            Console.Write("Zadejte 1. číslo pro sčítání: ");
             
-            WriteResultMessage(result, userAnswer);
-        }
-
-        private static void WriteResultMessage(int result, int userAnswer)
-        {
-            string message = $"Vaše odpověď \"{userAnswer}\"";
-
-            if (result == userAnswer)
+            // Reading number from console
+            while (!int.TryParse(Console.ReadLine(), out n1))
             {
-                WriteColorLine(ConsoleColor.Green, $"{message} byla správná");
+            }
+
+            // Asking user to input a number
+            Console.Write("Zadejte 2. číslo pro sčítání: ");
+
+            // Reading number from console
+            while (!int.TryParse(Console.ReadLine(), out n2))
+            {
+            }
+
+            Console.Write("Zadejte Vaši odpověď: ");
+
+            // Reading number from console
+            while (!int.TryParse(Console.ReadLine(), out a))
+            {
+            }
+
+            // Correct answer
+            r = n1 + n2;
+
+            // Checking if the answer from the user was correct
+            if (r == a)
+            {
+                // Setting color to green
+                Console.ForegroundColor = ConsoleColor.Green;
+
+                // Printing the result
+                Console.Write("Vaše odpověď \"");
+                Console.Write(a);
+                Console.Write("\" byla správná");
             }
             else
             {
-                WriteColorLine(ConsoleColor.Red, $"{message} nebyla správná");
+                // Setting color to red
+                Console.ForegroundColor = ConsoleColor.Red;
+
+                // Printing the result
+                Console.Write("Vaše odpověď \"");
+                Console.Write(a);
+                Console.Write("\" byla nesprávná");
             }
-        }
 
-        private static int ReadNumberInput(string message)
-        {
-            Console.Write(message);
-            return ReadNumberInput();
-        }
-
-        private static int ReadNumberInput()
-        {
-            int input;
-            // Reading number from console
-            while (!int.TryParse(Console.ReadLine(), out input))
-            {
-            }
-            return input;
-        }
-
-        private static void WriteColorLine(ConsoleColor foregroundColor, string message)
-        {
-            var previouslyForegroundColor = Console.ForegroundColor;
-            Console.ForegroundColor = foregroundColor;
-            Console.WriteLine(message);
-            Console.ForegroundColor = previouslyForegroundColor;
+            // Waiting for input from user
+            Console.ReadKey();
         }
     }
 }
