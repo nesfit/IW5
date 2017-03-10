@@ -6,6 +6,7 @@
   
 
 # Aktuality k předmětu
+  - **10.03.2016** | *Jan Pluskal* | [Nabídka práce](http://goo.gl/xQVzA7) na VUT CVIS pro programátor a správce MS technologií
   - **08.03.2016** | *Jan Pluskal* | Do Vašich repozitářů pro projekt přidejte účet **uciteliw5@vutbr.cz**
   - **02.03.2016** | *Jan Pluskal* | Nepropadejte panice! Identita pro učitelský účet, který přidáte do Vašich repozitářů je v řešení.
   - **13.02.2016** | *Jan Pluskal* | Registrace týmů na projekty pro [FEKT](http://goo.gl/cBXSLd).
