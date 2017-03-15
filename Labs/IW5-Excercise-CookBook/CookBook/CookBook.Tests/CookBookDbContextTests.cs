@@ -2,14 +2,13 @@
 using System.Linq;
 using CookBook.BL;
 using CookBook.DAL;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 
 namespace CookBook.Tests
 {
-    [TestClass]
     public class CookBookDbContextTests
     {
-        [TestMethod]
+        [Fact]
         public void DbConnectionTest()
         {
             using (var cookBookDbContext = new CookBookDbContext())
