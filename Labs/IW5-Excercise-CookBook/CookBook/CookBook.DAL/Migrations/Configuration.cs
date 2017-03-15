@@ -89,6 +89,8 @@
                         }
                     }
                 });
+
+            context.SaveChanges();
         }
     }
 }

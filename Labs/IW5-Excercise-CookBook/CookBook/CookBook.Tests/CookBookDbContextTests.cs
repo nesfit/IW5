@@ -1,17 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using CookBook.BL;
 using CookBook.DAL;
-using CookBook.DAL.Migrations;
-using Xunit;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace CookBook.Tests
 {
+    [TestClass]
     public class CookBookDbContextTests
     {
-        [Fact]
+        [TestMethod]
         public void DbConnectionTest()
         {
             using (var cookBookDbContext = new CookBookDbContext())

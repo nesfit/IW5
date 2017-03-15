@@ -1,4 +1,5 @@
-﻿using CookBook.DAL.Entities;
+﻿using System;
+using CookBook.DAL.Entities;
 using System.Data.Entity;
 
 namespace CookBook.DAL
