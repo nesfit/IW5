@@ -7,6 +7,45 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <TextBlock x:Name="Title" Text="ABCDEFG" Margin="5" FontWeight="Bold" />
+
+        <WrapPanel x:Name="TopMenu" Grid.Row="0" Grid.Column="1">
+            <TextBlock Text="AAAA" Margin="5" />
+            <TextBlock Text="BBBB" Margin="5" />
+            <TextBlock Text="CCCC" Margin="5" />
+            <TextBlock Text="DDDD" Margin="5" />
+        </WrapPanel>
+
+        <ListBox x:Name="NavigationMenu" Grid.Row="1">
+            <ListBoxItem>
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="abcd" FontWeight="Bold" />
+                    <TextBlock TextWrapping="Wrap" Width="100" Text="Lorem ipsum dolores sit amet" />
+                </StackPanel>
+            </ListBoxItem>
+            <ListBoxItem>
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="abcd" FontWeight="Bold" />
+                    <TextBlock TextWrapping="Wrap" Width="100" Text="Lorem ipsum dolores sit amet" />
+                </StackPanel>
+            </ListBoxItem>
+        </ListBox>
+
+        <Grid x:Name="Content" Grid.Row="1" Grid.Column="1">
+            <Rectangle Width="200" Height="200">
+                <Rectangle.Fill>
+                    <SolidColorBrush Color="DarkBlue" />
+                </Rectangle.Fill>
+            </Rectangle>
+        </Grid>
     </Grid>
 </Window>
