@@ -17,6 +17,6 @@ namespace HelloWPF.ViewModels
         }
 
         public string Title => _menuItem.Title;
-        public string SubTitle => _menuItem.Title;
+        public string SubTitle => _menuItem.SubTitle;
     }
 }

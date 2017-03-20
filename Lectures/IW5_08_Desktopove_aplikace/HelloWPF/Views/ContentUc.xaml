@@ -4,13 +4,22 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HelloWPF.Views"
+             xmlns:viewModels="clr-namespace:HelloWPF.ViewModels"
              mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance viewModels:MainWindowVm}"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <Rectangle Width="200" Height="200">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="280"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Rectangle x:Name="Rectangle"  Width="200" Height="200" Grid.Column="0">
             <Rectangle.Fill>
                 <SolidColorBrush Color="DarkBlue" />
             </Rectangle.Fill>
         </Rectangle>
+        <StackPanel  Grid.Column="1">
+            <local:MenuItemUc DataContext="{Binding NavigationMenu.SelectedItem}" />
+        </StackPanel>
     </Grid>
 </UserControl>

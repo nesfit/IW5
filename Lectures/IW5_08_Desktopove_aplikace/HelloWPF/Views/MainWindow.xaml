@@ -38,10 +38,7 @@
                  SelectedValue="{Binding SelectedTitle}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel>
-                        <TextBlock Text="{Binding Title}" FontWeight="Bold" />
-                        <TextBlock Text="{Binding Title}" TextWrapping="Wrap" Width="100" />
-                    </StackPanel>
+                    <views:MenuItemUc />
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>

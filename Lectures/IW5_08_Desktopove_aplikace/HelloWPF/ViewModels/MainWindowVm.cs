@@ -1,6 +1,10 @@
-﻿namespace HelloWPF.ViewModels
+﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using HelloWPF.Annotations;
+
+namespace HelloWPF.ViewModels
 {
-    public class MainWindowVm
+    public class MainWindowVm:INotifyPropertyChanged
     {
         public MainWindowVm()
         {
@@ -8,5 +12,12 @@
         }
 
         public MenuVm NavigationMenu { get; set; }
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }
