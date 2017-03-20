@@ -54,6 +54,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModels\MainWindowVm.cs" />
     <Compile Include="ViewModels\MenuItemVM.cs" />
     <Compile Include="ViewModels\MenuVm.cs" />
     <Page Include="Views\ContentUc.xaml">

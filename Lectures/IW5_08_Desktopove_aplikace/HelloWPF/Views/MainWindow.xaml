@@ -8,6 +8,9 @@
         xmlns:views="clr-namespace:HelloWPF.Views"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
+    <Window.DataContext>
+        <viewModels:MainWindowVm />
+    </Window.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150" />
@@ -29,12 +32,10 @@
 
         <ListBox x:Name="NavigationMenu"
                  Grid.Row="1"
+                 DataContext="{Binding NavigationMenu}"
                  ItemsSource="{Binding MenuItems}"
                  SelectedItem="{Binding SelectedItem}"
                  SelectedValue="{Binding SelectedTitle}">
-            <ListBox.DataContext>
-                <viewModels:MenuVm />
-            </ListBox.DataContext>
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
