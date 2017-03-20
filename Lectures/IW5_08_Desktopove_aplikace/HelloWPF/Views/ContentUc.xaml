@@ -7,7 +7,7 @@
              xmlns:viewModels="clr-namespace:HelloWPF.ViewModels"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance viewModels:MainWindowVm}"
-             d:DesignHeight="300" d:DesignWidth="300" d:Background="White">
+             d:DesignHeight="300" d:DesignWidth="350">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="260"/>
@@ -21,5 +21,28 @@
         <StackPanel  Grid.Column="1">
             <local:MenuItemUc DataContext="{Binding NavigationMenu.SelectedItem}" />
         </StackPanel>
+
+        <Rectangle Fill="#FFFFF830" HorizontalAlignment="Left" Height="34" Margin="30,257,0,0"
+                       VerticalAlignment="Top" Width="43" />
+        <TextBlock HorizontalAlignment="Left" Margin="78,257,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
+                <Run Text="ABCD" /><LineBreak />
+                <InlineUIContainer>
+                    <TextBlock TextWrapping="Wrap">
+                        <Span  FontSize="12.6666666666667" FontFamily="Consolas">
+                            <Run Text="Lorem ipsum dolores sit amet" />
+                        </Span>
+                    </TextBlock>
+                </InlineUIContainer>
+            </TextBlock>
+        <Canvas>
+        <Rectangle Fill="DarkGreen" HorizontalAlignment="Left" Height="21" Margin="284,252,0,0"
+                       VerticalAlignment="Top" Width="22" />
+        <Rectangle Fill="DarkGreen" HorizontalAlignment="Left" Height="21" Margin="257,226,0,0"
+                VerticalAlignment="Top" Width="22" />
+        <Rectangle Fill="DarkGreen" HorizontalAlignment="Left" Height="21" Margin="284,226,0,0"
+                VerticalAlignment="Top" Width="22" />
+        <Rectangle Fill="DarkGreen" HorizontalAlignment="Left" Height="21" Margin="311,226,0,0"
+                VerticalAlignment="Top" Width="22" />
+        </Canvas>
     </Grid>
 </UserControl>

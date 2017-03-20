@@ -10,8 +10,8 @@
         Title="MainWindow" Height="350" Width="525" Foreground="Black">
     <Window.Background>
         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-            <GradientStop Color="#FFD94321" Offset="1"/>
-            <GradientStop Color="#FFFBD95F" Offset="0.634"/>
+            <GradientStop Color="#FFD94321" Offset="1" />
+            <GradientStop Color="#FFFBD95F" Offset="0.634" />
         </LinearGradientBrush>
     </Window.Background>
     <Window.DataContext>
