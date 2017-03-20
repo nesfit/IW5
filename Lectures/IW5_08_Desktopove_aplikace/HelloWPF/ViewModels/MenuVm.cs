@@ -34,6 +34,9 @@ namespace HelloWPF.ViewModels
             this.MenuItems.Add(new MenuItemVm(new MenuItem() { Title = "abcd1", SubTitle = "Lorem ipsum dolores sit amet" }));
             this.MenuItems.Add(new MenuItemVm(new MenuItem() { Title = "abcd2", SubTitle = "Lorem ipsum dolores sit amet" }));
             this.MenuItems.Add(new MenuItemVm(new MenuItem() { Title = "abcd3", SubTitle = "Lorem ipsum dolores sit amet" }));
+            this.MenuItems.Add(new MenuItemVm(new MenuItem() { Title = "abcd4", SubTitle = "Lorem ipsum dolores sit amet" }));
+            this.MenuItems.Add(new MenuItemVm(new MenuItem() { Title = "abcd5", SubTitle = "Lorem ipsum dolores sit amet" }));
+            this.MenuItems.Add(new MenuItemVm(new MenuItem() { Title = "abcd6", SubTitle = "Lorem ipsum dolores sit amet" }));
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
