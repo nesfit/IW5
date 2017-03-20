@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HelloWPF"
+        xmlns:viewModels="clr-namespace:HelloWPF.ViewModels"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
@@ -25,19 +26,22 @@
             <TextBlock Text="DDDD" Margin="5" />
         </WrapPanel>
 
-        <ListBox x:Name="NavigationMenu" Grid.Row="1">
-            <ListBoxItem>
-                <StackPanel Orientation="Vertical">
-                    <TextBlock Text="abcd" FontWeight="Bold" />
-                    <TextBlock TextWrapping="Wrap" Width="100" Text="Lorem ipsum dolores sit amet" />
-                </StackPanel>
-            </ListBoxItem>
-            <ListBoxItem>
-                <StackPanel Orientation="Vertical">
-                    <TextBlock Text="abcd" FontWeight="Bold" />
-                    <TextBlock TextWrapping="Wrap" Width="100" Text="Lorem ipsum dolores sit amet" />
-                </StackPanel>
-            </ListBoxItem>
+        <ListBox x:Name="NavigationMenu"
+                 Grid.Row="1"
+                 ItemsSource="{Binding MenuItems}"
+                 SelectedItem="{Binding SelectedItem}"
+                 SelectedValue="{Binding SelectedTitle}">
+            <ListBox.DataContext>
+                <viewModels:MenuVm />
+            </ListBox.DataContext>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Title}" FontWeight="Bold" />
+                        <TextBlock Text="{Binding Title}" TextWrapping="Wrap" Width="100" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
         </ListBox>
 
         <Grid x:Name="Content" Grid.Row="1" Grid.Column="1">
