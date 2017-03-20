@@ -7,10 +7,10 @@
              xmlns:viewModels="clr-namespace:HelloWPF.ViewModels"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance viewModels:MainWindowVm}"
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="300" d:Background="White">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="280"/>
+            <ColumnDefinition Width="260"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
         <Rectangle x:Name="Rectangle"  Width="200" Height="200" Grid.Column="0">

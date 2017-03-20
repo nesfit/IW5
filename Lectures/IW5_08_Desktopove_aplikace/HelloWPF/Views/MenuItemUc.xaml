@@ -7,7 +7,7 @@
              xmlns:viewModels="clr-namespace:HelloWPF.ViewModels"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance viewModels:MenuItemVm}"
-             d:DesignHeight="300" d:DesignWidth="150">
+             d:DesignHeight="300" d:DesignWidth="100">
     <StackPanel Orientation="Vertical">
         <TextBlock Text="{Binding Title}" FontWeight="Bold" />
         <TextBlock Text="{Binding SubTitle}" TextWrapping="Wrap" Width="100" />
