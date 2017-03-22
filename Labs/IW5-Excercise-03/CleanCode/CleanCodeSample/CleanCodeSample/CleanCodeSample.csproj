@@ -41,6 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConsoleHelper.cs" />
+    <Compile Include="MathExcercisesProgram.cs" />
+    <Compile Include="MathExcercise\AdditionMathExcercise.cs" />
+    <Compile Include="MathExcercise\IMathExcercise.cs" />
+    <Compile Include="MathExcercise\MathExcerciseRunner.cs" />
+    <Compile Include="MathExcercise\MultiplicationMathExcercise.cs" />
+    <Compile Include="MathExcercise\SubstractionMathExcercise.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
