@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +13,14 @@ namespace CookBook.BL
     {
         public RecipeEntity FindByName(string name)
         {
-            throw new NotImplementedException();
+            using (var cookBookDbContext = new CookBookDbContext())
+            {
+                var recipe = cookBookDbContext
+                    .Recipes
+                    .Include(r => r.Ingredients.Select(i => i.Ingredient))
+                    .FirstOrDefault(r => r.Name == name);
+                return recipe;
+            }
         }
     }
 }
