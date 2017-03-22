@@ -1,13 +1,15 @@
 # Programování v .NET a C# IW5/MW5 
 # Odkazy
+ * [Záznamy](goo.gl/l0NxxP) Záznamy přednášek na FIT z předmětu IW5 a VUT.NIGHT.
  * [Fórum IW5](http://fitiw5-forum.northeurope.cloudapp.azure.com/index.php) Studentské fórum k předmětu IW5. Všechny Vaše dotazy směřujte jen zde! 
  * [Wiki predmětu z minulých let](http://www.fit.vutbr.cz/study/courses/IW1/public/info/doku.php?id=iw5) Dříve používaná Wiki k předmětu nahrazená GitHubem.
  * [FEKT](http://goo.gl/cBXSLd) Registrace týmu na projekt.
   
 
 # Aktuality k předmětu
-  - **10.03.2016** | *Jan Pluskal* | [Nabídka práce](http://goo.gl/xQVzA7) na VUT CVIS pro programátor a správce MS technologií
-  - **08.03.2016** | *Jan Pluskal* | Do Vašich repozitářů pro projekt přidejte účet **uciteliw5@vutbr.cz**
+  - **22.03.2016** | *Jan Pluskal* | Přidán odkaz se [záznamy](goo.gl/l0NxxP).
+  - **10.03.2016** | *Jan Pluskal* | [Nabídka práce](http://goo.gl/xQVzA7) na VUT CVIS pro programátor a správce MS technologií.
+  - **08.03.2016** | *Jan Pluskal* | Do Vašich repozitářů pro projekt přidejte účet **uciteliw5@vutbr.cz**.
   - **02.03.2016** | *Jan Pluskal* | Nepropadejte panice! Identita pro učitelský účet, který přidáte do Vašich repozitářů je v řešení.
   - **13.02.2016** | *Jan Pluskal* | Registrace týmů na projekty pro [FEKT](http://goo.gl/cBXSLd).
   - **12.01.2016** | *Jan Pluskal* | Cvičení začnou v týdnu od 6.2.2017 (první týden semestru) značení týdne sudý/lichý je podle kalendáře (ISO 8601) - týden od 6.2.2016 je SUDÝ.
