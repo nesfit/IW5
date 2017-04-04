@@ -2,7 +2,7 @@
 
 namespace UserManagement.ConsoleApp.Repository
 {
-    public sealed class EmployeeStorage
+    public sealed class EmployeeStorageStatic
     {
         public UserGroupComposite Developers { get; }
         public UserGroupComposite Employees { get; }
@@ -10,9 +10,9 @@ namespace UserManagement.ConsoleApp.Repository
         public UserGroupComposite PythonTeam { get; }
         public UserGroupComposite DotNetTeam { get; }
 
-        public static EmployeeStorage Instance { get; } = new EmployeeStorage();
+        public static EmployeeStorageStatic Instance { get; } = new EmployeeStorageStatic();
 
-        private EmployeeStorage()
+        private EmployeeStorageStatic()
         {
             var roman = new UserComponent { Name = "Roman", Email = "roman@super-company.com" };
             var tibor = new UserComponent { Name = "Tibor", Email = "tibor@super-company.com" };

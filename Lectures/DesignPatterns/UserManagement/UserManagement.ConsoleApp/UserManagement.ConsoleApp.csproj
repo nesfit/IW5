@@ -61,9 +61,10 @@
     <Compile Include="Composite\UserGroupComposite.cs" />
     <Compile Include="Decorator\LoggingInterceptor.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="Singleton\EmployeeStorageStatic.cs" />
     <Compile Include="UserManagementApp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="EmployeeStorage.cs" />
+    <Compile Include="Singleton\EmployeeStorage.cs" />
     <Compile Include="Visitor\SendMailUserVisitor.cs" />
     <Compile Include="Visitor\DisplayUserVisitor.cs" />
   </ItemGroup>

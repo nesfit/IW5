@@ -11,16 +11,38 @@ namespace UserManagement.Tests.Visitor
     public class SendMailUserVisitorTests
     {
         [Fact]
-        public void SendEmail_DesignersGroup_SendsEmailToAllInGroup()
+        public void SendEmail_Group_SendsEmailToAllInGroup()
         {
             var email = new Email("test", "test body");
             var mailerServiceMock = new Mock<IMailerService>();
             mailerServiceMock.Setup(mailerService => mailerService.SendEmail(It.IsAny<string>(), email));
             SendMailUserVisitor sendMailUserVisitorSUT = new SendMailUserVisitor(mailerServiceMock.Object);
 
-            sendMailUserVisitorSUT.SendEmail(EmployeeStorage.Instance.Designers, email);
+            var bob = new UserComponent { Name = "Bob", Email = "bob@super-company.com"};
+            var developers = new UserGroupComposite
+            {
+                Name = "Developers",
+                Members = { bob }
+            };
 
-            mailerServiceMock.Verify(mailerService => mailerService.SendEmail(It.IsAny<string>(), email), Times.Exactly(2));
+            sendMailUserVisitorSUT.SendEmail(developers, email);
+
+            mailerServiceMock.Verify(mailerService => mailerService.SendEmail(It.IsAny<string>(), email), Times.Once);
+        }
+
+        [Fact]
+        public void SendEmail_User_SendsEmailToUser()
+        {
+            var email = new Email("test", "test body");
+            var mailerServiceMock = new Mock<IMailerService>();
+            mailerServiceMock.Setup(mailerService => mailerService.SendEmail(It.IsAny<string>(), email));
+            SendMailUserVisitor sendMailUserVisitorSUT = new SendMailUserVisitor(mailerServiceMock.Object);
+
+            var bob = new UserComponent { Name = "Bob", Email = "bob@super-company.com" };
+
+            sendMailUserVisitorSUT.SendEmail(bob, email);
+
+            mailerServiceMock.Verify(mailerService => mailerService.SendEmail(It.IsAny<string>(), email), Times.Once);
         }
 
         [Fact]

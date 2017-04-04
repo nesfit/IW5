@@ -10,23 +10,25 @@ namespace UserManagement.ConsoleApp
         private readonly DisplayUserVisitor displayUserVisitor;
         private readonly NewsletterFactory newsletterFactory;
         private readonly SendMailUserVisitor sendMailUserVisitor;
+        private readonly EmployeeStorage employeeStorage;
 
-        public UserManagementApp(DisplayUserVisitor displayUserVisitor, NewsletterFactory newsletterFactory, SendMailUserVisitor sendMailUserVisitor)
+        public UserManagementApp(DisplayUserVisitor displayUserVisitor, NewsletterFactory newsletterFactory, SendMailUserVisitor sendMailUserVisitor, EmployeeStorage employeeStorage)
         {
             this.displayUserVisitor = displayUserVisitor;
             this.newsletterFactory = newsletterFactory;
             this.sendMailUserVisitor = sendMailUserVisitor;
+            this.employeeStorage = employeeStorage;
         }
 
 
         public void Start()
         {
-            displayUserVisitor.Print(EmployeeStorage.Instance.Employees);
+            displayUserVisitor.Print(employeeStorage.Employees);
 
             Console.WriteLine(new string('-', 100));
 
             var newsletter = newsletterFactory.CreateNewsletter();
-            sendMailUserVisitor.SendEmail(EmployeeStorage.Instance.Developers, newsletter);
+            sendMailUserVisitor.SendEmail(employeeStorage.Developers, newsletter);
         }
     }
 }
