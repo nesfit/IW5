@@ -3,6 +3,7 @@ using System.Windows.Input;
 using CookBook.App.Commands;
 using CookBook.BL;
 using CookBook.BL.Messages;
+using CookBook.BL.Models;
 using CookBook.BL.Repositories;
 
 namespace CookBook.App.ViewModels
@@ -33,14 +34,14 @@ namespace CookBook.App.ViewModels
 
         public void RecipeSelectionChanged(object parameter)
         {
-            var recipeId = (Guid?)parameter;
+            var recipe = parameter as RecipeListModel;
 
-            if (!recipeId.HasValue)
+            if (recipe == null)
             {
                 return;
             }
 
-            _messenger.Send(new SelectedRecipeMessage() { Id = recipeId.Value});
+            _messenger.Send(new SelectedRecipeMessage() { Id = recipe.Id });
         }
     }
 }

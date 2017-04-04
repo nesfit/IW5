@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
-             mc:Ignorable="d" 
+        xmlns:viewModels="clr-namespace:CookBook.App.ViewModels"
+        mc:Ignorable="d" 
         d:DataContext="{d:DesignInstance viewModels:RecipeListViewModel, IsDesignTimeCreatable=False}"
         d:DesignWidth="200"
         d:DesignHeight="600">
