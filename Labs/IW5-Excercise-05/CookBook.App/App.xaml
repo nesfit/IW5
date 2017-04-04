@@ -1,0 +1,11 @@
+﻿<Application x:Class="CookBook.App.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:converters="clr-namespace:CookBook.App.Converters"
+             xmlns:app="clr-namespace:CookBook.App"
+             StartupUri="Views/MainWindow.xaml">
+    <Application.Resources>
+        <converters:TimeSpanToMinutesConverter x:Key="TimeSpanToMinutesConverter"/>
+        <app:ViewModelLocator x:Key="ViewModelLocator" />
+    </Application.Resources>
+</Application>

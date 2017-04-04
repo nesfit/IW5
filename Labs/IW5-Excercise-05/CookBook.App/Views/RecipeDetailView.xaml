@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="CookBook.App.Views.RecipeDetailView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" 
+        d:DataContext="{d:DesignInstance viewModels:RecipeDetailViewModel, IsDesignTimeCreatable=False}"
+        d:DesignWidth="400"
+        d:DesignHeight="600">
+
+    <!-- ToDo: bind visibility to detail model-->
+    <Grid  MinWidth="360">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Menu>
+            <MenuItem Header="Save" />
+            <MenuItem Header="Delete" />
+        </Menu>
+
+        <Grid ShowGridLines="True" Grid.Row="1" DataContext="{Binding Detail}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0"  Content="Name: "></Label>
+            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Name}"></TextBox>
+
+            <Label Grid.Row="1" Grid.Column="0"  Content="Type: "></Label>
+            <ComboBox Grid.Row="1" Grid.Column="1" />
+
+            <Label Grid.Row="2" Grid.Column="0"  Content="Duration (in minutes): "></Label>
+            <TextBox Grid.Row="2" Grid.Column="1" 
+                     Text="{Binding Duration}">
+            </TextBox>
+
+            <Label Grid.Row="3" Grid.Column="0"  Content="Description: "></Label>
+            <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Description}" TextWrapping="Wrap"></TextBox>
+
+        </Grid>
+    </Grid>
+</UserControl>
