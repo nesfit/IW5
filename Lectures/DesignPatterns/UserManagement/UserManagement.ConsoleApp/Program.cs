@@ -27,7 +27,7 @@ namespace UserManagement.ConsoleApp
             container.Register(Component.For<DisplayUserVisitor>().LifestyleTransient());
             container.Register(Component.For<SendMailUserVisitor>().LifestyleTransient());
             container.Register(Component.For<EmployeeStorage>().LifestyleSingleton());
-            container.Register(Component.For<IMailerService>().ImplementedBy<MailerService>().Interceptors<LoggingInterceptor>());
+            container.Register(Component.For<IMailerService>().ImplementedBy<MailerService>().LifestyleTransient().Interceptors<LoggingInterceptor>());
             container.Register(Component.For<LoggingInterceptor>().LifestyleTransient());
             return container;
         }
