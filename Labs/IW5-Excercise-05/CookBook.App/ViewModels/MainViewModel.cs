@@ -11,6 +11,10 @@ namespace CookBook.App.ViewModels
 
         public ICommand CreateRecipeCommand { get; }
 
+        public string Name { get; set; }
+        public string Description { get; set; }
+
+
         public MainViewModel(IMessenger messenger)
         {
             _messenger = messenger;

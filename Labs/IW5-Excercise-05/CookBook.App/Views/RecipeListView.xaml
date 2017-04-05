@@ -7,6 +7,7 @@
         xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
         xmlns:viewModels="clr-namespace:CookBook.App.ViewModels"
         mc:Ignorable="d" 
+        DataContext="{Binding RecipeListViewModel, Source={StaticResource ViewModelLocator}}"
         d:DataContext="{d:DesignInstance viewModels:RecipeListViewModel, IsDesignTimeCreatable=False}"
         d:DesignWidth="200"
         d:DesignHeight="600">

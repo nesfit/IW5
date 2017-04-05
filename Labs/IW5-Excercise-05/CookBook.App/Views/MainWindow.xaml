@@ -3,15 +3,17 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:viewModels1="clr-namespace:CookBook.App.ViewModels"
+        xmlns:viewModels="clr-namespace:CookBook.App.ViewModels"
         xmlns:views="clr-namespace:CookBook.App.Views"
         mc:Ignorable="d"
         Title="MainWindow"
-        DataContext="{Binding MainViewModel, Source={StaticResource ViewModelLocator}}"
-        d:DataContext="{d:DesignInstance viewModels1:MainViewModel, IsDesignTimeCreatable=False}">
+        d:DataContext="{d:DesignInstance viewModels:MainViewModel, IsDesignTimeCreatable=False}">
 
     <Grid>
-        <TabControl>
+        <TextBlock Text="{Binding Name}"></TextBlock>
+        <TextBox Text="{Binding Description}"></TextBox>
+
+        <!--<TabControl>
             <TabItem Header="Recepies">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -32,6 +34,6 @@
             </TabItem>
             <TabItem Header="Ingredients">
             </TabItem>
-        </TabControl>
+        </TabControl>-->
     </Grid>
 </Window>
