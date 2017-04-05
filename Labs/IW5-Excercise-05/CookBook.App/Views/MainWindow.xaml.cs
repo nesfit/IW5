@@ -1,4 +1,6 @@
 ﻿using System.Windows;
+using CookBook.App.ViewModels;
+using CookBook.BL;
 
 namespace CookBook.App.Views
 {
@@ -10,6 +12,7 @@ namespace CookBook.App.Views
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new MainViewModel(new Messenger());
         }
     }
 }
