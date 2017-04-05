@@ -11,16 +11,11 @@ namespace CookBook.App.ViewModels
     {
         private readonly IMessenger _messenger;
 
-        public ICommand CreateRecipeCommand { get; }
-
-        public string Name { get; set; }
+        public string Name { get; set; } = "Nenacteno";
 
         public MainViewModel(IMessenger messenger)
         {
             _messenger = messenger;
-
-            CreateRecipeCommand = new RelayCommand(() => _messenger.Send(new NewRecipeMessage()));
-
         }
 
         public void OnLoad()
