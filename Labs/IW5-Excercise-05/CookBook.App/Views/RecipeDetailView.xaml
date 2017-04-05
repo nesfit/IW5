@@ -11,7 +11,7 @@
         d:DesignHeight="600">
 
     <!-- ToDo: bind visibility to detail model-->
-    <Grid  MinWidth="360">
+    <Grid  MinWidth="360" x:Name="Root">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -26,9 +26,9 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="auto"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -39,7 +39,8 @@
             <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Name}"></TextBox>
 
             <Label Grid.Row="1" Grid.Column="0"  Content="Type: "></Label>
-            <ComboBox Grid.Row="1" Grid.Column="1" />
+            <ComboBox Grid.Row="1" Grid.Column="1" ItemsSource="{Binding ElementName=Root, Path=DataContext.FoodTypes}"
+                      SelectedItem="{Binding Type}"/>
 
             <Label Grid.Row="2" Grid.Column="0"  Content="Duration (in minutes): "></Label>
             <TextBox Grid.Row="2" Grid.Column="1" 
@@ -49,6 +50,14 @@
             <Label Grid.Row="3" Grid.Column="0"  Content="Description: "></Label>
             <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Description}" TextWrapping="Wrap"></TextBox>
 
+            <Label Grid.Row="4" Grid.Column="0" Content="Ingredients"></Label>
+            <ItemsControl Grid.Row="4" Grid.Column="1" ItemsSource="{Binding Ingredients}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Ingredient.Name}"></TextBlock>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
         </Grid>
     </Grid>
 </UserControl>

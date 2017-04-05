@@ -53,6 +53,11 @@
                     Name = "Čokoládová torta",
                     Duration = TimeSpan.FromMinutes(30),
                     Type = FoodType.Dessert,
+                    Description = "Hovězí maso dobře nasolíme a obalíme v zázvoru, pak v hladké mouce a necháme asi hodinu odležet. " +
+                                  "V hrnci si osmažíme na pokrájeném špeku s trochou oleje cibuli dosklovata. Pak vložíme hovězí maso, " +
+                                  "které ze všech stran osmažíme dozlatova. Ke konci smažení přidáme orestovat buď plátky čerstvých " +
+                                  "hub (200 g) nebo přidáme hrst předem namočených sušených hub a vše zalijeme vývarem nebo vodou " +
+                                  "s kostkou bujonu. Dusíme pod poklicí, než bude maso měkké, dle potřeby podléváme a občas maso otočíme.",
                     Ingredients =
                     {
                         new IngredientAmountEntity

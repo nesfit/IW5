@@ -35,25 +35,12 @@ namespace CookBook.App.ViewModels
             _messenger = messenger;
 
             _messenger.Register<SelectedRecipeMessage>(SelectedRecipe);
-            _messenger.Register<NewRecipeMessage>(NewRecipeMessageReceived);
-
-            // ToDo: Add commands to save and delete
-
-        }
-
-        private void NewRecipeMessageReceived(NewRecipeMessage message)
-        {
-            Detail = new RecipeDetailModel();
+            Detail = _recipeRepository.GetById(new Guid("cb8db9b3-799c-4ef2-9d85-ce32a9ffa843"));
         }
 
         private void SelectedRecipe(SelectedRecipeMessage message)
         {
             Detail = _recipeRepository.GetById(message.Id);
-        }
-
-        private bool IsSavedRecipe()
-        {
-            return Detail.Id != Guid.Empty;
         }
     }
 }

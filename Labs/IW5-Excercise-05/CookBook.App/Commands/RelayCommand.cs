@@ -37,6 +37,4 @@ namespace CookBook.App.Commands
 
         public event EventHandler CanExecuteChanged;
     }
-
-
 }

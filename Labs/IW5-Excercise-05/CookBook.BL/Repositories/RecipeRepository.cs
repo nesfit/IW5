@@ -38,6 +38,7 @@ namespace CookBook.BL.Repositories
             using (var cookBookDbContext = new CookBookDbContext())
             {
                 var recipeEntity = cookBookDbContext.Recipes
+                    .Include(r => r.Ingredients.Select(i => i.Ingredient))
                     .FirstOrDefault(r => r.Id == id);
 
                 return mapper.MapEntityToDetailModel(recipeEntity);
