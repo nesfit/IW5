@@ -35,7 +35,6 @@ namespace CookBook.App.ViewModels
             _messenger = messenger;
 
             _messenger.Register<SelectedRecipeMessage>(SelectedRecipe);
-            Detail = _recipeRepository.GetById(new Guid("cb8db9b3-799c-4ef2-9d85-ce32a9ffa843"));
         }
 
         private void SelectedRecipe(SelectedRecipeMessage message)

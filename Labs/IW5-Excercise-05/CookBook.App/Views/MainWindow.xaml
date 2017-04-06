@@ -17,7 +17,7 @@
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <views:RecipeListView></views:RecipeListView>
                     <views:RecipeDetailView Grid.Column="1"></views:RecipeDetailView>
