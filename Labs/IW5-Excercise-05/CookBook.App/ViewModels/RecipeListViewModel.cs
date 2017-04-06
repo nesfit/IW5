@@ -24,7 +24,6 @@ namespace CookBook.App.ViewModels
             _messenger = messenger;
 
             SelectRecipeCommand = new RelayCommand(RecipeSelectionChanged);
-            // ToDo Add Action on message
         }
 
         public void OnLoad()

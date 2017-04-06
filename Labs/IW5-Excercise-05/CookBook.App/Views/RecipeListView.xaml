@@ -12,13 +12,6 @@
         d:DesignWidth="200"
         d:DesignHeight="600">
 
-    <UserControl.Resources>
-        <Style TargetType="TextBlock" x:Key="RecipeListTextBlockStyle">
-            <Setter Property="Padding" Value="6"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-        </Style>
-    </UserControl.Resources>
-
 
     <Grid>
         <ListBox>
