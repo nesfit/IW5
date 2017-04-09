@@ -8,18 +8,18 @@
         DataContext="{Binding RecipeDetailViewModel, Source={StaticResource ViewModelLocator}}"
         d:DataContext="{d:DesignInstance viewModels:RecipeDetailViewModel, IsDesignTimeCreatable=False}"
         d:DesignWidth="400"
-        d:DesignHeight="600">
+        d:DesignHeight="600"
+        x:Name="Root">
 
-    <!-- ToDo: bind visibility to detail model-->
-    <Grid  MinWidth="360" x:Name="Root">
+    <Grid Visibility="{Binding Detail, Converter={StaticResource NullToVisibilityConverter}}" MinWidth="360">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <Menu>
-            <MenuItem Header="Save" />
-            <MenuItem Header="Delete" />
+            <MenuItem Header="Save" Command="{Binding SaveCommand}" CommandParameter="{Binding Detail}"/>
+            <MenuItem Header="Delete" Command="{Binding DeleteCommand}" CommandParameter="{Binding Detail}"/>
         </Menu>
 
         <Grid ShowGridLines="True" Grid.Row="1" DataContext="{Binding Detail}">
@@ -36,19 +36,22 @@
             </Grid.ColumnDefinitions>
 
             <Label Grid.Row="0" Grid.Column="0"  Content="Name: "></Label>
-            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Name}"></TextBox>
+            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"></TextBox>
 
             <Label Grid.Row="1" Grid.Column="0"  Content="Type: "></Label>
-            <ComboBox Grid.Row="1" Grid.Column="1" ItemsSource="{Binding ElementName=Root, Path=DataContext.FoodTypes}"
-                      SelectedItem="{Binding Type}"/>
+            <ComboBox Grid.Row="1" 
+                      Grid.Column="1" 
+                      ItemsSource="{Binding ElementName=Root, Path=DataContext.FoodTypes}" 
+                      SelectedItem="{Binding Type}" />
 
             <Label Grid.Row="2" Grid.Column="0"  Content="Duration (in minutes): "></Label>
             <TextBox Grid.Row="2" Grid.Column="1" 
-                     Text="{Binding Duration}">
+                     Text="{Binding Duration, Converter={StaticResource TimeSpanToMinutesConverter}, UpdateSourceTrigger=PropertyChanged}">
+
             </TextBox>
 
             <Label Grid.Row="3" Grid.Column="0"  Content="Description: "></Label>
-            <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Description}" TextWrapping="Wrap"></TextBox>
+            <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap"></TextBox>
 
             <Label Grid.Row="4" Grid.Column="0" Content="Ingredients"></Label>
             <ItemsControl Grid.Row="4" Grid.Column="1" ItemsSource="{Binding Ingredients}">

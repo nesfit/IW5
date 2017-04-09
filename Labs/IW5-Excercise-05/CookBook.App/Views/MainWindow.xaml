@@ -7,24 +7,30 @@
         xmlns:views="clr-namespace:CookBook.App.Views"
         mc:Ignorable="d"
         Title="MainWindow"
+        DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=MainViewModel}"
         d:DataContext="{d:DesignInstance viewModels:MainViewModel, IsDesignTimeCreatable=False}">
 
     <Grid>
-        <TextBlock FontSize="60" Text="{Binding Name}"></TextBlock>
-
-        <!--<TabControl>
+        <TabControl>
             <TabItem Header="Recepies">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <views:RecipeListView></views:RecipeListView>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Button Content="Add new Recipe" Command="{Binding CreateRecipeCommand}"></Button>
+                        <views:RecipeListView Grid.Row="1"></views:RecipeListView>
+                    </Grid>
                     <views:RecipeDetailView Grid.Column="1"></views:RecipeDetailView>
                 </Grid>
             </TabItem>
             <TabItem Header="Ingredients">
             </TabItem>
-        </TabControl>-->
+        </TabControl>
     </Grid>
 </Window>

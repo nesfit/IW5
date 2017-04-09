@@ -6,6 +6,7 @@
              StartupUri="Views/MainWindow.xaml">
     <Application.Resources>
         <converters:TimeSpanToMinutesConverter x:Key="TimeSpanToMinutesConverter"/>
-        <!--<app:ViewModelLocator x:Key="ViewModelLocator" />-->
+        <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter"/>
+        <app:ViewModelLocator x:Key="ViewModelLocator" />
     </Application.Resources>
 </Application>

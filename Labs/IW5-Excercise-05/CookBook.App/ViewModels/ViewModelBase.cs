@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using CookBook.App.Properties;
 
 namespace CookBook.App.ViewModels
 {

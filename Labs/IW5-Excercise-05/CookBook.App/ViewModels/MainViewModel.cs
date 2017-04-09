@@ -1,7 +1,4 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using CookBook.App.Commands;
 using CookBook.BL;
 using CookBook.BL.Messages;
@@ -12,15 +9,13 @@ namespace CookBook.App.ViewModels
     {
         private readonly IMessenger _messenger;
 
-        public string Name { get; set; } = "Nenacteno";
+        public ICommand CreateRecipeCommand { get; }
 
         public MainViewModel(IMessenger messenger)
         {
             _messenger = messenger;
-        }
 
-        public void OnLoad()
-        {
+            CreateRecipeCommand = new RelayCommand(() => _messenger.Send(new NewRecipeMessage()));
         }
     }
 }

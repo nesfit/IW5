@@ -69,6 +69,7 @@
     </ApplicationDefinition>
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Commands\SaveRecipeCommand.cs" />
+    <Compile Include="Converters\NullToVisibilityConverter.cs" />
     <Compile Include="Converters\TimeSpanToMinutesConverter.cs" />
     <Compile Include="Views\RecipeDetailView.xaml.cs">
       <DependentUpon>RecipeDetailView.xaml</DependentUpon>
