@@ -18,7 +18,7 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <Grid>
+                    <Grid x:Name="FirstColumnGrid">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="*"></RowDefinition>
@@ -26,7 +26,7 @@
                         <Button Content="Add new Recipe" Command="{Binding CreateRecipeCommand}"></Button>
                         <views:RecipeListView Grid.Row="1"></views:RecipeListView>
                     </Grid>
-                    <views:RecipeDetailView Grid.Column="1"></views:RecipeDetailView>
+                    <views:RecipeDetailView Grid.Column="1" MaxWidth="{Binding ElementName=FirstColumnGrid, Path=ActualWidth}"></views:RecipeDetailView>
                 </Grid>
             </TabItem>
             <TabItem Header="Ingredients">
