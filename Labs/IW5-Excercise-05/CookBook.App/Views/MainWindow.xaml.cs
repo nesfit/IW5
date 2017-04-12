@@ -12,7 +12,6 @@ namespace CookBook.App.Views
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new MainViewModel(new Messenger());
         }
     }
 }
