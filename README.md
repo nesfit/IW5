@@ -9,6 +9,7 @@
   
 
 # Aktuality k předmětu 
+  - **04.05.2016** | *Jan Pluskal* | Odevzdání projektu proveďte to WISu jako zip archív bez obj, bin, packages. V případě FEKTu není třeba odevzdávat.
   - **04.05.2016** | *Jan Pluskal* | [Registrace](https://goo.gl/1zucmv) opravných obhajoby projektů - autentizace xlogin00@vutbr.cz.
   - **12.04.2016** | *Jan Pluskal* | [Registrace](http://goo.gl/mj3ODO) obhajoby projektů - autentizace xlogin00@vutbr.cz.
   - **22.03.2016** | *Jan Pluskal* | Přidán odkaz se [záznamy](http://goo.gl/l0NxxP).
