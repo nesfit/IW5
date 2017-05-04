@@ -1,5 +1,6 @@
 # Programování v .NET a C# IW5/MW5 
 # Odkazy
+ * [Registrace](https://goo.gl/1zucmv) opravných obhajoby projektů - autentizace xlogin00@vutbr.cz.
  * [Registrace](http://goo.gl/mj3ODO) obhajoby projektů - autentizace xlogin00@vutbr.cz.
  * [Záznamy](http://goo.gl/l0NxxP) Záznamy přednášek na FIT z předmětu IW5 a VUT.NIGHT.
  * [Fórum IW5](http://fitiw5-forum.northeurope.cloudapp.azure.com/index.php) Studentské fórum k předmětu IW5. Všechny Vaše dotazy směřujte jen zde! 
@@ -8,6 +9,7 @@
   
 
 # Aktuality k předmětu 
+  - **04.05.2016** | *Jan Pluskal* | [Registrace](https://goo.gl/1zucmv) opravných obhajoby projektů - autentizace xlogin00@vutbr.cz.
   - **12.04.2016** | *Jan Pluskal* | [Registrace](http://goo.gl/mj3ODO) obhajoby projektů - autentizace xlogin00@vutbr.cz.
   - **22.03.2016** | *Jan Pluskal* | Přidán odkaz se [záznamy](http://goo.gl/l0NxxP).
   - **10.03.2016** | *Jan Pluskal* | [Nabídka práce](http://goo.gl/xQVzA7) na VUT CVIS pro programátor a správce MS technologií.
