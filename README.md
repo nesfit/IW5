@@ -1,33 +1,27 @@
 # Programování v .NET a C# IW5/MW5 
 # Odkazy
- * [Registrace](https://goo.gl/1zucmv) opravných obhajoby projektů - autentizace xlogin00@vutbr.cz.
- * [Registrace](http://goo.gl/mj3ODO) obhajoby projektů - autentizace xlogin00@vutbr.cz.
+<!--- * [Registrace](https://goo.gl/1zucmv) opravných obhajoby projektů - autentizace xlogin00@vutbr.cz. --->
+<!--- * [Registrace](http://goo.gl/mj3ODO) obhajoby projektů - autentizace xlogin00@vutbr.cz. --->
  * [Záznamy](http://goo.gl/l0NxxP) Záznamy přednášek na FIT z předmětu IW5 a VUT.NIGHT.
- * [Fórum IW5](http://fitiw5-forum.northeurope.cloudapp.azure.com/index.php) Studentské fórum k předmětu IW5. Všechny Vaše dotazy směřujte jen zde! 
+<!--- * [Fórum IW5](http://fitiw5-forum.northeurope.cloudapp.azure.com/index.php) Studentské fórum k předmětu IW5. Všechny Vaše dotazy směřujte jen zde! --->
  * [Wiki predmětu z minulých let](http://www.fit.vutbr.cz/study/courses/IW1/public/info/doku.php?id=iw5) Dříve používaná Wiki k předmětu nahrazená GitHubem.
  * [FEKT](http://goo.gl/cBXSLd) Registrace týmu na projekt.
   
 
 # Aktuality k předmětu 
-  - **04.05.2016** | *Jan Pluskal* | Odevzdání projektu proveďte do WISu jako zip archív bez obj, bin, packages. V případě FEKTu není třeba odevzdávat.
-  - **04.05.2016** | *Jan Pluskal* | [Registrace](https://goo.gl/1zucmv) opravných obhajoby projektů - autentizace xlogin00@vutbr.cz.
-  - **12.04.2016** | *Jan Pluskal* | [Registrace](http://goo.gl/mj3ODO) obhajoby projektů - autentizace xlogin00@vutbr.cz.
-  - **22.03.2016** | *Jan Pluskal* | Přidán odkaz se [záznamy](http://goo.gl/l0NxxP).
-  - **10.03.2016** | *Jan Pluskal* | [Nabídka práce](http://goo.gl/xQVzA7) na VUT CVIS pro programátor a správce MS technologií.
-  - **08.03.2016** | *Jan Pluskal* | Do Vašich repozitářů pro projekt přidejte účet **uciteliw5@vutbr.cz**.
-  - **02.03.2016** | *Jan Pluskal* | Nepropadejte panice! Identita pro učitelský účet, který přidáte do Vašich repozitářů je v řešení.
-  - **13.02.2016** | *Jan Pluskal* | Registrace týmů na projekty pro [FEKT](http://goo.gl/cBXSLd).
-  - **12.01.2016** | *Jan Pluskal* | Cvičení začnou v týdnu od 6.2.2017 (první týden semestru) značení týdne sudý/lichý je podle kalendáře (ISO 8601) - týden od 6.2.2016 je SUDÝ.
+  - **15.01.2018** | *Jan Pluskal* | Do Vašich repozitářů pro projekt přidejte účet **uciteliw5@vutbr.cz**.
+  - **15.01.2018** | *Jan Pluskal* | Registrace týmů na projekty pro [FEKT](http://goo.gl/cBXSLd).
+  - **15.01.2018** | *Jan Pluskal* | Cvičení začnou v týdnu od 5.2.2017 (první týden semestru) značení týdne sudý/lichý je podle kalendáře (ISO 8601) - týden od 5.2.2016 je SUDÝ. [Jaky je tyden?](https://jakyjetyden.cz/)
 
 # Přednášky
 
 | Fakulta | Místnost | Čas            |
 | ------- |----------| -------------- |
-| Fekt    | T010     | Po 13:00-14:50 |
-| Fit     | D0206    | Po 16:00-17:50 |
+| FIT     | D0206    | Po 13:00-14:50 |
+| FEKT    | T3.02    | Po 16:00-17:50 |
 
 # Cvičení 
-Všechny cvičení se konají v APS, Učebna 2. Cvičení začnou v *týdnu od 6.2.2017* (první týden semestru) značení týdne sudý/lichý je podle kalendáře (ISO 8601) - týden od 6.2.2016 je SUDÝ.
+Všechny cvičení se konají v APS, Učebna 2. Cvičení začnou v týdnu od 5.2.2017 (první týden semestru) značení týdne sudý/lichý je podle kalendáře (ISO 8601) - týden od 5.2.2016 je SUDÝ. [Jaky je tyden?](https://jakyjetyden.cz/)
 
 | Fakulta  | Čas                |
 | -------- | ------------------ |
@@ -39,14 +33,11 @@ Všechny cvičení se konají v APS, Učebna 2. Cvičení začnou v *týdnu od 6
 | Fit      | Čt 11:00-12:50 S/L |
 | Fit      | Čt 13:00-14:50 S/L |
 
-# Videa ze cvičení
- * [Implementace Calculator](https://youtu.be/vwnAV5BUaug) a pouziti klavesovych zkratek Resharperu.
-
 # Nástroje použity ve cvičeních
 
 | Nástroj  |  Typ   | Popis |
 | -------- |  ------| -------|
-| [Visual Studio 2015 FIT](https://e5.onthehub.com/WebStore/OfferingDetails.aspx?o=0e34bbfd-e242-e611-941e-b8ca3a5db7a1&pmv=00000000-0000-0000-0000-000000000000&ws=95f320d0-826f-e011-971f-0030487d8897&vsro=8) <br /> [Visual Studio 2015 FEKT](https://e5.onthehub.com/WebStore/OfferingDetails.aspx?o=0e34bbfd-e242-e611-941e-b8ca3a5db7a1&pmv=00000000-0000-0000-0000-000000000000&ws=7817c804-8b6f-e011-971f-0030487d8897&vsro=8)| Samostatný program | Hlavní vývojové prostředí pro .Net |
+| [Visual Studio 2017 FIT](https://e5.onthehub.com/WebStore/OfferingsOfMajorVersionList.aspx?pmv=4fec9f1d-6d0a-e711-9427-b8ca3a5db7a1&cmi_mnuMain=bdba23cf-e05e-e011-971f-0030487d8897&ws=95f320d0-826f-e011-971f-0030487d8897&vsro=8) <br /> [Visual Studio 2017 FEKT](https://e5.onthehub.com/WebStore/OfferingDetails.aspx?o=0e34bbfd-e242-e611-941e-b8ca3a5db7a1&pmv=00000000-0000-0000-0000-000000000000&ws=7817c804-8b6f-e011-971f-0030487d8897&vsro=8)| Samostatný program | Hlavní vývojové prostředí pro .Net |
 |[Resharper](https://www.jetbrains.com/resharper/) | Doplněk | Nástroje na lepší produktivitu, refaktorování. Studentská licence je k dispozici zdarma [zde](https://www.jetbrains.com/student/) |
 |[Code metrices](https://visualstudiogallery.msdn.microsoft.com/369d38e1-53d3-4f5c-9351-a0560162a6d9) | Doplněk | Zobrazování složitosti jednotlivých metod |
 |[Postifx templates](https://github.com/controlflow/resharper-postfix) | Doplněk | Plynulé doplňování částí kódu bez nutnosti vracení se |
