@@ -23,15 +23,15 @@
 # Cvičení 
 Všechny cvičení se konají v APS, Učebna 2. Cvičení začnou v týdnu od 5.2.2017 (první týden semestru) značení týdne sudý/lichý je podle kalendáře (ISO 8601) - týden od 5.2.2016 je SUDÝ. [Jaky je tyden?](https://jakyjetyden.cz/)
 
-| Fakulta  | Čas                |
-| -------- | ------------------ |
-| FIT      | St 12:00-13:50 S/L |
-| FIT      | St 14:00-15:50 S/L |
-| Fekt     | St 16:00-17:50 S/L |
-| Fekt     | St 18:00-19:50 S/L |
-| Fit      | Čt 9:00-10:50  S/L |
-| Fit      | Čt 11:00-12:50 S/L |
-| Fit      | Čt 13:00-14:50 S/L |
+| Fakulta  | Čas                | 
+| -------- | ------------------ | 
+| FIT      | St 14:00-15:50 S/L | 
+| FEKT     | St 16:00-17:50 S/L | 
+| FEKT     | St 18:00-19:50 S/L | 
+| FIT      | Čt 08:00-09:50 S/L | 
+| FIT      | Čt 10:00-11:50 S/L | 
+| FIT      | Čt 12:00-13:50 S/L | 
+| FIT      | Čt 14:00-15:50 S/L | 
 
 # Nástroje použity ve cvičeních
 
