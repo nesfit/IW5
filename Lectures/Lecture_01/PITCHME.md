@@ -1,6 +1,9 @@
-# IW5 programming in .NET and C#
+# IW5
+# Programming in .NET and C# 
 # Introduction to the .NET Platform and C# language basics
+<div class="right">
 [ Jan Pluskal <ipluskal@fit.vutbr.cz> ]
+</div>
 
 ---
 ## Agenda
