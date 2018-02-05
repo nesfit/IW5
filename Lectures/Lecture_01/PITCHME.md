@@ -26,8 +26,8 @@ Based on Common Language Runtime (CLR) with additional libraries
     <li>Core Framework</li>
     <ul>
       <li>System.dll</li>
-      <li>System.Xml.dll)</li>
-      <li>System.Dynamic.dll)</li>
+      <li>System.Xml.dll</li>
+      <li>System.Dynamic.dll</li>
     </ul> 
     <li>Application technologies</li>
     <ul>
