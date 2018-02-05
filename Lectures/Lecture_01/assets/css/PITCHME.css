@@ -98,3 +98,8 @@ code {
   font-weight: 600;
 }
 
+.reveal em {
+    font-style: italic;
+    font-family: Courier New;
+}
+
