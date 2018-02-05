@@ -381,7 +381,7 @@ Based on Common Language Runtim (CLR) with additional libraries
     * Used to *impart a scope*
   * Semicolon `;`
     * Delimits statements
-    * Statement can be written over multiple lines.
+    * Statement can be written in multiple lines.
     ```C#
     Console.WriteLine
       (1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10);
@@ -418,7 +418,7 @@ Based on Common Language Runtim (CLR) with additional libraries
 * C# recognizes two kinds of data types *value types* and *reference types*.
 * **Value type**
   * Variables directly contain their data.
-  * Two variables, each have their own copy of the data, and it is not possible for operations on one to affect the other.
+  * Two variables, each have their copy of the data, and it is not possible for operations on one to affect the other.
 * **Reference types**
   * Store references to their data, the latter being known as objects. 
   * Two variables can reference the same object, thus it is possible for operations on one variable to affect the object referenced by the other variable.
@@ -486,7 +486,7 @@ Based on Common Language Runtim (CLR) with additional libraries
   * `'e'` character as an exponent
 * Rules
   * If literal contains `'.'`, or `'e'` than data type is decimal
-  * Else data type is the smallest one that fits `int, uint, long, ulong`
+  * Else data type is the smallest one that fits `int, uint, long, ulong`.
 
 +++
 
@@ -519,7 +519,7 @@ Based on Common Language Runtim (CLR) with additional libraries
 * Transformation of **decimal type** to **integral type**:
   * Casting has to be *explicit* 
     * *Truncation* can occur
-    * *Lost of precision*
+    * *Lost precision*
     
 +++
 
@@ -572,7 +572,7 @@ Console.WriteLine(i == int.MaxValue);
 +++
 
 #### Truncation and precision loose
-* Types `float` and `double` are stored in binary form, therefore, only multiples of 2 are stored precisely
+* Types `float` and `double` are stored in binary form. Therefore, only multiples of 2 are stored precisely.
 
 ```C#
 float f1 = 0.09f * 100f;
@@ -665,7 +665,7 @@ public static bool AlmostEqual(double a, double b)
 ### Char
 * `System.Char`/`char`
 * Literal is denoted by a single-quote, e.g., `'a'`
-* Can be casted to integral type
+* Can be cast to integral type
   * *Implicit* cast to `ushort`
   * *Explicit* cast to others
 
@@ -742,7 +742,7 @@ public static bool AlmostEqual(double a, double b)
 
 +++
 
-In the following example, an int value is converted to object and back again to int.
+In the following example, an int value is converted to object and back again to `int`.
 
 ```C#
 using System;
@@ -815,7 +815,7 @@ string"
   * Value types - default value
   * Reference types - `null`
 * Array range checked
-  * Access out of array range throws `IndexOutOfRangeException`
+  * Access out of array range throws `IndexOutOfRangeException`.
   
 +++
 
@@ -888,7 +888,7 @@ matrix[i][j] = 5;
   * Storage for *reference data types*
   * Managed by *Garbage Collector*
 * **Rules** for variable assignment:
-  * Local variable has to be assigned before read
+  * Local variable has to be assigned before reading
   * Method has to be called with all arguments
   * All other values are initialized automatically
 
@@ -921,7 +921,7 @@ static void Main()
   
 ---
 ### Parameters
-* Parameters can be passed to method as:
+* Parameters can be passed to a method as:
 
 | Modifier  | Passed as |  Variable definition |
 | --------- | --------- |  --------------------|
@@ -964,9 +964,9 @@ Console.WriteLine(x); // x is now 9
 +++
 
 #### Parameter as Out
-* Similar passing as reference, `out` keyword, except:
-  * Variable do not need to be initialized before method call.
-  * Variable needs to be assigned before return from method.
+* Similar passing as a reference, `out` keyword, except:
+  * Variable does not need to be initialized before method call.
+  * Variable needs to be assigned before return from a method.
   
 ```C#
 private static void Split(string name, out string firstNames, out string lastName)
@@ -984,10 +984,10 @@ Console.WriteLine(b); // Vaughan
 +++
 
 #### Parameter with `params[]`
-* Can be used only with the last parameter in method signature.
+* Can be used only with the last parameter in a method signature.
 * Has to be declared as an array.
 * Used to pass multiple variables of the same type.
-* Used to create more universal methods with variable count of parameters.
+* Used to create more universal methods with a variable count of parameters.
 
 ```C#
 private int Sum(params int[] ints)
@@ -1006,7 +1006,7 @@ Console.WriteLine(total); // 10
 
 #### Optional parameters
 * Do not need to be declared.
-* Reduce number of method overrides. 
+* Reduce the number of method overrides. 
 
 ```C#
 void Foo(int x = 2) { … }
@@ -1018,7 +1018,7 @@ Foo();
 
 #### Named parameters
 * Usually used with method calls on methods with multiple optional parameters
-* Reduce number of method overrides.
+* Reduce the number of method overrides.
 
 ```C#
 void Foo(int x = 2, int y = 3) { … }
@@ -1061,7 +1061,7 @@ Foo(y: 1);
 
 #### Void expression
 * Do not have a value
-* Cannot be combined by other operators
+* Cannot be combined with other operators
 * E.g., `{}, return, etc...`
 
 +++
@@ -1287,7 +1287,7 @@ foreach (char c in "beer") // c is the iteration variable
 #### Statements - Jump statements
 * `break`,`continue`,`goto`,`return`,`throw`
 * `break` 
-  * ends a iteration of a cycle
+  * ends an iteration of a cycle
   
 ```C#
 int x = 0;
@@ -1441,7 +1441,7 @@ namespace Outer
 +++
 
 #### Namespaces - Rules
-* Names declared in outer scope are implicitly imported into inner one.
+* Names declared in an outer scope are implicitly imported into inner one.
 
 ```C#
 namespace Outer
@@ -1461,7 +1461,7 @@ namespace Outer
 +++
 
 * Namespace hiding
-  * In case that in outer namespece is a type with the same name as in the inner one, the inner "wins"
+  * In case that in outer namespace is a type with the same name as in the inner one, the inner "wins".
   
 ```C#
 namespace Outer
@@ -1482,8 +1482,8 @@ namespace Outer
 +++ 
 
 * Repetition of namespaces
-  * Namespace name can be repeated until a collision of names of inner types occur. 
-  * The same namespace can be declared on multiple places.
+  * Namespace name can be repeated until a collision of names of inner types occurs. 
+  * The same namespace can be declared in multiple places.
   
 ```C#
 namespace Outer.Middle.Inner
