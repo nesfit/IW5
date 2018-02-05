@@ -18,7 +18,7 @@
 ---
 ## .NET Framework
 
-Based on Common Language Runtim (CLR) with additional libraries
+Based on Common Language Runtime (CLR) with additional libraries
 <div class="left">
 <ul>
   <li>Library types</li>
