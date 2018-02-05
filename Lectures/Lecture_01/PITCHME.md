@@ -11,8 +11,8 @@
 * .NET Framework
 * C# language syntax
 * Data types
-* Variables, properties and parameters
-* Statements and operators
+* Variables, parameters
+* Statements, expressions, operators
 * Namespaces
 
 ---
@@ -23,8 +23,17 @@ Based on Common Language Runtime (CLR) with additional libraries
 <ul>
   <li>Library types</li>
   <ul>
-    <li>Core Framework (mscorelib.dll)</li>
-    <li>Application technologies (System.Linq.dll)</li>
+    <li>Core Framework</li>
+    <ul>
+      <li>System.dll</li>
+      <li>System.Xml.dll)</li>
+      <li>System.Dynamic.dll)</li>
+    </ul> 
+    <li>Application technologies</li>
+    <ul>
+      <li>WPF - (PresentationCore.dll)</li>
+      <li>WCF</li>
+    </ul> 
   </ul> 
 </ul>    
 </div>
@@ -35,12 +44,12 @@ Based on Common Language Runtime (CLR) with additional libraries
 ---
 ### .NET Framework - Selected Libraries
 
-* WinForms 
-* ASP.NET  
-* WPF – Windows Presentation Foundation
-* WCF – Windows Communication Foundation
-* WF – Windows Workflow Foundation
-* LINQ – Language Integrated Query
+* **WinForms** 
+* **ASP.NET**  
+* **WPF**  – *Windows Presentation Foundation*
+* **WCF**  – *Windows Communication Foundation*
+* **WF**   – *Windows Workflow Foundation*
+* **LINQ** – *Language Integrated Query*
 
 ---
 ### .NET Framework - Architecture
