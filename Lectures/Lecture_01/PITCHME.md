@@ -898,8 +898,8 @@ matrix[i][j] = 5;
   * Storage for *reference data types*
   * Managed by *Garbage Collector*
 * **Rules** for variable assignment:
-  * Local variable has to be assigned before reading
-  * Method has to be called with all arguments
+  * Local variable has to be *assigned before reading*
+  * Method has to be *called with all arguments*
   * All other values are initialized automatically
 
 +++
@@ -975,8 +975,8 @@ Console.WriteLine(x); // x is now 9
 
 #### Parameter as Out
 * Similar passing as a reference, `out` keyword, except:
-  * Variable does not need to be initialized before method call.
-  * Variable needs to be assigned before return from a method.
+  * Variable *does not need to be initialized before method call*.
+  * Variable *needs to be assigned before return* from a method.
   
 ```C#
 private static void Split(string name, out string firstNames, out string lastName)
@@ -994,7 +994,7 @@ Console.WriteLine(b); // Vaughan
 +++
 
 #### Parameter with `params[]`
-* Can be used only with the last parameter in a method signature.
+* Can be used only with the *last parameter* in a method signature.
 * Has to be declared as an array.
 * Used to pass multiple variables of the same type.
 * Used to create more universal methods with a variable count of parameters.
@@ -1027,7 +1027,7 @@ Foo();
 +++
 
 #### Named parameters
-* Usually used with method calls on methods with multiple optional parameters
+* Usually used with method calls on methods with *multiple optional parameters*
 * Reduce the number of method overrides.
 
 ```C#
@@ -1070,7 +1070,7 @@ Foo(y: 1);
 +++  
 
 #### Void expression
-* Do not have a value
+* *Do not have a value*
 * Cannot be combined with other operators
 * E.g., `{}, return, etc...`
 
@@ -1088,8 +1088,8 @@ Foo(y: 1);
 +++
 
 #### Priority and assignment
-* Priority is evaluated by the priority of operators
-* Operators with the same priority are evaluated starting with the most left one
+* Priority is evaluated by the *priority of operators*.
+* Operators with *the same priority* are evaluated starting with *the most left one*.
 * Left-associative operators
   * `8/4/2` equals `(8/4)/2`
 * Right-associative operators
@@ -1196,7 +1196,16 @@ Foo(y: 1);
  new string('c', 3);       // Legal, but useless
  x.Equals(y);              // Legal, but useless
 ```
-
+@[2-4]
+@[6]
+@[7]
+@[8]
+@[9]
+@[10]
+@[12]
+@[13]
+@[14]
+@[15]
 +++
 
 #### Statements - Selection
