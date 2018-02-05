@@ -580,7 +580,7 @@ Console.WriteLine(i == int.MaxValue);
   
 +++
 
-#### Truncation and precision loose
+#### Truncation and precision loss
 * Types `float` and `double` are stored in binary form. Therefore, only multiples of 2 are stored precisely.
 
 ```C#
