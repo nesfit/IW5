@@ -872,22 +872,22 @@ matrix[i][j] = 5;
 * Variables in C#, including *fields*, *array elements*, *local variables*, and *parameters* represents storage locations.
 * Every variable has a type that determines what values can be stored in the variable.
 * **Non-nullable** value type
-  * A value of that exact type
+  * A value of that *exact type*
 * **Nullable** value type
-  * A null value or a value of that exact type
+  * A *null* value or a value of that *exact type*
 * **Object**
-  * A null reference, a reference to an object of any reference type, or a reference to a boxed value of any value type
+  * A *null* reference, a reference to an *object* of any reference type, or a reference to a *boxed value* of any value type
 * **Class** type
-  * A null reference, a reference to an instance of that class type, or a reference to an instance of a class derived from that class type
+  * A *null* reference, a reference to an *instance of that class* type, or a reference to an instance of a class *derived* from that class type
 
 +++
 
 * **Interface** type
-  * A null reference, a reference to an instance of a class type that implements that interface type, or a reference to a boxed value of a value type that implements that interface type
+  * A *null* reference, a reference to an *instance of a class* type that *implements* that interface type, or a reference to a *boxed* value of a value type that implements that interface type
 * **Array** type
-  * A null reference, a reference to an instance of that array type, or a reference to an instance of a compatible array type
+  * A *null* reference, a reference to an *instance of that array* type, or a reference to an *instance of a compatible array* type
 * **Delegate** type
-  * A null reference or a reference to an instance of a compatible delegate type
+  * A *null* reference or a reference to an *instance of a compatible delegate* type
 
 +++  
 
