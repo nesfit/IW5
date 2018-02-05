@@ -641,7 +641,7 @@ public static bool AlmostEqual(double a, double b)
 |    `~`   |     Not     |         `~0xfU`  | 0xfffffffOU |
 |    `&`   |     And     |   `0xf0 & 0x33`  | 0x30        |
 |  &#x7c;  |      Or     |`0xf0`&#x7c;`0x33`| 0xf3        |
-|    `^`   |     Xor     | `0xff00 ^ 0x00ff`| 0xf0f0      |
+|    `^`   |     Xor     | `0xff00 ^ 0x00ff`| 0xffff      |
 |   `<<`   |  Left shift |  `0x20 << 2`     | 0x80        |
 |   `>>`   | Right shift |  `0x20 >> 1`     | 0x10        |
   
