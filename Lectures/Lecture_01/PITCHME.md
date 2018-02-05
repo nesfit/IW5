@@ -869,7 +869,8 @@ matrix[i][j] = 5;
   
 --- 
 ### Variables
-* Variables in C#, including fields, array elements, local variables, and parameters represents storage locations, and every variable has a type that determines what values can be stored in the variable.
+* Variables in C#, including *fields*, *array elements*, *local variables*, and *parameters* represents storage locations.
+* Every variable has a type that determines what values can be stored in the variable.
 * **Non-nullable** value type
   * A value of that exact type
 * **Nullable** value type
