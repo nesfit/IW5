@@ -124,7 +124,7 @@ Based on Common Language Runtime (CLR) with additional libraries
 ## C# Platform Support
 * Designed to run on Windows platform, but there are some exceptions..
 * **ASP.NET**
-  *C# runs on server back-end
+  * C# runs on server back-end
   * Transpilation into HTML supported on all platforms
   * AS.NET 5.0 Linux, Mac OS X
 * **MONO project**
