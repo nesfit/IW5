@@ -9,6 +9,7 @@
   
 
 # Aktuality k předmětu 
+  - **06.02.2018** | *Jan Pluskal* | Bylo přidáno [zadání projektu](/Project/README.md).
   - **15.01.2018** | *Jan Pluskal* | Do Vašich repozitářů pro projekt přidejte účet **uciteliw5@vutbr.cz**.
   - **15.01.2018** | *Jan Pluskal* | Registrace týmů na projekty pro [FEKT](http://goo.gl/cBXSLd).
   - **15.01.2018** | *Jan Pluskal* | Cvičení začnou v týdnu od 5.2.2017 (první týden semestru) značení týdne sudý/lichý je podle kalendáře (ISO 8601) - týden od 5.2.2016 je SUDÝ. [Jaky je tyden?](https://jakyjetyden.cz/)
