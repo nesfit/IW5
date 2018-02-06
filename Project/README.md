@@ -272,7 +272,7 @@ rozšíření:
 
 ### Obhajoba
 
-Obhajoby projektů budou probíhat v** posledních 2 týdnech** výuky
+Obhajoby projektů budou probíhat v **posledních 2 týdnech** výuky
 cvičení. Termíny obhajob budou vyhlášeny v průběhu semestru.
 
 Na obhajobu se dostaví **celý tým**. Z členů týmu bude cvičícími vybrán
