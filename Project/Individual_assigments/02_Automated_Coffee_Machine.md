@@ -14,3 +14,6 @@
 * Administrativní rozhraní pro vytvoření vyúčtování za předchozí období - zadání množství spotřebované kávy, ceny
 * Historie jednotlivých období, historie počtu vypitých káv pro uživatele a další statistiky
 * Aplikace v ASP.NET Core
+
+## Kontakt
+* Pro více informací napište na ipluskal@fit.vutbr.cz nebo se zastavte kancelář C304.
