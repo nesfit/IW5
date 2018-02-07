@@ -45,6 +45,10 @@ Všechny cvičení se konají v APS, Učebna 2. Cvičení začnou v týdnu od 5.
 |[Mnemonic Live Templates](https://github.com/JetBrains/mnemonics) | Doplněk | Doplňování částí kódu |
 |[LinqPad](http://www.linqpad.net/) | Samostatný program  | Nástroj na přístup do databáze přes Linq, SQL… |
 |[DotPeek](https://www.jetbrains.com/decompiler/) | Samostatný program  | Dekompilátor C# kódu |
+|[MarkdownEditor](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)| Doplněk| Handy Markdown editor for VS |
+|[Entity Framework 6 Power Tools](https://marketplace.visualstudio.com/items?itemName=ErikEJ.EntityFramework6PowerToolsCommunityEdition)| Doplněk| View Entity Data Model|
+|[OzCode](https://www.oz-code.com/)| Doplněk| Advanced debugging tools |
+|[GitFlow](https://marketplace.visualstudio.com/items?itemName=vs-publisher-57624.GitFlowforVisualStudio2017)| Doplněk| GitFlow|
 
 # Učebny
 **POZOR**, výuka probíhá v areálu vysokoškolských kolejí *Purkyňova 93* [Mapa](http://www.pocitacoveskoleni.cz/kontakt.html) v prvním patře bloku *B3*  v prostorách Školicího střediska IT Brno (ApS Brno s.r.o.). Pro přístup k učebnám zazvoňte na odpovídající zvonek vedle prosklených dveří přímo naproti schodišti. Učebny jsou na konci chodby po levé straně.
