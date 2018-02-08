@@ -2,6 +2,8 @@
 
 namespace CalculatorConsole
 {
+    using CommandLine;
+
     internal partial class Program
     {
         internal static void LogExcetion(Exception exception)
@@ -16,21 +18,16 @@ namespace CalculatorConsole
 
         internal static void Main(string[] args)
         {
-            try
-            {
-                var options = CommandLineParser.ParseCommandLineCommands(args);
-                CalculatorWrapper.Calculate(options);
-            }
-            catch (IncorrentCommandLineArguments ex)
-            {
-                LogExcetion(ex);
-                LogMessage(CommandLineOptions.GetUsage());
-            }
-            catch (ArgumentNullException ex)
-            {
-                LogExcetion(ex);
-            }
+            if(args == null) args = new string[0];
 
+                var parser = new Parser(with =>
+                    {
+                        with.EnableDashDash = true;
+                        with.HelpWriter = Console.Error;
+                    });
+                parser.ParseArguments<CommandLineOptions>(args)
+                    .WithParsed(CalculatorWrapper.Calculate);
+            
             WaitBeforeExit();
         }
 
