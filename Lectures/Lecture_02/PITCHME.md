@@ -42,9 +42,9 @@
   * Data is stored in object's **member variable (field)**.
   * **Methods** and **members** together creates objects.
 
----?code=/Lectures/Lecture_02/Models/Car.cs&lang=C#&title=Car
++++?code=/Lectures/Lecture_02/Models/Car.cs&lang=C#&title=Car
 @[3-10]
-@5-6]
+@[5-6]
 @[8]
 @[9]
 @[1-11]
