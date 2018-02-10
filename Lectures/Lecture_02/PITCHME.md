@@ -31,6 +31,8 @@
 * C# versions
 * Basics of Entity Framework
 
+---
+
 ## Object Oriented Programming 
 * First appearance in **SIMULA 67**
 * Abstraction of real word 
