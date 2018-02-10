@@ -104,3 +104,27 @@ code {
     font-family: Courier New;
 }
 
+.hljs {
+    color: #000; /*normal text*/
+    background: #f1f1f1; /*code block background*/
+}
+
+.hljs-keyword, .hljs-selector-tag, .hljs-bullet, .hljs-tag {
+    color: #0e30ff; /*keywords*/
+}
+
+.hljs-type, .hljs-built_in, .hljs-builtin-name, .hljs-quote, .hljs-section, .hljs-selector-class {
+    color: #0e30ff;
+}
+
+.hljs-title, .hljs-name {
+    color: #649600; /*class name*/
+}
+
+.hljs-comment, .hljs-meta, .hljs-meta .hljs-keyword {
+    color: #527b00; /*comments*/
+}
+
+.hljs-string, .hljs-doctag, .hljs-addition, .hljs-regexp, .hljs-selector-attr, .hljs-selector-pseudo {
+    color: #ed0105;
+}
