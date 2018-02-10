@@ -93,7 +93,7 @@ span.aside {
     text-align: left;
 }
 
-code {
+.reveal pre code {
   background-color: #cccccc;
   font-weight: 600;
   font-size: 1.4em;
