@@ -96,7 +96,8 @@ span.aside {
 code {
   background-color: #cccccc;
   font-weight: 600;
-  font-size: 1.2em;
+  font-size: 1.4em;
+  line-height: 1.0;
 }
 
 .reveal em {
