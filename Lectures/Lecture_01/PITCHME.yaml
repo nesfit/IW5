@@ -5,12 +5,12 @@
 # https://github.com/gitpitch/gitpitch/wiki/Slideshow-Settings
 #
 #theme: white
-#theme : simple
-theme-override : /Lectures/Lecture_01/assets/css/PITCHME.css
-#highlight : atom-one-light
-#logo : assets/image/logo.png
+theme : simple
+theme-override : /Lectures/GitPitch/assets/css/PITCHME.css
+highlight : vs
+logo : /Lectures/GitPitch/assets/image/logo.png
 #transition : none
-published : false
+published : true
 remote-control: true
 mathjax : TeX-MML-AM_HTMLorMML-full
 footnote : "Introduction to the .NET Platform and C# language basics - Jan Pluskal <ipluskal@fit.vutbr.cz>"
