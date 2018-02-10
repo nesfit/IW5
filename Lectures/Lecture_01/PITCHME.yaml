@@ -5,10 +5,10 @@
 # https://github.com/gitpitch/gitpitch/wiki/Slideshow-Settings
 #
 #theme: white
-#theme : simple
+theme : simple
 theme-override : /Lectures/GitPitch/assets/css/PITCHME.css
-#highlight : atom-one-light
-#logo : assets/image/logo.png
+highlight : vs
+logo : /Lectures/GitPitch/assets/image/logo.png
 #transition : none
 published : true
 remote-control: true
