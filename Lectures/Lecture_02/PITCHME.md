@@ -1,11 +1,12 @@
 # IW5
 # Programming in .NET and C# 
-# Introduction to the .NET Platform and C# language basics
+# I02 – OOP & C#, Entity Framework
 <div class="right">
 [ Jan Pluskal <ipluskal@fit.vutbr.cz> ]
 </div>
 
 ---
+
 ## Project
 
 * Team registration
@@ -15,7 +16,8 @@
 * Assignment - [GitHub](https://github.com/FitIW/5/tree/master/Project) 
   * Notice **individual assignments**
 
-  ---
+---
+
 ## Agenda
 
 * Object Oriented Programming in C#
@@ -48,7 +50,9 @@
 @[1-11]
 
 [Code sample](/Lectures/Lecture_02/Models/Car.cs)
+
 ---
+
 ## References
 [C# 7.0 in a Nutshell: The Definitive Reference](https://www.amazon.com/C-7-0-Nutshell-Definitive-Reference/dp/1491987650)
 
