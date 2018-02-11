@@ -1011,8 +1011,7 @@ class Person
 ---
 
 ## Entity Framework Demo
-![EF](/Lectures/Lecture_01/assets/image/ef.png)
-
+![EF](/Lectures/Lecture_02/assets/image/ef.png)
 ---
 
 ## References
