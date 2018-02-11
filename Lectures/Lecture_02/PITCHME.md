@@ -212,7 +212,7 @@ class SimpliestClass { }
 
 +++
 
-#### Expression-bodied method
+#### Expression-bodied method
 * Since C# 6
 * Method contains only one expression.
 
@@ -386,7 +386,7 @@ public class Cat : Animal
 
 ---
 
-#### Virtuals
+### Virtuals
 * Virtual can be
   * methods
   * properties
@@ -395,6 +395,8 @@ public class Cat : Animal
   
 * Activation uses mechanism of *late binding* which chooses the appropriate implementation during *runtime*
 * **late binding** vs **early binding**
+
++++
 
 #### Operators IS/AS
 * Operator `is`
