@@ -155,6 +155,8 @@
   *  methods
   *  events
 
++++
+
 * The class is a *blueprint*, not an instance
 * Encapsulates *data* and *behavior*
 * `static` - only *one* instance for program run
