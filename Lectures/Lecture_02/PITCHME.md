@@ -81,6 +81,8 @@
 
 * An *inherited class* is called a **subclass** of its *parent class* or **super class**. 
 
++++
+
 * Inheritance should not be confused with subtyping. <sup>[6](#6)</sup> <sup>[8](#8)</sup>
   * In some languages inheritance and subtyping agree, generally in statically-typed class-based OO languages, such as C++, C#, Java, and Scala.), whereas in others they differ;
   * **subtyping** *establishes an is-a relationship*, 
