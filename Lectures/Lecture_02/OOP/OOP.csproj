@@ -67,7 +67,8 @@
     <Compile Include="Generics\GenericStackSample.cs" />
     <Compile Include="Generics\NonGenericStackSample.cs" />
     <Compile Include="Generics\ObjectStack.cs" />
-    <Compile Include="Generics\Stack.cs" />
+    <Compile Include="Generics\CovarianceContravariance.cs" />
+    <Compile Include="Generics\Storage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SystemObjectSample.cs" />
   </ItemGroup>
