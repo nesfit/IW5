@@ -185,12 +185,12 @@ class SimpliestClass { }
   * *Before a constructor call*
 * Modifiers:
   * `static`
-  * access - `public, internal, private, protected, internal protected
+  * access - `public, internal, private, protected, internal protected`
   * inheritance - `new`
   * unsafe code - `unsafe`
   * `readonly`
   * threading - `volatile`
-
+  * 
 +++?code=/Lectures/Lecture_02/OOP/Animals/UnknownCat.cs&lang=C#&title=UnknownCat
 
 +++
@@ -205,7 +205,7 @@ class SimpliestClass { }
 
 * Modifiers:
   * `static`
-  * access - `public, internal, private, protected, internal protected
+  * access - `public, internal, private, protected, internal protected`
   * inheritance - `new, virtual, abstract, override, sealed, partial`
   * unsafe code - `unsafe, extern`
   * asynchronous - `async`
