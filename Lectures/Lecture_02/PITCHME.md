@@ -425,6 +425,7 @@ Console.WriteLine(dog != null ?
 ```
 
 +++
+* Pattern matching
 
 ```C#
 WildDog wildDog = new WildDog();
@@ -457,13 +458,11 @@ public class Kitten : Cat {}
 * Members of *super class* can be access in overides using `base` keyword.
 
 ```C#
-class Animal
-{
+class Animal {
   public virtual string Name {get;}
 }
 
-class Cat : Pet
-{
+class Cat : Pet {
   public override string Name => base.name + "Cat";
 }
 ```
@@ -624,7 +623,7 @@ public interface IEnumerator
 
 +++
 
-#### `interface` vs `abstract class` ?
+#### `interface` vs `abstract class`
 
 * Use *inheritance* for types that shares its implementation
 * Use `interface` for types that have idependent implementations
@@ -679,7 +678,7 @@ class Flea : Insect, ICarnivore { }
     * where T : struct 
     * where T : new() 
     * where U : T
-    * 
+
 +++?code=/Lectures/Lecture_02/OOP/Generics/Stack.cs&lang=C#&title=ObjectStack
 
 +++?code=/Lectures/Lecture_02/OOP/Generics/GenericStackSample.cs&lang=C#&title=NonGenericStackSample
@@ -700,7 +699,7 @@ static void Swap<T> (ref T a, ref T b)
 }
 ```
 
-Difference:
+* Difference:
   * *opened type* – Stack<T>
   * *closed type* – Stack<int>
 * during a *runtime* all generics are of *closed type*
@@ -716,6 +715,8 @@ Difference:
 
 * **Invariance** use only of the same type as originally specified.
   *  Invariant generic type parameter is neither **covariant** nor **contravariant**.
+
++++?code=/Lectures/Lecture_02/OOP/Generics/CovarianceContravariance.cs&lang=C#&title=CovarianceContravariance
 
 ---
 
