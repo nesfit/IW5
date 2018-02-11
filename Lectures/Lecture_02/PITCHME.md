@@ -691,8 +691,7 @@ class Flea : Insect, ICarnivore { }
 * *Generic method* can contain multiple *generic parameters*
 
 ```C#
-static void Swap<T> (ref T a, ref T b)
-{
+static void Swap<T> (ref T a, ref T b) {
   T temp = a;
   a = b;
   b = temp;
@@ -732,10 +731,8 @@ static void Swap<T> (ref T a, ref T b)
 * Shareing of base implementation
 * E.g., `Object.ToString()` transform instance to a `string` representation
 ```C#
-namespace System
-{
-  public class Object
-  {
+namespace System {
+  public class Object {
     public virtual string ToString() {}
     public virtual bool Equals(object obj) {} 
     public virtual int GetHashCode() {}
@@ -974,6 +971,7 @@ var b = 0b1010_1011_1100_1101_1110_1111;
 +++
 
 * Ref returns and locals
+
 ```C#
 public ref int Find(int number, int[] numbers)
 {
