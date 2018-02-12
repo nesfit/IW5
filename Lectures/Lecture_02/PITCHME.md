@@ -790,7 +790,7 @@ static void Swap<T> (ref T a, ref T b) {
 
 #### Unified typed system
 * Type - encapsulates data and methods
-* Shareing of base implementation
+* Sharing of base implementation
 * E.g., `Object.ToString()` transform instance to a `string` representation
 ```C#
 namespace System {
