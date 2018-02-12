@@ -95,8 +95,12 @@
  Still, inheritance is a commonly used mechanism for establishing subtype relationships.<sup>[10](#10)</sup>
 
 +++?code=/Lectures/Lecture_02/OOP/Animals/Animal.cs&lang=C#&title=Animal
+@[3]
+@[3-8]
 
 +++?code=/Lectures/Lecture_02/OOP/Animals/WildDog.cs&lang=C#&title=WildDog
+@[5]
+@[5-15]
 
 +++
 
@@ -192,6 +196,10 @@ class SimpliestClass { }
   * threading - `volatile`
   * 
 +++?code=/Lectures/Lecture_02/OOP/Animals/UnknownCat.cs&lang=C#&title=UnknownCat
+@[7]
+@[8]
+@[12]
+@[5-14]
 
 +++
 
@@ -317,6 +325,9 @@ var alik = new Dog("Alík");
   * unsafe code - `unsafe, extern`
 
 +++?code=/Lectures/Lecture_02/OOP/Animals/Dog.cs&lang=C#&title=Dog
+@[3-10]
+@[6-9]
+@[3-10]
 
 +++
 
@@ -330,6 +341,12 @@ var alik = new Dog("Alík");
   * `base` - refers to *super class* type instance
 
 +++?code=/Lectures/Lecture_02/OOP/Animals/Cat.cs&lang=C#&title=Cat
+@[3-13]
+@[9-12]
+@[9]
+@[5-8]
+@[5]
+@[3-13]
 
 +++?code=/Lectures/Lecture_02/OOP/ConstructorInitializationSample.cs&lang=C#&title=Constructor initialization demo
 
@@ -342,8 +359,16 @@ var alik = new Dog("Alík");
 * `abstract class` cannot be `sealed`, thus must be possible to *inherit* from it.
 
 +++?code=/Lectures/Lecture_02/OOP/Animals/Animal.cs&lang=C#&title=Animal
+@[3-8]
+@[3]
+@[7]
+@[3-8]
 
 +++?code=/Lectures/Lecture_02/OOP/Animals/WildDog.cs&lang=C#&title=WildDog
+@[5-15]
+@[5]
+@[14]
+@[5-15]
 
 +++
 
@@ -359,6 +384,11 @@ var alik = new Dog("Alík");
   * It fails, it *super class* instance is not compatible with *inherited* one.
 
 +++?code=/Lectures/Lecture_02/OOP/CastSample.cs&lang=C#&title=CastSample
+@[10-15]
+@[18-23]
+@[26-30]
+@[26-30]
+@[33-43]
 
 +++
 
@@ -434,6 +464,10 @@ if (wildDog is Dog dog)
 ```
 
 +++?code=/Lectures/Lecture_02/OOP/CastSample.cs&lang=C#&title=CastSample
+@[46-50]
+@[53-57]
+@[60-68]
+@[71-78]
 
 +++
 
@@ -494,6 +528,9 @@ Console.WriteLine(d.GetType() == typeof(Dog)); // Returns true
 ```
 
 +++?code=/Lectures/Lecture_02/OOP/SystemObjectSample.cs&lang=C#&title=SystemObjectSample
+@[9-14]
+@[17-20]
+@[23-27]
 
 ---
 
@@ -661,8 +698,18 @@ class Flea : Insect, ICarnivore { }
     * The right way is *generic*
 
 +++?code=/Lectures/Lecture_02/OOP/Generics/ObjectStack.cs&lang=C#&title=ObjectStack
+@[3-15]
+@[5]
+@[6]
+@[7-10]
+@[10-14]
+@[3-15]
+
 
 +++?code=/Lectures/Lecture_02/OOP/Generics/NonGenericStackSample.cs&lang=C#&title=NonGenericStackSample
+@[10-19]
+@[22-30]
+@[33-40]
 
 ---
 
@@ -680,8 +727,16 @@ class Flea : Insect, ICarnivore { }
     * where U : T
 
 +++?code=/Lectures/Lecture_02/OOP/Generics/Stack.cs&lang=C#&title=ObjectStack
+@[5-19]
+@[7]
+@[8]
+@[10-13]
+@[15-18]
+@[5-19]
 
 +++?code=/Lectures/Lecture_02/OOP/Generics/GenericStackSample.cs&lang=C#&title=NonGenericStackSample
+@[9-18]
+@[21-29]
 
 +++
 
@@ -716,6 +771,10 @@ static void Swap<T> (ref T a, ref T b) {
   *  Invariant generic type parameter is neither **covariant** nor **contravariant**.
 
 +++?code=/Lectures/Lecture_02/OOP/Generics/CovarianceContravariance.cs&lang=C#&title=CovarianceContravariance
+@[11]
+@[27-30]
+@[33-36]
+@[11-24]
 
 ---
 
