@@ -79,7 +79,7 @@
   * to specify a new implementation to maintain the same behavior,
   * to reuse code and to independently extend original software via public classes.
 
-* An *inherited class* is called a **subclass** of its *parent class* or **super class**. 
+* An *inherited class* is called a **subclass** of its *parent class* or **superclass**. 
 
 +++
 
@@ -294,6 +294,7 @@ public string Name {
 +++
 
 * Property expression-bodied:
+
 ```C#
 public string Name => $"{Magic.GetCatName()} Cat";
 ```
@@ -324,7 +325,7 @@ var alik = new Dog("Alík");
 
 * Modifiers:
   * access - `public, internal, private, protected, internal protected
-  * unsafe code - `unsafe, extern`
+  * unsafe code - `unsafe, extern`
 
 +++?code=/Lectures/Lecture_02/OOP/Animals/Dog.cs&lang=C#&title=Dog
 @[3-10]
@@ -340,7 +341,7 @@ var alik = new Dog("Alík");
 
 * Keywords
   * `this` - refers to *this* type instance 
-  * `base` - refers to *super class* type instance
+  * `base` - refers to *superclass* type instance
 
 +++?code=/Lectures/Lecture_02/OOP/Animals/Cat.cs&lang=C#&title=Cat
 @[3-13]
@@ -398,8 +399,8 @@ var alik = new Dog("Alík");
 * *Inheritance* and *subtyping*
 * Because of *type compatibility*, 
   * we can create multiple instances of concrete implementations,
-  * assign selected to *super class* reference,
-  * and achive different beavior for the same method call throught the *super class* reference.
+  * assign selected to *superclass* reference,
+  * and achive different beavior for the same method call throught the *superclass* reference.
 
 ```C#
 public class Animal
@@ -506,7 +507,7 @@ class Cat : Pet {
 ---
 
 ### System.Object
-* object (`System.Object`) is a common *super class* of all types
+* object (`System.Object`) is a common *superclass* of all types
 * each type can be cast to `System.Object`
 * `System.Object` methods:
   * ToString()
