@@ -76,7 +76,7 @@
 
 * Allows programmers to: 
   * create classes that are built upon existing classes,
-  * to specify a new implementation to maintain the same behaviour,
+  * to specify a new implementation to maintain the same behavior,
   * to reuse code and to independently extend original software via public classes.
 
 * An *inherited class* is called a **subclass** of its *parent class* or **super class**. 
@@ -127,7 +127,7 @@
   * **interface** - mechanism to allow *subtype polymorphism*
   * **struct** - value type, alternation to class, do *not allow inheritance*, only *subtyping*
 * **instance** - concrete object, instance of a *class*
-**field** – a member variable inside a class
+**field** – a member variable inside a .class
 **property** – an accessor for a field
 **method** - named procedure of function, encapsulated in a class
 * identificators
@@ -144,9 +144,9 @@
 * **internal** – visible only inside a *same assembly*, or *friendly assembly*
 * **protected internal** – visible only inside a *same assembly*, or *friendly assembly*, only for *inherited types*
 
-* Modifiers are used for limitting access to *implementation details* of a class.
-* Therefore, they ensures *encapsulation* and leads to safe code. 
-* If modifier is ommited, the most restrictive one is used.
+* Modifiers are used for limiting access to *implementation details* of a class.
+* Therefore, they ensure *encapsulation* and leads to safe code. 
+* If a modifier is omitted, the most restrictive one is used.
 * **Use them!!!**
 
 +++
@@ -194,7 +194,7 @@ class SimpliestClass { }
   * unsafe code - `unsafe`
   * `readonly`
   * threading - `volatile`
-  * 
+  
 +++?code=/Lectures/Lecture_02/OOP/Animals/UnknownCat.cs&lang=C#&title=UnknownCat
 @[7]
 @[8]
@@ -272,7 +272,7 @@ double Foo (double x) {...} // OK
 +++
 
 #### Properties
-* It is simmilar to a *fild*, but it enclosis it with access methods.
+* It is similar to a *field*, but it encloses it with access methods.
 * It is a safety mechanism that unifies *read* and *write* operations.
 * Hides *implementation details*.
 
@@ -281,7 +281,7 @@ double Foo (double x) {...} // OK
 public string Name {get; private set;}
 ```
 
-* Property with backing field:
+* Property with the backing field:
 ```C#
 private string _name;
 public string Name {
@@ -311,10 +311,10 @@ public new string Name {
 ### Constructor
 * Launches type's, i.e., `class` or `struct`, initialization
 * Defined as a **method** *without return type* with the same name as the constructed type
-* If `class` is derived from *super class*, constructors of *super class* are accessible.
+* If `class` is derived from *superclass*, constructors of *superclass* are accessible.
 * Type can have multiple constructors
 
-* *Parameterless constructor* is created automatically unless other *constructor* is defined, than it needs to be declared manually.
+* *Parameterless constructor* is created automatically unless other *constructor* is defined than it needs to be declared manually.
 
 ```C#
 var alik = new Dog("Alík");
@@ -353,9 +353,9 @@ var alik = new Dog("Alík");
 ---
 
 ### Abstract class
-* `class` declared as `abstract` cannot be instanciated, only its *descendant* can.
-* *Descendant* has to implement all `abstract` members, or has to be `abstract` him-self.
-* `abstract` members are similar to `virtual` members but do not provide *default implmentation*
+* `class` declared as `abstract` cannot be instantiated, only its *descendant* can.
+* *Descendant* has to implement all `abstract` members or has to be `abstract` himself.
+* `abstract` members are similar to `virtual` members but do not provide *default implementation*
 * `abstract class` cannot be `sealed`, thus must be possible to *inherit* from it.
 
 +++?code=/Lectures/Lecture_02/OOP/Animals/Animal.cs&lang=C#&title=Animal
@@ -377,11 +377,11 @@ var alik = new Dog("Alík");
 * Compatibility of *types* of `class`, `struct` instances.
 * Determines, to which type reference can be assigned reference of another type.
 * **upcast**
-  * To type of *super class* can be assigned all instances of its descendants.
-  * Only *members* provided by given *super class* can be accessed throught upcasted reference.
+  * To type of *superclass* can be assigned all instances of its descendants.
+  * Only *members* provided by given *superclass* can be accessed through upcasted reference.
 * **downcast**
-  * Creates reference of *inherited* `class` from *super class* instance.
-  * It fails, it *super class* instance is not compatible with *inherited* one.
+  * Creates reference of *inherited* `class` from *superclass* instance.
+  * It fails, it *superclass* instance is not compatible with *inherited* one.
 
 +++?code=/Lectures/Lecture_02/OOP/CastSample.cs&lang=C#&title=CastSample
 @[10-15]
@@ -430,14 +430,14 @@ public class Cat : Animal
 
 #### Operators IS/AS
 * Operator `is`
-  * tests type compatibility, thus determines wheather `class` inherits a *super class* or `class` implements `interface`.
+  * tests type compatibility, thus determines whether `class` inherits a *superclass* or `class` implements `interface`.
   * usually before downcast
 
 ```C#
 var wildDog = new WildDog();
 Console.WriteLine(a is Dog ? 
-	                "wildDog is a Dog" :
-	                "wildDog is not a Dog");
+                    "wildDog is a Dog" :
+                    "wildDog is not a Dog");
 ```
 
 +++
@@ -450,8 +450,8 @@ Console.WriteLine(a is Dog ?
 var wildDog = new WildDog();
 var dog = wildDog as Dog; //dog == null 
 Console.WriteLine(dog != null ? 
-	                "dog is a Dog" : 
-	                "dog is not a Dog");
+                    "dog is a Dog" : 
+                    "dog is not a Dog");
 ```
 
 +++
@@ -489,7 +489,7 @@ public class Kitten : Cat {}
 +++
 
 #### Base keyword
-* Members of *super class* can be access in overides using `base` keyword.
+* Members of *superclass* can be accessed in overrides using `base` keyword.
 
 ```C#
 class Animal {
@@ -558,7 +558,7 @@ class Dog {
 ---
 
 ### Partial classes and methods
-* Using `partial`, a class can be split into multipe source files.
+* Using `partial`, a class can be split into multiple source files.
 * Typical usage in WPF:
   * one file is *human edited*
   * one is *autogenerated*
@@ -662,8 +662,8 @@ public interface IEnumerator
 
 #### `interface` vs `abstract class`
 
-* Use *inheritance* for types that shares its implementation
-* Use `interface` for types that have idependent implementations
+* Use *inheritance* for types that share its implementation
+* Use `interface` for types that have independent implementations
 * A `class`, or `struct` can implement multiple interfaces
 
 ```C#
@@ -681,8 +681,8 @@ class Bee : Insect, IFlying { }
 class Flea : Insect, ICarnivore { }
 ```
 
-* Bacause animals might share some implementation by their taxanomy, it is possible to declare `Bird` and `Insect` as `abstract class`.
-* But, their food intake and wheather they fly or not might differs. It is best to declare these properties as `interfaces`, `IFlying` and `ICarnivore`.
+* Because animals might share some implementation of their taxonomy, it is possible to declare `Bird` and `Insect` as `abstract class`.
+* But, their food intake and whether they fly or not might differ. It is best to declare these properties as `interfaces`, `IFlying` and `ICarnivore`.
 
 ---
 
@@ -716,7 +716,7 @@ class Flea : Insect, ICarnivore { }
 ### Generics 
 * *Inheritance* increases reusability of *base type*
 * *Generics* allows use of templates
-  * also, introduces *type safe code*, no more *casting* and *boxing*
+  * also, introduces *type-safe code*, no more *casting* and *boxing*
 * Generic `interface`
   * parameters can be restricted with:
     * where T : base-class
@@ -762,12 +762,12 @@ static void Swap<T> (ref T a, ref T b) {
 
 ### Covariance and Contravariance in Generics
 * [Read more](https://docs.microsoft.com/en-us/dotnet/standard/generics/covariance-and-contravariance)
-* **Covariance** allows a use of more derived (more specific) than originally specified.
+* **Covariance** allows use of more derived (more specific) than originally specified.
   * You can assign an instance of `IEnumerable<Derived>` to a variable of type `IEnumerable<Base>`.  
-* **Contravariance** allows a use less derived (less specific) than originally specified. 
+* **Contravariance** allows a use less derived (less specific) than initially specified. 
   * You can assign an instance of `IEnumerable<Base>` to a variable of type `IEnumerable<Derived>`.
 
-* **Invariance** use only of the same type as originally specified.
+* **Invariance** use only of the same type as initially specified.
   *  Invariant generic type parameter is neither **covariant** nor **contravariant**.
 
 +++?code=/Lectures/Lecture_02/OOP/Generics/CovarianceContravariance.cs&lang=C#&title=CovarianceContravariance
@@ -858,7 +858,7 @@ public class Button {
 * *Strongly typed language*
   * *type* has to be known in *compile time*
 * Support of Intellisence in Visual Studio
-* keyword `dynamic` overcomes type safety mechanisms and type is resolved in *runtime*
+* keyword `dynamic` overcomes type safety mechanisms, and type is resolved in *runtime*
 * *benefits*
   * elimination of type issues in  *compile time*
   * *sandboxing* protects object state against outer modifications
@@ -879,7 +879,7 @@ Button button = new Color();
   * `Nullable<int> pocet = null;`
 * Anonnymous methods
   * `p = delegate(string j) {Console.WriteLine(j); };`
-* Iterator blocks	
+* Iterator blocks    
   * `yield return;`
 * Properties – getter and setter
   * `public Color Color { get{…} set{…} }`
@@ -896,7 +896,7 @@ public partial class TasksWindow {
 
 #### C# 3.0
 * Expression trees
-* Implicit local type – `var`	
+* Implicit local type – `var`    
   * `var cars = new List<Car>();`
 * Lambda expressions
   * `(param)=>{Console.WriteLine(param);}`
