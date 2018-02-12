@@ -169,7 +169,7 @@
 * Before:
   * *attributes and class modifiers*
 * Behind:
-  * *generic type parameters, a base class, and interfaces**
+  * *generic type parameters, a base class, and interfaces*
 * In brackets:
   * *class members - methods, properties, indexers, events, fields, constructors, overloaded operators, nested types, and a finalizer**
 
@@ -282,6 +282,7 @@ public string Name {get; private set;}
 ```
 
 * Property with the backing field:
+
 ```C#
 private string _name;
 public string Name {
@@ -298,6 +299,7 @@ public string Name => $"{Magic.GetCatName()} Cat";
 ```
 
 * Property with lazy initialization:
+
 ```C#
 private string _name;_
 public new string Name {
