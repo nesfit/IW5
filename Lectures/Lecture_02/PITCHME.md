@@ -65,7 +65,7 @@
 
 #### Encapsulation
 * Hides implementation details
-* Improves modulatiry
+* Improves modularity
 * Definitions:
   * A language mechanism for **restricting direct access** to some of the **object's components**. <sup>[1](#1)</sup> <sup>[2](#2)</sup>
   * A language construct that **facilitates the bundling of data with the methods** (or other functions) operating on that data. <sup>[3](#3)</sup> <sup>[4](#4)</sup> 
@@ -83,7 +83,7 @@
 
 +++
 
-* Inheritance should not be confused with subtyping. <sup>[6](#6)</sup> <sup>[8](#8)</sup>
+* Inheritance should not be confused with *subtyping*. <sup>[6](#6)</sup> <sup>[8](#8)</sup>
   * In some languages inheritance and subtyping agree, generally in statically-typed class-based OO languages, such as C++, C#, Java, and Scala.), whereas in others they differ;
   * **subtyping** *establishes an is-a relationship*, 
   * **inheritance**
@@ -122,27 +122,27 @@
 
 ### Basic terminology
 * Types in C#:
-  * **class** - construction plan for an object
-  * **enum** - enum data type as known from other languages
-  * **interface** - mechanism to allow *subtype polymorphism*
-  * **struct** - value type, alternation to class, do *not allow inheritance*, only *subtyping*
+  * `class` - construction plan for an object
+  * `enum` - enum data type as known from other languages
+  * `interface` - mechanism to allow *subtype polymorphism*
+  * `struct` - value type, alternation to class, do *not allow inheritance*, only *subtyping*
 * **instance** - concrete object, instance of a *class*
-**field** – a member variable inside a .class
+**field** – a member variable inside a class
 **property** – an accessor for a field
 **method** - named procedure of function, encapsulated in a class
 * identificators
-  * **null** - a reference that  *points to nowhere*
-  * **this** - a reference to a *current instance* of an object
-  * **base** - a reference to a *subtype* of a *supper class*
+  * `null` - a reference that  *points to nowhere*
+  * `this` - a reference to a *current instance* of an object
+  * `base` - a reference to a *subtype* of a *supper class*
 
 +++
 
 #### Access modifiers
-* **private** - visible only *inside of class**
-* **protected** - visible only *inside of class*, and all *inherited types*
-* **public** - visible from *everywhere**
-* **internal** – visible only inside a *same assembly*, or *friendly assembly*
-* **protected internal** – visible only inside a *same assembly*, or *friendly assembly*, only for *inherited types*
+* `private` - visible only *inside of class**
+* `protected` - visible only *inside of class*, and all *inherited types*
+* `public` - visible from *everywhere**
+* `internal` – visible only inside a *same assembly*, or *friendly assembly*
+* `protected internal` – visible only inside a *same assembly*, or *friendly assembly*, only for *inherited types*
 
 * Modifiers are used for limiting access to *implementation details* of a class.
 * Therefore, they ensure *encapsulation* and leads to safe code. 
