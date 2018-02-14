@@ -438,7 +438,7 @@ public class Cat : Animal
 
 ```C#
 var wildDog = new WildDog();
-Console.WriteLine(a is Dog ? 
+Console.WriteLine(wildDog is Dog ? 
                     "wildDog is a Dog" :
                     "wildDog is not a Dog");
 ```
