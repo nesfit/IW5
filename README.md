@@ -9,6 +9,7 @@
   
 
 # Aktuality k předmětu 
+  - **15.02.2018** | *Jan Pluskal* | Navštivte diskuzi k IW5/MW5 na [Teams](https://teams.microsoft.com/l/channel/19%3a99543c0b6d9045f7b21001e5a3813d63%40thread.skype/General?groupId=9d364b13-90af-4837-b149-7a7d93a203d1&tenantId=c63ce729-ca17-4e52-aa2d-96b79489a542).
   - **15.02.2018** | *Jan Pluskal* | Byly vloženy termíny pro přihlášení projektů (2018-02-19, 20:08:00). Na termín se přihlašují všichni členové týmu.
   - **15.02.2018** | *Jan Pluskal* | Repozitář pojmenujte **iw5-2018-team<00>** dle Vašeho čísla týmu, viz [zadání](/Project/README.md).
   - **06.02.2018** | *Jan Pluskal* | Bylo přidáno [zadání projektu](/Project/README.md).  
