@@ -9,6 +9,7 @@
   
 
 # Aktuality k předmětu 
+  - **15.02.2018** | *Jan Pluskal* | Byly vloženy termíny pro přihlášení projektů (2018-02-19, 20:08:00). Na termín se přihlašují všichni členové týmu.
   - **15.02.2018** | *Jan Pluskal* | Repozitář pojmenujte **iw5-2018-team<00>** dle Vašeho čísla týmu, viz [zadání](/Project/README.md).
   - **06.02.2018** | *Jan Pluskal* | Bylo přidáno [zadání projektu](/Project/README.md).  
   - **15.01.2018** | *Jan Pluskal* | Do Vašich repozitářů pro projekt přidejte účet **uciteliw5@vutbr.cz**.
