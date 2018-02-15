@@ -129,7 +129,7 @@ vyučujícím (způsob bude vysvětlen v rámci 1. cvičení).
 Z GITu *musí být viditelná postupná práce na projektu a spolupráce
 týmu*. Pokud uvidíme, že existuje malé množství nelogických a
 nepřeložitelných commitů tak nás bude zajímat, jak jste spolupracovali a
-může to vést na snížení bodového hodnocení.
+může to vést na snížení bodového hodnocení. Repozitář pojmenujte **iw5-2018-team<00>** dle Vašeho čísla týmu tak, že výsledné URL pro přístup pro tento imaginární tým by bylo https://iw5-2018-team00.visualstudio.com.
 
 Do Vašeho týmového projektu na GIT si v části Members přidejte účet
 **uciteliw5@vutbr.cz**
