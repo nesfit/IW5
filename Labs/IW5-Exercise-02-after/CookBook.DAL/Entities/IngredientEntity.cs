@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CookBook.DAL.Entities.Base.Implementation;
+using System;
 
 namespace CookBook.DAL.Entities
 {

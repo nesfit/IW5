@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using CookBook.DAL.Entities.Base.Implementation;
+using System.ComponentModel.DataAnnotations;
 
 namespace CookBook.DAL.Entities
 {

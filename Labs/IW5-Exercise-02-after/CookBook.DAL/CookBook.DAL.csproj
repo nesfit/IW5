@@ -51,9 +51,9 @@
     <Compile Include="Entities\IngredientEntityAmount.cs" />
     <Compile Include="Entities\Unit.cs" />
     <Compile Include="Entities\FoodType.cs" />
-    <Compile Include="Entities\IEntity.cs" />
+    <Compile Include="Entities\Base\Interface\IEntity.cs" />
     <Compile Include="Entities\IngredientEntity.cs" />
-    <Compile Include="Entities\EntityBase.cs" />
+    <Compile Include="Entities\Base\Implementation\EntityBase.cs" />
     <Compile Include="Entities\RecipeEntity.cs" />
     <Compile Include="Migrations\201802210859562_Initial.cs" />
     <Compile Include="Migrations\201802210859562_Initial.Designer.cs">

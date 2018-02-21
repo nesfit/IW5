@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CookBook.DAL.Entities.Base.Implementation;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 

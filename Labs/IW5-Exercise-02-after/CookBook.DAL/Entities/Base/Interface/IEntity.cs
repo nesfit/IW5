@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CookBook.DAL.Entities
+namespace CookBook.DAL.Entities.Base.Interface
 {
     public interface IEntity
     {
