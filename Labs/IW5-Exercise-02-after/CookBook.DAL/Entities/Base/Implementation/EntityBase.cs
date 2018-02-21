@@ -3,7 +3,7 @@ using System;
 
 namespace CookBook.DAL.Entities.Base.Implementation
 {
-    public class EntityBase : IEntity
+    public abstract class EntityBase : IEntity
     {
         public Guid Id { get; set; } = Guid.NewGuid();
     }
