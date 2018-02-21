@@ -6,6 +6,7 @@
         L,
         Pound,
         Spoon,
-        LittleSpoon
+        LittleSpoon,
+        Pieces
     }
 }

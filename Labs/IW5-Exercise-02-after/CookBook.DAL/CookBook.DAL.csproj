@@ -39,6 +39,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -63,6 +64,10 @@
     <Compile Include="Migrations\201802210913397_added IngredientAmoutEntity.Designer.cs">
       <DependentUpon>201802210913397_added IngredientAmoutEntity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201802210918417_added properties to IngredientEntity.cs" />
+    <Compile Include="Migrations\201802210918417_added properties to IngredientEntity.Designer.cs">
+      <DependentUpon>201802210918417_added properties to IngredientEntity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -76,6 +81,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802210913397_added IngredientAmoutEntity.resx">
       <DependentUpon>201802210913397_added IngredientAmoutEntity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802210918417_added properties to IngredientEntity.resx">
+      <DependentUpon>201802210918417_added properties to IngredientEntity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
