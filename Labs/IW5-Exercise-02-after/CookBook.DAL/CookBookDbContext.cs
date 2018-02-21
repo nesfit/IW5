@@ -8,7 +8,7 @@ namespace CookBook.DAL
         public IDbSet<RecipeEntity> Recipes { get; set; }
         public IDbSet<IngredientEntity> Ingredients { get; set; }
 
-        public CookBookDbContext() : base("LocalDb")
+        public CookBookDbContext() : base("CookBookContext")
         {
         }
 
