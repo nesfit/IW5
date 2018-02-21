@@ -50,7 +50,8 @@
     <Compile Include="CookBookDbContext.cs" />
     <Compile Include="Entities\FoodType.cs" />
     <Compile Include="Entities\IngredientEntity.cs" />
-    <Compile Include="Entities\RecipeEntity.cs" />
+    <Compile Include="Entities\EntityBase.cs" />
+    <Compile Include="RecipeEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
