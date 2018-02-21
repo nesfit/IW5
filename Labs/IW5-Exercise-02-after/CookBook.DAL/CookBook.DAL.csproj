@@ -48,7 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CookBookDbContext.cs" />
-    <Compile Include="Entities\IngredientEntityAmount.cs" />
+    <Compile Include="Entities\IngredientAmountEntity.cs" />
     <Compile Include="Entities\Unit.cs" />
     <Compile Include="Entities\FoodType.cs" />
     <Compile Include="Entities\Base\Interface\IEntity.cs" />
@@ -58,6 +58,10 @@
     <Compile Include="Migrations\201802210859562_Initial.cs" />
     <Compile Include="Migrations\201802210859562_Initial.Designer.cs">
       <DependentUpon>201802210859562_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802210913397_added IngredientAmoutEntity.cs" />
+    <Compile Include="Migrations\201802210913397_added IngredientAmoutEntity.Designer.cs">
+      <DependentUpon>201802210913397_added IngredientAmoutEntity.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -69,6 +73,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201802210859562_Initial.resx">
       <DependentUpon>201802210859562_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802210913397_added IngredientAmoutEntity.resx">
+      <DependentUpon>201802210913397_added IngredientAmoutEntity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
