@@ -16,7 +16,7 @@
   - **06.02.2018** | *Jan Pluskal* | Bylo přidáno [zadání projektu](/Project/README.md).  
   - **15.01.2018** | *Jan Pluskal* | Do Vašich repozitářů pro projekt přidejte účet **uciteliw5@vutbr.cz**.
   - **15.01.2018** | *Jan Pluskal* | Registrace týmů na projekty pro [FEKT](http://goo.gl/cBXSLd).
-  - **15.01.2018** | *Jan Pluskal* | Cvičení začnou v týdnu od 5.2.2017 (první týden semestru) značení týdne sudý/lichý je podle kalendáře (ISO 8601) - týden od 5.2.2016 je SUDÝ. [Jaky je tyden?](https://jakyjetyden.cz/)
+  - **15.01.2018** | *Jan Pluskal* | Cvičení začnou v týdnu od 5.2.2017 (první týden semestru) značení týdne sudý/lichý je podle kalendáře (ISO 8601) - týden od 5.2.2018 je SUDÝ. [Jaky je tyden?](https://jakyjetyden.cz/)
 
 # Přednášky
 
@@ -26,7 +26,7 @@
 | FEKT    | T3.02    | Po 16:00-17:50 |
 
 # Cvičení 
-Všechny cvičení se konají v APS, Učebna 2. Cvičení začnou v týdnu od 5.2.2017 (první týden semestru) značení týdne sudý/lichý je podle kalendáře (ISO 8601) - týden od 5.2.2016 je SUDÝ. [Jaky je tyden?](https://jakyjetyden.cz/)
+Všechny cvičení se konají v APS, Učebna 2. Cvičení začnou v týdnu od 5.2.2017 (první týden semestru) značení týdne sudý/lichý je podle kalendáře (ISO 8601) - týden od 5.2.2018 je SUDÝ. [Jaky je tyden?](https://jakyjetyden.cz/)
 
 | Fakulta  | Čas                | 
 | -------- | ------------------ | 
