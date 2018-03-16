@@ -35,8 +35,8 @@ Všechny cvičení se konají v APS, Učebna 2. Cvičení začnou v týdnu od 5.
 | FEKT     | St 18:00-19:50 S/L | 
 | FIT      | Čt 08:00-09:50 S/L | 
 | FIT      | Čt 10:00-11:50 S/L | 
-| FIT      | Čt 12:00-13:50 S/L | 
-| FIT      | Čt 14:00-15:50 S/L | 
+| FIT      | Čt 13:00-14:50 S/L | 
+| FIT      | Čt 15:00-16:50 S/L | 
 
 # Nástroje použity ve cvičeních
 
@@ -85,3 +85,8 @@ Označení učeben oproti značení FIT:
 * [Resharper features](https://www.jetbrains.com/resharper/features/) and how to use them.
 * [Pro Git book](https://git-scm.com/book/en/v2)
 
+# Užitečná literatura
+* [C# 7.0 in a Nutshell](http://www.albahari.com/nutshell/about.aspx), Ben Albahari, Joseph Albahari
+* [Clean Code: A Handbook of Agile Software Craftsmanship](https://books.google.cz/books?id=hjEFCAAAQBAJ), Robert C. Martin
+* [Agile Principles, Patterns, and Practices in C#](https://books.google.cz/books?id=hckt7v6g09oC), Robert C. Martin
+* [C# 3.0 Design Patterns](https://books.google.cz/books?id=pD2XMZLGUAYC), Judith Bishop
