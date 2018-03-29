@@ -49,6 +49,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\IngredientListModel.cs" />
+    <Compile Include="Models\RecipeDetailModel.cs" />
+    <Compile Include="Models\RecipeListModel.cs" />
     <Compile Include="RecipeRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
