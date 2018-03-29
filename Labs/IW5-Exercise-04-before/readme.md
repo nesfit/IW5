@@ -2,6 +2,7 @@
 
 1. Opravte všechny padající testy
    1. ReSharper > Unit Tests > Run All Tests from Solution ( **CTRL + U, L** )
+   1. Pokud se Vám nenačetli testy, otevřete si soubor `CookBookDbContextTests.cs` a zvolte *Run all*
 1. Změňte signaturu metody `RecipeRepository.FindByName`
    1. ```public RecipeDetailModel FindByName(string name)```
    1. Opravte metodu, tak aby vracela nový datový typ
