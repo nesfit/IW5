@@ -9,11 +9,11 @@ namespace CookBook.Tests
     {
 
         [Fact]
-        public void DbConnectionTest()
+        public void Database_Exists()
         {
             using (var cookBookDbContext = new CookBookDbContext())
             {
-                cookBookDbContext.Recipes.Any();
+                Assert.True(cookBookDbContext.Database.Exists());
             }
         }
 
