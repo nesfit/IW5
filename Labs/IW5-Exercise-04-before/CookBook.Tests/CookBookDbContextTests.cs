@@ -45,8 +45,8 @@ namespace CookBook.Tests
         public void FindByName_Ingredient_NotNull()
         {
             var recipe = recipeRepository.FindByName("Čokoládová torta");
-            var containsEgg = recipe.Ingredients.Any(ingredient => ingredient.Ingredient.Name == "Vajíčko");
-            Assert.True(containsEgg);
+
+            Assert.NotNull(recipe?.Ingredients);
         }
     }
 }
