@@ -27,9 +27,9 @@ namespace CookBook.Tests
         }
 
         [Fact]
-        public void FindByName_ChocolateCake2_Null()
+        public void FindByName_NonExistentRecipe_Null()
         {
-            var recipe = recipeRepository.FindByName("Čokoládová torta 2");
+            var recipe = recipeRepository.FindByName("non-existent recipe");
             Assert.Null(recipe);
         }
 
