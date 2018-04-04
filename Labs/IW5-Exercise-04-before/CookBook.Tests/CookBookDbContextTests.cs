@@ -9,11 +9,11 @@ namespace CookBook.Tests
     {
 
         [Fact]
-        public void DbConnectionTest()
+        public void Database_Exists()
         {
             using (var cookBookDbContext = new CookBookDbContext())
             {
-                cookBookDbContext.Recipes.Any();
+                Assert.True(cookBookDbContext.Database.Exists());
             }
         }
 
@@ -27,9 +27,9 @@ namespace CookBook.Tests
         }
 
         [Fact]
-        public void FindByName_ChocolateCake2_Null()
+        public void FindByName_NonExistentRecipe_Null()
         {
-            var recipe = recipeRepository.FindByName("Čokoládová torta 2");
+            var recipe = recipeRepository.FindByName("non-existent recipe");
             Assert.Null(recipe);
         }
 
@@ -45,8 +45,8 @@ namespace CookBook.Tests
         public void FindByName_Ingredient_NotNull()
         {
             var recipe = recipeRepository.FindByName("Čokoládová torta");
-            var containsEgg = recipe.Ingredients.Any(ingredient => ingredient.Ingredient.Name == "Vajíčko");
-            Assert.True(containsEgg);
+
+            Assert.NotNull(recipe?.Ingredients);
         }
     }
 }
