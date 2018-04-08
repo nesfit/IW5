@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>ASP.NET</h1>
+    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
+    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <h2>Getting started</h2>
+        <p>
+            <ul>
+                <li>Default Controller is HomeController.cs</li>
+                <li>Manage and account controllers are only for use authentiction.</li>
+                <li>Main content is defined in page template _layout.cshtml</li>
+            </ul>
+            
+        </p>
+        <h2>Example controller methods</h2>
+        <p>
+            <ul>
+                <li>@Html.ActionLink("With parameters", "UseParameters", new { email = "j@ahoj.cz", second = 36, notUsed = "not used" })</li>
+                <li>@Html.ActionLink("Return values", "ReturnValues")</li>
+                <li>@Html.ActionLink("To Authenticated method", "Authenticated")</li>
+                <li>@Html.ActionLink("Application state", "SessionState")</li>
+            </ul>
+        </p>
+        <p>@Html.ActionLink("Home", "Index", new object(), new { @class = "btn btn-default" })</p>
+    </div>
+    <div class="col-md-6">
+        <h2>Web services - using Web API</h2>
+        <p>To add web api to an existing project add its nuget package and create Webapiconfig.cs. For its useage see ValuesController.cs</p>
+        <p><a class="btn btn-default" href="\api\values">Go to </a></p>
+    </div>
+</div>
