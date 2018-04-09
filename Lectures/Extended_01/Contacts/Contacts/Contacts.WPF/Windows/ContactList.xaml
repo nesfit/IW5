@@ -1,0 +1,51 @@
+﻿<framework:MvvmWindow x:Class="Contacts.WPF.Windows.ContactList"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Contacts.WPF.Windows"
+        xmlns:viewModels="clr-namespace:Contacts.ViewModels.ViewModels;assembly=Contacts.ViewModels"
+        xmlns:framework="clr-namespace:Contacts.MVVM.Framework;assembly=Contacts.MVVM.Framework"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        mc:Ignorable="d"
+        Title="Seznam kontaktů" Height="300" Width="300"
+        DataContext="{Binding ContactListViewModel, Source={StaticResource ViewModelLocator}}"              >
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <ListView x:Name="ContactsListView" ItemsSource="{Binding Contacts}" SelectedItem="{Binding SelectedContact, Mode=TwoWay}" Grid.Row="0">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Grid Grid.Row="1" x:Name="SelectedContactDetailGrid" Visibility="{Binding SelectedContact, Converter={StaticResource NullToVisibilityConverter}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Row="0" Grid.Column="0"><Bold>Detail kontaktu</Bold></TextBlock>
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Jméno: " />
+            <TextBlock Grid.Row="1" Grid.Column="1" x:Name="SelectedContactNameTextBlock" Text="{Binding SelectedContact.Name}" />
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Email: " />
+            <TextBlock Grid.Row="2" Grid.Column="1" x:Name="SelectedContactMailTextBlock" Text="{Binding SelectedContact.Mail}" />
+            <TextBlock Grid.Row="3" Grid.Column="0" Text="Telefonní číslo: " />
+            <TextBlock Grid.Row="3" Grid.Column="1" x:Name="SelectedContactPhoneNumberTextBlock" Text="{Binding SelectedContact.PhoneNumber}" />
+        </Grid>
+        <StackPanel Grid.Row="2" Orientation="Horizontal">
+            <Button Content="Přidat" Command="{Binding OpenAddWindowCommand}" />
+            <Button Content="Upravit" Command="{Binding OpenEditWindowCommand}" />
+        </StackPanel>
+    </Grid>
+</framework:MvvmWindow>
