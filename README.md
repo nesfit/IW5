@@ -8,6 +8,7 @@
   
 
 # Aktuality k předmětu 
+  - **18.04.2018** | *Jan Pluskal* | [Registrace](http://goo.gl/mj3ODO) obhajoby projektů - autentizace xlogin00@vutbr.cz. Odevzdání projektu proveďte do WISu jako zip archív bez obj, bin, packages. V případě FEKTu není třeba odevzdávat.
   - **19.03.2018** | *Jan Pluskal* | Zkontrolujte zdali máte správně vytvořené repozitáře dle shématu ze zadání *https://iw5-2018-team00.visualstudio.com* a případně opravte. Je nezbytně nutné použít účty z doménu *vutbr.cz*. Pokud Vám pouze nesedí url, dá se v nastavení změnit. Pokud máte vytvořeno pod soukromými účty, je třeba vytvořit projek znovu pod univerzitními a pushnout existující repozitář tak, aby Vám zůstala historie včetně správných časů commitů. Pokud bude kolize s existujícím účtem, použijte url *https://iw5-2018-team00-01.visualstudio.com*.
   - **20.02.2018** | *Jan Pluskal* | Oprava termínů registrace projektů ve WISu (2018-02-20, 20:08:00).
   - **15.02.2018** | *Jan Pluskal* | Navštivte diskuzi k IW5/MW5 na [Teams](https://teams.microsoft.com/l/channel/19%3a99543c0b6d9045f7b21001e5a3813d63%40thread.skype/General?groupId=9d364b13-90af-4837-b149-7a7d93a203d1&tenantId=c63ce729-ca17-4e52-aa2d-96b79489a542).
