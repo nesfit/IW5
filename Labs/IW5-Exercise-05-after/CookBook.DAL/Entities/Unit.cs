@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace CookBook.DAL.Entities
+﻿namespace CookBook.DAL.Entities
 {
     public enum Unit
     {

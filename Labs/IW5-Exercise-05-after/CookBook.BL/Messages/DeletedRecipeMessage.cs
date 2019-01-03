@@ -1,9 +1,8 @@
 ﻿using System;
-using CookBook.BL.Models;
 
 namespace CookBook.BL.Messages
 {
-    public class DeletedRecipeMessage 
+    public class DeletedRecipeMessage
     {
         public DeletedRecipeMessage(Guid recipeId)
         {

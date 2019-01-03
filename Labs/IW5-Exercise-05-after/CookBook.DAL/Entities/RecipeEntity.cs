@@ -1,10 +1,12 @@
-﻿using System;
+﻿using CookBook.DAL.Entities.Base.Implementation;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using CookBook.DAL.Entities.Base.Implementation;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CookBook.DAL.Entities
 {
+    [Table("Recipes")]
     public class RecipeEntity : EntityBase
     {
         [Required]
