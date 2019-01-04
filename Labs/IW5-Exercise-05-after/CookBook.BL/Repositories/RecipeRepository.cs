@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using CookBook.BL.Models;
+﻿using CookBook.BL.Models;
 using CookBook.DAL;
 using CookBook.DAL.Entities;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CookBook.BL.Repositories
 {
@@ -17,7 +17,8 @@ namespace CookBook.BL.Repositories
             {
                 var recipe = cookBookDbContext
                     .Recipes
-                    .Include(r => r.Ingredients.Select(i => i.Ingredient))
+                    .Include(r => r.Ingredients)
+                    .ThenInclude(i => i.Ingredient)
                     .FirstOrDefault(r => r.Name == name);
                 return mapper.MapEntityToDetailModel(recipe);
             }
@@ -38,13 +39,13 @@ namespace CookBook.BL.Repositories
             using (var cookBookDbContext = new CookBookDbContext())
             {
                 var recipeEntity = cookBookDbContext.Recipes
-                    .Include(r => r.Ingredients.Select(i => i.Ingredient))
+                    .Include(r => r.Ingredients)
+                    .ThenInclude(i => i.Ingredient)
                     .FirstOrDefault(r => r.Id == id);
 
                 return mapper.MapEntityToDetailModel(recipeEntity);
             }
         }
-
 
         public RecipeDetailModel Insert(RecipeDetailModel detail)
         {

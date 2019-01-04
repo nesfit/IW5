@@ -1,14 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations;
-using CookBook.DAL.Entities.Base.Implementation;
-using CookBook.DAL.Entities.Base.Interface;
+﻿using CookBook.DAL.Entities.Base.Implementation;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CookBook.DAL.Entities
 {
-    public class IngredientEntity : EntityBase, IEntity
+    [Table("Ingredients")]
+    public class IngredientEntity : EntityBase
     {
         [Required]
         public string Name { get; set; }
-
         public string Description { get; set; }
     }
 }

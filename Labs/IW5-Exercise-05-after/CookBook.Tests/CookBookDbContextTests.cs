@@ -1,8 +1,6 @@
-﻿using System;
-using System.Linq;
-using CookBook.BL;
-using CookBook.BL.Repositories;
+﻿using CookBook.BL.Repositories;
 using CookBook.DAL;
+using System.Linq;
 using Xunit;
 
 namespace CookBook.Tests

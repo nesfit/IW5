@@ -15,8 +15,7 @@ namespace CookBook.BL
 
             lock (bagLock)
             {
-                ConcurrentBag<Delegate> actions;
-                if (!registeredActions.TryGetValue(typeof(TMessage), out actions))
+                if (!registeredActions.TryGetValue(typeof(TMessage), out var actions))
                 {
                     actions = new ConcurrentBag<Delegate>();
                     registeredActions[key] = actions;
@@ -29,8 +28,7 @@ namespace CookBook.BL
 
         public void Send<TMessage>(TMessage message)
         {
-            ConcurrentBag<Delegate> actions;
-            if (registeredActions.TryGetValue(typeof(TMessage), out actions))
+            if (registeredActions.TryGetValue(typeof(TMessage), out var actions))
             {
                 foreach (var action in actions.Select(a => a as Action<TMessage>).Where(a => a != null))
                 {
@@ -43,8 +41,7 @@ namespace CookBook.BL
         {
             var key = typeof(TMessage);
 
-            ConcurrentBag<Delegate> actions;
-            if (registeredActions.TryGetValue(typeof(TMessage), out actions))
+            if (registeredActions.TryGetValue(typeof(TMessage), out var actions))
             {
                 lock (bagLock)
                 {

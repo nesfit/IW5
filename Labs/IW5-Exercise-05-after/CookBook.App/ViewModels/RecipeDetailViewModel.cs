@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Input;
-using CookBook.App.Commands;
+﻿using CookBook.App.Commands;
 using CookBook.BL;
 using CookBook.BL.Messages;
 using CookBook.BL.Models;
 using CookBook.BL.Repositories;
 using CookBook.DAL.Entities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Input;
 
 namespace CookBook.App.ViewModels
 {
@@ -19,7 +19,7 @@ namespace CookBook.App.ViewModels
 
         public RecipeDetailModel Detail
         {
-            get { return detail; }
+            get => detail;
             set
             {
                 if (Equals(value, Detail)) return;
@@ -47,7 +47,7 @@ namespace CookBook.App.ViewModels
 
         private void DeleteRecipe()
         {
-            if(Detail.Id != Guid.Empty)
+            if (Detail.Id != Guid.Empty)
             {
                 var recipeId = Detail.Id;
 
