@@ -3,7 +3,7 @@ using UserManagement.Composite;
 
 namespace UserManagement.Visitor
 {
-    public class DisplayUserVisitor
+    public class DisplayContactVisitor
     {
         public void Print(IContactComponent contactComponent)
         {
@@ -12,17 +12,16 @@ namespace UserManagement.Visitor
 
         private void Print(IContactComponent contactComponent, int indent)
         {
-            if (contactComponent is ContactComponent contact)
+            switch (contactComponent)
             {
-                Print(contact, indent);
-            }
-            else if (contactComponent is ContactGroupComposite contactGroup)
-            {
-                Print(contactGroup, indent);
-            }
-            else
-            {
-                throw new NotSupportedException();
+                case ContactComponent contact:
+                    Print(contact, indent);
+                    break;
+                case ContactGroupComposite contactGroup:
+                    Print(contactGroup, indent);
+                    break;
+                default:
+                    throw new NotSupportedException();
             }
         }
 
