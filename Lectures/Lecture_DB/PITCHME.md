@@ -10,9 +10,13 @@
 
 * Basic terms
 * What is database?
+* Database Management System
+* ACID
 * Types of databases
   * NoSql databases
   * Relational (SQL) databases
+* CAP theorem
+* Comparsion NoSQL vs SQL
 * Object relation mapping (ORM)
 
 <!-- Note:
@@ -136,6 +140,23 @@
 * Change database model if contains data is harder - you must "transfer data"
   * Migrations
 * Relations between records is provided by **database**
+* SQL
+
+---
+## Structured Query Language SQL
+
+```SQL
+SELECT TOP (1000)
+      [Id],
+      [Name],
+      [Type],
+      [Description],
+      [Duration]
+  FROM [CookBookDB].[dbo].[Recipes]
+```
+@[1]
+@[2-6]
+@[7]
 
 ---
 ## Comparsion NoSQL vs SQL databases
