@@ -154,6 +154,7 @@ SELECT TOP (1000)
       [Duration]
   FROM [CookBookDB].[dbo].[Recipes]
 ```
+@[0]
 @[1]
 @[2-6]
 @[7]
