@@ -8,7 +8,7 @@
 theme : simple
 theme-override : /Lectures/GitPitch/assets/css/PITCHME.css
 highlight : vs
-logo : /Lectures/GitPitch/assets/image/logo.png
+logo : /Lectures/GitPitch/assets/image/logo_fekt.png
 #transition : none
 published : true
 remote-control: true
