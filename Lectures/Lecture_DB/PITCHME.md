@@ -140,7 +140,7 @@
 ---
 ## Comparsion NoSQL vs SQL databases
 <div class="left">
-  <h1>NoSQL database<h1>
+  NoSQL database
   <ul>
     <li>Poor data structure (more flexible for inconsistent data)</li>
     <li>Document oriented</li>
@@ -150,7 +150,7 @@
   </ul>
 </div>
 <div class="right">
-   <h1>SQL database<h1>
+  SQL database
   <ul>
     <li>Strict data structure</li>
     <li>Table oriented</li>
