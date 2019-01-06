@@ -165,8 +165,8 @@
 
 ---
 ## References
-[Guide to databases](https://www.upwork.com/hiring/data/a-guide-to-database-technology/)
-[Introduction to databases](https://en.wikiversity.org/wiki/Introduction_to_Databases)
-[Eventual consistency](http://cloudshankar.blogspot.com/2013/05/eventual-consistency.html)
-[ACID vs CAP](http://techie-experience.blogspot.com/2015/02/acid-properties-in-transactions.html)
+[Guide to databases](https://www.upwork.com/hiring/data/a-guide-to-database-technology/)  
+[Introduction to databases](https://en.wikiversity.org/wiki/Introduction_to_Databases)  
+[Eventual consistency](http://cloudshankar.blogspot.com/2013/05/eventual-consistency.html)  
+[ACID vs CAP](http://techie-experience.blogspot.com/2015/02/acid-properties-in-transactions.html)  
 [CAP](https://www.researchgate.net/figure/CAP-Theorem_fig4_221462089)
