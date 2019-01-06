@@ -75,10 +75,10 @@
     <li>Provide API for database languages such as SQL</li>
   </ul>
   <li>Database + DBMS = Database System</li>
-  <li>Microsoft SQL Server, MySQL, mongoDB, PostgreSQL</li>
+  <!-- <li>Microsoft SQL Server, MySQL, mongoDB, PostgreSQL</li> -->
   <!-- https://db-engines.com/en/ranking  -->
 </ul>
-
+</div>
 <div class="right">
 <img src="/Lectures/Lecture_DB/assets/image/database-services.jpg" />
 </div>
