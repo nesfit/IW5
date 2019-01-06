@@ -107,3 +107,7 @@ span.aside {
     font-style: italic;
     font-family: Courier New;
 }
+
+.bold {
+  font-weight: bold;
+}
