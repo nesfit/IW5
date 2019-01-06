@@ -11,8 +11,13 @@
 * Basic terms
 * What is database?
 * Types of databases
-* NoSql databases
-* Relational (SQL) databases
+  * NoSql databases
+  * Relational (SQL) databases
+
+Note:
+- Offers a wide-range of enhanced presentation **tools** and **features**
+- Both on the desktop and in the cloud
+- Learn more on the GitPitch website at https://gitpitch.com
 
 ---
 ## Basic terms
@@ -44,10 +49,8 @@
 ## Types of databases
 
 * Object Oriented databases
-* Entity
-* Relation
-* Relationships
-* Data structure
+* NoSql databases
+* Relational (SQL) databases
 
 ---
 ## References
