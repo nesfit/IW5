@@ -13,11 +13,12 @@
 * Types of databases
   * NoSql databases
   * Relational (SQL) databases
+* Object relation mapping (ORM)
 
-Note:
+<!-- Note:
 - Offers a wide-range of enhanced presentation **tools** and **features**
 - Both on the desktop and in the cloud
-- Learn more on the GitPitch website at https://gitpitch.com
+- Learn more on the GitPitch website at https://gitpitch.com -->
 
 ---
 ## Basic terms
@@ -33,12 +34,21 @@ Note:
 ## What is database?
 
 <div class="left">
+  * Persistent data storage
 <ul>
   <li>Persistent data storage</li>
   <ul>
     <li>Data is avaible after application or system reboot</li>
   </ul>
   <li>Store, organize, and process information</li>
+   <ul>
+    <li>Query, sort, transoform</li>
+  </ul>
+  <li>Single-File vs Multi-File databases</li>
+  <ul>
+    <li>PhoneBook vs. CookBook</li>
+  </ul>
+  
 </ul>    
 </div>
 <div class="right">
