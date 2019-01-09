@@ -65,6 +65,17 @@ Cvičení jsou demonstrační. Přineste si vlastní zařízení na kterém bude
 | Počítačová cvičení |                    30 |
 | Projekt            |                    70 |
 
+# Vyučující
+* [Martin Dybal](https://www.dybal.it/)
+* [Roman Jašek]()
+* [Tibor Jašek]()
+* [Adam Jež]()
+* [Viliam Letavay]()
+* [Michal Mrnušťík]()
+* [Jan Pluskal](http://www.fit.vutbr.cz/~ipluskal/)
+* [Jiří Pokorný]()
+* [Patrik Švikruha]()
+
 # Užitečné odkazy
 * [Entity framework tutorial](http://www.entityframeworktutorial.net/code-first/entity-framework-code-first.aspx)
 * [R. C. Martin SOLID](https://youtu.be/TMuno5RZNeE?t=757) Bob Martin SOLID Principles of Object Oriented and Agile Design 
