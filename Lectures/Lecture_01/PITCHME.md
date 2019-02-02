@@ -1,4 +1,4 @@
-﻿@snap[midpoint]
+﻿@snap[midpoint span-100]
 # Introduction to C#, Visual studio and .NET
 @snapend
 
