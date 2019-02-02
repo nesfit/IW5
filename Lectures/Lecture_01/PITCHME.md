@@ -177,14 +177,18 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 
 +++
 ### Productivity
-* To develop high quality applications faster
+* To develop *high quality applications faster*
 * Modern language constructs
-  *  Generics
-  *  Language Integrated Query (LINQ)
-  *  Asynchronous programming
-* Extensive class libraries
+  *  *Generics*
+  *  Language Integrated Query (*LINQ*)
+  *  *Asynchronous programming*
+* Extensive class libraries - NuGet
 * Common APIs
-* Multi-language support
+* *Multi-language* support
+
+@snap[east span-50]
+![](/Lectures/Lecture_01/Assets/img/dotneta.png)
+@snapend
 
 +++
 ### Almost every platform
