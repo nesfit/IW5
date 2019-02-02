@@ -103,7 +103,7 @@ Templates for ReSharper that let you quickly generate code and data structures b
 @snapend
 
 @snap[east span-50]
-![](resharperLiveTemplates_thumb.gif)
+![](/Lectures/Lecture_01/Assets/img/resharperLiveTemplates_thumb.gif)
 @snapend
 
 +++
