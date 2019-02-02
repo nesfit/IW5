@@ -119,9 +119,13 @@ Put an end to those hundreds of Visual Studio Console projects cluttering your s
 
 +++
 ### [DotPeek](https://www.jetbrains.com/decompiler/)
-@snap[west span-50]
+@snap[west span-40]
 Tool based on ReSharper's bundled decompiler. 
 It can reliably decompile any .NET assembly into equivalent C# or IL code.
+@snapend
+
+@snap[east span-60]
+![](/Lectures/Lecture_01/Assets/img/dotpeek.gif)
 @snapend
 
 +++
@@ -130,6 +134,12 @@ It can reliably decompile any .NET assembly into equivalent C# or IL code.
 A full featured Markdown editor with live preview and syntax highlighting. 
 Supports GitHub flavored Markdown.
 @snapend
+
+@snap[east span-60]
+![](/Lectures/Lecture_01/Assets/img/markdown-editor.gif)
+@snapend
+
+
 
 +++
 ### [Entity Framework 6 Power Tools](https://marketplace.visualstudio.com/items?itemName=ErikEJ.EntityFramework6PowerToolsCommunityEdition)
