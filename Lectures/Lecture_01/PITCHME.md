@@ -81,7 +81,7 @@ Extends Visual Studio with code inspections. For most inspections provides quick
 * Test Plans
 
 @snap[east span 50]
-<img src="/Lectures/Lecture_01/Assets/img/Azure-DevOps2.png" />
+![Azure-DevOps](/Lectures/Lecture_01/Assets/img/Azure-DevOps2.png)
 @snapend
 
 
