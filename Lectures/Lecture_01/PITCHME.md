@@ -247,7 +247,7 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 
 +++
 ## Language interoperability
-@snap[south-east span-60]
+@snap[south-east span-70]
 ![](/Lectures/Lecture_01/Assets/img/Common_Language_Infrastructure.png)
 @snapend
 
