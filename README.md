@@ -113,6 +113,13 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení n
 | Počítačová cvičení |                    30 |
 | Projekt            |                    70 |
 
++++
+
+| Fakulta |    Místnost | 
+| ------- |-------------| 
+| FIT     | D105        | 
+| FEKT    | T12/SD 1.48 | 
+
 --- 
 
 # Vyučující
