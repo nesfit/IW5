@@ -54,14 +54,14 @@
 9. [Návrhové vzory](https://gitpitch.com/pluskal/5?grs=github&t=white&p=Lectures%2FLecture_09#/)
    * vytvářecí, strukturní a chování - Gang of Four (GoF) v kontextu C#
 10. [WPF za pomoci MVVM](https://gitpitch.com/pluskal/5?grs=github&t=white&p=Lectures%2FLecture_10#/)
-   * tvorba komponenty a stylování aplikací
+    * tvorba komponenty a stylování aplikací
 11. [Paralelní a asynchroní programování](https://gitpitch.com/pluskal/5?grs=github&t=white&p=Lectures%2FLecture_11#/)
-   * proces, vlákno, úloha z pohledu C# a použitého .NET frameworku
+    * proces, vlákno, úloha z pohledu C# a použitého .NET frameworku
 12. [Nástroje pro správu paměti a profilaci výkonu](https://gitpitch.com/pluskal/5?grs=github&t=white&p=Lectures%2FLecture_12#/)
 12. [Multiplatformní programování](https://gitpitch.com/pluskal/5?grs=github&t=white&p=Lectures%2FLecture_13#/)
-   * Dobrovolná přednáška* **D105 14:00-16:50 29.4.2019**
-   * .NET Standard, .NET Core. 
-   * kontejnerizace aplikací pomocí Docker a jejich orchestrace Kubernetes, Docker Swarm
+    * Dobrovolná přednáška* **D105 14:00-16:50 29.4.2019**
+    * .NET Standard, .NET Core. 
+    * kontejnerizace aplikací pomocí Docker a jejich orchestrace Kubernetes, Docker Swarm
 
 --- 
 
