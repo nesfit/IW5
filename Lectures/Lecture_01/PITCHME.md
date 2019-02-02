@@ -102,6 +102,10 @@ As you type, the method complexity "health" is updated, and the complexity is sh
 Templates for ReSharper that let you quickly generate code and data structures by typing in names.
 @snapend
 
+@snap[east span-50]
+![](resharperLiveTemplates_thumb.gif)
+@snapend
+
 +++
 ### [LinqPad](http://www.linqpad.net/)
 @snap[west span-50]
