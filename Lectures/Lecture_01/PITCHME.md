@@ -92,6 +92,10 @@ Visual Studio extension that helps to monitor the code complexity.
 As you type, the method complexity "health" is updated, and the complexity is shown near the method.
 @snapend
 
+@snap[east span-60]
+![Azure-DevOps](/Lectures/Lecture_01/Assets/img/code_metrices.jpg)
+@snapend
+
 +++
 ### [Mnemonic templates](https://github.com/JetBrains/mnemonics)
 @snap[west span-60]
