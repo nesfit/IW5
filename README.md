@@ -104,6 +104,8 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení n
       </connectionStrings>
 ```
 
+---
+
 # Výuka - bodové rozdělení
 
 |          Typ výuky |     Maximální bodový zisk |
