@@ -18,9 +18,9 @@
 * [Installation guide](https://docs.microsoft.com/en-us/visualstudio/install/install-visual-studio?view=vs-2017)
 
 +++
-<div class="center">
-<img src="/Lectures/Lecture_01/Assets/img/VisualStudioIde.jpg" />
-</div>
+@snap[midpoint]
+<img src="/Lectures/Lecture_01/Assets/img/VisualStudioLogo.png" />
+@snapend
 
 
 +++
