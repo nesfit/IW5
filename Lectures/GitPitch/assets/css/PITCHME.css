@@ -10,7 +10,11 @@
   font-size: 1.5em; 
   }
 
-.reveal .slides p {
+.reveal .slides {
+  text-align: left;
+  }
+
+.reveal p {
   text-align: justify;
   }
   
