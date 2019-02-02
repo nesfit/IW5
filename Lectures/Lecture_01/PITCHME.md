@@ -25,7 +25,7 @@
 
 +++
 @snap[midpoint]
-<img src="/Lectures/Lecture_01/Assets/img/VisualStudioIde.png" />
+<img src="/Lectures/Lecture_01/Assets/img/VisualStudioIde.jpg" />
 @snapend
 
 
