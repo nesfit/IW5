@@ -1,10 +1,15 @@
 # Programování v .NET a C# IW5/MW5 
+
+---
+
 # Odkazy
 <!--- * [Registrace](https://goo.gl/1zucmv) opravných obhajoby projektů - autentizace xlogin00@vutbr.cz. --->
 <!--- * [Registrace](http://goo.gl/mj3ODO) obhajoby projektů - autentizace xlogin00@vutbr.cz. --->
  * [Záznamy](http://goo.gl/l0NxxP) Záznamy přednášek na FIT z předmětu IW5 a VUT.NIGHT.
  * [Wiki predmětu z minulých let](http://www.fit.vutbr.cz/study/courses/IW1/public/info/doku.php?id=iw5) Dříve používaná Wiki k předmětu nahrazená GitHubem.
  * [FEKT](http://goo.gl/cBXSLd) Registrace týmu na projekt.
+
+--- 
 
 # Aktuality k předmětu 
 <!---  - **18.04.2019** | *Jan Pluskal* | [Registrace](http://goo.gl/mj3ODO) obhajoby projektů - autentizace xlogin00@vutbr.cz. Odevzdání projektu proveďte do WISu jako zip archív bez obj, bin, packages. V případě FEKTu není třeba odevzdávat. --->
@@ -13,12 +18,16 @@
     * Pokud bude kolize s existujícím účtem, použijte suffix *team00-01*.
   - **08.01.2019** | *Jan Pluskal* | Registrace týmů na projekty pro **FIT** je ve WISu, pro **FEKT** [zde](http://goo.gl/cBXSLd).
 
+--- 
+
 # Přednášky
 
 | Fakulta |    Místnost |            Čas |
 | ------- |-------------| -------------- |
 | FIT     | D0206       | Po 13:00-14:50 |
 | FEKT    | T12/SD 1.48 | Čt 13:00-14:50 |
+
++++
 
 1. Úvod do jazyka C# a platformy .NET, základní syntaxe jazyka, instalace a představení Visual Studia.
 2. Úvod do Objektově Orientované Programování a pokročilé konstrukce v jazyce C# - výjimky, události, delegáty, lambda výrazy a generika.
@@ -34,6 +43,8 @@
 12. Nástroje pro správu paměti a profilaci výkonu.
 12. *Dobrovolná přednáška* **D105 14:00-16:50 29.4.2019** -- Multiplatformní programování .NET Standard, .NET Core. Kontejnerizace aplikací pomocí Docker a jejich orchestrace Kubernetes, Docker Swarm.
 
+--- 
+
 # Cvičení 
 Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení na kterém budete moct cvičení aktivně zůčastnit. Bude potřeba vývojové prostředí ideálně Visual Studio 2017. Cvičení začínají od prvního týdne semestru a konajíse jednou za 14 dní.
 
@@ -41,6 +52,8 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení n
 | ------- |-------------| -------------- |
 | FIT     | D105        | Čt 18:00-19:50 |
 | FEKT    | T12/SD 1.48 | Čt 15:00-16:50 |
+
++++
 
 | Datum |                                                 Téma cvičení | 
 | ----- | ------------------------------------------------------------ | 
@@ -50,6 +63,8 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení n
 | 21.3. | Základy WPF, návrhový vzor MVVM                              | 
 | 4.4.  | WPF frontend, binding                                        | 
 | 18.4. | Bonusové cvičení                                             | 
+
+--- 
 
 # Nástroje použity ve cvičeních
 
@@ -67,6 +82,8 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení n
 |[OzCode](https://www.oz-code.com/)| Doplněk| Advanced debugging tools |
 |[GitFlow](https://marketplace.visualstudio.com/items?itemName=vs-publisher-57624.GitFlowforVisualStudio2017)| Doplněk| GitFlow|
 
+--- 
+
 # Q&A
 * Q: Slyšel jsem, že lze uznat místo projektu i bakalářskou práci nebo projekt do jiného předmětu napsaný v C#, je to pravda?
 * A: Ano, ale projekt musí splňovat obecná kriteria (správný datový návrh, včetně dědičnosti a modifikátorů přistupu, SOLID a CleanCode) a musí být v C#. Je bezpodmínečně nutné upozornit na to cvičícího v prvním běhu cvičení.
@@ -76,12 +93,16 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení n
 * ```<connectionStrings> 
       <add name="TasksContext" connectionString="Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog=TasksDB;MultipleActiveResultSets=True;Integrated Security=True;" providerName="System.Data.SqlClient" />
       </connectionStrings>```
+
+--- 
       
 # Výuka - bodové rozdělení
 |      Typ výuky     | Maximální bodový zisk |
 | ------------------ | --------------------- |
 | Počítačová cvičení |                    30 |
 | Projekt            |                    70 |
+
+--- 
 
 # Vyučující
 * [Martin Dybal](https://www.dybal.it/)
@@ -94,12 +115,16 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení n
 * [Jiří Pokorný]()
 * [Patrik Švikruha]()
 
+--- 
+
 # Užitečné odkazy
 * [WPF-Tutorial](https://wpf-tutorial.com/)
 * [Entity framework tutorial](http://www.entityframeworktutorial.net/code-first/entity-framework-code-first.aspx)
 * [R. C. Martin SOLID](https://youtu.be/TMuno5RZNeE?t=757) Bob Martin SOLID Principles of Object Oriented and Agile Design 
 * [Resharper features](https://www.jetbrains.com/resharper/features/) and how to use them.
 * [Pro Git book](https://git-scm.com/book/en/v2)
+
+--- 
 
 # Užitečná literatura
 * [C# 7.0 in a Nutshell](http://www.albahari.com/nutshell/about.aspx), Ben Albahari, Joseph Albahari
