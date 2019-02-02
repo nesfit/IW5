@@ -2,8 +2,10 @@
 ## Language basics, syntax, installation and introduction to Visual Studio
 
 ---
-
+@snap[north]
 <img src="/Lectures/Lecture_01/Assets/img/VisualStudioLogo.png" />
+@snapend
+
 
 * Integrated development environment (IDE)
 * Feature-rich program that can be used for many aspects of software development:
