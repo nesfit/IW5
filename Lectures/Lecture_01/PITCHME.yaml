@@ -5,9 +5,10 @@
 # https://github.com/gitpitch/gitpitch/wiki/Slideshow-Settings
 #
 theme : simple
-theme-override : /Lectures/Assets/css/PITCHME.css
+theme-override : /Lectures/GitPitch/assets/css/PITCHME.css
 highlight : vs
-logo : /Lectures/Assets/img/logo.png
+logo : /Lectures/GitPitch/assets/image/logo.png
+#transition : none
 published : true
 remote-control: true
 mathjax : TeX-MML-AM_HTMLorMML-full
