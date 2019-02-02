@@ -154,7 +154,7 @@ Useful design-time utilities for EF 6, accessible through the Visual Studio Solu
 
 +++
 ### [GitFlow](https://marketplace.visualstudio.com/items?itemName=vs-publisher-57624.GitFlowforVisualStudio2017)
-@snap[west span-40]
+@snap[west span-50]
 Team Explorer extension integrates GitFlow into your development workflow. It lets you easily create and finish feature, release and hotfix branches right from Team Explorer.  For more deails about git recommends [Pro Git book](https://git-scm.com/book/en/v2).
 @snapend
 
