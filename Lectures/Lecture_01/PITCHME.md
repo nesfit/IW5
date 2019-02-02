@@ -1,4 +1,6 @@
-﻿# Introduction to C#, Visual studio and .NET
+﻿@snap[midpoint]
+# Introduction to C#, Visual studio and .NET
+@snapend
 
 ---
 ## Introduction to Visual Studio
