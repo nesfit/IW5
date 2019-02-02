@@ -80,6 +80,11 @@ Extends Visual Studio with code inspections. For most inspections provides quick
 * Build managment
 * Test Plans
 
+@snap[east]
+<img src="/Lectures/Lecture_01/Assets/img/Azure-DevOps2.png" />
+@snapend
+
+
 +++
 ### [Code metrices](https://marketplace.visualstudio.com/items?itemName=vkacmar.RoslynCodeMetrices)  
 @snap[west span-60]
