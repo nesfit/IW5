@@ -171,6 +171,10 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 * Large ecosystem
 * Open source
 
+@snap[east span-50]
+![](/Lectures/Lecture_01/Assets/img/why-developers-choose-dot-net.png)
+@snapend
+
 +++
 ### Productivity
 * To develop high quality applications faster
