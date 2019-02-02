@@ -116,7 +116,7 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení n
 * Q: Connection string pouzivany v cvicenich.
 * A:
 
-```
+```XML
 <connectionStrings> 
   <add name="TasksContext"
        connectionString="Data Source=(LocalDB)\MSSQLLocalDB;
