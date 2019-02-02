@@ -1,5 +1,7 @@
 ﻿# Introduction to C#, Visual studio and .NET
-## Language basics, syntax, installation and introduction to Visual Studio
+
+---
+## Introduction to Visual Studio
 
 ---
 @snap[north]
@@ -58,7 +60,13 @@
 
 +++
 ### [Resharper](https://www.jetbrains.com/resharper/)  
+@snap[west]
 Extends Visual Studio with code inspections. For most inspections provides quick-fixes to improve code in one way or another. Helps safely organize code and move it around the solution. For more details see [features](https://www.jetbrains.com/resharper/features/).
+@snapend
+
+@snap[east]
+<img src="/Lectures/Lecture_01/Assets/img/VisualStudioLogo.png" />
+@snapend
 
 +++
 ### [Azure DevOps](https://visualstudio.microsoft.com/team-services/)  
