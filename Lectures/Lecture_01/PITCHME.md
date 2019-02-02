@@ -205,7 +205,6 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 
 +++
 ### Performance
-
 @snap[west span-50]
 * Applications provide better response times and require less compute power. 
 * Comparison of web application frameworks with tasks like 
