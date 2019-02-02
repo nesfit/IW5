@@ -21,25 +21,22 @@
 .reveal h1 {
   text-align: center;
   font-size: 2.5em; 
-  position: fixed;
   top: 25px;
   left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
 }
 
 .reveal h2 {
   text-align: center;
   font-size: 1.7em;
-  position: fixed;
   top: 25px;
   left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
  }
 
 .reveal h3 {
-  font-size: 1.6em; }
+  font-size: 1.6em;
+  top: 25px;
+  left: 50%;
+ }
 
 .reveal h4 {
   font-size: 1.5em; }
