@@ -8,7 +8,9 @@
 
 # Aktuality k předmětu 
 <!---  - **18.04.2019** | *Jan Pluskal* | [Registrace](http://goo.gl/mj3ODO) obhajoby projektů - autentizace xlogin00@vutbr.cz. Odevzdání projektu proveďte do WISu jako zip archív bez obj, bin, packages. V případě FEKTu není třeba odevzdávat. --->
-  - **08.01.2019** | *Jan Pluskal* | Při vytváření repozitáře respektujte shéma ze [zadání](/Project/README.md) *https://iw5-2019-team00.visualstudio.com*, nebo *https://ics-iw5-2019-team00.visualstudio.com*. Je nezbytně nutné použít Vaše účty z doménu *vutbr.cz*. Do Vašich repozitářů pro projekt přidejte účet **uciteliw5@vutbr.cz**. Pokud uděláte chybu a pouze nesedí url, dá se v nastavení změnit. Pokud máte vytvořeno pod soukromými účty, je třeba vytvořit projekt znovu pod univerzitními a pushnout existující repozitář tak, aby Vám zůstala historie včetně správných časů commitů. Pokud bude kolize s existujícím účtem, použijte suffix *team00-01*.
+  - **08.01.2019** | *Jan Pluskal* | Při vytváření repozitáře respektujte shéma ze [zadání](/Project/README.md) *https://iw5-2019-team00.visualstudio.com*, nebo *https://ics-iw5-2019-team00.visualstudio.com*. Je nezbytně nutné použít Vaše účty z doménu *vutbr.cz*. Do Vašich repozitářů pro projekt přidejte účet **uciteliw5@vutbr.cz**. Pokud uděláte chybu a pouze nesedí url, dá se v nastavení změnit.
+    * Pokud máte vytvořeno pod soukromými účty, je třeba vytvořit projekt znovu pod univerzitními a pushnout existující repozitář tak, aby Vám zůstala historie včetně správných časů commitů. 
+    * Pokud bude kolize s existujícím účtem, použijte suffix *team00-01*.
   - **08.01.2019** | *Jan Pluskal* | Registrace týmů na projekty pro **FIT** je ve WISu, pro **FEKT** [zde](http://goo.gl/cBXSLd).
 
 # Přednášky
@@ -18,8 +20,22 @@
 | FIT     | D0206       | Po 13:00-14:50 |
 | FEKT    | T12/SD 1.48 | Čt 13:00-14:50 |
 
+1. Úvod do jazyka C# a platformy .NET, základní syntaxe jazyka, instalace a představení Visual Studia.
+2. Úvod do Objektově Orientované Programování a pokročilé konstrukce v jazyce C# - výjimky, události, delegáty, lambda výrazy a generika.
+3. Představení základních knihovních funkcí (BCL) a dotazování za pomocí vestavěního nástroje LINQ nad datovými zdroji (kolekcemi, XML, MSSQL).
+4. Propojení aplikace s databází pro zajištění persistence pomocí ORM rozšíření Entity Framework s návrhovými vzory UnitOfWork a Repository.
+5. Psaní čistého, udržovatelného kódu s respektováním Clean Code, S.O.L.I.D. zásad. Ukázky refaktorizace a práce s legacy kódem.
+6. Návrhový vzor Model-View-ViewModel (MVVM) a architektura desktopových aplikací. Mapování databázových entit na modelové třídy.
+7. Continous Integration v prostředí Azure DevOps a testování aplikací - smoke, unit, integrační, UI a akceptační testy.
+8. Základní koncepty tvorby uživatelského rozhraní pomocí Windows Presentation Foundation (WPF).
+9. Návrhové vzory pro práci s vytvářením, strukturováním a chováním - Gang of Four (GoF) v kontextu C#.
+10. WPF za pomoci MVVM, tvorba komponenty a stylování aplikací.
+11. Paralelní a asynchroní programování proces, vlákno, úloha z pohledu C# a použitého .NET frameworku.
+12. Nástroje pro správu paměti a profilaci výkonu.
+12. *Dobrovolná přednáška* **D105 14:00-16:50 29.4.2019** -- Multiplatformní programování .NET Standard, .NET Core. Kontejnerizace aplikací pomocí Docker a jejich orchestrace Kubernetes, Docker Swarm.
+
 # Cvičení 
-Cvičení jsou demonstrační. Přineste si vlastní zařízení na kterém budete moct cvičení aktivně zůčastnit. Bude potřeba vývojové prostředí ideálně Visual Studio 2017.
+Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení na kterém budete moct cvičení aktivně zůčastnit. Bude potřeba vývojové prostředí ideálně Visual Studio 2017. Cvičení začínají od prvního týdne semestru a konajíse jednou za 14 dní.
 
 | Fakulta |    Místnost |            Čas |
 | ------- |-------------| -------------- |
@@ -54,6 +70,8 @@ Cvičení jsou demonstrační. Přineste si vlastní zařízení na kterém bude
 # Q&A
 * Q: Slyšel jsem, že lze uznat místo projektu i bakalářskou práci nebo projekt do jiného předmětu napsaný v C#, je to pravda?
 * A: Ano, ale projekt musí splňovat obecná kriteria (správný datový návrh, včetně dědičnosti a modifikátorů přistupu, SOLID a CleanCode) a musí být v C#. Je bezpodmínečně nutné upozornit na to cvičícího v prvním běhu cvičení.
+* Q: Je možné vypracovat projekt v menším počtu členů?
+* A: Bohužel, v rámci zachování kvality nejsme schopni opravit takové množství projektů jako by povolení dvou-členných týmů přinášelo. Projek je navržený tak, aby vyhovoval náročností 5-ti členému týmu a některé koncepty by v případě menšího množství členů postrádaly smysl.
 * Q: Connection string pouzivany v cvicenich.
 * ```<connectionStrings> 
       <add name="TasksContext" connectionString="Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog=TasksDB;MultipleActiveResultSets=True;Integrated Security=True;" providerName="System.Data.SqlClient" />
@@ -77,6 +95,7 @@ Cvičení jsou demonstrační. Přineste si vlastní zařízení na kterém bude
 * [Patrik Švikruha]()
 
 # Užitečné odkazy
+* [WPF-Tutorial](https://wpf-tutorial.com/)
 * [Entity framework tutorial](http://www.entityframeworktutorial.net/code-first/entity-framework-code-first.aspx)
 * [R. C. Martin SOLID](https://youtu.be/TMuno5RZNeE?t=757) Bob Martin SOLID Principles of Object Oriented and Agile Design 
 * [Resharper features](https://www.jetbrains.com/resharper/features/) and how to use them.
