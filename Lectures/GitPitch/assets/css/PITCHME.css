@@ -38,6 +38,11 @@
   line-height: 1.0;
   }
 
+.reveal img {
+  border: none !important;
+  box-shadow: none !important;
+  }
+
 /*
 .gold {
   color: #e49436;
