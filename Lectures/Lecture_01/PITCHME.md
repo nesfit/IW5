@@ -218,9 +218,9 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 
 +++
 ### Security
-* Immediate security benefits via its managed runtime
-* Prevent critical issues like bad pointer manipulation
-* Quick releases when threats are discovered
+* Immediate **security** benefits via its *managed runtime*
+* Prevents *critical issues* like **buffer overflow**
+* Patches are released with runtime
 
 +++
 ### Large ecosystem
