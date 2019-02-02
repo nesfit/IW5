@@ -23,6 +23,7 @@
   font-size: 2.5em; 
   top: 25px;
   left: 50%;
+  position: fixed;
 }
 
 .reveal h2 {
@@ -30,12 +31,14 @@
   font-size: 1.7em;
   top: 25px;
   left: 50%;
+  position: fixed;
  }
 
 .reveal h3 {
   font-size: 1.6em;
   top: 25px;
   left: 50%;
+  position: fixed;
  }
 
 .reveal h4 {
