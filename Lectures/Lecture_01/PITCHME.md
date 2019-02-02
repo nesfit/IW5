@@ -199,15 +199,23 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 * Linux
 * Microservises on cloud
 
+@snap[east span-50]
+![](/Lectures/Lecture_01/Assets/img/netcore3.jpg)
+@snapend
+
 +++
 ### Performance
-<div class="center">
-Applications provide better response times and require less compute power. </br>
+
+@snap[west span-50]
+Applications provide better response times and require less compute power. 
+Comparison of web application frameworks with tasks like JSON serialization, database access, and server side template rendering.
+@snapend
+
+@snap[east span-50]
 ![](/Lectures/Lecture_01/Assets/img/Performance.png)
-</brComparation of web application frameworks with tasks like JSON serialization, database access, and server side template rendering.
-</br>
-<a href="https://www.techempower.com/benchmarks/#section=data-r16&hw=ph&test=plaintext">Data source</a>
-</div>
+[Source](https://www.techempower.com/benchmarks/#section=data-r16&hw=ph&test=plaintext)
+@snapend
+
 
 +++
 ### Security
