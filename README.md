@@ -117,8 +117,13 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení n
 
 
  ```<connectionStrings> 
-      <add name="TasksContext" connectionString="Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog=TasksDB;MultipleActiveResultSets=True;Integrated Security=True;" providerName="System.Data.SqlClient" />
-      </connectionStrings>
+      <add name="TasksContext" 
+           connectionString="Data Source=(LocalDB)\MSSQLLocalDB;
+                             Initial Catalog=TasksDB;
+                             MultipleActiveResultSets=True;
+                             Integrated Security=True;"
+           providerName="System.Data.SqlClient" />
+    </connectionStrings>
 ```
 
 ---
