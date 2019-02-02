@@ -9,7 +9,7 @@
 
 ---
 @snap[north]
-<img src="/Lectures/Lecture_01/Assets/img/VisualStudioLogo.png" />
+![](/Lectures/Lecture_01/Assets/img/VisualStudioLogo.png)
 @snapend
 
 * Integrated development environment (IDE)
@@ -25,7 +25,7 @@
 
 +++
 @snap[midpoint span-100]
-<img src="/Lectures/Lecture_01/Assets/img/VisualStudioIde.jpg" />
+![](/Lectures/Lecture_01/Assets/img/VisualStudioIde.jpg)
 @snapend
 
 +++
@@ -69,7 +69,7 @@ Extends Visual Studio with code inspections. For most inspections provides quick
 @snapend
 
 @snap[east]
-![Azure-DevOps](/Lectures/Lecture_01/Assets/img/reshaper_refactor_this.png)
+![](/Lectures/Lecture_01/Assets/img/reshaper_refactor_this.png)
 @snapend
 
 +++
@@ -80,7 +80,7 @@ Extends Visual Studio with code inspections. For most inspections provides quick
 * Build managment
 * Test Plans
 
-@snap[east span-50]
+@snap[east span-60]
 ![Azure-DevOps](/Lectures/Lecture_01/Assets/img/Azure-DevOps2.png)
 @snapend
 
@@ -148,7 +148,7 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 ### Performance
 <div class="center">
 Applications provide better response times and require less compute power. </br>
-<img src="/Lectures/Lecture_01/Assets/img/Performance.png" />
+![](/Lectures/Lecture_01/Assets/img/Performance.png)
 </brComparation of web application frameworks with tasks like JSON serialization, database access, and server side template rendering.
 </br>
 <a href="https://www.techempower.com/benchmarks/#section=data-r16&hw=ph&test=plaintext">Data source</a>
@@ -187,13 +187,13 @@ Applications provide better response times and require less compute power. </br>
 <h2>Language interoperability</h2>
 
 <div class="center-right">
-<img src="/Lectures/Lecture_01/Assets/img/Common_Language_Infrastructure.png" />
+![](/Lectures/Lecture_01/Assets/img/Common_Language_Infrastructure.png)
 </div>
 
 +++
 ## Architecture
 <div class="center">
-<img src="/Lectures/Lecture_01/Assets/img/dot_net_architecture.png" />
+![](/Lectures/Lecture_01/Assets/img/dot_net_architecture.png)
 </div>
 
 +++
@@ -204,7 +204,7 @@ Applications provide better response times and require less compute power. </br>
 * Similar to Java Virtual Machine
 
 <div class="center">
-<img src="/Lectures/Lecture_01/Assets/img/dot_net_clr.png" />
+![](/Lectures/Lecture_01/Assets/img/dot_net_clr.png)
 </div>
 
 +++
@@ -225,13 +225,13 @@ Applications provide better response times and require less compute power. </br>
 * Based on reachability from GC roots
 * 3 generations
 <div class="center">
-<img src="/Lectures/Lecture_01/Assets/img/gc_generations.png" />
+![](/Lectures/Lecture_01/Assets/img/gc_generations.png)
 </div>
 
 +++
 ## In The Nutshell
 <div class="center">
-<img src="/Lectures/Lecture_01/Assets/img/Csh_in_nutshell_framework.png" />
+![](/Lectures/Lecture_01/Assets/img/Csh_in_nutshell_framework.png)
 </div>
 
 +++
@@ -248,7 +248,7 @@ Applications provide better response times and require less compute power. </br>
 +++
 ## Application models
 <div class="center">
-<img src="/Lectures/Lecture_01/Assets/img/dot_net_libraries.png" />
+![](/Lectures/Lecture_01/Assets/img/dot_net_libraries.png)
 </div>
 
 ---
