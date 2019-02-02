@@ -1,7 +1,11 @@
-# Programování v .NET a C# IW5/MW5 
+# IW5
+# Programming in .NET and C# 
+# Organizational Details
+<div class="right">
+[ Jan Pluskal <ipluskal@fit.vutbr.cz> ]
+</div>
 
 ---
-
 # Odkazy
 <!--- * [Registrace](https://goo.gl/1zucmv) opravných obhajoby projektů - autentizace xlogin00@vutbr.cz. --->
 <!--- * [Registrace](http://goo.gl/mj3ODO) obhajoby projektů - autentizace xlogin00@vutbr.cz. --->
@@ -10,7 +14,6 @@
  * [FEKT](http://goo.gl/cBXSLd) Registrace týmu na projekt.
 
 --- 
-
 # Aktuality k předmětu 
 <!---  - **18.04.2019** | *Jan Pluskal* | [Registrace](http://goo.gl/mj3ODO) obhajoby projektů - autentizace xlogin00@vutbr.cz. Odevzdání projektu proveďte do WISu jako zip archív bez obj, bin, packages. V případě FEKTu není třeba odevzdávat. --->
   - **08.01.2019** | *Jan Pluskal* | Při vytváření repozitáře respektujte shéma ze [zadání](/Project/README.md) *https://iw5-2019-team00.visualstudio.com*, nebo *https://ics-iw5-2019-team00.visualstudio.com*. Je nezbytně nutné použít Vaše účty z doménu *vutbr.cz*. Do Vašich repozitářů pro projekt přidejte účet **uciteliw5@vutbr.cz**. Pokud uděláte chybu a pouze nesedí url, dá se v nastavení změnit.
@@ -19,7 +22,6 @@
   - **08.01.2019** | *Jan Pluskal* | Registrace týmů na projekty pro **FIT** je ve WISu, pro **FEKT** [zde](http://goo.gl/cBXSLd).
 
 --- 
-
 # Přednášky
 
 | Fakulta |    Místnost |            Čas |
@@ -28,7 +30,6 @@
 | FEKT    | T12/SD 1.48 | Čt 13:00-14:50 |
 
 +++
-
 0. [Organizace kurzu](https://gitpitch.com/pluskal/5?grs=github&t=white&p=Lectures%2FLecture_00#/)
 1. [Úvod do jazyka C# a platformy .NET](https://gitpitch.com/pluskal/5?grs=github&t=white&p=Lectures%2FLecture_01#/)
    * základní syntaxe jazyka, instalace a představení Visual Studia
@@ -46,7 +47,6 @@
    * mapování databázových entit na modelové třídy
 
 +++
-
 7. [Continous Integration v prostředí Azure DevOps](https://gitpitch.com/pluskal/5?grs=github&t=white&p=Lectures%2FLecture_07#/)
    * testování aplikací - smoke, unit, integrační, UI a akceptační testy
 8. [Základní koncepty tvorby uživatelského rozhraní](https://gitpitch.com/pluskal/5?grs=github&t=white&p=Lectures%2FLecture_08#/)
@@ -64,7 +64,6 @@
     * kontejnerizace aplikací pomocí Docker a jejich orchestrace Kubernetes, Docker Swarm
 
 --- 
-
 # Cvičení 
 Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení na kterém budete moct cvičení aktivně zůčastnit. Bude potřeba vývojové prostředí ideálně Visual Studio 2017. Cvičení začínají od prvního týdne semestru a konajíse jednou za 14 dní.
 
@@ -74,7 +73,6 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení n
 | FEKT    | T12/SD 1.48 | Čt 15:00-16:50 |
 
 +++
-
 | Datum |                                                 Téma cvičení | 
 | ----- | ------------------------------------------------------------ | 
 | 7.2.  | Práce s Visual Studio 2017, Azure DevOps                     | 
@@ -85,7 +83,6 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení n
 | 18.4. | Bonusové cvičení                                             | 
 
 --- 
-
 # Nástroje použity ve cvičeních
 
 | Nástroj  |  Typ   | Popis |
@@ -103,19 +100,16 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení n
 |[GitFlow](https://marketplace.visualstudio.com/items?itemName=vs-publisher-57624.GitFlowforVisualStudio2017)| Doplněk| GitFlow|
 
 --- 
-
 # Q&A
 
 * Q: Slyšel jsem, že lze uznat místo projektu i bakalářskou práci nebo projekt do jiného předmětu napsaný v C#, je to pravda?
 * A: Ano, ale projekt musí splňovat obecná kriteria (správný datový návrh, včetně dědičnosti a modifikátorů přistupu, SOLID a CleanCode) a musí být v C#. Je bezpodmínečně nutné upozornit na to cvičícího v prvním běhu cvičení.
 
 +++
-
 * Q: Je možné vypracovat projekt v menším počtu členů?
 * A: Bohužel, v rámci zachování kvality nejsme schopni opravit takové množství projektů jako by povolení dvou-členných týmů přinášelo. Projek je navržený tak, aby vyhovoval náročností 5-ti členému týmu a některé koncepty by v případě menšího množství členů postrádaly smysl.
 
 +++
-
 * Q: Connection string pouzivany v cvicenich.
 
 
@@ -125,7 +119,6 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení n
 ```
 
 ---
-
 # Výuka - bodové rozdělení
 
 |          Typ výuky |     Maximální bodový zisk |
@@ -134,7 +127,6 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení n
 | Projekt            |                        70 |
 
 --- 
-
 # Vyučující
 * [Martin Dybal](https://www.dybal.it/)
 * [Roman Jašek]()
@@ -147,7 +139,6 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení n
 * [Patrik Švikruha]()
 
 --- 
-
 # Užitečné odkazy
 * [WPF-Tutorial](https://wpf-tutorial.com/)
 * [Entity framework tutorial](http://www.entityframeworktutorial.net/code-first/entity-framework-code-first.aspx)
@@ -156,7 +147,6 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení n
 * [Pro Git book](https://git-scm.com/book/en/v2)
 
 --- 
-
 # Užitečná literatura
 * [C# 7.0 in a Nutshell](http://www.albahari.com/nutshell/about.aspx), Ben Albahari, Joseph Albahari
 * [Clean Code: A Handbook of Agile Software Craftsmanship](https://books.google.cz/books?id=hjEFCAAAQBAJ), Robert C. Martin
