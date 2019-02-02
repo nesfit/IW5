@@ -227,7 +227,7 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 * Libraries from the [NuGet package manager](https://www.nuget.org/)
 * Visual studio [marketplace](https://marketplace.visualstudio.com/)
 * [Extensive partners network](https://vspartner.com/Directory)
-* Community, MVPs, support organization...
+* Community support, MVPs, ...
 
 +++
 ### Open source
@@ -246,17 +246,14 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 * Application models
 
 +++
-<h2>Language interoperability</h2>
-
-<div class="center-right">
+## Language interoperability
 ![](/Lectures/Lecture_01/Assets/img/Common_Language_Infrastructure.png)
-</div>
+
 
 +++
 ## Architecture
-<div class="center">
 ![](/Lectures/Lecture_01/Assets/img/dot_net_architecture.png)
-</div>
+
 
 +++
 ## CLR - Common Language Runtime
@@ -265,9 +262,8 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 * Just-in-time compilation
 * Similar to Java Virtual Machine
 
-<div class="center">
 ![](/Lectures/Lecture_01/Assets/img/dot_net_clr.png)
-</div>
+
 
 +++
 ## Benefits
