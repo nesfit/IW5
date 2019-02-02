@@ -95,6 +95,8 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení n
 
 +++
 
+| Nástroj  |  Typ   | Popis |
+| -------- |  ------| -------|
 |[MarkdownEditor](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)| Doplněk| Handy Markdown editor for VS |
 |[Entity Framework 6 Power Tools](https://marketplace.visualstudio.com/items?itemName=ErikEJ.EntityFramework6PowerToolsCommunityEdition)| Doplněk| View Entity Data Model|
 |[OzCode](https://www.oz-code.com/)| Doplněk| Advanced debugging tools |
