@@ -116,14 +116,15 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení n
 * Q: Connection string pouzivany v cvicenich.
 
 
- ```<connectionStrings> 
-      <add name="TasksContext" 
-           connectionString="Data Source=(LocalDB)\MSSQLLocalDB;
-                             Initial Catalog=TasksDB;
-                             MultipleActiveResultSets=True;
-                             Integrated Security=True;"
+```
+<connectionStrings> 
+  <add name="TasksContext"
+       connectionString="Data Source=(LocalDB)\MSSQLLocalDB;
+                         Initial Catalog=TasksDB;
+                         MultipleActiveResultSets=True;
+                         Integrated Security=True;"
            providerName="System.Data.SqlClient" />
-    </connectionStrings>
+</connectionStrings>
 ```
 
 ---
