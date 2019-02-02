@@ -38,7 +38,8 @@
   font-size: 1.6em;
   top: 25px;
   left: 50%;
-  position: fixed;
+  position: fixed;  
+  text-align: center;
  }
 
 .reveal h4 {
