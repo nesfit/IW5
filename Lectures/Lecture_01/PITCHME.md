@@ -69,7 +69,7 @@ Extends Visual Studio with code inspections. For most inspections provides quick
 @snapend
 
 @snap[east]
-<img src="/Lectures/Lecture_01/Assets/img/reshaper_refactor_this.png" />
+![Azure-DevOps](/Lectures/Lecture_01/Assets/img/reshaper_refactor_this.png)
 @snapend
 
 +++
@@ -80,7 +80,7 @@ Extends Visual Studio with code inspections. For most inspections provides quick
 * Build managment
 * Test Plans
 
-@snap[east span 50]
+@snap[east span-50]
 ![Azure-DevOps](/Lectures/Lecture_01/Assets/img/Azure-DevOps2.png)
 @snapend
 
