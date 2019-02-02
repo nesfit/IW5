@@ -1,9 +1,11 @@
-/*
+/* /*
  * GitPitch Slideshow Custom CSS Styling
  *
  * For details, visit Wiki:
  * https://github.com/gitpitch/gitpitch/wiki/Slideshow-Custom-CSS
  */
+
+ /*
 .reveal {
   font-size: 18pt; }
   
@@ -47,12 +49,12 @@ span.aside {
 }
 
 .reveal section a {
-#  color: #e49436;
+  color: #e49436;
   text-decoration: underline;
 }
 
 .reveal section a:hover {
-#  color: #e7ad52;
+  color: #e7ad52;
 }
 
 .fa-pad-left {
@@ -60,7 +62,7 @@ span.aside {
 }
 
 .reveal p span.slide-title {
-#  color: #e49436;
+  color: #e49436;
   font-size: 1.55em;
   margin: 0 0 60px 0;
   font-family: "Montserrat", Impact, sans-serif;
@@ -106,4 +108,4 @@ span.aside {
 .reveal em {
     font-style: italic;
     font-family: Courier New;
-}
+} */
