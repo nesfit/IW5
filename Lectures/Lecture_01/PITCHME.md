@@ -3,18 +3,17 @@
 
 ---
 @snap[north]
-<img src="/Lectures/Lecture_01/Assets/img/VisualStudioLogo.png" /><br />
+<img src="/Lectures/Lecture_01/Assets/img/VisualStudioLogo.png" />
 @snapend
-
 
 * Integrated development environment (IDE)
 * Feature-rich program that can be used for many aspects of software development:
-    * editor
-    * debugger
-    * builder 
-    * completion tools
-    * graphical designers
-    * etc..
+  * editor
+  * debugger
+  * builder 
+  * completion tools
+  * graphical designers
+  * etc..
 * [Free download](https://visualstudio.microsoft.com/vs/")
 * [Installation guide](https://docs.microsoft.com/en-us/visualstudio/install/install-visual-studio?view=vs-2017)
 
