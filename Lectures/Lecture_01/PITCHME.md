@@ -64,7 +64,7 @@
 +++
 ### [Resharper](https://www.jetbrains.com/resharper/)
 
-@snap[west span-60]
+@snap[west span-40]
 Extends Visual Studio with code inspections. For most inspections provides quick-fixes to improve code in one way or another. Helps safely organize code and move it around the solution. For more details see [features](https://www.jetbrains.com/resharper/features/).
 @snapend
 
