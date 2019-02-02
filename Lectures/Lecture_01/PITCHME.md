@@ -24,7 +24,7 @@
 * [Installation guide](https://docs.microsoft.com/en-us/visualstudio/install/install-visual-studio?view=vs-2017)
 
 +++
-@snap[midpoint]
+@snap[midpoint span-100]
 <img src="/Lectures/Lecture_01/Assets/img/VisualStudioIde.jpg" />
 @snapend
 
