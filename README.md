@@ -46,6 +46,9 @@
    * mapování databázových entit na modelové třídy
 7. [Continous Integration v prostředí Azure DevOps](https://gitpitch.com/pluskal/5?grs=github&t=white&p=Lectures%2FLecture_07#/)
    * testování aplikací - smoke, unit, integrační, UI a akceptační testy
+
++++
+
 8. [Základní koncepty tvorby uživatelského rozhraní](https://gitpitch.com/pluskal/5?grs=github&t=white&p=Lectures%2FLecture_08#/)
    * Windows Presentation Foundation (WPF)
 9. [Návrhové vzory](https://gitpitch.com/pluskal/5?grs=github&t=white&p=Lectures%2FLecture_09#/)
