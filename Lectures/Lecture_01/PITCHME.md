@@ -211,7 +211,7 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
   * database access, 
   * and server side template rendering.
 
-@snap[east south span-50]
+@snap[east-south span-50]
 ![](/Lectures/Lecture_01/Assets/img/Performance.png)
 [Source](https://www.techempower.com/benchmarks/#section=data-r16&hw=ph&test=plaintext)
 @snapend
