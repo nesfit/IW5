@@ -3,7 +3,7 @@
 
 ---
 
-<img src="/Lectures/Lecture01/Assets/img/VisualStudioLogo.png" />
+<img src="/Lectures/Lecture_01/Assets/img/VisualStudioLogo.png" />
 
 * Integrated development environment (IDE)
 * Feature-rich program that can be used for many aspects of software development:
@@ -18,7 +18,7 @@
 
 +++
 <div class="center">
-<img src="/Lectures/Lecture01/Assets/img/VisualStudioIde.jpg" />
+<img src="/Lectures/Lecture_01/Assets/img/VisualStudioIde.jpg" />
 </div>
 
 
@@ -128,7 +128,7 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 ### Performance
 <div class="center">
 Applications provide better response times and require less compute power. </br>
-<img src="/Lectures/Lecture01/Assets/img/Performance.png" />
+<img src="/Lectures/Lecture_01/Assets/img/Performance.png" />
 </brComparation of web application frameworks with tasks like JSON serialization, database access, and server side template rendering.
 </br>
 <a href="https://www.techempower.com/benchmarks/#section=data-r16&hw=ph&test=plaintext">Data source</a>
@@ -167,13 +167,13 @@ Applications provide better response times and require less compute power. </br>
 <h2>Language interoperability</h2>
 
 <div class="center-right">
-<img src="/Lectures/Lecture01/Assets/img/Common_Language_Infrastructure.png" />
+<img src="/Lectures/Lecture_01/Assets/img/Common_Language_Infrastructure.png" />
 </div>
 
 +++
 ## Architecture
 <div class="center">
-<img src="/Lectures/Lecture01/Assets/img/dot_net_architecture.png" />
+<img src="/Lectures/Lecture_01/Assets/img/dot_net_architecture.png" />
 </div>
 
 +++
@@ -184,7 +184,7 @@ Applications provide better response times and require less compute power. </br>
 * Similar to Java Virtual Machine
 
 <div class="center">
-<img src="/Lectures/Lecture01/Assets/img/dot_net_clr.png" />
+<img src="/Lectures/Lecture_01/Assets/img/dot_net_clr.png" />
 </div>
 
 +++
@@ -205,13 +205,13 @@ Applications provide better response times and require less compute power. </br>
 * Based on reachability from GC roots
 * 3 generations
 <div class="center">
-<img src="/Lectures/Lecture01/Assets/img/gc_generations.png" />
+<img src="/Lectures/Lecture_01/Assets/img/gc_generations.png" />
 </div>
 
 +++
 ## In The Nutshell
 <div class="center">
-<img src="/Lectures/Lecture01/Assets/img/Csh_in_nutshell_framework.png" />
+<img src="/Lectures/Lecture_01/Assets/img/Csh_in_nutshell_framework.png" />
 </div>
 
 +++
@@ -228,7 +228,7 @@ Applications provide better response times and require less compute power. </br>
 +++
 ## Application models
 <div class="center">
-<img src="/Lectures/Lecture01/Assets/img/dot_net_libraries.png" />
+<img src="/Lectures/Lecture_01/Assets/img/dot_net_libraries.png" />
 </div>
 
 ---
@@ -251,7 +251,7 @@ Applications provide better response times and require less compute power. </br>
 * Functional, generic
 * Based on c++
 
-+++?code=/Lectures/Lecture01/Assets/sln/Tests/HelloWorld.cs&lang=C#&title=Hello World Sample
++++?code=/Lectures/Lecture_01/Assets/sln/Tests/HelloWorld.cs&lang=C#&title=Hello World Sample
 @[1]
 @[3-4, 15]
 @[5-6, 14]
@@ -259,7 +259,7 @@ Applications provide better response times and require less compute power. </br>
 @[9]
 @[11]
 @[12]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture01/Assets/sln/Tests/HelloWorld.cs)
+[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture_01/Assets/sln/Tests/HelloWorld.cs)
 
 +++
 ## Identifiers
@@ -487,9 +487,9 @@ Assert.False(f1>f2);
   * Any 32-bit integer
   * `null`
 
-+++?code=/Lectures/Lecture01/Assets/sln/Tests/NullableType.cs&lang=C#&title=Nullable Type Sample
++++?code=/Lectures/Lecture_01/Assets/sln/Tests/NullableType.cs&lang=C#&title=Nullable Type Sample
 @[10-11, 13-14]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture01/Assets/sln/Tests/NullableType.cs)
+[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture_01/Assets/sln/Tests/NullableType.cs)
 
 
 +++
@@ -604,11 +604,11 @@ Assert.False(f1>f2);
   * `int[,]` two-dimensional array of int (matrix)
   * `int[][]` is a single-dimensional array of single-dimensional array of int
 
-+++?code=/Lectures/Lecture01/Assets/sln/Tests/Array.cs&lang=C#&title=Array Sample
++++?code=/Lectures/Lecture_01/Assets/sln/Tests/Array.cs&lang=C#&title=Array Sample
 @[11-13]
 @[15-16]
 @[18-21, 23-26]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture01/Assets/sln/Tests/Array.cs)
+[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture_01/Assets/sln/Tests/Array.cs)
 
 --- 
 ### Variables
@@ -721,11 +721,11 @@ Assert.False(f1>f2);
 | Char      | `'\0'`         |
 | Boolean   | `false`        |
 
-+++?code=/Lectures/Lecture01/Assets/sln/Tests/DefaultValue.cs&lang=C#&title=Default Value Sample
++++?code=/Lectures/Lecture_01/Assets/sln/Tests/DefaultValue.cs&lang=C#&title=Default Value Sample
 @[12-13]
 @[15-16]
 @[18]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture01/Assets/sln/Tests/DefaultValue.cs)
+[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture_01/Assets/sln/Tests/DefaultValue.cs)
 
 ---
 ## Parameters
@@ -739,21 +739,21 @@ Assert.False(f1>f2);
     * Variable **must be** assigned by the called method
     * Variable does not need to be initialized before method call
 
-+++?code=/Lectures/Lecture01/Assets/sln/Tests/ValueParameter.cs&lang=C#&title=Value Parameter Sample
++++?code=/Lectures/Lecture_01/Assets/sln/Tests/ValueParameter.cs&lang=C#&title=Value Parameter Sample
 @[8-19]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture01/Assets/sln/Tests/ValueParameter.cs)
+[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture_01/Assets/sln/Tests/ValueParameter.cs)
 
-+++?code=/Lectures/Lecture01/Assets/sln/Tests/RefParameter.cs&lang=C#&title=Ref Parameter Sample
++++?code=/Lectures/Lecture_01/Assets/sln/Tests/RefParameter.cs&lang=C#&title=Ref Parameter Sample
 @[7-17]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture01/Assets/sln/Tests/RefParameter.cs)
+[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture_01/Assets/sln/Tests/RefParameter.cs)
 
-+++?code=/Lectures/Lecture01/Assets/sln/Tests/InParameter.cs&lang=C#&title=In Parameter Sample
++++?code=/Lectures/Lecture_01/Assets/sln/Tests/InParameter.cs&lang=C#&title=In Parameter Sample
 @[7-19]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture01/Assets/sln/Tests/InParameter.cs)
+[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture_01/Assets/sln/Tests/InParameter.cs)
 
-+++?code=/Lectures/Lecture01/Assets/sln/Tests/OutParameter.cs&lang=C#&title=Out Parameter Sample
++++?code=/Lectures/Lecture_01/Assets/sln/Tests/OutParameter.cs&lang=C#&title=Out Parameter Sample
 @[7-24]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture01/Assets/sln/Tests/OutParameter.cs)
+[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture_01/Assets/sln/Tests/OutParameter.cs)
 
 +++
 ### Parameter with `params[]`
@@ -856,18 +856,18 @@ Assert.False(f1>f2);
 * `switch`
 * Conditional (ternary) operand `?:`
 
-+++?code=/Lectures/Lecture01/Assets/sln/Tests/If.cs&lang=C#&title=If Sample
++++?code=/Lectures/Lecture_01/Assets/sln/Tests/If.cs&lang=C#&title=If Sample
 @[10-13]
 @[14-17]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture01/Assets/sln/Tests/If.cs)
+[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture_01/Assets/sln/Tests/If.cs)
 
-+++?code=/Lectures/Lecture01/Assets/sln/Tests/Switch.cs&lang=C#&title=Switch Sample
++++?code=/Lectures/Lecture_01/Assets/sln/Tests/Switch.cs&lang=C#&title=Switch Sample
 @[13-30]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture01/Assets/sln/Tests/Switch.cs)
+[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture_01/Assets/sln/Tests/Switch.cs)
 
-+++?code=/Lectures/Lecture01/Assets/sln/Tests/TernaryOperand.cs&lang=C#&title=Ternary Operand Sample
++++?code=/Lectures/Lecture_01/Assets/sln/Tests/TernaryOperand.cs&lang=C#&title=Ternary Operand Sample
 @[10-12]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture01/Assets/sln/Tests/TernaryOperand.cs)
+[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture_01/Assets/sln/Tests/TernaryOperand.cs)
 
 +++
 ## Statements - Cycles
@@ -877,21 +877,21 @@ Assert.False(f1>f2);
 * `foreach`
 
 
-+++?code=/Lectures/Lecture01/Assets/sln/Tests/While.cs&lang=C#&title=While Sample
++++?code=/Lectures/Lecture_01/Assets/sln/Tests/While.cs&lang=C#&title=While Sample
 @[10-16]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture01/Assets/sln/Tests/While.cs)
+[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture_01/Assets/sln/Tests/While.cs)
 
-+++?code=/Lectures/Lecture01/Assets/sln/Tests/DoWhile.cs&lang=C#&title=Do While Sample
++++?code=/Lectures/Lecture_01/Assets/sln/Tests/DoWhile.cs&lang=C#&title=Do While Sample
 @[10-15]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture01/Assets/sln/Tests/DoWhile.cs)
+[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture_01/Assets/sln/Tests/DoWhile.cs)
 
-+++?code=/Lectures/Lecture01/Assets/sln/Tests/For.cs&lang=C#&title=For Sample
++++?code=/Lectures/Lecture_01/Assets/sln/Tests/For.cs&lang=C#&title=For Sample
 @[10-13]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture01/Assets/sln/Tests/For.cs)
+[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture_01/Assets/sln/Tests/For.cs)
 
-+++?code=/Lectures/Lecture01/Assets/sln/Tests/ForEach.cs&lang=C#&title=Foreach Sample
++++?code=/Lectures/Lecture_01/Assets/sln/Tests/ForEach.cs&lang=C#&title=Foreach Sample
 @[10-14]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture01/Assets/sln/Tests/ForEach.cs)
+[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture_01/Assets/sln/Tests/ForEach.cs)
 
 +++
 ## Statements - Jump statements
@@ -903,26 +903,26 @@ Assert.False(f1>f2);
   * using leads to [Spaghetti code](https://en.wikipedia.org/wiki/Spaghetti_code)
 
 
-+++?code=/Lectures/Lecture01/Assets/sln/Tests/Break.cs&lang=C#&title=Break Sample
++++?code=/Lectures/Lecture_01/Assets/sln/Tests/Break.cs&lang=C#&title=Break Sample
 @[10-20]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture01/Assets/sln/Tests/Break.cs)
+[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture_01/Assets/sln/Tests/Break.cs)
 
-+++?code=/Lectures/Lecture01/Assets/sln/Tests/Continue.cs&lang=C#&title=Continue Sample
++++?code=/Lectures/Lecture_01/Assets/sln/Tests/Continue.cs&lang=C#&title=Continue Sample
 @[10-17]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture01/Assets/sln/Tests/Continue.cs)
+[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture_01/Assets/sln/Tests/Continue.cs)
 
-+++?code=/Lectures/Lecture01/Assets/sln/Tests/Return.cs&lang=C#&title=Return Sample
++++?code=/Lectures/Lecture_01/Assets/sln/Tests/Return.cs&lang=C#&title=Return Sample
 @[8-12]
 @[17-20]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture01/Assets/sln/Tests/Return.cs)
+[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture_01/Assets/sln/Tests/Return.cs)
 
-+++?code=/Lectures/Lecture01/Assets/sln/Tests/Throw.cs&lang=C#&title=Throw Sample
++++?code=/Lectures/Lecture_01/Assets/sln/Tests/Throw.cs&lang=C#&title=Throw Sample
 @[8-18]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture01/Assets/sln/Tests/Throw.cs)
+[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture_01/Assets/sln/Tests/Throw.cs)
 
-+++?code=/Lectures/Lecture01/Assets/sln/Tests/Goto.cs&lang=C#&title=Goto Sample
++++?code=/Lectures/Lecture_01/Assets/sln/Tests/Goto.cs&lang=C#&title=Goto Sample
 @[10-17]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture01/Assets/sln/Tests/Goto.cs)
+[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture_01/Assets/sln/Tests/Goto.cs)
 
 +++
 ## Statements - Others
@@ -932,14 +932,14 @@ Assert.False(f1>f2);
   * For safe access to resource from concurrent context
   * Simplification of Monitor synchronization primitive
 
-+++?code=/Lectures/Lecture01/Assets/sln/Tests/Using.cs&lang=C#&title=Using Sample
++++?code=/Lectures/Lecture_01/Assets/sln/Tests/Using.cs&lang=C#&title=Using Sample
 @[10-13]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture01/Assets/sln/Tests/Using.cs)
+[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture_01/Assets/sln/Tests/Using.cs)
   
-+++?code=/Lectures/Lecture01/Assets/sln/Tests/Lock.cs&lang=C#&title=Lock Sample
++++?code=/Lectures/Lecture_01/Assets/sln/Tests/Lock.cs&lang=C#&title=Lock Sample
 @[9-19]
 @[24-30]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture01/Assets/sln/Tests/Lock.cs)
+[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture_01/Assets/sln/Tests/Lock.cs)
 
 ---
 ## Namespaces
