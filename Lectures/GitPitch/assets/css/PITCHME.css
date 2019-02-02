@@ -24,6 +24,7 @@
   top: 25px;
   left: 50%;
   position: fixed;
+  transform: translateX(-50%);
 }
 
 .reveal h2 {
@@ -32,6 +33,7 @@
   top: 25px;
   left: 50%;
   position: fixed;
+  transform: translateX(-50%);
  }
 
 .reveal h3 {
@@ -40,6 +42,7 @@
   left: 50%;
   position: fixed;  
   text-align: center;
+  transform: translateX(-50%);
  }
 
 .reveal h4 {
