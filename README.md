@@ -80,6 +80,18 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení n
 | 4.4.  | WPF frontend, binding                                        | 
 | 18.4. | Bonusové cvičení                                             | 
 
+---
+# Projekt
+* Projekt bude vypracovaný v 4-5ti členném týmu. 
+
+| Fáze | Deadline |               Obsah |
+| ---- |----------| ------------------- |
+| 1    |    10.3. | Objektový návrh     |
+| 2    |     7.4. | EF, MVVM            |
+| 3    |    25.4. | Finalizace aplikace |
+
+* Tým může být sestaven pouze ze studentů, kteří mají zapsaný pouze předmět IW5, ICS a nebo těch co mají zapsané předměty oba. Není možné vytvoření týmů obsahující členy z obou kategorií.
+
 --- 
 # Nástroje použity ve cvičeních
 
