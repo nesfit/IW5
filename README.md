@@ -1,9 +1,4 @@
-# IW5
-# Programming in .NET and C# 
-# Organizational Details
-<div class="right">
-[ Jan Pluskal <ipluskal@fit.vutbr.cz> ]
-</div>
+# IW5 Programming in .NET and C#, Organizational Details
 
 ---
 # Odkazy
