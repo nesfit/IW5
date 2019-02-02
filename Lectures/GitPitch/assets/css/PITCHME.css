@@ -20,7 +20,13 @@
   
 .reveal h1 {
   text-align: center;
-  font-size: 2.5em; }
+  font-size: 2.5em; 
+  position: fixed;
+  top: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
 
 .reveal h2 {
   text-align: center;
