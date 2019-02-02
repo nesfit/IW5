@@ -108,10 +108,10 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení n
       
 # Výuka - bodové rozdělení
 
-| Typ výuky |    Maximální bodový zisk | 
-| ------- |-------------| 
-| Počítačová cvičení     | 30        | 
-| Projekt    | 70 | 
+| Typ výuky          |     Maximální bodový zisk | 
+| ------------------ | ------------------------- | 
+| Počítačová cvičení |                        30 | 
+| Projekt            |                        70 | 
 
 --- 
 
