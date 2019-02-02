@@ -5,9 +5,9 @@
  * https://github.com/gitpitch/gitpitch/wiki/Slideshow-Custom-CSS
  */
 
- /*
+ 
 .reveal {
-  font-size: 18pt; }
+  font-size: 1em; }
   
 .reveal h1 {
   font-size: 2.5em; }
@@ -21,6 +21,7 @@
 .reveal h4 {
   font-size: 1.1em; }
 
+/*
 .gold {
   color: #e49436;
 }
