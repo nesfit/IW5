@@ -21,6 +21,12 @@
 .reveal h4 {
   font-size: 1.5em; }
 
+  .reveal pre code {
+    background-color: #f0f0f0;
+    font-size: 1.4em;
+    line-height: 1.0;
+  }
+
 /*
 .gold {
   color: #e49436;
@@ -94,12 +100,6 @@ span.aside {
 
 .reveal .slides section> p {
     text-align: left;
-}
-
-.reveal pre code {
-  background-color: #f0f0f0;
-  font-size: 1.4em;
-  line-height: 1.0;
 }
 
 .reveal code {
