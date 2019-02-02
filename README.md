@@ -28,8 +28,8 @@
 | FEKT    | T12/SD 1.48 | Čt 13:00-14:50 |
 
 +++
-0. [Organizace kurzu](/Lectures/Lecuture00/PITCHME.md)
-1. [Úvod do jazyka C# a platformy .NET](/Lectures/Lecuture01/PITCHME.md), základní syntaxe jazyka, instalace a představení Visual Studia.
+0. [Organizace kurzu](Lectures/Lecuture00/PITCHME.md)
+1. [Úvod do jazyka C# a platformy .NET](Lectures/Lecuture01/PITCHME.md), základní syntaxe jazyka, instalace a představení Visual Studia.
 2. Úvod do Objektově Orientované Programování a pokročilé konstrukce v jazyce C# - výjimky, události, delegáty, lambda výrazy a generika.
 3. Představení základních knihovních funkcí (BCL) a dotazování za pomocí vestavěního nástroje LINQ nad datovými zdroji (kolekcemi, XML, MSSQL).
 4. Propojení aplikace s databází pro zajištění persistence pomocí ORM rozšíření Entity Framework s návrhovými vzory UnitOfWork a Repository.
