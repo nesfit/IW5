@@ -70,6 +70,7 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení n
 | FEKT    | T12/SD 1.48 | Čt 15:00-16:50 |
 
 +++
+
 | Datum |                                                 Téma cvičení | 
 | ----- | ------------------------------------------------------------ | 
 | 7.2.  | Práce s Visual Studio 2017, Azure DevOps                     | 
