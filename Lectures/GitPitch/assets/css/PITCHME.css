@@ -11,7 +11,7 @@
   }
 
 .reveal p {
-  text-justify: inter-word;
+  text-align: justify;
   }
   
 .reveal h1 {
