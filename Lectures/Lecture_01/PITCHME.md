@@ -28,7 +28,6 @@
 <img src="/Lectures/Lecture_01/Assets/img/VisualStudioIde.jpg" />
 @snapend
 
-
 +++
 ## Comparation of Visual Studio versions
 |  Supported Features                | Community |  Professional | Enterprise |
@@ -70,7 +69,7 @@ Extends Visual Studio with code inspections. For most inspections provides quick
 @snapend
 
 @snap[east]
-<img src="/Lectures/Lecture_01/Assets/img/VisualStudioLogo.png" />
+<img src="/Lectures/Lecture_01/Assets/img/reshaper_refactor_this.png" />
 @snapend
 
 +++
@@ -83,7 +82,9 @@ Extends Visual Studio with code inspections. For most inspections provides quick
 
 +++
 ### [Code metrices](https://marketplace.visualstudio.com/items?itemName=vkacmar.RoslynCodeMetrices)  
+@snap[west span-60]
 Visual Studio extension that helps to monitor the code complexity. As you type, the method complexity "health" is updated, and the complexity is shown near the method.
+@snapend
 
 +++
 ### [Mnemonic templates](https://github.com/JetBrains/mnemonics)  
