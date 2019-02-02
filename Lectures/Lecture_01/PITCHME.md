@@ -108,9 +108,13 @@ Templates for ReSharper that let you quickly generate code and data structures b
 
 +++
 ### [LinqPad](http://www.linqpad.net/)
-@snap[west span-50]
+@snap[west span-40]
 Program that is not just for LINQ queries, but any C# expression, statement block or program. 
 Put an end to those hundreds of Visual Studio Console projects cluttering your source folder and join the revolution of LINQPad scripters and incremental developers.
+@snapend
+
+@snap[east span-60]
+![](/Lectures/Lecture_01/Assets/img/linqpad-sql.gif)
 @snapend
 
 +++
