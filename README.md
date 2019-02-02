@@ -85,12 +85,15 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení n
 --- 
 
 # Q&A
+
 * Q: Slyšel jsem, že lze uznat místo projektu i bakalářskou práci nebo projekt do jiného předmětu napsaný v C#, je to pravda?
 * A: Ano, ale projekt musí splňovat obecná kriteria (správný datový návrh, včetně dědičnosti a modifikátorů přistupu, SOLID a CleanCode) a musí být v C#. Je bezpodmínečně nutné upozornit na to cvičícího v prvním běhu cvičení.
+
 * Q: Je možné vypracovat projekt v menším počtu členů?
 * A: Bohužel, v rámci zachování kvality nejsme schopni opravit takové množství projektů jako by povolení dvou-členných týmů přinášelo. Projek je navržený tak, aby vyhovoval náročností 5-ti členému týmu a některé koncepty by v případě menšího množství členů postrádaly smysl.
+
 * Q: Connection string pouzivany v cvicenich.
-* ```<connectionStrings> 
+ ```<connectionStrings> 
       <add name="TasksContext" connectionString="Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog=TasksDB;MultipleActiveResultSets=True;Integrated Security=True;" providerName="System.Data.SqlClient" />
       </connectionStrings>```
 
