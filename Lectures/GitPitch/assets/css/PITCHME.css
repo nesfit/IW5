@@ -1,24 +1,44 @@
-/*
+/* /*
  * GitPitch Slideshow Custom CSS Styling
  *
  * For details, visit Wiki:
  * https://github.com/gitpitch/gitpitch/wiki/Slideshow-Custom-CSS
  */
+
+ 
 .reveal {
-  font-size: 18pt; }
+  font-size: 1.5em; 
+  }
+
+.reveal .slides {
+  text-align: left;
+  }
+
+.reveal p {
+  text-align: justify;
+  }
   
 .reveal h1 {
+  text-align: center;
   font-size: 2.5em; }
 
 .reveal h2 {
-  font-size: 1.5em; }
+  text-align: center;
+  font-size: 1.7em; }
 
 .reveal h3 {
-  font-size: 1.3em; }
+  font-size: 1.6em; }
 
 .reveal h4 {
-  font-size: 1.1em; }
+  font-size: 1.5em; }
 
+.reveal pre code {
+  background-color: #f0f0f0;
+  font-size: 1.5em;
+  line-height: 1.0;
+  }
+
+/*
 .gold {
   color: #e49436;
 }
@@ -47,12 +67,12 @@ span.aside {
 }
 
 .reveal section a {
-#  color: #e49436;
+  color: #e49436;
   text-decoration: underline;
 }
 
 .reveal section a:hover {
-#  color: #e7ad52;
+  color: #e7ad52;
 }
 
 .fa-pad-left {
@@ -60,7 +80,7 @@ span.aside {
 }
 
 .reveal p span.slide-title {
-#  color: #e49436;
+  color: #e49436;
   font-size: 1.55em;
   margin: 0 0 60px 0;
   font-family: "Montserrat", Impact, sans-serif;
@@ -93,12 +113,6 @@ span.aside {
     text-align: left;
 }
 
-.reveal pre code {
-  background-color: #f0f0f0;
-  font-size: 1.4em;
-  line-height: 1.0;
-}
-
 .reveal code {
     background-color: #f0f0f0;
 }
@@ -106,4 +120,4 @@ span.aside {
 .reveal em {
     font-style: italic;
     font-family: Courier New;
-}
+} */
