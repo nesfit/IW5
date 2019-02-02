@@ -30,7 +30,13 @@
 
 .reveal h2 {
   text-align: center;
-  font-size: 1.7em; }
+  font-size: 1.7em;
+  position: fixed;
+  top: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+ }
 
 .reveal h3 {
   font-size: 1.6em; }
