@@ -3,7 +3,7 @@
 
 ---
 @snap[north]
-<img src="/Lectures/Lecture_01/Assets/img/VisualStudioLogo.png" />
+<img src="/Lectures/Lecture_01/Assets/img/VisualStudioLogo.png" /><br />
 @snapend
 
 
