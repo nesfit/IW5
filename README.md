@@ -11,7 +11,7 @@
 --- 
 # Aktuality k předmětu 
 <!---  - **18.04.2019** | *Jan Pluskal* | [Registrace](http://goo.gl/mj3ODO) obhajoby projektů - autentizace xlogin00@vutbr.cz. Odevzdání projektu proveďte do WISu jako zip archív bez obj, bin, packages. V případě FEKTu není třeba odevzdávat. --->
-  - **08.01.2019** | *Jan Pluskal* | Při vytváření repozitáře respektujte shéma ze [zadání](/Project/README.md) *https://iw5-2019-team00.visualstudio.com*, nebo *https://ics-iw5-2019-team00.visualstudio.com*. Je nezbytně nutné použít Vaše účty z doménu *vutbr.cz*. Do Vašich repozitářů pro projekt přidejte účet **uciteliw5@vutbr.cz**. Pokud uděláte chybu a pouze nesedí url, dá se v nastavení změnit.
+  - **08.01.2019** | *Jan Pluskal* | Při vytváření repozitáře respektujte schéma ze [zadání](/Project/README.md) *https://iw5-2019-team00.visualstudio.com*, nebo *https://ics-iw5-2019-team00.visualstudio.com*. Je nezbytně nutné použít Vaše účty z doménu *vutbr.cz*. Do Vašich repozitářů pro projekt přidejte účet **uciteliw5@vutbr.cz**. Pokud uděláte chybu a pouze nesedí url, dá se v nastavení změnit.
     * Pokud máte vytvořeno pod soukromými účty, je třeba vytvořit projekt znovu pod univerzitními a pushnout existující repozitář tak, aby Vám zůstala historie včetně správných časů commitů. 
     * Pokud bude kolize s existujícím účtem, použijte suffix *team00-01*.
   - **08.01.2019** | *Jan Pluskal* | Registrace týmů na projekty pro **FIT** je ve WISu, pro **FEKT** [zde](http://goo.gl/cBXSLd).
@@ -52,7 +52,7 @@
    * vytvářecí, strukturní a chování - Gang of Four (GoF) v kontextu C#
 10. [WPF za pomoci MVVM](https://gitpitch.com/pluskal/5?grs=github&t=white&p=Lectures%2FLecture_10#/)
     * tvorba komponenty a stylování aplikací
-11. [Paralelní a asynchroní programování](https://gitpitch.com/pluskal/5?grs=github&t=white&p=Lectures%2FLecture_11#/)
+11. [Paralelní a asynchronní programování](https://gitpitch.com/pluskal/5?grs=github&t=white&p=Lectures%2FLecture_11#/)
     * proces, vlákno, úloha z pohledu C# a použitého .NET frameworku
 12. [Nástroje pro správu paměti a profilaci výkonu](https://gitpitch.com/pluskal/5?grs=github&t=white&p=Lectures%2FLecture_12#/)
 12. [Multiplatformní programování](https://gitpitch.com/pluskal/5?grs=github&t=white&p=Lectures%2FLecture_13#/)
@@ -62,7 +62,7 @@
 
 --- 
 # Cvičení 
-Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení na kterém budete moct cvičení aktivně zůčastnit. Bude potřeba vývojové prostředí ideálně Visual Studio 2017. Cvičení začínají od prvního týdne semestru a konajíse jednou za 14 dní.
+Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení na kterém budete moct cvičení aktivně zúčastnit. Bude potřeba vývojové prostředí ideálně Visual Studio 2017. Cvičení začínají od prvního týdne semestru a konají se jednou za 14 dní.
 
 | Fakulta |    Místnost |            Čas |
 | ------- |-------------| -------------- |
@@ -123,14 +123,14 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení n
 # Q&A
 
 * Q: Slyšel jsem, že lze uznat místo projektu i bakalářskou práci nebo projekt do jiného předmětu napsaný v C#, je to pravda?
-* A: Ano, ale projekt musí splňovat obecná kriteria (správný datový návrh, včetně dědičnosti a modifikátorů přistupu, SOLID a CleanCode) a musí být v C#. Je bezpodmínečně nutné upozornit na to cvičícího v prvním běhu cvičení.
+* A: Ano, ale projekt musí splňovat obecná kriteria (správný datový návrh, včetně dědičnosti a modifikátorů přístupu, SOLID a CleanCode) a musí být v C#. Je bezpodmínečně nutné upozornit na to cvičícího v prvním běhu cvičení.
 
 +++
 * Q: Je možné vypracovat projekt v menším počtu členů?
-* A: Bohužel, v rámci zachování kvality nejsme schopni opravit takové množství projektů jako by povolení dvou-členných týmů přinášelo. Projek je navržený tak, aby vyhovoval náročností 5-ti členému týmu a některé koncepty by v případě menšího množství členů postrádaly smysl.
+* A: Bohužel, v rámci zachování kvality nejsme schopni opravit takové množství projektů jako by povolení dvou-členných týmů přinášelo. Projekt je navržený tak, aby vyhovoval náročností 5-ti člennému týmu a některé koncepty by v případě menšího množství členů postrádaly smysl.
 
 +++
-* Q: Connection string pouzivany v cvicenich.
+* Q: Connection string používaný v cvičeních.
 * A:
 
 ```XML
