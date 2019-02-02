@@ -247,13 +247,16 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 
 +++
 ## Language interoperability
+@snap[midpoint span-100]
 ![](/Lectures/Lecture_01/Assets/img/Common_Language_Infrastructure.png)
+@snapend
 
 
 +++
 ## Architecture
+@snap[midpoint span-100]
 ![](/Lectures/Lecture_01/Assets/img/dot_net_architecture.png)
-
+@snapend
 
 +++
 ## CLR - Common Language Runtime
@@ -262,8 +265,9 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 * Just-in-time compilation
 * Similar to Java Virtual Machine
 
+@snap[east span-50]
 ![](/Lectures/Lecture_01/Assets/img/dot_net_clr.png)
-
+@snapend
 
 +++
 ## Benefits
