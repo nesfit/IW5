@@ -25,6 +25,7 @@
 | FEKT    | T12/SD 1.48 | Čt 13:00-14:50 |
 
 +++
+
 0. [Organizace kurzu](https://gitpitch.com/pluskal/5?grs=github&t=white&p=Lectures%2FLecture_00#/)
 1. [Úvod do jazyka C# a platformy .NET](https://gitpitch.com/pluskal/5?grs=github&t=white&p=Lectures%2FLecture_01#/)
    * základní syntaxe jazyka, instalace a představení Visual Studia
