@@ -115,10 +115,10 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení n
 
 +++
 
-| Fakulta |    Místnost | 
+| Typ výuky |    Maximální bodový zisk | 
 | ------- |-------------| 
-| FIT     | D105        | 
-| FEKT    | T12/SD 1.48 | 
+| Počítačová cvičení     | 30        | 
+| Projekt    | 70 | 
 
 --- 
 
