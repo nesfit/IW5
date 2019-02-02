@@ -7,7 +7,12 @@
 
  
 .reveal {
-  font-size: 1.5em; }
+  font-size: 1.5em; 
+  }
+
+.reveal p {
+  text-justify: inter-word;
+  }
   
 .reveal h1 {
   font-size: 2.5em; }
@@ -25,7 +30,7 @@
   background-color: #f0f0f0;
   font-size: 1.5em;
   line-height: 1.0;
-}
+  }
 
 /*
 .gold {
