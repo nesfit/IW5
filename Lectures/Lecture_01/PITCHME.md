@@ -260,10 +260,13 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 
 +++
 ## CLR - Common Language Runtime
+
+@snap[west span-50]
 * The virtual machine component of Microsoft's .NET framework 
 * Manages the execution
 * Just-in-time compilation
 * Similar to Java Virtual Machine
+@snapend
 
 @snap[east span-50]
 ![](/Lectures/Lecture_01/Assets/img/dot_net_clr.png)
