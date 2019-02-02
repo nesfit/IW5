@@ -130,7 +130,7 @@ It can reliably decompile any .NET assembly into equivalent C# or IL code.
 
 +++
 ### [Markdown Editor](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)
-@snap[west span-50]
+@snap[west span-40]
 A full featured Markdown editor with live preview and syntax highlighting. 
 Supports GitHub flavored Markdown.
 @snapend
@@ -143,14 +143,23 @@ Supports GitHub flavored Markdown.
 
 +++
 ### [Entity Framework 6 Power Tools](https://marketplace.visualstudio.com/items?itemName=ErikEJ.EntityFramework6PowerToolsCommunityEdition)
-@snap[west span-50]
+@snap[west span-40]
 Useful design-time utilities for EF 6, accessible through the Visual Studio Solution Explorer context menu when right-clicking on a file containing a derived DbContext class.
 @snapend
 
+@snap[east span-60]
+![](/Lectures/Lecture_01/Assets/img/ef-powertool.PNG)
+@snapend
+
+
 +++
 ### [GitFlow](https://marketplace.visualstudio.com/items?itemName=vs-publisher-57624.GitFlowforVisualStudio2017)
-@snap[west span-50]
+@snap[west span-40]
 Team Explorer extension integrates GitFlow into your development workflow. It lets you easily create and finish feature, release and hotfix branches right from Team Explorer.  For more deails about git recommends [Pro Git book](https://git-scm.com/book/en/v2).
+@snapend
+
+@snap[east span-60]
+![](/Lectures/Lecture_01/Assets/img/gitflow.png)
 @snapend
 
 ---
