@@ -445,9 +445,11 @@ var sum = 1 + 5 * (6 / 2);
 * Instruct the compiler or interpreter how the programmer intends to use the data
 * **Value type**
   * Variable directly **contains data**
+  * **Have to be** assigned before accessing
   * Two variables, each have their copy of the data; *an operation on one variable* **DO NOT** *affect the other*.
 * **Reference types** (objects)
   * Variable **stores reference** to the data
+  * **DO NOT have to be** assigned before accessing
   * IF two variables reference the same object; *operation on one variable* **DO** *affect the object referenced by the other variable*.
 * [Documentation](https://docs.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/types-and-variables)
 
@@ -517,7 +519,7 @@ Using specific character as a suffix
 
 ```C#
  Console.WriteLine(1f.GetType());  // Float   (float)
- Console.WriteLine(1d.GetType());  // Double  (doulbe)
+ Console.WriteLine(1d.GetType());  // Double  (double)
  Console.WriteLine(1m.GetType());  // decimal (decimal)
  Console.WriteLine(1u.GetType());  // UInt32  (uint)
  Console.WriteLine(1L.GetType());  // Int64   (long)
@@ -552,12 +554,12 @@ Using specific character as a suffix
 ### Byte, sbyte, short, ushort types
 * 8 and 16 bits types do not have arithmetical operations
   * E.g., `byte, sbyte, short, ushort`
-  * Compiler does implicit cast to large type `int, uint`
+  * Compiler does implicitly cast to a large type `int, uint`
   ```C#
   short x = 1, y = 1;
   short z = x + y;    // Compile-time error
   ```
-  * Solution is to do explicit cast
+  * Solution is to do an explicit cast
   ```C#
   short x = 1, y = 1;
   short z = (short)(x + y); // OK
@@ -580,14 +582,14 @@ Using specific character as a suffix
 
 +++
 ### Truncation and precision loss
-* `float` and `double` are stored in binary form
+* `float` and `double` are stored in *binary form*
   * which means only multiples of 2 are stored precisely
 ```C#
 float f1 = 0.09f * 100f;
 float f2 = 0.09f * 99.999999f;
 Assert.False(f1>f2);
 ```
-* `decimal` is stored in decimal form, but it has still a limitted precision
+* `decimal` is stored in decimal form, but it has still a limited precision
   ```C#
   decimal m = 1M  /  6M;                          // 0.1666666666666666666666666667M
   double  d = 1.0 / 6.0;                          // 0.16666666666666666
@@ -610,12 +612,17 @@ Assert.False(f1>f2);
  
 +++
 ## Nullable value types
-* Do not have to be assigned before they can be used
-* For each non-nullable value type `T` there is a corresponding nullable value type `T`?
-  * Which can hold an **additional value**, `null`
-* E. g., `int?` can hold
-  * Any 32-bit integer
-  * `null`
+* **Do not have to be assigned** *before they can be accessed*
+* For each non-nullable value type `T` there is a corresponding nullable value type `T?`
+  * With the same value range as `T` + **additional value** - `null`
+
+```C#
+int  ten = 10;
+int? one = 1;
+int? canBeNull = null;
+int  @null = null;      // Compile-time error
+
+```
 
 +++?code=/Lectures/Lecture_01/Assets/sln/Tests/NullableType.cs&lang=C#&title=Nullable Type Sample
 @[10-11, 13-14]
