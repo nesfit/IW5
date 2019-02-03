@@ -278,16 +278,16 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 @snapend
 
 +++
-## Benefits
-* Performance improvements
-* Easy use of components developed in other languages
-* Extensible types provided by a class library
-* Inheritance, interfaces, and overloading for OOP
-* Free threading
-* Structured exception handling
-* Custom attributes
-* Garbage collection
-* Delegates instead of function pointers
+## CLR - Benefits
+* Performance improvements - *JIT*
+* Easy use of *components developed in other languages*
+* Extensible *types defined in BCL*
+* *Inheritance, interfaces, and overloading* for OOP
+* [Free threading](https://stackoverflow.com/questions/3892259/difference-between-free-threaded-and-thread-safe) (MTA Apartment)
+* Structured *exception handling*
+* Custom *attributes*
+* **Garbage collection**
+* *Delegates* instead of function pointers
 
 +++
 ### Garbage collector
