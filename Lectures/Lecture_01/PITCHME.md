@@ -415,8 +415,12 @@ Console.WriteLine
 
 +++
 ## Operators
-  * Used to combine multiple expressions
+  * Used to **combine multiple expressions**
   * E.g., `. () * + -`
+
+```C#
+var sum = 1 + 5 * (6 / 2);
+```
 
 +++
 ## Comments
