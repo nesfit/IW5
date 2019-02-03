@@ -359,7 +359,7 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 
 +++
 ## Identifiers
-* Name given to entities such as variables, methods, classes, etc.
+* Name given to entities such as *variables*, *methods*, *classes*, etc.
 * Tokens which uniquely identify an element
 * `value` is a identifier:  
   ```C#
@@ -371,9 +371,9 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
   ```
 +++
 ## Keywords
-* Reserved words that have special meaning
+* **Reserved** words that have *special meaning*
 * Meaning can not be changed
-* Can not be directly used as identifies
+* **Can not be directly** used as *identifies*
 * `long` is a keyword:
   ```C#
   long count;
