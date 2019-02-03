@@ -337,7 +337,7 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 ![](/Lectures/Lecture_01/Assets/img/keep-calm-and-focus-on-the-basics.png)
 @snapend
 
-+++
++++[h1]
 ## C# is
 * **multi-paradigm**;
 * **strong typed**;
