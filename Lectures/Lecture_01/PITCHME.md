@@ -393,11 +393,11 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 * Data inserted in a code
 * E.g., 
 
-  ```C#
-  var hitchhikerConstant = 42;
-  var helloWorld = 'Hello World';
-  var pi = 3.14159;
-  ```
+```C#
+var hitchhikerConstant = 42;
+var helloWorld = 'Hello World';
+var pi = 3.14159;
+```
 
 +++
 ## Delimiters
