@@ -646,7 +646,7 @@ int  @null = null;      // Compile-time error
     return !windy && (rainy || sunny);
   }
   ```
-* Often used for *Lazy evaluation* 
+* Often used for the *Lazy evaluation* 
 
 +++
 ## Character type
@@ -668,25 +668,42 @@ int  @null = null;      // Compile-time error
   * Single- and multi-dimensional, e.g., `int[]` and `int[,]`
 * **Delegate types**
   * User-defined types of the form `delegate int D(...)`
-* Supports generics, whereby they can be parameterized with other types
+* **Generics**,
+  * Parameterized with other types `MyGenericType<T>`
 
 +++
 ### Class
-* **data structure** that contains:
-  * Data members (*fields*)
-  * Function members (*methods*, *properties* and others). 
+* **Data structure** that contains:
+  * Data members - *fields*
+  * Function members - *methods*, *properties*, *events*, *indexers*, *user-defined operators*, *instance constructors*, *static constructors*, *destructors*
 * Supports
-  * Single inheritance 
+  * **Single, transitive, inheritance** 
   * Polymorphism 
-* Can extend and specialize base classes
+* Extends and specializes base class/es
+
+```C#
+class @Class{}
+
+class Dog
+  {
+    string _name;
+  }
+```
 
 +++
 ### Struct
 * Similar to a class type
-* **Unlike classes**, *structs* are value types and do not typically require heap allocation
-* Struct types do not support
-  * User-specified inheritance
-  * Struct types implicitly inherit from type `object`
+* Unlike classes, *structs* are **value types** and do not typically require heap allocation
+* Struct types **do not** support
+  * User-specified *inheritance*
+  * Struct types implicitly inherit from type `ValueType` that inherits `Object`
+
+```C#
+struct Cat
+        {
+            string _name;
+        }
+```
 
 +++
 ### Interface
