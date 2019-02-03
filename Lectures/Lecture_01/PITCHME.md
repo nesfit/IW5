@@ -433,7 +433,7 @@ var sum = 1 + 5 * (6 / 2);
   /* Comment can be split
   into multiple lines */
   ```
-* Documenting 
+* Documentation 
   ```C#
   /// <summary>
   /// Documents class, method...
@@ -442,15 +442,15 @@ var sum = 1 + 5 * (6 / 2);
 
 ---
 ## Data types
-* tells the compiler or interpreter how the programmer intends to use the data
+* Instruct the compiler or interpreter how the programmer intends to use the data
 * **Value type**
-  * Directly contains data
-  * Each variable have their own copy of the data
-  * It is not possible for operations on variable to affects another
+  * Directly **contains data**
+  * Each variable have its copy of the data
+  * It is **not possible** for *an operations on a variable to affects another* 
 * **Reference types** (objects)
-  * Store references to their data
-  * Multible variables can reference the same object
-  * It is possible for operations on variable to affect another
+  * **Stores reference** to the data
+  * Multiple variables can reference the same object
+  * It is **possible** for *an operations on a variable to affect another*
 * [Documentation](https://docs.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/types-and-variables)
 
 +++
