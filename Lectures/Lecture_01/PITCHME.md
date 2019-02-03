@@ -391,7 +391,6 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 +++
 ## Literals
 * Data inserted in a code
-* E.g., 
 
 ```C#
 var hitchhikerConstant = 42;
@@ -401,17 +400,18 @@ var pi = 3.14159;
 
 +++
 ## Delimiters
-* Characters used for code structuralization
-* Curly braces `{, }`
-  * Creates code blocks
-  * Used to *impart a scope*
+* Characters used to structure the code
+* Curly braces `{`, `}`
+  * Creates **code blocks**
+  * Used to **impart a scope**
 * Semicolon `;`
-  * Delimits statements
-  * Statement can be written in multiple lines.
-  ```C#
-  Console.WriteLine
+  * **Delimits statements**
+  * Statement *can be written on multiple lines*.
+
+```C#
+Console.WriteLine
     (1 + 2 + 3 + 4 + 5);
-  ```
+```
 
 +++
 ## Operators
