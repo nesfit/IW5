@@ -291,9 +291,9 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 
 +++
 ### Garbage collector
-* Automated memory management without need of programmer intervention
-* Based on reachability from GC roots
-* 3 generations
+* **Automated memory management** without need of programmer intervention
+* Uses reachability from GC roots to identify *alive* objects
+* *Three generations*
 <div class="center">
 ![](/Lectures/Lecture_01/Assets/img/gc_generations.png)
 </div>
