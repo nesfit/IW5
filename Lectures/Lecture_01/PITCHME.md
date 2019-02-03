@@ -383,19 +383,19 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 
 +++
 ## Contextual Keywords
-* Specific meaning in a limited program context
-* Can be used as identifiers outside that context
-* e.g. `var, awayt, async, where, set`
+* **Specific meaning** in a limited program *context*
+* **Can be used** as *identifiers outside the context*
+* E.g. ```var, await, async, where, set```
 * [List of all Contextual Keywords](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/)
 
 +++
 ## Literals
-* Data inserted in code
+* Data inserted in a code
 * E.g., 
   ```C#
-  42
-  'Hello World'
-  3.14159
+  var hitchhikerConstant = 42;
+  var helloWorld = 'Hello World';
+  var pi = 3.14159;
   ```
 
 +++
