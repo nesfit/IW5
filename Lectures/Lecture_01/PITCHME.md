@@ -324,7 +324,7 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 ---
 # C# 101
 
-@ul
+@ul[h2]
 - Identifiers
 - Keywords
 - Literals
@@ -333,7 +333,6 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 - Comments
 - Data types
 - Value Types
-
 @ulend
 
 @snap[east span-40]
