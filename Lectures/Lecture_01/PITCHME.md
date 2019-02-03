@@ -428,12 +428,11 @@ var sum = 1 + 5 * (6 / 2);
   ```C#
   // line comment
   ```
-* Block
+* Block -  **Do not use block comments!!!**
   ```C#
   /* Comment can be split
   into multiple lines */
   ```
-  * **Do not use block comments!!!**
 * Documenting 
   ```C#
   /// <summary>
