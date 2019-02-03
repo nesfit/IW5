@@ -61,7 +61,7 @@
 * Entity Framework 6 Power tools
 * GitFlow
 
-@snap[east]
+@snap[east span-60]
 ![](/Lectures/Lecture_01/Assets/img/VSExtensions.PNG)
 @snapend
 
@@ -72,7 +72,7 @@
 Extends Visual Studio with code inspections. For most inspections provides quick-fixes to improve code in one way or another. Helps safely organize code and move it around the solution. For more details see [features](https://www.jetbrains.com/resharper/features/).
 @snapend
 
-@snap[east]
+@snap[east span-50]
 ![](/Lectures/Lecture_01/Assets/img/reshaper_refactor_this.png)
 @snapend
 
