@@ -392,6 +392,7 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 ## Literals
 * Data inserted in a code
 * E.g., 
+
   ```C#
   var hitchhikerConstant = 42;
   var helloWorld = 'Hello World';
