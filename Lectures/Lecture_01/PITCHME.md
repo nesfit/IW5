@@ -444,13 +444,11 @@ var sum = 1 + 5 * (6 / 2);
 ## Data types
 * Instruct the compiler or interpreter how the programmer intends to use the data
 * **Value type**
-  * Directly **contains data**
-  * Each variable have its copy of the data
-  * It is **not possible** for *an operations on a variable to affects another* 
+  * Variable directly **contains data**
+  * Two variables, each have their copy of the data; *an operation on one variable* **DO NOT** *affect the other*.
 * **Reference types** (objects)
-  * **Stores reference** to the data
-  * Multiple variables can reference the same object
-  * It is **possible** for *an operations on a variable to affect another*
+  * Variable **stores reference** to the data
+  * IF two variables reference the same object; *operation on one variable* **DO** *affect the object referenced by the other variable*.
 * [Documentation](https://docs.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/types-and-variables)
 
 +++
@@ -468,6 +466,38 @@ var sum = 1 + 5 * (6 / 2);
   * User-defined types of the form `struct S {...}`
 * **Nullable value types**
   * Extensions of all other value types with a `null` value
+
++++
+### Signed Integral
+| Type   |    Size | Range                                                              |
+| ------ | ------- | ------------------------------------------------------------------ |
+| `sbyte`|  8 bits | range from -128 - 127                                              |
+| `short`| 16 bits | range from -32,768 - 32,767                                        |
+| `int`  | 32 bits | range from -2,147,483,648 - 2,147,483,647                          |
+| `long` | 64 bits | range from –9,223,372,036,854,775,808 to 9,223,372,036,854,775,807 |
+
++++
+### Unsigned integral
+|  Type   |    Size | Range                                      |
+| ------- | ------- | ------------------------------------------ |
+| `byte`  |  8 bits | range from 0 - 255                         |
+| `ushort`| 16 bits | range from 0 - 65,535                      |
+| `uint`  | 32 bits | range from 0 - 4,294,967,295               |
+| `ulong` | 64 bits | range from 0 - 18,446,744,073,709,551,615  |
+
++++
+### Floating point
+|   Type   |    Size | Range                                                               |
+| -------- | ------- | ------------------------------------------------------------------- |
+| `float`  | 32 bits | range from $$1.5 × 10^{−45} - 3.4 × 10^{38}$$  7-digit precision    |
+| `double` | 64 bits | range from $$5.0 × 10^{−324} - 1.7 × 10^{308}$$  15-digit precision |
+
++++
+### Decimal
+|    Type   |    Size  | Range                                                                                         |
+| --------- | -------- | --------------------------------------------------------------------------------------------- |
+| `decimal` | 128 bits | range is at least $$–7.9 × 10^{−28} - 7.9 × 10^{28}$$ with at least 28-digit precision range |
+
 
 +++
 ### Literals notation
