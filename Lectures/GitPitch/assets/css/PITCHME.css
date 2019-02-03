@@ -65,6 +65,11 @@
     font-family: 'Courier New', Courier, monospace;
 }
 
+.reveal code {
+  background-color: #f0f0f0;  
+  font-family: 'Courier New', Courier, monospace;
+}
+
 /*
 .gold {
   color: #e49436;
