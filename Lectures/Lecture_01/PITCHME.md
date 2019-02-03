@@ -339,12 +339,13 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 
 +++
 ## C# is
-* Multi-paradigm programming language
-* Strong typing
-* Object oriented (class-based)
-* Imperative, declarative
-* Functional, generic
-* Based on c++
+* **multi-paradigm**;
+* **strong typed**;
+* **object oriented** (class-based);
+* imperative, declarative;
+* functional, generic;
+* based on c++;
+* programming language.
 
 +++?code=/Lectures/Lecture_01/Assets/sln/Tests/HelloWorld.cs&lang=C#&title=Hello World Sample
 @[1]
