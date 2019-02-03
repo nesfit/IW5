@@ -378,7 +378,7 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
   ```C#
   long count;
   ```
-* e.g. `int, bool, if, for, class, false, public, break`
+* E.g. ```int, bool, if, for, class, false, public, break```
 * [List of all Keywords](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/)
 
 +++
