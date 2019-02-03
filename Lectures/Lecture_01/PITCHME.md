@@ -250,7 +250,7 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 * Application models
 
 @snap[east]
-![](/Lectures/Lecture_01/Assets/img/agenda.jpg)
+![](/Lectures/Lecture_01/Assets/img/Overview.png)
 @snapend
 
 +++
