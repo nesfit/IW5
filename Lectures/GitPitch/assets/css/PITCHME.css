@@ -62,12 +62,12 @@
 
 .reveal em {
     font-style: italic;
-    font-family: 'Inconsolata', Courier, monospace;
+    font-family: 'MONOFUR', monospace;
 }
 
 .reveal code {
   background-color: #f0f0f0;  
-  font-family: 'Inconsolata', Courier, monospace;
+  font-family: 'Inconsolata', monospace;
 }
 
 /*
