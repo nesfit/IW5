@@ -324,7 +324,7 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 ---
 # C# 101
 
-@size[2.5em](
+@size[3.5em](
 * Identifiers
 * Keywords
 * Literals
