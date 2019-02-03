@@ -61,6 +61,10 @@
 * Entity Framework 6 Power tools
 * GitFlow
 
+@snap[east]
+![](/Lectures/Lecture_01/Assets/img/VSExtensions.PNG)
+@snapend
+
 +++
 ### [Resharper](https://www.jetbrains.com/resharper/)
 
@@ -244,6 +248,10 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 * Garbage collector
 * In The Nutshell
 * Application models
+
+@snap[east]
+![](/Lectures/Lecture_01/Assets/img/agenda.jpg)
+@snapend
 
 +++
 ## Language interoperability
