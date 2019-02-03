@@ -294,15 +294,15 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 * **Automated memory management** without need of programmer intervention
 * Uses reachability from GC roots to identify *alive* objects
 * *Three generations*
-<div class="center">
+@snap[midpoint span-80]
 ![](/Lectures/Lecture_01/Assets/img/gc_generations.png)
-</div>
+@snapend
 
 +++
 ## In The Nutshell
-<div class="center">
+@snap[midpoint span-80]
 ![](/Lectures/Lecture_01/Assets/img/Csh_in_nutshell_framework.png)
-</div>
+@snapend
 
 +++
 ## Standard Libraries
@@ -317,12 +317,12 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 
 +++
 ## Application models
-<div class="center">
+@snap[midpoint span-80]
 ![](/Lectures/Lecture_01/Assets/img/dot_net_libraries.png)
-</div>
+@snapend
 
 ---
-# C# Basics
+# C# 101
 * Identifiers
 * Keywords
 * Literals
@@ -331,6 +331,11 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 * Comments
 * Data types
 * Value Types
+
+@snap[east span-40]
+![](/Lectures/Lecture_01/Assets/img/keep-calm-and-focus-on-the-basics.png)
+@snapend
+
 
 +++
 ## C# is
