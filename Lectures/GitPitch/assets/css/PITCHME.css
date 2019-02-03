@@ -60,6 +60,11 @@
   z-index:-1;
   }
 
+.reveal em {
+    font-style: italic;
+    font-family: Courier New;
+}
+
 /*
 .gold {
   color: #e49436;
@@ -139,7 +144,4 @@ span.aside {
     background-color: #f0f0f0;
 }
 
-.reveal em {
-    font-style: italic;
-    font-family: Courier New;
-} */
+ */
