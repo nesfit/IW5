@@ -708,8 +708,8 @@ struct Cat
 +++
 ### Interface
 * Think about it as a **contract**
-* Named **set of** *public function members*
-* A *class* or *struct* that **implements an interface** *must provide implementations of the interface’s function members*
+* Named set of *public function members*
+* A **class** or **struct** that **implements an interface** *must provide implementations of the interface’s function members*
 * An **interface can inherit** *from multiple base interfaces*, and a **class or struct can implement** *multiple interfaces*
 
 +++
