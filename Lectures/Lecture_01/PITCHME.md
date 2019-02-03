@@ -294,6 +294,7 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 * **Automated memory management** without need of programmer intervention
 * Uses reachability from GC roots to identify *alive* objects
 * *Three generations*
+
 ![](/Lectures/Lecture_01/Assets/img/gc_generations.png)
 
 
