@@ -308,11 +308,11 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 ## Standard Libraries
 |  Library                        | Namespaces                                                                                                                | 
 |---------------------------------| ------------------------------------------------------------------------------------------------------------------------- |
-| Base Class Library              | *System, System.Collections, System.Collections.Generic, System.Diagnostics, System.IO, System.Text, System.Threading...* |
-| Runtime Infrastructure Library  | *System, System.Reflection, System.Runtime.CompilerServices, System.Runtime.InteropServices...*                           |
-| Network Library                 | *System, System.Net, System.Net.Sockets...*                                                                               |
-| Reflection Library              | *System.Globalization, System.Reflection...*                                                                              | 
-| XML Library                     | *System.Xml*                                                                                                              |
+| **Base Class Library**              | *System, System.Collections, System.Collections.Generic, System.Diagnostics, System.IO, System.Text, System.Threading...* |
+| **Runtime Infrastructure Library**  | *System, System.Reflection, System.Runtime.CompilerServices, System.Runtime.InteropServices...*                           |
+| **Network Library**                 | *System, System.Net, System.Net.Sockets...*                                                                               |
+| **Reflection Library**              | *System.Globalization, System.Reflection...*                                                                              | 
+| **XML Library**                     | *System.Xml*                                                                                                              |
 | ⋮                               | ⋮                                                                                                                          |
 
 +++
