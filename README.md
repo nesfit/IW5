@@ -56,7 +56,7 @@
     * proces, vlákno, úloha z pohledu C# a použitého .NET frameworku
 12. [Nástroje pro správu paměti a profilaci výkonu](https://gitpitch.com/fitiw/5?grs=github&t=white&p=Lectures%2FLecture_12#/)
 12. [Multiplatformní programování](https://gitpitch.com/fitiw/5?grs=github&t=white&p=Lectures%2FLecture_13#/)
-    * Dobrovolná přednáška* **D105 14:00-16:50 29.4.2019**
+    * Dobrovolná přednáška* **ICS D105 13:00-14:50 29.4.2019**
     * .NET Standard, .NET Core. 
     * kontejnerizace aplikací pomocí Docker a jejich orchestrace Kubernetes, Docker Swarm
 
