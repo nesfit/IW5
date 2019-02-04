@@ -59,16 +59,19 @@
 * ⋮
 
 ---
-## Recommended extensions and tools
-* Resharper
-* Azure DevOps
-* Code metrices
-* Mnemonic templates
-* LinqPad
-* DotPeek
-* Markdown Editor
-* Entity Framework 6 Power tools
-* GitFlow
+## Recommended extensions, services and tools
+
+* Extensions:
+  * Resharper
+  * Code metrices
+  * Markdown Editor
+  * Entity Framework 6 Power tools
+  * GitFlow
+  * Mnemonic templates
+* Tools & Services: 
+  * LinqPad
+  * DotPeek
+  * Azure DevOps
 
 @snap[east span-60]
 ![](/Lectures/Lecture_01/Assets/img/VSExtensions.PNG)
