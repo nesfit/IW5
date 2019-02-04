@@ -1,10 +1,14 @@
-﻿# Introduction to C#, Visual studio and .NET
+﻿@snap[midpoint span-100]
+# Introduction to C#, Visual studio and .NET
 <div class="right">
 [ Jan Pluskal <ipluskal@fit.vutbr.cz> ]
 </div>
+@snapend
 ---
 @snap[midpoint span-100]
+
 ## Introduction to Visual Studio
+
 @snapend
 
 ---
