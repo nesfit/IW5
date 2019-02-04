@@ -1,8 +1,13 @@
 ﻿@snap[midpoint span-100]
+
 # Introduction to C#, Visual studio and .NET
-<div class="right">
+
+@snapend
+
+@snap[south-east span-40]
+
 [ Jan Pluskal <ipluskal@fit.vutbr.cz> ]
-</div>
+
 @snapend
 ---
 @snap[midpoint span-100]
