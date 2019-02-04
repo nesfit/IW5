@@ -1,4 +1,4 @@
-# IW5 projekt (Zadání z minulého roku - bude změněno!)
+# IW5 projekt (pracovní verze!)
 
 ## Důležité upozornění
 
