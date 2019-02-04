@@ -747,9 +747,9 @@ class Dog
 
 ```C#
 struct Cat
-  {
-    string _name;
-  }
+{
+  string _name;
+}
 ```
 
 +++
