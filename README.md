@@ -26,36 +26,36 @@
 
 +++
 
-1. [Organizace kurzu](https://gitpitch.com/pluskal/5?grs=github&t=white&p=Lectures%2FLecture_00#/)
-2. [Úvod do jazyka C# a platformy .NET](https://gitpitch.com/pluskal/5?grs=github&t=white&p=Lectures%2FLecture_01#/)
+1. [Organizace kurzu](https://gitpitch.com/fitiw/5?grs=github&t=white&p=Lectures%2FLecture_00#/)
+2. [Úvod do jazyka C# a platformy .NET](https://gitpitch.com/fitiw/5?grs=github&t=white&p=Lectures%2FLecture_01#/)
    * základní syntaxe jazyka, instalace a představení Visual Studia
-3. [Úvod do Objektově Orientované Programování](https://gitpitch.com/pluskal/5?grs=github&t=white&p=Lectures%2FLecture_02#/)
+3. [Úvod do Objektově Orientované Programování](https://gitpitch.com/fitiw/5?grs=github&t=white&p=Lectures%2FLecture_02#/)
    * pokročilé konstrukce v jazyce C# - výjimky, události, delegáty, lambda výrazy a generika
-4. [Představení základních knihovních funkcí (BCL)](https://gitpitch.com/pluskal/5?grs=github&t=white&p=Lectures%2FLecture_03#/)
+4. [Představení základních knihovních funkcí (BCL)](https://gitpitch.com/fitiw/5?grs=github&t=white&p=Lectures%2FLecture_03#/)
    * dotazování za pomocí vestavěního nástroje LINQ nad datovými zdroji (kolekcemi, XML, MSSQL)
-5. [Propojení aplikace s databází](https://gitpitch.com/pluskal/5?grs=github&t=white&p=Lectures%2FLecture_04#/)
+5. [Propojení aplikace s databází](https://gitpitch.com/fitiw/5?grs=github&t=white&p=Lectures%2FLecture_04#/)
    * zajištění persistence pomocí ORM rozšíření Entity Framework s návrhovými vzory UnitOfWork a Repository
-6. [Psaní čistého, udržovatelného kódu](https://gitpitch.com/pluskal/5?grs=github&t=white&p=Lectures%2FLecture_05#/)
+6. [Psaní čistého, udržovatelného kódu](https://gitpitch.com/fitiw/5?grs=github&t=white&p=Lectures%2FLecture_05#/)
    * respektováním Clean Code, S.O.L.I.D. zásad
    * ukázky refaktorizace a práce s legacy kódem
-7. [Návrhový vzor Model-View-ViewModel (MVVM)](https://gitpitch.com/pluskal/5?grs=github&t=white&p=Lectures%2FLecture_06#/)
+7. [Návrhový vzor Model-View-ViewModel (MVVM)](https://gitpitch.com/fitiw/5?grs=github&t=white&p=Lectures%2FLecture_06#/)
    * architektura desktopových aplikací
    * mapování databázových entit na modelové třídy
 
 +++
 
-7. [Continous Integration v prostředí Azure DevOps](https://gitpitch.com/pluskal/5?grs=github&t=white&p=Lectures%2FLecture_07#/)
+7. [Continous Integration v prostředí Azure DevOps](https://gitpitch.com/fitiw/5?grs=github&t=white&p=Lectures%2FLecture_07#/)
    * testování aplikací - smoke, unit, integrační, UI a akceptační testy
-8. [Základní koncepty tvorby uživatelského rozhraní](https://gitpitch.com/pluskal/5?grs=github&t=white&p=Lectures%2FLecture_08#/)
+8. [Základní koncepty tvorby uživatelského rozhraní](https://gitpitch.com/fitiw/5?grs=github&t=white&p=Lectures%2FLecture_08#/)
    * Windows Presentation Foundation (WPF)
-9. [Návrhové vzory](https://gitpitch.com/pluskal/5?grs=github&t=white&p=Lectures%2FLecture_09#/)
+9. [Návrhové vzory](https://gitpitch.com/fitiw/5?grs=github&t=white&p=Lectures%2FLecture_09#/)
    * vytvářecí, strukturní a chování - Gang of Four (GoF) v kontextu C#
-10. [WPF za pomoci MVVM](https://gitpitch.com/pluskal/5?grs=github&t=white&p=Lectures%2FLecture_10#/)
+10. [WPF za pomoci MVVM](https://gitpitch.com/fitiw/5?grs=github&t=white&p=Lectures%2FLecture_10#/)
     * tvorba komponenty a stylování aplikací
-11. [Paralelní a asynchronní programování](https://gitpitch.com/pluskal/5?grs=github&t=white&p=Lectures%2FLecture_11#/)
+11. [Paralelní a asynchronní programování](https://gitpitch.com/fitiw/5?grs=github&t=white&p=Lectures%2FLecture_11#/)
     * proces, vlákno, úloha z pohledu C# a použitého .NET frameworku
-12. [Nástroje pro správu paměti a profilaci výkonu](https://gitpitch.com/pluskal/5?grs=github&t=white&p=Lectures%2FLecture_12#/)
-12. [Multiplatformní programování](https://gitpitch.com/pluskal/5?grs=github&t=white&p=Lectures%2FLecture_13#/)
+12. [Nástroje pro správu paměti a profilaci výkonu](https://gitpitch.com/fitiw/5?grs=github&t=white&p=Lectures%2FLecture_12#/)
+12. [Multiplatformní programování](https://gitpitch.com/fitiw/5?grs=github&t=white&p=Lectures%2FLecture_13#/)
     * Dobrovolná přednáška* **D105 14:00-16:50 29.4.2019**
     * .NET Standard, .NET Core. 
     * kontejnerizace aplikací pomocí Docker a jejich orchestrace Kubernetes, Docker Swarm
