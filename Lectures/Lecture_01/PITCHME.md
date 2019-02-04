@@ -1334,5 +1334,7 @@ namespace N2
 [C# 7.0 in a Nutshell](http://www.albahari.com/nutshell/)  
 [.NET Core, .NET Framework, Xamarin](https://blogs.msdn.microsoft.com/cesardelatorre/2016/06/27/net-core-1-0-net-framework-xamarin-the-whatand-when-to-use-it/)  
 
++++
+
 ## Credits
 * Michal Orlíček - for slides preparation
