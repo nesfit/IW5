@@ -355,7 +355,7 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 @[9]
 @[11]
 @[12]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture_01/Assets/sln/Tests/HelloWorld.cs)
+[Code sample](/Lectures/Lecture_01/Assets/sln/Tests/HelloWorld.cs)
 
 +++
 ## Identifiers
@@ -626,7 +626,7 @@ int  @null = null;      // Compile-time error
 
 +++?code=/Lectures/Lecture_01/Assets/sln/Tests/NullableType.cs&lang=C#&title=Nullable Type Sample
 @[10-11, 13-14]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture_01/Assets/sln/Tests/NullableType.cs)
+[Code sample](/Lectures/Lecture_01/Assets/sln/Tests/NullableType.cs)
 
 
 +++
@@ -787,7 +787,7 @@ class MyClass
 @[11-13]
 @[15-16]
 @[18-21]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture_01/Assets/sln/Tests/Array.cs)
+[Code sample](/Lectures/Lecture_01/Assets/sln/Tests/Array.cs)
 
 --- 
 ### Variables
@@ -931,7 +931,7 @@ class MyClass
 @[12-13]
 @[15-16]
 @[18]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture_01/Assets/sln/Tests/DefaultValue.cs)
+[Code sample](/Lectures/Lecture_01/Assets/sln/Tests/DefaultValue.cs)
 
 ---
 ## Parameters
@@ -947,19 +947,19 @@ class MyClass
 
 +++?code=/Lectures/Lecture_01/Assets/sln/Tests/ValueParameter.cs&lang=C#&title=Value Parameter Sample
 @[9-26]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture_01/Assets/sln/Tests/ValueParameter.cs)
+[Code sample](/Lectures/Lecture_01/Assets/sln/Tests/ValueParameter.cs)
 
 +++?code=/Lectures/Lecture_01/Assets/sln/Tests/RefParameter.cs&lang=C#&title=Ref Parameter Sample
 @[7-17]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture_01/Assets/sln/Tests/RefParameter.cs)
+[Code sample](/Lectures/Lecture_01/Assets/sln/Tests/RefParameter.cs)
 
 +++?code=/Lectures/Lecture_01/Assets/sln/Tests/InParameter.cs&lang=C#&title=In Parameter Sample
 @[7-19]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture_01/Assets/sln/Tests/InParameter.cs)
+[Code sample](/Lectures/Lecture_01/Assets/sln/Tests/InParameter.cs)
 
 +++?code=/Lectures/Lecture_01/Assets/sln/Tests/OutParameter.cs&lang=C#&title=Out Parameter Sample
 @[7-24]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture_01/Assets/sln/Tests/OutParameter.cs)
+[Code sample](/Lectures/Lecture_01/Assets/sln/Tests/OutParameter.cs)
 
 +++
 ### Parameter with `params[]`
@@ -1077,15 +1077,15 @@ Expression<Action> tree2 = () => { Console.WriteLine("Hello"); }; // Compile-tim
 +++?code=/Lectures/Lecture_01/Assets/sln/Tests/If.cs&lang=C#&title=If Sample
 @[10-13]
 @[14-17]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture_01/Assets/sln/Tests/If.cs)
+[Code sample](/Lectures/Lecture_01/Assets/sln/Tests/If.cs)
 
 +++?code=/Lectures/Lecture_01/Assets/sln/Tests/Switch.cs&lang=C#&title=Switch Sample
 @[13-30]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture_01/Assets/sln/Tests/Switch.cs)
+[Code sample](/Lectures/Lecture_01/Assets/sln/Tests/Switch.cs)
 
 +++?code=/Lectures/Lecture_01/Assets/sln/Tests/TernaryOperand.cs&lang=C#&title=Ternary Operand Sample
 @[10-12]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture_01/Assets/sln/Tests/TernaryOperand.cs)
+[Code sample](/Lectures/Lecture_01/Assets/sln/Tests/TernaryOperand.cs)
 
 +++
 ## Statements - Cycles
@@ -1097,19 +1097,19 @@ Expression<Action> tree2 = () => { Console.WriteLine("Hello"); }; // Compile-tim
 
 +++?code=/Lectures/Lecture_01/Assets/sln/Tests/While.cs&lang=C#&title=While Sample
 @[10-16]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture_01/Assets/sln/Tests/While.cs)
+[Code sample](/Lectures/Lecture_01/Assets/sln/Tests/While.cs)
 
 +++?code=/Lectures/Lecture_01/Assets/sln/Tests/DoWhile.cs&lang=C#&title=Do While Sample
 @[10-15]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture_01/Assets/sln/Tests/DoWhile.cs)
+[Code sample](/Lectures/Lecture_01/Assets/sln/Tests/DoWhile.cs)
 
 +++?code=/Lectures/Lecture_01/Assets/sln/Tests/For.cs&lang=C#&title=For Sample
 @[10-13]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture_01/Assets/sln/Tests/For.cs)
+[Code sample](/Lectures/Lecture_01/Assets/sln/Tests/For.cs)
 
 +++?code=/Lectures/Lecture_01/Assets/sln/Tests/ForEach.cs&lang=C#&title=Foreach Sample
 @[10-14]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture_01/Assets/sln/Tests/ForEach.cs)
+[Code sample](/Lectures/Lecture_01/Assets/sln/Tests/ForEach.cs)
 
 +++
 ## Statements - Jump statements
@@ -1123,24 +1123,24 @@ Expression<Action> tree2 = () => { Console.WriteLine("Hello"); }; // Compile-tim
 
 +++?code=/Lectures/Lecture_01/Assets/sln/Tests/Break.cs&lang=C#&title=Break Sample
 @[10-20]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture_01/Assets/sln/Tests/Break.cs)
+[Code sample](/Lectures/Lecture_01/Assets/sln/Tests/Break.cs)
 
 +++?code=/Lectures/Lecture_01/Assets/sln/Tests/Continue.cs&lang=C#&title=Continue Sample
 @[10-17]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture_01/Assets/sln/Tests/Continue.cs)
+[Code sample](/Lectures/Lecture_01/Assets/sln/Tests/Continue.cs)
 
 +++?code=/Lectures/Lecture_01/Assets/sln/Tests/Return.cs&lang=C#&title=Return Sample
 @[8-12]
 @[17-20]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture_01/Assets/sln/Tests/Return.cs)
+[Code sample](/Lectures/Lecture_01/Assets/sln/Tests/Return.cs)
 
 +++?code=/Lectures/Lecture_01/Assets/sln/Tests/Throw.cs&lang=C#&title=Throw Sample
 @[8-18]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture_01/Assets/sln/Tests/Throw.cs)
+[Code sample](/Lectures/Lecture_01/Assets/sln/Tests/Throw.cs)
 
 +++?code=/Lectures/Lecture_01/Assets/sln/Tests/Goto.cs&lang=C#&title=Goto Sample
 @[10-17]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture_01/Assets/sln/Tests/Goto.cs)
+[Code sample](/Lectures/Lecture_01/Assets/sln/Tests/Goto.cs)
 
 +++
 ## Statements - other
@@ -1152,12 +1152,12 @@ Expression<Action> tree2 = () => { Console.WriteLine("Hello"); }; // Compile-tim
 
 +++?code=/Lectures/Lecture_01/Assets/sln/Tests/Using.cs&lang=C#&title=Using Sample
 @[10-13]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture_01/Assets/sln/Tests/Using.cs)
+[Code sample](/Lectures/Lecture_01/Assets/sln/Tests/Using.cs)
   
 +++?code=/Lectures/Lecture_01/Assets/sln/Tests/Lock.cs&lang=C#&title=Lock Sample
 @[9-19]
 @[24-30]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture_01/Assets/sln/Tests/Lock.cs)
+[Code sample](/Lectures/Lecture_01/Assets/sln/Tests/Lock.cs)
 
 ---
 ## Namespaces
