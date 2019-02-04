@@ -19,11 +19,6 @@ namespace Tests
             {
                 Assert.Equal(characters1[i], characters2[i]);
             }
-
-            foreach (var character in characters1)
-            {
-                Assert.True(characters1.Count(x => x == character) == 1);
-            }
         }
     }
 }

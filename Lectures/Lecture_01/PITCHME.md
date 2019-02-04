@@ -786,7 +786,7 @@ class MyClass
 +++?code=/Lectures/Lecture_01/Assets/sln/Tests/Array.cs&lang=C#&title=Array Sample
 @[11-13]
 @[15-16]
-@[18-21, 23-26]
+@[18-21]
 [Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture_01/Assets/sln/Tests/Array.cs)
 
 --- 
