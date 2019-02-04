@@ -732,9 +732,9 @@ int  @null = null;      // Compile-time error
 class @Class{}
 
 class Dog
-  {
-    string _name;
-  }
+{
+  string _name;
+}
 ```
 
 +++
@@ -1081,13 +1081,13 @@ Foo(y: 1);
 * *Do not have value*
 * Cannot be combined with other operators
 * E.g., `{}, return, etc...`
-* [An expression may be classified as] "nothing". This occurs when the expression is an *invocation of a method with a return type of void*. An expression classified as nothing *is only valid in the context of a statement expression*.
 
 ```C#
 Expression<Action> tree = () => Console.WriteLine("Hello");
 Expression<Action> tree2 = () => { Console.WriteLine("Hello"); }; // Compile-time error
 ```
 
+* [An expression may be classified as] "nothing". This occurs when the expression is an *invocation of a method with a return type of void*. An expression classified as nothing *is only valid in the context of a statement expression*.
 
 +++
 ### Assigning expression
