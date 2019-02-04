@@ -11,9 +11,9 @@
 --- 
 # Aktuality k předmětu 
 <!---  - **18.04.2019** | *Jan Pluskal* | [Registrace](http://goo.gl/mj3ODO) obhajoby projektů - autentizace xlogin00@vutbr.cz. Odevzdání projektu proveďte do WISu jako zip archív bez obj, bin, packages. V případě FEKTu není třeba odevzdávat. --->
-  - **08.01.2019** | *Jan Pluskal* | Při vytváření repozitáře respektujte schéma ze [zadání](/Project/README.md) *https://iw5-2019-team00.visualstudio.com*, nebo *https://ics-iw5-2019-team00.visualstudio.com*. Je nezbytně nutné použít Vaše účty z doménu *vutbr.cz*. Do Vašich repozitářů pro projekt přidejte účet **uciteliw5@vutbr.cz**. Pokud uděláte chybu a pouze nesedí url, dá se v nastavení změnit.
+  - **08.01.2019** | *Jan Pluskal* | Při vytváření repozitáře respektujte schéma ze [zadání](/Project/README.md) *https://dev.azure.com/iw5-2019-team00/project*, nebo *https://dev.azure.com/ics-iw5-2019-team00/project*. Je nezbytně nutné použít Vaše účty z doménu *vutbr.cz*. Do Vašich repozitářů pro projekt přidejte účet **uciteliw5@vutbr.cz**. Pokud uděláte chybu a pouze nesedí url, dá se v nastavení změnit.
     * Pokud máte vytvořeno pod soukromými účty, je třeba vytvořit projekt znovu pod univerzitními a pushnout existující repozitář tak, aby Vám zůstala historie včetně správných časů commitů. 
-    * Pokud bude kolize s existujícím účtem, použijte suffix *team00-01*.
+    * Pokud bude kolize s existující organizací, použijte suffix *team00-01*.
   - **08.01.2019** | *Jan Pluskal* | Registrace týmů na projekty pro **FIT** je ve WISu, pro **FEKT** [zde](http://goo.gl/cBXSLd).
 
 --- 
@@ -26,19 +26,19 @@
 
 +++
 
-0. [Organizace kurzu](https://gitpitch.com/pluskal/5?grs=github&t=white&p=Lectures%2FLecture_00#/)
-1. [Úvod do jazyka C# a platformy .NET](https://gitpitch.com/pluskal/5?grs=github&t=white&p=Lectures%2FLecture_01#/)
+1. [Organizace kurzu](https://gitpitch.com/pluskal/5?grs=github&t=white&p=Lectures%2FLecture_00#/)
+2. [Úvod do jazyka C# a platformy .NET](https://gitpitch.com/pluskal/5?grs=github&t=white&p=Lectures%2FLecture_01#/)
    * základní syntaxe jazyka, instalace a představení Visual Studia
-2. [Úvod do Objektově Orientované Programování](https://gitpitch.com/pluskal/5?grs=github&t=white&p=Lectures%2FLecture_02#/)
+3. [Úvod do Objektově Orientované Programování](https://gitpitch.com/pluskal/5?grs=github&t=white&p=Lectures%2FLecture_02#/)
    * pokročilé konstrukce v jazyce C# - výjimky, události, delegáty, lambda výrazy a generika
-3. [Představení základních knihovních funkcí (BCL)](https://gitpitch.com/pluskal/5?grs=github&t=white&p=Lectures%2FLecture_03#/)
+4. [Představení základních knihovních funkcí (BCL)](https://gitpitch.com/pluskal/5?grs=github&t=white&p=Lectures%2FLecture_03#/)
    * dotazování za pomocí vestavěního nástroje LINQ nad datovými zdroji (kolekcemi, XML, MSSQL)
-4. [Propojení aplikace s databází](https://gitpitch.com/pluskal/5?grs=github&t=white&p=Lectures%2FLecture_04#/)
+5. [Propojení aplikace s databází](https://gitpitch.com/pluskal/5?grs=github&t=white&p=Lectures%2FLecture_04#/)
    * zajištění persistence pomocí ORM rozšíření Entity Framework s návrhovými vzory UnitOfWork a Repository
-5. [Psaní čistého, udržovatelného kódu](https://gitpitch.com/pluskal/5?grs=github&t=white&p=Lectures%2FLecture_05#/)
+6. [Psaní čistého, udržovatelného kódu](https://gitpitch.com/pluskal/5?grs=github&t=white&p=Lectures%2FLecture_05#/)
    * respektováním Clean Code, S.O.L.I.D. zásad
    * ukázky refaktorizace a práce s legacy kódem
-6. [Návrhový vzor Model-View-ViewModel (MVVM)](https://gitpitch.com/pluskal/5?grs=github&t=white&p=Lectures%2FLecture_06#/)
+7. [Návrhový vzor Model-View-ViewModel (MVVM)](https://gitpitch.com/pluskal/5?grs=github&t=white&p=Lectures%2FLecture_06#/)
    * architektura desktopových aplikací
    * mapování databázových entit na modelové třídy
 
