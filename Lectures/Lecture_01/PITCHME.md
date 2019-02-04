@@ -966,6 +966,7 @@ class MyClass
 * Can be used only as the *last parameter* in a method signature
 * Has to be declared as an array
 * Used to pass multiple variables of the same type
+  
 ```C#
 int Sum(params int[] list)
 {
@@ -977,6 +978,7 @@ int Sum(params int[] list)
 ### Optional parameters
 * Has a default value as a part of it's definition
 * If omitted, the *default value* is used
+  
   ```C#
   void Foo(int x = 2, int y = 3) { … }
   ```
@@ -990,6 +992,7 @@ int Sum(params int[] list)
 ### Named parameters
 * Usually used with method calls on methods with *multiple optional parameters*
 * Reduce the number of *method overrides*
+  
   ```C#
   void Foo(int x = 2, int y = 3) { … }
   ```
@@ -1016,6 +1019,7 @@ int Sum(params int[] list)
 * Returns some value after computation
 * The simplest expression is *constant* or *variable*, e.g., `5`
 * Expression can be combined using operators
+  
   ```C#
   5*4
   ```
