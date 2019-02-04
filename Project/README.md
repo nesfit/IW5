@@ -1,123 +1,71 @@
-IW5 projekt (Zadání z minulého roku - bude změněno!)
-===========
+# IW5 projekt (Zadání z minulého roku - bude změněno!)
 
-### Důležité upozornění
+## Důležité upozornění
 
 Pro hodnocení projektu (a úspěšné absolvování předmětu) je nutno
 dokončit **všechny 3 fáze projektu** a projekt **obhájit**. Pokud
 projekt nebude při obhajobě obsahovat základní funkcionalitu uvedenou v
-zadání, je možné celkové hodnocení snížit. **Nespokojíme se tedy
+zadání, bude hodnocen 0 body. **Nespokojíme se tedy
 s nedokončeným projektem**. Tuhle poznámku sem dáváme proto, že se
 v předchozích ročnících vyskytly týmy, které po dosáhnutí součtu 50 bodů
 za předmět po 2. fázi rozhodly nedokončit projekt a poté byly nemile
 překvapeni, když se po nich vyžadovala plná funkcionalita při obhajobě.
 Dejte si na to tedy prosím pozor.
 
-Zadání
-------
 
-Výsledkem projektu je program na správu fotografií. Do programu bude
-možné přidávat fotografie. Přesné provedení přidávání fotografií bude
-záležet na vás, můžete zvolit ruční přidávání fotografií ze souborů
-v počítači, z webových url, nebo napojit program na nějaký externí zdroj
-fotografií (např. Google Drive, OneDrive, DropBox, Picasa, Flickr,
-Rajce…).
+## Cíl
+Cílem je vytvořit použitelnou a snadno rozšiřitelnou aplikaci, která splňuje požadavky zadání. Aplikace nemá padat nebo zamrzávat, pokud uživatel vyplní něco špatně, upozorní ho validační hláškou.
 
-K jednotlivým fotografiím bude možné přidávat informace, které budou
-poté použitelné při vyhledávání fotografií, jejich řazení a filtrování.
-Některé informace lze zjistit z obrázku automaticky, není nutné je
-vyplňovat uživatelem. Ke každému obrázku tak bude možné zadat minimálně:
+---
 
--   *Název* – automaticky se předvyplní název souboru, ale dá se změnit
+Zadání úmyslně není striktní, je Vám ponechána volnost, pro vlastní realizaci. Při hodnocení je kladen důraz na technické zpracování a kvalitu kódu, ale hodnotíme i na použitelnost a grafické zpracování aplikace. Pokud Vám přijde, že v zadání chybí nějaká funkcionalita, neváhejte ji doplnit. Pište aplikaci tak, aby jste ji sami chtěli používat.
 
--   *Datum a čas pořízení*
+---
 
--   *Formát* (jpg, png, gif…)
+## Zadání - Aplikace pro týmovou komunikaci
 
--   *Rozlišení*
+Výsledná aplikace má sloužit studentům k usnadnění komunikace na týmových projektech. Uživatel (Student) může být součástí více týmů. Členové týmu komunikují pomocí příspěvků a odpovědí na ně. Pro lepší představu si představte zjednodušenou Facebookovou skupinu. 
 
--   *Poznámka*
+### Přihlášení
+Uživatel se hlásí na základě emailu a hesla. **Hesla ukládejte v bezpečné podobě!**
 
-Další významnou částí programu budou alba. Fotografie se budou dát
-přidávat do alb, aby bylo možné je lépe organizovat a orientovat se v
-nich.
+### Seznam týmů
+Po přihlášení vidí uživatel seznam svých týmů a může si je zobrazit. 
 
-Při fotografiích bude dále záležet na jejich obsahu. Bude možné určovat
-co ve fotografiích je. Zejména bude možné označovat **osoby** a
-**předměty** ve fotografiích. K fotografii tedy můžete přidat informaci
-o tom, jaké osoby a předměty se na ní nachází.
+### Příspěvky týmu
 
-**Osoba** v rámci fotografie má minimálně tyto atributy:
+Zde každý člen týmu vidí všechny příspěvky a odpovědi na ně a může přidávat příspěvek nebo komentář k jinému příspěvku. Ostatní uživatelé zde nemají přístup.
 
--   *Jméno*
+ Příspěvky v týmu jsou zobrazeny i s komentáři a seřazeny dle datumu vytvoření posledního komentáře, ne datumu zveřejnění příspěvku. Komentáře se řadí chronologicky.
 
--   *Příjmení*
+ - Příspěvek č. 1
+    - odpověď č. 1 na příspěvek č. 1
+    - odpověď č. N na příspěvek č. 1
+ - Příspěvek č. 2
+    - odpověď č. 1 na příspěvek č. 2
+    - odpověď č. N na příspěvek č. 2
 
--   *Poloha na fotografii*
+Zobrazení příspěvku obsahuje zvýrazněný titulek, formátovaný text, autora a datum zveřějnění. Můžete přidat i vlastní rozšíření. Možnost odpovědět na příspěvek.
 
-**Předmět** v rámci fotografie má minimálně tyto atributy:
+Odpověď na příspěvek obsahuje formátovaný text, autora a datum zveřějnění. Můžete přidat i rozšíření.
 
--   *Název*
+Při vytváření příspěvku nebo komentáře uživatel nevyplňuje datum zveřejnění ani autora, aplikace si je doplní sama. 
 
--   *Poloha na fotografii*
+Pokud se aplikace neaktualizuje sama, obsahuje tlačítko pro aktualizaci příspěvků.
 
-Pod „předmětem“ si můžete představit například okno, židli, dům,
-sklenici…
+### Vyhledávání
+Aplikace umožňuje vyhledávání v příspěvcích a komentářích.
 
-Program bude obsahovat minimálně tyto části – *seznam fotografií,*
-*detail fotografie, seznam alb, detail alba, seznam osob, seznam
-předmětů*.
+### Přehled týmu
+Zde uživatel vidí popis týmu a výpis jeho členů. Je zde možnost přidat do týmu další členy a nebo odstranit stávající. 
 
-Seznam fotografií
+#### Přidání člena do týmu
+Uživatel má na výběr ze všech uživatelů aplikace, kteří nejsou členy týmu. Má také možnost vytvořit nového uživatele. 
 
-Seznam bude zobrazovat fotografie.
+### Profil uživatele
+Zde je vidět jméno uživatele, jeho poslední aktivita a jeho týmy.
 
-Bude zde možnost **řadit** fotografie dle *data pořízení a názvu.*
-
-Seznam fotografií se bude dat **filtrovat** dle *data pořízení, formátu*
-*a rozlišení*.
-
-V sezname se bude dát **vyhledávat** minimálně dle *názvu fotografie*.
-
-Detail fotografie
-
-Dále se dá zobrazit detail jednotlivé fotografie se všemi informacemi o
-ní. Zde se také dají **editovat** informace včetně výběru *osob a
-předmětů*, které se na fotografii nachází.
-
-### Seznam alb
-
-Každé album má svůj *název*. V seznamu teda musíte **zobrazit**
-minimálně *názvy alb*. Pěknou možností rozšíření **(za možné bonusové
-body)** je např. zobrazení alb v seznamu s jejich „cover photo“, počtem
-fotografií, které se v albu nachází…
-
-### Detail alba
-
-V detailu alba jsou **vidět** fotografie, které se v daném albu nachází.
-Přidávání fotografií do alb je možné implementovat v detailu alba,
-v seznamu alb nebo v detailu fotografie – zde necháme konkrétní
-implementaci na vás, **musí být ale možné fotografie přidávat** do alb a
-demonstrovat tuto funkcionalitu.
-
-### Seznamy osob a předmětů
-
-V seznamu osob (a předmětů) budou zobrazeny všechny osoby (resp.
-předměty), které jsou ve všech fotografiích. Bude možné v tomto seznamu
-vyhledávat podle jména a přéjmení osoby (resp. názvu předmětu).
-Minimálně se budou zobrazovat jména a příjmení osob (resp. názvy
-předmětů). Stejně jako při seznamu alb je možné získat **bonusové body**
-za implementaci lepšího zobrazení (např. „cover photo“, počet
-fotografií, na kterých se daná osoba/předmět nachází…)
-
-Po kliknutí na osobu (resp. předmět) se zobrazí všechny fotografie, na
-kterých se nachází.
-
-**Aplikace bude data ukládat do databáze. Data tedy musí zůstat
-zachována i po ukončení a opětovném spuštění aplikace.**
-
-Spolupráce
-----------
+## Spolupráce
 
 Projekt řeší studenti v týmech. V každém týmu jsou **4 studenti**. *Tým
 o méně studentech není přípustný.*
@@ -129,7 +77,7 @@ vyučujícím (způsob bude vysvětlen v rámci 1. cvičení).
 Z GITu *musí být viditelná postupná práce na projektu a spolupráce
 týmu*. Pokud uvidíme, že existuje malé množství nelogických a
 nepřeložitelných commitů tak nás bude zajímat, jak jste spolupracovali a
-může to vést na snížení bodového hodnocení. Repozitář pojmenujte **iw5-2018-team<00>** dle Vašeho čísla týmu tak, že výsledné URL pro přístup pro tento imaginární tým by bylo https://iw5-2018-team00.visualstudio.com.
+může to vést na snížení bodového hodnocení. Repozitář pojmenujte **iw5-2019-team<00>** dle Vašeho čísla týmu tak, že výsledné URL pro přístup pro tento imaginární tým by bylo https://iw5-2018-team00.visualstudio.com.
 
 Do Vašeho týmového projektu na GIT si v části Members přidejte účet
 **uciteliw5@vutbr.cz**
@@ -141,17 +89,16 @@ není možné jej ze strany vyučujících hodnotit.
 Návod na přidání člena projektu můžete najít zde:
 *https://docs.microsoft.com/en-us/vsts/accounts/add-team-members-vs*
 
-Odevzdávání
------------
+## Odevzdávání
 
 Odevzdávání projektu má **3 fáze**. V každé fázi se hodnotí jiné
 vlastnosti projektu. Nicméně fáze na sebe navzájem následují a studenti
 pokračují v práci na svém kódu i po jeho odevzdání v rámci následující
 fáze.
 
-*Kontroluje se kód, který je nahrán v GIT.* Vždy se kontroluje
-*poslední* *commit před časem odevzdávání* dané fáze projektu. Na
-commity nahrány po času odevzdávání nebude brán zřetel.
+**Kontroluje se kód, který je nahrán v GIT** ve větvy `master`. Vždy se kontroluje
+**poslední commit před časem odevzdávání** dané fáze projektu. Na
+commity nahrány po času odevzdávání nebo v jiných větvích nebude brán zřetel.
 
 Je silně doporučováno projekty v průběhu semestru konzultovat s
 cvičícími, předejdete tak případným komplikacím při odevzdání.
@@ -172,14 +119,13 @@ Hodnotíme:
 
 -   logický návrh tříd
 
--   využití dědičnosti, zapouzdření, polymorfismu
+-   využití abstrakce, zapouzdření, polymorfismu
 
 -   verzování v GITu po logických částech
 
--   -   logické rozšíření datového návrhu nad rámec zadání
+-   logické rozšíření datového návrhu nad rámec zadání
     (bonusové body)
 
-### 
 
 ### Fáze 2 – databáze a WPF backend (20 bodů) – 15. 4. 2018 23:59:59
 
@@ -245,32 +191,23 @@ Hodnotíme:
 
 -   vytvoření dobře vypadající a plně funkční aplikace (bonusové body)
 
-### 
-
 ### Bonusové body
 
 Za projevenou iniciativu je možné získat bonusové body. Nápady na možná
 rozšíření:
 
--   Napojení programu na online zdroj obrázků (Google Drive, OneDrive,
-    DropBox, Picasa…)
+-   Příspěvky a komentáře budou moci obsahovat i obrázky, soubory a videa
 
--   Použití služby na získání informací o obrázku (např.
-    osoby, předměty) – Microsoft Cognitive Services, Google Cloud Vision
-    API…
+-   U příspěvků a komentářů půjde označit členy týmu. Označení členové uvidí příspěvek zvýrazněně
 
--   Možnost zobrazení obrázku na mapě, práce s GPS polohou
+-   Uživatel si bude moci zobrazit příspěvky u kterých byl označen napříč týmy
 
--   Načtení kompletních EXIF informací z obrázku a zobrazení a využití v
-    programu
+-   Přihlášení pomocí externích služeb (Google, Facebook, Microsoft)
 
-<!-- -->
 
 -   -   -   -   -   -   
 
-### 
-
-### Obhajoba
+## Obhajoba
 
 Obhajoby projektů budou probíhat v **posledních 2 týdnech** výuky
 cvičení. Termíny obhajob budou vyhlášeny v průběhu semestru.
@@ -282,7 +219,28 @@ váš kód, že je správně navržen. Připravte se na naše otázky
 k funkcionalitě jednotlivých tříd a k důvodům jejich členění. Na
 obhajobu bude mít tým 15-20 minut.
 
-### Finální odevzdání
+## Základní funkcionalita
+
+**Pokud aplikace nesplňuje následující podmínky je projekt hodnocen 0 body!'**
+
+Aplikace musí splňovat
+ - Přihlašování
+    - Bezpečné ukládání hesel
+ - Seznam týmů
+    - Zobrazení týmů přihlášeného uživatele
+ - Zobrazení příspěvků týmu
+    - Zobrazení všech příspěvků v týmu řazené dle poslední aktivity u příspěvku
+    - Komentáře pod jednotlivými příspěvky
+    - Texty příspěvku i komentáře jsou formátovány
+    - Možnost vložení příspěvku s titulkem a formátovaným textem
+    - Možnost komentovat příspěvek
+ - Vytvoření uživatele
+ - Správa členů týmu
+    - Možnost přidat a odebrat člena
+
+ 
+
+## Finální odevzdání
 
 Po skončení obhajoby bude nutné ještě nahrát váš program do informačního
 systému. **Bez nahraného programu nemůžeme týmu udělit bodové
