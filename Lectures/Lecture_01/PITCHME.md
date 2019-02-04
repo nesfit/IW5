@@ -100,7 +100,7 @@ For more details see [features](https://www.jetbrains.com/resharper/features/).
 * Build management
 * Test Plans
 
-@snap[east span-60]
+@snap[east span-50]
 ![Azure-DevOps](/Lectures/Lecture_01/Assets/img/Azure-DevOps2.png)
 @snapend
 
@@ -196,6 +196,10 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 
 ---
 ## Why To Choose .NET?
+@snap[north=east span-10]
+![](/Lectures/Lecture_01/Assets/img/Overview_small.png)
+@snapend
+
 * Productivity
 * Almost every platform
 * Performance
@@ -269,6 +273,10 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 
 ---
 # .NET Platform
+@snap[north=east span-10]
+![](/Lectures/Lecture_01/Assets/img/Overview_small.png)
+@snapend
+
 * Language interoperability
 * Architecture
 * Common Language Runtime
