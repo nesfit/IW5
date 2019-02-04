@@ -1143,7 +1143,7 @@ Expression<Action> tree2 = () => { Console.WriteLine("Hello"); }; // Compile-tim
 [Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture_01/Assets/sln/Tests/Goto.cs)
 
 +++
-## Statements - Other
+## Statements - other
 * `using`
   * Encapsulates the use of a disposable resource
 * `lock`
@@ -1208,7 +1208,7 @@ namespace Outer
 ```
 
 +++
-### Namespaces - Rules
+### Namespaces - rules
 * Names declared in an outer scope are implicitly imported into inner one
 
 ```C#
@@ -1246,7 +1246,7 @@ namespace Outer.Middle.Inner
 
 +++
 ### Inner `using` directives
-* `using` can be used in inner namespace to limit its scope
+* `using` can be used in an inner namespace to limit its scope
   
 ```C#
 namespace N1
@@ -1263,6 +1263,11 @@ namespace N2
   class Class3 : Class1 { } // Compile-time error
 }
 ```
+
+---
+
+## Credits
+* Michal Orlíček
 
 ---
 ## References:
