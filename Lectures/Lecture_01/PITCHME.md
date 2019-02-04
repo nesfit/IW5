@@ -747,8 +747,8 @@ class MyClass
 +++
 ### String
 * `System.String` / `string`
-* Represents sequence of characters
-* Reference data type
+* Represents *sequence of characters*
+* **Reference** data type
 * Literal is denote by double-quotes. e.g., `"string value"`
 * Verbatim string is denote by `@` prefix, e.g.,
   ```C#
@@ -771,17 +771,17 @@ class MyClass
 
 +++
 ### Array
-* Represents fixed length data structure of homogeneous items
+* Represents *fixed length data structure of homogeneous items*
 * Stored in sequential block of memory
-* Do not have to be declared before it can be used
-* Initialization
+* *Do not have to be declared before it can be used*
+* **Initialization**
   * Value types - default value
   * Reference types - `null`
 * Access out of array range throws `IndexOutOfRangeException`
-* Instead, array types are constructed by following a type name with square brackets
-  * `int[]` single-dimensional array of int
-  * `int[,]` two-dimensional array of int (matrix)
-  * `int[][]` is a single-dimensional array of single-dimensional array of int
+* Array types are constructed by following a type name with square brackets
+  * `int[]` *single-dimensional* array of int
+  * `int[,]` *two-dimensional* array of int (matrix)
+  * `int[][]` is a *single-dimensional array of single-dimensional* array of int
 
 +++?code=/Lectures/Lecture_01/Assets/sln/Tests/Array.cs&lang=C#&title=Array Sample
 @[11-13]
