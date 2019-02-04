@@ -65,7 +65,7 @@ Uživatel má na výběr ze všech uživatelů aplikace, kteří nejsou členy t
 ### Profil uživatele
 Zde je vidět jméno uživatele, jeho poslední aktivita a jeho týmy.
 
-## Spolupráce
+## Management projektu - Azure DevOps
 
 Projekt řeší studenti v týmech. V každém týmu je **4-5 studentů**. *Tým
 o méně studentech není přípustný.*
@@ -87,7 +87,12 @@ týmu*. Pokud uvidíme, že existuje malé množství nelogických a
 nepřeložitelných commitů tak nás bude zajímat, jak jste spolupracovali a
 může to vést na snížení bodového hodnocení. Organizaci pojmenujte **iw5-2019-team<00>** dle Vašeho čísla týmu a projekt **projekt** tak, že výsledné URL pro přístup pro tento imaginární tým by bylo https://dev.azure.com/iw5-2019-team00/project. Nazapomeňtě nastavit **Work item process** template na **Scrum**.
 
-Pro řízení projektu využijte metodologii **[Scrum](https://docs.microsoft.com/en-us/azure/devops/boards/work-items/guidance/scrum-process-workflow?view=azure-devops)**. Budeme chtít vidět, že máte naplánované sprinty na jednotlivé fáze odevzdání. Práci rozdělte minimálně na **Product Backlog, Tasks a Bugs**. Očekáváme, že využijete záložky **Boards** pro vzájemnou synchronizaci a **[Burndown chart](https://docs.microsoft.com/en-us/azure/devops/report/sql-reports/sprint-burndown-scrum?view=azure-devops-2019&viewFallbackFrom=azure-devops)** bude na konci každého sprintu, tj. při každém odevzdání, reflektovat reálný stav projektu. Nebudete přeci nám jakožto Vašim **Stakeholderům** lhát!
+### Řízení projektu
+
+Pro řízení projektu využijte metodologii **[Scrum](https://docs.microsoft.com/en-us/azure/devops/boards/work-items/guidance/scrum-process-workflow?view=azure-devops)**. Budeme chtít vidět, že máte naplánované sprinty na jednotlivé fáze odevzdání. Práci rozdělte minimálně na **Product Backlog Item (PBI), Tasks a Bugs**. Očekáváme, že využijete záložky **Boards** pro vzájemnou synchronizaci a **[Burndown chart](https://docs.microsoft.com/en-us/azure/devops/report/sql-reports/sprint-burndown-scrum?view=azure-devops-2019&viewFallbackFrom=azure-devops)** bude na konci každého sprintu, tj. při každém odevzdání, reflektovat reálný stav projektu. Nebudete přeci nám jakožto Vašim **Stakeholderům** lhát!
+
+### Automatizované testování
+Využijte možnost automatizovaných buildů spojených s otestováním Vámi provedených změn. Nastavte **Pipelines->Builds** tak, že při pushnutí do libovolné větve projektu se provede *build a spustí se veškeré přítomné testy*. Více informací na [Automate all things with Azure Pipelines - THR2101](https://www.youtube.com/watch?v=yr6PJxfACNc) (note: vyžadujeme pouze fragment konfigurace, které najdete na tomto videu)
 
 ## Odevzdávání
 
@@ -124,6 +129,10 @@ Hodnotíme:
 
 -   logické rozšíření datového návrhu nad rámec zadání
     (bonusové body)
+    
+-   plánování projektu (nastavení sprintů, vytvoření alespoň 1 PBI a 1 task)
+
+-   nastavení automatizovaného buildu (kód je přeložitelný, pipeline nekončí chybou)
 
 
 ### Fáze 2 – databáze a WPF backend (20 bodů) – 7. 4. 2018 23:59:59
@@ -153,6 +162,10 @@ Hodnotíme:
 -   čistotu kódu
 
 -   Testy
+
+-   plánování projektu (logická struktura rozložení práce)
+
+-   nastavení automatizovaného buildu (kód je přeložitelný, spouští se automatizované testy, pipeline nekončí chybou)
 
 <!-- -->
 
@@ -187,7 +200,13 @@ Hodnotíme:
 
 -   čistotu kódu
 
+-   pokrytí aplikace testy
+
 -   vytvoření dobře vypadající a plně funkční aplikace (bonusové body)
+
+-   plánování projektu (logická struktura rozložení práce)
+
+-   nastavení automatizovaného buildu (kód je přeložitelný, spouští se automatizované testy, pipeline nekončí chybou)
 
 ### Bonusové body
 
