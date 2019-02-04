@@ -724,10 +724,10 @@ interface IInterface
 
 +++
 ### Delegate
-* **References to methods** with a particular parameter list and return type
-* Makes it possible to treat methods as entities that can be assigned to variables and passed as parameters
-* Are analogous to function types provided by functional languages
-  * They are also similar to the concept of function pointers found in some other languages
+* **References to methods** with a *particular parameter list* and *return type*
+* Method can be threated as an entity that can be assigned to variable and passed as a parameter
+* Analogous to **function type** provided by *functional languages*
+  * They are also similar to the **concept of function pointers** found in other languages
   * Unlike function pointers, delegates are object-oriented and **type-safe**
 
 ```C#
@@ -736,7 +736,7 @@ public delegate int PerformCalculation(int x, int y);
 class MyClass
 {
   PerformCalculation PerformCalculation;
-  
+
   void CallDelegate()
   {
     PerformCalculation(1, 2);
