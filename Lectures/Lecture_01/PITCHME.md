@@ -642,7 +642,7 @@ int  @null = null;      // Compile-time error
   * Equality `==`, `!=`
   * Conditional operators `&&`, `||`
   ```C#
-  public bool UseUmbrela(bool rainy, bool sunny, bool windy) {
+  public bool UseUmbrella(bool rainy, bool sunny, bool windy) {
     return !windy && (rainy || sunny);
   }
   ```
@@ -963,20 +963,20 @@ class MyClass
 
 +++
 ### Parameter with `params[]`
-* Can be used only with the *last parameter* in a method signature
+* Can be used only as the *last parameter* in a method signature
 * Has to be declared as an array
 * Used to pass multiple variables of the same type
-  ```C#
-  void Foo(int x = 2) { … }
-  ```
-  ```C#
-  Foo();
-  ```
+```C#
+int Sum(params int[] list)
+{
+  return list.Sum();
+}
+```
 
 +++
 ### Optional parameters
-* Has a default value as part of it's definition
-* If no argument is sent, the default value is used
+* Has a default value as a part of it's definition
+* If omitted, the *default value* is used
   ```C#
   void Foo(int x = 2, int y = 3) { … }
   ```
@@ -989,7 +989,7 @@ class MyClass
 +++
 ### Named parameters
 * Usually used with method calls on methods with *multiple optional parameters*
-* Reduce the number of method overrides
+* Reduce the number of *method overrides*
   ```C#
   void Foo(int x = 2, int y = 3) { … }
   ```
