@@ -915,7 +915,7 @@ class MyClass
 * Therefore:
   * **Local variable** has to be *assigned before reading*
   * **Method** has to be *called with all arguments*
-  * All other values are initialized automatically
+  * **All other** values are initialized automatically
 
 +++
 ### Default values
@@ -936,14 +936,14 @@ class MyClass
 ---
 ## Parameters
 * Parameters can be passed to a method as:
-  * Value
-  * Ref reference
-    * Variable **may be** modified by the called method
-  * In reference
-    * Variable **cannot** be modified by the called method
-  * Out reference
-    * Variable **must be** assigned by the called method
-    * Variable does not need to be initialized before method call
+  * **Value**
+  * **Ref** reference
+    * Variable **may** *be modified* by the called method
+  * **In** reference
+    * Variable **cannot** *be modified* by the called method
+  * **Out** reference
+    * Variable **must** *be assigned* by the called method
+    * Variable need not to be initialized before method call
 
 +++?code=/Lectures/Lecture_01/Assets/sln/Tests/ValueParameter.cs&lang=C#&title=Value Parameter Sample
 @[8-19]
