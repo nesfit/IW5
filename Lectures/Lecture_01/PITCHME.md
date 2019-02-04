@@ -978,7 +978,7 @@ int Sum(params int[] list)
 ### Optional parameters
 * Has a default value as a part of it's definition
 * If omitted, the *default value* is used
-  
+
 ```C#
 void Foo(int x = 2, int y = 3) { … }
 ```
@@ -992,7 +992,7 @@ Foo(1, 2);
 ### Named parameters
 * Usually used with method calls on methods with *multiple optional parameters*
 * Reduce the number of *method overrides*
-  
+
 ```C#
 void Foo(int x = 2, int y = 3) { … }
 ```
@@ -1019,7 +1019,7 @@ Foo(y: 1);
 * Usually, **returns some value** after computation
 * The simplest expression is *constant* or *variable*, e.g., `5`
 * Expression can be combined using operators
-  
+
 ```C#
 5*4
 ```
@@ -1035,6 +1035,7 @@ Foo(y: 1);
 * Cannot be combined with other operators
 * E.g., `{}, return, etc...`
 * [An expression may be classified as] "nothing". This occurs when the expression is an *invocation of a method with a return type of void*. An expression classified as nothing *is only valid in the context of a statement expression*.
+
 ```C#
 Expression<Action> tree = () => Console.WriteLine("Hello");
 Expression<Action> tree2 = () => { Console.WriteLine("Hello"); }; // Compile-time error
@@ -1117,7 +1118,7 @@ Expression<Action> tree2 = () => { Console.WriteLine("Hello"); }; // Compile-tim
 * `return`
 * `throw`
 * `goto` 
-  * using leads to [Spaghetti code](https://en.wikipedia.org/wiki/Spaghetti_code)
+  * usage leads to [Spaghetti code](https://en.wikipedia.org/wiki/Spaghetti_code)
 
 
 +++?code=/Lectures/Lecture_01/Assets/sln/Tests/Break.cs&lang=C#&title=Break Sample
@@ -1142,12 +1143,12 @@ Expression<Action> tree2 = () => { Console.WriteLine("Hello"); }; // Compile-tim
 [Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture_01/Assets/sln/Tests/Goto.cs)
 
 +++
-## Statements - Others
+## Statements - Other
 * `using`
-  * Encapsulated usage of disposable resource
+  * Encapsulates the use of a disposable resource
 * `lock`
-  * For safe access to resource from concurrent context
-  * Simplification of Monitor synchronization primitive
+  * For *safe access* to the resource from the concurrent context
+  * Simplification of a *Monitor synchronization primitive*
 
 +++?code=/Lectures/Lecture_01/Assets/sln/Tests/Using.cs&lang=C#&title=Using Sample
 @[10-13]

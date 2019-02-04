@@ -6,10 +6,10 @@ namespace Tests
 {
     public class ValueParameter
     {
-        static void Foo(StringBuilder fooSB)
+        static void Foo(StringBuilder fooSb)
         {
-            fooSB.Append("test");
-            fooSB = null;
+            fooSb.Append("test");
+            fooSb = null;
         }
 
         [Fact]

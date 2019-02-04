@@ -5,7 +5,7 @@ namespace Tests
 {
     public class DefaultValue
     {
-        static int y;
+        static int _y;
         [Fact]
         public void Test()
         {
@@ -15,7 +15,7 @@ namespace Tests
             int[] ints = new int[2];
             Assert.Equal(0, ints[0]);
 
-            Assert.Equal(0, y);
+            Assert.Equal(0, _y);
         }
     }
 }

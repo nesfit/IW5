@@ -1,33 +1,34 @@
 using System;
 using System.Threading;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace Tests
 {
     public class Lock
     {
-        private readonly object thisLock = new object();
+        private readonly object _thisLock = new object();
 
-        private int increment;
-        private void MethodWithLock()
+        private int _increment = 0;
+        private void CriticalSection()
         {
-            lock (thisLock)
+            lock (_thisLock)
             {
-                Thread.Sleep(10);
-                increment++;
+                Task.Delay(16);
+                _increment++;
             }
         }
 
         [Fact]
         private void Test()
         {
-            const int attempts = 10;
+            const int attempts = 1_000_000;
             for (var i = 0; i < attempts; i++)
             {
-                new Thread(MethodWithLock).Start();
+                Task.Run(CriticalSection).ConfigureAwait(false);
             }
 
-            Assert.True(increment < attempts);
+            Assert.True(_increment < attempts);
         }
     }
 }
