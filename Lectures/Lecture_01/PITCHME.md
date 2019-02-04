@@ -390,6 +390,10 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 * based on c++;
 * programming language.
 
+@snap[east span-40]
+![](/Lectures/Lecture_01/Assets/img/csh.png)
+@snapend
+
 +++?code=/Lectures/Lecture_01/Assets/sln/Tests/HelloWorld.cs&lang=C#&title=Hello World Sample
 @[1]
 @[3-4, 15]
