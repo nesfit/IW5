@@ -1016,7 +1016,7 @@ Foo(y: 1);
 
 +++
 ## Expressions
-* Returns some value after computation
+* Usually, **returns some value** after computation
 * The simplest expression is *constant* or *variable*, e.g., `5`
 * Expression can be combined using operators
   
@@ -1034,6 +1034,12 @@ Foo(y: 1);
 * *Do not have a value*
 * Cannot be combined with other operators
 * E.g., `{}, return, etc...`
+* [An expression may be classified as] "nothing". This occurs when the expression is an *invocation of a method with a return type of void*. An expression classified as nothing *is only valid in the context of a statement expression*.
+```C#
+Expression<Action> tree = () => Console.WriteLine("Hello");
+Expression<Action> tree2 = () => { Console.WriteLine("Hello"); }; // Compile-time error
+```
+
 
 +++
 ### Assigning expression
