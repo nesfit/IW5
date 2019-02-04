@@ -798,6 +798,8 @@ class MyClass
 
 +++
 #### Variable types
+
+<!-- 
 +-----------------------------------+-----------------------------------+
 | Type                              | Value                             |
 +===================================+===================================+
@@ -820,7 +822,52 @@ class MyClass
 |                                   |     class type                    |
 +-----------------------------------+-----------------------------------+
 | ⋮                                 | ⋮                                 |
-+-----------------------------------+-----------------------------------+
++-----------------------------------+-----------------------------------+ 
+-->
+
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Non-nullable</strong> type</td>
+<td><em><ul>
+  <li>value of that </em>exact type</li>
+</ul></td>
+</tr>
+<tr>
+<td><strong>Nullable</strong>  type</td>
+<td><ul>
+<li>null<em> value </li>
+<li>value of that </em>exact type</li>
+</ul></td>
+</tr>
+<tr>
+<td><strong>Object</strong></td>
+<td><ul>
+<li><em>null</em> reference</li>
+<li>reference to an <em>object</em> of any reference type</li>
+<li>reference to a <em>boxed value</em> of any value type</li>
+</ul></td>
+</tr>
+<tr>
+<td><strong>Class</strong> type</td>
+<td><ul>
+<li><em>null</em> reference</li>
+<li>reference to an <em>instance of that class</em> type</li>
+<li>reference to an instance of a class <em>derived</em> from that class type</li>
+</ul></td>
+</tr>
+<tr>
+<td>⋮</td>
+<td>⋮</td>
+</tr>
+</tbody>
+</table>
 
 +++
 #### Variable types
