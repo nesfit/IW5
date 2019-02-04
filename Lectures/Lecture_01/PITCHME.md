@@ -979,28 +979,28 @@ int Sum(params int[] list)
 * Has a default value as a part of it's definition
 * If omitted, the *default value* is used
   
-  ```C#
-  void Foo(int x = 2, int y = 3) { … }
-  ```
-  ```C#
-  Foo();
-  Foo(1); 
-  Foo(1, 2);
-  ```
+```C#
+void Foo(int x = 2, int y = 3) { … }
+```
+```C#
+Foo();
+Foo(1); 
+Foo(1, 2);
+```
 
 +++
 ### Named parameters
 * Usually used with method calls on methods with *multiple optional parameters*
 * Reduce the number of *method overrides*
   
-  ```C#
-  void Foo(int x = 2, int y = 3) { … }
-  ```
-  ```C#
-  Foo(y:4, x:4);
-  Foo(y: ++a, x: --a); 
-  Foo(y: 1);
-  ```
+```C#
+void Foo(int x = 2, int y = 3) { … }
+```
+```C#
+Foo(y:4, x:4);
+Foo(y: ++a, x: --a); 
+Foo(y: 1);
+```
 
 ---
 ## Operators
@@ -1020,12 +1020,13 @@ int Sum(params int[] list)
 * The simplest expression is *constant* or *variable*, e.g., `5`
 * Expression can be combined using operators
   
-  ```C#
-  5*4
-  ```
-  ```C#
-  (5*4)+1
-  ```
+```C#
+5*4
+```
+```C#
+(5*4)+1
+```
+
 * If you are not sure about priority, use '()'
 
 +++
