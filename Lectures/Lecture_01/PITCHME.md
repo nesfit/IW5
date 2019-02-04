@@ -1,6 +1,6 @@
 ﻿@snap[midpoint span-100]
 
-# Introduction to C#, Visual studio and .NET
+# Introduction to C#, Visual Studio and .NET
 
 @snapend
 
@@ -59,7 +59,7 @@
 * ⋮
 
 ---
-## Recommended extensions, services and tools
+## Recommended extensions, services, and tools
 
 * Extensions:
   * Resharper
@@ -132,7 +132,7 @@ Templates for ReSharper that let you quickly generate code and data structures b
 ### [LinqPad](http://www.linqpad.net/)
 @snap[west span-40]
 
-Program that is not just for LINQ queries, but any C# expression, statement block or program. 
+LinqPad is not just for LINQ queries, but any C# expression, statement block or program. 
 Put an end to those hundreds of Visual Studio Console projects cluttering your source folder and join the revolution of LINQPad scripters and incremental developers.
 
 @snapend
@@ -158,7 +158,7 @@ It can reliably decompile any .NET assembly into equivalent C# or IL code.
 ### [Markdown Editor](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)
 @snap[west span-40]
 
-A full featured Markdown editor with live preview and syntax highlighting. 
+A full-featured Markdown editor with live preview and syntax highlighting. 
 Supports GitHub flavored Markdown.
 
 @snapend
@@ -241,7 +241,7 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 
 +++
 ### Performance
-* Applications provide better response times and require less compute power. 
+* Applications provide better response times and require less computing power. 
 * Comparison of web application frameworks with tasks like 
   * JSON serialization, 
   * database access, 
@@ -373,7 +373,7 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 * Delimiters
 * Operators
 * Comments
-* Data types
+* Datatypes
 * Value Types
 
 @snap[east span-40]
@@ -407,12 +407,12 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 +++
 ## Identifiers
 * Name given to entities such as *variables*, *methods*, *classes*, etc.
-* Tokens which uniquely identify an element
+* Tokens which uniquely identifies elements
 * `value` is a identifier:  
   ```C#
   int value;
   ```
-* Reserved keywords can not be used unless prefix `@` is added  
+* **Reserved keywords** can not be used unless prefix `@` is added  
   ```C#
   int @class;
   ```
@@ -488,7 +488,7 @@ var sum = 1 + 5 * (6 / 2);
   ```
 
 ---
-## Data types
+## Datatypes
 * Instruct the compiler or interpreter how the programmer intends to use the data
 * **Value type**
   * Variable directly **contains data**
@@ -806,8 +806,8 @@ class MyClass
 +++
 #### String concatenation
 * `+` operator
-* Not all operands needs to be strings themselves
-* Non string operands get called `ToString()` method on them
+* Not all operands need to be strings
+* Non-string operands get called `ToString()` method on them
   ```C#
   string s = "a" + 5; // a5
   ```
@@ -819,7 +819,7 @@ class MyClass
 +++
 ### Array
 * Represents *fixed length data structure of homogeneous items*
-* Stored in sequential block of memory
+* Stored in a sequential block of memory
 * *Do not have to be declared before it can be used*
 * **Initialization**
   * Value types - default value
@@ -990,7 +990,7 @@ class MyClass
     * Variable **cannot** *be modified* by the called method
   * **Out** reference
     * Variable **must** *be assigned* by the called method
-    * Variable **need not** *to be initialized* before method call
+    * Variable **need not** *to be initialized* before the method call
 
 +++?code=/Lectures/Lecture_01/Assets/sln/Tests/ValueParameter.cs&lang=C#&title=Value Parameter Sample
 @[9-26]
@@ -1077,8 +1077,8 @@ Foo(y: 1);
 * If you are not sure about priority, use '()'
 
 +++
-### Void expression
-* *Do not have a value*
+### Void expressions
+* *Do not have value*
 * Cannot be combined with other operators
 * E.g., `{}, return, etc...`
 * [An expression may be classified as] "nothing". This occurs when the expression is an *invocation of a method with a return type of void*. An expression classified as nothing *is only valid in the context of a statement expression*.
