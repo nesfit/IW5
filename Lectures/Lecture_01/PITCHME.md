@@ -730,6 +730,20 @@ interface IInterface
   * They are also similar to the concept of function pointers found in some other languages
   * Unlike function pointers, delegates are object-oriented and **type-safe**
 
+```C#
+public delegate int PerformCalculation(int x, int y);
+
+class MyClass
+{
+  PerformCalculation PerformCalculation;
+  
+  void CallDelegate()
+  {
+    PerformCalculation(1, 2);
+  }
+}
+```
+
 +++
 ### String
 * `System.String` / `string`
