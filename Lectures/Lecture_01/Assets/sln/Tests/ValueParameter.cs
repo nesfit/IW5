@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using Xunit;
 
 namespace Tests
 {
@@ -11,11 +12,17 @@ namespace Tests
             fooSB = null;
         }
 
+        [Fact]
         public void Test()
         {
+            //Arrange
             StringBuilder sb = new StringBuilder();
+
+            //Act
             Foo(sb);
-            Console.WriteLine(sb.ToString());      // test
+
+            //Assert
+            Assert.Equal("test", sb.ToString());
         }
     }
 }

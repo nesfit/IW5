@@ -946,7 +946,7 @@ class MyClass
     * Variable **need not** *to be initialized* before method call
 
 +++?code=/Lectures/Lecture_01/Assets/sln/Tests/ValueParameter.cs&lang=C#&title=Value Parameter Sample
-@[8-19]
+@[9-26]
 [Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture_01/Assets/sln/Tests/ValueParameter.cs)
 
 +++?code=/Lectures/Lecture_01/Assets/sln/Tests/RefParameter.cs&lang=C#&title=Ref Parameter Sample
