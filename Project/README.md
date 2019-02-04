@@ -14,6 +14,7 @@ Dejte si na to tedy prosím pozor.
 
 
 ## Cíl
+
 Cílem je vytvořit použitelnou a snadno rozšiřitelnou aplikaci, která splňuje požadavky zadání. Aplikace nemá padat nebo zamrzávat, pokud uživatel vyplní něco špatně, upozorní ho validační hláškou.
 
 ---
@@ -24,19 +25,18 @@ Zadání úmyslně není striktní, je Vám ponechána volnost, pro vlastní rea
 
 ## Zadání - Aplikace pro týmovou komunikaci
 
-Výsledná aplikace má sloužit studentům k usnadnění komunikace na týmových projektech. Uživatel (Student) může být součástí více týmů. Členové týmu komunikují pomocí příspěvků a odpovědí na ně. Pro lepší představu si představte zjednodušenou Facebookovou skupinu. 
+Výsledná aplikace má sloužit studentům k usnadnění komunikace na týmových projektech. Uživatel (Student) může být součástí více týmů. Členové týmu komunikují pomocí příspěvků a odpovědí na ně. Pro lepší představu si představte zjednodušeně Microsoft Teams nebo Facebook skupinu. 
 
 ### Přihlášení
 Uživatel se hlásí na základě emailu a hesla. **Hesla ukládejte v bezpečné podobě!**
 
 ### Seznam týmů
-Po přihlášení vidí uživatel seznam svých týmů a může si je zobrazit. 
+Po přihlášení vidí uživatel seznam svých týmů a může si je kdykoliv zobrazit. 
 
 ### Příspěvky týmu
+Zde každý člen týmu vidí všechny příspěvky a odpovědi na ně; může přidávat příspěvek nebo komentář k jinému příspěvku. Ostatní uživatelé sem nemají přístup.
 
-Zde každý člen týmu vidí všechny příspěvky a odpovědi na ně a může přidávat příspěvek nebo komentář k jinému příspěvku. Ostatní uživatelé zde nemají přístup.
-
- Příspěvky v týmu jsou zobrazeny i s komentáři a seřazeny dle datumu vytvoření posledního komentáře, ne datumu zveřejnění příspěvku. Komentáře se řadí chronologicky.
+Příspěvky v týmu jsou zobrazeny i s komentáři a seřazeny dle datumu vytvoření posledního komentáře, ne datumu zveřejnění příspěvku. Komentáře se řadí chronologicky.
 
  - Příspěvek č. 1
     - odpověď č. 1 na příspěvek č. 1
@@ -45,13 +45,13 @@ Zde každý člen týmu vidí všechny příspěvky a odpovědi na ně a může 
     - odpověď č. 1 na příspěvek č. 2
     - odpověď č. N na příspěvek č. 2
 
-Zobrazení příspěvku obsahuje zvýrazněný titulek, formátovaný text, autora a datum zveřějnění. Můžete přidat i vlastní rozšíření. Možnost odpovědět na příspěvek.
+Zobrazený příspěvek obsahuje *zvýrazněný titulek, formátovaný text, autora a datum zveřějnění*. Můžete přidat i vlastní **rozšíření**, např. možnost odpovědět na příspěvek.
 
-Odpověď na příspěvek obsahuje formátovaný text, autora a datum zveřějnění. Můžete přidat i rozšíření.
+Odpověď na příspěvek obsahuje formátovaný text, autora a datum zveřějnění; opět je zde prostor pro **rošíření**.
 
-Při vytváření příspěvku nebo komentáře uživatel nevyplňuje datum zveřejnění ani autora, aplikace si je doplní sama. 
+Při vytváření příspěvku nebo komentáře *uživatel nevyplňuje datum zveřejnění ani autora*, aplikace si je doplní sama. 
 
-Pokud se aplikace neaktualizuje sama, obsahuje tlačítko pro aktualizaci příspěvků.
+Pokud se aplikace neaktualizuje sama, obsahuje tlačítko pro *aktualizaci příspěvků*.
 
 ### Vyhledávání
 Aplikace umožňuje vyhledávání v příspěvcích a komentářích.
@@ -67,27 +67,25 @@ Zde je vidět jméno uživatele, jeho poslední aktivita a jeho týmy.
 
 ## Spolupráce
 
-Projekt řeší studenti v týmech. V každém týmu jsou **4 studenti**. *Tým
+Projekt řeší studenti v týmech. V každém týmu je **4-5 studentů**. *Tým
 o méně studentech není přípustný.*
 
-Při řešení projektu týmy využívají Visual Studio Team Services (VSTS) a
-využívají GIT na sdílení kódu. Do svého GIT repositáře přidělí přístup
-vyučujícím (způsob bude vysvětlen v rámci 1. cvičení).
-
-Z GITu *musí být viditelná postupná práce na projektu a spolupráce
-týmu*. Pokud uvidíme, že existuje malé množství nelogických a
-nepřeložitelných commitů tak nás bude zajímat, jak jste spolupracovali a
-může to vést na snížení bodového hodnocení. Repozitář pojmenujte **iw5-2019-team<00>** dle Vašeho čísla týmu tak, že výsledné URL pro přístup pro tento imaginární tým by bylo https://iw5-2018-team00.visualstudio.com.
-
-Do Vašeho týmového projektu na GIT si v části Members přidejte účet
+Při řešení projektu týmy využívají Azure DevOps a
+využívají GIT na sdílení kódu. Do svého projektu přidělte přístup
+vyučujícím (způsob bude vysvětlen v rámci 1. cvičení); tj. do Vašeho týmového projektu si v části Members přidejte účet
 **uciteliw5@vutbr.cz**
 
-Tento účet budou používat vyučující pro přístup k odevzdávaným souborům.
+Účet **uciteliw5@vutbr.cz** budou používat vyučující pro přístup k odevzdávaným souborům.
 Bez přidání tohoto účtu není možné přistoupit k vašemu projektu a tedy
 není možné jej ze strany vyučujících hodnotit.
 
 Návod na přidání člena projektu můžete najít zde:
 *https://docs.microsoft.com/en-us/vsts/accounts/add-team-members-vs*
+
+Z GITu *musí být viditelná postupná práce na projektu a spolupráce
+týmu*. Pokud uvidíme, že existuje malé množství nelogických a
+nepřeložitelných commitů tak nás bude zajímat, jak jste spolupracovali a
+může to vést na snížení bodového hodnocení. Organizaci pojmenujte **iw5-2019-team<00>** dle Vašeho čísla týmu a projekt **projekt** tak, že výsledné URL pro přístup pro tento imaginární tým by bylo https://dev.azure.com/iw5-2019-team00/project.
 
 ## Odevzdávání
 
@@ -96,20 +94,19 @@ vlastnosti projektu. Nicméně fáze na sebe navzájem následují a studenti
 pokračují v práci na svém kódu i po jeho odevzdání v rámci následující
 fáze.
 
-**Kontroluje se kód, který je nahrán v GIT** ve větvy `master`. Vždy se kontroluje
+**Kontroluje se kód, který je nahrán v GIT** ve větvi `master`. Vždy se kontroluje
 **poslední commit před časem odevzdávání** dané fáze projektu. Na
-commity nahrány po času odevzdávání nebo v jiných větvích nebude brán zřetel.
+commity nahrány po času odevzdávání nebo v jiných větvích nebude brán zřetel. Pokud commit, který máme hodnotit otagujete, např. `v1, v2, v3`, usnadníte nám orietaci při hodnocení.
 
-Je silně doporučováno projekty v průběhu semestru konzultovat s
-cvičícími, předejdete tak případným komplikacím při odevzdání.
+Je silně doporučováno projekty v průběhu semestru konzultovat po přednášce/cvičení, předejdete tak případným komplikacím při odevzdání.
 
-### Fáze 1 – objektový návrh (10 bodů) – odevzdání 18. 3. 2018 23:59:59
+### Fáze 1 – objektový návrh (10 bodů) – odevzdání 10. 3. 2018 23:59:59
 
 V téhle fázi se zaměříme na *datový návrh*. Vyžaduje se po Vás, aby
 datový návrh splňoval zadání a nevynechal žádnou podstatnou část.
 Zamyslete se nad vazbami mezi jednotlivými entitami v datovém modelu.
 V následující fázi budete entity nahrávat do databáze, takže myslete na
-jejich propojení již v téhle fázi. V této fázi budeme chtít, abyste
+jejich propojení již nyní. V této fázi budeme chtít, abyste
 **odevzdali kód**, kde budete mít *entitní třídy*, které budou obsahovat
 všechny vlastnosti, které budete dále potřebovat a vazby mezi třídami.
 **Nestačí tedy odevzdat diagram tříd, nebo nějakou jinou reprezentaci.**
@@ -127,7 +124,7 @@ Hodnotíme:
     (bonusové body)
 
 
-### Fáze 2 – databáze a WPF backend (20 bodů) – 15. 4. 2018 23:59:59
+### Fáze 2 – databáze a WPF backend (20 bodů) – 7. 4. 2018 23:59:59
 
 Aplikace již nepracuje jen s daty uvedenými ve zdrojových souborech. Je
 napojena na databázi a pracuje s ní. Vytvořte napojení datových tříd
@@ -141,16 +138,15 @@ do databáze.
 **automatické testy**
 
 Dbejte také kvality Vašeho kódu. Od této fáze se hodnotí i tenhle
-atribut. Opravte si tedy předchozí kód dle zásad Clean Code a SOLID
-probíraných na cvičeních a důsledně je dodržujte.
+atribut. Opravte si tedy předchozí kód dle zásad Clean Code a S.O.L.I.D.
+probíraných na přednášce/cvičení a důsledně je dodržujte.
 
 Hodnotíme:
 
 -   využití **Entity Framework (EF) Code First** na vytvoření databáze
     z tříd navrhnutých ve fázi 1
 
--   návrh WPF aplikace dle návrhového vzoru **Model View
-    ViewModel (MVVM)**
+-   návrh WPF aplikace dle návrhového vzoru **Model View ViewModel (MVVM)**
 
 -   čistotu kódu
 
@@ -185,7 +181,7 @@ Hodnotíme:
 
 -   zobrazení jednotlivých informací dle zadání – seznam, detail…
 
--   správné využití data bindingu v XAML
+-   správné využití data-bindingu v XAML
 
 -   čistotu kódu
 
@@ -209,19 +205,19 @@ rozšíření:
 
 ## Obhajoba
 
-Obhajoby projektů budou probíhat v **posledních 2 týdnech** výuky
-cvičení. Termíny obhajob budou vyhlášeny v průběhu semestru.
+Obhajoby projektů budou probíhat v **posledních 2 týdnech** semestru.
+Termíny obhajob budou vyhlášeny v průběhu semestru.
 
 Na obhajobu se dostaví **celý tým**. Z členů týmu bude cvičícími vybrán
 1 student, který obhajobu povede. Na obhajobu **není nutné** mít
 prezentaci (powerpoint nebo pdf). Budete nám muset ukázat, jak funguje
 váš kód, že je správně navržen. Připravte se na naše otázky
 k funkcionalitě jednotlivých tříd a k důvodům jejich členění. Na
-obhajobu bude mít tým 15-20 minut.
+obhajobu bude mít tým 10-15 minut.
 
 ## Základní funkcionalita
 
-**Pokud aplikace nesplňuje následující podmínky je projekt hodnocen 0 body!'**
+**Pokud aplikace nesplňuje následující podmínky je projekt hodnocen 0 body!**
 
 Aplikace musí splňovat
  - Přihlašování
@@ -236,9 +232,7 @@ Aplikace musí splňovat
     - Možnost komentovat příspěvek
  - Vytvoření uživatele
  - Správa členů týmu
-    - Možnost přidat a odebrat člena
-
- 
+    - Možnost přidat a odebrat člena 
 
 ## Finální odevzdání
 
