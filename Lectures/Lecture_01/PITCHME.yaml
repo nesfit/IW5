@@ -7,6 +7,7 @@
 theme : simple
 theme-override : /Lectures/GitPitch/assets/css/PITCHME.css
 highlight : vs
+code-line-numbers : true
 logo : /Lectures/GitPitch/assets/image/logo.png
 #transition : none
 published : true
