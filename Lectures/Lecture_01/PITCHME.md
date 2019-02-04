@@ -363,6 +363,9 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 
 ---
 # C# 101
+@snap[north-east span-10]
+![](/Lectures/Lecture_01/Assets/img/Overview_small.png)
+@snapend
 
 * Identifiers
 * Keywords
