@@ -1161,28 +1161,26 @@ Expression<Action> tree2 = () => { Console.WriteLine("Hello"); }; // Compile-tim
 
 ---
 ## Namespaces
-* Groups classes and interfaces to named groups
-* Namespace `System.Security.Cryptography` contains class e.g., RSA
-* Usage of types from given namespace
+* *Groups classes and interfaces to named groups*
+* Namespace `System.Security.Cryptography` contains class, e.g., RSA
+* Usage of types from a given namespace, e.g.,
+```C#
+System.Security.Cryptography.RSA rsa = System.Security.Cryptography.RSA.Create();
+```
 
-  ```C#
-  System.Security.Cryptography.RSA rsa = System.Security.Cryptography.RSA.Create();
-  ```
 * Directive `using`
-
-  ```C#
-  using System.Security.Cryptography;
-  public class Namespaces
+```C#
+using System.Security.Cryptography;
+public class Namespaces
+{
+  public void Method()
   {
-    public void Method()
-    {
-      RSA rsa = RSA.Create(); // Don't need fully qualified name
-    }
+    RSA rsa = RSA.Create(); // Don't need fully qualified name
   }
-  ```
+}
+```
 
 +++
-
 ### Keyword `namespace`
 
 ```C#
@@ -1192,7 +1190,8 @@ namespace Outer.Middle.Inner
   class Class2 { ... }
 }
 ```
- Same as:
+
+* Same as:
 
 ```C#
 namespace Outer
