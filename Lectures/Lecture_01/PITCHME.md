@@ -712,6 +712,16 @@ struct Cat
 * A **class** or **struct** that **implements an interface** *must provide implementations of the interface’s function members*
 * An **interface can inherit** *from multiple base interfaces*, and a **class or struct can implement** *multiple interfaces*
 
+```C#
+interface IInterface
+{
+  string FirstName { get; }
+  string LastName { get; }
+  string GetFullName();
+}
+```
+
+
 +++
 ### Delegate
 * **References to methods** with a particular parameter list and return type
