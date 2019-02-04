@@ -20,14 +20,30 @@
   
 .reveal h1 {
   text-align: center;
-  font-size: 2.5em; }
+  font-size: 2.5em; 
+  top: 25px;
+  left: 50%;
+  position: fixed;
+  transform: translateX(-50%);
+}
 
 .reveal h2 {
   text-align: center;
-  font-size: 1.7em; }
+  font-size: 1.7em;
+  top: 25px;
+  left: 50%;
+  position: fixed;
+  transform: translateX(-50%);
+ }
 
 .reveal h3 {
-  font-size: 1.6em; }
+  font-size: 1.6em;
+  top: 25px;
+  left: 50%;
+  position: fixed;  
+  text-align: center;
+  transform: translateX(-50%);
+ }
 
 .reveal h4 {
   font-size: 1.5em; }
@@ -37,6 +53,35 @@
   font-size: 1.5em;
   line-height: 1.0;
   }
+
+.reveal img {
+  border: none !important;
+  box-shadow: none !important;
+  z-index:-1;
+  }
+
+.reveal em {
+    font-style: italic;
+    font-family: Courier, monospace;
+}
+
+.reveal code {
+  background-color: #f0f0f0;  
+  font-family: 'Inconsolata', Courier, monospace;
+}
+
+.reveal div.left {
+  float: left;
+  z-index: -10;
+  width: 45%;
+}
+
+.reveal div.right {
+  float: right;
+  z-index: -10;
+  width: 55%;
+}
+
 
 /*
 .gold {
@@ -93,18 +138,6 @@ span.aside {
   display: block;
 }
 
-.reveal div.left {
-    float: left;
-    z-index: -10;
-    width: 45%;
-}
-
-.reveal div.right {
-    float: right;
-    z-index: -10;
-    width: 55%;
-}
-
 .reveal a.pro-link {
     font-size: 0.5em;
 }
@@ -117,7 +150,4 @@ span.aside {
     background-color: #f0f0f0;
 }
 
-.reveal em {
-    font-style: italic;
-    font-family: Courier New;
-} */
+ */
