@@ -1,7 +1,7 @@
-﻿@snap[midpoint span-100]
-# Introduction to C#, Visual studio and .NET
-@snapend
-
+﻿# Introduction to C#, Visual studio and .NET
+<div class="right">
+[ Jan Pluskal <ipluskal@fit.vutbr.cz> ]
+</div>
 ---
 @snap[midpoint span-100]
 ## Introduction to Visual Studio
@@ -159,7 +159,7 @@ Useful design-time utilities for EF 6, accessible through the Visual Studio Solu
 +++
 ### [GitFlow](https://marketplace.visualstudio.com/items?itemName=vs-publisher-57624.GitFlowforVisualStudio2017)
 @snap[west span-50]
-Team Explorer extension integrates GitFlow into your development workflow. It lets you easily create and finish feature, release and hotfix branches right from Team Explorer.  For more deails about git recommends [Pro Git book](https://git-scm.com/book/en/v2).
+Team Explorer extension integrates GitFlow into your development workflow. It lets you easily create and finish feature, release and hotfix branches right from Team Explorer.  For more details about git recommends [Pro Git book](https://git-scm.com/book/en/v2).
 @snapend
 
 @snap[east span-40]
@@ -201,7 +201,7 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 * Windows
 * Windows server
 * Linux
-* Microservises on cloud
+* Micro-services on cloud
 
 @snap[east span-50]
 ![](/Lectures/Lecture_01/Assets/img/netcore3.jpg)
@@ -236,7 +236,7 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 +++
 ### Open source
 * [**.NET Foundation**](https://dotnetfoundation.org/)
-* Independent, Innovative, Commencially-friendly
+* Independent, Innovative, Commercially-friendly
 * Google, JetBrains, Red Hat, Samsung, Unity...
 
 ---
