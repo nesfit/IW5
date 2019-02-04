@@ -85,7 +85,9 @@ Návod na přidání člena projektu můžete najít zde:
 Z GITu *musí být viditelná postupná práce na projektu a spolupráce
 týmu*. Pokud uvidíme, že existuje malé množství nelogických a
 nepřeložitelných commitů tak nás bude zajímat, jak jste spolupracovali a
-může to vést na snížení bodového hodnocení. Organizaci pojmenujte **iw5-2019-team<00>** dle Vašeho čísla týmu a projekt **projekt** tak, že výsledné URL pro přístup pro tento imaginární tým by bylo https://dev.azure.com/iw5-2019-team00/project.
+může to vést na snížení bodového hodnocení. Organizaci pojmenujte **iw5-2019-team<00>** dle Vašeho čísla týmu a projekt **projekt** tak, že výsledné URL pro přístup pro tento imaginární tým by bylo https://dev.azure.com/iw5-2019-team00/project. Nazapomeňtě nastavit **Work item process** template na **Scrum**.
+
+Pro řízení projektu využijte metodologii **[Scrum](https://docs.microsoft.com/en-us/azure/devops/boards/work-items/guidance/scrum-process-workflow?view=azure-devops)**. Budeme chtít vidět, že máte naplánované sprinty na jednotlivé fáze odevzdání. Práci rozdělte minimálně na **Product Backlog, Tasks a Bugs**. Očekáváme, že využijete záložky **Boards** pro vzájemnou synchronizaci a **[Burndown chart](https://docs.microsoft.com/en-us/azure/devops/report/sql-reports/sprint-burndown-scrum?view=azure-devops-2019&viewFallbackFrom=azure-devops)** bude na konci každého sprintu, tj. při každém odevzdání, reflektovat reálný stav projektu. Nebudete přeci nám jakožto Vašim **Stakeholderům** lhát!
 
 ## Odevzdávání
 
