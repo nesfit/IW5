@@ -908,13 +908,14 @@ class MyClass
 +++  
 ### Stack vs Heap
 * **Stack**
-  * Allocated block of memory for *local variables, parameters*
+  * Allocated block of memory for *local variables, parameters, return values*
 * **Heap**
-  * Storage for *reference data types*
-  * Managed by *Garbage Collector*  
-* Local variable has to be *assigned before reading*
-* Method has to be *called with all arguments*
-* All other values are initialized automatically
+  * Storage for *reference data types, static variables*
+  * Managed by the *Garbage Collector*  
+* Therefore:
+  * **Local variable** has to be *assigned before reading*
+  * **Method** has to be *called with all arguments*
+  * All other values are initialized automatically
 
 +++
 ### Default values
