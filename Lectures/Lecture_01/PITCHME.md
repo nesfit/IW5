@@ -943,7 +943,7 @@ class MyClass
     * Variable **cannot** *be modified* by the called method
   * **Out** reference
     * Variable **must** *be assigned* by the called method
-    * Variable need not to be initialized before method call
+    * Variable **need not** *to be initialized* before method call
 
 +++?code=/Lectures/Lecture_01/Assets/sln/Tests/ValueParameter.cs&lang=C#&title=Value Parameter Sample
 @[8-19]
