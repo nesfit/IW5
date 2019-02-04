@@ -78,7 +78,9 @@
 ### [Resharper](https://www.jetbrains.com/resharper/)
 
 @snap[west span-40]
+
 Extends Visual Studio with code inspections. For most inspections provides quick-fixes to improve code in one way or another. Helps safely organize code and move it around the solution. For more details see [features](https://www.jetbrains.com/resharper/features/).
+
 @snapend
 
 @snap[east span-50]
@@ -112,7 +114,9 @@ As you type, the method complexity "health" is updated, and the complexity is sh
 +++
 ### [Mnemonic templates](https://github.com/JetBrains/mnemonics)
 @snap[west span-50]
+
 Templates for ReSharper that let you quickly generate code and data structures by typing in names.
+
 @snapend
 
 @snap[east span-50]
@@ -122,8 +126,10 @@ Templates for ReSharper that let you quickly generate code and data structures b
 +++
 ### [LinqPad](http://www.linqpad.net/)
 @snap[west span-40]
+
 Program that is not just for LINQ queries, but any C# expression, statement block or program. 
 Put an end to those hundreds of Visual Studio Console projects cluttering your source folder and join the revolution of LINQPad scripters and incremental developers.
+
 @snapend
 
 @snap[east span-60]
@@ -133,8 +139,10 @@ Put an end to those hundreds of Visual Studio Console projects cluttering your s
 +++
 ### [DotPeek](https://www.jetbrains.com/decompiler/)
 @snap[west span-40]
+
 Tool based on ReSharper's bundled decompiler. 
 It can reliably decompile any .NET assembly into equivalent C# or IL code.
+
 @snapend
 
 @snap[east span-60]
@@ -144,8 +152,10 @@ It can reliably decompile any .NET assembly into equivalent C# or IL code.
 +++
 ### [Markdown Editor](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)
 @snap[west span-40]
+
 A full featured Markdown editor with live preview and syntax highlighting. 
 Supports GitHub flavored Markdown.
+
 @snapend
 
 @snap[east span-60]
@@ -157,7 +167,9 @@ Supports GitHub flavored Markdown.
 +++
 ### [Entity Framework 6 Power Tools](https://marketplace.visualstudio.com/items?itemName=ErikEJ.EntityFramework6PowerToolsCommunityEdition)
 @snap[west span-40]
+
 Useful design-time utilities for EF 6, accessible through the Visual Studio Solution Explorer context menu when right-clicking on a file containing a derived DbContext class.
+
 @snapend
 
 @snap[east span-60]
@@ -168,7 +180,9 @@ Useful design-time utilities for EF 6, accessible through the Visual Studio Solu
 +++
 ### [GitFlow](https://marketplace.visualstudio.com/items?itemName=vs-publisher-57624.GitFlowforVisualStudio2017)
 @snap[west span-50]
+
 Team Explorer extension integrates GitFlow into your development workflow. It lets you easily create and finish feature, release and hotfix branches right from Team Explorer.  For more details about git recommends [Pro Git book](https://git-scm.com/book/en/v2).
+
 @snapend
 
 @snap[east span-40]
