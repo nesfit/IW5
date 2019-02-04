@@ -336,7 +336,7 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 
 +++
 ## C# - In The Nutshell
-@snap[east span-90]
+@snap[midpoint span-90]
 ![](/Lectures/Lecture_01/Assets/img/Csh_in_nutshell_framework.png)
 @snapend
 
