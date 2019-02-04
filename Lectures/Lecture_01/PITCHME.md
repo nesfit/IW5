@@ -29,7 +29,7 @@
 @snapend
 
 +++
-## Comparation of Visual Studio versions
+## Comparison of Visual Studio versions
 |  Supported Features                | Community |  Professional | Enterprise |
 | ---------------------------------- | --------- | ------------- | ---------- |
 | Supported Usage scenarios          | ⚫⚫⚫◯  | ⚫⚫⚫⚫     | ⚫⚫⚫⚫   |
@@ -77,11 +77,11 @@ Extends Visual Studio with code inspections. For most inspections provides quick
 @snapend
 
 +++
-### [Azure DevOps](https://visualstudio.microsoft.com/team-services/)  
+### [Azure DevOps](https://azure.microsoft.com/en-us/services/devops/)  
 * Before Visual Studio Team Services. 
-* Cloud-hosted private Git repos
+* Cloud-hosted private Git repositories
 * Agile planning
-* Build managment
+* Build management
 * Test Plans
 
 @snap[east span-60]
@@ -1265,11 +1265,6 @@ namespace N2
 ```
 
 ---
-
-## Credits
-* Michal Orlíček
-
----
 ## References:
 
 [C# 7.0 in a Nutshell: The Definitive Reference](https://www.amazon.com/C-7-0-Nutshell-Definitive-Reference/dp/1491987650)  
@@ -1291,3 +1286,6 @@ namespace N2
 [CodeProject Improve garbage collector performance](https://www.codeproject.com/Articles/39246/NET-Best-Practice-No-2-Improve-garbage-collector)  
 [C# 7.0 in a Nutshell](http://www.albahari.com/nutshell/)  
 [.NET Core, .NET Framework, Xamarin](https://blogs.msdn.microsoft.com/cesardelatorre/2016/06/27/net-core-1-0-net-framework-xamarin-the-whatand-when-to-use-it/)  
+
+## Credits
+* Michal Orlíček - for slides preparation
