@@ -196,7 +196,7 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 
 ---
 ## Why To Choose .NET?
-@snap[north=east span-10]
+@snap[north-east span-10]
 ![](/Lectures/Lecture_01/Assets/img/Overview_small.png)
 @snapend
 
@@ -273,7 +273,7 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 
 ---
 # .NET Platform
-@snap[north=east span-10]
+@snap[north-east span-10]
 ![](/Lectures/Lecture_01/Assets/img/Overview_small.png)
 @snapend
 
