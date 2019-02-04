@@ -283,7 +283,11 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 * Benefits
 * Garbage collector
 * In The Nutshell
-* Application models
+* The .NET family of frameworks
+
+@snap[south-east]
+[Source](https://blogs.msdn.microsoft.com/cesardelatorre/2016/06/27/net-core-1-0-net-framework-xamarin-the-whatand-when-to-use-it/)
+@snapend
 
 @snap[east span-70]
 ![](/Lectures/Lecture_01/Assets/img/Overview.png)
@@ -352,7 +356,7 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 | ⋮                                   | ⋮                                                                                                                          |
 
 +++
-## Application models
+## The .NET family of frameworks
 @snap[midpoint span-90]
 ![](/Lectures/Lecture_01/Assets/img/dot_net_libraries.png)
 @snapend
