@@ -32,7 +32,7 @@
 3. [Úvod do Objektově Orientované Programování](https://gitpitch.com/fitiw/5?grs=github&t=white&p=Lectures%2FLecture_02#/)
    * pokročilé konstrukce v jazyce C# - výjimky, události, delegáty, lambda výrazy a generika
 4. [Představení základních knihovních funkcí (BCL)](https://gitpitch.com/fitiw/5?grs=github&t=white&p=Lectures%2FLecture_03#/)
-   * dotazování za pomocí vestavěního nástroje LINQ nad datovými zdroji (kolekcemi, XML, MSSQL)
+   * dotazování za pomocí vestavěného nástroje LINQ nad datovými zdroji (kolekcemi, XML, MSSQL)
 5. [Propojení aplikace s databází](https://gitpitch.com/fitiw/5?grs=github&t=white&p=Lectures%2FLecture_04#/)
    * zajištění persistence pomocí ORM rozšíření Entity Framework s návrhovými vzory UnitOfWork a Repository
 6. [Psaní čistého, udržovatelného kódu](https://gitpitch.com/fitiw/5?grs=github&t=white&p=Lectures%2FLecture_05#/)
