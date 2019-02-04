@@ -791,57 +791,36 @@ class MyClass
 
 --- 
 ### Variables
-* Name given to a storage area
-* Has a specific type, which determines:
-  * The size and layout of the memory
-  * The range of values that can be stored within that memory
-  * The set of operations that can be applied
+* Has a specific **type**, which determines:
+  * The **size** and layout of the memory
+  * The **range of values** that can be stored within that memory
+  * The **set of operations** that can be applied
 
 +++
 #### Variable types
-<table>
-<thead>
-<tr>
-<th>Type</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Non-nullable</strong> type</td>
-<td><em><ul>
-  <li>value of that </em>exact type</li>
-</ul></td>
-</tr>
-<tr>
-<td><strong>Nullable</strong>  type</td>
-<td><ul>
-<li>null<em> value </li>
-<li>value of that </em>exact type</li>
-</ul></td>
-</tr>
-<tr>
-<td><strong>Object</strong></td>
-<td><ul>
-<li><em>null</em> reference</li>
-<li>reference to an <em>object</em> of any reference type</li>
-<li>reference to a <em>boxed value</em> of any value type</li>
-</ul></td>
-</tr>
-<tr>
-<td><strong>Class</strong> type</td>
-<td><ul>
-<li><em>null</em> reference</li>
-<li>reference to an <em>instance of that class</em> type</li>
-<li>reference to an instance of a class <em>derived</em> from that class type</li>
-</ul></td>
-</tr>
-<tr>
-<td>⋮</td>
-<td>⋮</td>
-</tr>
-</tbody>
-</table>
++-----------------------------------+-----------------------------------+
+| Type                              | Value                             |
++===================================+===================================+
+| **Non-nullable** type             | -   value of that exact type      |
++-----------------------------------+-----------------------------------+
+| **Nullable** type                 | -   null value                    |
+|                                   | -   value of that exact type      |
++-----------------------------------+-----------------------------------+
+| **Object**                        | -   *null* reference              |
+|                                   | -   reference to an *object* of   |
+|                                   |     any reference type            |
+|                                   | -   reference to a *boxed value*  |
+|                                   |     of any value type             |
++-----------------------------------+-----------------------------------+
+| **Class** type                    | -   *null* reference              |
+|                                   | -   reference to an *instance of  |
+|                                   |     that class* type              |
+|                                   | -   reference to an instance of a |
+|                                   |     class *derived* from that     |
+|                                   |     class type                    |
++-----------------------------------+-----------------------------------+
+| ⋮                                 | ⋮                                 |
++-----------------------------------+-----------------------------------+
 
 +++
 #### Variable types
