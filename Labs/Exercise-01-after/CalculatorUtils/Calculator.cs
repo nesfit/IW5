@@ -1,13 +1,13 @@
-using System;
+﻿using System;
 
-namespace Calculator
+namespace Exercise_01.CalculatorUtils
 {
     public class Calculator
     {
         /// <summary>
         ///     Calculates basic mathematical operations (+,-,*,/)
         /// </summary>
-        public static int Calculate(int operand1, int operand2, MathOperation mathOperation)
+        public static Int32 Calculate(Int32 operand1, Int32 operand2, MathOperation mathOperation)
         {
             switch (mathOperation)
             {
@@ -24,22 +24,22 @@ namespace Calculator
             }
         }
 
-        private static int Add(int operand1, int operand2)
+        private static Int32 Add(Int32 operand1, Int32 operand2)
         {
             return operand1 + operand2;
         }
 
-        private static int Divide(int operand1, int operand2)
+        private static Int32 Divide(Int32 operand1, Int32 operand2)
         {
             return operand1 / operand2;
         }
 
-        private static int Multiply(int operand1, int operand2)
+        private static Int32 Multiply(Int32 operand1, Int32 operand2)
         {
             return operand1 * operand2;
         }
 
-        private static int Substract(int operand1, int operand2)
+        private static Int32 Substract(Int32 operand1, Int32 operand2)
         {
             return operand1 - operand2;
         }
