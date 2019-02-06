@@ -1,7 +1,7 @@
 ﻿using System;
-using Calculator;
+using Exercise_01.CalculatorUtils;
 
-namespace CalculatorConsole
+namespace Exercise_01.CalculatorConsoleApp
 {
     internal class CalculatorWrapper
     {
@@ -13,10 +13,10 @@ namespace CalculatorConsole
             ExecuteOperation(op1, op2, operation);
         }
 
-        private static int CheckOperand(int? operand)
+        private static Int32 CheckOperand(Int32? operand)
         {
             if (operand == null)
-                throw new ArgumentNullException(nameof(operand), "Opperand cannot be null!");
+                throw new ArgumentNullException(nameof(operand), "Operand cannot be null!");
             return operand.Value;
         }
 
@@ -27,20 +27,20 @@ namespace CalculatorConsole
             return operation.Value;
         }
 
-        private static void ExecuteOperation(int op1, int op2, MathOperation operation)
+        private static void ExecuteOperation(Int32 op1, Int32 op2, MathOperation operation)
         {
             try
             {
-                var result = Calculator.Calculator.Calculate(op1, op2, operation);
+                var result = Calculator.Calculate(op1, op2, operation);
                 PublishResult(op1, op2, operation, result);
             }
             catch (Exception ex)
             {
-                Program.LogExcetion(ex);
+                Program.LogException(ex);
             }
         }
 
-        private static void PublishResult(int op1, int op2, MathOperation operation, int result)
+        private static void PublishResult(Int32 op1, Int32 op2, MathOperation operation, Int32 result)
         {
             Console.WriteLine($"{op1}{operation.GetDescription()}{op2}={result}");
         }
