@@ -95,7 +95,7 @@
 * **I**solation If other things are going on at the same time they shouldn't be able to see things mid-update (concurrent access).
 * **D**urability If the system blows up (hardware or software) the database needs to be able to pick itself back up. Successful transaction must be reflect to database. 
 
-+++
+---
 ![ACID](/Lectures/Lecture_DB/assets/image/acid.png)
 
 ---
@@ -113,8 +113,9 @@
   * Availability - Every request receive response
   * Partition tolerance - The system continues to operate despite an arbitrary number of messages being dropped (or delayed) by the network between nodes
 
-+++
+---
 ![CAP (Brewer's) theorem](/Lectures/Lecture_DB/assets/image/cap_theorem.png)
+
 ---
 ## NoSQL databases
 * **Not only SQL**
@@ -127,7 +128,7 @@
 * Big Data, scalability and fault tolerance for large applications
   * e.g. Google - Search indexes
 
-+++
+---
 ![Eventual Consistency](/Lectures/Lecture_DB/assets/image/eventual_consistency.png)
 
 ---
