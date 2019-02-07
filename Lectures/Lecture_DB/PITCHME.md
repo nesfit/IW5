@@ -214,8 +214,11 @@ SELECT TOP (1000)
 
 ---
 ## References
+[W3C -SQL Tutorial](https://www.w3schools.com/sql/)  
 [Guide to databases](https://www.upwork.com/hiring/data/a-guide-to-database-technology/)  
 [Introduction to databases](https://en.wikiversity.org/wiki/Introduction_to_Databases)  
 [Eventual consistency](http://cloudshankar.blogspot.com/2013/05/eventual-consistency.html)  
 [ACID vs CAP](http://techie-experience.blogspot.com/2015/02/acid-properties-in-transactions.html)  
 [CAP](https://www.researchgate.net/figure/CAP-Theorem_fig4_221462089)
+[ORM HATERS DON’T GET IT](http://techblog.bozho.net/orm-haters-dont-get-it/)  
+[ORM Is an Offensive Anti-Pattern](https://www.yegor256.com/2014/12/01/orm-offensive-anti-pattern.html)
