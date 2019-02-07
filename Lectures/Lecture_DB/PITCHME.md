@@ -90,9 +90,9 @@
 ---
 ## ACID
 
-* **A**tomicity) When you do something to change a database the change should work or fail as a whole.
+* **A**tomicity When you do something to change a database the change should work or fail as a whole.
 * **C**onsistency Only valid data following all business rules are stored in database.
-* **I**solation) If other things are going on at the same time they shouldn't be able to see things mid-update (concurrent access).
+* **I**solation If other things are going on at the same time they shouldn't be able to see things mid-update (concurrent access).
 * **D**urability If the system blows up (hardware or software) the database needs to be able to pick itself back up. Successful transaction must be reflect to database. 
 
 +++
@@ -173,7 +173,7 @@ SELECT TOP (1000)
     <li>Document oriented</li>
     <li>Entity is stored in one "document"</li>
     <li>Denormalised schema</li>
-    <li>More data is duplicated or inconsistent - relations is not provided by application</li>
+    <li>More data is duplicated or inconsistent - relations is provided by application (if is required)</li>
   </ul>
 </div>
 <div class="right">
