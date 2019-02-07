@@ -131,10 +131,6 @@
 ![Eventual Consistency](/Lectures/Lecture_DB/assets/image/eventual_consistency.png)
 
 ---
-## Demo - SQL Server Management Studio (SSMS)
-![DEMO](/Lectures/Lecture_DB/assets/image/demo.png)
-
----
 ## SQL databases
 
 * Careful organization
@@ -191,6 +187,10 @@ SELECT TOP (1000)
 ## Comparsion NoSQL vs SQL databases
 
 ![DEMO](/Lectures/Lecture_DB/assets/image/relational-vs-nonrelational-databases.png)
+
+---
+## Demo - SQL Server Management Studio (SSMS)
+![DEMO](/Lectures/Lecture_DB/assets/image/demo.png)
 
 ---
 ## Object Relation Mapping (ORM) 
