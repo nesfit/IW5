@@ -441,7 +441,7 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 
 ```C#
 var hitchhikerConstant = 42;
-var helloWorld = 'Hello World';
+var helloWorld = "Hello World";
 var pi = 3.14159;
 ```
 
@@ -782,11 +782,11 @@ public delegate int PerformCalculation(int x, int y);
 
 class MyClass
 {
-  PerformCalculation PerformCalculation;
+  PerformCalculation PerformCalculation = null;
 
   void CallDelegate()
   {
-    PerformCalculation(1, 2);
+    PerformCalculation(1, 2); // Throws NullReferenceException if PerformCalculation is not assigned
   }
 }
 ```
