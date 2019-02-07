@@ -107,6 +107,7 @@
   * Used for high scalable and fault tolerance usage
 * Relational (SQL) databases
   * mainstream databases as MSSQL, MySQL, Oracle...
+* [DB-Engines Ranking](https://db-engines.com/en/ranking)
 * **CAP theorem**
   * Consistency - Every read receives the most recent write or an error
   * Availability - Every request receive response
@@ -128,6 +129,10 @@
 
 +++
 ![Eventual Consistency](/Lectures/Lecture_DB/assets/image/eventual_consistency.png)
+
+---
+## Demo - SQL Server Management Studio (SSMS)
+![DEMO](/Lectures/Lecture_DB/assets/image/demo.png)
 
 ---
 ## SQL databases
@@ -183,7 +188,28 @@ SELECT TOP (1000)
 </div>
 
 ---
-## Object Relation Mapping (ORM)
+## Comparsion NoSQL vs SQL databases
+
+![DEMO](/Lectures/Lecture_DB/assets/image/relational-vs-nonrelational-databases.png)
+
+---
+## Object Relation Mapping (ORM) 
+* Technique how to convert incompatible type systems using OOP languages
+  * Table row vs object
+* Entity Framework, nHibernate
+* Why use
+  * Making data access more abstract and portable (Rich OO business model)
+  * ORM implementation classes know how to write vendor-specific SQL, so you don't have to
+* "Antipattern"
+  * “they are slow”
+  * “they generate bad queries which hurts performance”
+  * “they deprive you of control”
+  * “you don’t need them, plain SQL and XDBC is fine”
+  * “database upgrade is hard”
+
+---
+## LinqPad Demo
+![DEMO](/Lectures/Lecture_DB/assets/image/demo.png)
 
 ---
 ## References
