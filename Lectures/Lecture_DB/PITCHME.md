@@ -28,10 +28,10 @@
 ## Basic terms
 
 * CRUD (Create, Read, Update, Delete)
-* Entity || record
+* Entity || Record || Document
   * Field
   * Key
-* Relation
+* Relation || Table
 * Relationships
 * Data structure
 * ACID (Atomic, Consistent, Isolated, Durable)
