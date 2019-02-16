@@ -7,8 +7,7 @@
 @snapend
 
 @snap[south-east span-30]
-* [ Tibor Jašek <TODO> ]
-* [ Patrik Švikruha <TODO> ]
+[ Tibor Jašek <TODO>, Patrik Švikruha <TODO> ]
 @snapend
 
 ---
