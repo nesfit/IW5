@@ -7,7 +7,8 @@
 @snapend
 
 @snap[south-east span-30]
-[ Michal Orlicek <xorlic00@stud.fit.vutbr.cz> ]
+[ Tibor Jašek <TODO> ]
+[ Patrik Švikruha <TODO> ]
 @snapend
 
 ---
@@ -31,12 +32,12 @@
 +++
 #### .NET Yesterday
 
-![](/Lectures/Lecture03/Assets/img/NetYesterday.png)
+![](/Lectures/Lecture_03/Assets/img/NetYesterday.png)
 
 +++
 #### .NET Today
 
-![](/Lectures/Lecture03/Assets/img/NetToday.png)
+![](/Lectures/Lecture_03/Assets/img/NetToday.png)
 
 +++
 ### .NET Standard vs .NET Core
@@ -59,7 +60,7 @@
 +++
 #### .NET Standard Version Table
 
-![](/Lectures/Lecture03/Assets/img/NetStandardVersionTable.png)
+![](/Lectures/Lecture_03/Assets/img/NetStandardVersionTable.png)
 
 +++
 ### Why .NET Standard 2.0 instead of 1.7?
@@ -179,14 +180,14 @@ catch (System.OverflowException) {
 }
 ```
 
-+++?code=/Lectures/Lecture03/Assets/sln/Tests/ConvertTest.cs&lang=C#&title=Convert Sample
++++?code=/Lectures/Lecture_03/Assets/sln/Tests/ConvertTest.cs&lang=C#&title=Convert Sample
 @[9-21]
 @[12,17]
 @[13,18]
 @[14,19]
 @[15,20]
 @[9-21]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture03/Assets/sln/Tests/Convert.cs)
+[Code sample](/Lectures/Lecture_03/Assets/sln/Tests/Convert.cs)
 
 +++
 ## Bit Converter
@@ -203,14 +204,14 @@ byte[] sampleByteArray = BitConverter.ToString(BitConverter.GetBytes(sample);
 Console.WriteLine(BitConverter.ToString(sampleByteArray)); //01
 ```
 
-+++?code=/Lectures/Lecture03/Assets/sln/Tests/BitConverterTest.cs&lang=C#&title=Bit Converter Sample
++++?code=/Lectures/Lecture_03/Assets/sln/Tests/BitConverterTest.cs&lang=C#&title=Bit Converter Sample
 @[9-16]
 @[11]
 @[12]
 @[13]
 @[15]
 @[9-16]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture03/Assets/sln/Tests/BitConverterTest.cs)
+[Code sample](/Lectures/Lecture_03/Assets/sln/Tests/BitConverterTest.cs)
 
 +++
 ## URI
@@ -218,7 +219,7 @@ Console.WriteLine(BitConverter.ToString(sampleByteArray)); //01
   * String that **identifies a particular resource**
   * Predefined set of syntax rules
 
-![](/Lectures/Lecture03/Assets/img/UriSyntax.png)
+![](/Lectures/Lecture_03/Assets/img/UriSyntax.png)
 
 +++
 ### URI examples
@@ -261,12 +262,12 @@ var uri = new Uri("http://www.contoso.com/");
 WebRequest webRequest = WebRequest.Create(uri);
 ```
 
-+++?code=/Lectures/Lecture03/Assets/sln/Tests/UriTest.cs&lang=C#&title=Uri Sample
++++?code=/Lectures/Lecture_03/Assets/sln/Tests/UriTest.cs&lang=C#&title=Uri Sample
 @[9-15]
 @[11,12]
 @[14]
 @[9-15]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture03/Assets/sln/Tests/UriTest.cs)
+[Code sample](/Lectures/Lecture_03/Assets/sln/Tests/UriTest.cs)
 
 +++
 ## Console
@@ -286,7 +287,7 @@ Console.Write("Same line");
 Console.ReadLine();
 ```
 
-+++?code=/Lectures/Lecture03/Assets/sln/Examples/ConsoleSample.cs&lang=C#&title=Console Sample
++++?code=/Lectures/Lecture_03/Assets/sln/Examples/ConsoleSample.cs&lang=C#&title=Console Sample
 @[7-20]
 @[9]
 @[11-12,19]
@@ -294,7 +295,7 @@ Console.ReadLine();
 @[15-16]
 @[18]
 @[7-20]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture03/Assets/sln/Examples/ConsoleSample.cs)
+[Code sample](/Lectures/Lecture_03/Assets/sln/Examples/ConsoleSample.cs)
 
 +++
 ## Garbage Collector
@@ -468,7 +469,7 @@ delegate TResult Func<in T1,in T2,out TResult>(T1 arg1, T2 arg2); //has two para
 
 +++
 ### Iterfaces Hierarchy
-![](/Lectures/Lecture03/Assets/img/CollectionHierarchy.png)
+![](/Lectures/Lecture_03/Assets/img/CollectionHierarchy.png)
 
 +++
 ## `System.Collections` Namespace
@@ -494,13 +495,13 @@ delegate TResult Func<in T1,in T2,out TResult>(T1 arg1, T2 arg2); //has two para
   * `interface IList`
   * Defines **non-generic collection** of objects that can be individually accessed by index
 
-+++?code=/Lectures/Lecture03/Assets/sln/Examples/ArrayListSample.cs&lang=C#&title=ArrayList Sample
++++?code=/Lectures/Lecture_03/Assets/sln/Examples/ArrayListSample.cs&lang=C#&title=ArrayList Sample
 @[8-25]
 @[11-14]
 @[17-19]
 @[21-24]
 @[8-25]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture03/Assets/sln/Examples/ArrayListSample.cs)
+[Code sample](/Lectures/Lecture_03/Assets/sln/Examples/ArrayListSample.cs)
 
 +++
 ## Stack
@@ -513,13 +514,13 @@ delegate TResult Func<in T1,in T2,out TResult>(T1 arg1, T2 arg2); //has two para
   * `interface IEnumerable`
   * Exposes an *enumerator*, which supports a simple iteration over a non-generic collection
 
-+++?code=/Lectures/Lecture03/Assets/sln/Examples/StackSample.cs&lang=C#&title=Stack Sample
++++?code=/Lectures/Lecture_03/Assets/sln/Examples/StackSample.cs&lang=C#&title=Stack Sample
 @[8-24]
 @[11-14]
 @[17-18]
 @[20-23]
 @[8-24]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture03/Assets/sln/Examples/StackSample.cs)
+[Code sample](/Lectures/Lecture_03/Assets/sln/Examples/StackSample.cs)
 
 +++
 ## Queue
@@ -528,13 +529,13 @@ delegate TResult Func<in T1,in T2,out TResult>(T1 arg1, T2 arg2); //has two para
 * Implements the `ICollection` interface
 * Implements the `IEnumerable` interface
 
-+++?code=/Lectures/Lecture03/Assets/sln/Examples/QueueSample.cs&lang=C#&title=Queue Sample
++++?code=/Lectures/Lecture_03/Assets/sln/Examples/QueueSample.cs&lang=C#&title=Queue Sample
 @[8-24]
 @[11-14]
 @[17-18]
 @[20-23]
 @[8-24]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture03/Assets/sln/Examples/QueueSample.cs)
+[Code sample](/Lectures/Lecture_03/Assets/sln/Examples/QueueSample.cs)
 
 +++
 ## Hashtable
@@ -544,13 +545,13 @@ delegate TResult Func<in T1,in T2,out TResult>(T1 arg1, T2 arg2); //has two para
   * `interface IDictionary`
   * Nongeneric collection of key/value pairs
 
-+++?code=/Lectures/Lecture03/Assets/sln/Tests/HashtableTest.cs&lang=C#&title=Hashtable Sample
++++?code=/Lectures/Lecture_03/Assets/sln/Tests/HashtableTest.cs&lang=C#&title=Hashtable Sample
 @[10-24]
 @[13, 17-21]
 @[22]
 @[23]
 @[10-24]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture03/Assets/sln/Tests/HashtableTest.cs)
+[Code sample](/Lectures/Lecture_03/Assets/sln/Tests/HashtableTest.cs)
 
 +++
 ## Another Collections 
@@ -608,13 +609,13 @@ sortedList.Add("First", "Hello");
   * Key/value pairs that are sorted by key based on the associated `IComparer<T>` implementation
   * `class IComparer<T>`
 
-+++?code=/Lectures/Lecture03/Assets/sln/Tests/GenericListTest.cs&lang=C#&title=Generic List Sample
++++?code=/Lectures/Lecture_03/Assets/sln/Tests/GenericListTest.cs&lang=C#&title=Generic List Sample
 @[9-18]
 @[21-27]
 @[30-36]
 @[39-44]
 @[47-54]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture03/Assets/sln/Tests/GenericListTest.cs)
+[Code sample](/Lectures/Lecture_03/Assets/sln/Tests/GenericListTest.cs)
 
 +++
 ## Generic Stack
@@ -623,12 +624,12 @@ sortedList.Add("First", "Hello");
 * **Last-in-first-out** collection 
   * Instances of the **same specified type**
 
-+++?code=/Lectures/Lecture03/Assets/sln/Tests/GenericStackTest.cs&lang=C#&title=Generic Stack Sample
++++?code=/Lectures/Lecture_03/Assets/sln/Tests/GenericStackTest.cs&lang=C#&title=Generic Stack Sample
 @[9-19]
 @[11-16]
 @[18]
 @[9-19]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture03/Assets/sln/Tests/GenericStackTest.cs)
+[Code sample](/Lectures/Lecture_03/Assets/sln/Tests/GenericStackTest.cs)
 
 +++
 ## Generic Queue
@@ -637,12 +638,12 @@ sortedList.Add("First", "Hello");
 * **First-in, first-out** collection
 * Collection of instances of the **same specified type**
 
-+++?code=/Lectures/Lecture03/Assets/sln/Tests/GenericQueueTest.cs&lang=C#&title=Generic Queue Sample
++++?code=/Lectures/Lecture_03/Assets/sln/Tests/GenericQueueTest.cs&lang=C#&title=Generic Queue Sample
 @[9-19]
 @[11-16]
 @[18]
 @[9-19]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture03/Assets/sln/Tests/GenericQueueTest.cs)
+[Code sample](/Lectures/Lecture_03/Assets/sln/Tests/GenericQueueTest.cs)
 
 +++
 ## Generic Dictionary
@@ -660,12 +661,12 @@ sortedList.Add("First", "Hello");
   * `TKey` - the type of the keys in the dictionary
   * `TValue` - the type of the values in the dictionary
 
-+++?code=/Lectures/Lecture03/Assets/sln/Tests/GenericDictionaryTest.cs&lang=C#&title=Generic Dictionary Sample
++++?code=/Lectures/Lecture_03/Assets/sln/Tests/GenericDictionaryTest.cs&lang=C#&title=Generic Dictionary Sample
 @[9-20]
 @[11-16]
 @[18-19]
 @[9-20]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture03/Assets/sln/Tests/GenericDictionaryTest.cs)
+[Code sample](/Lectures/Lecture_03/Assets/sln/Tests/GenericDictionaryTest.cs)
 
 +++ 
 ## HashSet
@@ -677,12 +678,12 @@ sortedList.Add("First", "Hello");
 * `class SortedSet<T>`
   * Hashset that is maintained in sorted order
 
-+++?code=/Lectures/Lecture03/Assets/sln/Tests/HashSetTest.cs&lang=C#&title=HashSet Sample
++++?code=/Lectures/Lecture_03/Assets/sln/Tests/HashSetTest.cs&lang=C#&title=HashSet Sample
 @[9-18]
 @[11-13]
 @[15-17]
 @[9-18]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture03/Assets/sln/Tests/HashSetTest.cs)
+[Code sample](/Lectures/Lecture_03/Assets/sln/Tests/HashSetTest.cs)
 
 +++
 ## Generic Interfaces
@@ -762,20 +763,20 @@ Console.WriteLine($"{Path.GetTempFileName()} is a file available for use.");
   * *Opening* and *appending* to a file
   * Creation of `FileStream` objects
 
-+++?code=/Lectures/Lecture03/Assets/sln/Examples/DirectorySample.cs&lang=C#&title=Directory Sample
++++?code=/Lectures/Lecture_03/Assets/sln/Examples/DirectorySample.cs&lang=C#&title=Directory Sample
 @[8-21]
 @[10-11]
 @[13-20]
 @[8-21]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture03/Assets/sln/Examples/DirectorySample.cs)
+[Code sample](/Lectures/Lecture_03/Assets/sln/Examples/DirectorySample.cs)
 
-+++?code=/Lectures/Lecture03/Assets/sln/Examples/FileSample.cs&lang=C#&title=File Sample
++++?code=/Lectures/Lecture_03/Assets/sln/Examples/FileSample.cs&lang=C#&title=File Sample
 @[8-16]
 @[10]
 @[12-13]
 @[15]
 @[8-16]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture03/Assets/sln/Examples/FileSample.cs)
+[Code sample](/Lectures/Lecture_03/Assets/sln/Examples/FileSample.cs)
 
 +++
 ## DirecoryInfo and FileInfo
@@ -789,7 +790,7 @@ Console.WriteLine($"{Path.GetTempFileName()} is a file available for use.");
   * *Opening* and *appending* to a file
   * Creation of `FileStream` objects
 
-+++?code=/Lectures/Lecture03/Assets/sln/Examples/DirectoryInfoSample.cs&lang=C#&title=DirectoryInfo Sample
++++?code=/Lectures/Lecture_03/Assets/sln/Examples/DirectoryInfoSample.cs&lang=C#&title=DirectoryInfo Sample
 @[8-34]
 @[10-11]
 @[12-13,29-33]
@@ -797,16 +798,16 @@ Console.WriteLine($"{Path.GetTempFileName()} is a file available for use.");
 @[22-24]
 @[26-28]
 @[8-34]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture03/Assets/sln/Examples/DirectoryInfoSample.cs)
+[Code sample](/Lectures/Lecture_03/Assets/sln/Examples/DirectoryInfoSample.cs)
 
-+++?code=/Lectures/Lecture03/Assets/sln/Examples/FileInfoSample.cs&lang=C#&title=FileInfo Sample
++++?code=/Lectures/Lecture_03/Assets/sln/Examples/FileInfoSample.cs&lang=C#&title=FileInfo Sample
 @[8-20]
 @[10]
 @[12-13]
 @[15-16]
 @[18-19]
 @[8-20]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture03/Assets/sln/Examples/FileInfoSample.cs)
+[Code sample](/Lectures/Lecture_03/Assets/sln/Examples/FileInfoSample.cs)
 
 +++
 ## Data Streams
@@ -849,21 +850,21 @@ using (FileStream fileStream = File.OpenRead(@"c:\test.txt"))
 * Writes characters to a stream
 * In a **particular encoding**
 
-+++?code=/Lectures/Lecture03/Assets/sln/Examples/StreamWriterSample.cs&lang=C#&title=StreamWriter Sample
++++?code=/Lectures/Lecture_03/Assets/sln/Examples/StreamWriterSample.cs&lang=C#&title=StreamWriter Sample
 @[8-30]
 @[10-11, 23-29]
 @[12-15, 22]
 @[16-21]
 @[8-30]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture03/Assets/sln/Examples/StreamWriterSample.cs)
+[Code sample](/Lectures/Lecture_03/Assets/sln/Examples/StreamWriterSample.cs)
 
-+++?code=/Lectures/Lecture03/Assets/sln/Examples/StreamReaderSample.cs&lang=C#&title=StreamReader Sample
++++?code=/Lectures/Lecture_03/Assets/sln/Examples/StreamReaderSample.cs&lang=C#&title=StreamReader Sample
 @[8-31]
 @[10-11, 24-30]
 @[12-15, 23]
 @[16-22]
 @[8-31]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture03/Assets/sln/Examples/StreamReaderSample.cs)
+[Code sample](/Lectures/Lecture_03/Assets/sln/Examples/StreamReaderSample.cs)
 
 +++
 ## Another readers and writers
@@ -888,7 +889,7 @@ using (FileStream fileStream = File.OpenRead(@"c:\test.txt"))
   * `class AnonymousPipeServerStream` - server side of an anonymous pipe stream
   * `class AnonymousPipeClientStream` - client side of an anonymous pipe stream
 
-+++?code=/Lectures/Lecture03/Assets/sln/Examples/PipeServerSample.cs&lang=C#&title=PipeServer Sample
++++?code=/Lectures/Lecture_03/Assets/sln/Examples/PipeServerSample.cs&lang=C#&title=PipeServer Sample
 @[9-38]
 @[11-12]
 @[14]
@@ -896,16 +897,16 @@ using (FileStream fileStream = File.OpenRead(@"c:\test.txt"))
 @[20]
 @[23-29]
 @[9-38]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture03/Assets/sln/Examples/PipeServerSample.cs)
+[Code sample](/Lectures/Lecture_03/Assets/sln/Examples/PipeServerSample.cs)
 
-+++?code=/Lectures/Lecture03/Assets/sln/Examples/PipeClientSample.cs&lang=C#&title=PipeClient Sample
++++?code=/Lectures/Lecture_03/Assets/sln/Examples/PipeClientSample.cs&lang=C#&title=PipeClient Sample
 @[9-34]
 @[11-12]
 @[15-17]
 @[19-21]
 @[22-30]
 @[9-34]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture03/Assets/sln/Examples/PipeClientSample.cs)
+[Code sample](/Lectures/Lecture_03/Assets/sln/Examples/PipeClientSample.cs)
 
 ---
 ## `System.Numerics` Namespace
@@ -969,7 +970,7 @@ Console.WriteLine(c5);
 ![](/Lectures/Assets/img/MagnifyingGlass.png)
 @snapend
 
-+++?code=/Lectures/Lecture03/Assets/sln/Tests/ReflectionTest.cs&lang=C#&title=Reflection Sample
++++?code=/Lectures/Lecture_03/Assets/sln/Tests/ReflectionTest.cs&lang=C#&title=Reflection Sample
 @[8-14]
 @[19-25]
 @[21]
@@ -983,7 +984,7 @@ Console.WriteLine(c5);
 @[43-45]
 @[47]
 @[41-48]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture03/Assets/sln/Tests/ReflectionTest.cs)
+[Code sample](/Lectures/Lecture_03/Assets/sln/Tests/ReflectionTest.cs)
 
 +++
 ## Dynamic type
@@ -998,13 +999,13 @@ x++;
 x.FakeMethod();
 ```
  
-+++?code=/Lectures/Lecture03/Assets/sln/Examples/DynamicParameter.cs&lang=C#&title=Dynamic Parameter Sample
++++?code=/Lectures/Lecture_03/Assets/sln/Examples/DynamicParameter.cs&lang=C#&title=Dynamic Parameter Sample
 @[5-27]
 @[7-10]
 @[12-19]
 @[21-26]
 @[5-27]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture03/Assets/sln/Examples/DynamicParameter.cs)
+[Code sample](/Lectures/Lecture_03/Assets/sln/Examples/DynamicParameter.cs)
 
 +++
 ## Reflection vs. Dynamic
@@ -1020,7 +1021,7 @@ x.FakeMethod();
 |Static class | Yes | No |
 
 
-![ReflectionVSDynamic](/Lectures/Lecture03/Assets/img/ReflectionVSDynamic.jpg)
+![ReflectionVSDynamic](/Lectures/Lecture_03/Assets/img/ReflectionVSDynamic.jpg)
 
 ---
 ## `System.Text` Namespace
@@ -1050,14 +1051,14 @@ x.FakeMethod();
   * `abstract`
   * Converts a *sequence of encoded bytes into a set of characters*
 
-+++?code=/Lectures/Lecture03/Assets/sln/Examples/EncodingSample.cs&lang=C#&title=EncodingSample Sample
++++?code=/Lectures/Lecture_03/Assets/sln/Examples/EncodingSample.cs&lang=C#&title=EncodingSample Sample
 @[10]
 @[12-14]
 @[16-17]
 @[19-20]
 @[22-25]
 @[27-29, 31-33]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture03/Assets/sln/Examples/EncodingSample.cs)
+[Code sample](/Lectures/Lecture_03/Assets/sln/Examples/EncodingSample.cs)
 
 +++
 ## StringBuilder
@@ -1080,7 +1081,7 @@ x.FakeMethod();
     * E.g. loop to concatenate a random number of strings that contain user input
   * When you expect your app to make a **significant number of changes** to a string
 
-+++?code=/Lectures/Lecture03/Assets/sln/Tests/StringBuilderTest.cs&lang=C#&title=StringBuilder Sample
++++?code=/Lectures/Lecture_03/Assets/sln/Tests/StringBuilderTest.cs&lang=C#&title=StringBuilder Sample
 @[9-28]
 @[11-13]
 @[15-16]
@@ -1089,7 +1090,7 @@ x.FakeMethod();
 @[24-25]
 @[27]
 @[9-28]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture03/Assets/sln/Tests/StringBuilderTest.cs)
+[Code sample](/Lectures/Lecture_03/Assets/sln/Tests/StringBuilderTest.cs)
 
 ---
 ## `System.Text.RegularExpressions` Namespace
@@ -1119,14 +1120,14 @@ x.FakeMethod();
 | `(\k<word>)` | Match the captured group that is named `word` |
 | `\b` | Match a word boundary |
 
-+++?code=/Lectures/Lecture03/Assets/sln/Tests/RegexTest.cs&lang=C#&title=Regex Sample
++++?code=/Lectures/Lecture_03/Assets/sln/Tests/RegexTest.cs&lang=C#&title=Regex Sample
 @[10-27]
 @[12-14]
 @[16-17]
 @[19-20]
 @[22-26]
 @[10-27]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture03/Assets/sln/Tests/RegexTest.cs)
+[Code sample](/Lectures/Lecture_03/Assets/sln/Tests/RegexTest.cs)
 
 ---
 ## `System.Linq` Namespace
@@ -1160,7 +1161,7 @@ IEnumerable<string> query = names
 foreach (string name in query) Console.WriteLine(name);
 ```
 
-![LinqFluentSyntax](/Lectures/Lecture03/Assets/img/LinqFluentSyntax.png)
+![LinqFluentSyntax](/Lectures/Lecture_03/Assets/img/LinqFluentSyntax.png)
 
 +++
 ### Query syntax diagram
@@ -1178,7 +1179,7 @@ IEnumerable<string> query =
 +++
 ### Query syntax diagram
 
-@img[span-50](/Lectures/Lecture03/Assets/img/LinqQuerySyntax.png)
+@img[span-50](/Lectures/Lecture_03/Assets/img/LinqQuerySyntax.png)
 
 +++
 ### Fluent vs Query syntax
@@ -1212,14 +1213,14 @@ var query = from m in musos
     select m;
 ```
 
-+++?code=/Lectures/Lecture03/Assets/sln/Tests/LinqMaterialization.cs&lang=C#&title=LINQ Materialization Sample
++++?code=/Lectures/Lecture_03/Assets/sln/Tests/LinqMaterialization.cs&lang=C#&title=LINQ Materialization Sample
 @[10-20]
 @[12]
 @[14-15]
 @[17]
 @[19]
 @[10-20]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture03/Assets/sln/Tests/LinqMaterialization.cs)
+[Code sample](/Lectures/Lecture_03/Assets/sln/Tests/LinqMaterialization.cs)
 
 +++
 ### LINQ Operators
@@ -1240,7 +1241,7 @@ Filtering is an operation to restrict the result set to the point where it shows
 | `Where` | Filter values based on a predicate function |
 | `OfType` | Filter values based on their ability to be as a specified type |
 
-+++?code=/Lectures/Lecture03/Assets/sln/Tests/LinqFilteringOperatorsTest.cs&lang=C#&title=LINQ Filtering Operators Sample
++++?code=/Lectures/Lecture_03/Assets/sln/Tests/LinqFilteringOperatorsTest.cs&lang=C#&title=LINQ Filtering Operators Sample
 @[10-16]
 @[12-13]
 @[15]
@@ -1249,7 +1250,7 @@ Filtering is an operation to restrict the result set to the point where it shows
 @[21-22]
 @[24]
 @[19-25]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture03/Assets/sln/Tests/LinqFilteringOperatorsTest.cs)
+[Code sample](/Lectures/Lecture_03/Assets/sln/Tests/LinqFilteringOperatorsTest.cs)
 
 +++
 ### LINQ Join Operators
@@ -1260,7 +1261,7 @@ Joining refers to an operation which directly targets data sources with difficul
 | `Join` | The operator join two sequences on basis of matching keys |
 | `GroupJoin` | Join two sequences and group the matching elements |
 
-+++?code=/Lectures/Lecture03/Assets/sln/Tests/LinqJoinOperatorsTest.cs&lang=C#&title=LINQ Join Operators Sample
++++?code=/Lectures/Lecture_03/Assets/sln/Tests/LinqJoinOperatorsTest.cs&lang=C#&title=LINQ Join Operators Sample
 @[11-34]
 @[13-18]
 @[20-25]
@@ -1276,7 +1277,7 @@ Joining refers to an operation which directly targets data sources with difficul
 @[62-63]
 @[65-68]
 @[49-69]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture03/Assets/sln/Tests/LinqJoinOperatorsTest.cs)
+[Code sample](/Lectures/Lecture_03/Assets/sln/Tests/LinqJoinOperatorsTest.cs)
 
 +++
 ### LINQ Projection Operators
@@ -1287,7 +1288,7 @@ Projection is an operation in which an object is transformed into an altogether 
 | `Select` | The operator projects values on basis of a transform function |
 | `SelectMany` | The operator project the sequences of values which are based on a transform function as well as flattens them into a single sequence |
 
-+++?code=/Lectures/Lecture03/Assets/sln/Tests/LinqProjectionOperatorsTest.cs&lang=C#&title=LINQ Projection Operators Sample
++++?code=/Lectures/Lecture_03/Assets/sln/Tests/LinqProjectionOperatorsTest.cs&lang=C#&title=LINQ Projection Operators Sample
 @[10-23]
 @[12]
 @[14]
@@ -1299,7 +1300,7 @@ Projection is an operation in which an object is transformed into an altogether 
 @[31-35]
 @[37-43]
 @[26-44]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture03/Assets/sln/Tests/LinqProjectionOperatorsTest.cs)
+[Code sample](/Lectures/Lecture_03/Assets/sln/Tests/LinqProjectionOperatorsTest.cs)
 
 +++
 ### LINQ Sorting Operators
@@ -1313,7 +1314,7 @@ A sorting operation allows ordering the elements of a sequence on basis of a sin
 | `ThenByDescending` | Executes a secondary sorting in a descending order |
 | `Reverse` | Performs a reversal of the order of the elements in a collection |
 
-+++?code=/Lectures/Lecture03/Assets/sln/Tests/LinqSortingOperatorsTest.cs&lang=C#&title=LINQ Sorting Operators Sample
++++?code=/Lectures/Lecture_03/Assets/sln/Tests/LinqSortingOperatorsTest.cs&lang=C#&title=LINQ Sorting Operators Sample
 @[9-16]
 @[11-12]
 @[14-15]
@@ -1331,7 +1332,7 @@ A sorting operation allows ordering the elements of a sequence on basis of a sin
 @[44-45]
 @[47-48]
 @[39-49]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture03/Assets/sln/Tests/LinqSortingOperatorsTest.cs)
+[Code sample](/Lectures/Lecture_03/Assets/sln/Tests/LinqSortingOperatorsTest.cs)
 
 +++
 ### LINQ Grouping Operators
@@ -1342,7 +1343,7 @@ The operators put data into some groups based on a common shared attribute.
 | `GroupBy` | Organize a sequence of items in groups and return them as an `IEnumerable` collection of type `IGrouping<key, element>` |
 | `ToLookup` | Execute a grouping operation in which a sequence of key pairs are returned |
 
-+++?code=/Lectures/Lecture03/Assets/sln/Tests/LinqGroupingOperatorsTest.cs&lang=C#&title=LINQ Grouping Operators Sample
++++?code=/Lectures/Lecture_03/Assets/sln/Tests/LinqGroupingOperatorsTest.cs&lang=C#&title=LINQ Grouping Operators Sample
 @[9-29]
 @[11]
 @[13]
@@ -1354,7 +1355,7 @@ The operators put data into some groups based on a common shared attribute.
 @[34]
 @[36]
 @[38-42]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture03/Assets/sln/Tests/LinqGroupingOperatorsTest.cs)
+[Code sample](/Lectures/Lecture_03/Assets/sln/Tests/LinqGroupingOperatorsTest.cs)
 
 +++
 ### LINQ Conversions Operators
@@ -1370,7 +1371,7 @@ The operators change the type of input objects and are used in a diverse range o
 | `ToDictionary` | On basis of a key selector function set elements into a `Dictionary<TKey, TValue>` and forces execution of a LINQ query |
 | `ToList` | Forces execution of a query by converting a collection to a `List<T>` |
 
-+++?code=/Lectures/Lecture03/Assets/sln/Tests/LinqConversionsOperatorsTest.cs&lang=C#&title=LINQ Conversions Operators Sample
++++?code=/Lectures/Lecture_03/Assets/sln/Tests/LinqConversionsOperatorsTest.cs&lang=C#&title=LINQ Conversions Operators Sample
 @[13-20]
 @[15]
 @[17]
@@ -1406,7 +1407,7 @@ The operators change the type of input objects and are used in a diverse range o
 @[84]
 @[86]
 @[80-87]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture03/Assets/sln/Tests/LinqConversionsOperatorsTest.cs)
+[Code sample](/Lectures/Lecture_03/Assets/sln/Tests/LinqConversionsOperatorsTest.cs)
 
 +++
 ### LINQ Concatenation Operators
@@ -1416,13 +1417,13 @@ Performs concatenation of two sequences and is quite similar to the Union operat
 |:-:|:- |
 | `Concat` | Two sequences are concatenated for the formation of a single one sequence. |
 
-+++?code=/Lectures/Lecture03/Assets/sln/Tests/LinqConcatenationOperatorTest.cs&lang=C#&title=LINQ Concatenation Operator Sample
++++?code=/Lectures/Lecture_03/Assets/sln/Tests/LinqConcatenationOperatorTest.cs&lang=C#&title=LINQ Concatenation Operator Sample
 @[9-19]
 @[11-12]
 @[14]
 @[16-18]
 @[9-19]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture03/Assets/sln/Tests/LinqConcatenationOperatorTest.cs)
+[Code sample](/Lectures/Lecture_03/Assets/sln/Tests/LinqConcatenationOperatorTest.cs)
 
 +++
 ### LINQ Aggregation Operators
@@ -1438,7 +1439,7 @@ Performs any type of desired aggregation and allows creating custom aggregations
 | `Min` | Find out the minimum value existing within a collection |
 | `Sum` | Find out the sum of a values within a collection |
 
-+++?code=/Lectures/Lecture03/Assets/sln/Tests/LinqAggregationOperatorsTest.cs&lang=C#&title=LINQ Aggregation Operators Sample
++++?code=/Lectures/Lecture_03/Assets/sln/Tests/LinqAggregationOperatorsTest.cs&lang=C#&title=LINQ Aggregation Operators Sample
 @[10-17]
 @[12]
 @[14]
@@ -1474,7 +1475,7 @@ Performs any type of desired aggregation and allows creating custom aggregations
 @[75]
 @[77]
 @[71-78]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture03/Assets/sln/Tests/LinqAggregationOperatorsTest.cs)
+[Code sample](/Lectures/Lecture_03/Assets/sln/Tests/LinqAggregationOperatorsTest.cs)
 
 +++
 ### LINQ Quantifier Operators
@@ -1486,7 +1487,7 @@ These operators return a Boolean value when some or all elements within a sequen
 | `Any` | Determines by searching a sequence that whether any element of the same satisfy a specified condition |
 | `Contains` | Returns `True` if finds that a specific element is there in a sequence if the sequence doe not contains that specific element , `false` is returned |
 
-+++?code=/Lectures/Lecture03/Assets/sln/Tests/LinqQuantifierOperationsTest.cs&lang=C#&title=LINQ Quantifier Operators Sample
++++?code=/Lectures/Lecture_03/Assets/sln/Tests/LinqQuantifierOperationsTest.cs&lang=C#&title=LINQ Quantifier Operators Sample
 @[9-14]
 @[11]
 @[13]
@@ -1499,7 +1500,7 @@ These operators return a Boolean value when some or all elements within a sequen
 @[27]
 @[29]
 @[25-30]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture03/Assets/sln/Tests/LinqQuantifierOperationsTest.cs)
+[Code sample](/Lectures/Lecture_03/Assets/sln/Tests/LinqQuantifierOperationsTest.cs)
 
 +++
 ### LINQ Partition Operators
@@ -1513,7 +1514,7 @@ Divide an input sequence into two separate sections without rearranging the elem
 | `TakeWhile` | Same as that of Take except the fact that number of elements to take are specified by a condition |
 
 
-+++?code=/Lectures/Lecture03/Assets/sln/Tests/LinqPartitionOperatorsTest.cs&lang=C#&title=LINQ Partition Operators Sample
++++?code=/Lectures/Lecture_03/Assets/sln/Tests/LinqPartitionOperatorsTest.cs&lang=C#&title=LINQ Partition Operators Sample
 @[9-19]
 @[11]
 @[13]
@@ -1534,7 +1535,7 @@ Divide an input sequence into two separate sections without rearranging the elem
 @[52]
 @[54-57]
 @[48-58]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture03/Assets/sln/Tests/LinqPartitionOperatorsTest.cs)
+[Code sample](/Lectures/Lecture_03/Assets/sln/Tests/LinqPartitionOperatorsTest.cs)
 
 +++
 ### LINQ Generation Operators
@@ -1547,7 +1548,7 @@ A new sequence of values is created by generational operators.
 | `Range` | Generates a collection having a sequence of integers or numbers |
 | `Repeat` | Generates a sequence containing repeated values of a specific length |
 
-+++?code=/Lectures/Lecture03/Assets/sln/Tests/LinqGenerationOperationsTest.cs&lang=C#&title=LINQ Generation Operators Sample
++++?code=/Lectures/Lecture_03/Assets/sln/Tests/LinqGenerationOperationsTest.cs&lang=C#&title=LINQ Generation Operators Sample
 @[9-18]
 @[11-13]
 @[15-17]
@@ -1565,7 +1566,7 @@ A new sequence of values is created by generational operators.
 @[45]
 @[47-50]
 @[40-51]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture03/Assets/sln/Tests/LinqGenerationOperationsTest.cs)
+[Code sample](/Lectures/Lecture_03/Assets/sln/Tests/LinqGenerationOperationsTest.cs)
 
 +++
 ### LINQ Set Operators
@@ -1578,7 +1579,7 @@ There are four operators for the set operations, each yielding a result based on
 | `Intersect` | Returns the set of values found to be identical in two separate collections |
 | `Union` | Combines content of two different collections into a single list without any duplicate content |
 
-+++?code=/Lectures/Lecture03/Assets/sln/Tests/LinqSetOperationsTest.cs&lang=C#&title=LINQ Set Operators Sample
++++?code=/Lectures/Lecture_03/Assets/sln/Tests/LinqSetOperationsTest.cs&lang=C#&title=LINQ Set Operators Sample
 @[9-16]
 @[11]
 @[13]
@@ -1599,7 +1600,7 @@ There are four operators for the set operations, each yielding a result based on
 @[49]
 @[51]
 @[44-52]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture03/Assets/sln/Tests/LinqSetOperationsTest.cs)
+[Code sample](/Lectures/Lecture_03/Assets/sln/Tests/LinqSetOperationsTest.cs)
 
 +++
 ### LINQ Equality
@@ -1609,13 +1610,13 @@ Compares two sentences (enumerable) and determines if they are an exact match or
 |:-:|:- |
 | `SequenceEqual` | Results a Boolean value if two sequences are found to be identical to each other |
 
-+++?code=/Lectures/Lecture03/Assets/sln/Tests/LinqEqualityOperatorsTest.cs&lang=C#&title=LINQ Equality Operator Sample
++++?code=/Lectures/Lecture_03/Assets/sln/Tests/LinqEqualityOperatorsTest.cs&lang=C#&title=LINQ Equality Operator Sample
 @[10-26]
 @[12-15]
 @[17-20]
 @[22-25]
 @[10-26]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture03/Assets/sln/Tests/LinqEqualityOperatorsTest.cs)
+[Code sample](/Lectures/Lecture_03/Assets/sln/Tests/LinqEqualityOperatorsTest.cs)
 
 +++
 ### LINQ Element Operators
@@ -1640,7 +1641,7 @@ All standard query element operators return a single element from a collection.
 | `Single` | Returns the lone element of a collection or the lone element that satisfy a certain condition |
 | `SingleOrDefault` | Same as `Single` except that it also returns a default value if there is no existence of any such lone element |
 
-+++?code=/Lectures/Lecture03/Assets/sln/Tests/LinqElementOperatorsTest.cs&lang=C#&title=LINQ Element Operators Sample
++++?code=/Lectures/Lecture_03/Assets/sln/Tests/LinqElementOperatorsTest.cs&lang=C#&title=LINQ Element Operators Sample
 @[10-17]
 @[12]
 @[14]
@@ -1675,7 +1676,7 @@ All standard query element operators return a single element from a collection.
 @[82-84]
 @[86-88]
 @[80-89]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture03/Assets/sln/Tests/LinqElementOperatorsTest.cs)
+[Code sample](/Lectures/Lecture_03/Assets/sln/Tests/LinqElementOperatorsTest.cs)
 
 +++
 ### How implement LINQ?
@@ -1816,24 +1817,24 @@ Connection: System.Data.SqlClient.SqlConnection
   * Writer provides way to **generate streams or files** that contain XML data
 
 
-+++?code=/Lectures/Lecture03/Assets/sln/Examples/XmlReaderSample.cs&lang=C#&title=Reading XML with the XmlReader class
++++?code=/Lectures/Lecture_03/Assets/sln/Examples/XmlReaderSample.cs&lang=C#&title=Reading XML with the XmlReader class
 @[8-20]
 @[10]
 @[11-12, 18]
 @[13-14, 17]
 @[15-16]
 @[8-20]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture03/Assets/sln/Examples/XmlReaderSample.cs)
+[Code sample](/Lectures/Lecture_03/Assets/sln/Examples/XmlReaderSample.cs)
 
-+++?code=/Lectures/Lecture03/Assets/sln/Examples/XmlDocumentReadSample.cs&lang=C#&title=Reading XML with the XmlDocument class
++++?code=/Lectures/Lecture_03/Assets/sln/Examples/XmlDocumentReadSample.cs&lang=C#&title=Reading XML with the XmlDocument class
 @[8-15]
 @[10]
 @[11]
 @[12-13]
 @[8-15]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture03/Assets/sln/Examples/XmlDocumentReadSample.cs)
+[Code sample](/Lectures/Lecture_03/Assets/sln/Examples/XmlDocumentReadSample.cs)
 
-+++?code=/Lectures/Lecture03/Assets/sln/Examples/XmlWriterSample.cs&lang=C#&title=Writing XML with the XmlWriter class
++++?code=/Lectures/Lecture_03/Assets/sln/Examples/XmlWriterSample.cs&lang=C#&title=Writing XML with the XmlWriter class
 @[7-25]
 @[9]
 @[11-12]
@@ -1841,9 +1842,9 @@ Connection: System.Data.SqlClient.SqlConnection
 @[19-21]
 @[23-24]
 @[7-25]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture03/Assets/sln/Examples/XmlWriterSample.cs)
+[Code sample](/Lectures/Lecture_03/Assets/sln/Examples/XmlWriterSample.cs)
 
-+++?code=/Lectures/Lecture03/Assets/sln/Examples/XmlDocumentWriteSample.cs&lang=C#&title=Writing XML with the XmlDocument class
++++?code=/Lectures/Lecture_03/Assets/sln/Examples/XmlDocumentWriteSample.cs&lang=C#&title=Writing XML with the XmlDocument class
 @[8-29]
 @[10]
 @[11-12]
@@ -1851,7 +1852,7 @@ Connection: System.Data.SqlClient.SqlConnection
 @[21-26]
 @[28]
 @[8-29]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture03/Assets/sln/Examples/XmlDocumentWriteSample.cs)
+[Code sample](/Lectures/Lecture_03/Assets/sln/Examples/XmlDocumentWriteSample.cs)
 
 +++
 ## Reading XML with the XPath input
@@ -1883,14 +1884,14 @@ Connection: System.Data.SqlClient.SqlConnection
 </bookstore>  
 ```
 
-+++?code=/Lectures/Lecture03/Assets/sln/Examples/XPathSample.cs&lang=C#&title=Reading XML with the XPath Sample
++++?code=/Lectures/Lecture_03/Assets/sln/Examples/XPathSample.cs&lang=C#&title=Reading XML with the XPath Sample
 @[8-23]
 @[10-11]
 @[13-15]
 @[17]
 @[19-20]
 @[8-23]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture03/Assets/sln/Examples/XPathSample.cs)
+[Code sample](/Lectures/Lecture_03/Assets/sln/Examples/XPathSample.cs)
 
 
 +++
@@ -1912,7 +1913,7 @@ Connection: System.Data.SqlClient.SqlConnection
 </StepList>
 ```
 
-+++?code=/Lectures/Lecture03/Assets/sln/Examples/XmlSerialization.cs&lang=C#&title=Xml Serialization Sample
++++?code=/Lectures/Lecture_03/Assets/sln/Examples/XmlSerialization.cs&lang=C#&title=Xml Serialization Sample
 @[7-12]
 @[14-20]
 @[24-42]
@@ -1920,7 +1921,7 @@ Connection: System.Data.SqlClient.SqlConnection
 @[37]
 @[38-41]
 @[24-42]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture03/Assets/sln/Examples/XmlSerialization.cs)
+[Code sample](/Lectures/Lecture_03/Assets/sln/Examples/XmlSerialization.cs)
 
 ---
 ## References:
