@@ -6,7 +6,7 @@
 ## .NET Standard libraries, collections, MSSQL, XML
 @snapend
 
-@snap[south-east span-30]
+@snap[south-east span-60]
 [ Tibor Jašek <TODO>, Patrik Švikruha <TODO> ]
 @snapend
 
