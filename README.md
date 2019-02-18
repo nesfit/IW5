@@ -37,9 +37,12 @@
    * dotazování za pomocí vestavěného nástroje LINQ nad datovými zdroji (kolekcemi, XML, MSSQL)
 4. [Propojení aplikace s databází](https://gitpitch.com/fitiw/5?grs=github&t=white&p=Lectures%2FLecture_04#/)
    * zajištění persistence pomocí ORM rozšíření Entity Framework s návrhovými vzory UnitOfWork a Repository
-5. [Psaní čistého, udržovatelného kódu](https://gitpitch.com/fitiw/5?grs=github&t=white&p=Lectures%2FLecture_05#/)
-   * respektováním Clean Code, S.O.L.I.D. zásad
-   * ukázky refaktorizace a práce s legacy kódem
+5. 1. [Swagger](https://gitpitch.com/fitiw/5?grs=github&t=white&p=Lectures%2FLecture_05#/)
+      * Vytvoření Webové služby pomocí OpenAPI
+   2. [Psaní čistého, udržovatelného kódu](https://gitpitch.com/fitiw/5?grs=github&t=white&p=Lectures%2FLecture_05#/)   
+      * *Dobrovolná přednáška* **ICS D105 13:00-14:50 4.3.2019**
+      * respektováním Clean Code, S.O.L.I.D. zásad
+      * ukázky refaktorizace a práce s legacy kódem   
 6. [Návrhový vzor Model-View-ViewModel (MVVM)](https://gitpitch.com/fitiw/5?grs=github&t=white&p=Lectures%2FLecture_06#/)
    * architektura desktopových aplikací
    * mapování databázových entit na modelové třídy
@@ -56,11 +59,11 @@
     * tvorba komponenty a stylování aplikací
 11. [Paralelní a asynchronní programování](https://gitpitch.com/fitiw/5?grs=github&t=white&p=Lectures%2FLecture_11#/)
     * proces, vlákno, úloha z pohledu C# a použitého .NET frameworku
-12. [Nástroje pro správu paměti a profilaci výkonu](https://gitpitch.com/fitiw/5?grs=github&t=white&p=Lectures%2FLecture_12#/)
-12. [Multiplatformní programování](https://gitpitch.com/fitiw/5?grs=github&t=white&p=Lectures%2FLecture_13#/)
-    * Dobrovolná přednáška* **ICS D105 13:00-14:50 29.4.2019**
-    * .NET Standard, .NET Core. 
-    * kontejnerizace aplikací pomocí Docker a jejich orchestrace Kubernetes, Docker Swarm
+12. 1. [Nástroje pro správu paměti a profilaci výkonu](https://gitpitch.com/fitiw/5?grs=github&t=white&p=Lectures%2FLecture_12#/)
+    2. [Multiplatformní programování](https://gitpitch.com/fitiw/5?grs=github&t=white&p=Lectures%2FLecture_13#/)
+       * Dobrovolná přednáška* **ICS D105 13:00-14:50 29.4.2019**
+       * .NET Standard, .NET Core. 
+       * kontejnerizace aplikací pomocí Docker a jejich orchestrace Kubernetes, Docker Swarm
 
 --- 
 # Cvičení 
