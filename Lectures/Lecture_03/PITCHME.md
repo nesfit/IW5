@@ -1934,7 +1934,11 @@ Connection: System.Data.SqlClient.SqlConnection
 [Wikipedia](https://en.wikipedia.org)
 
 +++
-## Refences to used images:
+## Refences to images used:
 [.NET Standard version table](http://immo.landwerth.net/netstandard-versions/)  
 [Introduction to .NET Standard](https://blogs.msdn.microsoft.com/dotnet/2016/09/26/introducing-net-standard/)  
 [Stanford University](https://www.stanford.edu/)
+
++++
+## Credits
+* Michal Orlíček - for slides preparation
