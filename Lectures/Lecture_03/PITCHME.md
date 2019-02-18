@@ -1,5 +1,5 @@
 ﻿@snap[north span-100]
-# .NET Standard and Language Integrated Query(LINQ)
+# .NET Standard and Language Integrated Query (LINQ)
 @snapend
 
 @snap[midpoint span-100]
