@@ -6,8 +6,8 @@
 ## .NET Standard libraries, collections, MSSQL, XML
 @snapend
 
-@snap[south-east span-60]
-[ Tibor Jašek <tibor.jasek@gmail.com>, Patrik Švikruha ]
+@snap[south-east span-80]
+[ Tibor Jašek <tibor.jasek@gmail.com>, Patrik Švikruha <patrik.svikruha@vutbr.cz> ]
 @snapend
 
 ---
