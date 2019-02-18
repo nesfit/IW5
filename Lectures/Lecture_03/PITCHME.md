@@ -7,7 +7,7 @@
 @snapend
 
 @snap[south-east span-60]
-[ Tibor Jašek <TODO>, Patrik Švikruha <TODO> ]
+[ Tibor Jašek <tibor.jasek@gmail.com>, Patrik Švikruha ]
 @snapend
 
 ---
@@ -64,7 +64,7 @@
 +++
 ### Why .NET Standard 2.0 instead of 1.7?
 * More than **doubled the API surface**
-  * Added a compat shim that allows **referencing of existing binaries**
+  * Added a compatibility shim that allows **referencing of existing binaries**
     * Even if they weren't built against *.NET Standard*
 
 +++
@@ -1212,14 +1212,14 @@ var query = from m in musos
     select m;
 ```
 
-+++?code=/Lectures/Lecture_03/Assets/sln/Tests/LinqMaterialization.cs&lang=C#&title=LINQ Materialization Sample
++++?code=/Lectures/Lecture_03/Assets/sln/Tests/LinqMaterializationTest.cs&lang=C#&title=LINQ Materialization Sample
 @[10-20]
 @[12]
 @[14-15]
 @[17]
 @[19]
 @[10-20]
-[Code sample](/Lectures/Lecture_03/Assets/sln/Tests/LinqMaterialization.cs)
+[Code sample](/Lectures/Lecture_03/Assets/sln/Tests/LinqMaterializationTest.cs)
 
 +++
 ### LINQ Operators
