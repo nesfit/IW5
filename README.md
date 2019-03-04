@@ -41,7 +41,7 @@
 5. 1. [Swagger](https://gitpitch.com/fitiw/5?grs=github&t=white&p=Lectures%2FLecture_05#/)
       * Vytvoření Webové služby pomocí OpenAPI
    2. [Psaní čistého, udržovatelného kódu](https://gitpitch.com/fitiw/5?grs=github&t=white&p=Lectures%2FLecture_05#/)   
-      * *Dobrovolná přednáška* **ICS D105 13:00-14:50 4.3.2019**
+      * *Dobrovolná přednáška* **ICS D105 15:00-16:50 4.3.2019**
       * respektováním Clean Code, S.O.L.I.D. zásad
       * ukázky refaktorizace a práce s legacy kódem   
 6. [Návrhový vzor Model-View-ViewModel (MVVM)](https://gitpitch.com/fitiw/5?grs=github&t=white&p=Lectures%2FLecture_06#/)
@@ -62,7 +62,7 @@
     * proces, vlákno, úloha z pohledu C# a použitého .NET frameworku
 12. 1. [Nástroje pro správu paměti a profilaci výkonu](https://gitpitch.com/fitiw/5?grs=github&t=white&p=Lectures%2FLecture_12#/)
     2. [Multiplatformní programování](https://gitpitch.com/fitiw/5?grs=github&t=white&p=Lectures%2FLecture_13#/)
-       * Dobrovolná přednáška* **ICS D105 13:00-14:50 29.4.2019**
+       * Dobrovolná přednáška* **ICS D105 15:00-16:50 29.4.2019**
        * .NET Standard, .NET Core. 
        * kontejnerizace aplikací pomocí Docker a jejich orchestrace Kubernetes, Docker Swarm
 
