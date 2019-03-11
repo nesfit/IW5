@@ -1,0 +1,1 @@
+autorest --csharp --fluent --namespace="IW5_Swagger.ConsoleApp.API" --override-client-name="APIClient" --sync-methods="all" --client-side-validation="true" --input-file="https://iw5swaggerdemo.azurewebsites.net/swagger/v1/swagger.json" --output-folder="./IW5_Swagger/IW5_Swagger.ConsoleApp/API"

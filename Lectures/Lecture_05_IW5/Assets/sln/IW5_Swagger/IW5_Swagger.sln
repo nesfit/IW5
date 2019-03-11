@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28621.142
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IW5_Swagger.API", "IW5_Swagger.API\IW5_Swagger.API.csproj", "{C76A4063-4FED-467F-BB32-F25CF098AEBF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IW5_Swagger.ConsoleApp", "IW5_Swagger.ConsoleApp\IW5_Swagger.ConsoleApp.csproj", "{ACD0CB5F-B865-426D-B171-475BAC612ACA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C76A4063-4FED-467F-BB32-F25CF098AEBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C76A4063-4FED-467F-BB32-F25CF098AEBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C76A4063-4FED-467F-BB32-F25CF098AEBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C76A4063-4FED-467F-BB32-F25CF098AEBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACD0CB5F-B865-426D-B171-475BAC612ACA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACD0CB5F-B865-426D-B171-475BAC612ACA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACD0CB5F-B865-426D-B171-475BAC612ACA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACD0CB5F-B865-426D-B171-475BAC612ACA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AE433841-05E9-4026-8ED8-89C75FE8C928}
+	EndGlobalSection
+EndGlobal
