@@ -424,14 +424,12 @@ and others...
 [Code sample](/Lectures/Lecture_08/Assets/sln/Sample.App/ViewModels/MainViewModel.cs)
 
 +++
-### Collections
-* Property is a Collection
-  * Items are represented by a collection of inner elements
-  * `System.Object`
-    * `System.Collections.*`
-  * Implements interface `IEnumerable`
-  * *Source* (collection) needs to notify that collection has changed
-    * Implementing `INotifyCollectionChanged`
+### Binding to Collections
+* *View-Model* declares a collection typed property, i.e., type implements `IEnumerable`
+  * WPF sees items as a representation of collection's inner elements typed as `System.Object`
+  * *Source* (collection) needs to notify that collection has changed, if you need to update the collection from *View-Model* side.
+    * The collection needs to implement `INotifyCollectionChanged`
+    * E.g., `ObservableCollection<T>`
 
 ```C#
 public class MainViewModel {
