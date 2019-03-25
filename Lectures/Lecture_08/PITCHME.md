@@ -475,12 +475,12 @@ public class MainViewModel {
 ### ItemsControl - Collection Change
 *  How to re-render collection?
 *  Property `ItemsSource`
-  * Assignment of a different object
+  * Assignment of a different object to the binded property
     * Content is cleared, now data is generated
-  * Change of item in an `ItemsSource` collection
+  * Change of an item in the `ItemsSource` collection
     * Only with objects implementing interface `INotifyPropertyChanged`
-  * Adding or Removing items in a collection
-    * Collection must implement interface `INotifyCollectionChanged`
+  * Adding or Removing items in the collection
+    * The collection must implement interface `INotifyCollectionChanged`
 
 +++
 ### ItemsControl - ListBox
