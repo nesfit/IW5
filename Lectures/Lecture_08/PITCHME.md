@@ -560,14 +560,25 @@ public class MenuItem {
 * **Data** in this property **will be passed to the code** that runs when the command executes
 
 ```XML
+<TextBox x:name="TextBox" Text="Hello!">
+
 <Button Content="Send" Command="{Binding MyCommand}"
      CommandParameter="{Binding ElementName=TextBox, Path=Text}" />
 ```
 
 ```C#
-public void Execute(object parameter)
-{
-    var textFromTextBox = parameter as string;
+public class ViewModel {
+    public MyCommand MyCommand {get;} = new MyCommand();
+}
+
+public class MyCommand : ICommand {
+    public void Execute(object parameter)
+    {
+        var textFromTextBox = parameter as string;
+        ///....
+    }
+
+    public bool CanExecute => true;
 }
 ```
 @[1-2]
