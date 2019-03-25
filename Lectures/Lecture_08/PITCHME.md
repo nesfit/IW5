@@ -816,7 +816,7 @@ private bool CanExecute() => true;
 ![](/Lectures/Lecture_08/Assets/img/materialquickstart.png)
 
 ---
-## Declarative UI - WPF principle
+## Declarative UI - WPF Principle
 * Designer, UI developer
   * Uses **Blend for Visual Studio** former **Expression Blend**
   * Edits only *XAML files*
@@ -833,7 +833,7 @@ private bool CanExecute() => true;
 * Typically, the role of *Designer* and *Developer* overlaps
 
 +++
-### *Declarative* vs. *imperative* UI
+### *Declarative* vs. *Imperative* UI
 * **Supports both** *declarative* and *imperative* UI element instantiations
 * **No difference** between both approaches
 * Instantiation of UI element from *Code-behind* goes against WPF principle of *loose code coupling*
@@ -853,7 +853,7 @@ MainWindow.xaml.cs:
 ```
 
 +++
-### Declarative UI - WPF principle
+### Declarative UI - WPF Principle
 * What happens when *XAML is no used in WPF*?
   * Idea of **separation of concerns** is lost
   * *Designer* and *Developer* can not *coop* on the *same file*
