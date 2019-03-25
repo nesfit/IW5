@@ -565,6 +565,8 @@ public class MenuItem {
 <Button Content="Send" Command="{Binding MyCommand}"
      CommandParameter="{Binding ElementName=TextBox, Path=Text}" />
 ```
+@[1]
+@[3-4]
 
 ```C#
 public class ViewModel {
@@ -582,8 +584,7 @@ public class MyCommand : ICommand {
     public event EventHandler CanExecuteChanged {get;}
 }
 ```
-@[1-2]
-@[3-6]
+@[5-7]
 
 +++?code=/Lectures/Lecture_08/Assets/sln/Sample.App/Views/MainView.xaml&lang=XML&title=Command Class Sample 1/4
 @[45-48]
@@ -769,7 +770,7 @@ private bool CanExecute() => true;
 +++
 ### Material Design Quick Start 1/3
 * Start new WPF project
-* Install MaterialDesignThemes nuget: `Install-Package MaterialDesignThemes`
+* Install MaterialDesignThemes NuGet: `Install-Package MaterialDesignThemes`
 * Edit *App.xaml* to following:
 
 ```XML
