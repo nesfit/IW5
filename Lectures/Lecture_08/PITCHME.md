@@ -439,7 +439,7 @@ public class MainViewModel {
 ```
 
 +++
-### ItemsControls To Visualize Collections
+### ItemsControls - Collection Visualization
 * `ComboBox`
 * `ListBox`
 * `TabControl`
@@ -449,7 +449,7 @@ public class MainViewModel {
 * `System.Windows.Controls.ItemsControl`
 
 +++
-### ItemsControl - To Visualize Collections
+### ItemsControl - Collection Visualization
 * Property `Items`
   * General objects, rendered inside ItemControl
 * Property `ItemsSource`
@@ -460,7 +460,8 @@ public class MainViewModel {
 
 ```XML
 <ListBox ItemsSource="{Binding MenuItems}">
-   <ListBox.ItemTemplate>  <DataTemplate>
+   <ListBox.ItemTemplate>  
+      <DataTemplate>
          <StackPanel>
             <TextBlock Text="{Binding Title}" />
             <TextBlock Text="{Binding SubTitle}" />
