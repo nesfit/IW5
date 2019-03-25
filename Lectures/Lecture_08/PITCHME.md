@@ -578,7 +578,8 @@ public class MyCommand : ICommand {
         ///....
     }
 
-    public bool CanExecute => true;
+    public bool CanExecute(object parameter) => true;
+    public event EventHandler CanExecuteChanged {get;}
 }
 ```
 @[1-2]
@@ -621,7 +622,7 @@ public class MyCommand : ICommand {
 * *Clean Code* without *Code-behind*
 * **Command design pattern**
   * Launches *action*
-  * *Checks* if the action is permited to launch
+  * *Checks* if the action is permitted to launch
 
 +++
 ### Commands - RelayCommand
@@ -631,14 +632,15 @@ public class MyCommand : ICommand {
 
 ```C#
 private RelayCommand myCommand;
+
 public RelayCommand MyCommand => myCommand ?? 
    (myCommand = new RelayCommand(Execute,CanExecute);
+
 private void Execute() {
       //...
 }
-private bool CanExecute() {
-   return 1 == 1;
-}
+
+private bool CanExecute() => true;
 ```
 
 +++?code=/Lectures/Lecture_08/Assets/sln/Sample.App/Commands/RelayCommand.cs&lang=C#&title=Relay Command Sample 1/3
