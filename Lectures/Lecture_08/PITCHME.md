@@ -738,7 +738,7 @@ private bool CanExecute() => true;
 ![](/Lectures/Lecture_08/Assets/img/CustomControl.jpeg)
 
 +++?code=/Lectures/Lecture_08/Assets/sln/CustomControl/MainWindow.xaml&lang=XML&title=Custom Control Sample
-@[11-12]
+@[11-15]
 [Code sample](/Lectures/Lecture_08/Assets/sln/CustomControl/MainWindow.xaml)
 
 ---
