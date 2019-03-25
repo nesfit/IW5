@@ -216,7 +216,7 @@ System.Object
 +++
 ### Canvas
 * `Canvas`
-* Positioning of content according to **absolute x- and y-coordinates**
+* Position the content according to the **absolute x- and y-coordinates**
 * Properties like `Canvas.Top, Canvas.Left, Canvas.Top, Canvas.Bottom`
 
 ![](/Lectures/Lecture_08/Assets/img/canvas.png)
@@ -224,7 +224,7 @@ System.Object
 +++
 ### Grid
 * `Grid`
-* Merges 
+* Combination of: 
   * Absolute positioning
   * **Tabular data control**
 * Properties like `Grid.Row, Grid.Column, Grid.RowSpan, Grid.ColumnSpan`
@@ -234,14 +234,13 @@ System.Object
 +++
 ### StackPanel and DockPanel
 * `StackPanel`, `DockPanel`
-* **Components beside one-another**
-* *Vertical* or *Horizontal* rendering
+* **Components are placed next to one-another**
+* *Vertical* or *Horizontal* stacking
 * Properties like `StackPanel.Orientation`, `DockPanel.Dock`
-* Difference
-  * DockPanel on the top
-  * StackPanel on the bottom
-
+  
 ![](/Lectures/Lecture_08/Assets/img/StackVsDockPanel.png)
+  * DockPanel - the last item is squeezed
+  * StackPanel - the last item is trimmed
 
 +++
 ### WrapPanel
