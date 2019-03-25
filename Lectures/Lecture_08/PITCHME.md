@@ -433,7 +433,8 @@ and others...
 
 ```C#
 public class MainViewModel {
-   public ObservableCollection<MenuItem> MenuItems { get; } = new ObservableCollection<MenuItem>();
+   public ObservableCollection<MenuItem> MenuItems { get; } 
+                     = new ObservableCollection<MenuItem>();
 }
 ```
 
