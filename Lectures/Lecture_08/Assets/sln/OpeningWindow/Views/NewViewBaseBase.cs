@@ -5,7 +5,7 @@
         public void Show()
         {
             // Here can be switch for more options
-            // e.g. Depends on application settings
+            // i.e., Depends on application settings
             new NewView().Show();
         }
     }
