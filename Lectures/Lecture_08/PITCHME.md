@@ -585,6 +585,10 @@ public class MyCommand : ICommand {
 }
 ```
 @[5-7]
+@[9-18]
+@[10-14]
+@[16]
+@[17]
 
 +++?code=/Lectures/Lecture_08/Assets/sln/Sample.App/Views/MainView.xaml&lang=XML&title=Command Class Sample 1/4
 @[45-48]
