@@ -48,7 +48,7 @@
 * *Shapes* are represented by *vectors* and can be *easily manipulated*
 * Developer defines a shape and lets WPF render it in the most optimal way
 * WPF contains multiple predefined shapes
-  * E.g. `Line, Rectangle, Ellipse, Path` etc...
+  * E.g., `Line, Rectangle, Ellipse, Path` etc...
 * *Shapes* are used inside *panels* and multiplicity of other WPF component contents
 
 +++
@@ -252,7 +252,7 @@ System.Object
 * `Label`
 * `CheckBox, RadioButton`
 * `ScrollViewer`
-  * In case that content is longer or wider than space defined in parent
+  * In case that content is longer or wider than space defined in the parent
   * Creates *scrolling bar*
 * and others...
 
@@ -378,7 +378,7 @@ and others...
 * *Source* 
   * Property that we bind to
 * *Target*
-  * Component, that defines `{Binding}`
+  * Component that defines `{Binding}`
 
 +++
 ### Data-binding how it works?
@@ -469,7 +469,7 @@ public class MainViewModel {
 *  Property `ItemsSource`
   * Assignment of a different object
     * Content is cleared, now data is generated
-  * Change of item in a `ItemsSource` collection
+  * Change of item in an `ItemsSource` collection
     * Only with objects implementing interface `INotifyPropertyChanged`
   * Adding or Removing items in a collection
     * Collection must implement interface `INotifyCollectionChanged`
@@ -525,7 +525,7 @@ public class MainViewModel {
 * E.g., *Copy, Cut, Paste, Save, etc...*
 * Reduces the necessary code amount
 * Enables UI changes without a need to change *back-end* logic
-* Commands have *action, source, target and binding*
+* Commands have *action, source, target, and binding*
 
 +++
 ### Command Class
@@ -677,18 +677,18 @@ private bool CanExecute() {
   * Creating a new window is a job for the *ViewModel*
     * It is not part of ViewModel responsibilities to know, what View should be created
     * See [Demonstration project](https://github.com/orlicekm/CsharpCourse/tree/master/Lectures/Lecture_08/Assets/sln/OpeningWindow)
-  * Recommends to use MVVM framework
-    * Solves problems with wraping all this up
+  * Recommends using MVVM framework
+    * Solves problems with wrapping all this up
 
 ---
 ### Styles
 * **Style** is a *set of properties* applied to the *content*
   * Defines *changes in rendering*
   * Concept is the same as with *CSS*
-  * E.g. change *button's text's font*
+  * E.g., change *button's text's font*
 * Used for **visual state standardization** to set the same set of properties for particular items
 * WPF styles contain specific properties for UI creation
-  * E.g. *begin a set of visual effects* as a *reaction to a user action*
+  * E.g., *begin a set of visual effects* as a *reaction to a user action*
 
 +++
 ### Templates
@@ -699,7 +699,7 @@ private bool CanExecute() {
     * E.g. `ListBox`
   * `DataTemplate` – item look inside a panel
   * `HierarchicalDataTemplate` - object look inside panels with hierarchical structure
-    * E.g. `TreeView`
+    * E.g., `TreeView`
 
 +++
 ### Custom Control Creation
@@ -804,7 +804,7 @@ private bool CanExecute() {
 
 ![](/Lectures/Lecture_08/Assets/img/vs.jpg)
 
-* Typically, role of *Designer* and *Developer* overlaps
+* Typically, the role of *Designer* and *Developer* overlaps
 
 +++
 ### *Declarative* vs. *imperative* UI
@@ -876,7 +876,7 @@ MainWindow.xaml.cs:
 @snapend
 
 +++
-### Siverlight - Deprecated
+### Silverlight - Deprecated
 * End of overall support is scheduled to **5th of October 2021**  
   * *IE7-8* - support had been removed between 2014-2016 (depending on the OS)
   * *IE9-11* - support will last until late 2021
