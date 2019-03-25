@@ -436,6 +436,11 @@ public class MainViewModel {
    public ObservableCollection<MenuItem> MenuItems { get; } 
                      = new ObservableCollection<MenuItem>();
 }
+
+public class MenuItem {
+  public string Title {get; set;}
+  public string SubTitle {get; set;}
+}
 ```
 
 +++
@@ -475,7 +480,7 @@ public class MainViewModel {
 ### ItemsControl - Collection Change
 *  How to re-render collection?
 *  Property `ItemsSource`
-  * Assignment of a different object to the binded property
+  * Assignment of a different object to the bound property
     * Content is cleared, now data is generated
   * Change of an item in the `ItemsSource` collection
     * Only with objects implementing interface `INotifyPropertyChanged`
@@ -487,7 +492,7 @@ public class MainViewModel {
 * Property `SelectedItem`
   * Object that is *bindable*
 * Property `SelectedValuePath`
-  * Defines path to a property that is binded by `SelectedValue`
+  * Defines path to a property that is bound by `SelectedValue`
   * E.g., `Object.Property1.Property2`
 * Property `SelectedValue`
   * Value of property defined by `SelectedValuePath`
