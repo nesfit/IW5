@@ -101,7 +101,7 @@
 * These objects are called *user interface elements* or *UI elements*
 
 +++
-#### Hello WPF Sample
+#### Hello WPF - Sample
 ![](/Lectures/Lecture_08/Assets/img/HelloWPF.png)
 
 +++?code=/Lectures/Lecture_08/Assets/sln/HelloWpf/MainWindow.xaml&lang=XML&title=Hello WPF XAML
@@ -123,7 +123,7 @@
 [Code sample](/Lectures/Lecture_08/Assets/sln/HelloWpf/MainWindow.xaml.cs)
 
 +++
-### Hello WPF Explanation
+### Hello WPF - Explanation
 * Declarations
   * *Window/UserControl/…* - inheritance
   * `x:Class` - class containing *Code-behind*
@@ -136,8 +136,8 @@
 * *Element* `Button` declares item button
 
 +++
-### Elements & Attributes - Object properties 
-* *UI Elements* have common subset of *properties* and *functions*
+### Elements & Attributes - Object Properties 
+* `System.Windows.UIElement` (*UI Element*) have common subset of *properties* and *functions*
   * E.g., `Width, Height, Cursor, Tag` properties
 * Declaration of XML *element* in XAML
   * Same effect as calling *parameterless constructor*
@@ -147,8 +147,8 @@
 * **Element** – *UI Element*, complex property, class initialization
 
 +++
-### Property elements
-* Not all *properties* has to contain `string` only
+### Property Elements
+* Not all *properties* has to contain only a `string` 
 * **Properties can contain instances of other objects**
 * XAML defines syntactical notation for *complex property* definition called **property elements**
 * Form *TypeName.PropertyName* contained inside *TypeName* element
@@ -163,7 +163,7 @@
 ```
 
 ---
-## Class hierarchy
+## Class Hierarchy
 * `System.Object`
 * `System.Windows.DependencyObject`
   * Support dependency properties
@@ -173,6 +173,16 @@
   * Support for data-binding, styles, etc...
 * `System.Windows.Controls.Control`
   * Base class for definitions of *UI Elements*
+
+```
+System.Object
+  System.Windows.Threading.DispatcherObject
+    System.Windows.DependencyObject
+      System.Windows.Media.Visual
+        System.Windows.UIElement
+          System.Windows.FrameworkElement
+            System.Windows.Controls.Control
+```
 
 ---
 ## Controls
@@ -187,12 +197,11 @@
 
 +++
 ## Panels
-* Only components that can have multiple descendants
-* Used to create **layout** 
+* Are **the only components** that **can have multiple elements declared in content**
+* Used to create a **layout** 
 * Common practice in WPF
-  * Vector graphics
-  * UI adaptation to available space
-  * "Flexible layout"
+  * To use vector graphics
+  * UI adapts to available space - **Flexible layout**
 
 ```
 System.Object
