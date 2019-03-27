@@ -7,8 +7,8 @@ namespace CookBook.DAL.Entities
     {
         public double Amount { get; set; }
         public Unit Unit { get; set; }
-        public RecipeEntity Recipe { get; set; }
-        public IngredientEntity Ingredient { get; set; }
+        public virtual RecipeEntity Recipe { get; set; }
+        public virtual IngredientEntity Ingredient { get; set; }
 
         private sealed class IngredientAmountEqualityComparer : IEqualityComparer<IngredientAmountEntity>
         {

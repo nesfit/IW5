@@ -11,7 +11,7 @@ namespace CookBook.DAL.Entities
         public string Description { get; set; }
         public TimeSpan Duration { get; set; }
         public FoodType FoodType { get; set; }
-        public ICollection<IngredientAmountEntity> Ingredients { get; } = new List<IngredientAmountEntity>();
+        public virtual ICollection<IngredientAmountEntity> Ingredients { get; } = new List<IngredientAmountEntity>();
 
         private sealed class RecipeEntityEqualityComparer : IEqualityComparer<RecipeEntity>
         {

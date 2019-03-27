@@ -14,7 +14,8 @@ namespace CookBook.DAL
         {
         }
 
+        public DbSet<IngredientAmountEntity> IngredientAmountEntities { get; set; }
         public DbSet<RecipeEntity> Recipes { get; set; }
         public DbSet<IngredientEntity> Ingredients { get; set; }
     }
-}
+}   
