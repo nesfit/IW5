@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace CookBook.BL.Models
 {
-    public abstract class BaseModel : INotifyPropertyChanged
+    public abstract class ModelBase : INotifyPropertyChanged
     {
         public Guid Id { get; set; }
         public event PropertyChangedEventHandler PropertyChanged;
