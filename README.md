@@ -57,12 +57,8 @@
 9. [Návrhové vzory](https://gitpitch.com/fitiw/5?grs=github&t=white&p=Lectures%2FLecture_09#/)
    * vytvářecí, strukturní a chování - Gang of Four (GoF) v kontextu C#
 10. Zrušeno - děkanský půlden
-11. 1. [Paralelní a asynchronní programování](https://gitpitch.com/nesfit/ics?grs=github&t=white&p=Lectures%2FLecture_11#/)
-       * proces, vlákno, úloha z pohledu C# a použitého .NET frameworku
-    2. [WPF za pomoci MVVM](https://gitpitch.com/nesfit/ics?grs=github&t=white&p=Lectures%2FLecture_10#/)
-       * respektováním Clean Code, S.O.L.I.D. zásad
-       * ukázky refaktorizace a práce s legacy kódem  
-       * *Dobrovolná přednáška* **ICS D0206 15:00-16:50 15.4.2019**   
+11. [Paralelní a asynchronní programování](https://gitpitch.com/nesfit/ics?grs=github&t=white&p=Lectures%2FLecture_11#/)
+       * proces, vlákno, úloha z pohledu C# a použitého .NET frameworku 
 12. Velikonoční pondělí    
 13. 1. [Nástroje pro správu paměti a profilaci výkonu](https://gitpitch.com/fitiw/5?grs=github&t=white&p=Lectures%2FLecture_12#/)
     2. [Multiplatformní programování](https://gitpitch.com/fitiw/5?grs=github&t=white&p=Lectures%2FLecture_13#/)
