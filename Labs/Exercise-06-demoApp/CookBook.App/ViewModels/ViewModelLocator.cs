@@ -1,6 +1,7 @@
 ﻿using CookBook.App.Services;
 using CookBook.BL.Interfaces;
 using CookBook.BL.Repositories;
+using CookBook.BL.Repositories.Obsolete;
 using CookBook.BL.Services;
 using CookBook.DAL.Factories;
 

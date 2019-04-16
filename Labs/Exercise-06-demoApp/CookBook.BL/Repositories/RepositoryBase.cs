@@ -43,8 +43,6 @@ namespace CookBook.BL.Repositories
             ListIncludes = listIncludes;
         }
 
-        public static IEqualityComparer<IEntity> IdComparer { get; } = new IdEqualityComparer();
-
         public void Delete(TDetailModel detailModel)
         {
             this.Delete(detailModel.Id);
@@ -91,7 +89,10 @@ namespace CookBook.BL.Repositories
             using (var dbContext = DbContextFactory.CreateDbContext())
             {
                 IQueryable<TEntity> query = dbContext.Set<TEntity>();
-                if (ListIncludes != null) query = ListIncludes(query);
+                if (ListIncludes != null)
+                {
+                    query = ListIncludes(query);
+                }
 
                 return query.Select(e => MapListModel(e)).ToArray();
             }
@@ -109,7 +110,10 @@ namespace CookBook.BL.Repositories
         private TEntity GetById(DbContext dbContext, Guid entityId)
         {
             IQueryable<TEntity> query = dbContext.Set<TEntity>();
-            if (DetailIncludes != null) query = DetailIncludes(query);
+            if (DetailIncludes != null)
+            {
+                query = DetailIncludes(query);
+            }
 
             return query.FirstOrDefault(entity => entity.Id == entityId);
         }
@@ -121,7 +125,10 @@ namespace CookBook.BL.Repositories
             using (var dbContextGetById = DbContextFactory.CreateDbContext())
             {
                 entityInDb = GetById(dbContextGetById, entity.Id);
-                if (entityInDb == null) return;
+                if (entityInDb == null)
+                {
+                    return;
+                }
             }
 
             foreach (var collectionSelector in CollectionsToBeSynchronized)
@@ -130,28 +137,23 @@ namespace CookBook.BL.Repositories
                 var collectionInDb = collectionSelector(entityInDb);
 
                 foreach (var item in collectionInDb)
-                    if (!updatedCollection.Contains(item, IdComparer))
+                {
+                    if (!updatedCollection.Contains(item, RepositoryExtensions.IdComparer))
+                    {
                         dbContext.Remove(dbContext.Find(item.GetType(), item.Id));
+                    }
+                }
             }
         }
 
         private static void DisplayStates(IEnumerable<EntityEntry> entries)
         {
-            foreach (var entry in entries) Console.WriteLine($"Entity: {entry.Entity.GetType().Name}, State: {entry.State.ToString()}");
-        }
-
-        private sealed class IdEqualityComparer : IEqualityComparer<IEntity>
-        {
-            public Boolean Equals(IEntity x, IEntity y)
+            foreach (var entry in entries)
             {
-                if (ReferenceEquals(x, y)) return true;
-                if (ReferenceEquals(x, null)) return false;
-                if (ReferenceEquals(y, null)) return false;
-                if (x.GetType() != y.GetType()) return false;
-                return x.Id.Equals(y.Id);
+                Console.WriteLine($"Entity: {entry.Entity.GetType().Name}, State: {entry.State.ToString()}");
             }
-
-            public Int32 GetHashCode(IEntity obj) => obj.Id.GetHashCode();
         }
+
+      
     }
 }

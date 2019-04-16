@@ -1,68 +1,26 @@
-﻿using CookBook.BL.Mapper;
-using CookBook.BL.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using CookBook.BL.Interfaces;
+using CookBook.BL.Mapper;
+using CookBook.BL.Models;
+using CookBook.DAL.Entities;
 using CookBook.DAL.Factories;
+using CookBook.DAL.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace CookBook.BL.Repositories
 {
-    [Obsolete]
-    public class IngredientRepository : IIngredientRepository
+    public class IngredientRepository : RepositoryBase<IngredientEntity, IngredientListModel, IngredientDetailModel>, IIngredientRepository
     {
-        private readonly IDbContextFactory dbContextFactory;
-
-        public IngredientRepository(IDbContextFactory dbContextFactory) => this.dbContextFactory = dbContextFactory;
-
-        public IEnumerable<IngredientListModel> GetAll()
+        public IngredientRepository(IDbContextFactory dbContextFactory)
+            : base(dbContextFactory,
+                IngredientMapper.MapEntity,
+                IngredientMapper.MapListModel,
+                IngredientMapper.MapDetailModel,
+                null,
+                null,
+                null)
         {
-            using (var dbContext = dbContextFactory.CreateDbContext())
-            {
-                return dbContext.Ingredients
-                    .Select(e => IngredientMapper.MapListModel(e))
-                    .ToList();
-            }
-        }
-
-        public IngredientDetailModel GetById(Guid id)
-        {
-            using (var dbContext = dbContextFactory.CreateDbContext())
-            {
-                var entity = dbContext.Ingredients.First(t => t.Id == id);
-                return IngredientMapper.MapDetailModel(entity);
-            }
-        }
-
-        public IngredientDetailModel Create(IngredientDetailModel model)
-        {
-            using (var dbContext = dbContextFactory.CreateDbContext())
-            {
-                var entity = IngredientMapper.MapEntity(model);
-                dbContext.Ingredients.Add(entity);
-                dbContext.SaveChanges();
-                return IngredientMapper.MapDetailModel(entity);
-            }
-        }
-
-        public void Update(IngredientDetailModel model)
-        {
-            using (var dbContext = dbContextFactory.CreateDbContext())
-            {
-                var entity = IngredientMapper.MapEntity(model);
-                dbContext.Ingredients.Update(entity);
-                dbContext.SaveChanges();
-            }
-        }
-
-        public void Delete(Guid id)
-        {
-            using (var dbContext = dbContextFactory.CreateDbContext())
-            {
-                var entity = dbContext.Ingredients.First(t => t.Id == id);
-                dbContext.Remove(entity);
-                dbContext.SaveChanges();
-            }
         }
     }
 }

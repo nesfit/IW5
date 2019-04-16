@@ -14,10 +14,26 @@ namespace CookBook.BL.Models
         {
             public bool Equals(RecipeListModel x, RecipeListModel y)
             {
-                if (ReferenceEquals(x, y)) return true;
-                if (ReferenceEquals(x, null)) return false;
-                if (ReferenceEquals(y, null)) return false;
-                if (x.GetType() != y.GetType()) return false;
+                if (ReferenceEquals(x, y))
+                {
+                    return true;
+                }
+
+                if (ReferenceEquals(x, null))
+                {
+                    return false;
+                }
+
+                if (ReferenceEquals(y, null))
+                {
+                    return false;
+                }
+
+                if (x.GetType() != y.GetType())
+                {
+                    return false;
+                }
+
                 return string.Equals(x.Name, y.Name) && x.Duration.Equals(y.Duration) && x.FoodType == y.FoodType;
             }
 

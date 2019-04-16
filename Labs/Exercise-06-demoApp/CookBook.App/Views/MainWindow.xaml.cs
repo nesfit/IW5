@@ -1,4 +1,4 @@
-﻿namespace CookBook.App
+﻿namespace CookBook.App.Views
 {
     public partial class MainWindow
     {

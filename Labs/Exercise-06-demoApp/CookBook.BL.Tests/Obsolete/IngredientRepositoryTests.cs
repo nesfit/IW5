@@ -2,13 +2,13 @@
 using CookBook.BL.Models;
 using Xunit;
 
-namespace CookBook.BL.Tests
+namespace CookBook.BL.Tests.Obsolete
 {
-    public class IngredientRepositoryTests : IClassFixture<IngredientRepositoryTestsFixture>, IDisposable
+    public class IngredientRepositoryObsoleteTests : IClassFixture<IngredientRepositoryObsoleteTestsFixture>, IDisposable
     {
-        private readonly IngredientRepositoryTestsFixture fixture;
+        private readonly IngredientRepositoryObsoleteTestsFixture fixture;
 
-        public IngredientRepositoryTests(IngredientRepositoryTestsFixture fixture)
+        public IngredientRepositoryObsoleteTests(IngredientRepositoryObsoleteTestsFixture fixture)
         {
             this.fixture = fixture;
 
@@ -24,7 +24,7 @@ namespace CookBook.BL.Tests
                 Name = "Ingredience 1"
             };
 
-            var returnedModel = fixture.Repository.InsertOrUpdate(model);
+            var returnedModel = fixture.Repository.Create(model);
 
             Assert.NotNull(returnedModel);
 

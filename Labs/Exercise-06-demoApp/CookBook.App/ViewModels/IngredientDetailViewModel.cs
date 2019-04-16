@@ -49,14 +49,7 @@ namespace CookBook.App.ViewModels
 
         public void Save()
         {
-            if (Model.Id == Guid.Empty)
-            {
-                Model = ingredientRepository.Create(Model);
-            }
-            else
-            {
-                ingredientRepository.Update(Model);
-            }
+            Model = ingredientRepository.InsertOrUpdate(Model);
 
             mediator.Send(new IngredientUpdatedMessage {Id = Model.Id});
             Model = null;

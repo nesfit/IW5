@@ -17,10 +17,26 @@ namespace CookBook.BL.Models
         {
             public bool Equals(IngredientAmountDetailModel x, IngredientAmountDetailModel y)
             {
-                if (ReferenceEquals(x, y)) return true;
-                if (ReferenceEquals(x, null)) return false;
-                if (ReferenceEquals(y, null)) return false;
-                if (x.GetType() != y.GetType()) return false;
+                if (ReferenceEquals(x, y))
+                {
+                    return true;
+                }
+
+                if (ReferenceEquals(x, null))
+                {
+                    return false;
+                }
+
+                if (ReferenceEquals(y, null))
+                {
+                    return false;
+                }
+
+                if (x.GetType() != y.GetType())
+                {
+                    return false;
+                }
+
                 return x.IngredientId.Equals(y.IngredientId) 
                        && string.Equals(x.IngredientName, y.IngredientName) 
                        && string.Equals(x.IngredientDescription, y.IngredientDescription) 
@@ -47,10 +63,26 @@ namespace CookBook.BL.Models
         {
             public bool Equals(IngredientAmountDetailModel x, IngredientAmountDetailModel y)
             {
-                if (ReferenceEquals(x, y)) return true;
-                if (ReferenceEquals(x, null)) return false;
-                if (ReferenceEquals(y, null)) return false;
-                if (x.GetType() != y.GetType()) return false;
+                if (ReferenceEquals(x, y))
+                {
+                    return true;
+                }
+
+                if (ReferenceEquals(x, null))
+                {
+                    return false;
+                }
+
+                if (ReferenceEquals(y, null))
+                {
+                    return false;
+                }
+
+                if (x.GetType() != y.GetType())
+                {
+                    return false;
+                }
+
                 return string.Equals(x.IngredientName, y.IngredientName) 
                        && string.Equals(x.IngredientDescription, y.IngredientDescription) 
                        && x.Amount.Equals(y.Amount) 

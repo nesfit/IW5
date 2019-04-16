@@ -14,23 +14,7 @@ namespace CookBook.BL.Tests
 
             this.PrepareDatabase();
         }
-
-        internal void PrepareDatabase()
-        {
-            using (var dbx = base.DbContextFactory.CreateDbContext())
-            {
-                dbx.Database.EnsureCreated();
-            }
-        }
-
-        internal void TearDownDatabase()
-        {
-            using (var dbx = base.DbContextFactory.CreateDbContext())
-            {
-                dbx.Database.EnsureDeleted();
-            }
-        }
-
+        
         public RecipeRepository Repository { get; }
     }
 }

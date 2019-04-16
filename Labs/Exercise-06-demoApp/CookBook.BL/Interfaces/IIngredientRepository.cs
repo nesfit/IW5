@@ -6,10 +6,10 @@ namespace CookBook.BL.Interfaces
 {
     public interface IIngredientRepository
     {
-        IEnumerable<IngredientListModel> GetAll();
-        IngredientDetailModel GetById(Guid id);
-        IngredientDetailModel Create(IngredientDetailModel model);
-        void Update(IngredientDetailModel model);
+        void Delete(IngredientDetailModel detailModel);
         void Delete(Guid id);
+        IngredientDetailModel GetById(Guid entityId);
+        IngredientDetailModel InsertOrUpdate(IngredientDetailModel detailModel);
+        IEnumerable<IngredientListModel> GetAll();
     }
 }

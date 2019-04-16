@@ -26,6 +26,5 @@ namespace CookBook.BL.Repositories
                 null)
         {
         }
-
     }
 }

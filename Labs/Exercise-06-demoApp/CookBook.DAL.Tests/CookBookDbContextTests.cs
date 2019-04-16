@@ -120,7 +120,10 @@ namespace CookBook.DAL.Tests
         public void DeleteRecipe_DeletesIngredientAmounts()
         {
             //OnCascadeDelete is not supported in in-memory of .NET Core EF 2.x
-            if(_testContext.CookBookDbContextSUT.Database.IsInMemory()) return;
+            if(_testContext.CookBookDbContextSUT.Database.IsInMemory())
+            {
+                return;
+            }
 
             //Act
             _testContext.CookBookDbContextSUT.Recipes.Remove(_testContext.CookBookDbContextSUT.Recipes.Find(CookBookSeedingDbContext.RecipeEntity.Id));
@@ -140,7 +143,10 @@ namespace CookBook.DAL.Tests
         public void DeleteIngredient_DeletesIngredientAmounts()
         {
             //OnCascadeDelete is not supported in in-memory of .NET Core EF 2.x
-            if (_testContext.CookBookDbContextSUT.Database.IsInMemory()) return;
+            if (_testContext.CookBookDbContextSUT.Database.IsInMemory())
+            {
+                return;
+            }
 
             //Act
             _testContext.CookBookDbContextSUT.Ingredients.Remove(_testContext.CookBookDbContextSUT.Ingredients.Find(CookBookSeedingDbContext.IngredientEntity1.Id));
@@ -160,7 +166,10 @@ namespace CookBook.DAL.Tests
         public void DeleteIngredientAmounts_RecipeAndIngredientSurvives()
         {
             //OnCascadeDelete is not supported in in-memory of .NET Core EF 2.x
-            if (_testContext.CookBookDbContextSUT.Database.IsInMemory()) return;
+            if (_testContext.CookBookDbContextSUT.Database.IsInMemory())
+            {
+                return;
+            }
 
             //Act
             _testContext.CookBookDbContextSUT.IngredientAmountEntities.Remove(_testContext.CookBookDbContextSUT.IngredientAmountEntities.Find(CookBookSeedingDbContext.IngredientAmountEntity1.Id));
