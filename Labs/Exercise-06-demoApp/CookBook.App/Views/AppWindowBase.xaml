@@ -6,7 +6,5 @@
         xmlns:local="clr-namespace:CookBook.App.Views"
         mc:Ignorable="d"
         Title="AppWindowBase" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+    <Grid />
 </Window>

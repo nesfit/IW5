@@ -5,61 +5,56 @@ namespace CookBook.App.Commands
 {
     public class RelayCommand : ICommand
     {
-        private readonly Action<object> executeAction;
-        private readonly Func<object, bool> canExecuteAction;
+        private readonly Func<Object, Boolean> canExecuteAction;
+        private readonly Action<Object> executeAction;
 
-        public RelayCommand(Action<object> executeAction, Func<object, bool> canExecuteAction = null)
+        public RelayCommand(Action<Object> executeAction, Func<Object, Boolean> canExecuteAction = null)
         {
             this.executeAction = executeAction;
             this.canExecuteAction = canExecuteAction;
         }
 
-        public RelayCommand(Action executeAction, Func<bool> canExecuteAction = null)
+        public RelayCommand(Action executeAction, Func<Boolean> canExecuteAction = null)
             : this(p => executeAction(), p => canExecuteAction?.Invoke() ?? true)
         {
         }
 
-        public bool CanExecute(object parameter)
-        {
-            return canExecuteAction?.Invoke(parameter) ?? true;
-        }
+        public Boolean CanExecute(Object parameter) => canExecuteAction?.Invoke(parameter) ?? true;
 
-        public void Execute(object parameter)
+        public void Execute(Object parameter)
         {
             executeAction?.Invoke(parameter);
         }
 
         public event EventHandler CanExecuteChanged
         {
-            add { CommandManager.RequerySuggested += value; }
-            remove { CommandManager.RequerySuggested -= value; }
+            add => CommandManager.RequerySuggested += value;
+            remove => CommandManager.RequerySuggested -= value;
         }
     }
 
     public class RelayCommand<T> : ICommand
     {
+        private readonly Func<T, Boolean> canExecute;
         private readonly Action<T> execute;
-        private readonly Func<T, bool> canExecute;
 
-        public RelayCommand(Action<T> execute, Func<T, bool> canExecute = null)
+        public RelayCommand(Action<T> execute, Func<T, Boolean> canExecute = null)
         {
             this.execute = execute;
             this.canExecute = canExecute;
         }
 
-        public bool CanExecute(object parameter)
+        public Boolean CanExecute(Object parameter)
         {
             if (parameter is T typedParameter)
             {
                 return canExecute?.Invoke(typedParameter) ?? true;
             }
-            else
-            {
-                return false;
-            }
+
+            return false;
         }
 
-        public void Execute(object parameter)
+        public void Execute(Object parameter)
         {
             if (parameter is T typedParameter)
             {
@@ -69,8 +64,8 @@ namespace CookBook.App.Commands
 
         public event EventHandler CanExecuteChanged
         {
-            add { CommandManager.RequerySuggested += value; }
-            remove { CommandManager.RequerySuggested -= value; }
+            add => CommandManager.RequerySuggested += value;
+            remove => CommandManager.RequerySuggested -= value;
         }
     }
 }

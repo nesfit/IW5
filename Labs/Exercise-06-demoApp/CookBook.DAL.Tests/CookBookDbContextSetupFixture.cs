@@ -6,10 +6,8 @@ namespace CookBook.DAL.Tests
     {
         public InMemoryDbContextFactory DbContextFactory { get; }
 
-        public CookBookDbContextSetupFixture(string testDbName)
-        {
-            DbContextFactory = new InMemoryDbContextFactory(testDbName);
-        }
+        public CookBookDbContextSetupFixture(string testDbName) => DbContextFactory = new InMemoryDbContextFactory(testDbName);
+
         public void PrepareDatabase()
         {
             using (var dbx = DbContextFactory.CreateDbContext())

@@ -61,6 +61,24 @@ namespace CookBook.App.Resources.Texts {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Amount.
+        /// </summary>
+        public static string IngredientAmountDetail_LabelAmount {
+            get {
+                return ResourceManager.GetString("IngredientAmountDetail_LabelAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unit.
+        /// </summary>
+        public static string IngredientAmountDetail_LabelUnit {
+            get {
+                return ResourceManager.GetString("IngredientAmountDetail_LabelUnit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
         public static string IngredientDetail_ButtonDelete {
@@ -102,6 +120,69 @@ namespace CookBook.App.Resources.Texts {
         public static string IngredientList_ButtonNewIngredient {
             get {
                 return ResourceManager.GetString("IngredientList_ButtonNewIngredient", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string RecipeDetail_ButtonDelete {
+            get {
+                return ResourceManager.GetString("RecipeDetail_ButtonDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string RecipeDetail_ButtonSave {
+            get {
+                return ResourceManager.GetString("RecipeDetail_ButtonSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        public static string RecipeDetail_LabelDescription {
+            get {
+                return ResourceManager.GetString("RecipeDetail_LabelDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Duration.
+        /// </summary>
+        public static string RecipeDetail_LabelDuration {
+            get {
+                return ResourceManager.GetString("RecipeDetail_LabelDuration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Foodtype.
+        /// </summary>
+        public static string RecipeDetail_LabelFoodType {
+            get {
+                return ResourceManager.GetString("RecipeDetail_LabelFoodType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string RecipeDetail_LabelName {
+            get {
+                return ResourceManager.GetString("RecipeDetail_LabelName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add New Recipes.
+        /// </summary>
+        public static string RecipeList_ButtonNewRecipe {
+            get {
+                return ResourceManager.GetString("RecipeList_ButtonNewRecipe", resourceCulture);
             }
         }
         

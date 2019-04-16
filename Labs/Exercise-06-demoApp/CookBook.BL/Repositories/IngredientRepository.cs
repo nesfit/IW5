@@ -13,10 +13,7 @@ namespace CookBook.BL.Repositories
     {
         private readonly IDbContextFactory dbContextFactory;
 
-        public IngredientRepository(IDbContextFactory dbContextFactory)
-        {
-            this.dbContextFactory = dbContextFactory;
-        }
+        public IngredientRepository(IDbContextFactory dbContextFactory) => this.dbContextFactory = dbContextFactory;
 
         public IEnumerable<IngredientListModel> GetAll()
         {

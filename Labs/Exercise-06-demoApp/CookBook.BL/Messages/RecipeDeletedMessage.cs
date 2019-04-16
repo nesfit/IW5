@@ -2,7 +2,7 @@
 
 namespace CookBook.BL.Messages
 {
-    public class IngredientAddedMessage : IMessage
+    public class RecipeDeletedMessage : IMessage
     {
         public Guid Id { get; set; }
     }

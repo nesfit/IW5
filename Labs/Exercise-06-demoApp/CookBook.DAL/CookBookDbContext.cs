@@ -31,5 +31,16 @@ namespace CookBook.DAL
                 .HasMany(typeof(IngredientAmountEntity)).WithOne(nameof(IngredientAmountEntity.Ingredient))
                 .OnDelete(DeleteBehavior.Cascade);
         }
+
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer($@"Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog = MigrationDb;MultipleActiveResultSets = True;Integrated Security = True; ");
+            }
+
+            base.OnConfiguring(optionsBuilder);
+        }
     }
 }   

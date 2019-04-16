@@ -1,7 +1,4 @@
-﻿using CookBook.App.ViewModels;
-using System.Windows.Controls;
-
-namespace CookBook.App.Views
+﻿namespace CookBook.App.Views
 {
     public partial class IngredientListView
     {

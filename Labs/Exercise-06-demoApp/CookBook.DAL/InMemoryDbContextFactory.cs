@@ -8,10 +8,7 @@ namespace CookBook.DAL
     {
         private readonly String testDbName;
 
-        public InMemoryDbContextFactory(String testDbName)
-        {
-            this.testDbName = testDbName;
-        }
+        public InMemoryDbContextFactory(String testDbName) => this.testDbName = testDbName;
 
         public CookBookDbContext CreateDbContext()
         {

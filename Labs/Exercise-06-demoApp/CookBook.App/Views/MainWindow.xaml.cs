@@ -1,6 +1,4 @@
-﻿using System.Windows;
-
-namespace CookBook.App
+﻿namespace CookBook.App
 {
     public partial class MainWindow
     {

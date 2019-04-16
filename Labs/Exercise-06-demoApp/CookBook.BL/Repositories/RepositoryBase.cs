@@ -151,10 +151,7 @@ namespace CookBook.BL.Repositories
                 return x.Id.Equals(y.Id);
             }
 
-            public Int32 GetHashCode(IEntity obj)
-            {
-                return obj.Id.GetHashCode();
-            }
+            public Int32 GetHashCode(IEntity obj) => obj.Id.GetHashCode();
         }
     }
 }

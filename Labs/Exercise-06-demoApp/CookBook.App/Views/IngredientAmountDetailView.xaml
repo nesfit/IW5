@@ -1,4 +1,4 @@
-﻿<local:UserControlBase x:Class="CookBook.App.Views.IngredientDetailView"
+<local:UserControlBase x:Class="CookBook.App.Views.IngredientAmountDetailView"
                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -9,10 +9,11 @@
                        d:DesignHeight="450"
                        d:DesignWidth="800"
                        mc:Ignorable="d"
-                       d:DataContext="{d:DesignInstance viewModels:IngredientDetailViewModel}"
-                       DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=IngredientDetailViewModel}">
+                       d:DataContext="{d:DesignInstance viewModels:IngredientAmountDetailViewModel}"
+                       DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=IngredientAmountDetailViewModel}">
     <Grid Visibility="{Binding Model, Converter={StaticResource NullToVisibilityConverter}}" Width="250">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
@@ -22,8 +23,13 @@
             <MenuItem Header="{x:Static texts:TextResources.IngredientDetail_ButtonDelete}"
                       Command="{Binding DeleteCommand}" />
         </Menu>
-        <Grid Grid.Row="1">
+        <Button Grid.Row="1" Content="{x:Static texts:TextResources.IngredientList_ButtonNewIngredient}"
+                Command="{Binding NewCommand}" />
+
+        <Grid Grid.Row="2">
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
@@ -31,14 +37,28 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Label Grid.Row="0" Grid.Column="0" Content="{x:Static texts:TextResources.IngredientDetail_LabelName}" />
-            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Model.Name, UpdateSourceTrigger=PropertyChanged}" />
+            <Label Grid.Row="0" Grid.Column="0"
+                   Content="{x:Static texts:TextResources.IngredientAmountDetail_LabelAmount}" />
+            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Model.Amount, UpdateSourceTrigger=PropertyChanged}" />
             <Label Grid.Row="1" Grid.Column="0"
-                   Content="{x:Static texts:TextResources.IngredientDetail_LabelDescription}" />
+                   Content="{x:Static texts:TextResources.IngredientAmountDetail_LabelUnit}" />
             <TextBox Grid.Row="1"
                      Grid.Column="1"
                      VerticalAlignment="Top"
-                     Text="{Binding Model.Description, UpdateSourceTrigger=PropertyChanged}"
+                     Text="{Binding Model.Unit, UpdateSourceTrigger=PropertyChanged}"
+                     TextAlignment="Left"
+                     TextWrapping="Wrap"
+                     AcceptsReturn="True" />
+
+            <Label Grid.Row="2" Grid.Column="0" Content="{x:Static texts:TextResources.IngredientDetail_LabelName}" />
+            <TextBox Grid.Row="2" Grid.Column="1"
+                     Text="{Binding Model.IngredientName, UpdateSourceTrigger=PropertyChanged}" />
+            <Label Grid.Row="3" Grid.Column="0"
+                   Content="{x:Static texts:TextResources.IngredientDetail_LabelDescription}" />
+            <TextBox Grid.Row="3"
+                     Grid.Column="1"
+                     VerticalAlignment="Top"
+                     Text="{Binding Model.IngredientDescription, UpdateSourceTrigger=PropertyChanged}"
                      TextAlignment="Left"
                      TextWrapping="Wrap"
                      AcceptsReturn="True" />

@@ -3,18 +3,15 @@ using CookBook.BL.Interfaces;
 using CookBook.BL.Repositories;
 using CookBook.BL.Services;
 using CookBook.DAL.Factories;
-using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace CookBook.App.ViewModels
 {
     public class ViewModelLocator
     {
-        private readonly IMediator mediator;
         private readonly IIngredientRepository ingredientRepository;
+        private readonly IMediator mediator;
         private readonly IMessageBoxService messageBoxService;
-
-        public IngredientListViewModel IngredientListViewModel => new IngredientListViewModel(ingredientRepository, mediator);
-        public IngredientDetailViewModel IngredientDetailViewModel => new IngredientDetailViewModel(ingredientRepository, messageBoxService, mediator);
+        private readonly RecipeRepository recipesRepository;
 
         public ViewModelLocator()
         {
@@ -28,7 +25,20 @@ namespace CookBook.App.ViewModels
 #endif
 
             ingredientRepository = new IngredientRepository(dbContextFactory);
+            recipesRepository = new RecipeRepository(dbContextFactory);
             messageBoxService = new MessageBoxService();
         }
+
+        public IngredientListViewModel IngredientListViewModel => new IngredientListViewModel(ingredientRepository, mediator);
+
+        public RecipesListViewModel RecipeListViewModel => new RecipesListViewModel(recipesRepository, mediator);
+
+        public IngredientDetailViewModel IngredientDetailViewModel =>
+            new IngredientDetailViewModel(ingredientRepository, messageBoxService, mediator);
+
+        public RecipeDetailViewModel RecipeDetailViewModel => new RecipeDetailViewModel(recipesRepository, messageBoxService, mediator);
+
+        public IngredientAmountDetailViewModel IngredientAmountDetailViewModel =>
+            new IngredientAmountDetailViewModel(ingredientRepository, mediator);
     }
 }

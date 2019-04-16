@@ -1,17 +1,16 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace CookBook.App.ViewModels
 {
     public abstract class ViewModelBase : IViewModel, INotifyPropertyChanged
     {
-        public virtual void Load()
-        {
-        }
-
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        public virtual void Load() {}
+
+        protected virtual void OnPropertyChanged([CallerMemberName] String propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

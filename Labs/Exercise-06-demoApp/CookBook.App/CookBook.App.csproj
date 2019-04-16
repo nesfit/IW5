@@ -169,11 +169,16 @@
     </Compile>
     <Compile Include="Services\IMessageBoxService.cs" />
     <Compile Include="Services\MessageBoxService.cs" />
+    <Compile Include="ViewModels\IngredientAmountDetailViewModel.cs" />
     <Compile Include="ViewModels\IngredientDetailViewModel.cs" />
     <Compile Include="ViewModels\IngredientListViewModel.cs" />
     <Page Include="Views\AppWindowBase.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\IngredientAmountDetailView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\IngredientDetailView.xaml">
       <SubType>Designer</SubType>
@@ -192,10 +197,21 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ViewModels\IViewModel.cs" />
+    <Compile Include="ViewModels\RecipeDetailViewModel.cs" />
+    <Compile Include="ViewModels\RecipesListViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Compile Include="Views\AppWindowBase.xaml.cs">
       <DependentUpon>AppWindowBase.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\IngredientAmountDetailView.xaml.cs">
+      <DependentUpon>IngredientAmountDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RecipeDetailView.xaml.cs">
+      <DependentUpon>RecipeDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RecipeListView.xaml.cs">
+      <DependentUpon>RecipeListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControlBase.cs" />
     <Compile Include="Views\IngredientDetailView.xaml.cs">
@@ -208,6 +224,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\RecipeDetailView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\RecipeListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -231,6 +255,7 @@
     <EmbeddedResource Include="Resources\Texts\TextResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>TextResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

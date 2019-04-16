@@ -17,17 +17,18 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Button Grid.Row="0" Content="{x:Static texts:TextResources.IngredientList_ButtonNewIngredient}" Command="{Binding IngredientNewCommand}" />
+        <Button Grid.Row="0" Content="{x:Static texts:TextResources.IngredientList_ButtonNewIngredient}"
+                Command="{Binding IngredientNewCommand}" />
         <ListBox x:Name="IngredientsListBox" Grid.Row="1" ItemsSource="{Binding Ingredients}">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="SelectionChanged">
                     <i:InvokeCommandAction Command="{Binding IngredientSelectedCommand}"
-                                           CommandParameter="{Binding ElementName=IngredientsListBox, Path=SelectedItem}"/>
+                                           CommandParameter="{Binding ElementName=IngredientsListBox, Path=SelectedItem}" />
                 </i:EventTrigger>
             </i:Interaction.Triggers>
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Label x:Name="TestLabel" Content="{Binding Name}"/>
+                    <Label x:Name="TestLabel" Content="{Binding Name}" />
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>

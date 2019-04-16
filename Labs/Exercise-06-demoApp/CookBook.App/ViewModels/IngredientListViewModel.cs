@@ -1,11 +1,10 @@
-﻿using CookBook.BL.Models;
-using CookBook.BL.Repositories;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 using CookBook.App.Commands;
 using CookBook.BL.Extensions;
 using CookBook.BL.Interfaces;
 using CookBook.BL.Messages;
+using CookBook.BL.Models;
 using CookBook.BL.Services;
 
 namespace CookBook.App.ViewModels
@@ -15,11 +14,6 @@ namespace CookBook.App.ViewModels
         private readonly IIngredientRepository ingredientRepository;
         private readonly IMediator mediator;
 
-        public ObservableCollection<IngredientListModel> Ingredients { get; set; } = new ObservableCollection<IngredientListModel>();
-
-        public ICommand IngredientSelectedCommand { get; set; }
-        public ICommand IngredientNewCommand { get; set; }
-
         public IngredientListViewModel(IIngredientRepository ingredientRepository, IMediator mediator)
         {
             this.ingredientRepository = ingredientRepository;
@@ -28,35 +22,22 @@ namespace CookBook.App.ViewModels
             IngredientSelectedCommand = new RelayCommand<IngredientListModel>(IngredientSelected);
             IngredientNewCommand = new RelayCommand(IngredientNew);
 
-            mediator.Register<IngredientAddedMessage>(IngredientAdded);
             mediator.Register<IngredientUpdatedMessage>(IngredientUpdated);
             mediator.Register<IngredientDeletedMessage>(IngredientDeleted);
         }
 
-        private void IngredientNew()
-        {
-            mediator.Send(new IngredientNewMessage());
-        }
+        public ObservableCollection<IngredientListModel> Ingredients { get; } = new ObservableCollection<IngredientListModel>();
 
-        private void IngredientSelected(IngredientListModel ingredient)
-        {
-            mediator.Send(new IngredientSelectedMessage { Id = ingredient.Id });
-        }
+        public ICommand IngredientSelectedCommand { get; }
+        public ICommand IngredientNewCommand { get; }
 
-        private void IngredientAdded(IngredientAddedMessage ingredient)
-        {
-            Load();
-        }
+        private void IngredientNew() => mediator.Send(new IngredientNewMessage());
 
-        private void IngredientUpdated(IngredientUpdatedMessage ingredient)
-        {
-            Load();
-        }
+        private void IngredientSelected(IngredientListModel ingredient) => mediator.Send(new IngredientSelectedMessage {Id = ingredient.Id});
 
-        private void IngredientDeleted(IngredientDeletedMessage ingredient)
-        {
-            Load();
-        }
+        private void IngredientUpdated(IngredientUpdatedMessage ingredient) => Load();
+
+        private void IngredientDeleted(IngredientDeletedMessage ingredient) => Load();
 
         public override void Load()
         {
