@@ -1,7 +1,9 @@
 ﻿using CookBook.App.Services;
-using CookBook.BL.Factories;
+using CookBook.BL.Interfaces;
 using CookBook.BL.Repositories;
 using CookBook.BL.Services;
+using CookBook.DAL.Factories;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace CookBook.App.ViewModels
 {
@@ -18,6 +20,13 @@ namespace CookBook.App.ViewModels
         {
             mediator = new Mediator();
             IDbContextFactory dbContextFactory = new DbContextFactory();
+#if DEBUG
+            using (var dbx = dbContextFactory.CreateDbContext())
+            {
+                dbx.Database.EnsureCreated();
+            }
+#endif
+
             ingredientRepository = new IngredientRepository(dbContextFactory);
             messageBoxService = new MessageBoxService();
         }

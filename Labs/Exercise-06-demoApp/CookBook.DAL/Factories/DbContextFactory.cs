@@ -1,12 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Design;
-using System;
 
-namespace CookBook.DAL
+namespace CookBook.DAL.Factories
 {
-    class DesignTimeCookbookDbContextFactory : IDesignTimeDbContextFactory<CookBookDbContext>
+    public class DbContextFactory : IDbContextFactory
     {
-        public CookBookDbContext CreateDbContext(string[] args)
+        public CookBookDbContext CreateDbContext()
         {
             var optionsBuilder = new DbContextOptionsBuilder<CookBookDbContext>();
             optionsBuilder.UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog = TasksDB;MultipleActiveResultSets = True;Integrated Security = True; ");

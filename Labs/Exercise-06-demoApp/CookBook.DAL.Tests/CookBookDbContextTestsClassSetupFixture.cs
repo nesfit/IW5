@@ -1,32 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
+using CookBook.DAL.Factories;
 
 namespace CookBook.DAL.Tests
 {
-    public class CookBookDbContextTestsClassSetupFixture : IDisposable
+    public class CookBookDbContextTestsClassSetupFixture : CookBookDbContextSetupFixture
     {
-        public CookBookDbContext CookBookDbContextSUT { get; set; }
-
-        public CookBookDbContextTestsClassSetupFixture()
+        public CookBookDbContext CookBookDbContextSUT { get; }
+        public CookBookDbContextTestsClassSetupFixture():base(nameof(CookBookDbContextTestsClassSetupFixture))
         {
-            this.CookBookDbContextSUT = CreateCookBookDbContext();
+            this.CookBookDbContextSUT = DbContextFactory.CreateDbContext();
         }
 
-        public CookBookDbContext CreateCookBookDbContext()
-        {
-            return new CookBookDbContext(CreateDbContextOptions());
-        }
-
-        private DbContextOptions<CookBookDbContext> CreateDbContextOptions()
-        {
-            var contextOptionsBuilder = new DbContextOptionsBuilder<CookBookDbContext>();
-            contextOptionsBuilder.UseInMemoryDatabase("CookBook");
-            return contextOptionsBuilder.Options;
-        }
-
-        public void Dispose()
-        {
-            CookBookDbContextSUT?.Dispose();
-        }
     }
 }

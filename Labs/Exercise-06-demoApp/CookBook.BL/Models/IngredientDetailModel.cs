@@ -1,4 +1,6 @@
-﻿namespace CookBook.BL.Models
+﻿using System;
+
+namespace CookBook.BL.Models
 {
     public class IngredientDetailModel : ModelBase
     {

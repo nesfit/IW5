@@ -1,20 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using CookBook.BL.Interfaces;
 using CookBook.BL.Repositories;
+using CookBook.DAL;
+using CookBook.DAL.Tests;
 
 namespace CookBook.BL.Tests
 {
-    public class IngredientRepositoryTestsFixture
+    public class IngredientRepositoryTestsFixture : CookBookDbContextSetupFixture
     {
-        private readonly IIngredientRepository repository;
-
-        public IngredientRepositoryTestsFixture()
+        public IngredientRepositoryTestsFixture() : base(nameof(IngredientRepositoryTestsFixture))
         {
-            repository = new IngredientRepository(new InMemoryDbContextFactory());
+            Repository = new IngredientRepository(base.DbContextFactory);
         }
 
-        public IIngredientRepository Repository => repository;
-
+        public IIngredientRepository Repository { get; }
     }
 }

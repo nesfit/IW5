@@ -1,9 +1,9 @@
 ﻿using System;
 
-namespace CookBook.DAL.Entities
+namespace CookBook.DAL.Interfaces
 {
     public interface IEntity
     {
-        Guid Id { get; }
+        Guid Id { get; set; }
     }
 }

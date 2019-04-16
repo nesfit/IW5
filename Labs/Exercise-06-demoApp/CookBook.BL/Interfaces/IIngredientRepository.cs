@@ -1,12 +1,12 @@
-﻿using CookBook.BL.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using CookBook.BL.Models;
 
-namespace CookBook.BL.Repositories
+namespace CookBook.BL.Interfaces
 {
     public interface IIngredientRepository
     {
-        IList<IngredientListModel> GetAll();
+        IEnumerable<IngredientListModel> GetAll();
         IngredientDetailModel GetById(Guid id);
         IngredientDetailModel Create(IngredientDetailModel model);
         void Update(IngredientDetailModel model);

@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using CookBook.App.Commands;
 using CookBook.BL.Extensions;
+using CookBook.BL.Interfaces;
 using CookBook.BL.Messages;
 using CookBook.BL.Services;
 

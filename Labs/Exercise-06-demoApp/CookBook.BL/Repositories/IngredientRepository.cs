@@ -1,12 +1,14 @@
-﻿using CookBook.BL.Factories;
-using CookBook.BL.Mapper;
+﻿using CookBook.BL.Mapper;
 using CookBook.BL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using CookBook.BL.Interfaces;
+using CookBook.DAL.Factories;
 
 namespace CookBook.BL.Repositories
 {
+    [Obsolete]
     public class IngredientRepository : IIngredientRepository
     {
         private readonly IDbContextFactory dbContextFactory;
@@ -16,12 +18,12 @@ namespace CookBook.BL.Repositories
             this.dbContextFactory = dbContextFactory;
         }
 
-        public IList<IngredientListModel> GetAll()
+        public IEnumerable<IngredientListModel> GetAll()
         {
             using (var dbContext = dbContextFactory.CreateDbContext())
             {
                 return dbContext.Ingredients
-                    .Select(e => IngredientMapper.MapIngredientEntityToListModel(e))
+                    .Select(e => IngredientMapper.MapListModel(e))
                     .ToList();
             }
         }
@@ -30,9 +32,8 @@ namespace CookBook.BL.Repositories
         {
             using (var dbContext = dbContextFactory.CreateDbContext())
             {
-                //SELECT * FROM Ingredient WHERE Id = id;
                 var entity = dbContext.Ingredients.First(t => t.Id == id);
-                return IngredientMapper.MapIngredientEntityToDetailModel(entity);
+                return IngredientMapper.MapDetailModel(entity);
             }
         }
 
@@ -40,10 +41,10 @@ namespace CookBook.BL.Repositories
         {
             using (var dbContext = dbContextFactory.CreateDbContext())
             {
-                var entity = IngredientMapper.MapIngredientDetailModelToEntity(model);
+                var entity = IngredientMapper.MapEntity(model);
                 dbContext.Ingredients.Add(entity);
                 dbContext.SaveChanges();
-                return IngredientMapper.MapIngredientEntityToDetailModel(entity);
+                return IngredientMapper.MapDetailModel(entity);
             }
         }
 
@@ -51,7 +52,7 @@ namespace CookBook.BL.Repositories
         {
             using (var dbContext = dbContextFactory.CreateDbContext())
             {
-                var entity = IngredientMapper.MapIngredientDetailModelToEntity(model);
+                var entity = IngredientMapper.MapEntity(model);
                 dbContext.Ingredients.Update(entity);
                 dbContext.SaveChanges();
             }

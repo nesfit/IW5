@@ -17,5 +17,19 @@ namespace CookBook.DAL
         public DbSet<IngredientAmountEntity> IngredientAmountEntities { get; set; }
         public DbSet<RecipeEntity> Recipes { get; set; }
         public DbSet<IngredientEntity> Ingredients { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            //Using navigation properties
+            modelBuilder.Entity<RecipeEntity>()
+                .HasMany(i => i.Ingredients)
+                .WithOne(c => c.Recipe)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            //IngredientEntity does not have navigation properties
+            modelBuilder.Entity<IngredientEntity>()
+                .HasMany(typeof(IngredientAmountEntity)).WithOne(nameof(IngredientAmountEntity.Ingredient))
+                .OnDelete(DeleteBehavior.Cascade);
+        }
     }
 }   

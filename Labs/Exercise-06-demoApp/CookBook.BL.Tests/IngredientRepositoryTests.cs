@@ -1,15 +1,18 @@
-﻿using CookBook.BL.Models;
+﻿using System;
+using CookBook.BL.Models;
 using Xunit;
 
 namespace CookBook.BL.Tests
 {
-    public class IngredientRepositoryTests : IClassFixture<IngredientRepositoryTestsFixture>
+    public class IngredientRepositoryTests : IClassFixture<IngredientRepositoryTestsFixture>, IDisposable
     {
         private readonly IngredientRepositoryTestsFixture fixture;
 
         public IngredientRepositoryTests(IngredientRepositoryTestsFixture fixture)
         {
             this.fixture = fixture;
+
+            this.fixture.PrepareDatabase();
         }
 
         [Fact]
@@ -26,6 +29,11 @@ namespace CookBook.BL.Tests
             Assert.NotNull(returnedModel);
 
             fixture.Repository.Delete(returnedModel.Id);
+        }
+
+        public void Dispose()
+        {
+            fixture.TearDownDatabase();
         }
     }
 }
