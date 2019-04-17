@@ -24,7 +24,7 @@
                       Command="{Binding DeleteCommand}" />
         </Menu>
         <Button Grid.Row="1" Content="{x:Static texts:TextResources.IngredientList_ButtonNewIngredient}"
-                Command="{Binding NewCommand}" />
+                Command="{Binding IngredientNewCommand}" />
 
         <Grid Grid.Row="2">
             <Grid.RowDefinitions>
@@ -37,11 +37,11 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Label Grid.Row="0" Grid.Column="0"
-                   Content="{x:Static texts:TextResources.IngredientAmountDetail_LabelAmount}" />
+            
+            <Label Grid.Row="0" Grid.Column="0" Content="{x:Static texts:TextResources.IngredientAmountDetail_LabelAmount}" />
             <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Model.Amount, UpdateSourceTrigger=PropertyChanged}" />
-            <Label Grid.Row="1" Grid.Column="0"
-                   Content="{x:Static texts:TextResources.IngredientAmountDetail_LabelUnit}" />
+            
+            <Label Grid.Row="1" Grid.Column="0" Content="{x:Static texts:TextResources.IngredientAmountDetail_LabelUnit}" />
             <TextBox Grid.Row="1"
                      Grid.Column="1"
                      VerticalAlignment="Top"
@@ -53,8 +53,8 @@
             <Label Grid.Row="2" Grid.Column="0" Content="{x:Static texts:TextResources.IngredientDetail_LabelName}" />
             <TextBox Grid.Row="2" Grid.Column="1"
                      Text="{Binding Model.IngredientName, UpdateSourceTrigger=PropertyChanged}" />
-            <Label Grid.Row="3" Grid.Column="0"
-                   Content="{x:Static texts:TextResources.IngredientDetail_LabelDescription}" />
+
+            <Label Grid.Row="3" Grid.Column="0" Content="{x:Static texts:TextResources.IngredientDetail_LabelDescription}" />
             <TextBox Grid.Row="3"
                      Grid.Column="1"
                      VerticalAlignment="Top"

@@ -31,8 +31,10 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
+
             <Label Grid.Row="0" Grid.Column="0" Content="{x:Static texts:TextResources.IngredientDetail_LabelName}" />
             <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Model.Name, UpdateSourceTrigger=PropertyChanged}" />
+            
             <Label Grid.Row="1" Grid.Column="0"
                    Content="{x:Static texts:TextResources.IngredientDetail_LabelDescription}" />
             <TextBox Grid.Row="1"

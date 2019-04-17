@@ -6,7 +6,7 @@
                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                        xmlns:viewModels="clr-namespace:CookBook.App.ViewModels"
                        xmlns:texts="clr-namespace:CookBook.App.Resources.Texts"
-                       xmlns:Interactions="http://schemas.microsoft.com/xaml/behaviors"
+                       xmlns:interactions="http://schemas.microsoft.com/xaml/behaviors"
                        mc:Ignorable="d"
                        d:DataContext="{d:DesignInstance viewModels:RecipeDetailViewModel}"
                        d:DesignHeight="300" d:DesignWidth="400"
@@ -18,8 +18,7 @@
         </Grid.RowDefinitions>
         <Menu Grid.Row="0">
             <MenuItem Header="{x:Static texts:TextResources.RecipeDetail_ButtonSave}" Command="{Binding SaveCommand}" />
-            <MenuItem Header="{x:Static texts:TextResources.RecipeDetail_ButtonDelete}"
-                      Command="{Binding DeleteCommand}" />
+            <MenuItem Header="{x:Static texts:TextResources.RecipeDetail_ButtonDelete}" Command="{Binding DeleteCommand}" />
         </Menu>
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
@@ -52,13 +51,13 @@
             <Label Grid.Row="3" Grid.Column="0" Content="{x:Static texts:TextResources.RecipeDetail_LabelFoodType}" />
             <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Model.FoodType, UpdateSourceTrigger=PropertyChanged}" />
 
-            <ListBox x:Name="IngredientsListBox" Grid.Row="4" ItemsSource="{Binding Ingredients}">
-                <Interactions:Interaction.Triggers>
-                    <Interactions:EventTrigger EventName="SelectionChanged">
-                        <Interactions:InvokeCommandAction Command="{Binding IngredientSelectedCommand}"
+            <ListBox x:Name="IngredientsListBox" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding Ingredients}">
+                <interactions:Interaction.Triggers>
+                    <interactions:EventTrigger EventName="SelectionChanged">
+                        <interactions:InvokeCommandAction Command="{Binding IngredientSelectedCommand}"
                                                           CommandParameter="{Binding ElementName=IngredientsListBox, Path=SelectedItem}" />
-                    </Interactions:EventTrigger>
-                </Interactions:Interaction.Triggers>
+                    </interactions:EventTrigger>
+                </interactions:Interaction.Triggers>
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Label x:Name="TestLabel" Content="{Binding IngredientName}" />
