@@ -2,6 +2,7 @@
 using System.Windows.Input;
 using CookBook.App.Commands;
 using CookBook.BL.Extensions;
+using CookBook.BL.Interfaces;
 using CookBook.BL.Messages;
 using CookBook.BL.Models;
 using CookBook.BL.Repositories;
@@ -12,9 +13,9 @@ namespace CookBook.App.ViewModels
     public class RecipesListViewModel : ViewModelBase
     {
         private readonly IMediator mediator;
-        private readonly RecipeRepository recipesRepository;
+        private readonly IRecipeRepository recipesRepository;
 
-        public RecipesListViewModel(RecipeRepository recipesRepository, IMediator mediator)
+        public RecipesListViewModel(IRecipeRepository recipesRepository, IMediator mediator)
         {
             this.recipesRepository = recipesRepository;
             this.mediator = mediator;

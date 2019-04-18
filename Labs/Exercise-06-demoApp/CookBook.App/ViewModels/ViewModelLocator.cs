@@ -12,7 +12,7 @@ namespace CookBook.App.ViewModels
         private readonly IIngredientRepository ingredientRepository;
         private readonly IMediator mediator;
         private readonly IMessageBoxService messageBoxService;
-        private readonly RecipeRepository recipesRepository;
+        private readonly IRecipeRepository recipesRepository;
 
         public ViewModelLocator()
         {

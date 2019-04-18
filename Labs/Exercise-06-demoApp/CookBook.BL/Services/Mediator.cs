@@ -9,7 +9,7 @@ namespace CookBook.BL.Services
     {
         private readonly Dictionary<Type, List<Delegate>> registeredActions = new Dictionary<Type, List<Delegate>>();
 
-        public void Register<TMessage>(Action<TMessage> action)
+        public virtual void Register<TMessage>(Action<TMessage> action)
             where TMessage : IMessage
         {
             var key = typeof(TMessage);
@@ -20,7 +20,7 @@ namespace CookBook.BL.Services
             registeredActions[key].Add(action);
         }
 
-        public void UnRegister<TMessage>(Action<TMessage> action)
+        public virtual void UnRegister<TMessage>(Action<TMessage> action)
             where TMessage : IMessage
         {
             var key = typeof(TMessage);
@@ -33,7 +33,7 @@ namespace CookBook.BL.Services
             }
         }
 
-        public void Send<TMessage>(TMessage message)
+        public virtual void Send<TMessage>(TMessage message)
             where TMessage : IMessage
         {
             if (registeredActions.TryGetValue(typeof(TMessage), out var actions))

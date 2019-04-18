@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Input;
 using CookBook.App.Commands;
 using CookBook.App.Services;
+using CookBook.BL.Interfaces;
 using CookBook.BL.Messages;
 using CookBook.BL.Models;
 using CookBook.BL.Repositories;
@@ -15,9 +16,9 @@ namespace CookBook.App.ViewModels
     {
         private readonly IMediator mediator;
         private readonly IMessageBoxService messageBoxService;
-        private readonly RecipeRepository recipesRepository;
+        private readonly IRecipeRepository recipesRepository;
 
-        public RecipeDetailViewModel(RecipeRepository recipesRepository, IMessageBoxService messageBoxService, IMediator mediator)
+        public RecipeDetailViewModel(IRecipeRepository recipesRepository, IMessageBoxService messageBoxService, IMediator mediator)
         {
             this.recipesRepository = recipesRepository;
             this.messageBoxService = messageBoxService;
