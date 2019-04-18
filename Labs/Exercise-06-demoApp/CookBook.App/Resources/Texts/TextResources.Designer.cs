@@ -142,6 +142,33 @@ namespace CookBook.App.Resources.Texts {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Amount.
+        /// </summary>
+        public static string RecipeDetail_GridViewIngredientAmount {
+            get {
+                return ResourceManager.GetString("RecipeDetail_GridViewIngredientAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ingredient.
+        /// </summary>
+        public static string RecipeDetail_GridViewIngredientName {
+            get {
+                return ResourceManager.GetString("RecipeDetail_GridViewIngredientName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unit.
+        /// </summary>
+        public static string RecipeDetail_GridViewIngredientUnit {
+            get {
+                return ResourceManager.GetString("RecipeDetail_GridViewIngredientUnit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Description.
         /// </summary>
         public static string RecipeDetail_LabelDescription {

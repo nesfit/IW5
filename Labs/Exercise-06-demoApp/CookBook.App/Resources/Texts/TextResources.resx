@@ -144,6 +144,15 @@
   <data name="RecipeDetail_ButtonSave" xml:space="preserve">
     <value>Save</value>
   </data>
+  <data name="RecipeDetail_GridViewIngredientAmount" xml:space="preserve">
+    <value>Amount</value>
+  </data>
+  <data name="RecipeDetail_GridViewIngredientName" xml:space="preserve">
+    <value>Ingredient</value>
+  </data>
+  <data name="RecipeDetail_GridViewIngredientUnit" xml:space="preserve">
+    <value>Unit</value>
+  </data>
   <data name="RecipeDetail_LabelDescription" xml:space="preserve">
     <value>Description</value>
   </data>

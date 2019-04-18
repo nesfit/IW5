@@ -14,7 +14,6 @@
     <Grid Visibility="{Binding Model, Converter={StaticResource NullToVisibilityConverter}}" Width="250">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Menu Grid.Row="0">
@@ -23,10 +22,8 @@
             <MenuItem Header="{x:Static texts:TextResources.IngredientDetail_ButtonDelete}"
                       Command="{Binding DeleteCommand}" />
         </Menu>
-        <Button Grid.Row="1" Content="{x:Static texts:TextResources.IngredientList_ButtonNewIngredient}"
-                Command="{Binding IngredientNewCommand}" />
 
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />

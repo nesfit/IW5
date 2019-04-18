@@ -27,10 +27,12 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <views:RecipeListView Grid.Column="0" />
                 <views:RecipeDetailView Grid.Column="1" />
                 <views:IngredientListView Grid.Column="2" />
+                <views:IngredientDetailView Grid.Column="3" />
             </Grid>
         </TabItem>
     </TabControl>
