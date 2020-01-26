@@ -123,7 +123,7 @@ V první fázi se zaměříme na vytvoření Web API služby. Výstupem tedy bud
    - Smazání hodnocení
 - Vyhledávání
    - Získání výsledků vyhledávání
-Vzorové API, dle kterého se můžete inspirovat najdete [zde](https) (vaše API se nemusí nutně držet formátu vzorového API, ale musí obsahovat výše zmíněné metody).
+Vzorové API, dle kterého se můžete inspirovat najdete [zde](https://app-iw5-project-2020-api.azurewebsites.net/swagger/index.html) (vaše API se nemusí nutně držet formátu vzorového API, ale musí obsahovat výše zmíněné metody).
 
 Hodnotíme:
 - logický návrh tříd
@@ -134,7 +134,7 @@ Hodnotíme:
 
 ---
 ### Fáze 2 - Web (40 bodů)
-V druhé fázi se od vás bude požadovat vytvoření webové aplikace pomocí technologie ASP.Net Core MVC. Webová aplikace bude napojena na API vytvořeno v první fázy projektu. Pro napojení můžete použít Vaši implementaci, nebo můžete použít vzorovou implementaci, kterou dostanete po odevzdání první fáze projektu.
+V druhé fázi se od vás bude požadovat vytvoření webové aplikace pomocí technologie ASP .Net Core MVC. Webová aplikace bude napojena na API vytvořeno v první fázy projektu. Pro napojení můžete použít Vaši implementaci, nebo můžete použít vzorovou implementaci, kterou dostanete po odevzdání první fáze projektu.
 
 Hodnotíme:
 - funkčnost celé výsledné aplikace
