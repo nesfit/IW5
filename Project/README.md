@@ -22,7 +22,7 @@ V rámci dat, se kterými se bude pracovat budeme požadovat minimálně násled
 - Titulní fotografie
 - Země původu
 - Délka filmu
-- Textový obsah filmu
+- Textový popis filmu
 - Seznam režisérů
 - Seznam herců
 - Seznam hodnocení filmu
