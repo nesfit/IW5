@@ -638,7 +638,7 @@ public class Kitten : Cat {}
   * `GetType()`
 * To get type:
   * during *runtime* - `Object.GetType()`
-  * during *compile time* - `typeof(object)`
+  * during *compile time* - `typeof(string)`
 
 +++
 ### Partial class/method
@@ -725,7 +725,7 @@ Breeding = 2, ForSausages = 4, Dead = 8 }
 ...
 HorseType type = HorseType.Racing | HorseType.Breeding;
 type |= HorseType.ForSausages ;
-Console.WriteLine(type); //Racing, Breeding, ForSosages
+Console.WriteLine(type); //Racing, Breeding, ForSausages
 ```
 @[1]
 @[1-3]
