@@ -49,12 +49,12 @@ namespace CookBook.DAL
         };
 
 
-        static CookBookSeedingDbContext() => RecipeEntity.Ingredients = new[] {IngredientAmountEntity1, IngredientAmountEntity2};
+        static CookBookSeedingDbContext() => RecipeEntity.Ingredients = new[] { IngredientAmountEntity1, IngredientAmountEntity2 };
 
         public CookBookSeedingDbContext(DbContextOptions<CookBookDbContext> optionsBuilderOptions) : base(optionsBuilderOptions)
         {
         }
-        
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
