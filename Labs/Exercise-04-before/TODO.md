@@ -34,3 +34,9 @@ serviceCollection.Scan(selector =>
     2. Vytvoření třídy `ServerNameOptions` s property `Name`
     3. Přidání nastavení do appsettings.json
     4. Přidání konfigurace do `ServiceCollection` pomocí `Configure`
+    5. Spuštění projektu a provolání endpointu
+    6. Přidat nastavení do appsettings.Development.json
+    7. Spuštění projektu a provolání endpointu
+    8. Pravým kliknout na projekt a dát Manage User Secrets
+    9. Přidat nastavení do secrets.json
+    10. Spuštění projektu a provolání endpointu
