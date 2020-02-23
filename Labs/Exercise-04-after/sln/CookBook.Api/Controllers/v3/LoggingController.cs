@@ -26,6 +26,7 @@ namespace CookBook.Api.Controllers.v3
         public void LogSomething()
         {
             logger.LogInformation("Something");
+            logger.LogWarning("Log something called in {0}", DateTime.Now);
         }
     }
 }

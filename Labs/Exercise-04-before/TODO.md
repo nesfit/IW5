@@ -13,3 +13,10 @@ serviceCollection.Scan(selector =>
             .AsSelfWithInterfaces()
             .WithTransientLifetime());
 ```
+
+## Logování
+
+### Logování samotné
+    1. Vytvoření `LoggingController` s API metodou `LogSomething`
+    2. Vytvořit konstruktor s parametrem `ILogger<LoggingController>` a ten si uložit do privátního fieldu
+    3. Do metody `LogSomething` přidat zalogování informace
