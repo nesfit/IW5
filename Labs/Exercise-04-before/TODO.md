@@ -20,3 +20,9 @@ serviceCollection.Scan(selector =>
     1. Vytvoření `LoggingController` s API metodou `LogSomething`
     2. Vytvořit konstruktor s parametrem `ILogger<LoggingController>` a ten si uložit do privátního fieldu
     3. Do metody `LogSomething` přidat zalogování informace
+
+### Úprava konfigurace logování
+    1. V `Program.CreateHostBuilder` přidat volání `ConfigureLogging`
+    2. Přidat `builder.ClearProviders()` pro odstranění defaultních providerů
+    3. Přidat `.AddConsole()` pro přidání logování do konzole
+    4. Přidat filtry pro MinimumLevel a pro System related hlášky 
