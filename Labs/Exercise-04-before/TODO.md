@@ -26,3 +26,11 @@ serviceCollection.Scan(selector =>
     2. Přidat `builder.ClearProviders()` pro odstranění defaultních providerů
     3. Přidat `.AddConsole()` pro přidání logování do konzole
     4. Přidat filtry pro MinimumLevel a pro System related hlášky 
+
+
+## Konfigurace
+
+    1. Vytvoření `HelloController` s API metodou `SayYourName`
+    2. Vytvoření třídy `ServerNameOptions` s property `Name`
+    3. Přidání nastavení do appsettings.json
+    4. Přidání konfigurace do `ServiceCollection` pomocí `Configure`

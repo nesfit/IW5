@@ -1,4 +1,5 @@
 using AutoMapper;
+using CookBook.Api.Controllers.v3;
 using CookBook.Api.Extensions;
 using CookBook.Api.Processors;
 using CookBook.BL.Api.Installers;
@@ -67,6 +68,8 @@ namespace CookBook.Api
                 document.ApiGroupNames = new[] { "3.0" };
                 document.OperationProcessors.Add(new RequestCultureOperationProcessor());
             });
+
+            services.Configure<ServerNameOptions>(Configuration.GetSection("ServerName"));
 
             new DALInstaller().Install(services);
             new BLApiInstaller().Install(services);
