@@ -1,0 +1,509 @@
+{
+	"info": {
+		"_postman_id": "eabebe3e-fa50-4770-9b7f-74474f24090f",
+		"name": "IW5_Lecture_03",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Ingredient",
+			"item": [
+				{
+					"name": "Ingredient GetAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ApiUrl}}/api/ingredient?version={{Version}}&culture={{Culture}}",
+							"host": [
+								"{{ApiUrl}}"
+							],
+							"path": [
+								"api",
+								"ingredient"
+							],
+							"query": [
+								{
+									"key": "version",
+									"value": "{{Version}}"
+								},
+								{
+									"key": "culture",
+									"value": "{{Culture}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ingredient GetById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ApiUrl}}/api/ingredient/{{IngredientId}}?version={{Version}}&culture={{Culture}}",
+							"host": [
+								"{{ApiUrl}}"
+							],
+							"path": [
+								"api",
+								"ingredient",
+								"{{IngredientId}}"
+							],
+							"query": [
+								{
+									"key": "version",
+									"value": "{{Version}}"
+								},
+								{
+									"key": "culture",
+									"value": "{{Culture}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ingredient Create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d76728d7-d42c-4677-93a4-eed94d55356a",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"pm.environment.set('IngredientId', jsonData);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"name\": \"Slanina\",\r\n\t\"description\": \"Protože se slaninou je všechno lepší.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ApiUrl}}/api/ingredient?version={{Version}}&culture={{Culture}}",
+							"host": [
+								"{{ApiUrl}}"
+							],
+							"path": [
+								"api",
+								"ingredient"
+							],
+							"query": [
+								{
+									"key": "version",
+									"value": "{{Version}}"
+								},
+								{
+									"key": "culture",
+									"value": "{{Culture}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ingredient Create Error",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d76728d7-d42c-4677-93a4-eed94d55356a",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"name\": \"\",\r\n\t\"description\": \"Protože\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ApiUrl}}/api/ingredient?version={{Version}}&culture={{Culture}}",
+							"host": [
+								"{{ApiUrl}}"
+							],
+							"path": [
+								"api",
+								"ingredient"
+							],
+							"query": [
+								{
+									"key": "version",
+									"value": "{{Version}}"
+								},
+								{
+									"key": "culture",
+									"value": "{{Culture}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ingredient Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"id\": \"{{IngredientId}}\",\r\n\t\"name\": \"Křupavá Slanina\",\r\n\t\"description\": \"Když už slaninu, tak ať je hezky křupavá\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ApiUrl}}/api/ingredient?version={{Version}}&culture={{Culture}}",
+							"host": [
+								"{{ApiUrl}}"
+							],
+							"path": [
+								"api",
+								"ingredient"
+							],
+							"query": [
+								{
+									"key": "version",
+									"value": "{{Version}}"
+								},
+								{
+									"key": "culture",
+									"value": "{{Culture}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ingredient Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{ApiUrl}}/api/ingredient/{{IngredientId}}?version={{Version}}&culture={{Culture}}",
+							"host": [
+								"{{ApiUrl}}"
+							],
+							"path": [
+								"api",
+								"ingredient",
+								"{{IngredientId}}"
+							],
+							"query": [
+								{
+									"key": "version",
+									"value": "{{Version}}"
+								},
+								{
+									"key": "culture",
+									"value": "{{Culture}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Recipe",
+			"item": [
+				{
+					"name": "Recipe GetAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ApiUrl}}/api/recipe?version={{Version}}&culture={{Culture}}",
+							"host": [
+								"{{ApiUrl}}"
+							],
+							"path": [
+								"api",
+								"recipe"
+							],
+							"query": [
+								{
+									"key": "version",
+									"value": "{{Version}}"
+								},
+								{
+									"key": "culture",
+									"value": "{{Culture}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Recipe GetById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ApiUrl}}/api/recipe/{{RecipeId}}?version={{Version}}&culture={{Culture}}",
+							"host": [
+								"{{ApiUrl}}"
+							],
+							"path": [
+								"api",
+								"recipe",
+								"{{RecipeId}}"
+							],
+							"query": [
+								{
+									"key": "version",
+									"value": "{{Version}}"
+								},
+								{
+									"key": "culture",
+									"value": "{{Culture}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Recipe Create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d76728d7-d42c-4677-93a4-eed94d55356a",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"pm.environment.set('RecipeId', jsonData);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"name\": \"Míchaná vejce se slaninou\",\r\n\t\"description\": \"Míchaná vejce ale vylepšená o slaninu!\",\r\n\t\"duration\": \"00:15:00\",\r\n\t\"foodType\": 1,\r\n\t\"ingredients\": [\r\n\t\t{\r\n\t\t\t\"ingredientId\": \"df935095-8709-4040-a2bb-b6f97cb416dc\",\r\n\t\t\t\"amount\": 4,\r\n    \t\t\"unit\": 5\t\r\n  \t\t},\r\n  \t\t{\r\n\t\t\t\"ingredientId\": \"23b3902d-7d4f-4213-9cf0-112348f56238\",\r\n\t\t\t\"amount\": 1,\r\n    \t\t\"unit\": 5\r\n  \t\t},\r\n    \t{\r\n    \t\t\"ingredientId\": \"{{IngredientId}}\",\r\n    \t\t\"amount\": 150,\r\n    \t\t\"unit\": 4\r\n    \t}\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ApiUrl}}/api/recipe?version={{Version}}&culture={{Culture}}",
+							"host": [
+								"{{ApiUrl}}"
+							],
+							"path": [
+								"api",
+								"recipe"
+							],
+							"query": [
+								{
+									"key": "version",
+									"value": "{{Version}}"
+								},
+								{
+									"key": "culture",
+									"value": "{{Culture}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Recipe Create Error",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d76728d7-d42c-4677-93a4-eed94d55356a",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"pm.environment.set('RecipeId', jsonData);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"name\": \"Oi\",\r\n\t\"description\": \"Vejce\",\r\n\t\"duration\": \"00:00:00\",\r\n\t\"foodType\": 0,\r\n\t\"ingredients\": [\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ApiUrl}}/api/recipe?version={{Version}}&culture={{Culture}}",
+							"host": [
+								"{{ApiUrl}}"
+							],
+							"path": [
+								"api",
+								"recipe"
+							],
+							"query": [
+								{
+									"key": "version",
+									"value": "{{Version}}"
+								},
+								{
+									"key": "culture",
+									"value": "{{Culture}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Recipe Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"id\": \"{{RecipeId}}\",\r\n\t\"name\": \"Míchaná vejce s větším množstvím slaniny\",\r\n\t\"description\": \"Míchaná vejce ale vylepšená o slaninu. A ještě více slaniny. A bez cibule.\",\r\n\t\"duration\": \"00:20:00\",\r\n\t\"foodType\": 1,\r\n\t\"ingredients\": [\r\n\t\t{\r\n\t\t\t\"ingredientId\": \"df935095-8709-4040-a2bb-b6f97cb416dc\",\r\n\t\t\t\"amount\": 4,\r\n    \t\t\"unit\": 5\r\n  \t\t},\r\n    \t{\r\n    \t\t\"ingredientId\": \"{{IngredientId}}\",\r\n    \t\t\"amount\": 200,\r\n    \t\t\"unit\": 4\r\n    \t}\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ApiUrl}}/api/recipe?version={{Version}}&culture={{Culture}}",
+							"host": [
+								"{{ApiUrl}}"
+							],
+							"path": [
+								"api",
+								"recipe"
+							],
+							"query": [
+								{
+									"key": "version",
+									"value": "{{Version}}"
+								},
+								{
+									"key": "culture",
+									"value": "{{Culture}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Recipe Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{ApiUrl}}/api/recipe/{{IngredientId}}?version={{Version}}&culture={{Culture}}",
+							"host": [
+								"{{ApiUrl}}"
+							],
+							"path": [
+								"api",
+								"recipe",
+								"{{IngredientId}}"
+							],
+							"query": [
+								{
+									"key": "version",
+									"value": "{{Version}}"
+								},
+								{
+									"key": "culture",
+									"value": "{{Culture}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
