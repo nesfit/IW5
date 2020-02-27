@@ -9,13 +9,15 @@ namespace CookBook.DAL.Installers
     {
         public void Install(IServiceCollection serviceCollection)
         {
-            serviceCollection.AddSingleton<Storage>();
-
             serviceCollection.Scan(selector =>
-                selector.FromAssemblyOf<DALInstaller>()
-                    .AddClasses(filter => filter.AssignableTo(typeof(IAppRepository<>)))
-                    .AsSelf()
-                    .WithTransientLifetime());
+                selector.FromCallingAssembly()
+                        .AddClasses(classes => classes.AssignableTo(typeof(IAppRepository<>)))
+                            .AsSelfWithInterfaces()
+                            .WithTransientLifetime()
+                        .AddClasses(classes => classes.AssignableTo<Storage>())
+                            .AsSelf()
+                            .WithSingletonLifetime()
+            );
         }
     }
 }
