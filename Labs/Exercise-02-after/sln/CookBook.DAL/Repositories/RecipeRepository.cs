@@ -15,7 +15,6 @@ namespace CookBook.DAL.Repositories
             Storage storage,
             IMapper mapper)
         {
-            this.recipes = storage.Recipes;
             this.mapper = mapper;
         }
 
