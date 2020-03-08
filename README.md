@@ -51,7 +51,7 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení n
 | 24.02. | IoC - ServiceCollection, Logging, Configuration                                                         | 
 | 02.03. | Web - MVC                                                                                               |  
 | 09.03. | VS Test Explorer, Resharper, Code coverage, Live Tests, CI v VSTS (Demonstracne) a duraz na psani testu | 
-| 16.03. | Takhle napiste projekt?!                                                                                | 
+| 23.03. | Takhle napiste projekt?!                                                                                | 
 
 ---
 # Projekt
