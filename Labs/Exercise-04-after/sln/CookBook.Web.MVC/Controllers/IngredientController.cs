@@ -1,4 +1,5 @@
-﻿using CookBook.BL.Web.Facades;
+﻿using CookBook.BL.Web.Api;
+using CookBook.BL.Web.Facades;
 using CookBook.Web.MVC.ViewModels.Ingredient;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -34,6 +35,22 @@ namespace CookBook.Web.MVC.Controllers
                 IngredientDetail = ingredient
             };
             return View(ingredientDetailViewModel);
+        }
+
+        public IActionResult New()
+        {
+            var ingredientNewViewModel = new IngredientNewViewModel
+            {
+                IngredientNewModel = new IngredientNewModel()
+            };
+            return View(ingredientNewViewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Save(IngredientNewViewModel ingredientNewViewModel)
+        {
+            await _ingredientFacade.InsertAsync(ingredientNewViewModel.IngredientNewModel);
+            return RedirectToAction(nameof(List));
         }
     }
 }
