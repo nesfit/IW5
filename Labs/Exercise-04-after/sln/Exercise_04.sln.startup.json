@@ -8,7 +8,7 @@
   "MultiProjectConfigurations": {
     "Web": {
       "Projects": {
-        "CookBook.Web.MVC": {},
+        "CookBook.Web.MVC": {}
       }
     },
     "API": {

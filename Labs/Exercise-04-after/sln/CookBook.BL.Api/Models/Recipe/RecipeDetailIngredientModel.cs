@@ -2,6 +2,7 @@
 using CookBook.Common.Enums;
 using CookBook.Common.Extensions;
 using CookBook.DAL.Entities;
+using EnumsNET;
 
 namespace CookBook.BL.Api.Models.Recipe
 {
@@ -10,6 +11,7 @@ namespace CookBook.BL.Api.Models.Recipe
         public double Amount { get; set; }
         public Unit Unit { get; set; }
         public string Name { get; set; }
+        public string UnitText => Unit.AsString(EnumFormat.Description);
     }
 
     public class RecipeDetailIngredientModelMapperProfile : Profile

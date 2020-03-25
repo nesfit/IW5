@@ -1,0 +1,20 @@
+﻿@model RecipeDetailViewModel
+
+<div>
+    <h1>@Model.RecipeDetail.Name</h1>
+    <div>Doba trvání: @Model.RecipeDetail.Duration</div>
+    <div>Popis: @Model.RecipeDetail.Description</div>
+
+    <div>
+        Ingredience:
+        <ul>
+            @foreach (var ingredient in Model.RecipeDetail.Ingredients)
+            {
+
+                <li>
+                    @ingredient.Name @ingredient.Amount @ingredient.UnitText
+                </li>
+            }
+        </ul>
+    </div>
+</div>
