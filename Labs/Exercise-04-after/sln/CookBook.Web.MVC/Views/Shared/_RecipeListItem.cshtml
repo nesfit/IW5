@@ -1,0 +1,14 @@
+﻿@model RecipeListModel
+
+<div class="col-sm-4 col-lg-4 col-md-4">
+    <div class="thumbnail">
+        <div class="caption">
+            <h3>
+                <a asp-controller="Recipe"
+                   asp-action="Detail"
+                   asp-route-id="@Model.Id">@Model.Name</a>
+            </h3>
+            <p>@Model.FoodType</p>
+        </div>
+    </div>
+</div>

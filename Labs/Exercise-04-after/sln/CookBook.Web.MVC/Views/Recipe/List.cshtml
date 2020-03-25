@@ -3,8 +3,6 @@
 <div>
     @foreach (var recipe in Model.Recipes)
     {
-        <div>
-            <h2>@recipe.Name</h2>
-        </div>
+        <partial name="_RecipeListItem" model="recipe" />
     }
 </div>
