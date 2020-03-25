@@ -1,6 +1,7 @@
 ﻿using CookBook.BL.Web.Facades;
-using CookBook.Web.MVC.ViewModels;
+using CookBook.Web.MVC.ViewModels.Recipe;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 
 namespace CookBook.Web.MVC.Controllers
@@ -23,6 +24,16 @@ namespace CookBook.Web.MVC.Controllers
                 Recipes = recipes
             };
             return View(recipeListViewModel);
+        }
+
+        public async Task<IActionResult> Detail(Guid id)
+        {
+            var recipe = await _recipeFacade.GetByIdAsync(id);
+            var recipeDetailViewModel = new RecipeDetailViewModel
+            {
+                RecipeDetail = recipe
+            };
+            return View(recipeDetailViewModel);
         }
     }
 }

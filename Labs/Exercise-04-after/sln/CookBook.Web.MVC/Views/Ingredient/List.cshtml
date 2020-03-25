@@ -1,0 +1,8 @@
+﻿@model IngredientListViewModel
+
+<div>
+    @foreach (var ingredient in Model.Ingredients)
+    {
+        <partial name="_IngredientListItem" model="ingredient" />
+    }
+</div>

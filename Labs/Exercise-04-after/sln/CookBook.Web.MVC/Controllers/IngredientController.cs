@@ -1,5 +1,7 @@
 ﻿using CookBook.BL.Web.Facades;
+using CookBook.Web.MVC.ViewModels.Ingredient;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 
 namespace CookBook.Web.MVC.Controllers
@@ -17,7 +19,21 @@ namespace CookBook.Web.MVC.Controllers
         public async Task<IActionResult> List()
         {
             var ingredients = await _ingredientFacade.GetAllAsync();
-            return View(ingredients);
+            var ingredientListViewModel = new IngredientListViewModel
+            {
+                Ingredients = ingredients
+            };
+            return View(ingredientListViewModel);
+        }
+
+        public async Task<IActionResult> Detail(Guid id)
+        {
+            var ingredient = await _ingredientFacade.GetByIdAsync(id);
+            var ingredientDetailViewModel = new IngredientDetailViewModel
+            {
+                IngredientDetail = ingredient
+            };
+            return View(ingredientDetailViewModel);
         }
     }
 }
