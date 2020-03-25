@@ -12,7 +12,10 @@
             {
 
                 <li>
-                    @ingredient.Name @ingredient.Amount @ingredient.UnitText
+                    <a asp-controller="Ingredient"
+                       asp-action="Detail"
+                       asp-route-id="@ingredient.IngredientId">@ingredient.Name</a>
+                    @ingredient.Amount @ingredient.UnitText
                 </li>
             }
         </ul>
