@@ -1,6 +1,8 @@
 ﻿@model RecipeListViewModel
 
 <div>
+    <a asp-controller="Recipe" asp-action="New">Přidat nový</a>
+
     @foreach (var recipe in Model.Recipes)
     {
         <partial name="_RecipeListItem" model="recipe" />

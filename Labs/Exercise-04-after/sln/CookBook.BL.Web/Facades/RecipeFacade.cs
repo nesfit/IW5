@@ -25,5 +25,10 @@ namespace CookBook.BL.Web.Facades
         {
             return await _recipeClient.RecipeGetAsync(id, "3", "cs");
         }
+
+        public async Task<Guid> InsertAsync(RecipeNewModel recipeNewModel)
+        {
+            return await _recipeClient.RecipePostAsync("3", "cs", recipeNewModel);
+        }
     }
 }

@@ -36,9 +36,9 @@ namespace CookBook.Api.Controllers.v3
 
         [HttpPost]
         [OpenApiOperation(ApiOperationBaseName + nameof(Create))]
-        public ActionResult<Guid> Create(RecipeNewModel ingredient)
+        public ActionResult<Guid> Create(RecipeNewModel recipe)
         {
-            return recipeFacade.Create(ingredient);
+            return recipeFacade.Create(recipe);
         }
 
         [HttpPut]
