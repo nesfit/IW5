@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Description_ValidationMessage" xml:space="preserve">
-    <value>Popis receput musí mít délku nejméně {0} znaků</value>
+    <value>Popis recept musí mít délku nejméně {0} znaků</value>
   </data>
   <data name="Duration_ValidationMessage" xml:space="preserve">
     <value>Délka trvání receptu musí být alespoň {0} minut</value>

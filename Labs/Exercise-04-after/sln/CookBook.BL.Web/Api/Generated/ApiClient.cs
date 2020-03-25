@@ -1399,6 +1399,9 @@ namespace CookBook.BL.Web.Api
         [Newtonsoft.Json.JsonProperty("foodType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public FoodType FoodType { get; set; }
     
+        [Newtonsoft.Json.JsonProperty("foodTypeText", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string FoodTypeText { get; set; }
+    
     
     }
     

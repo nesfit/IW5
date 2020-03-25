@@ -9,7 +9,7 @@ namespace CookBook.BL.Web.Api
         public IngredientClient(IOptions<ApiOptions> apiOptions, HttpClient httpClient)
             : this(httpClient)
         {
-            //BaseUrl = apiOptions.Value.BaseUrl;
+            BaseUrl = apiOptions.Value.BaseUrl;
         }
     }
 }
