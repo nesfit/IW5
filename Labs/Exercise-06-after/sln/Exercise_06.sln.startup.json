@@ -1,0 +1,26 @@
+/*
+    This is a configuration file for the SwitchStartupProject Visual Studio Extension
+    See https://bitbucket.org/thirteen/switchstartupproject/src/tip/Configuration.md
+*/
+{
+  "Version": 3,
+  "ListAllProjects": false,
+  "MultiProjectConfigurations": {
+    "Web": {
+      "Projects": {
+        "CookBook.Web.MVC": {}
+      }
+    },
+    "API": {
+      "Projects": {
+        "CookBook.Api": {}
+      }
+    },
+    "Web + API": {
+      "Projects": {
+        "CookBook.Web.MVC": {},
+        "CookBook.Api": {}
+      }
+    }
+  }
+}
