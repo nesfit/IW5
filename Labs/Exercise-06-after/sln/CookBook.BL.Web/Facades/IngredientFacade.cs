@@ -1,5 +1,7 @@
 ﻿using CookBook.BL.Common.Facades;
 using CookBook.BL.Web.Api;
+using CookBook.BL.Web.Options;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +12,16 @@ namespace CookBook.BL.Web.Facades
     public class IngredientFacade : IAppFacade
     {
         private readonly IIngredientClient _ingredientClient;
+        private readonly IOptions<ApiOptions> apiOptions;
+        private readonly IOptions<WebOptions> webOptions;
 
-        public IngredientFacade(IIngredientClient ingredientClient)
+        public IngredientFacade(IIngredientClient ingredientClient,
+            IOptions<ApiOptions> apiOptions,
+            IOptions<WebOptions> webOptions)
         {
             _ingredientClient = ingredientClient;
+            this.apiOptions = apiOptions;
+            this.webOptions = webOptions;
         }
 
         public async Task<IList<IngredientListModel>> GetAllAsync()
@@ -29,6 +37,13 @@ namespace CookBook.BL.Web.Facades
         public async Task<Guid> InsertAsync(IngredientNewModel ingredientNewModel)
         {
             return await _ingredientClient.IngredientPostAsync("3", "cs", ingredientNewModel);
+        }
+
+        public async Task DeleteAsync(Guid id, string version = null, string culture = null)
+        {
+            version ??= apiOptions.Value.Version;
+            culture ??= webOptions.Value.DefaultCulture;
+            await _ingredientClient.IngredientDeleteAsync(id, version, culture);
         }
     }
 }

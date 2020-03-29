@@ -62,7 +62,7 @@ namespace CookBook.Web.MVC.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Save(RecipeNewViewModel recipeNewViewModel)
+        public async Task<IActionResult> Insert(RecipeNewViewModel recipeNewViewModel)
         {
             var currentCulture = CultureInfo.CurrentCulture;
 
@@ -90,6 +90,13 @@ namespace CookBook.Web.MVC.Controllers
                 return View(nameof(New));
             }
 
+            return RedirectToAction(nameof(List));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(Guid recipeId)
+        {
+            await _recipeFacade.DeleteAsync(recipeId);
             return RedirectToAction(nameof(List));
         }
 

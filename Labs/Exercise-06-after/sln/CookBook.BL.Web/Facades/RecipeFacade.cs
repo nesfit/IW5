@@ -41,5 +41,12 @@ namespace CookBook.BL.Web.Facades
             culture ??= webOptions.Value.DefaultCulture;
             return await _recipeClient.RecipePostAsync(version, culture, recipeNewModel);
         }
+
+        public async Task DeleteAsync(Guid id, string version = null, string culture = null)
+        {
+            version ??= apiOptions.Value.Version;
+            culture ??= webOptions.Value.DefaultCulture;
+            await _recipeClient.RecipeDeleteAsync(id, version, culture);
+        }
     }
 }

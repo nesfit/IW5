@@ -51,9 +51,16 @@ namespace CookBook.Web.MVC.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Save(IngredientNewViewModel ingredientNewViewModel)
+        public async Task<IActionResult> Insert(IngredientNewViewModel ingredientNewViewModel)
         {
             await _ingredientFacade.InsertAsync(ingredientNewViewModel.IngredientNewModel);
+            return RedirectToAction(nameof(List));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(Guid ingredientId)
+        {
+            await _ingredientFacade.DeleteAsync(ingredientId);
             return RedirectToAction(nameof(List));
         }
     }

@@ -20,4 +20,9 @@
             }
         </ul>
     </div>
+
+    <form asp-action="Delete" method="post" role="form">
+        <input type="hidden" name="recipeId" value="@Model.RecipeDetail.Id" />
+        <input type="submit" class="btn btn-primary" value="Smazat" />
+    </form>
 </div>
