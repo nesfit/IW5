@@ -5,6 +5,7 @@ using CookBook.Web.MVC.Models;
 using CookBook.Web.MVC.ViewModels.Recipe;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Threading.Tasks;
 
@@ -49,17 +50,19 @@ namespace CookBook.Web.MVC.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> New()
+        public async Task<IActionResult> New(RecipeNewViewModel recipeNewViewModel)
         {
-            var recipeNewViewModel = new RecipeNewViewModel
+            recipeNewViewModel.IngredientsAll ??= await _ingredientFacade.GetAllAsync();
+            recipeNewViewModel.RecipeNewModel ??= new RecipeNewModel
             {
-                RecipeNewModel = new RecipeNewModel()
+                Ingredients = new List<RecipeNewIngredientModel>()
             };
+
             return View(recipeNewViewModel);
         }
 
         [HttpPost]
-        public async Task<IActionResult> New(RecipeNewViewModel recipeNewViewModel)
+        public async Task<IActionResult> Save(RecipeNewViewModel recipeNewViewModel)
         {
             var currentCulture = CultureInfo.CurrentCulture;
 
@@ -84,10 +87,18 @@ namespace CookBook.Web.MVC.Controllers
 
             if (!ModelState.IsValid)
             {
-                return View(recipeNewViewModel);
+                return View(nameof(New));
             }
 
             return RedirectToAction(nameof(List));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddIngredient(RecipeNewViewModel recipeNewViewModel)
+        {
+            recipeNewViewModel.RecipeNewModel.Ingredients ??= new List<RecipeNewIngredientModel>();
+            recipeNewViewModel.RecipeNewModel.Ingredients.Add(new RecipeNewIngredientModel());
+            return View(nameof(New), recipeNewViewModel);
         }
     }
 }

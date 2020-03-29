@@ -4,10 +4,10 @@ namespace CookBook.Web.MVC.Models
 {
     public class RecipeNewValidationErrorsModel
     {
-        public IList<string> Name { get; set; }
-        public IList<string> Duration { get; set; }
-        public IList<string> FoodTzpe { get; set; }
-        public IList<string> Description { get; set; }
-        public IList<string> Ingredients { get; set; }
+        public IList<string> Name { get; set; } = new List<string>();
+        public IList<string> Duration { get; set; } = new List<string>();
+        public IList<string> FoodTzpe { get; set; } = new List<string>();
+        public IList<string> Description { get; set; } = new List<string>();
+        public IList<string> Ingredients { get; set; } = new List<string>();
     }
 }

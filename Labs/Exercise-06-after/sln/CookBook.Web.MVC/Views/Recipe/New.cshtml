@@ -1,6 +1,6 @@
 ﻿@model RecipeNewViewModel
 
-<form asp-action="New" method="post" role="form">
+<form asp-action="Save" method="post" role="form">
     <div class="form-group">
         <label asp-for="RecipeNewModel.Name" class="col-md-2"></label>
         <div class="col-md-5">
@@ -12,14 +12,14 @@
     <div class="form-group">
         <label asp-for="RecipeNewModel.Description" class="col-md-2"></label>
         <div class="col-md-5">
-            <input asp-for="RecipeNewModel.Description" class="form-control" />
+            <textarea asp-for="RecipeNewModel.Description" class="form-control"></textarea>
         </div>
     </div>
 
     <div class="form-group">
         <label asp-for="DurationText" class="col-md-2"></label>
         <div class="col-md-5">
-            <input asp-for="DurationText" type="time" placeholder="hh:mm:ss">
+            <input asp-for="DurationText" placeholder="hh:mm:ss">
         </div>
     </div>
 
@@ -34,8 +34,19 @@
 
     <div class="form-group">
         <label asp-for="RecipeNewModel.Ingredients" class="col-md-2"></label>
+        @for (int i = 0; i < Model.RecipeNewModel.Ingredients.Count; i++)
+        {
+            <div class="col-md-5">
+                <select asp-for="RecipeNewModel.Ingredients[i].IngredientId" asp-items="@(new SelectList(Model.IngredientsAll, "Id", "Name"))"></select>
+                <input type="number" asp-for="RecipeNewModel.Ingredients[i].Amount" min="0" />
+                <select asp-for="RecipeNewModel.Ingredients[i].Unit" asp-items="Html.GetEnumSelectList<Unit>()"></select>
+            </div>
+        }
+    </div>
+
+    <div class="form-group">
         <div class="col-md-5">
-            <!--TODO: Add selection of Ingredients-->
+            <input type="submit" name="AddIngredient" formaction="AddIngredient" class="btn btn-primary" value="Přidat ingredienci" />
         </div>
     </div>
 
@@ -44,4 +55,10 @@
             <input type="submit" class="btn btn-primary" value="Přidat recept" />
         </div>
     </div>
+
+    @for (int i = 0; i < Model.IngredientsAll.Count; i++)
+    {
+        <input type="hidden" asp-for="IngredientsAll[i].Id" />
+        <input type="hidden" asp-for="IngredientsAll[i].Name" />
+    }
 </form>
