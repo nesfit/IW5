@@ -57,6 +57,7 @@ namespace CookBook.Web.MVC.Controllers
             {
                 Ingredients = new List<RecipeNewIngredientModel>()
             };
+            recipeNewViewModel.RecipeNewModel.Ingredients ??= new List<RecipeNewIngredientModel>();
 
             return View(recipeNewViewModel);
         }
@@ -81,13 +82,33 @@ namespace CookBook.Web.MVC.Controllers
 
                 foreach (var nameError in validationErrorsModel.Errors.Name)
                 {
-                    ModelState.AddModelError("RecipeNewModel.Name", nameError);
+                    ModelState.AddModelError($"{nameof(recipeNewViewModel.RecipeNewModel)}.{nameof(recipeNewViewModel.RecipeNewModel.Name)}", nameError);
+                }
+
+                foreach (var descriptionError in validationErrorsModel.Errors.Description)
+                {
+                    ModelState.AddModelError($"{nameof(recipeNewViewModel.RecipeNewModel)}.{nameof(recipeNewViewModel.RecipeNewModel.Description)}", descriptionError);
+                }
+
+                foreach (var foodTypeError in validationErrorsModel.Errors.FoodType)
+                {
+                    ModelState.AddModelError($"{nameof(recipeNewViewModel.RecipeNewModel)}.{nameof(recipeNewViewModel.RecipeNewModel.FoodType)}", foodTypeError);
+                }
+
+                foreach (var durationError in validationErrorsModel.Errors.Duration)
+                {
+                    ModelState.AddModelError($"{nameof(recipeNewViewModel.RecipeNewModel)}.{nameof(recipeNewViewModel.RecipeNewModel.Duration)}", durationError);
+                }
+
+                foreach (var ingredientsError in validationErrorsModel.Errors.Ingredients)
+                {
+                    ModelState.AddModelError($"{nameof(recipeNewViewModel.RecipeNewModel)}.{nameof(recipeNewViewModel.RecipeNewModel.Ingredients)}", ingredientsError);
                 }
             }
 
             if (!ModelState.IsValid)
             {
-                return View(nameof(New));
+                return View(nameof(New), recipeNewViewModel);
             }
 
             return RedirectToAction(nameof(List));
