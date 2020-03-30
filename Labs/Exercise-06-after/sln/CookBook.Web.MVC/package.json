@@ -5,8 +5,7 @@
     "jquery-validation": "^1.19.1",
     "jquery-validation-unobtrusive": "^3.2.11",
     "bootstrap": "^4.4.1",
-    "popper.js": "^1.16.1",
-    "md-date-time-picker": "2.3.0"
+    "popper.js": "^1.16.1"
   },
   "devDependencies": {
     "webpack": "^4.42.1",
