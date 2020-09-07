@@ -1,5 +1,5 @@
-﻿@page "/en/ingredients/create"
-@page "/en/ingredients/edit/{Id:guid}"
+﻿@page "/cs/ingredients/create"
+@page "/cs/ingredients/edit/{Id:guid}"
 @using CookBook.Models
 
 <EditForm Model="@Data">
@@ -26,6 +26,8 @@
 
     public IngredientDetailModel Data { get; set; }
 
+    [Inject]
+    protected IIngredientsFacade IngredientsFacade { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
@@ -35,6 +37,7 @@
         }
         else
         {
+            Data = await IngredientsFacade.IngredientGetAsync(Id);
         }
 
         await base.OnInitializedAsync();
@@ -42,12 +45,6 @@
 
     public async Task Save()
     {
-
-        if (Id == Guid.Empty)
-        {
-        }
-        else
-        {
-        }
+        await IngredientsFacade.SaveAsync(Data);
     }
 }
