@@ -1,8 +1,7 @@
-﻿using System;
-using CookBook.Models.Enums;
-using EnumsNET;
+﻿using EnumsNET;
+using System;
 
-namespace CookBook.Models.Recipe
+namespace CookBook.Models
 {
     public class RecipeListModel
     {

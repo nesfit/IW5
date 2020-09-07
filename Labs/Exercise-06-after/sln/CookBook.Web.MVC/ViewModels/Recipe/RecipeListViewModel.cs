@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using CookBook.Models.Recipe;
+﻿using CookBook.Models;
+using System.Collections.Generic;
 
 namespace CookBook.Web.MVC.ViewModels.Recipe
 {

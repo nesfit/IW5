@@ -74,6 +74,14 @@ namespace CookBook.Api
             services.AddInstaller<BLApiInstaller>();
 
             services.AddAutoMapper(typeof(DALInstaller), typeof(BLApiInstaller));
+
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(builder =>
+                    builder.AllowAnyOrigin()
+                        .AllowAnyHeader()
+                        .AllowAnyMethod());
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IMapper mapper)
@@ -84,6 +92,8 @@ namespace CookBook.Api
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors();
 
             app.UseHttpsRedirection();
 
@@ -114,6 +124,7 @@ namespace CookBook.Api
                 settings.SwaggerRoutes.Add(new SwaggerUi3Route("v2.0", "/swagger/v2/swagger.json"));
                 settings.SwaggerRoutes.Add(new SwaggerUi3Route("v1.0", "/swagger/v1/swagger.json"));
             });
+
         }
     }
 }

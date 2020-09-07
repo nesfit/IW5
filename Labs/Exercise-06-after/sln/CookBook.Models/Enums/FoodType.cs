@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace CookBook.Models.Enums
+namespace CookBook.Models
 {
     public enum FoodType
     {

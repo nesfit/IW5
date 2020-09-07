@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using CookBook.DAL.Entities;
-using CookBook.Models.Recipe;
+using CookBook.Models;
 
 namespace CookBook.BL.Api.Mapping
 {

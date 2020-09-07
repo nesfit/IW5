@@ -1,0 +1,37 @@
+﻿@page "/ingredients"
+@using CookBook.BL.Web.Blazor.Facades
+@using CookBook.Models
+
+<h3>Ingredients</h3>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+        </tr>
+    </thead>
+    <tbody>    
+        @foreach (var ingredient in Ingredients)
+        {
+            <tr>
+                <td>@ingredient.Name</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+@code {
+    public IList<IngredientListModel> Ingredients { get; private set; } = new List<IngredientListModel>();
+
+
+    [Inject]
+    private IIngredientsFacade ingredientsFacade { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+
+        Ingredients = await ingredientsFacade.IngredientsGetAsync();
+    }
+}

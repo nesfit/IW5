@@ -1,7 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-using CookBook.Localization.Resources;
+﻿using CookBook.Localization.Resources;
+using System.ComponentModel.DataAnnotations;
 
-namespace CookBook.Models.Ingredient
+namespace CookBook.Models
 {
     public class IngredientNewModel
     {

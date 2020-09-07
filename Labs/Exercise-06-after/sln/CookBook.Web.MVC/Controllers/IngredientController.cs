@@ -1,5 +1,5 @@
 ﻿using CookBook.BL.Web.MVC.Facades;
-using CookBook.Models.Ingredient;
+using CookBook.Models;
 using CookBook.Web.MVC.ViewModels.Ingredient;
 using Microsoft.AspNetCore.Mvc;
 using System;

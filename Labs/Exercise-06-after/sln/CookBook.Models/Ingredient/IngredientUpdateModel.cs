@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CookBook.Models.Ingredient
+namespace CookBook.Models
 {
     public class IngredientUpdateModel
     {

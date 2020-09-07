@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace CookBook.Models.Ingredient
+namespace CookBook.Models
 {
     public class IngredientDetailModel
     {
