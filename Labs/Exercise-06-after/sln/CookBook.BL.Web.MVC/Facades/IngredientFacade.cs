@@ -1,14 +1,14 @@
 ﻿using CookBook.BL.Common.Facades;
-using CookBook.BL.Web.Api;
-using CookBook.BL.Web.Options;
+using CookBook.BL.Web.MVC.Api;
+using CookBook.BL.Web.MVC.Options;
+using CookBook.Models.Ingredient;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using CookBook.Models.Ingredient;
 
-namespace CookBook.BL.Web.Facades
+namespace CookBook.BL.Web.MVC.Facades
 {
     public class IngredientFacade : IAppFacade
     {

@@ -1,6 +1,7 @@
 ﻿using CookBook.BL.Common.Services;
-using CookBook.BL.Web.Api;
-using CookBook.BL.Web.Facades;
+using CookBook.BL.Web.MVC.Api;
+using CookBook.BL.Web.MVC.Facades;
+using CookBook.Models.Recipe;
 using CookBook.Web.MVC.Models;
 using CookBook.Web.MVC.ViewModels.Recipe;
 using Microsoft.AspNetCore.Mvc;
@@ -8,7 +9,6 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Threading.Tasks;
-using CookBook.Models.Recipe;
 
 namespace CookBook.Web.MVC.Controllers
 {

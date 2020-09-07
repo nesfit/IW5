@@ -1,6 +1,6 @@
 using CookBook.BL.Common.Installers;
-using CookBook.BL.Web.Installers;
-using CookBook.BL.Web.Options;
+using CookBook.BL.Web.MVC.Installers;
+using CookBook.BL.Web.MVC.Options;
 using CookBook.Common.Extensions;
 using CookBook.Web.MVC.Installers;
 using Microsoft.AspNetCore.Builder;
