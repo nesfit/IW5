@@ -1,0 +1,53 @@
+﻿@page "/en/ingredients/create"
+@page "/en/ingredients/edit/{Id:guid}"
+@using CookBook.Models
+
+<EditForm Model="@Data">
+    <DataAnnotationsValidator />
+
+    <label>
+        Name:
+        <InputText @bind-Value="@Data.Name" />
+        <ValidationMessage For="@(()=>Data.Name)"/>
+    </label>
+
+    <label>
+        Description:
+        <InputTextArea @bind-Value="@Data.Description" />
+        <ValidationMessage For="(()=>Data.Description)" />
+    </label>
+    <button type="submit">Save</button>
+</EditForm>
+
+
+@code {
+    [Parameter]
+    public Guid Id { get; set; }
+
+    public IngredientDetailModel Data { get; set; }
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (Id==Guid.Empty)
+        {
+            Data=new IngredientDetailModel();
+        }
+        else
+        {
+        }
+
+        await base.OnInitializedAsync();
+    }
+
+    public async Task Save()
+    {
+
+        if (Id == Guid.Empty)
+        {
+        }
+        else
+        {
+        }
+    }
+}

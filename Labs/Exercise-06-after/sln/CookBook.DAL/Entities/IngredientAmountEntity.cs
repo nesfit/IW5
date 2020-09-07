@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using CookBook.Models;
 using System;
+using CookBook.Models;
 
 namespace CookBook.DAL.Entities
 {

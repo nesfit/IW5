@@ -1,5 +1,5 @@
-﻿using EnumsNET;
-using System;
+﻿using System;
+using EnumsNET;
 
 namespace CookBook.Models
 {
