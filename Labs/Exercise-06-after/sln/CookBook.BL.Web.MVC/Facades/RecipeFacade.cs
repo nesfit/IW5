@@ -1,7 +1,6 @@
 ﻿using CookBook.BL.Common.Facades;
 using CookBook.BL.Web.MVC.Api;
 using CookBook.BL.Web.MVC.Options;
-using CookBook.Models;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
@@ -36,7 +35,7 @@ namespace CookBook.BL.Web.MVC.Facades
             return await _recipeClient.RecipeGetAsync(id, "3", "cs");
         }
 
-        public async Task<Guid> InsertAsync(RecipeNewModel recipeNewModel, string version = null, string culture = null)
+        public async Task<Guid> InsertAsync(RecipeDetailModel recipeNewModel, string version = null, string culture = null)
         {
             version ??= apiOptions.Value.Version;
             culture ??= webOptions.Value.DefaultCulture;

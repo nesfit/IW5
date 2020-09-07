@@ -1,7 +1,6 @@
 ﻿using CookBook.BL.Common.Facades;
 using CookBook.BL.Web.MVC.Api;
 using CookBook.BL.Web.MVC.Options;
-using CookBook.Models;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
@@ -35,9 +34,9 @@ namespace CookBook.BL.Web.MVC.Facades
             return await _ingredientClient.IngredientGetAsync(id, "3", "cs");
         }
 
-        public async Task<Guid> InsertAsync(IngredientNewModel ingredientNewModel)
+        public async Task<Guid> InsertAsync(IngredientDetailModel ingredient)
         {
-            return await _ingredientClient.IngredientPostAsync("3", "cs", ingredientNewModel);
+            return await _ingredientClient.IngredientPostAsync("3", "cs", ingredient);
         }
 
         public async Task DeleteAsync(Guid id, string version = null, string culture = null)
