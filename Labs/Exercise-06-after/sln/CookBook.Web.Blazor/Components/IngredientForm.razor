@@ -1,8 +1,6 @@
 ﻿@page "/en/ingredients/create"
 @page "/en/ingredients/edit/{Id:guid}"
-@using CookBook.Models.Ingredient
-@using CookBook.BL.Web.Api
-@using CookBook.BL.Web.Facades
+@using CookBook.Models
 
 <EditForm Model="@Data">
     <DataAnnotationsValidator />
@@ -28,8 +26,6 @@
 
     public IngredientDetailModel Data { get; set; }
 
-    [Inject]
-    protected IngredientFacade IngredientFacade { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
@@ -39,7 +35,6 @@
         }
         else
         {
-            Data = await IngredientFacade.GetByIdAsync(Id);
         }
 
         await base.OnInitializedAsync();
