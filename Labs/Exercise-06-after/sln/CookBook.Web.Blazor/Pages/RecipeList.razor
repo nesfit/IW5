@@ -1,5 +1,6 @@
-﻿@page "/recipes"
+﻿@page "/{Culture}/recipes"
 @layout ListLayout
+@inherits PageBase
 
 <h3>Recipes</h3>
 
@@ -31,6 +32,6 @@
     {
         await base.OnInitializedAsync();
 
-        Recipes = await recipesFacade.RecipesGetAsync();
+        Recipes = await recipesFacade.RecipesGetAsync(Culture);
     }
 }

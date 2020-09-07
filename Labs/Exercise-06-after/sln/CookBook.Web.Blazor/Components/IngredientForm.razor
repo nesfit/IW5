@@ -1,6 +1,6 @@
-﻿@page "/cs/ingredients/create"
-@page "/cs/ingredients/edit/{Id:guid}"
-@using CookBook.Models
+﻿@page "/{Culture}/ingredients/create"
+@page "/{Culture}/ingredients/edit/{Id:guid}"
+@inherits CookBook.Web.Blazor.Pages.PageBase
 
 <EditForm Model="@Data">
     <DataAnnotationsValidator />
@@ -8,7 +8,7 @@
     <label>
         Name:
         <InputText @bind-Value="@Data.Name" />
-        <ValidationMessage For="@(()=>Data.Name)"/>
+        <ValidationMessage For="@(()=>Data.Name)" />
     </label>
 
     <label>
@@ -31,13 +31,13 @@
 
     protected override async Task OnInitializedAsync()
     {
-        if (Id==Guid.Empty)
+        if (Id == Guid.Empty)
         {
-            Data=new IngredientDetailModel();
+            Data = new IngredientDetailModel();
         }
         else
         {
-            Data = await IngredientsFacade.IngredientGetAsync(Id);
+            Data = await IngredientsFacade.IngredientGetAsync(Id, Culture);
         }
 
         await base.OnInitializedAsync();
@@ -45,6 +45,6 @@
 
     public async Task Save()
     {
-        await IngredientsFacade.SaveAsync(Data);
+        await IngredientsFacade.SaveAsync(Data, Culture);
     }
 }

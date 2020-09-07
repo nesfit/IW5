@@ -1,5 +1,6 @@
-﻿@page "/ingredients"
+﻿@page "/{Culture}/ingredients"
 @layout ListLayout
+@inherits PageBase
 
 <h3>Ingredients</h3>
 
@@ -30,6 +31,6 @@
     {
         await base.OnInitializedAsync();
 
-        Ingredients = await ingredientsFacade.IngredientsGetAsync();
+        Ingredients = await ingredientsFacade.IngredientsGetAsync(Culture);
     }
 }
