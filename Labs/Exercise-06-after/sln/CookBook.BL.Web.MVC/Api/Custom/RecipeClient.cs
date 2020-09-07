@@ -1,8 +1,8 @@
-﻿using CookBook.BL.Web.Options;
+﻿using CookBook.BL.Web.MVC.Options;
 using Microsoft.Extensions.Options;
 using System.Net.Http;
 
-namespace CookBook.BL.Web.Api
+namespace CookBook.BL.Web.MVC.Api
 {
     public partial class RecipeClient
     {

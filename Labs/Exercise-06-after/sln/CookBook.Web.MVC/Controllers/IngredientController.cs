@@ -1,9 +1,9 @@
-﻿using CookBook.BL.Web.Facades;
+﻿using CookBook.BL.Web.MVC.Facades;
+using CookBook.Models.Ingredient;
 using CookBook.Web.MVC.ViewModels.Ingredient;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
-using CookBook.Models.Ingredient;
 
 namespace CookBook.Web.MVC.Controllers
 {

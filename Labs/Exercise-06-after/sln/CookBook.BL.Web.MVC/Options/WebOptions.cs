@@ -1,4 +1,4 @@
-﻿namespace CookBook.BL.Web.Options
+﻿namespace CookBook.BL.Web.MVC.Options
 {
     public class WebOptions
     {

@@ -16,6 +16,7 @@
   <ItemGroup>
     <ProjectReference Include="..\CookBook.BL.Web\CookBook.BL.Web.csproj" />
     <ProjectReference Include="..\CookBook.Models\CookBook.Models.csproj" />
+    <ProjectReference Include="..\CookBook.BL.Web.Blazor\CookBook.BL.Web.Blazor.csproj" />
   </ItemGroup>
 
 </Project>
