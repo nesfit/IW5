@@ -1,14 +1,11 @@
-﻿using AutoMapper;
-using CookBook.Common.Enums;
-using CookBook.Common.Extensions;
-using CookBook.Common.Resources;
-using CookBook.DAL.Entities;
+﻿using System;
+using System.Collections.Generic;
+using CookBook.Localization.Resources;
+using CookBook.Models.Enums;
 using FluentValidation;
 using Microsoft.Extensions.Localization;
-using System;
-using System.Collections.Generic;
 
-namespace CookBook.BL.Api.Models.Recipe
+namespace CookBook.Models.Recipe
 {
     public class RecipeNewModel
     {
@@ -17,16 +14,6 @@ namespace CookBook.BL.Api.Models.Recipe
         public TimeSpan Duration { get; set; }
         public FoodType FoodType { get; set; }
         public IList<RecipeNewIngredientModel> Ingredients { get; set; }
-    }
-
-    public class RecipeNewModelMapperProfile : Profile
-    {
-        public RecipeNewModelMapperProfile()
-        {
-            CreateMap<RecipeNewModel, RecipeEntity>()
-                .MapMember(dst => dst.IngredientAmounts, src => src.Ingredients)
-                .Ignore(dst => dst.Id);
-        }
     }
 
     public class RecipeNewModelValidator : AbstractValidator<RecipeNewModel>

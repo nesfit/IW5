@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CookBook.Common.Resources {
+namespace CookBook.Localization.Resources {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace CookBook.Common.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CookBook.Common.Resources.RecipeNewModelResources", typeof(RecipeNewModelResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CookBook.Localization.Resources.RecipeNewModelResources", typeof(RecipeNewModelResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

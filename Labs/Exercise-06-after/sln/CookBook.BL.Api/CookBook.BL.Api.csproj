@@ -18,6 +18,7 @@
     <ProjectReference Include="..\CookBook.BL.Common\CookBook.BL.Common.csproj" />
     <ProjectReference Include="..\CookBook.Common\CookBook.Common.csproj" />
     <ProjectReference Include="..\CookBook.DAL\CookBook.DAL.csproj" />
+    <ProjectReference Include="..\CookBook.Models\CookBook.Models.csproj" />
   </ItemGroup>
 
 </Project>

@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CookBook.Models.Recipe;
 
 namespace CookBook.BL.Web.Facades
 {

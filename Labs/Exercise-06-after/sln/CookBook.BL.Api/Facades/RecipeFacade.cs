@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
-using CookBook.BL.Api.Models.Recipe;
 using CookBook.BL.Common.Facades;
 using CookBook.DAL.Entities;
 using CookBook.DAL.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using CookBook.Models.Recipe;
 
 namespace CookBook.BL.Api.Facades
 {

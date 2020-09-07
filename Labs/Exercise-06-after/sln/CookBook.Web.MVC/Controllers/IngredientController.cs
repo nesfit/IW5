@@ -1,10 +1,9 @@
-﻿using CookBook.BL.Web.Api;
-using CookBook.BL.Web.Facades;
+﻿using CookBook.BL.Web.Facades;
 using CookBook.Web.MVC.ViewModels.Ingredient;
-using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
+using CookBook.Models.Ingredient;
 
 namespace CookBook.Web.MVC.Controllers
 {

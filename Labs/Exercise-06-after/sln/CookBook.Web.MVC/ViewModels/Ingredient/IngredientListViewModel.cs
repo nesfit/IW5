@@ -1,5 +1,5 @@
-﻿using CookBook.BL.Web.Api;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using CookBook.Models.Ingredient;
 
 namespace CookBook.Web.MVC.ViewModels.Ingredient
 {

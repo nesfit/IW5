@@ -1,6 +1,4 @@
-﻿using CookBook.Web.MVC.Models;
-using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace CookBook.Web.MVC.Controllers
 {

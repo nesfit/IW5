@@ -1,13 +1,10 @@
-﻿using AutoMapper;
-using CookBook.Common.Enums;
-using CookBook.Common.Extensions;
-using CookBook.Common.Resources;
-using CookBook.DAL.Entities;
+﻿using System;
+using CookBook.Localization.Resources;
+using CookBook.Models.Enums;
 using FluentValidation;
 using Microsoft.Extensions.Localization;
-using System;
 
-namespace CookBook.BL.Api.Models.Recipe
+namespace CookBook.Models.Recipe
 {
     public class RecipeNewIngredientModel
     {
@@ -15,19 +12,6 @@ namespace CookBook.BL.Api.Models.Recipe
         public double Amount { get; set; }
         public Unit Unit { get; set; }
     }
-
-    public class RecipeNewIngredientModelMapperProfile : Profile
-    {
-        public RecipeNewIngredientModelMapperProfile()
-        {
-            CreateMap<RecipeNewIngredientModel, IngredientAmountEntity>()
-                .Ignore(dst => dst.Id)
-                .Ignore(dst => dst.RecipeId)
-                .Ignore(dst => dst.Recipe)
-                .Ignore(dst => dst.Ingredient);
-        }
-    }
-
     public class RecipeNewIngredientModelValidator : AbstractValidator<RecipeNewIngredientModel>
     {
         private double amountMinimum = 0;

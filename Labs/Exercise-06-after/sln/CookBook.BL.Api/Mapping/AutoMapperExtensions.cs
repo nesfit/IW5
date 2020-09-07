@@ -1,8 +1,8 @@
-﻿using AutoMapper;
-using System;
+﻿using System;
 using System.Linq.Expressions;
+using AutoMapper;
 
-namespace CookBook.Common.Extensions
+namespace CookBook.BL.Api.Mapping
 {
     public static class AutoMapperExtensions
     {

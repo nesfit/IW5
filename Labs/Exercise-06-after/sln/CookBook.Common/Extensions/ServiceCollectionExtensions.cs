@@ -1,8 +1,5 @@
 ﻿using CookBook.Common.Installers;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace CookBook.Common.Extensions
 {

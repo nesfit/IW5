@@ -1,10 +1,7 @@
-﻿using AutoMapper;
-using CookBook.Common.Extensions;
-using CookBook.Common.Resources;
-using CookBook.DAL.Entities;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using CookBook.Localization.Resources;
 
-namespace CookBook.BL.Api.Models.Ingredient
+namespace CookBook.Models.Ingredient
 {
     public class IngredientNewModel
     {
@@ -15,14 +12,5 @@ namespace CookBook.BL.Api.Models.Ingredient
         [Required(ErrorMessageResourceType = typeof(IngredientNewModelResources), ErrorMessageResourceName = nameof(IngredientNewModelResources.Description_Required))]
         [MinLength(10, ErrorMessageResourceType = typeof(IngredientNewModelResources), ErrorMessageResourceName = nameof(IngredientNewModelResources.Description_MinLength))]
         public string Description { get; set; }
-    }
-
-    public class IngredientNewModelMapperProfile : Profile
-    {
-        public IngredientNewModelMapperProfile()
-        {
-            CreateMap<IngredientNewModel, IngredientEntity>()
-                .Ignore(dst => dst.Id);
-        }
     }
 }

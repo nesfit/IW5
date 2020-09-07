@@ -1,12 +1,12 @@
 ﻿using CookBook.BL.Api.Facades;
-using CookBook.BL.Api.Models.Ingredient;
-using CookBook.Common.Resources;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using NSwag.Annotations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using CookBook.Localization.Resources;
+using CookBook.Models.Ingredient;
 
 namespace CookBook.Api.Controllers.v3
 {
