@@ -1,0 +1,35 @@
+﻿@page "/recipes"
+
+<h3>Recipes</h3>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Food type</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var recipe in Recipes)
+        {
+            <tr>
+                <td>@recipe.Name</td>
+                <td>@recipe.FoodTypeText</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    [Inject]
+    private IRecipesFacade recipesFacade { get; set; }
+
+    private IList<RecipeListModel> Recipes { get; set; } = new List<RecipeListModel>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+
+        Recipes = await recipesFacade.RecipesGetAsync();
+    }
+}

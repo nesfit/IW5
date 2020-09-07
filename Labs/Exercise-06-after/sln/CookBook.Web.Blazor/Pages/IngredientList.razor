@@ -1,6 +1,4 @@
 ﻿@page "/ingredients"
-@using CookBook.BL.Web.Blazor.Facades
-@using CookBook.Models
 
 <h3>Ingredients</h3>
 
@@ -10,7 +8,7 @@
             <th>Name</th>
         </tr>
     </thead>
-    <tbody>    
+    <tbody>
         @foreach (var ingredient in Ingredients)
         {
             <tr>
@@ -22,11 +20,10 @@
 
 
 @code {
-    public IList<IngredientListModel> Ingredients { get; private set; } = new List<IngredientListModel>();
-
-
     [Inject]
     private IIngredientsFacade ingredientsFacade { get; set; }
+
+    private IList<IngredientListModel> Ingredients { get; set; } = new List<IngredientListModel>();
 
     protected override async Task OnInitializedAsync()
     {
