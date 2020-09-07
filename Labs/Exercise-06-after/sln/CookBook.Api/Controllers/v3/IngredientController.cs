@@ -1,12 +1,12 @@
 ﻿using CookBook.BL.Api.Facades;
+using CookBook.Localization.Resources;
+using CookBook.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using NSwag.Annotations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using CookBook.Localization.Resources;
-using CookBook.Models;
 
 namespace CookBook.Api.Controllers.v3
 {
@@ -49,14 +49,14 @@ namespace CookBook.Api.Controllers.v3
 
         [HttpPost]
         [OpenApiOperation(ApiOperationBaseName + nameof(Create))]
-        public ActionResult<Guid> Create(IngredientNewModel ingredient)
+        public ActionResult<Guid> Create(IngredientDetailModel ingredient)
         {
             return ingredientFacade.Create(ingredient);
         }
 
         [HttpPut]
         [OpenApiOperation(ApiOperationBaseName + nameof(Update))]
-        public ActionResult<Guid> Update(IngredientUpdateModel ingredient)
+        public ActionResult<Guid> Update(IngredientDetailModel ingredient)
         {
             return ingredientFacade.Update(ingredient);
         }

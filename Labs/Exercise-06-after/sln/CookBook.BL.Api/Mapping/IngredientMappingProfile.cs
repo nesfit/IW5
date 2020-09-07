@@ -10,15 +10,9 @@ namespace CookBook.BL.Api.Mapping
         {
             CreateMap<IngredientEntity, IngredientDetailModel>();
 
+            CreateMap<IngredientDetailModel, IngredientEntity>();
+
             CreateMap<IngredientEntity, IngredientListModel>();
-
-            CreateMap<IngredientNewModel, IngredientEntity>()
-                .Ignore(dst => dst.Id);
-
-            CreateMap<IngredientUpdateModel, IngredientEntity>();
-
-            CreateMap<IngredientAmountEntity, RecipeDetailIngredientModel>()
-                .MapMember(dst => dst.Name, src => src.Ingredient.Name);
         }
     }
 }

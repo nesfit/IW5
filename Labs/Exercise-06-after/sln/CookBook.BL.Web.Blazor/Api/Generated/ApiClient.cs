@@ -27,18 +27,18 @@ namespace CookBook.BL.Web.Blazor.Api
         System.Threading.Tasks.Task<System.Collections.Generic.IList<IngredientListModel>> IngredientGetAsync(string version, string culture, System.Threading.CancellationToken cancellationToken);
     
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<System.Guid> IngredientPostAsync(string version, string culture, IngredientNewModel ingredient);
+        System.Threading.Tasks.Task<System.Guid> IngredientPostAsync(string version, string culture, IngredientDetailModel ingredient);
     
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<System.Guid> IngredientPostAsync(string version, string culture, IngredientNewModel ingredient, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<System.Guid> IngredientPostAsync(string version, string culture, IngredientDetailModel ingredient, System.Threading.CancellationToken cancellationToken);
     
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<System.Guid> IngredientPutAsync(string version, string culture, IngredientUpdateModel ingredient);
+        System.Threading.Tasks.Task<System.Guid> IngredientPutAsync(string version, string culture, IngredientDetailModel ingredient);
     
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<System.Guid> IngredientPutAsync(string version, string culture, IngredientUpdateModel ingredient, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<System.Guid> IngredientPutAsync(string version, string culture, IngredientDetailModel ingredient, System.Threading.CancellationToken cancellationToken);
     
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<IngredientDetailModel> IngredientGetAsync(System.Guid id, string version, string culture);
@@ -165,14 +165,14 @@ namespace CookBook.BL.Web.Blazor.Api
         }
     
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<System.Guid> IngredientPostAsync(string version, string culture, IngredientNewModel ingredient)
+        public System.Threading.Tasks.Task<System.Guid> IngredientPostAsync(string version, string culture, IngredientDetailModel ingredient)
         {
             return IngredientPostAsync(version, culture, ingredient, System.Threading.CancellationToken.None);
         }
     
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public async System.Threading.Tasks.Task<System.Guid> IngredientPostAsync(string version, string culture, IngredientNewModel ingredient, System.Threading.CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task<System.Guid> IngredientPostAsync(string version, string culture, IngredientDetailModel ingredient, System.Threading.CancellationToken cancellationToken)
         {
             if (ingredient == null)
                 throw new System.ArgumentNullException("ingredient");
@@ -246,14 +246,14 @@ namespace CookBook.BL.Web.Blazor.Api
         }
     
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<System.Guid> IngredientPutAsync(string version, string culture, IngredientUpdateModel ingredient)
+        public System.Threading.Tasks.Task<System.Guid> IngredientPutAsync(string version, string culture, IngredientDetailModel ingredient)
         {
             return IngredientPutAsync(version, culture, ingredient, System.Threading.CancellationToken.None);
         }
     
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public async System.Threading.Tasks.Task<System.Guid> IngredientPutAsync(string version, string culture, IngredientUpdateModel ingredient, System.Threading.CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task<System.Guid> IngredientPutAsync(string version, string culture, IngredientDetailModel ingredient, System.Threading.CancellationToken cancellationToken)
         {
             if (ingredient == null)
                 throw new System.ArgumentNullException("ingredient");
@@ -811,18 +811,18 @@ namespace CookBook.BL.Web.Blazor.Api
         System.Threading.Tasks.Task<System.Collections.Generic.IList<RecipeListModel>> RecipeGetAsync(string version, string culture, System.Threading.CancellationToken cancellationToken);
     
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<System.Guid> RecipePostAsync(string version, string culture, RecipeNewModel recipe);
+        System.Threading.Tasks.Task<System.Guid> RecipePostAsync(string version, string culture, RecipeDetailModel recipe);
     
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<System.Guid> RecipePostAsync(string version, string culture, RecipeNewModel recipe, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<System.Guid> RecipePostAsync(string version, string culture, RecipeDetailModel recipe, System.Threading.CancellationToken cancellationToken);
     
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<System.Guid?> RecipePutAsync(string version, string culture, RecipeUpdateModel recipe);
+        System.Threading.Tasks.Task<System.Guid?> RecipePutAsync(string version, string culture, RecipeDetailModel recipe);
     
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<System.Guid?> RecipePutAsync(string version, string culture, RecipeUpdateModel recipe, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<System.Guid?> RecipePutAsync(string version, string culture, RecipeDetailModel recipe, System.Threading.CancellationToken cancellationToken);
     
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<RecipeDetailModel> RecipeGetAsync(System.Guid id, string version, string culture);
@@ -949,14 +949,14 @@ namespace CookBook.BL.Web.Blazor.Api
         }
     
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<System.Guid> RecipePostAsync(string version, string culture, RecipeNewModel recipe)
+        public System.Threading.Tasks.Task<System.Guid> RecipePostAsync(string version, string culture, RecipeDetailModel recipe)
         {
             return RecipePostAsync(version, culture, recipe, System.Threading.CancellationToken.None);
         }
     
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public async System.Threading.Tasks.Task<System.Guid> RecipePostAsync(string version, string culture, RecipeNewModel recipe, System.Threading.CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task<System.Guid> RecipePostAsync(string version, string culture, RecipeDetailModel recipe, System.Threading.CancellationToken cancellationToken)
         {
             if (recipe == null)
                 throw new System.ArgumentNullException("recipe");
@@ -1030,14 +1030,14 @@ namespace CookBook.BL.Web.Blazor.Api
         }
     
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<System.Guid?> RecipePutAsync(string version, string culture, RecipeUpdateModel recipe)
+        public System.Threading.Tasks.Task<System.Guid?> RecipePutAsync(string version, string culture, RecipeDetailModel recipe)
         {
             return RecipePutAsync(version, culture, recipe, System.Threading.CancellationToken.None);
         }
     
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public async System.Threading.Tasks.Task<System.Guid?> RecipePutAsync(string version, string culture, RecipeUpdateModel recipe, System.Threading.CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task<System.Guid?> RecipePutAsync(string version, string culture, RecipeDetailModel recipe, System.Threading.CancellationToken cancellationToken)
         {
             if (recipe == null)
                 throw new System.ArgumentNullException("recipe");

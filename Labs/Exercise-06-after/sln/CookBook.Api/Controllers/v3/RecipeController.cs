@@ -36,14 +36,14 @@ namespace CookBook.Api.Controllers.v3
 
         [HttpPost]
         [OpenApiOperation(ApiOperationBaseName + nameof(Create))]
-        public ActionResult<Guid> Create(RecipeNewModel recipe)
+        public ActionResult<Guid> Create(RecipeDetailModel recipe)
         {
             return recipeFacade.Create(recipe);
         }
 
         [HttpPut]
         [OpenApiOperation(ApiOperationBaseName + nameof(Update))]
-        public ActionResult<Guid?> Update(RecipeUpdateModel recipe)
+        public ActionResult<Guid?> Update(RecipeDetailModel recipe)
         {
             return recipeFacade.Update(recipe);
         }
