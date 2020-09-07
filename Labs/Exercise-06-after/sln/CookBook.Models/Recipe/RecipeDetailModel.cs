@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using CookBook.Models.Enums;
 
-namespace CookBook.Models.Recipe
+namespace CookBook.Models
 {
     public class RecipeDetailModel
     {

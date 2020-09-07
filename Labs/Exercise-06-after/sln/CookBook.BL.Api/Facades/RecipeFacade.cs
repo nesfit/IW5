@@ -2,10 +2,10 @@
 using CookBook.BL.Common.Facades;
 using CookBook.DAL.Entities;
 using CookBook.DAL.Repositories;
+using CookBook.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using CookBook.Models.Recipe;
 
 namespace CookBook.BL.Api.Facades
 {

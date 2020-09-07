@@ -1,7 +1,7 @@
 ﻿using CookBook.BL.Common.Facades;
 using CookBook.BL.Web.MVC.Api;
 using CookBook.BL.Web.MVC.Options;
-using CookBook.Models.Recipe;
+using CookBook.Models;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;

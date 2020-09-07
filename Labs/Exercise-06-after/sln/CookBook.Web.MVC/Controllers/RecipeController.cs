@@ -1,7 +1,7 @@
 ﻿using CookBook.BL.Common.Services;
 using CookBook.BL.Web.MVC.Api;
 using CookBook.BL.Web.MVC.Facades;
-using CookBook.Models.Recipe;
+using CookBook.Models;
 using CookBook.Web.MVC.Models;
 using CookBook.Web.MVC.ViewModels.Recipe;
 using Microsoft.AspNetCore.Mvc;

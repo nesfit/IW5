@@ -1,4 +1,4 @@
-﻿@using CookBook.Models.Enums
+﻿@using CookBook.Models
 @model RecipeNewViewModel
 
 <form asp-action="Insert" method="post" role="form">
@@ -40,13 +40,13 @@
         <label asp-for="RecipeNewModel.Ingredients" class="col-md-2"></label>
         @if (Model.RecipeNewModel.Ingredients != null)
         {
-            @for (int i = 0; i < Model.RecipeNewModel.Ingredients.Count; i++)
+        @for (int i = 0; i < Model.RecipeNewModel.Ingredients.Count; i++)
             {
-                <div class="col-md-5">
-                    <select asp-for="RecipeNewModel.Ingredients[i].IngredientId" asp-items="@(new SelectList(Model.IngredientsAll, "Id", "Name"))"></select>
-                    <input type="number" asp-for="RecipeNewModel.Ingredients[i].Amount" min="0" />
-                    <select asp-for="RecipeNewModel.Ingredients[i].Unit" asp-items="Html.GetEnumSelectList<Unit>()"></select>
-                </div>
+        <div class="col-md-5">
+            <select asp-for="RecipeNewModel.Ingredients[i].IngredientId" asp-items="@(new SelectList(Model.IngredientsAll, "Id", "Name"))"></select>
+            <input type="number" asp-for="RecipeNewModel.Ingredients[i].Amount" min="0" />
+            <select asp-for="RecipeNewModel.Ingredients[i].Unit" asp-items="Html.GetEnumSelectList<Unit>()"></select>
+        </div>
             }
         }
         <span asp-validation-for="RecipeNewModel.Ingredients" class="text-danger"></span>
@@ -66,7 +66,7 @@
 
     @for (int i = 0; i < Model.IngredientsAll.Count; i++)
     {
-        <input type="hidden" asp-for="IngredientsAll[i].Id" />
-        <input type="hidden" asp-for="IngredientsAll[i].Name" />
+    <input type="hidden" asp-for="IngredientsAll[i].Id" />
+    <input type="hidden" asp-for="IngredientsAll[i].Name" />
     }
 </form>

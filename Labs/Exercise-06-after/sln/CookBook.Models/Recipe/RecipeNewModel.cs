@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using CookBook.Localization.Resources;
-using CookBook.Models.Enums;
+﻿using CookBook.Localization.Resources;
 using FluentValidation;
 using Microsoft.Extensions.Localization;
+using System;
+using System.Collections.Generic;
 
-namespace CookBook.Models.Recipe
+namespace CookBook.Models
 {
     public class RecipeNewModel
     {

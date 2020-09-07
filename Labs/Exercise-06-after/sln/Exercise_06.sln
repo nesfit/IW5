@@ -31,7 +31,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookBook.Web.Blazor", "Cook
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookBook.BL.Web.MVC", "CookBook.BL.Web.MVC\CookBook.BL.Web.MVC.csproj", "{135CF9C2-8F41-4257-92FF-E56CF72B342D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CookBook.BL.Web.Blazor", "CookBook.BL.Web.Blazor\CookBook.BL.Web.Blazor.csproj", "{8C82EBAE-EFE0-49EB-9527-8EE9D65716A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookBook.BL.Web.Blazor", "CookBook.BL.Web.Blazor\CookBook.BL.Web.Blazor.csproj", "{8C82EBAE-EFE0-49EB-9527-8EE9D65716A2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

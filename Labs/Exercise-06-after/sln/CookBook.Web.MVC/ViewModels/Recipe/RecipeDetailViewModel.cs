@@ -1,4 +1,4 @@
-﻿using CookBook.Models.Recipe;
+﻿using CookBook.Models;
 
 namespace CookBook.Web.MVC.ViewModels.Recipe
 {

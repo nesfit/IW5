@@ -1,7 +1,6 @@
 ﻿using System;
-using CookBook.Models.Enums;
 
-namespace CookBook.Models.Recipe
+namespace CookBook.Models
 {
     public class RecipeUpdateIngredientModel
     {

@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using CookBook.Localization.Resources;
-using CookBook.Models.Ingredient;
+using CookBook.Models;
 
 namespace CookBook.Api.Controllers.v3
 {

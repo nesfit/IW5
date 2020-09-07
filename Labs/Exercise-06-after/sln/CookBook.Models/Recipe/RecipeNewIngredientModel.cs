@@ -1,10 +1,9 @@
-﻿using System;
-using CookBook.Localization.Resources;
-using CookBook.Models.Enums;
+﻿using CookBook.Localization.Resources;
 using FluentValidation;
 using Microsoft.Extensions.Localization;
+using System;
 
-namespace CookBook.Models.Recipe
+namespace CookBook.Models
 {
     public class RecipeNewIngredientModel
     {
