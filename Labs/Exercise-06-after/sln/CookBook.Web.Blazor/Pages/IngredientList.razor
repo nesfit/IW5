@@ -1,7 +1,7 @@
 ﻿@page "/ingredients"
 
 <h3>Ingredients</h3>
-
+<IngredientForm OnModification="@LoadData" />
 <table>
     <thead>
         <tr>
@@ -12,7 +12,7 @@
         @foreach (var ingredient in Ingredients)
         {
             <tr>
-                <td>@ingredient.Name</td>
+                <td><NavLink href="@($"/ingredients/{ingredient.Id}")">@ingredient.Name</NavLink></td>
             </tr>
         }
     </tbody>
@@ -29,6 +29,12 @@
     {
         await base.OnInitializedAsync();
 
+        await LoadData();
+    }
+
+    public async Task LoadData()
+    {
         Ingredients = await ingredientsFacade.IngredientsGetAsync();
     }
+
 }

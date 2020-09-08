@@ -1,0 +1,17 @@
+﻿@page "/ingredients/create"
+@page "/ingredients/{Id:guid}"
+<h3>IngredientInsert</h3>
+
+<IngredientForm Id="@Id" OnModification="GoToList" />
+@code {
+    [Inject]
+    public NavigationManager NavigationManager { get; set; }
+
+    [Parameter]
+    public Guid Id { get; set; }
+
+    public void GoToList()
+    {
+        NavigationManager.NavigateTo("/ingredients");
+    }
+}

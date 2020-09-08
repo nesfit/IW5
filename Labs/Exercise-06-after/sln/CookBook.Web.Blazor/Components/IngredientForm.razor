@@ -1,8 +1,6 @@
-﻿@page "/cs/ingredients/create"
-@page "/cs/ingredients/edit/{Id:guid}"
-@using CookBook.Models
+﻿@using CookBook.Models
 
-<EditForm Model="@Data">
+<EditForm Model="@Data" OnValidSubmit="@Save"  >
     <DataAnnotationsValidator />
 
     <label>
@@ -17,12 +15,19 @@
         <ValidationMessage For="(()=>Data.Description)" />
     </label>
     <button type="submit">Save</button>
+    @if (Id != Guid.Empty)
+    {
+        <button @onclick="@Delete">Delete</button>
+    }
 </EditForm>
 
 
 @code {
     [Parameter]
     public Guid Id { get; set; }
+    
+    [Parameter]
+    public EventCallback OnModification { get; set; }
 
     public IngredientDetailModel Data { get; set; }
 
@@ -45,6 +50,22 @@
 
     public async Task Save()
     {
-        await IngredientsFacade.SaveAsync(Data);
+        var resultId = await IngredientsFacade.SaveAsync(Data);
+        if (OnModification.HasDelegate)
+        {
+            await OnModification.InvokeAsync(resultId);
+        }
+        Data=new IngredientDetailModel();
     }
+
+    public async Task Delete()
+    {
+        await IngredientsFacade.DeleteAsync(Id);
+
+        if (OnModification.HasDelegate)
+        {
+            await OnModification.InvokeAsync(null);
+        }
+    }
+
 }

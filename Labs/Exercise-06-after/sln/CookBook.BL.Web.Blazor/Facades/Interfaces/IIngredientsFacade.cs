@@ -9,6 +9,7 @@ namespace CookBook.BL.Web.Blazor.Facades
     {
         Task<IList<IngredientListModel>> IngredientsGetAsync();
         Task<IngredientDetailModel> IngredientGetAsync(Guid id);
-        Task SaveAsync(IngredientDetailModel data);
+        Task<Guid> SaveAsync(IngredientDetailModel data);
+        Task DeleteAsync(Guid id);
     }
 }

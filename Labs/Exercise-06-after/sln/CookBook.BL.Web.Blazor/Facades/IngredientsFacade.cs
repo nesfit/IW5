@@ -27,16 +27,21 @@ namespace CookBook.BL.Web.Blazor.Facades
             return await ingredientClient.IngredientGetAsync(id, apiVersion, culture);
         }
 
-        public async Task SaveAsync(IngredientDetailModel data)
+        public async Task<Guid> SaveAsync(IngredientDetailModel data)
         {
             if (data.Id==Guid.Empty)
             {
-                await ingredientClient.IngredientPostAsync(apiVersion, culture, data);
+                return await ingredientClient.IngredientPostAsync(apiVersion, culture, data);
             }
             else
             {
-                await ingredientClient.IngredientPutAsync(apiVersion, culture, data);
+                return await ingredientClient.IngredientPutAsync(apiVersion, culture, data);
             }
+        }
+
+        public async Task DeleteAsync(Guid id)
+        {
+            await ingredientClient.IngredientDeleteAsync(id, apiVersion, culture);
         }
     }
 }
