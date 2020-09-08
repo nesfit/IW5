@@ -14,9 +14,9 @@ namespace CookBook.BL.Web.Blazor.Facades
             this.recipeClient = recipeClient;
         }
 
-        public async Task<IList<RecipeListModel>> RecipesGetAsync()
+        public async Task<IList<RecipeListModel>> RecipesGetAsync(string culture)
         {
-            return await recipeClient.RecipeGetAsync("3", "cs");
+            return await recipeClient.RecipeGetAsync("3", culture);
         }
     }
 }

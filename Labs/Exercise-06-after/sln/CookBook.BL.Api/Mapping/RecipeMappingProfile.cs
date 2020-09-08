@@ -22,7 +22,8 @@ namespace CookBook.BL.Api.Mapping
                 .Ignore(dst => dst.Recipe)
                 .Ignore(dst => dst.Ingredient);
 
-            CreateMap<IngredientAmountEntity, RecipeListIngredientModel>();
+            CreateMap<IngredientAmountEntity, RecipeListIngredientModel>()
+                .MapMember(dst => dst.Name, src => src.Ingredient.Name);
         }
     }
 }

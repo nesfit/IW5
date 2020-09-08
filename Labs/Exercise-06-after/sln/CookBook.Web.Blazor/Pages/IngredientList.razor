@@ -1,4 +1,6 @@
-﻿@page "/ingredients"
+﻿@page "/{Culture}/ingredients"
+@layout ListLayout
+@inherits PageBase
 
 <h3>Ingredients</h3>
 <IngredientForm OnModification="@LoadData" />
@@ -12,7 +14,7 @@
         @foreach (var ingredient in Ingredients)
         {
             <tr>
-                <td><NavLink href="@($"/ingredients/{ingredient.Id}")">@ingredient.Name</NavLink></td>
+                <td><NavLink href="@($"/{Culture}/ingredients/{ingredient.Id}")">@ingredient.Name</NavLink></td>
             </tr>
         }
     </tbody>
@@ -34,7 +36,7 @@
 
     public async Task LoadData()
     {
-        Ingredients = await ingredientsFacade.IngredientsGetAsync();
+        Ingredients = await ingredientsFacade.IngredientsGetAsync(Culture);
     }
 
 }

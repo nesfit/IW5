@@ -1,5 +1,7 @@
-﻿@page "/ingredients/create"
-@page "/ingredients/{Id:guid}"
+﻿@page "/{Culture}/ingredients/create"
+@page "/{Culture}/ingredients/{Id:guid}"
+@inherits CookBook.Web.Blazor.Pages.PageBase
+
 <h3>IngredientInsert</h3>
 
 <IngredientForm Id="@Id" OnModification="GoToList" />
@@ -12,6 +14,6 @@
 
     public void GoToList()
     {
-        NavigationManager.NavigateTo("/ingredients");
+        NavigationManager.NavigateTo($"/{Culture}/ingredients");
     }
 }

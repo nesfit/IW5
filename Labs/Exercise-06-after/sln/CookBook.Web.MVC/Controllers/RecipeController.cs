@@ -1,7 +1,6 @@
 ﻿using CookBook.BL.Common.Services;
 using CookBook.BL.Web.MVC.Api;
 using CookBook.BL.Web.MVC.Facades;
-using CookBook.Models;
 using CookBook.Web.MVC.Models;
 using CookBook.Web.MVC.ViewModels.Recipe;
 using Microsoft.AspNetCore.Mvc;
@@ -54,11 +53,11 @@ namespace CookBook.Web.MVC.Controllers
         public async Task<IActionResult> New(RecipeNewViewModel recipeNewViewModel)
         {
             recipeNewViewModel.IngredientsAll ??= await _ingredientFacade.GetAllAsync();
-            recipeNewViewModel.RecipeNewModel ??= new RecipeNewModel
+            recipeNewViewModel.RecipeModel ??= new RecipeDetailModel
             {
-                Ingredients = new List<RecipeNewIngredientModel>()
+                Ingredients = new List<RecipeListIngredientModel>()
             };
-            recipeNewViewModel.RecipeNewModel.Ingredients ??= new List<RecipeNewIngredientModel>();
+            recipeNewViewModel.RecipeModel.Ingredients ??= new List<RecipeListIngredientModel>();
 
             return View(recipeNewViewModel);
         }
@@ -70,12 +69,12 @@ namespace CookBook.Web.MVC.Controllers
 
             if (TimeSpan.TryParse(recipeNewViewModel.DurationText, out TimeSpan duration))
             {
-                recipeNewViewModel.RecipeNewModel.Duration = duration;
+                recipeNewViewModel.RecipeModel.Duration = duration;
             }
 
             try
             {
-                await _recipeFacade.InsertAsync(recipeNewViewModel.RecipeNewModel, culture: currentCulture.Name);
+                await _recipeFacade.InsertAsync(recipeNewViewModel.RecipeModel, culture: currentCulture.Name);
             }
             catch (ApiException e)
             {
@@ -83,27 +82,27 @@ namespace CookBook.Web.MVC.Controllers
 
                 foreach (var nameError in validationErrorsModel.Errors.Name)
                 {
-                    ModelState.AddModelError($"{nameof(recipeNewViewModel.RecipeNewModel)}.{nameof(recipeNewViewModel.RecipeNewModel.Name)}", nameError);
+                    ModelState.AddModelError($"{nameof(recipeNewViewModel.RecipeModel)}.{nameof(recipeNewViewModel.RecipeModel.Name)}", nameError);
                 }
 
                 foreach (var descriptionError in validationErrorsModel.Errors.Description)
                 {
-                    ModelState.AddModelError($"{nameof(recipeNewViewModel.RecipeNewModel)}.{nameof(recipeNewViewModel.RecipeNewModel.Description)}", descriptionError);
+                    ModelState.AddModelError($"{nameof(recipeNewViewModel.RecipeModel)}.{nameof(recipeNewViewModel.RecipeModel.Description)}", descriptionError);
                 }
 
                 foreach (var foodTypeError in validationErrorsModel.Errors.FoodType)
                 {
-                    ModelState.AddModelError($"{nameof(recipeNewViewModel.RecipeNewModel)}.{nameof(recipeNewViewModel.RecipeNewModel.FoodType)}", foodTypeError);
+                    ModelState.AddModelError($"{nameof(recipeNewViewModel.RecipeModel)}.{nameof(recipeNewViewModel.RecipeModel.FoodType)}", foodTypeError);
                 }
 
                 foreach (var durationError in validationErrorsModel.Errors.Duration)
                 {
-                    ModelState.AddModelError($"{nameof(recipeNewViewModel.RecipeNewModel)}.{nameof(recipeNewViewModel.RecipeNewModel.Duration)}", durationError);
+                    ModelState.AddModelError($"{nameof(recipeNewViewModel.RecipeModel)}.{nameof(recipeNewViewModel.RecipeModel.Duration)}", durationError);
                 }
 
                 foreach (var ingredientsError in validationErrorsModel.Errors.Ingredients)
                 {
-                    ModelState.AddModelError($"{nameof(recipeNewViewModel.RecipeNewModel)}.{nameof(recipeNewViewModel.RecipeNewModel.Ingredients)}", ingredientsError);
+                    ModelState.AddModelError($"{nameof(recipeNewViewModel.RecipeModel)}.{nameof(recipeNewViewModel.RecipeModel.Ingredients)}", ingredientsError);
                 }
             }
 
@@ -125,8 +124,8 @@ namespace CookBook.Web.MVC.Controllers
         [HttpPost]
         public async Task<IActionResult> AddIngredient(RecipeNewViewModel recipeNewViewModel)
         {
-            recipeNewViewModel.RecipeNewModel.Ingredients ??= new List<RecipeNewIngredientModel>();
-            recipeNewViewModel.RecipeNewModel.Ingredients.Add(new RecipeNewIngredientModel());
+            recipeNewViewModel.RecipeModel.Ingredients ??= new List<RecipeListIngredientModel>();
+            recipeNewViewModel.RecipeModel.Ingredients.Add(new RecipeListIngredientModel());
             return View(nameof(New), recipeNewViewModel);
         }
     }

@@ -6,6 +6,6 @@ namespace CookBook.BL.Web.Blazor.Facades
 {
     public interface IRecipesFacade
     {
-        Task<IList<RecipeListModel>> RecipesGetAsync();
+        Task<IList<RecipeListModel>> RecipesGetAsync(string culture);
     }
 }

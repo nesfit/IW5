@@ -1,4 +1,5 @@
 ﻿@using CookBook.Models
+@inherits CookBook.Web.Blazor.Pages.PageBase
 
 <EditForm Model="@Data" OnValidSubmit="@Save"  >
     <DataAnnotationsValidator />
@@ -6,7 +7,7 @@
     <label>
         Name:
         <InputText @bind-Value="@Data.Name" />
-        <ValidationMessage For="@(()=>Data.Name)"/>
+        <ValidationMessage For="@(()=>Data.Name)" />
     </label>
 
     <label>
@@ -36,13 +37,13 @@
 
     protected override async Task OnInitializedAsync()
     {
-        if (Id==Guid.Empty)
+        if (Id == Guid.Empty)
         {
-            Data=new IngredientDetailModel();
+            Data = new IngredientDetailModel();
         }
         else
         {
-            Data = await IngredientsFacade.IngredientGetAsync(Id);
+            Data = await IngredientsFacade.IngredientGetAsync(Id, Culture);
         }
 
         await base.OnInitializedAsync();
@@ -50,7 +51,7 @@
 
     public async Task Save()
     {
-        var resultId = await IngredientsFacade.SaveAsync(Data);
+        var resultId = await IngredientsFacade.SaveAsync(Data,Culture);
         if (OnModification.HasDelegate)
         {
             await OnModification.InvokeAsync(resultId);
@@ -60,7 +61,7 @@
 
     public async Task Delete()
     {
-        await IngredientsFacade.DeleteAsync(Id);
+        await IngredientsFacade.DeleteAsync(Id,Culture);
 
         if (OnModification.HasDelegate)
         {
