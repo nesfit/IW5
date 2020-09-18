@@ -3,8 +3,8 @@
 ---
 # Aktuality k předmětu 
 <!---  - **18.04.2019** | *Jan Pluskal* | [Registrace](http://goo.gl/mj3ODO) obhajoby projektů - autentizace xlogin00@vutbr.cz. Odevzdání projektu proveďte do WISu jako zip archív bez obj, bin, packages. V případě FEKTu není třeba odevzdávat. --->
-  - **02.02.2020** | *Jan Pluskal* | [Visual Studio 2019 Enterprise](https://aka.ms/devtoolsforteaching) je nově dostupné v Azure Dev Tools for Teaching. Přihlášení je nutné s loginem z domény VUT, tj xlogin00@vutbr.cz
-  - **02.02.2020** | *Jan Pluskal* | Při vytváření repozitáře respektujte schéma ze [zadání](/Project/README.md) *https://dev.azure.com/iw5-2020-team0000/project*. Je nezbytně nutné použít Vaše účty z doménu *vutbr.cz*. Do Vašich repozitářů pro projekt přidejte účet **uciteliw5@vutbr.cz**. Pokud uděláte chybu a pouze nesedí url, dá se v nastavení změnit.
+  - **22.09.2020** | *Jan Pluskal* | [Visual Studio 2019 Enterprise](https://aka.ms/devtoolsforteaching) je nově dostupné v Azure Dev Tools for Teaching. Přihlášení je nutné s loginem z domény VUT, tj xlogin00@vutbr.cz
+  - **22.09.2020** | *Jan Pluskal* | Při vytváření repozitáře respektujte schéma ze [zadání](/Project/README.md) *https://dev.azure.com/iw5-2020w-team0000/project*. Je nezbytně nutné použít Vaše účty z doménu *vutbr.cz*. Do Vašich repozitářů pro projekt přidejte účet **uciteliw5@vutbr.cz**. Pokud uděláte chybu a pouze nesedí url, dá se v nastavení změnit.
     * Pokud máte vytvořeno pod soukromými účty, je třeba vytvořit projekt znovu pod univerzitními a pushnout existující repozitář tak, aby Vám zůstala historie včetně správných časů commitů. 
     * Pokud bude kolize s existující organizací, použijte suffix *team0000-01*.
  
@@ -13,26 +13,27 @@
 
 | Fakulta |    Místnost |            Čas |
 | ------- |-------------| -------------- |
-| FIT     | D0206       | Po 08:00-09:50 |
+| FIT     | G0202       | Ut 08:00-09:50 |
 
 +++
 
 0. [Organizace kurzu](https://gitpitch.com/fitiw/5?grs=github&t=white&p=Lectures%2FLecture_00#/)
-1. [Úvod do jazyka C# a platformy .NET](https://gitpitch.com/fitiw/5?grs=github&t=white&p=Lectures%2FLecture_01#/)
+1. [Úvod do jazyka C# a platformy .NET, základní syntaxe jazyka, instalace a představení Visual Studia.
+Úvod do Objektově Orientované Programování a pokročilé konstrukce v jazyce C# - výjimky, události, delegáty, lambda výrazy a generika.]
+(https://gitpitch.com/fitiw/5?grs=github&t=white&p=Lectures%2FLecture_01#/)
    * základní syntaxe jazyka, instalace a představení Visual Studia
-2. [Úvod do Objektově Orientované Programování](https://gitpitch.com/fitiw/5?grs=github&t=white&p=Lectures%2FLecture_02#/)
-   * pokročilé konstrukce v jazyce C# - výjimky, události, delegáty, lambda výrazy a generika
-3. ASP.NET Core Web API 
-4. Inversion of Control, konfigurace, middleware, logging 
-5. Web - MVC 
-6. Jak psát testy 
-7. Test Driven Development  
-8. Microsoft Azure 
-9. Softwarové architektury v C# 
-10. Design Patterns v C# 
-11. Velikonoční pondělí  
-12. Xamarin
-13. C# 8, .Net Core / Roslyn / DotVVM / .Net on Linux 
+2. ASP.NET Core Web API (Roman Jašek)
+3. Inversion of Control, konfigurace, middleware, logging (Michal Mrnuštík)
+4. Jak psát testy / Test Driven Development ()
+5. Web - část 1 (Roman Jašek)
+6. Web - část 2 (Michal Tichý)
+7. Web - část 3 (Maroš Janota)
+8. .NET Internals, Intermediate Language, Code Generation (Roman Jašek)
+9. **Den ceske statnosti**
+10. Softwarové architektury v C# (Martin Dybal)
+11. Design Patterns v C# (Martin Dybal)
+12. Angular frontend for .NET backend (Erik Macháček)
+13. (Microsoft Azure, Xamarin, PWA…) - hlasování
 
 --- 
 # Cvičení 
@@ -40,18 +41,18 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení n
 
 | Typ                                  | Místnost | Čas            |
 | ------------------------------------ |----------| -------------- |
-| Demonstrační cvičení                 | D0206    | Po 10:00-11:50 |
+| Demonstrační cvičení                 | G0202    | Ut 10:00-11:50 |
 
 +++
 
 | Datum  |                                                                                            Téma cvičení | 
 | ------ | ------------------------------------------------------------------------------------------------------- | 
-| 03.02. | C# tooling, VS - zalozeni projektu ASP.NET Core, zalozeni VSTS                                          | 
-| 17.02. | Controller, endpoint, postman, curl, swagger                                                            | 
-| 24.02. | IoC - ServiceCollection, Logging, Configuration                                                         | 
-| 02.03. | Web - MVC                                                                                               |  
-| 09.03. | VS Test Explorer, Resharper, Code coverage, Live Tests, CI v VSTS (Demonstracne) a duraz na psani testu | 
-| 30.03. | Takhle napiste projekt?!                                                                                | 
+| 03.02. | C# tooling, VS - zalozeni projektu ASP.NET Core, zalozeni VSTS | 
+| 17.02. | Controller, endpoint, postman, curl, swagger | 
+| 24.02. | VS Test Explorer, Resharper, Code coverage, Live Tests, CI v VSTS (Demonstracne) a duraz na psani testu | 
+| 02.03. | Web - část 1 |  
+| 09.03. | Web - část 2 | 
+| 30.03. | Takhle napiste projekt? | 
 
 ---
 # Projekt
@@ -94,26 +95,23 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení n
 # Q&A
 
 * Q: Slyšel jsem, že lze uznat místo projektu i bakalářskou práci nebo projekt do jiného předmětu napsaný v C#, je to pravda?
-* A: Ano, ale projekt musí splňovat obecná kriteria (správný datový návrh, včetně dědičnosti a modifikátorů přístupu, SOLID a CleanCode) a musí být v C#. Je bezpodmínečně nutné upozornit na to cvičícího v prvním běhu cvičení.
+* A: Ano, ale projekt musí splňovat obecná kriteria (správný datový návrh, včetně dědičnosti a modifikátorů přístupu, SOLID a CleanCode) a musí být v C#. O tuto možnost žádejte indiviuálně po skončení přednášky.
 
 ---
 # Výuka - bodové rozdělení
 
 |          Typ výuky |     Maximální bodový zisk |
 | ------------------ | ------------------------- |
-| Počítačová cvičení |                        30 |
-| Projekt            |                        70 |
+| Projekt            |                       100 |
 
 --- 
 # Vyučující
 * [Martin Dybal](https://www.dybal.it/)
-* [Roman Jašek]()
-* [Tibor Jašek]()
-* [Adam Jež]()
-* [Michal Mrnušťík]()
+* [Roman Jašek](roman.jasek@hotmail.com )
+* [Tibor Jašek](tibor.jasek@gmail.com )
+* [Michal Mrnušťík](michal.mrnustik@outlook.com )
 * [Jan Pluskal](http://www.fit.vutbr.cz/~ipluskal/)
-* [Jiří Pokorný]()
-* [Patrik Švikruha]()
+* [Erik Macháček](erik.machacek@solarwinds.com)
 
 --- 
 # Užitečné odkazy
