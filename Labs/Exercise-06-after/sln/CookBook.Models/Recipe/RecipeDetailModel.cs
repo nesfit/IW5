@@ -10,6 +10,6 @@ namespace CookBook.Models
         public string Description { get; set; }
         public TimeSpan Duration { get; set; }
         public FoodType FoodType { get; set; }
-        public IList<RecipeListIngredientModel> Ingredients { get; set; }
+        public IList<RecipeListIngredientModel> Ingredients { get; set; } = new List<RecipeListIngredientModel>();
     }
 }

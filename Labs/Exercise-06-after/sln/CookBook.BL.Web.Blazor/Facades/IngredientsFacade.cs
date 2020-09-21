@@ -9,7 +9,6 @@ namespace CookBook.BL.Web.Blazor.Facades
     public class IngredientsFacade : FacadeBase, IIngredientsFacade
     {
         private readonly IIngredientClient ingredientClient;
-        const string apiVersion="3";
 
         public IngredientsFacade(IIngredientClient ingredientClient)
         {

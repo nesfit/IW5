@@ -75,15 +75,15 @@ namespace CookBook.BL.Api.Facades
         {
             var ingredientAmountsToDelete = recipeEntity.IngredientAmounts.Where(
                 ingredientAmount =>
-                    !recipeModel.Ingredients.Any(ingredient => ingredient.IngredientId == ingredientAmount.IngredientId));
+                    !recipeModel.Ingredients.Any(ingredient => ingredient.Ingredient.Id == ingredientAmount.IngredientId));
             DeleteIngredientAmounts(ingredientAmountsToDelete);
 
             var recipeUpdateIngredientModelsToInsert = recipeModel.Ingredients.Where(
-                ingredient => !recipeEntity.IngredientAmounts.Any(ingredientAmount => ingredientAmount.IngredientId == ingredient.IngredientId));
+                ingredient => !recipeEntity.IngredientAmounts.Any(ingredientAmount => ingredientAmount.IngredientId == ingredient.Ingredient.Id));
             InsertIngredientAmounts(recipeEntity, recipeUpdateIngredientModelsToInsert);
 
             var recipeUpdateIngredientModelsToUpdate = recipeModel.Ingredients.Where(
-                ingredient => recipeEntity.IngredientAmounts.Any(ingredientAmount => ingredientAmount.IngredientId == ingredient.IngredientId));
+                ingredient => recipeEntity.IngredientAmounts.Any(ingredientAmount => ingredientAmount.IngredientId == ingredient.Ingredient.Id));
             UpdateIngredientAmounts(recipeEntity, recipeUpdateIngredientModelsToUpdate);
         }
 
@@ -93,7 +93,7 @@ namespace CookBook.BL.Api.Facades
             {
                 var ingredientAmountEntity =
                     ingredientAmountRepository.GetByRecipeIdAndIngredientId(recipeEntity.Id,
-                        recipeUpdateIngredientModel.IngredientId);
+                        recipeUpdateIngredientModel.Ingredient.Id);
                 mapper.Map(recipeUpdateIngredientModel, ingredientAmountEntity);
                 ingredientAmountRepository.Update(ingredientAmountEntity);
             }

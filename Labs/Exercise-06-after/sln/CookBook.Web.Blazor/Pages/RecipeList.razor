@@ -15,7 +15,7 @@
         @foreach (var recipe in Recipes)
         {
             <tr>
-                <td>@recipe.Name</td>
+                <td><NavLink href="@($"/{Culture}/recipe/{recipe.Id}")">@recipe.Name</NavLink></td>
                 <td>@recipe.FoodTypeText</td>
             </tr>
         }
