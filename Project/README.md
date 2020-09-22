@@ -1,3 +1,5 @@
+> :warning: **Ukázka zadání z minulého roku, zadání pro rok 2020Z bude doplněno**
+
 # IW5 projekt
 
 ## Důležité upozornění
