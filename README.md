@@ -1,5 +1,9 @@
 # IW5 Programming in .NET and C#, Organizational Details
 
+# MS Teams
+
+Pro připojení do týmu **IW5-2020Z** použijte přístupový kód **txdbgzd**.
+
 ---
 # Aktuality k předmětu 
 <!---  - **18.04.2019** | *Jan Pluskal* | [Registrace](http://goo.gl/mj3ODO) obhajoby projektů - autentizace xlogin00@vutbr.cz. Odevzdání projektu proveďte do WISu jako zip archív bez obj, bin, packages. V případě FEKTu není třeba odevzdávat. --->
@@ -62,7 +66,7 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení n
 
 | Fáze |               Deadline |                                   Obsah |
 | ---- |------------------------| --------------------------------------- |
-| 1    |                 1. 11. | API                                     |
+| 1    |                viz WIS | API                                     |
 | 2    |    Den před odevzdáním | Finalizace aplikace a následná obhajoba |
 
 * Při obhajobě:
