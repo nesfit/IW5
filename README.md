@@ -11,6 +11,8 @@
 --- 
 # Přednášky
 
+[Organizace kurzu](https://gitpitch.com/fitiw/5?grs=github&t=white&p=Lectures%2FLecture_00#/)
+
 | Fakulta |    Místnost |            Čas |
 | ------- |-------------| -------------- |
 | FIT     | G202       | Út 08:00-09:50 |
@@ -18,7 +20,7 @@
 
 | Datum  |                                                                                            Téma přednášky | 
 | ------ | ------------------------------------------------------------------------------------------------------- |
-| 22. 9. | Úvod do jazyka C# a platformy .NET & úvod do objektově orientovaného programování |
+| 22. 9. | [Úvod do jazyka C# a platformy .NET](https://gitpitch.com/fitiw/5?grs=github&t=white&p=Lectures%2FLecture_01#/) & [Úvod do objektově orientovaného programování](https://gitpitch.com/fitiw/5?grs=github&t=white&p=Lectures%2FLecture_02#/) |
 | 29. 9. | ASP.NET Core Web API |
 | 6. 10. | Inversion of Control, konfigurace, middleware, logging |
 | 13. 10. | Jak psát testy |
