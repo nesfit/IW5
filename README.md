@@ -4,12 +4,15 @@
 # Aktuality k předmětu 
 <!---  - **18.04.2019** | *Jan Pluskal* | [Registrace](http://goo.gl/mj3ODO) obhajoby projektů - autentizace xlogin00@vutbr.cz. Odevzdání projektu proveďte do WISu jako zip archív bez obj, bin, packages. V případě FEKTu není třeba odevzdávat. --->
   - **22.09.2020** | *Jan Pluskal* | [Visual Studio 2019 Enterprise](https://aka.ms/devtoolsforteaching) je nově dostupné v Azure Dev Tools for Teaching. Přihlášení je nutné s loginem z domény VUT, tj xlogin00@vutbr.cz
-  - **22.09.2020** | *Jan Pluskal* | Při vytváření repozitáře respektujte schéma ze [zadání](/Project/README.md) *https://dev.azure.com/iw5-2020w-team0000/project*. Je nezbytně nutné použít Vaše účty z doménu *vutbr.cz*. Do Vašich repozitářů pro projekt přidejte účet **uciteliw5@vutbr.cz**. Pokud uděláte chybu a pouze nesedí url, dá se v nastavení změnit.
+  - **22.09.2020** | *Jan Pluskal* | Při vytváření repozitáře respektujte schéma ze [zadání](/Project/README.md) *https://dev.azure.com/iw5-2020Z-team0000/project*. Je nezbytně nutné použít Vaše účty z doménu *vutbr.cz*. Do Vašich repozitářů pro projekt přidejte účet **uciteliw5@vutbr.cz**. Pokud uděláte chybu a pouze nesedí url, dá se v nastavení změnit.
+
     * Pokud máte vytvořeno pod soukromými účty, je třeba vytvořit projekt znovu pod univerzitními a pushnout existující repozitář tak, aby Vám zůstala historie včetně správných časů commitů. 
     * Pokud bude kolize s existující organizací, použijte suffix *team0000-01*.
  
 --- 
 # Přednášky
+
+[Organizace kurzu](https://gitpitch.com/fitiw/5?grs=github&t=white&p=Lectures%2FLecture_00#/)
 
 | Fakulta |    Místnost |            Čas |
 | ------- |-------------| -------------- |
@@ -17,23 +20,21 @@
 
 +++
 
-0. [Organizace kurzu](https://gitpitch.com/fitiw/5?grs=github&t=white&p=Lectures%2FLecture_00#/)
-1. [Úvod do jazyka C# a platformy .NET, základní syntaxe jazyka, instalace a představení Visual Studia.
-Úvod do Objektově Orientované Programování a pokročilé konstrukce v jazyce C# - výjimky, události, delegáty, lambda výrazy a generika.]
-(https://gitpitch.com/fitiw/5?grs=github&t=white&p=Lectures%2FLecture_01#/)
-   * základní syntaxe jazyka, instalace a představení Visual Studia
-2. ASP.NET Core Web API (Roman Jašek)
-3. Inversion of Control, konfigurace, middleware, logging (Michal Mrnuštík)
-4. Jak psát testy / Test Driven Development ()
-5. Web - část 1 (Roman Jašek)
-6. Web - část 2 (Michal Tichý)
-7. Web - část 3 (Maroš Janota)
-8. .NET Internals, Intermediate Language, Code Generation (Roman Jašek)
-9. **Den ceske statnosti**
-10. Softwarové architektury v C# (Martin Dybal)
-11. Design Patterns v C# (Martin Dybal)
-12. Angular frontend for .NET backend (Erik Macháček)
-13. (Microsoft Azure, Xamarin, PWA…) - hlasování
+| Datum  |                                                                                            Téma přednášky | 
+| ------ | ------------------------------------------------------------------------------------------------------- |
+| 22. 9. | [Úvod do jazyka C# a platformy .NET](https://gitpitch.com/fitiw/5?grs=github&t=white&p=Lectures%2FLecture_01#/) & [Úvod do objektově orientovaného programování](https://gitpitch.com/fitiw/5?grs=github&t=white&p=Lectures%2FLecture_02#/) |
+| 29. 9. | ASP.NET Core Web API (Roman Jašek) |
+| 6. 10. | Inversion of Control, konfigurace, middleware, logging (Michal Mrnuštík) |
+| 13. 10. | Jak psát testy |
+| 20. 10. | Web - část 1 (Roman Jašek) |
+| 27. 10. | Web - část 2 (Michal Tichý) |
+| 3. 11. | Web - část 3 (Maroš Janota) |
+| 10. 11. | .NET Internals, Intermediate Language, Code Generation (Roman Jašek) |
+| 17. 11. | **Státní svátek** |
+| 24. 11. | Softwarové architektury v C# (Martin Dybal) |
+| 31. 11. | Design Patterns v C# (Martin Dybal) |
+| 8. 12. | Angular frontend for .NET backend (Erik Macháček)|
+| 15. 12. | (Microsoft Azure, Xamarin, PWA…) - hlasování |
 
 --- 
 # Cvičení 
@@ -55,12 +56,13 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení n
 | 30.03. | Takhle napiste projekt? | 
 
 ---
+
 # Projekt
 * Projekt bude vypracovaný v 3-členném týmu. 
 
 | Fáze |               Deadline |                                   Obsah |
 | ---- |------------------------| --------------------------------------- |
-| 1    |                  15.3. | API                                     |
+| 1    |                 1. 11. | API                                     |
 | 2    |    Den před odevzdáním | Finalizace aplikace a následná obhajoba |
 
 * Při obhajobě:
