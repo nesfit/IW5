@@ -4,7 +4,7 @@
 # Aktuality k předmětu 
 <!---  - **18.04.2019** | *Jan Pluskal* | [Registrace](http://goo.gl/mj3ODO) obhajoby projektů - autentizace xlogin00@vutbr.cz. Odevzdání projektu proveďte do WISu jako zip archív bez obj, bin, packages. V případě FEKTu není třeba odevzdávat. --->
   - **02.02.2020** | *Jan Pluskal* | [Visual Studio 2019 Enterprise](https://aka.ms/devtoolsforteaching) je nově dostupné v Azure Dev Tools for Teaching. Přihlášení je nutné s loginem z domény VUT, tj xlogin00@vutbr.cz
-  - **02.02.2020** | *Jan Pluskal* | Při vytváření repozitáře respektujte schéma ze [zadání](/Project/README.md) *https://dev.azure.com/iw5-2020-team0000/project*. Je nezbytně nutné použít Vaše účty z doménu *vutbr.cz*. Do Vašich repozitářů pro projekt přidejte účet **uciteliw5@vutbr.cz**. Pokud uděláte chybu a pouze nesedí url, dá se v nastavení změnit.
+  - **02.02.2020** | *Jan Pluskal* | Při vytváření repozitáře respektujte schéma ze [zadání](/Project/README.md) *https://dev.azure.com/iw5-2020-fall-team0000/project*. Je nezbytně nutné použít Vaše účty z doménu *vutbr.cz*. Do Vašich repozitářů pro projekt přidejte účet **uciteliw5@vutbr.cz**. Pokud uděláte chybu a pouze nesedí url, dá se v nastavení změnit.
     * Pokud máte vytvořeno pod soukromými účty, je třeba vytvořit projekt znovu pod univerzitními a pushnout existující repozitář tak, aby Vám zůstala historie včetně správných časů commitů. 
     * Pokud bude kolize s existující organizací, použijte suffix *team0000-01*.
  
@@ -13,26 +13,24 @@
 
 | Fakulta |    Místnost |            Čas |
 | ------- |-------------| -------------- |
-| FIT     | D0206       | Po 08:00-09:50 |
+| FIT     | G202       | Út 08:00-09:50 |
 
-+++
 
-0. [Organizace kurzu](https://gitpitch.com/fitiw/5?grs=github&t=white&p=Lectures%2FLecture_00#/)
-1. [Úvod do jazyka C# a platformy .NET](https://gitpitch.com/fitiw/5?grs=github&t=white&p=Lectures%2FLecture_01#/)
-   * základní syntaxe jazyka, instalace a představení Visual Studia
-2. [Úvod do Objektově Orientované Programování](https://gitpitch.com/fitiw/5?grs=github&t=white&p=Lectures%2FLecture_02#/)
-   * pokročilé konstrukce v jazyce C# - výjimky, události, delegáty, lambda výrazy a generika
-3. ASP.NET Core Web API 
-4. Inversion of Control, konfigurace, middleware, logging 
-5. Web - MVC 
-6. Jak psát testy 
-7. Test Driven Development  
-8. Microsoft Azure 
-9. Softwarové architektury v C# 
-10. Design Patterns v C# 
-11. Velikonoční pondělí  
-12. Xamarin
-13. C# 8, .Net Core / Roslyn / DotVVM / .Net on Linux 
+| Datum  |                                                                                            Téma přednášky | 
+| ------ | ------------------------------------------------------------------------------------------------------- |
+| 22. 9. | Úvod do jazyka C# a platformy .NET & úvod do objektově orientovaného programování |
+| 29. 9. | ASP.NET Core Web API |
+| 6. 10. | Inversion of Control, konfigurace, middleware, logging |
+| 13. 10. | Jak psát testy |
+| 20. 10. | Web - část 1 |
+| 27. 10. | Web - část 2 |
+| 3. 11. | Web - část 3 |
+| 10. 11. | .NET Internals, Intermediate Language, Code Generation |
+| 17. 11. | **Státní svátek** |
+| 24. 11. | Softwarové architektury v C# |
+| 31. 11. | Design Patterns v C# |
+| 8. 12. | Angular frontend for .NET backend |
+| 15. 12. | ??? |
 
 --- 
 # Cvičení 
@@ -40,18 +38,16 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení n
 
 | Typ                                  | Místnost | Čas            |
 | ------------------------------------ |----------| -------------- |
-| Demonstrační cvičení                 | D0206    | Po 10:00-11:50 |
-
-+++
+| Demonstrační cvičení                 | G202    | Út 10:00-11:50 |
 
 | Datum  |                                                                                            Téma cvičení | 
 | ------ | ------------------------------------------------------------------------------------------------------- | 
-| 03.02. | C# tooling, VS - zalozeni projektu ASP.NET Core, zalozeni VSTS                                          | 
-| 17.02. | Controller, endpoint, postman, curl, swagger                                                            | 
-| 24.02. | IoC - ServiceCollection, Logging, Configuration                                                         | 
-| 02.03. | Web - MVC                                                                                               |  
-| 09.03. | VS Test Explorer, Resharper, Code coverage, Live Tests, CI v VSTS (Demonstracne) a duraz na psani testu | 
-| 30.03. | Takhle napiste projekt?!                                                                                | 
+| 22. 9. | C# tooling, VS - zalozeni projektu ASP.NET Core, zalozeni VSTS | 
+| 29. 9. | Controller, endpoint, postman, curl, swagger | 
+| 13. 10. | VS Test Explorer, Resharper, Code coverage, Live Tests, CI v VSTS (Demonstracne) a důraz na psaní testů |
+| 20. 10. | Web - část 1 |
+| 27. 10. | Web - část 2 |
+| 3. 11. | Takhle napiste projekt? |
 
 ---
 # Projekt
@@ -59,7 +55,7 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení n
 
 | Fáze |               Deadline |                                   Obsah |
 | ---- |------------------------| --------------------------------------- |
-| 1    |                  15.3. | API                                     |
+| 1    |                  1. 11. | API                                     |
 | 2    |    Den před odevzdáním | Finalizace aplikace a následná obhajoba |
 
 * Při obhajobě:
