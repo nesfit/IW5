@@ -15,7 +15,7 @@ Výsledná aplikace má sloužit jako jednoduchá simulace e-shopu.
 ## Data
 V rámci dat, se kterými se bude pracovat budeme požadovat minimálně následující data.
 
-### Tovar
+### Zboží
 - Název
 - Fotografie
 - Textový popis
@@ -34,7 +34,7 @@ V rámci dat, se kterými se bude pracovat budeme požadovat minimálně násled
 - Textový popis
 - Obrázek (logo)
 - Země
-- Seznam tovaru
+- Seznam zboží
 
 ### Hodnocení
 - Číselné hodnocení
@@ -44,21 +44,21 @@ V rámci dat, se kterými se bude pracovat budeme požadovat minimálně násled
 ## Funkcionalita
 Webová aplikace bude obsahovat několik stránek pro zobrazování a zadávání dat.
 
-V zadání není požadováno perzistentní uložení dat. To znamená, že když se aplikace restartuje, tak může o data přijít. Nicméně bude nutno data ukládat za běhu aplikace, aby bylo možno demonstrovat, že když se například pomocí aplikace přidá nový tovar, tak se tento tovar zobrazí v seznamu tovaru (a podobně pro ostatní data).
+V zadání není požadováno perzistentní uložení dat. To znamená, že když se aplikace restartuje, tak může o data přijít. Nicméně bude nutno data ukládat za běhu aplikace, aby bylo možno demonstrovat, že když se například pomocí aplikace přidá nové zboží, tak se toto zboží zobrazí v seznamu zboží (a podobně pro ostatní data).
 
 I když není vysloveně požadováno perzistentní uložení dat, je doporučováno jeho implementace a za implementaci perzistentního uložení dat budou uděleny **bonusové body**. Způsob uložení (SQL databáze, NoSQL databáze, JSON, XML, CSV...) necháváme na vašem výběru. Pokud bude ale aplikace deklarovat, že data perzistentně uchovává, tak toto bude i otestováno.
 
 Minimální rozsah, který je požadován v rámci projektu je popsán v této kapitole.
 
 ### Funkcionalita e-shopu
-**Není nutno** implementovat celkovou funkcionalitu, kterou byste čekali od e-shopu. Pro začátek - neočekáváme, že se v e-shopu bude dát nakoupit. Není tedy nutno implementovat nákupní košík a podobné funkce. Co je vyžadováno v tomto zadání by se dalo charakterizovat spíše jako katalog tovaru.
-Nechceme po Vás, abyste vytvářeli jenom další a další stránky kvůli funkcionalitě. Tento předmět má být spíš o tom, abyste si vyzkoušeli hlavní koncepty. Když budete potřebovat přidat další funkcionalitu, tak ji dopíšete za použití stejných konceptů. Nicméně při tvorbě aplikace **mějte na paměti požadavek rozšiřitelnosti**. Myslete tedy na to, že tento _"katalogu tovaru"_ by měl být vytvořen tak, aby se z něj dal vytvořit i plně funkční e-shop. Dbejte na to při návrhu datových tříd i při tvorbě stránek.
+**Není nutno** implementovat celkovou funkcionalitu, kterou byste čekali od e-shopu. Pro začátek - neočekáváme, že se v e-shopu bude dát nakoupit. Není tedy nutno implementovat nákupní košík a podobné funkce. Co je vyžadováno v tomto zadání by se dalo charakterizovat spíše jako katalog zboží.
+Nechceme po Vás, abyste vytvářeli jenom další a další stránky kvůli funkcionalitě. Tento předmět má být spíš o tom, abyste si vyzkoušeli hlavní koncepty. Když budete potřebovat přidat další funkcionalitu, tak ji dopíšete za použití stejných konceptů. Nicméně při tvorbě aplikace **mějte na paměti požadavek rozšiřitelnosti**. Myslete tedy na to, že tento _"katalog zboží"_ by měl být vytvořen tak, aby se z něj dal vytvořit i plně funkční e-shop. Dbejte na to při návrhu datových tříd i při tvorbě stránek.
 
 ### Téma e-shopu
 Věc, kterou Vám v tomto zadání **nepředepisujeme** je téma e-shopu. Váš e-shop tedy může prodávat co uznáte za vhodné (myslete ale na to, že řešení budete obhajovat).
 
-### Seznam tovaru
-Seznam bude obsahovat všechen tovar dostupný v aplikaci. Bude možno se z něj překliknout na detail tovaru a na stránku pro přidání nového tovaru. Na stránce se dá tovar filtrovat minimálně dle těchto parametrů:
+### Seznam zboží
+Seznam bude obsahovat všechno zboží dostupné v aplikaci. Bude možno se z něj překliknout na detail zboží a na stránku pro přidání nového zboží. Na stránce se dá zboží filtrovat minimálně dle těchto parametrů:
    - Kategorie
    - Cena (minimální, maximální)
    - Hmotnost (minimální, maximální)
@@ -66,24 +66,24 @@ Seznam bude obsahovat všechen tovar dostupný v aplikaci. Bude možno se z něj
    - Hodnocení (minimální, maximální)
    - Je/není na skladě
 
-### Detail tovaru
-Stránka zobrazuje detail jednotlivého tovaru se všemi informacemi o tovaru (viz kapitolu Data). Na stránce se také dá přidávat nové hodnocení tovaru a zobrazuje se průměrná číselná hodnota hodnocení a textové popisy jednotlivých existujících hodnocení.
+### Detail zboží
+Stránka zobrazuje detail jednoho kusu zboží se všemi informacemi o něm (viz kapitolu Data). Na stránce se také dá přidávat nové hodnocení zboží a zobrazuje se průměrná číselná hodnota hodnocení a textové popisy jednotlivých existujících hodnocení.
 
-### Stránka pro editaci tovaru
-Stránka, která slouží na editaci tovaru. Může se využít na vytvoření nového tovaru nebo na editaci již existujícího. Bude obsahovat všechny informace o tovaru včetně výrobce a kategorie (viz kapitola Data).
+### Stránka pro editaci zboží
+Stránka, která slouží na editaci zboží. Může se využít na vytvoření nového zboží nebo na editaci již existujícího. Bude obsahovat všechny informace o zboží včetně výrobce a kategorie (viz kapitola Data).
 
 ### Seznam výrobců
 Stránka obsahuje všechny výrobce. Bude možno se z ní překliknout na detail výrobce a na stránku pro přidání nového výrobce.
 
 ### Detail výrobce
-Detail výrobce - stránka zobrazuje všechny informace o konkrétním výrobci včetně seznamu tovaru, které vyrábí (viz kapitola Data).
+Detail výrobce - stránka zobrazuje všechny informace o konkrétním výrobci včetně seznamu zboží, které vyrábí (viz kapitola Data).
 
 ### Stránka pro editaci výrobce
-Stránka, která slouží na editaci výrobce. Může se využít na vytvoření nového výrobce nebo na editaci existujícího. Bude obsahovat všechny informace o výrobci tovaru, který vyrábí (viz kapitola Data).
+Stránka, která slouží na editaci výrobce. Může se využít na vytvoření nového výrobce nebo na editaci existujícího. Bude obsahovat všechny informace o výrobci zboží, který je vyrábí (viz kapitola Data).
 
 ### Stránka "Vyhledávání"
-Stránka, na které můžete použít textové vyhledávání napříč záznamy v aplikaci. Seznam všech nalezených záznamů se zobrazí na stránce a bude se dát překlikem dostat na detail daného záznamu (v případě hodnocení se odnaviguje na detail tovaru, který k hodnocení přislouchá). Textově se vyhledává minimálně v těchto atributech:
-- Tovar
+Stránka, na které můžete použít textové vyhledávání napříč záznamy v aplikaci. Seznam všech nalezených záznamů se zobrazí na stránce a bude se dát překlikem dostat na detail daného záznamu (v případě hodnocení se odnaviguje na detail zboží, který k hodnocení přísluší). Textově se vyhledává minimálně v těchto atributech:
+- Zboží
    - Název
    - Textový popis
 - Výrobce
@@ -97,7 +97,7 @@ Stránka, na které můžete použít textové vyhledávání napříč záznamy
 ## Správa projektu - Azure DevOps
 Projekt řeší studenti v týmech. V každém týmu jsou **3 studenti**.
 
-Při řešení projektu týmy využívají Azure DevOps a využívají GIT na sdílení kódu. Do svého projektu přidělte přístup vyučujícím (způsob bude vysvětlen v rámci 1. cvičení); tj. do Vašeho týmového projektu si v části Members přidejte účet **uciteliw5@vutbr.cz**
+Při řešení projektu týmy využívají Azure DevOps a využívají GIT na sdílení kódu. Do svého projektu přidělte přístup vyučujícím; tj. do Vašeho týmového projektu si v části Members přidejte účet **uciteliw5@vutbr.cz**
 
 Účet **uciteliw5@vutbr.cz** budou používat vyučující pro přístup k odevzdávaným souborům. Bez přidání tohoto účtu není možné přistoupit k vašemu projektu a tedy není možné jej ze strany vyučujících hodnotit.
 
@@ -115,12 +115,12 @@ Je silně doporučováno projekty v průběhu semestru konzultovat po přednáš
 ---
 ### Fáze 1 – API (50 bodů)
 V první fázi se zaměříme na vytvoření Web API služby. Výstupem tedy bude spustitelný projekt, který obsahuje Web API, poskytuje specifikaci ve standardu OpenAPI (výběr verze necháme na vás) a poskytuje přístup k API pomocí Swagger inspektoru. API obsahuje minimálně metody pro:
-- Tovar
-   - Získání seznamu všeho tovaru
-   - Získání detailu tovaru
-   - Vytvoření nového tovaru
-   - Upravení existujícího tovaru
-   - Smazání tovaru
+- Zboží
+   - Získání seznamu všeho zboží
+   - Získání detailu zboží
+   - Vytvoření nového zboží
+   - Upravení existujícího zboží
+   - Smazání zboží
 - Výrobce
    - Získání seznamu všech výrobců
    - Získání detailu výrobce
@@ -128,7 +128,7 @@ V první fázi se zaměříme na vytvoření Web API služby. Výstupem tedy bud
    - Upravení existujícího výrobce
    - Smazání výrobce
 - Hodnocení
-   - Získání seznamu všech hodnocení pro konkrétní tovar
+   - Získání seznamu všech hodnocení pro konkrétní zboží
    - Získání detailu hodnocení
    - Vytvoření nového hodnocení
    - Upravení existujícího hodnocení
@@ -137,7 +137,7 @@ V první fázi se zaměříme na vytvoření Web API služby. Výstupem tedy bud
    - Získání výsledků vyhledávání
 Vzorové API, dle kterého se můžete inspirovat bude ukazováno na přednáškách/cvičeních.
 
-V 1. fázi bude také požadováno pokrytí API testy. Minimálně musí být pokryty všechny API endpointy dostatečným počtem testů aby se pomocí nich dala ověřit správnost funkcionality API. Počítáme tedy s tím, že budete mít vytvořeny testy, které můžeme u sebe spustit a tyto testy otestují správnost Vašeho řešení. To, jak psát testy bude ukázáno v rámci přednášek/cvičení.
+V 1. fázi bude také požadováno pokrytí API testy. Minimálně musí být pokryty všechny API endpointy dostatečným počtem testů, aby se pomocí nich dala ověřit správnost funkcionality API. Počítáme tedy s tím, že budete mít vytvořeny testy, které můžeme u sebe spustit a tyto testy otestují správnost Vašeho řešení. To, jak psát testy bude ukázáno v rámci přednášek/cvičení.
 Budeme tedy kontrolovat jak to, že máte napsány správné testy tak to, že aplikace funguje.
 
 Hodnotíme:
@@ -163,6 +163,6 @@ Hodnotíme:
 ## Obhajoba
 Obhajoby projektů budou probíhat v **posledním týdnu** semestru. Termíny obhajob budou vyhlášeny v průběhu semestru.
 
-Na obhajobu se dostaví **celý tým**. Z členů týmu bude cvičícími vybrán 1 student, který obhajobu povede. Na obhajobu **není nutné** mít prezentaci (Powerpoint nebo PDF). Budete nám muset ukázat, jak funguje váš kód, že je správně navržen. 
+Na obhajobu se dostaví **celý tým**. Z členů týmu bude cvičícími vybrán 1 student, který obhajobu povede. Na obhajobu **není nutné** mít prezentaci (Powerpoint nebo PDF). Budete nám muset ukázat, jak funguje váš kód, že je správně navržen. Obhajoby budou probíhat osobně, nebo online dle aktuálních omezení v době obhajob.
 
 Připravte se na naše otázky k funkcionalitě jednotlivých tříd a k důvodům jejich členění.
