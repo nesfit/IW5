@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookBook.BL.Api", "CookBook
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookBook.Common", "CookBook.Common\CookBook.Common.csproj", "{E326141A-5FEC-4F08-91FB-14732725B94A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CookBook.Console", "CookBook.Console\CookBook.Console.csproj", "{2C44873D-E68A-45E5-8B70-6699497BED27}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookBook.Console", "CookBook.Console\CookBook.Console.csproj", "{2C44873D-E68A-45E5-8B70-6699497BED27}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CookBook.Api.Tests", "CookBook.Api.Tests\CookBook.Api.Tests.csproj", "{148D55FF-C722-4C9D-A5CA-8154C4459E72}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{2C44873D-E68A-45E5-8B70-6699497BED27}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C44873D-E68A-45E5-8B70-6699497BED27}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C44873D-E68A-45E5-8B70-6699497BED27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{148D55FF-C722-4C9D-A5CA-8154C4459E72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{148D55FF-C722-4C9D-A5CA-8154C4459E72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{148D55FF-C722-4C9D-A5CA-8154C4459E72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{148D55FF-C722-4C9D-A5CA-8154C4459E72}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "eabebe3e-fa50-4770-9b7f-74474f24090f",
+		"_postman_id": "70cc5cb8-7c75-4937-88f8-8b106c0ee5a3",
 		"name": "IW5_Lecture_03",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -71,7 +71,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "d76728d7-d42c-4677-93a4-eed94d55356a",
+								"id": "48dfd403-0697-4bdf-91e6-3b97817a3cff",
 								"exec": [
 									"var jsonData = JSON.parse(responseBody);",
 									"pm.environment.set('IngredientId', jsonData);"
@@ -128,7 +128,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "d76728d7-d42c-4677-93a4-eed94d55356a",
+								"id": "f7902952-0034-40e5-b457-cf9a7e4dedca",
 								"exec": [
 									""
 								],
@@ -320,7 +320,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "d76728d7-d42c-4677-93a4-eed94d55356a",
+								"id": "7ddfa4b2-d0e6-4d8a-b105-fc9e212f5707",
 								"exec": [
 									"var jsonData = JSON.parse(responseBody);",
 									"pm.environment.set('RecipeId', jsonData);"
@@ -377,7 +377,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "d76728d7-d42c-4677-93a4-eed94d55356a",
+								"id": "a60b0975-dde0-4a4e-98bf-933b5fa072e1",
 								"exec": [
 									"var jsonData = JSON.parse(responseBody);",
 									"pm.environment.set('RecipeId', jsonData);"
@@ -486,6 +486,94 @@
 								"api",
 								"recipe",
 								"{{IngredientId}}"
+							],
+							"query": [
+								{
+									"key": "version",
+									"value": "{{Version}}"
+								},
+								{
+									"key": "culture",
+									"value": "{{Culture}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Hello",
+			"item": [
+				{
+					"name": "Say Your Name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "43be944e-5fb3-4eca-b3d5-7f7bb25ad74d",
+								"exec": [
+									"pm.test(\"Status code is 200 and body text is 'My name is Karel'.\", function () {\r",
+									"    // pm.expect(pm.response.code).to.eql(200);\r",
+									"    // pm.expect(pm.response.text()).to.eq(\"My name is Karel\");\r",
+									"\r",
+									"    // console.log(pm.response.text());\r",
+									"\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.have.body(\"My name is Karel\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ApiUrl}}/api/hello?version={{Version}}&culture={{Culture}}",
+							"host": [
+								"{{ApiUrl}}"
+							],
+							"path": [
+								"api",
+								"hello"
+							],
+							"query": [
+								{
+									"key": "version",
+									"value": "{{Version}}"
+								},
+								{
+									"key": "culture",
+									"value": "{{Culture}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Logging",
+			"item": [
+				{
+					"name": "Log Something",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ApiUrl}}/api/Logging?version={{Version}}&culture={{Culture}}",
+							"host": [
+								"{{ApiUrl}}"
+							],
+							"path": [
+								"api",
+								"Logging"
 							],
 							"query": [
 								{

@@ -1,9 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
@@ -21,9 +16,10 @@ namespace CookBook.Api
                 .ConfigureLogging(builder =>
                 {
                     builder.ClearProviders()
+                           .AddDebug()
                            .AddConsole()
                            .AddFilter("System", LogLevel.Debug)
-                           .SetMinimumLevel(LogLevel.Warning);
+                           .SetMinimumLevel(LogLevel.Information);
                 })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
