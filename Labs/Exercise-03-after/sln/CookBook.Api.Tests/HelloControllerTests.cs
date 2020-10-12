@@ -17,17 +17,17 @@ namespace CookBook.Api.Tests
         }
 
         [Fact]
-        public async Task Get_Should_Return_My_Name()
+        public async Task SayYourName_Should_Return_My_Name()
         {
             // Act
-            var response = await _client.GetAsync("/api/hello");
+            var response = await _client.GetAsync("api/hello");
 
             // Assert
             response.StatusCode.Should().Be(HttpStatusCode.OK);
             var responseBody = await response.Content.ReadAsStringAsync();
             responseBody.Should().Be("My name is Karel");
 
-            //response.Content.ReadAsStringAsync().Result.Should().Be("My name is Karel");
+            //response.Content.ReadAsStringAsync().Result.Should().Be("My name is Karel"); // Shorter notation of the lines above.
         }
     }
 }

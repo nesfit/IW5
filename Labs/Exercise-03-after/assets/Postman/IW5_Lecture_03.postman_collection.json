@@ -10,6 +10,23 @@
 			"item": [
 				{
 					"name": "Ingredient GetAll",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f03ae540-cebc-482e-9e30-fd0bbf006158",
+								"exec": [
+									"pm.test(\"Returns two ingredients\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.have.lengthOf(2);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -38,6 +55,36 @@
 				},
 				{
 					"name": "Ingredient GetById",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c96c303a-506c-4703-adac-aafdcb9eb042",
+								"exec": [
+									"pm.test(\"Returns two ingredients\", function () {    \r",
+									"    pm.response.to.have.status(200);\r",
+									"\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.name).to.be.a(\"string\");\r",
+									"    pm.expect(responseJson.name).to.eql(\"Vejce\");\r",
+									"    pm.expect(responseJson.description).to.be.a(\"string\");\r",
+									"    pm.expect(responseJson.description).to.eql(\"Popis vajec\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "2ad3e1d0-1d5b-439a-b157-56e900ef833d",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -515,7 +562,7 @@
 							"script": {
 								"id": "43be944e-5fb3-4eca-b3d5-7f7bb25ad74d",
 								"exec": [
-									"pm.test(\"Status code is 200 and body text is 'My name is Karel'.\", function () {\r",
+									"pm.test(\"Status code is 200 and body text is 'My name is Karel'\", function () {\r",
 									"    // pm.expect(pm.response.code).to.eql(200);\r",
 									"    // pm.expect(pm.response.text()).to.eq(\"My name is Karel\");\r",
 									"\r",
