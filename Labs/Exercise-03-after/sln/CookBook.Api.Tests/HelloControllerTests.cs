@@ -1,19 +1,16 @@
-﻿using FluentAssertions;
-using Microsoft.AspNetCore.Mvc.Testing;
+﻿using CookBook.Api.Tests.Fixtures;
+using FluentAssertions;
 using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 using Xunit;
 
 namespace CookBook.Api.Tests
 {
-    public class HelloControllerTests : IClassFixture<WebApplicationFactory<Startup>>
+    public class HelloControllerTests : IntegrationTest
     {
-        private readonly HttpClient _client;
-
-        public HelloControllerTests(WebApplicationFactory<Startup> fixture)
+        public HelloControllerTests(ApiWebApplicationFactory fixture)
+            : base(fixture)
         {
-            _client = fixture.CreateClient();
         }
 
         [Fact]
@@ -25,7 +22,7 @@ namespace CookBook.Api.Tests
             // Assert
             response.StatusCode.Should().Be(HttpStatusCode.OK);
             var responseBody = await response.Content.ReadAsStringAsync();
-            responseBody.Should().Be("My name is Karel");
+            responseBody.Should().Be("My name is Jozin");
 
             //response.Content.ReadAsStringAsync().Result.Should().Be("My name is Karel"); // Shorter notation of the lines above.
         }

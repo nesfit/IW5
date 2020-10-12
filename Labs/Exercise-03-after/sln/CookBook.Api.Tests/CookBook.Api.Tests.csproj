@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -24,6 +24,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CookBook.Api\CookBook.Api.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="integrationsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

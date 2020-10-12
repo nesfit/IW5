@@ -1,7 +1,7 @@
-﻿using CookBook.BL.Api.Models.Ingredient;
+﻿using CookBook.Api.Tests.Fixtures;
+using CookBook.BL.Api.Models.Ingredient;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Testing;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -13,13 +13,11 @@ using Xunit;
 
 namespace CookBook.Api.Tests
 {
-    public class IngredientControllerTests : IClassFixture<WebApplicationFactory<Startup>>
+    public class IngredientControllerTests : IntegrationTest
     {
-        private readonly HttpClient _client;
-
-        public IngredientControllerTests(WebApplicationFactory<Startup> fixture)
+        public IngredientControllerTests(ApiWebApplicationFactory fixture)
+            : base(fixture)
         {
-            _client = fixture.CreateClient();
         }
 
         [Theory]
