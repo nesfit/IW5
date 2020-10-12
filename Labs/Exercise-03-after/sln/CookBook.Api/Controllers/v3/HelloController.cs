@@ -1,29 +1,24 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
+﻿using CookBook.Api.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CookBook.Api.Controllers.v3
 {
-    public class ServerNameOptions
-    {
-        public string Name { get; set; }
-    }
-
     [ApiController]
     [Route("api/[controller]")]
     [ApiVersion("3.0")]
     public class HelloController : ControllerBase
     {
-        private readonly IOptions<ServerNameOptions> serverNameOptions;
+        private readonly IServerService _serverService;
 
-        public HelloController(IOptions<ServerNameOptions> serverNameOptions)
+        public HelloController(IServerService serverService)
         {
-            this.serverNameOptions = serverNameOptions;
+            _serverService = serverService;
         }
 
         [HttpGet]
         public ActionResult<string> SayYourName()
         {
-            var name = serverNameOptions.Value.Name;
+            var name = _serverService.GetServerName();
 
             return Ok($"My name is {name}");
         }
