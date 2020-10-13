@@ -1,4 +1,8 @@
-# Mocking, API and UI testing
+# API, UI testing and mocking
+
+---
+
+## General
 
 ---
 
@@ -17,8 +21,106 @@
 
 ---
 
-### Manual vs automated tests
+## API testing (integration)
 
+---
+
+### API testing
+
+- What is the purpose?
+- We will be testing REST API.
+- Mainly 4 methods involved in API Testing:
+  - GET
+  - POST
+  - PUT
+  - DELETE
+
+---
+
+### Tools for testing Rest API
+
+- Postman.
+- [cURL](https://curl.haxx.se) - command line tool and library
+for transferring data with URLs.
+- Unit testing framework + HTTP Client (e.g. [RestSharp](https://restsharp.dev)).
+
+---
+
+### Postman Testing
+
+- [Writing tests](https://learning.postman.com/docs/writing-scripts/test-scripts/)
+- [Automated Testing with Postman](https://www.postman.com/automated-testing/)
+- [Chai Assertion Library](https://www.chaijs.com)
+
+---
+
+### Debugging with the Postman console
+
+- To log a message in the console use:
+
+```js
+console.log("Test message");
+```
+
+- You can inspect sent requests directly in Postman's console. They are logged in both its raw and pretty form.
+
+[Source](https://blog.postman.com/powerful-debugging-with-the-postman-console)
+
+---
+
+### API testing code examples
+
+- Labs/Exercise-03-after/**sln** and Labs/Exercise-03-after/assets/Postman folders.
+
+---
+
+## Mocking
+
+---
+
+### What is a mock objects
+
+"In a unit test, mock objects can simulate the behavior of complex, real objects and are therefore useful when a real object is impractical or impossible to incorporate into a unit test."
+
+[Source: Wikipedia - Mock object](https://en.wikipedia.org/wiki/Mock_object)
+
+---
+
+### Mocking - Test Doubles (1)
+
+- Dummy - objects are passed around but never actually used.
+- Fake - objects actually have working implementations, but usually take some shortcut which makes them not suitable for production.
+- Stubs - provide canned answers to calls made during the test.
+
+---
+
+### Mocking - Test Doubles (2)
+
+- Spies - are stubs that also record some information based on how they were called.
+- Mocks - objects pre-programmed with expectations which form a specification of the calls they are expected to receive.
+
+[Source: Mocks Aren't Stubs](https://martinfowler.com/articles/mocksArentStubs.html)
+
+---
+
+### Mocking libraries
+
+- [Top 20 NuGet mocking Packages](https://nugetmusthaves.com/tag/Mocking)
+
+---
+
+### Mocking code examples
+
+- Labs/Exercise-03-after/**sln_mocking** and Labs/Exercise-03-after/**sln** folders.
+- [Mocking ILogger with Moq](https://adamstorr.azurewebsites.net/blog/mocking-ilogger-with-moq)
+
+---
+
+## UI testing
+
+---
+
+### Manual vs automated tests
 
 <table style="border: 1px solid white; border-collapse: collapse;">
     <thead>
@@ -64,9 +166,15 @@
 
 ### Selenium WebDriver testing architecture
 
-- Test framework (e.g. XUnit)
+- Test framework (e.g. xUnit)
 - Test code (e.g. C#)
-- IWebDriver API - WebDriver library (e.g. NuGet)
+- IWebDriver API - WebDriver library (from NuGet)
 - Browser driver (e.g. ChromeDriver)
 - Browser (e.g. Chrome)
 - Web Server hosting the app (e.g. IIS, Kestrel)
+
+---
+
+### UI testing code examples
+
+- Labs/Exercise-03-after/**sln_ui_testing** folder.

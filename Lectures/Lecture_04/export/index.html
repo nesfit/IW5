@@ -275,7 +275,17 @@
     
         <section >
             
-            <h1><a id="user-content-mocking-api-and-ui-testing" class="anchor" href="#mocking-api-and-ui-testing" aria-hidden="true"></a>Mocking, API and UI testing</h1>
+            <h1><a id="user-content-api-ui-testing-and-mocking" class="anchor" href="#api-ui-testing-and-mocking" aria-hidden="true"></a>API, UI testing and mocking</h1>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h2><a id="user-content-general" class="anchor" href="#general" aria-hidden="true"></a>General</h2>
 
             </section>
     
@@ -309,6 +319,190 @@
 </li>
 </ul>
 <p><a href="https://www.browserstack.com/guide/testing-pyramid-for-test-automation">Testing Pyramid : How to jumpstart Test Automation</a></p>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h2><a id="user-content-api-testing-integration" class="anchor" href="#api-testing-integration" aria-hidden="true"></a>API testing (integration)</h2>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3><a id="user-content-api-testing" class="anchor" href="#api-testing" aria-hidden="true"></a>API testing</h3>
+<ul>
+<li>What is the purpose?</li>
+<li>We will be testing REST API.</li>
+<li>Mainly 4 methods involved in API Testing:
+<ul>
+<li>GET</li>
+<li>POST</li>
+<li>PUT</li>
+<li>DELETE</li>
+</ul>
+</li>
+</ul>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3><a id="user-content-tools-for-testing-rest-api" class="anchor" href="#tools-for-testing-rest-api" aria-hidden="true"></a>Tools for testing Rest API</h3>
+<ul>
+<li>Postman.</li>
+<li><a href="https://curl.haxx.se">cURL</a> - command line tool and library
+for transferring data with URLs.</li>
+<li>Unit testing framework + HTTP Client (e.g. <a href="https://restsharp.dev">RestSharp</a>).</li>
+</ul>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3><a id="user-content-postman-testing" class="anchor" href="#postman-testing" aria-hidden="true"></a>Postman Testing</h3>
+<ul>
+<li><a href="https://learning.postman.com/docs/writing-scripts/test-scripts/">Writing tests</a></li>
+<li><a href="https://www.postman.com/automated-testing/">Automated Testing with Postman</a></li>
+<li><a href="https://www.chaijs.com">Chai Assertion Library</a></li>
+</ul>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3><a id="user-content-debugging-with-the-postman-console" class="anchor" href="#debugging-with-the-postman-console" aria-hidden="true"></a>Debugging with the Postman console</h3>
+<ul>
+<li>To log a message in the console use:</li>
+</ul>
+<pre><code class="language-js">console.log(&quot;Test message&quot;);
+</code></pre>
+<ul>
+<li>You can inspect sent requests directly in Postman’s console. They are logged in both its raw and pretty form.</li>
+</ul>
+<p><a href="https://blog.postman.com/powerful-debugging-with-the-postman-console">Source</a></p>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3><a id="user-content-api-testing-code-examples" class="anchor" href="#api-testing-code-examples" aria-hidden="true"></a>API testing code examples</h3>
+<ul>
+<li>Labs/Exercise-03-after/<strong>sln</strong> and Labs/Exercise-03-after/assets/Postman folders.</li>
+</ul>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h2><a id="user-content-mocking" class="anchor" href="#mocking" aria-hidden="true"></a>Mocking</h2>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3><a id="user-content-what-is-a-mock-objects" class="anchor" href="#what-is-a-mock-objects" aria-hidden="true"></a>What is a mock objects</h3>
+<p>“In a unit test, mock objects can simulate the behavior of complex, real objects and are therefore useful when a real object is impractical or impossible to incorporate into a unit test.”</p>
+<p><a href="https://en.wikipedia.org/wiki/Mock_object">Source: Wikipedia - Mock object</a></p>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3><a id="user-content-mocking---test-doubles-1" class="anchor" href="#mocking---test-doubles-1" aria-hidden="true"></a>Mocking - Test Doubles (1)</h3>
+<ul>
+<li>Dummy - objects are passed around but never actually used.</li>
+<li>Fake - objects actually have working implementations, but usually take some shortcut which makes them not suitable for production.</li>
+<li>Stubs - provide canned answers to calls made during the test.</li>
+</ul>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3><a id="user-content-mocking---test-doubles-2" class="anchor" href="#mocking---test-doubles-2" aria-hidden="true"></a>Mocking - Test Doubles (2)</h3>
+<ul>
+<li>Spies - are stubs that also record some information based on how they were called.</li>
+<li>Mocks - objects pre-programmed with expectations which form a specification of the calls they are expected to receive.</li>
+</ul>
+<p><a href="https://martinfowler.com/articles/mocksArentStubs.html">Source: Mocks Aren’t Stubs</a></p>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3><a id="user-content-mocking-libraries" class="anchor" href="#mocking-libraries" aria-hidden="true"></a>Mocking libraries</h3>
+<ul>
+<li><a href="https://nugetmusthaves.com/tag/Mocking">Top 20 NuGet mocking Packages</a></li>
+</ul>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3><a id="user-content-mocking-code-examples" class="anchor" href="#mocking-code-examples" aria-hidden="true"></a>Mocking code examples</h3>
+<ul>
+<li>Labs/Exercise-03-after/<strong>sln_mocking</strong> and Labs/Exercise-03-after/<strong>sln</strong> folders.</li>
+<li><a href="https://adamstorr.azurewebsites.net/blog/mocking-ilogger-with-moq">Mocking ILogger with Moq</a></li>
+</ul>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h2><a id="user-content-ui-testing" class="anchor" href="#ui-testing" aria-hidden="true"></a>UI testing</h2>
 
             </section>
     
@@ -381,12 +575,25 @@
             
             <h3><a id="user-content-selenium-webdriver-testing-architecture" class="anchor" href="#selenium-webdriver-testing-architecture" aria-hidden="true"></a>Selenium WebDriver testing architecture</h3>
 <ul>
-<li>Test framework (e.g. XUnit)</li>
+<li>Test framework (e.g. xUnit)</li>
 <li>Test code (e.g. C#)</li>
-<li>IWebDriver API - WebDriver library (e.g. NuGet)</li>
+<li>IWebDriver API - WebDriver library (from NuGet)</li>
 <li>Browser driver (e.g. ChromeDriver)</li>
 <li>Browser (e.g. Chrome)</li>
 <li>Web Server hosting the app (e.g. IIS, Kestrel)</li>
+</ul>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3><a id="user-content-ui-testing-code-examples" class="anchor" href="#ui-testing-code-examples" aria-hidden="true"></a>UI testing code examples</h3>
+<ul>
+<li>Labs/Exercise-03-after/<strong>sln_ui_testing</strong> folder.</li>
 </ul>
 
             </section>
