@@ -1,4 +1,5 @@
 using AutoMapper;
+using CookBook.Api.DateTimeProvider;
 using CookBook.Api.Extensions;
 using CookBook.Api.Options;
 using CookBook.Api.Processors;
@@ -71,6 +72,7 @@ namespace CookBook.Api
 
             services.Configure<ServerNameOptions>(Configuration.GetSection("ServerName"));
             services.AddTransient<IServerService, ServerService>();
+            services.AddScoped<IDateTimeProvider, UtcDateTimeProvider>();
 
             new DALInstaller().Install(services);
             new BLApiInstaller().Install(services);
