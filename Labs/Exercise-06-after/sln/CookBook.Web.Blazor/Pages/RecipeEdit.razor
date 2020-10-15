@@ -5,65 +5,112 @@
 
 <EditForm Model="@Data" OnValidSubmit="@Save">
     <DataAnnotationsValidator />
+    
+    <h1>Edit Recipe</h1>
+    <div class="row">
+        <div class="col-md">
+            <div class="form-group">
+                <label class="w-100">
+                    Name:
+                    <InputText @bind-Value="@Data.Name" class="form-control" />
+                    <small class="form-text text-danger">
+                        <ValidationMessage For="@(()=>Data.Name)"/>
+                    </small>
+                </label>
+            </div>
 
-    <label>
-        Name:
-        <InputText @bind-Value="@Data.Name" />
-        <ValidationMessage For="@(()=>Data.Name)" />
-    </label>
+            <div class="form-group">
+                <label class="w-100">
+                    Description:
+                    <InputTextArea @bind-Value="@Data.Description" class="form-control" />
+                    <small class="form-text text-danger">
+                        <ValidationMessage For="(()=>Data.Description)"/>
+                    </small>
+                </label>
+            </div>
 
-    <label>
-        Description:
-        <InputTextArea @bind-Value="@Data.Description" />
-        <ValidationMessage For="(()=>Data.Description)" />
-    </label>
-    <label>
-        Duration:
-        <InputNumber min="0" @bind-Value="DurationHour" />:<InputNumber min="0" @bind-Value="DurationMinutes" />
-        <ValidationMessage For="(()=>Data.Duration)" />
-    </label>
-    <label>
-        FoodType:
-        <InputSelect @bind-Value="Data.FoodType">
-            @foreach (var foodType in Enum.GetValues(typeof(FoodType)))
-            {
-                <option value="@foodType">@foodType</option>
-            }
-        </InputSelect>
-        <ValidationMessage For="(()=>Data.FoodType)" />
-    </label>
-    <div>
-        Ingredients:
-        <ul>
-            @foreach (var ingredient in Data.Ingredients)
-            {
-            <li>@ingredient.Ingredient?.Name @ingredient.Amount @ingredient.UnitText - <button @onclick="() => DeleteIngredient(ingredient)">Delete</button></li>
-            }
-        </ul>
+            <div class="form-group">
+                <label class="w-100" for="durationInput">
+                    Duration:
+                </label>
+                <div class="input-group">
+                    <InputNumber min="0" @bind-Value="DurationHour" class="form-control" id="durationInput"/>
+                    <div class="p-2">:</div>
+                    <InputNumber min="0" @bind-Value="DurationMinutes" class="form-control" />
+                </div>
+                <small class="form-text text-danger">
+                    <ValidationMessage For="(()=>Data.Duration)"/>
+                </small>
+            </div>
 
-        <InputSelect @bind-Value="NewIngredientModel.Ingredient" >
-            @foreach (var ingredient in Ingredients)
-            {
-                <option value="@ingredient">@ingredient.Name</option>
-            }
-        </InputSelect>
-        <InputNumber min="0" @bind-Value="NewIngredientModel.Amount" />
-        <InputSelect @bind-Value="NewIngredientModel.Unit">
-            @foreach (var unit in Enum.GetValues(typeof(Unit)))
-            {
-                <option value="@unit">@unit</option>
-            }
-        </InputSelect>
-        <ValidationMessage For="(()=>NewIngredientModel)" />
+            <div class="form-group">
+                <label class="w-100">
+                    FoodType:
+                    <InputSelect @bind-Value="Data.FoodType" class="form-control">
+                        @foreach (var foodType in Enum.GetValues(typeof(FoodType)))
+                        {
+                            <option value="@foodType">@foodType</option>
+                        }
+                    </InputSelect>
+                    <small class="form-text text-danger">
+                        <ValidationMessage For="(()=>Data.FoodType)"/>
+                    </small>
+                </label>
+            </div>
+        </div>
+        <div class="col-md">
+            <div class="mt-2 mb-2">
+                <h2>Ingredients:</h2>
+                <ul class="list-group mb-4">
+                    @foreach (var ingredient in Data.Ingredients)
+                    {
+                        <li class="d-flex justify-content-between align-items-center list-group-item list-group-item-secondary">
+                            @ingredient.Ingredient?.Name @ingredient.Amount @ingredient.UnitText 
+                            <button @onclick="() => DeleteIngredient(ingredient)" class="btn btn-danger btn-sm">Delete</button>
+                        </li>
+                    }
+                </ul>
 
-        <button type="button" @onclick="@AddIngredient">Add</button>
+                <h2>Add new ingredient:</h2>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <InputSelect @bind-Value="NewIngredientModel.Ingredient" class="form-control">
+                            @foreach (var ingredient in Ingredients)
+                            {
+                                <option value="@ingredient">@ingredient.Name</option>
+                            }
+                        </InputSelect>
+                    </div>
+                    <InputNumber min="0" @bind-Value="NewIngredientModel.Amount" class="form-control" />
+                    <InputSelect @bind-Value="NewIngredientModel.Unit" class="form-control">
+                        @foreach (var unit in Enum.GetValues(typeof(Unit)))
+                        {
+                            <option value="@unit">@unit</option>
+                        }
+                    </InputSelect>
+                    <div class="input-group-append">
+                        <button type="button" @onclick="@AddIngredient" class="btn btn-primary">Add</button>
+                    </div>
+                </div>
 
+                <small class="form-text text-danger">
+                    <ValidationMessage For="(()=>NewIngredientModel)"/>
+                </small>
+            </div>
+        </div>
     </div>
-    <button type="submit">Save</button>
-    @if (Id != Guid.Empty)
-    {
-        <button @onclick="@Delete">Delete</button>
-    }
+
+    
+
+    <hr />
+    <div class="d-flex justify-content-end mt-2 mb-2">
+        <button type="submit" class="btn btn-success mr-2">Save</button>
+        @if (Id != Guid.Empty)
+        {
+            <button @onclick="@Delete" class="btn btn-danger">Delete</button>
+        }
+    </div>
+
 </EditForm>
 @code {
     [Parameter]
