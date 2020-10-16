@@ -22,6 +22,10 @@
     </tbody>
 </table>
 
+<div class="text-center">
+    <NavLink href="@($"/{Culture}/recipe/00000000-0000-0000-0000-000000000000")" class="btn btn-primary">Create new recipe</NavLink>
+</div>
+
 @code {
     [Inject]
     private IRecipesFacade recipesFacade { get; set; }
