@@ -1,19 +1,20 @@
-﻿@model RecipeNewViewModel
+﻿@using CookBook.BL.Web.MVC.Api
+@model RecipeNewViewModel
 
 <form asp-action="Insert" method="post" role="form">
     <div class="form-group">
-        <label asp-for="RecipeNewModel.Name" class="col-md-2"></label>
+        <label asp-for="RecipeModel.Name" class="col-md-2"></label>
         <div class="col-md-5">
-            <input asp-for="RecipeNewModel.Name" class="form-control" />
-            <span asp-validation-for="RecipeNewModel.Name" class="text-danger"></span>
+            <input asp-for="RecipeModel.Name" class="form-control" />
+            <span asp-validation-for="RecipeModel.Name" class="text-danger"></span>
         </div>
     </div>
 
     <div class="form-group">
-        <label asp-for="RecipeNewModel.Description" class="col-md-2"></label>
+        <label asp-for="RecipeModel.Description" class="col-md-2"></label>
         <div class="col-md-5">
-            <textarea asp-for="RecipeNewModel.Description" class="form-control"></textarea>
-            <span asp-validation-for="RecipeNewModel.Description" class="text-danger"></span>
+            <textarea asp-for="RecipeModel.Description" class="form-control"></textarea>
+            <span asp-validation-for="RecipeModel.Description" class="text-danger"></span>
         </div>
     </div>
 
@@ -21,34 +22,34 @@
         <label asp-for="DurationText" class="col-md-2"></label>
         <div class="col-md-5">
             <input asp-for="DurationText" placeholder="hh:mm:ss">
-            <span asp-validation-for="RecipeNewModel.Duration" class="text-danger"></span>
+            <span asp-validation-for="RecipeModel.Duration" class="text-danger"></span>
         </div>
     </div>
 
     <div class="form-group">
-        <label asp-for="RecipeNewModel.FoodType" class="col-md-2"></label>
+        <label asp-for="RecipeModel.FoodType" class="col-md-2"></label>
         <div class="col-md-5">
-            <select asp-for="RecipeNewModel.FoodType"
+            <select asp-for="RecipeModel.FoodType"
                     asp-items="Html.GetEnumSelectList<FoodType>()">
             </select>
-            <span asp-validation-for="RecipeNewModel.FoodType" class="text-danger"></span>
+            <span asp-validation-for="RecipeModel.FoodType" class="text-danger"></span>
         </div>
     </div>
 
     <div class="form-group">
-        <label asp-for="RecipeNewModel.Ingredients" class="col-md-2"></label>
-        @if (Model.RecipeNewModel.Ingredients != null)
+        <label asp-for="RecipeModel.Ingredients" class="col-md-2"></label>
+        @if (Model.RecipeModel.Ingredients != null)
         {
-            @for (int i = 0; i < Model.RecipeNewModel.Ingredients.Count; i++)
+            @for (int i = 0; i < Model.RecipeModel.Ingredients.Count; i++)
             {
                 <div class="col-md-5">
-                    <select asp-for="RecipeNewModel.Ingredients[i].IngredientId" asp-items="@(new SelectList(Model.IngredientsAll, "Id", "Name"))"></select>
-                    <input type="number" asp-for="RecipeNewModel.Ingredients[i].Amount" min="0" />
-                    <select asp-for="RecipeNewModel.Ingredients[i].Unit" asp-items="Html.GetEnumSelectList<Unit>()"></select>
+                    <select asp-for="RecipeModel.Ingredients[i].IngredientId" asp-items="@(new SelectList(Model.IngredientsAll, "Id", "Name"))"></select>
+                    <input type="number" asp-for="RecipeModel.Ingredients[i].Amount" min="0" />
+                    <select asp-for="RecipeModel.Ingredients[i].Unit" asp-items="Html.GetEnumSelectList<Unit>()"></select>
                 </div>
             }
         }
-        <span asp-validation-for="RecipeNewModel.Ingredients" class="text-danger"></span>
+        <span asp-validation-for="RecipeModel.Ingredients" class="text-danger"></span>
     </div>
 
     <div class="form-group">

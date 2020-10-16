@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using CookBook.Common.Enums;
 using System;
 using System.Collections.Generic;
+using CookBook.Models;
 
 namespace CookBook.DAL.Entities
 {

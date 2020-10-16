@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using CookBook.BL.Api.Models.Recipe;
 using CookBook.BL.Common.Facades;
 using CookBook.DAL.Entities;
 using CookBook.DAL.Repositories;
+using CookBook.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,9 +46,10 @@ namespace CookBook.BL.Api.Facades
             return mapper.Map<RecipeDetailModel>(recipeEntity);
         }
 
-        public Guid Create(RecipeNewModel recipe)
+        public Guid Create(RecipeDetailModel recipe)
         {
             var recipeEntity = mapper.Map<RecipeEntity>(recipe);
+            recipeEntity.Id = Guid.NewGuid();
             recipeRepository.Insert(recipeEntity);
 
             foreach (var ingredientAmount in recipeEntity.IngredientAmounts)
@@ -60,45 +61,45 @@ namespace CookBook.BL.Api.Facades
             return recipeEntity.Id;
         }
 
-        public Guid? Update(RecipeUpdateModel recipeUpdateModel)
+        public Guid? Update(RecipeDetailModel recipe)
         {
-            var recipeEntityExisting = recipeRepository.GetById(recipeUpdateModel.Id);
-            recipeEntityExisting.IngredientAmounts = ingredientAmountRepository.GetByRecipeId(recipeUpdateModel.Id);
-            UpdateIngredientAmounts(recipeUpdateModel, recipeEntityExisting);
+            var recipeEntityExisting = recipeRepository.GetById(recipe.Id);
+            recipeEntityExisting.IngredientAmounts = ingredientAmountRepository.GetByRecipeId(recipe.Id);
+            UpdateIngredientAmounts(recipe, recipeEntityExisting);
 
-            var recipeEntityUpdated = mapper.Map<RecipeEntity>(recipeUpdateModel);
+            var recipeEntityUpdated = mapper.Map<RecipeEntity>(recipe);
             return recipeRepository.Update(recipeEntityUpdated);
         }
 
-        private void UpdateIngredientAmounts(RecipeUpdateModel recipeUpdateModel, RecipeEntity recipeEntity)
+        private void UpdateIngredientAmounts(RecipeDetailModel recipeModel, RecipeEntity recipeEntity)
         {
             var ingredientAmountsToDelete = recipeEntity.IngredientAmounts.Where(
                 ingredientAmount =>
-                    !recipeUpdateModel.Ingredients.Any(ingredient => ingredient.IngredientId == ingredientAmount.IngredientId));
+                    !recipeModel.Ingredients.Any(ingredient => ingredient.Ingredient.Id == ingredientAmount.IngredientId));
             DeleteIngredientAmounts(ingredientAmountsToDelete);
 
-            var recipeUpdateIngredientModelsToInsert = recipeUpdateModel.Ingredients.Where(
-                ingredient => !recipeEntity.IngredientAmounts.Any(ingredientAmount => ingredientAmount.IngredientId == ingredient.IngredientId));
+            var recipeUpdateIngredientModelsToInsert = recipeModel.Ingredients.Where(
+                ingredient => !recipeEntity.IngredientAmounts.Any(ingredientAmount => ingredientAmount.IngredientId == ingredient.Ingredient.Id));
             InsertIngredientAmounts(recipeEntity, recipeUpdateIngredientModelsToInsert);
 
-            var recipeUpdateIngredientModelsToUpdate = recipeUpdateModel.Ingredients.Where(
-                ingredient => recipeEntity.IngredientAmounts.Any(ingredientAmount => ingredientAmount.IngredientId == ingredient.IngredientId));
+            var recipeUpdateIngredientModelsToUpdate = recipeModel.Ingredients.Where(
+                ingredient => recipeEntity.IngredientAmounts.Any(ingredientAmount => ingredientAmount.IngredientId == ingredient.Ingredient.Id));
             UpdateIngredientAmounts(recipeEntity, recipeUpdateIngredientModelsToUpdate);
         }
 
-        private void UpdateIngredientAmounts(RecipeEntity recipeEntity, IEnumerable<RecipeUpdateIngredientModel> recipeUpdateIngredientModelsToUpdate)
+        private void UpdateIngredientAmounts(RecipeEntity recipeEntity, IEnumerable<RecipeListIngredientModel> recipeUpdateIngredientModelsToUpdate)
         {
             foreach (var recipeUpdateIngredientModel in recipeUpdateIngredientModelsToUpdate)
             {
                 var ingredientAmountEntity =
                     ingredientAmountRepository.GetByRecipeIdAndIngredientId(recipeEntity.Id,
-                        recipeUpdateIngredientModel.IngredientId);
+                        recipeUpdateIngredientModel.Ingredient.Id);
                 mapper.Map(recipeUpdateIngredientModel, ingredientAmountEntity);
                 ingredientAmountRepository.Update(ingredientAmountEntity);
             }
         }
 
-        private void InsertIngredientAmounts(RecipeEntity recipeEntity, IEnumerable<RecipeUpdateIngredientModel> recipeUpdateIngredientModelsToInsert)
+        private void InsertIngredientAmounts(RecipeEntity recipeEntity, IEnumerable<RecipeListIngredientModel> recipeUpdateIngredientModelsToInsert)
         {
             foreach (var recipeUpdateIngredientModel in recipeUpdateIngredientModelsToInsert)
             {

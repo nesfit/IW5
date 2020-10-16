@@ -8,7 +8,7 @@
   "MultiProjectConfigurations": {
     "Web": {
       "Projects": {
-        "CookBook.Web.MVC": {}
+        "CookBook.Web.Blazor": {}
       }
     },
     "API": {
@@ -18,7 +18,7 @@
     },
     "Web + API": {
       "Projects": {
-        "CookBook.Web.MVC": {},
+        "CookBook.Web.Blazor": {},
         "CookBook.Api": {}
       }
     }

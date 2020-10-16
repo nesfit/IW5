@@ -1,6 +1,6 @@
 ﻿using CookBook.BL.Api.Facades;
-using CookBook.BL.Api.Models.Ingredient;
-using CookBook.Common.Resources;
+using CookBook.Localization.Resources;
+using CookBook.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using NSwag.Annotations;
@@ -49,14 +49,14 @@ namespace CookBook.Api.Controllers.v3
 
         [HttpPost]
         [OpenApiOperation(ApiOperationBaseName + nameof(Create))]
-        public ActionResult<Guid> Create(IngredientNewModel ingredient)
+        public ActionResult<Guid> Create(IngredientDetailModel ingredient)
         {
             return ingredientFacade.Create(ingredient);
         }
 
         [HttpPut]
         [OpenApiOperation(ApiOperationBaseName + nameof(Update))]
-        public ActionResult<Guid> Update(IngredientUpdateModel ingredient)
+        public ActionResult<Guid> Update(IngredientDetailModel ingredient)
         {
             return ingredientFacade.Update(ingredient);
         }

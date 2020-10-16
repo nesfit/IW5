@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using CookBook.BL.Api.Models.Ingredient;
 using CookBook.BL.Common.Facades;
 using CookBook.DAL.Entities;
 using CookBook.DAL.Repositories;
+using CookBook.Models;
 using System;
 using System.Collections.Generic;
 
@@ -31,13 +31,14 @@ namespace CookBook.BL.Api.Facades
             return mapper.Map<IngredientDetailModel>(ingredientRepository.GetById(id));
         }
 
-        public Guid Create(IngredientNewModel ingredient)
+        public Guid Create(IngredientDetailModel ingredient)
         {
             var ingredientEntity = mapper.Map<IngredientEntity>(ingredient);
+            ingredientEntity.Id = Guid.NewGuid();
             return ingredientRepository.Insert(ingredientEntity);
         }
 
-        public Guid? Update(IngredientUpdateModel ingredient)
+        public Guid? Update(IngredientDetailModel ingredient)
         {
             var ingredientEntity = mapper.Map<IngredientEntity>(ingredient);
             return ingredientRepository.Update(ingredientEntity);

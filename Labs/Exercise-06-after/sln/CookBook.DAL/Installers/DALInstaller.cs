@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using CookBook.Common.Installers;
+﻿using CookBook.Common.Installers;
 using CookBook.DAL.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 

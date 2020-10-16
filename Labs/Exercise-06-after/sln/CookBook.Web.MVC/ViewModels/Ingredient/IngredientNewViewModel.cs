@@ -1,9 +1,9 @@
-﻿using CookBook.BL.Web.Api;
+﻿using CookBook.BL.Web.MVC.Api;
 
 namespace CookBook.Web.MVC.ViewModels.Ingredient
 {
     public class IngredientNewViewModel
     {
-        public IngredientNewModel IngredientNewModel { get; set; }
+        public IngredientDetailModel IngredientModel { get; set; }
     }
 }

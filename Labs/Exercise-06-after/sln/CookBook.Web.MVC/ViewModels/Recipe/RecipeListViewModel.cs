@@ -1,4 +1,4 @@
-﻿using CookBook.BL.Web.Api;
+﻿using CookBook.BL.Web.MVC.Api;
 using System.Collections.Generic;
 
 namespace CookBook.Web.MVC.ViewModels.Recipe
