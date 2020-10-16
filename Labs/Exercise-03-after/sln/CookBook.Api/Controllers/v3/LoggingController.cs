@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using CookBook.Api.DateTimeProvider;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using NSwag.Annotations;
@@ -15,10 +12,12 @@ namespace CookBook.Api.Controllers.v3
     {
         private const string ApiOperationBaseName = "Logging";
         private readonly ILogger<LoggingController> logger;
+        private readonly IDateTimeProvider _dateTimeProvider;
 
-        public LoggingController(ILogger<LoggingController> logger)
+        public LoggingController(ILogger<LoggingController> logger, IDateTimeProvider dateTimeProvider)
         {
             this.logger = logger;
+            _dateTimeProvider = dateTimeProvider;
         }
 
         [HttpGet]
@@ -26,7 +25,7 @@ namespace CookBook.Api.Controllers.v3
         public void LogSomething()
         {
             logger.LogInformation("Something");
-            logger.LogWarning("Log something called in {0}", DateTime.Now);
+            logger.LogWarning("Log something called in {0}", _dateTimeProvider.Now);
         }
     }
 }

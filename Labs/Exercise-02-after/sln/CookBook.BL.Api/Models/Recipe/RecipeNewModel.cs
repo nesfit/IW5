@@ -58,9 +58,6 @@ namespace CookBook.BL.Api.Models.Recipe
             RuleFor(recipe => recipe.Ingredients)
                 .NotEmpty()
                 .WithMessage(recipeNewModeLocalizer[nameof(RecipeNewModelResources.Ingredients_ValidationMessage)].Value);
-
-            //RuleForEach(recipe => recipe.Ingredients)
-            //    .SetValidator()
         }
     }
 }

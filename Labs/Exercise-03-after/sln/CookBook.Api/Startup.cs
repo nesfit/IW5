@@ -1,7 +1,9 @@
 using AutoMapper;
-using CookBook.Api.Controllers.v3;
+using CookBook.Api.DateTimeProvider;
 using CookBook.Api.Extensions;
+using CookBook.Api.Options;
 using CookBook.Api.Processors;
+using CookBook.Api.Services;
 using CookBook.BL.Api.Installers;
 using CookBook.DAL.Installers;
 using FluentValidation.AspNetCore;
@@ -13,7 +15,6 @@ using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using NSwag;
 using NSwag.AspNetCore;
 using System.Collections.Generic;
 using System.Globalization;
@@ -70,6 +71,8 @@ namespace CookBook.Api
             });
 
             services.Configure<ServerNameOptions>(Configuration.GetSection("ServerName"));
+            services.AddTransient<IServerService, ServerService>();
+            services.AddScoped<IDateTimeProvider, UtcDateTimeProvider>();
 
             new DALInstaller().Install(services);
             new BLApiInstaller().Install(services);
