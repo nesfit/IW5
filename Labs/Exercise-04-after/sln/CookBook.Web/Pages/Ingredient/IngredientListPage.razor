@@ -1,0 +1,29 @@
+﻿@page "/ingredients"
+@namespace CookBook.Web.Pages
+@inherits PageBase
+@layout ListLayout
+
+<div class="row">
+    <div class="col-md">
+        <IngredientEditForm />
+    </div>
+    <div class="col-md">
+        <table class="table border table-striped">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="row">Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var ingredient in Ingredients)
+                {
+                    <tr>
+                        <td>
+                            <NavLink href="@($"/ingredients/{ingredient.Id}")">@ingredient.Name</NavLink>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

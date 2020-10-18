@@ -1,7 +1,4 @@
-﻿using AutoMapper;
-using CookBook.Common.Enums;
-using CookBook.Common.Extensions;
-using CookBook.DAL.Entities;
+﻿using CookBook.Models;
 using System;
 using System.Collections.Generic;
 
@@ -15,14 +12,5 @@ namespace CookBook.BL.Api.Models.Recipe
         public TimeSpan Duration { get; set; }
         public FoodType FoodType { get; set; }
         public IList<RecipeDetailIngredientModel> Ingredients { get; set; }
-    }
-
-    public class RecipeDetailModelMapperProfile : Profile
-    {
-        public RecipeDetailModelMapperProfile()
-        {
-            CreateMap<RecipeEntity, RecipeDetailModel>()
-                .MapMember(dst => dst.Ingredients, src => src.IngredientAmounts);
-        }
     }
 }

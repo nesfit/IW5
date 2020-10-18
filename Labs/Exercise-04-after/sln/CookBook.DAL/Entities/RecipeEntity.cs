@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using CookBook.Common.Enums;
+using CookBook.Models;
 using System;
 using System.Collections.Generic;
 

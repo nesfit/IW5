@@ -1,6 +1,4 @@
-﻿using AutoMapper;
-using CookBook.Common.Enums;
-using CookBook.DAL.Entities;
+﻿using CookBook.Models;
 using EnumsNET;
 using System;
 
@@ -13,13 +11,5 @@ namespace CookBook.BL.Api.Models.Recipe
         public TimeSpan Duration { get; set; }
         public FoodType FoodType { get; set; }
         public string FoodTypeText => FoodType.AsString(EnumFormat.Description);
-    }
-
-    public class RecipeListModelMapperProfile : Profile
-    {
-        public RecipeListModelMapperProfile()
-        {
-            CreateMap<RecipeEntity, RecipeListModel>();
-        }
     }
 }
