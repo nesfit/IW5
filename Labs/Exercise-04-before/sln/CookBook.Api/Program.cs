@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace CookBook.Web.MVC
+namespace CookBook.Api
 {
     public class Program
     {
@@ -18,6 +18,13 @@ namespace CookBook.Web.MVC
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+                .ConfigureLogging(builder =>
+                {
+                    builder.ClearProviders()
+                           .AddConsole()
+                           .AddFilter("System", LogLevel.Debug)
+                           .SetMinimumLevel(LogLevel.Warning);
+                })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
