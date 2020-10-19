@@ -15,7 +15,7 @@
         <label class="w-100">
             Description:
             <InputTextArea @bind-Value="@Data.Description" class="form-control" />
-            <small class="form-text text-danger"><ValidationMessage For="(()=>Data.Description)" /></small>
+            <small class="form-text text-danger"><ValidationMessage For="@(()=>Data.Description)" /></small>
         </label>
     </div>
 </EditForm>
