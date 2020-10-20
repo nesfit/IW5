@@ -1,0 +1,17 @@
+{
+  "name": "CookBook - your online list of recipes",
+  "short_name": "CookBook",
+  "display": "standalone",
+  "theme_color": "#04173D",
+  "background_color": "#FFFFFF",
+  "permissions": [ "storage" ],
+  "scope": "/",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "/images/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

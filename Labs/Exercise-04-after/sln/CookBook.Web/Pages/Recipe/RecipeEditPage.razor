@@ -1,0 +1,98 @@
+﻿@page "/recipe/create"
+@page "/recipe/{Id:guid}"
+@inherits CookBook.Web.Pages.PageBase
+@namespace CookBook.Web.Pages
+@using CookBook.Models
+
+<h3>Recipe</h3>
+
+<EditForm Model="@Data">
+    <div class="row">
+        <div class="col-md">
+            <div class="form-group">
+                <label class="w-100">
+                    Name:
+                    <InputText @bind-Value="@Data.Name" class="form-control" />
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label class="w-100">
+                    Description:
+                    <InputTextArea @bind-Value="@Data.Description" class="form-control" />
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label class="w-100" for="durationInput">
+                    Duration:
+                </label>
+                <div class="input-group">
+                    <InputNumber min="0" @bind-Value="DurationHours" class="form-control" id="durationInput" />
+                    <div class="p-2">:</div>
+                    <InputNumber min="0" @bind-Value="DurationMinutes" class="form-control" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="w-100">
+                    FoodType:
+                    <InputSelect @bind-Value="Data.FoodType" class="form-control">
+                        @foreach (var foodType in Enum.GetValues(typeof(FoodType)))
+                        {
+                            <option value="@foodType">@foodType</option>
+                        }
+                    </InputSelect>
+                </label>
+            </div>
+        </div>
+        <div class="col-md">
+            <div class="mt-2 mb-2">
+                <h2>Ingredients:</h2>
+                <ul class="list-group mb-4">
+                    @foreach (var ingredient in Data.Ingredients)
+                    {
+                        <li class="d-flex justify-content-between align-items-center list-group-item list-group-item-secondary">
+                            @ingredient.Ingredient?.Name @ingredient.Amount @ingredient.UnitText
+                            <button class="btn btn-danger btn-sm">Delete</button>
+                        </li>
+                    }
+                </ul>
+
+                <h2>Add new ingredient:</h2>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <InputSelect @bind-Value="NewIngredientModel.Ingredient" class="form-control">
+                            @foreach (var ingredient in Ingredients)
+                            {
+                                <option value="@ingredient">@ingredient.Name</option>
+                            }
+                        </InputSelect>
+                    </div>
+                    <InputNumber min="0" @bind-Value="NewIngredientModel.Amount" class="form-control" />
+                    <InputSelect @bind-Value="NewIngredientModel.Unit" class="form-control">
+                        @foreach (var unit in Enum.GetValues(typeof(Unit)))
+                        {
+                            <option value="@unit">@unit</option>
+                        }
+                    </InputSelect>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-primary">Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <hr />
+    <div class="d-flex justify-content-end mt-2 mb-2">
+        <button type="submit" class="btn btn-success mr-2">Save</button>
+        @if (Id != Guid.Empty)
+        {
+            <button class="btn btn-danger">Delete</button>
+        }
+    </div>
+
+</EditForm>

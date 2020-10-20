@@ -1,0 +1,21 @@
+﻿@inherits CookBook.Web.Pages.PageBase
+
+<EditForm Model="@Data">
+    <DataAnnotationsValidator />
+
+    <div class="form-group">
+        <label class="w-100">
+            Name:
+            <InputText @bind-Value="@Data.Name" class="form-control" />
+            <small class="form-text text-danger"><ValidationMessage For="@(()=>Data.Name)" /></small>
+        </label>
+    </div>
+
+    <div class="form-group">
+        <label class="w-100">
+            Description:
+            <InputTextArea @bind-Value="@Data.Description" class="form-control" />
+            <small class="form-text text-danger"><ValidationMessage For="@(()=>Data.Description)" /></small>
+        </label>
+    </div>
+</EditForm>
