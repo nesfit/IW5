@@ -31,8 +31,8 @@ Pro připojení do týmu **IW5-2020Z** použijte přístupový kód **txdbgzd**.
 | 06. 10. | ASP.NET Core Web API (Roman Jašek) |
 | 13. 10. | Jak psát testy |
 | 20. 10. | Web - část 1 (Roman Jašek) |
-| 27. 10. | Web - část 2 (Michal Tichý) |
-| 03. 11. | Web - část 3 (Maroš Janota) |
+| 27. 10. | Web - část 2 (Maroš Janota) |
+| 03. 11. | Web - část 3 (Michal Tichý) |
 | 10. 11. | .NET Internals, Intermediate Language, Code Generation (Roman Jašek) |
 | 17. 11. | **Státní svátek** |
 | 24. 11. | Softwarové architektury v C# (Martin Dybal) |
@@ -116,6 +116,7 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení n
 * [Roman Jašek](roman.jasek@hotmail.com )
 * [Tibor Jašek](tibor.jasek@gmail.com )
 * [Michal Mrnušťík](michal.mrnustik@outlook.com )
+* [Michal Tichý](edu@tichymichal.net )
 * [Jan Pluskal](http://www.fit.vutbr.cz/~ipluskal/)
 * [Erik Macháček](erik.machacek@solarwinds.com)
 
