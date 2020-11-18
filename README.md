@@ -113,11 +113,12 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení n
 --- 
 # Vyučující
 * [Martin Dybal](https://www.dybal.it/)
-* [Roman Jašek](roman.jasek@hotmail.com )
-* [Tibor Jašek](tibor.jasek@gmail.com )
-* [Michal Mrnušťík](michal.mrnustik@outlook.com )
+fixed mail* [Roman Jašek](mailto:roman.jasek@hotmail.com )
+* [Tibor Jašek](mailto:tibor.jasek@gmail.com )
+* [Michal Mrnušťík](mailto:michal.mrnustik@outlook.com )
+* [Michal Tichý](mailto:edu@tichymichal.net )
 * [Jan Pluskal](http://www.fit.vutbr.cz/~ipluskal/)
-* [Erik Macháček](erik.machacek@solarwinds.com)
+* [Erik Macháček](mailto:erik.machacek@solarwinds.com)
 
 --- 
 # Užitečné odkazy

@@ -1,0 +1,18 @@
+﻿@inherits LayoutComponentBase
+
+<NavMenu />
+
+<div class="container mt-2 mb-2 mt-sm-4 mb-sm-4">
+    @Body
+    
+    <div class="position-fixed fixed-bottom m-4">
+        <OnlineStatusIndicator>
+            <OnlineFragment>
+                <h3 class="badge badge-success">Online</h3>
+            </OnlineFragment>
+            <OfflineFragment>
+                <h3 class="badge badge-danger">Offline</h3>
+            </OfflineFragment>
+        </OnlineStatusIndicator>
+    </div>
+</div>
