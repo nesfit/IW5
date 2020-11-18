@@ -30,15 +30,15 @@ Pro připojení do týmu **IW5-2020Z** použijte přístupový kód **txdbgzd**.
 | 29. 9. | Inversion of Control, konfigurace, middleware, logging (Michal Mrnuštík) |
 | 06. 10. | ASP.NET Core Web API (Roman Jašek) |
 | 13. 10. | Jak psát testy |
-| 20. 10. | Web - část 1 (Roman Jašek) |
-| 27. 10. | Web - část 2 (Michal Tichý) |
-| 03. 11. | Web - část 3 (Maroš Janota) |
+| 20. 10. | Web - Blazor (Roman Jašek) |
+| 27. 10. | Web - frontend (Maroš Janota) |
+| 03. 11. | Web - napojení na API (Michal Tichý) |
 | 10. 11. | .NET Internals, Intermediate Language, Code Generation (Roman Jašek) |
 | 17. 11. | **Státní svátek** |
-| 24. 11. | Softwarové architektury v C# (Martin Dybal) |
-| 31. 11. | Design Patterns v C# (Martin Dybal) |
+| 24. 11. | Design Patterns v C# (Martin Dybal) |
+| 31. 11. | Softwarové architektury v C# (Martin Dybal) |
 | 08. 12. | Angular frontend for .NET backend (Erik Macháček)|
-| 15. 12. | (Microsoft Azure, Xamarin, PWA…) - hlasování |
+| 15. 12. | Xamarin - vývoj multiplatformních mobilních aplikací v С# (Roman Jašek) |
 
 --- 
 # Cvičení 
@@ -55,8 +55,8 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení n
 | 22. 9.  | C# tooling, VS - zalozeni projektu ASP.NET Core, zalozeni VSTS | 
 | 06. 10. | Controller, endpoint, postman, curl, swagger | 
 | 13. 10. | VS Test Explorer, Resharper, Code coverage, Live Tests, CI v VSTS (Demonstracne) a důraz na psaní testů |
-| 20. 10. | Web - část 1 |
-| 27. 10. | Web - část 2 |
+| 20. 10. | Web - Blazor |
+| 27. 10. | Web - Progressive Web Apps |
 | 03. 11. | Takhle napiste projekt? |
 
 ---
