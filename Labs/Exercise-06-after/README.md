@@ -1,0 +1,1 @@
+Zdrojové kódy ukazované na cvičení nájdete v rámci [7. prednášky](https://github.com/FitIW/5/tree/master/Lectures/Lecture_07)
