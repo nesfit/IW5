@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { IngredientComponent } from './ingredient/ingredient.component';
+import {ApiModule} from './api/api.module';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,8 @@ import { IngredientComponent } from './ingredient/ingredient.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ApiModule.forRoot({ rootUrl: 'https://localhost:44378//api' })
   ],
   providers: [],
   bootstrap: [AppComponent]
