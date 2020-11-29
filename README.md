@@ -36,7 +36,7 @@ Pro připojení do týmu **IW5-2020Z** použijte přístupový kód **txdbgzd**.
 | 10. 11. | .NET Internals, Intermediate Language, Code Generation (Roman Jašek) |
 | 17. 11. | **Státní svátek** |
 | 24. 11. | Design Patterns v C# (Martin Dybal) |
-| 31. 11. | Softwarové architektury v C# (Martin Dybal) |
+| 01. 12. | Softwarové architektury v C# (Martin Dybal) |
 | 08. 12. | Angular frontend for .NET backend (Erik Macháček)|
 | 15. 12. | Xamarin - vývoj multiplatformních mobilních aplikací v С# (Roman Jašek) |
 
