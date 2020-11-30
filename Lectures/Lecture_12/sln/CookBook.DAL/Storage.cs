@@ -82,7 +82,8 @@ namespace CookBook.DAL
                 Name = "Míchaná vejce",
                 Description = "Popis míchaných vajec",
                 Duration = TimeSpan.FromMinutes(15),
-                FoodType = FoodType.MainDish
+                FoodType = FoodType.MainDish,
+                ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/2/20/Scrambed_eggs.jpg"
             });
         }
     }

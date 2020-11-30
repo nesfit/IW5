@@ -1,5 +1,4 @@
-﻿using CookBook.Models;
-using EnumsNET;
+﻿using EnumsNET;
 using System;
 
 namespace CookBook.Models
@@ -9,6 +8,7 @@ namespace CookBook.Models
         public Guid Id { get; set; }
         public string Name { get; set; }
         public TimeSpan Duration { get; set; }
+        public string ImageUrl { get; set; }
         public FoodType FoodType { get; set; }
         public string FoodTypeText => FoodType.AsString(EnumFormat.Description);
     }
