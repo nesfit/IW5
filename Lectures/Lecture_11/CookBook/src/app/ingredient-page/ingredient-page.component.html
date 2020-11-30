@@ -2,7 +2,9 @@
     <tr>
         <th>Name</th>
     </tr>
-    <tr *ngFor = "let ingredient of ingredients">
-        <td>{{ingredient.name}}</td>
+    <tr *ngFor="let ingredient of ingredients">
+        <td>
+            <a routerLink="/ingredient/{{ingredient.id}}">{{ingredient.name}}</a>
+        </td>
     </tr>
 </table>
