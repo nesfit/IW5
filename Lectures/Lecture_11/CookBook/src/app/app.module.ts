@@ -20,7 +20,7 @@ import { HomeComponent } from './home/home.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ApiModule.forRoot({ rootUrl: 'https://localhost:44378//api' })
+    ApiModule.forRoot({ rootUrl: 'https://localhost:44378' })
   ],
   providers: [],
   bootstrap: [AppComponent]
