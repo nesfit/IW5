@@ -1,1 +1,18 @@
-<p>ingredient works!</p>
+<router-outlet></router-outlet>
+<h1>Ingredient</h1>
+
+<form>
+    <div class="form-group">
+        <label>Name {{id}}</label>
+        <input>
+        <small *ngIf="errorMessage != ''">{{errorMessage}}</small>
+    </div>
+    <div>
+        <label>Description</label>
+        <input>
+    </div>
+
+    <button type="submit">Save</button>
+    <button>Delete</button>
+
+</form>
