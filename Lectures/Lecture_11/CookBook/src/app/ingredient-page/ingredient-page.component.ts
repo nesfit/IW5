@@ -11,10 +11,10 @@ import { IngredientService } from '../api/services';
 export class IngredientPageComponent implements OnInit {
 
   constructor(private ingredientService: IngredientService) { }
-  ingredients: Observable<Array<IngredientListModel>> | undefined;
+  ingredients: Array<IngredientListModel> | undefined;
 
   ngOnInit(): void {
-    this.ingredients = this.ingredientService.ingredientGetAll();
+    this.ingredientService.ingredientGetAll().subscribe(loadedIngredients => this.ingredients = loadedIngredients);
   }
 
 }

@@ -1,1 +1,8 @@
-<p>ingredient-page works!</p>
+<table>
+    <tr>
+        <th>Name</th>
+    </tr>
+    <tr *ngFor = "let ingredient of ingredients">
+        <td>{{ingredient.name}}</td>
+    </tr>
+</table>
