@@ -1,0 +1,28 @@
+﻿@page "/recipes"
+@namespace CookBook.Web.Pages
+@layout ListLayout
+@inherits PageBase
+
+<h1>Recipes</h1>
+
+<table class="table border table-striped">
+    <thead class="thead-light">
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Food type</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var recipe in Recipes)
+        {
+            <tr>
+                <td><NavLink href="@($"/recipe/{recipe.Id}")">@recipe.Name</NavLink></td>
+                <td>@recipe.FoodTypeText</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="text-center">
+    <NavLink href="@("/recipe/create")" class="btn btn-primary">Create new recipe</NavLink>
+</div>

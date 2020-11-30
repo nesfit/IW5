@@ -1,0 +1,28 @@
+{
+  "Version": 3,
+
+  /*  Create an item in the dropdown list for each project in the solution?  */
+  "ListAllProjects": false,
+
+  "MultiProjectConfigurations": {
+    "API + WEB": {
+      "Projects": {
+        "CookBook.Api": {},
+        "CookBook.Web": {}
+      }
+    },
+    "API + Android": {
+      "Projects": {
+        "CookBook.API": {},
+        "CookBook.Mobile.Android": {}
+      }
+    },
+    "API + Web + Android": {
+      "Projects": {
+        "CookBook.API": {},
+        "CookBook.Web": {},
+        "CookBook.Mobile.Android": {}
+      }
+    }
+  }
+}
