@@ -41,13 +41,15 @@ namespace CookBook.DAL
             {
                 Id = ingredientGuids[0],
                 Name = "Vejce",
-                Description = "Popis vajec"
+                Description = "Popis vajec",
+                ImageUrl = "https://upload.wikimedia.org/wikipedia/en/thumb/5/58/Instagram_egg.jpg/220px-Instagram_egg.jpg"
             });
             Ingredients.Add(new IngredientEntity
             {
                 Id = ingredientGuids[1],
                 Name = "Cibule",
-                Description = "Popis cibule"
+                Description = "Popis cibule",
+                ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/2/25/Onion_on_White.JPG"
             });
         }
 
