@@ -10,18 +10,44 @@ import { IngredientService } from '../api/services';
 })
 export class IngredientComponent implements OnInit {
 
-  constructor(private ingredientService: IngredientService, private route: ActivatedRoute) { }
+  constructor(
+    private ingredientService: IngredientService,
+    private route: ActivatedRoute
+  ) { }
 
-  loadIngredientError = '';
+  loadIngredientError = false;
   errorMessage = '';
-  ingredient: IngredientDetailModel | undefined;
+  model: IngredientDetailModel | undefined;
 
   ngOnInit(): void {
     const id = this.route.snapshot.params.id;
     const request = { id };
 
     this.ingredientService.ingredientGetById(request).subscribe(
-      providedIngredient => this.ingredient = providedIngredient,
-      error => this.loadIngredientError = 'Unable to load given ingredient');
+      providedIngredient => this.model = providedIngredient,
+      error => this.loadIngredientError = true);
+  }
+
+  onSave(): void {
+    if (this.model !== undefined) {
+      const model = this.model;
+      const request = { body: model };
+
+      if (model.id !== undefined) {
+        this.ingredientService.ingredientUpdate(request);
+      }
+      else {
+        this.ingredientService.ingredientCreate(request);
+      }
+    }
+  }
+
+  onDelete(): void {
+    if (this.model?.id !== undefined) {
+      const id: string = this.model.id;
+      const request = { id };
+
+      this.ingredientService.ingredientDelete(request);
+    }
   }
 }

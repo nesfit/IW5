@@ -3,18 +3,20 @@
 
 <p *ngIf=loadIngredientError>Unable to load given ingredient</p>
 
-<form *ngIf=!loadIngredientError>
+<form *ngIf=!loadIngredientError (ngSubmit)="onSave()" #ingredientComponent="ngForm">
     <div class="form-group">
-        <label>Name</label>
-        <input>
-        <small *ngIf="errorMessage != ''">{{errorMessage}}</small>
-    </div>
-    <div>
-        <label>Description {{ingredient?.name}}</label>
-        <input>
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" required [(ngModel)]="model!.name" name="name" #name="ngModel">
+        <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+            Name is required
+        </div>
     </div>
 
-    <button type="submit">Save</button>
-    <button>Delete</button>
+    <div class="form-group">
+        <label for="description">Description</label>
+        <input type="text" class="form-control" id="description" required [(ngModel)]="model!.description" name="description">
+    </div>
 
+    <button type="submit" class="btn btn-success">Save</button>
+    <button type="button" class="btn btn-default" (click)="onDelete()">Delete</button>
 </form>

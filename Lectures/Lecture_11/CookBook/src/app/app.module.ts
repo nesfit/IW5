@@ -8,6 +8,7 @@ import { ApiModule } from './api/api.module';
 import { IngredientPageComponent } from './ingredient-page/ingredient-page.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { HomeComponent } from './home/home.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
     ApiModule.forRoot({ rootUrl: 'https://localhost:44378' })
   ],
   providers: [],
