@@ -1,14 +1,16 @@
 <router-outlet></router-outlet>
 <h1>Ingredient</h1>
 
-<form>
+<p *ngIf=loadIngredientError>Unable to load given ingredient</p>
+
+<form *ngIf=!loadIngredientError>
     <div class="form-group">
-        <label>Name {{id}}</label>
+        <label>Name</label>
         <input>
         <small *ngIf="errorMessage != ''">{{errorMessage}}</small>
     </div>
     <div>
-        <label>Description</label>
+        <label>Description {{ingredient?.name}}</label>
         <input>
     </div>
 

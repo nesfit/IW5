@@ -12,11 +12,16 @@ export class IngredientComponent implements OnInit {
 
   constructor(private ingredientService: IngredientService, private route: ActivatedRoute) { }
 
+  loadIngredientError = '';
   errorMessage = '';
   ingredient: IngredientDetailModel | undefined;
-  id: string = "0";
 
   ngOnInit(): void {
-    this.id = this.route.snapshot.params.id;
+    const id = this.route.snapshot.params.id;
+    const request = { id };
+
+    this.ingredientService.ingredientGetById(request).subscribe(
+      providedIngredient => this.ingredient = providedIngredient,
+      error => this.loadIngredientError = 'Unable to load given ingredient');
   }
 }
