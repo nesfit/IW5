@@ -34,10 +34,10 @@ export class IngredientComponent implements OnInit {
       const request = { body: model };
 
       if (model.id !== undefined) {
-        this.ingredientService.ingredientUpdate(request);
+        this.ingredientService.ingredientUpdate(request).subscribe();
       }
       else {
-        this.ingredientService.ingredientCreate(request);
+        this.ingredientService.ingredientCreate(request).subscribe();
       }
     }
   }
@@ -47,7 +47,7 @@ export class IngredientComponent implements OnInit {
       const id: string = this.model.id;
       const request = { id };
 
-      this.ingredientService.ingredientDelete(request);
+      this.ingredientService.ingredientDelete(request).subscribe();
     }
   }
 }
