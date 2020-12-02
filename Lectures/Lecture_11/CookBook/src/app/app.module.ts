@@ -9,13 +9,15 @@ import { IngredientPageComponent } from './ingredient-page/ingredient-page.compo
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { FormsModule } from '@angular/forms';
+import { RecipePageComponent } from './recipe-page/recipe-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     IngredientComponent,
     IngredientPageComponent,
-    HomeComponent
+    HomeComponent,
+    RecipePageComponent
   ],
   imports: [
     BrowserModule,
