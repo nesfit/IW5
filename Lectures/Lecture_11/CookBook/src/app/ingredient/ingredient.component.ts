@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IngredientDetailModel } from '../api/models';
 import { IngredientService } from '../api/services';
@@ -14,6 +14,9 @@ export class IngredientComponent implements OnInit {
     private ingredientService: IngredientService,
     private route: ActivatedRoute
   ) { }
+
+  @Output() newIngredientCreated = new EventEmitter<void>();
+
   loadIngredientError = false;
   editingAvailable = false;
   errorMessage = '';
@@ -43,6 +46,7 @@ export class IngredientComponent implements OnInit {
       else {
         this.ingredientService.ingredientCreate(request).subscribe();
         this.model = { description: '', name: '' };
+        this.newIngredientCreated.emit();
       }
     }
   }

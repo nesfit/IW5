@@ -13,7 +13,14 @@ export class IngredientPageComponent implements OnInit {
   ingredients: Array<IngredientListModel> | undefined;
 
   ngOnInit(): void {
-    this.ingredientService.ingredientGetAll().subscribe(loadedIngredients => this.ingredients = loadedIngredients);
+    this.refreshIngredients();
   }
 
+  onNewIngredientCreated(): void {
+    this.refreshIngredients();
+  }
+
+  refreshIngredients(): void {
+    this.ingredientService.ingredientGetAll().subscribe(loadedIngredients => this.ingredients = loadedIngredients);
+  }
 }
