@@ -14,18 +14,22 @@ export class IngredientComponent implements OnInit {
     private ingredientService: IngredientService,
     private route: ActivatedRoute
   ) { }
-
   loadIngredientError = false;
+  editingAvailable = false;
   errorMessage = '';
-  model: IngredientDetailModel = {description: '', name: ''} ;
+  model: IngredientDetailModel = { description: '', name: '' };
 
   ngOnInit(): void {
     const id = this.route.snapshot.params.id;
-    const request = { id };
+    if (id !== undefined) {
+      const request = { id };
 
-    this.ingredientService.ingredientGetById(request).subscribe(
-      providedIngredient => this.model = providedIngredient,
-      error => this.loadIngredientError = true);
+      this.ingredientService.ingredientGetById(request).subscribe(
+        providedIngredient => this.model = providedIngredient,
+        error => this.loadIngredientError = true);
+
+      this.editingAvailable = true;
+    }
   }
 
   onSave(): void {
@@ -38,6 +42,7 @@ export class IngredientComponent implements OnInit {
       }
       else {
         this.ingredientService.ingredientCreate(request).subscribe();
+        this.model = { description: '', name: '' };
       }
     }
   }

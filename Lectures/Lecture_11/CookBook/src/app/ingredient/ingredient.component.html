@@ -17,6 +17,6 @@
         <input type="text" class="form-control" id="description" required [(ngModel)]="model!.description" name="description">
     </div>
 
-    <button type="submit" class="btn btn-success">Save</button>
-    <button type="button" class="btn btn-default" (click)="onDelete()">Delete</button>
+    <button type="submit" class="btn btn-success"> {{editingAvailable ? "Save" : "Create"}}</button>
+    <button type="button" class="btn btn-default" (click)="onDelete()" [hidden]="!editingAvailable" >Delete</button>
 </form>
