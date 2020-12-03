@@ -1,5 +1,5 @@
 <router-outlet></router-outlet>
-<h1>Ingredient</h1>
+<h1 *ngIf=editingAvailable>Ingredient</h1>
 
 <p *ngIf=loadIngredientError>Unable to load given ingredient</p>
 
