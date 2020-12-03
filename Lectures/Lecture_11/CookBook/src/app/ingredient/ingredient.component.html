@@ -6,17 +6,30 @@
 <form *ngIf=!loadIngredientError (ngSubmit)="onSave()" #ingredientComponent="ngForm">
     <div class="form-group">
         <label for="name">Name</label>
-        <input type="text" class="form-control" id="name" required [(ngModel)]="model!.name" name="name" #name="ngModel">
-        <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
-            Name is required
+        <input type="text" class="form-control" id="name" required [(ngModel)]="model!.name" name="name"
+            #name="ngModel">
+        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+            <div *ngIf="name.errors!.required">
+                Name is required
+            </div>
         </div>
     </div>
 
     <div class="form-group">
         <label for="description">Description</label>
-        <input type="text" class="form-control" id="description" required [(ngModel)]="model!.description" name="description">
+        <input type="text" class="form-control" id="description" minlength="10" required
+            [(ngModel)]="model!.description" name="description" #description="ngModel">
+        <div *ngIf="description.invalid && (description.dirty || description.touched)" class="alert alert-danger">
+            <div *ngIf="description.errors!.required">
+                Description is required
+            </div>
+            <div *ngIf="description.errors!.minlength">
+                Description must be at least 10 characters long
+            </div>
+        </div>
     </div>
 
-    <button type="submit" class="btn btn-success"> {{editingAvailable ? "Save" : "Create"}}</button>
-    <button type="button" class="btn btn-default" (click)="onDelete()" [hidden]="!editingAvailable" >Delete</button>
+    <button [disabled]=ingredientComponent.invalid type="submit" class="btn btn-success">
+        {{editingAvailable ? "Save" : "Create"}}</button>
+    <button type="button" class="btn btn-default" (click)="onDelete()" [hidden]="!editingAvailable">Delete</button>
 </form>
