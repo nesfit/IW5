@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IngredientDetailModel } from '../api/models';
 import { IngredientService } from '../api/services';
 
@@ -12,6 +12,7 @@ export class IngredientComponent implements OnInit {
 
   constructor(
     private ingredientService: IngredientService,
+    private router: Router,
     private route: ActivatedRoute
   ) { }
 
@@ -62,7 +63,7 @@ export class IngredientComponent implements OnInit {
       const id: string = this.model.id;
       const request = { id };
 
-      this.ingredientService.ingredientDelete(request).subscribe();
+      this.ingredientService.ingredientDelete(request).subscribe(complete => this.router.navigate(['/ingredients']));
     }
   }
 }
