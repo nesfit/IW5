@@ -44,9 +44,13 @@ export class IngredientComponent implements OnInit {
         this.ingredientService.ingredientUpdate(request).subscribe();
       }
       else {
-        this.ingredientService.ingredientCreate(request).subscribe();
-        this.model = { description: '', name: '' };
-        this.newIngredientCreated.emit();
+        this.ingredientService.ingredientCreate(request).subscribe(
+          complete => {
+            this.model = { description: '', name: '' };
+            this.newIngredientCreated.emit();
+          }
+        );
+
       }
     }
   }
