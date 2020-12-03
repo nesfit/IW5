@@ -17,7 +17,7 @@ export class IngredientComponent implements OnInit {
 
   loadIngredientError = false;
   errorMessage = '';
-  model: IngredientDetailModel | undefined;
+  model: IngredientDetailModel = {description: '', name: ''} ;
 
   ngOnInit(): void {
     const id = this.route.snapshot.params.id;
