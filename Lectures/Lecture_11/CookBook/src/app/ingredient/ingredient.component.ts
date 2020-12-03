@@ -19,7 +19,7 @@ export class IngredientComponent implements OnInit {
   @ViewChild('ingredientComponent') form: any;
 
   loadIngredientError = false;
-  editingAvailable = false;
+  editMode = false;
   errorMessage = '';
   model: IngredientDetailModel = { description: '', name: '' };
 
@@ -32,7 +32,7 @@ export class IngredientComponent implements OnInit {
         providedIngredient => this.model = providedIngredient,
         error => this.loadIngredientError = true);
 
-      this.editingAvailable = true;
+      this.editMode = true;
     }
   }
 

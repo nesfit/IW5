@@ -1,5 +1,5 @@
 <router-outlet></router-outlet>
-<h1 *ngIf=editingAvailable>Ingredient</h1>
+<h1 *ngIf=editMode>Ingredient</h1>
 
 <p *ngIf=loadIngredientError>Unable to load given ingredient</p>
 
@@ -30,6 +30,6 @@
     </div>
 
     <button [disabled]=ingredientComponent.invalid type="submit" class="btn btn-success">
-        {{editingAvailable ? "Save" : "Create"}}</button>
-    <button type="button" class="btn btn-default" (click)="onDelete()" [hidden]="!editingAvailable">Delete</button>
+        {{editMode ? "Save" : "Create"}}</button>
+    <button type="button" class="btn btn-default" (click)="onDelete()" [hidden]="!editMode">Delete</button>
 </form>
