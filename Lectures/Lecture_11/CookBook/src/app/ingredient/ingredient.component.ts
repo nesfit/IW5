@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IngredientDetailModel } from '../api/models';
 import { IngredientService } from '../api/services';
@@ -16,6 +16,7 @@ export class IngredientComponent implements OnInit {
   ) { }
 
   @Output() newIngredientCreated = new EventEmitter<void>();
+  @ViewChild('ingredientComponent') form: any;
 
   loadIngredientError = false;
   editingAvailable = false;
@@ -47,6 +48,7 @@ export class IngredientComponent implements OnInit {
         this.ingredientService.ingredientCreate(request).subscribe(
           complete => {
             this.model = { description: '', name: '' };
+            this.form.reset();
             this.newIngredientCreated.emit();
           }
         );
