@@ -1,13 +1,14 @@
 <h1>Ingredients</h1>
-<app-ingredient (newIngredientCreated)="onNewIngredientCreated()"></app-ingredient>
-
-<table>
-    <tr>
-        <th>Name</th>
-    </tr>
-    <tr *ngFor="let ingredient of ingredients">
-        <td>
-            <a routerLink="/ingredient/{{ingredient.id}}">{{ingredient.name}}</a>
-        </td>
-    </tr>
-</table>
+<div class="flex-wrapper">
+    <app-ingredient class="flex-block" (newIngredientCreated)="onNewIngredientCreated()"></app-ingredient>
+    <table class="flex-block">
+        <tr>
+            <th>Name</th>
+        </tr>
+        <tr *ngFor="let ingredient of ingredients">
+            <td>
+                <a routerLink="/ingredient/{{ingredient.id}}">{{ingredient.name}}</a>
+            </td>
+        </tr>
+    </table>
+</div>
