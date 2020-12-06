@@ -36,6 +36,15 @@ export class RecipeComponent implements OnInit {
   }
 
   onSave(): void {
+    const model = this.model;
+    const request = { body: model };
+
+    if (model.id !== undefined) {
+      this.recipeService.recipeUpdate(request).subscribe();
+    } else {
+      this.recipeService.recipeCreate(request).subscribe(
+        complete => this.router.navigate(['/recipes']));
+    }
   }
 
   onDelete(): void {
