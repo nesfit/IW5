@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { RecipeDetailModel } from '../api/models';
+import { FoodType, RecipeDetailModel } from '../api/models';
 import { RecipeService } from '../api/services';
 
 @Component({
@@ -15,6 +15,8 @@ export class RecipeComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
   ) { }
+
+  public foodTypes = FoodType;
 
   loadRecipeError = false;
   editMode = false;

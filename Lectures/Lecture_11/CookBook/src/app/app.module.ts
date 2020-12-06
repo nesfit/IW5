@@ -11,6 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { FormsModule } from '@angular/forms';
 import { RecipePageComponent } from './recipe-page/recipe-page.component';
 import { RecipeComponent } from './recipe/recipe.component';
+import { EnumToArrayPipe } from './enum-to-array.pipe';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { RecipeComponent } from './recipe/recipe.component';
     IngredientPageComponent,
     HomeComponent,
     RecipePageComponent,
-    RecipeComponent
+    RecipeComponent,
+    EnumToArrayPipe,
   ],
   imports: [
     BrowserModule,
