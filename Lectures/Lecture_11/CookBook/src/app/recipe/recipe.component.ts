@@ -33,4 +33,16 @@ export class RecipeComponent implements OnInit {
     }
   }
 
+  onSave(): void{
+  }
+
+  onDelete(): void {
+    if (this.model?.id !== undefined) {
+      const id: string = this.model.id;
+      const request = { id };
+
+      this.recipeService.recipeDelete(request).subscribe(complete => this.router.navigate(['/recipes']));
+    }
+  }
+
 }
