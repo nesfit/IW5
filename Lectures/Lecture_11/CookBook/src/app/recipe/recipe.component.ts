@@ -20,7 +20,7 @@ export class RecipeComponent implements OnInit {
 
   loadRecipeError = false;
   editMode = false;
-  model: RecipeDetailModel = {};
+  model: RecipeDetailModel = { ingredients: []};
 
   ngOnInit(): void {
     const id = this.route.snapshot.params.id;
