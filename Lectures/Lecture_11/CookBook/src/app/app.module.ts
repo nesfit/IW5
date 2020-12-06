@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { RecipePageComponent } from './recipe-page/recipe-page.component';
 import { RecipeComponent } from './recipe/recipe.component';
 import { EnumToArrayPipe } from './enum-to-array.pipe';
+import { RecipeAddIngredientComponent } from './recipe-add-ingredient/recipe-add-ingredient.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { EnumToArrayPipe } from './enum-to-array.pipe';
     RecipePageComponent,
     RecipeComponent,
     EnumToArrayPipe,
+    RecipeAddIngredientComponent,
   ],
   imports: [
     BrowserModule,

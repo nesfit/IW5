@@ -1,0 +1,13 @@
+<form (ngSubmit)="onAdd()" #ingredientComponent="ngForm">
+    <select [(ngModel)]="selectedIngredient" [ngModelOptions]="{standalone: true}">
+        <option *ngFor="let ingredient of ingredients" [ngValue]="ingredient">{{ingredient.name}}</option>
+    </select>
+
+    <input type="number" class="form-control" id="amount" [(ngModel)]="amount" name="amount">
+
+    <select [(ngModel)]="selectedUnit" [ngModelOptions]="{standalone: true}">
+        <option *ngFor="let item of units | enumToArray;" [value]="item.key">{{item.value}}</option>
+    </select>
+
+    <button [disabled]=ingredientComponent.invalid type="submit" class="btn btn-success">Add</button>
+</form>

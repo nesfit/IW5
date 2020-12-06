@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FoodType, RecipeDetailModel, RecipeListIngredientModel } from '../api/models';
+import { FoodType, RecipeDetailModel, RecipeListIngredientModel, RecipeListModel } from '../api/models';
 import { RecipeService } from '../api/services';
 
 @Component({
@@ -51,5 +51,9 @@ export class RecipeComponent implements OnInit {
       const index = this.model.ingredients.indexOf(ingredient);
       this.model.ingredients.splice(index, 1);
     }
+  }
+
+  addIngredient(ingredient: RecipeListIngredientModel): void {
+    this.model.ingredients?.push(ingredient);
   }
 }
