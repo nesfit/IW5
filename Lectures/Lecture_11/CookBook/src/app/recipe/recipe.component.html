@@ -1,8 +1,8 @@
 <h1>Recipe</h1>
 
-<p class="alert alert-danger" *ngIf=loadIngredientError>Unable to load given recipe</p>
+<p class="alert alert-danger" *ngIf=loadRecipeError>Unable to load given recipe</p>
 
-<div class="flex-wrapper" *ngIf=!loadIngredientError>
+<div class="flex-wrapper" *ngIf=!loadRecipeError>
     <div class="flex-block">
         <form (ngSubmit)="onSave()" #recipeComponent="ngForm">
             <div class="form-group">

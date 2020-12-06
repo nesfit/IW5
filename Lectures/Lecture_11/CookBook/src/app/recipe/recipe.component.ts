@@ -16,7 +16,7 @@ export class RecipeComponent implements OnInit {
     private route: ActivatedRoute,
   ) { }
 
-  loadIngredientError = false;
+  loadRecipeError = false;
   editMode = false;
   model: RecipeDetailModel = {};
 
@@ -27,7 +27,7 @@ export class RecipeComponent implements OnInit {
 
       this.recipeService.recipeGetById(request).subscribe(
         providedRecipe => this.model = providedRecipe,
-        error => this.loadIngredientError = true);
+        error => this.loadRecipeError = true);
 
       this.editMode = true;
     }
