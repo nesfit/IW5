@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FoodType, RecipeDetailModel } from '../api/models';
+import { FoodType, RecipeDetailModel, RecipeListIngredientModel } from '../api/models';
 import { RecipeService } from '../api/services';
 
 @Component({
@@ -35,7 +35,7 @@ export class RecipeComponent implements OnInit {
     }
   }
 
-  onSave(): void{
+  onSave(): void {
   }
 
   onDelete(): void {
@@ -46,5 +46,10 @@ export class RecipeComponent implements OnInit {
       this.recipeService.recipeDelete(request).subscribe(complete => this.router.navigate(['/recipes']));
     }
   }
-
+  ingredientRemoved(ingredient: RecipeListIngredientModel): void {
+    if (this.model.ingredients != null) {
+      const index = this.model.ingredients.indexOf(ingredient);
+      this.model.ingredients.splice(index, 1);
+    }
+  }
 }

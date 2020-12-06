@@ -40,6 +40,19 @@
         </form>
     </div>
     <div class="flex-block">
-
+        <table>
+            <tr>
+                <th>Name</th>
+                <th></th>
+            </tr>
+            <tr *ngFor="let usedIngredient of model!.ingredients">
+                <td>
+                    {{usedIngredient!.ingredient!.name}} {{usedIngredient!.amount}} {{usedIngredient!.unitText}}
+                </td>
+                <td>
+                    <button class="btn btn-default" (click)="ingredientRemoved(usedIngredient)">Delete</button>
+                </td>
+            </tr>
+        </table>
     </div>
 </div>
