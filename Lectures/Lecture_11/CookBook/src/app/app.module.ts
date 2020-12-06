@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { FormsModule } from '@angular/forms';
 import { RecipePageComponent } from './recipe-page/recipe-page.component';
+import { RecipeComponent } from './recipe/recipe.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { RecipePageComponent } from './recipe-page/recipe-page.component';
     IngredientComponent,
     IngredientPageComponent,
     HomeComponent,
-    RecipePageComponent
+    RecipePageComponent,
+    RecipeComponent
   ],
   imports: [
     BrowserModule,
