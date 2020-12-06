@@ -22,6 +22,11 @@
                     [(ngModel)]="model!.description" name="description">
             </div>
 
+            <div class="form-group">
+                <label for="duration">Duration:</label>
+                <input type="text" class="form-control" id="duration" [(ngModel)]="model!.duration" name="duration">
+            </div>
+
             <button [disabled]=recipeComponent.invalid type="submit" class="btn btn-success">
                 {{editMode ? "Save" : "Create"}}</button>
             <button type="button" class="btn btn-default" (click)="onDelete()" [hidden]="!editMode">Delete</button>
