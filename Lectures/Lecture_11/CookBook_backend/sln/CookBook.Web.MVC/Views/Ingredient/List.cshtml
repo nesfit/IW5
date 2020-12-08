@@ -1,0 +1,10 @@
+﻿@model IngredientListViewModel
+
+<div>
+    <a asp-controller="Ingredient" asp-action="New">Přidat novú</a>
+
+    @foreach (var ingredient in Model.Ingredients)
+    {
+        <partial name="_IngredientListItem" model="ingredient" />
+    }
+</div>
