@@ -4131,11 +4131,6 @@ graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2, graceful-fs@^4.1.6
   resolved "http://dev-artifactory.dev.local:80/artifactory/api/npm/npm/graceful-fs/-/graceful-fs-4.2.4.tgz#2256bde14d3632958c465ebc96dc467ca07a29fb"
   integrity sha1-Ila94U02MpWMRl68ltxGfKB6Kfs=
 
-guid-typescript@^1.0.9:
-  version "1.0.9"
-  resolved "http://dev-artifactory.dev.local:80/artifactory/api/npm/npm/guid-typescript/-/guid-typescript-1.0.9.tgz#e35f77003535b0297ea08548f5ace6adb1480ddc"
-  integrity sha1-4193ADU1sCl+oIVI9azmrbFIDdw=
-
 handle-thing@^2.0.0:
   version "2.0.1"
   resolved "http://dev-artifactory.dev.local:80/artifactory/api/npm/npm/handle-thing/-/handle-thing-2.0.1.tgz#857f79ce359580c340d43081cc648970d0bb234e"
