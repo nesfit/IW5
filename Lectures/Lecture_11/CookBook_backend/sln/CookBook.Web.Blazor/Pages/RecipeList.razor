@@ -1,0 +1,41 @@
+﻿@page "/{Culture}/recipes"
+@layout ListLayout
+@inherits PageBase
+
+<h1>Recipes</h1>
+
+<table class="table border table-striped">
+    <thead class="thead-light">
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Food type</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var recipe in Recipes)
+        {
+            <tr>
+                <td><NavLink href="@($"/{Culture}/recipe/{recipe.Id}")">@recipe.Name</NavLink></td>
+                <td>@recipe.FoodTypeText</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="text-center">
+    <NavLink href="@($"/{Culture}/recipe/00000000-0000-0000-0000-000000000000")" class="btn btn-primary">Create new recipe</NavLink>
+</div>
+
+@code {
+    [Inject]
+    private IRecipesFacade recipesFacade { get; set; }
+
+    private IList<RecipeListModel> Recipes { get; set; } = new List<RecipeListModel>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+
+        Recipes = await recipesFacade.RecipesGetAsync(Culture);
+    }
+}

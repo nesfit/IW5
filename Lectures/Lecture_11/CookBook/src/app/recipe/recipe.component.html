@@ -1,0 +1,61 @@
+<h1>Recipe</h1>
+
+<p class="alert alert-danger" *ngIf=loadRecipeError>Unable to load given recipe</p>
+
+<div class="flex-wrapper" *ngIf=!loadRecipeError>
+    <div class="flex-block">
+        <form (ngSubmit)="onSave()" #recipeComponent="ngForm">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" id="name" required [(ngModel)]="model!.name" name="name"
+                    #name="ngModel">
+                <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+                    <div *ngIf="name.errors!.required">
+                        Name is required
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <input type="text" class="form-control" id="description"
+                    [(ngModel)]="model!.description" name="description">
+            </div>
+
+            <div class="form-group">
+                <label for="duration">Duration:</label>
+                <input type="text" class="form-control" id="duration" [(ngModel)]="model!.duration" name="duration">
+            </div>
+
+            <div class="form-group">
+                <label for="foodType">Food Type:</label>
+                <select [(ngModel)]="model!.foodType" [ngModelOptions]="{standalone: true}">
+                    <option *ngFor="let item of foodTypes | enumToArray;" [value]="item.key">{{item.value}}</option>
+                </select>
+            </div>
+
+            <button [disabled]=recipeComponent.invalid type="submit" class="btn btn-success">
+                {{editMode ? "Save" : "Create"}}</button>
+            <button type="button" class="btn btn-default" (click)="onDelete()" [hidden]="!editMode">Delete</button>
+        </form>
+    </div>
+    <div class="flex-block fix-right-margin">
+        <h2>Ingredients:</h2>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th></th>
+            </tr>
+            <tr *ngFor="let usedIngredient of model!.ingredients">
+                <td>
+                    {{usedIngredient!.ingredient!.name}} {{usedIngredient!.amount}} {{usedIngredient!.unitText}}
+                </td>
+                <td>
+                    <button class="btn btn-default" (click)="ingredientRemoved(usedIngredient)">Delete</button>
+                </td>
+            </tr>
+        </table>
+        <h2>Add new ingredient:</h2>
+        <app-recipe-add-ingredient (addIngredient)="addIngredient($event)" ></app-recipe-add-ingredient>
+    </div>
+</div>
