@@ -14,6 +14,7 @@
             <table class="table border table-striped">
                 <thead class="thead-light">
                 <tr>
+                    <th scope="row" width="100px">Photo</th>
                     <th scope="row">Name</th>
                 </tr>
                 </thead>
@@ -21,7 +22,10 @@
                 @foreach (var ingredient in Ingredients)
                 {
                     <tr>
-                        <td>
+                        <td class="align-middle">
+                            <img src="@ingredient.ImageUrl" style="width: auto; height: 40px"/>
+                        </td>
+                        <td class="align-middle">
                             <NavLink href="@($"/ingredients/{ingredient.Id}")">@ingredient.Name</NavLink>
                         </td>
                     </tr>

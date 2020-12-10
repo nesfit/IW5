@@ -8,6 +8,7 @@
 <table class="table border table-striped">
     <thead class="thead-light">
         <tr>
+            <th scope="col" width="100px">Photo</th>
             <th scope="col">Name</th>
             <th scope="col">Food type</th>
         </tr>
@@ -16,8 +17,9 @@
         @foreach (var recipe in Recipes)
         {
             <tr>
-                <td><NavLink href="@($"/recipe/{recipe.Id}")">@recipe.Name</NavLink></td>
-                <td>@recipe.FoodTypeText</td>
+                <td class="align-middle"><img src="@recipe.ImageUrl" style="width: auto; height:40px;"/> </td>
+                <td class="align-middle"><NavLink href="@($"/recipe/{recipe.Id}")">@recipe.Name</NavLink></td>
+                <td class="align-middle">@recipe.FoodTypeText</td>
             </tr>
         }
     </tbody>
