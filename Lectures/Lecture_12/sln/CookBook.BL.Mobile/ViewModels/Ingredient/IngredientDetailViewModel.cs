@@ -14,6 +14,7 @@ namespace CookBook.BL.Mobile.ViewModels
         private readonly INavigationService navigationService;
 
         public IngredientDetailModel Ingredient { get; set; }
+        public ICommand DeleteCommand { get; set; }
         public ICommand NavigateToEditCommand { get; set; }
 
         public IngredientDetailViewModel(Guid viewModelParameter,
@@ -24,12 +25,9 @@ namespace CookBook.BL.Mobile.ViewModels
         {
             this.ingredientsFacade = ingredientsFacade;
             this.navigationService = navigationService;
-            NavigateToEditCommand = commandFactory.CreateCommand<Guid>(NavigateToEdit);
-        }
 
-        private async void NavigateToEdit(Guid id)
-        {
-            await navigationService.PushAsync<IngredientEditViewModel, Guid?>(id);
+            DeleteCommand = commandFactory.CreateCommand(Delete);
+            NavigateToEditCommand = commandFactory.CreateCommand(NavigateToEdit);
         }
 
         public override async Task OnAppearing()
@@ -37,6 +35,17 @@ namespace CookBook.BL.Mobile.ViewModels
             await base.OnAppearing();
 
             Ingredient = await ingredientsFacade.GetIngredientAsync(viewModelParameter);
+        }
+
+        private async void Delete()
+        {
+            await ingredientsFacade.DeleteAsync(Ingredient.Id);
+            await navigationService.PopAsync();
+        }
+
+        private async void NavigateToEdit()
+        {
+            await navigationService.PushAsync<IngredientEditViewModel, Guid?>(Ingredient.Id);
         }
     }
 }
