@@ -20,4 +20,14 @@ namespace CookBook.BL.Mobile.ViewModels
             return Task.CompletedTask;
         }
     }
+
+    public abstract class ViewModelBase<TViewModelParameter> : ViewModelBase, IViewModel<TViewModelParameter>
+    {
+        protected TViewModelParameter viewModelParameter;
+
+        protected ViewModelBase(TViewModelParameter viewModelParameter)
+        {
+            this.viewModelParameter = viewModelParameter;
+        }
+    }
 }

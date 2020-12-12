@@ -1,5 +1,6 @@
 ﻿using CookBook.BL.Common.Facades;
 using CookBook.BL.Mobile.Api;
+using CookBook.BL.Mobile.Factories;
 using CookBook.BL.Mobile.Services;
 using CookBook.BL.Mobile.ViewModels;
 using CookBook.Common.Installers;
@@ -26,6 +27,9 @@ namespace CookBook.BL.Mobile.Installers
                     .AsSelf()
                     .WithTransientLifetime()
                 .AddClasses(classes => classes.AssignableTo<ISingletonService>())
+                    .AsMatchingInterface()
+                    .WithSingletonLifetime()
+                .AddClasses(classes => classes.AssignableTo<IFactory>())
                     .AsMatchingInterface()
                     .WithSingletonLifetime());
         }

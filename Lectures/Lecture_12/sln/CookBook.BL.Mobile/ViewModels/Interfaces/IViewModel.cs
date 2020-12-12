@@ -6,4 +6,8 @@ namespace CookBook.BL.Mobile.ViewModels
     {
         Task OnAppearing();
     }
+
+    public interface IViewModel<TViewModelParameter> : IViewModel
+    {
+    }
 }

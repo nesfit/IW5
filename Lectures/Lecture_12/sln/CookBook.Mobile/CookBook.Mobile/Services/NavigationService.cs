@@ -30,6 +30,20 @@ namespace CookBook.Mobile.Services
             }
         }
 
+        public async Task PushAsync<TViewModel, TViewModelParameter>(TViewModelParameter viewModelParameter = default,
+            TViewModel viewModel = default, bool animated = default, bool clearHistory = default) where TViewModel : class, IViewModel<TViewModelParameter>
+        {
+            try
+            {
+                var view = mvvmLocatorService.ResolveView(viewModel, viewModelParameter);
+                await navigation.PushAsync(view, animated);
+            }
+            catch (Exception ex)
+            {
+                // ignored
+            }
+        }
+
         public async Task PopAsync(bool animated = default)
         {
             await navigation.PopAsync(animated);

@@ -1,13 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<local:ViewBase xmlns="http://xamarin.com/schemas/2014/forms"
+<views:ViewBase xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:local="clr-namespace:CookBook.Mobile.Views;assembly=CookBook.Mobile"
+             xmlns:views="clr-namespace:CookBook.Mobile.Views;assembly=CookBook.Mobile"
              xmlns:viewModels="clr-namespace:CookBook.BL.Mobile.ViewModels;assembly=CookBook.BL.Mobile"
              xmlns:models="clr-namespace:CookBook.Models;assembly=CookBook.Models"
              x:Class="CookBook.Mobile.Views.IngredientsListView"
-             mc:Ignorable="d">
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance viewModels:IngredientsListViewModel}"
+             x:Name="Root">
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Welcome to Xamarin.Forms!"
@@ -17,12 +19,17 @@
                             ItemsSource="{Binding Ingredients}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid>
-                            <Label Text="{Binding Name}"/>
+                        <Grid ColumnDefinitions="Auto, *" d:DataContext="{d:DesignInstance models:IngredientListModel}">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={x:Reference Root}, Path=BindingContext.NavigateToDetailCommand}"
+                                                      CommandParameter="{Binding Id}"/>
+                            </Grid.GestureRecognizers>
+                            <Image Grid.Column="0" Source="{Binding ImageUrl}" WidthRequest="50" />
+                            <Label Grid.Column="1" Text="{Binding Name}" />
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
         </StackLayout>
     </ContentPage.Content>
-</local:ViewBase>
+</views:ViewBase>

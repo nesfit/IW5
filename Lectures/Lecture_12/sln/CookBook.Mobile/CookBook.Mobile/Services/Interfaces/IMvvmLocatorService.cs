@@ -8,5 +8,7 @@ namespace CookBook.Mobile.Services
     {
         Page ResolveView<TViewModel>(TViewModel viewModel = default)
             where TViewModel : class, IViewModel;
+        Page ResolveView<TViewModel, TViewModelParameter>(TViewModel viewModel = default, TViewModelParameter viewModelParameter = default)
+            where TViewModel : class, IViewModel<TViewModelParameter>;
     }
 }

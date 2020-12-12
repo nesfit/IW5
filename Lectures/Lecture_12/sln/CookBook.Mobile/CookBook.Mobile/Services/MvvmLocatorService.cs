@@ -22,6 +22,14 @@ namespace CookBook.Mobile.Services
             return GetView<TViewModel>(viewType);
         }
 
+        public Page ResolveView<TViewModel, TViewModelParameter>(TViewModel viewModel = default, TViewModelParameter viewModelParameter = default)
+            where TViewModel : class, IViewModel<TViewModelParameter>
+        {
+            var viewModelInstance = viewModel ?? dependencyInjectionService.Resolve<TViewModel>(new TypedParameter(typeof(TViewModelParameter), viewModelParameter));
+            var viewType = GetViewType(viewModelInstance);
+            return GetView(viewType, viewModelInstance);
+        }
+
         private Type GetViewType<TViewModel>(TViewModel viewModel)
         {
             var viewModelType = viewModel?.GetType() ?? typeof(TViewModel);

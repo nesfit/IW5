@@ -17,6 +17,11 @@
         "CookBook.Mobile.Android": {}
       }
     },
+    "Android": {
+      "Projects": {
+        "CookBook.Mobile.Android": {}
+      }
+    },
     "API + Web + Android": {
       "Projects": {
         "CookBook.API": {},
