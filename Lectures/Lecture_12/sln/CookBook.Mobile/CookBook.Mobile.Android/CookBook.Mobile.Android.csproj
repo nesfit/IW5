@@ -91,9 +91,7 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\icon.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\launcher_foreground.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\drawable\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\..\CookBook.Common\CookBook.Common.csproj">
       <Project>{359ED7FA-EEE9-4CA5-BFF8-9AA7B6C0E3E2}</Project>
@@ -103,6 +101,9 @@
       <Project>{B9E86A4C-788A-42E1-89F9-AA22FFBE7A69}</Project>
       <Name>CookBook.Mobile</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\hamburger.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>

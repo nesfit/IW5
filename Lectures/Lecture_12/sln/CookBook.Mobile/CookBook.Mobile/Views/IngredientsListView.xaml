@@ -9,7 +9,8 @@
              x:Class="CookBook.Mobile.Views.IngredientsListView"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance viewModels:IngredientsListViewModel}"
-             x:Name="Root">
+             x:Name="Root"
+             Title="Ingredients">
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Welcome to Xamarin.Forms!"

@@ -21,7 +21,7 @@ namespace CookBook.Mobile
             RegisterDependencies(DependencyInjectionService, navigationPage.Navigation, installers);
 
             var navigationService = DependencyInjectionService.Resolve<INavigationService>();
-            navigationService.PushAsync<IngredientsListViewModel>();
+            navigationService.PushAsync<HomeViewModel>();
 
             MainPage = navigationPage;
         }
