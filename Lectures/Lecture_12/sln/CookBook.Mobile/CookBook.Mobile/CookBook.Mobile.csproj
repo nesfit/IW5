@@ -24,14 +24,29 @@
     <EmbeddedResource Update="Views\HomeView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\IngredientsDetailView.xaml">
+    <EmbeddedResource Update="Views\Ingredient\IngredientDetailView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\IngredientsListView.xaml">
+    <EmbeddedResource Update="Views\Ingredient\IngredientListView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Recipe\RecipeDetailView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Recipe\RecipeListView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ViewBase.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\Ingredient\IngredientDetailView.xaml.cs">
+      <DependentUpon>IngredientDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Ingredient\IngredientListView.xaml.cs">
+      <DependentUpon>IngredientListView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>

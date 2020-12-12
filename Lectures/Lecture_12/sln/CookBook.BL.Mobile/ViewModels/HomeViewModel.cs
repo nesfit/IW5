@@ -7,7 +7,6 @@ namespace CookBook.BL.Mobile.ViewModels
     public class HomeViewModel : ViewModelBase
     {
         private readonly INavigationService navigationService;
-        private readonly ICommandFactory commandFactory;
 
         public ICommand NavigateToRecipesCommand { get; set; }
         public ICommand NavigateToIngredientsCommand { get; set; }
@@ -16,8 +15,6 @@ namespace CookBook.BL.Mobile.ViewModels
                 ICommandFactory commandFactory)
         {
             this.navigationService = navigationService;
-            this.commandFactory = commandFactory;
-
 
             NavigateToRecipesCommand = commandFactory.CreateCommand(NavigateToRecipes);
             NavigateToIngredientsCommand = commandFactory.CreateCommand(NavigateToIngredients);
@@ -25,11 +22,12 @@ namespace CookBook.BL.Mobile.ViewModels
 
         private void NavigateToRecipes()
         {
+            navigationService.PushAsync<RecipeListViewModel>();
         }
 
         private void NavigateToIngredients()
         {
-            navigationService.PushAsync<IngredientsListViewModel>();
+            navigationService.PushAsync<IngredientListViewModel>();
         }
     }
 }

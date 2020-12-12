@@ -1,6 +1,8 @@
-﻿using CookBook.BL.Mobile.Facades;
+﻿using CookBook.BL.Mobile.Api;
+using CookBook.BL.Mobile.Facades;
 using CookBook.BL.Mobile.Factories;
 using CookBook.BL.Mobile.Services;
+using CookBook.Common.Extensions;
 using CookBook.Models;
 using System;
 using System.Collections.ObjectModel;
@@ -9,7 +11,7 @@ using System.Windows.Input;
 
 namespace CookBook.BL.Mobile.ViewModels
 {
-    public class IngredientsListViewModel : ViewModelBase
+    public class IngredientListViewModel : ViewModelBase
     {
         private readonly IngredientsFacade ingredientsFacade;
         private readonly INavigationService navigationService;
@@ -17,7 +19,7 @@ namespace CookBook.BL.Mobile.ViewModels
         public ObservableCollection<IngredientListModel> Ingredients { get; set; } = new ObservableCollection<IngredientListModel>();
         public ICommand NavigateToDetailCommand { get; set; }
 
-        public IngredientsListViewModel(IngredientsFacade ingredientsFacade,
+        public IngredientListViewModel(IngredientsFacade ingredientsFacade,
             ICommandFactory commandFactory,
             INavigationService navigationService)
         {
@@ -26,12 +28,6 @@ namespace CookBook.BL.Mobile.ViewModels
             NavigateToDetailCommand = commandFactory.CreateCommand<Guid>(NavigateToDetail);
         }
 
-        private async void NavigateToDetail(Guid id)
-        {
-            await navigationService.PushAsync<IngredientsDetailViewModel, Guid>(id);
-        }
-
-
         public override async Task OnAppearing()
         {
             await base.OnAppearing();
@@ -39,16 +35,18 @@ namespace CookBook.BL.Mobile.ViewModels
             try
             {
                 var ingredients = await ingredientsFacade.GetIngredientsAsync();
+
                 Ingredients.Clear();
-                foreach (var ingredient in ingredients)
-                {
-                    Ingredients.Add(ingredient);
-                }
+                Ingredients.AddRange(ingredients);
             }
-            catch (Exception e)
+            catch (ApiException)
             {
-                Console.WriteLine(e);
             }
+        }
+
+        private async void NavigateToDetail(Guid id)
+        {
+            await navigationService.PushAsync<IngredientDetailViewModel, Guid>(id);
         }
     }
 }

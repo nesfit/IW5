@@ -4,10 +4,10 @@ using Xamarin.Forms.Xaml;
 namespace CookBook.Mobile.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class IngredientsDetailView
+    public partial class RecipeListView
     {
-        public IngredientsDetailView(IngredientsDetailViewModel ingredientsDetailViewModel)
-            : base(ingredientsDetailViewModel)
+        public RecipeListView(RecipeListViewModel recipeListViewModel)
+            : base(recipeListViewModel)
         {
             InitializeComponent();
         }
