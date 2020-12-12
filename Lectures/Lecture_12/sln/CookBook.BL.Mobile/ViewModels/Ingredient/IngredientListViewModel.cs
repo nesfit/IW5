@@ -5,6 +5,7 @@ using CookBook.BL.Mobile.Services;
 using CookBook.Common.Extensions;
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -17,6 +18,7 @@ namespace CookBook.BL.Mobile.ViewModels
 
         public ObservableCollection<IngredientListModel> Ingredients { get; set; } = new ObservableCollection<IngredientListModel>();
         public ICommand NavigateToDetailCommand { get; set; }
+        public ICommand NavigateToAddCommand { get; set; }
 
         public IngredientListViewModel(IngredientsFacade ingredientsFacade,
             ICommandFactory commandFactory,
@@ -24,11 +26,18 @@ namespace CookBook.BL.Mobile.ViewModels
         {
             this.ingredientsFacade = ingredientsFacade;
             this.navigationService = navigationService;
+
             NavigateToDetailCommand = commandFactory.CreateCommand<Guid>(NavigateToDetail);
+            NavigateToAddCommand = commandFactory.CreateCommand(NavigateToAdd);
+        }
+
+        private void NavigateToAdd()
+        {
+            navigationService.PushAsync<IngredientEditViewModel, Guid?>(null);
         }
 
         public override async Task OnAppearing()
-        {
+        { 
             await base.OnAppearing();
 
             try
@@ -36,7 +45,7 @@ namespace CookBook.BL.Mobile.ViewModels
                 var ingredients = await ingredientsFacade.GetIngredientsAsync();
 
                 Ingredients.Clear();
-                Ingredients.AddRange(ingredients);
+                Ingredients.AddRange(ingredients.OrderBy(ingredient => ingredient.Name));
             }
             catch (ApiException)
             {

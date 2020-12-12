@@ -12,19 +12,31 @@
                 x:Name="Root"
                 Title="Ingredients">
     <ContentPage.Content>
-        <CollectionView ItemsSource="{Binding Ingredients}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Grid ColumnDefinitions="Auto, *" d:DataContext="{d:DesignInstance api:IngredientListModel}">
-                        <Grid.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding Source={x:Reference Root}, Path=BindingContext.NavigateToDetailCommand}"
+        <Grid>
+            <CollectionView ItemsSource="{Binding Ingredients}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid ColumnDefinitions="Auto, *" d:DataContext="{d:DesignInstance api:IngredientListModel}">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={x:Reference Root}, Path=BindingContext.NavigateToDetailCommand}"
                                                   CommandParameter="{Binding Id}"/>
-                        </Grid.GestureRecognizers>
-                        <Image Grid.Column="0" Source="{Binding ImageUrl}" WidthRequest="50" />
-                        <Label Grid.Column="1" Text="{Binding Name}" />
-                    </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+                            </Grid.GestureRecognizers>
+                            <Image Grid.Column="0" Source="{Binding ImageUrl}" WidthRequest="50" />
+                            <Label Grid.Column="1" Text="{Binding Name}" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <ImageButton Grid.Row="0"
+                         WidthRequest="100"
+                         HeightRequest="100"
+                         Aspect="AspectFit"
+                         HorizontalOptions="End"
+                         VerticalOptions="End"
+                         BackgroundColor="Transparent"
+                         Source="icon_add.png"
+                         Command="{Binding NavigateToAddCommand}"/>
+        </Grid>
     </ContentPage.Content>
 </views:ViewBase>
