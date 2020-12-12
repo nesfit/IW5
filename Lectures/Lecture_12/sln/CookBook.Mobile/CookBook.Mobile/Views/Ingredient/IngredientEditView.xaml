@@ -7,13 +7,46 @@
                 xmlns:viewModels="clr-namespace:CookBook.BL.Mobile.ViewModels;assembly=CookBook.BL.Mobile"
                 x:Class="CookBook.Mobile.Views.IngredientEditView"
                 mc:Ignorable="d"
-                d:DataContext="{d:DesignInstance viewModels:IngredientListViewModel}"
+                d:DataContext="{d:DesignInstance viewModels:IngredientEditViewModel}"
                 x:Name="Root">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, *, Auto">
+            <Label Grid.Row="0"
+                   Text="Name:"/>
+            <Entry Grid.Row="1"
+                   Text="{Binding Ingredient.Name}"/>
+            <Label Grid.Row="2"
+                   Text="Photo Url:"/>
+            <Grid Grid.Row="3" ColumnDefinitions="*, Auto">
+                <Image Grid.Column="0"
+                       WidthRequest="100"
+                       Source="{Binding Ingredient.ImageUrl}"/>
+                <Entry Grid.Column="1"
+                       Text="{Binding Ingredient.ImageUrl}"/>
+            </Grid>
+            <Label Grid.Row="4"
+                   Text="Description:"/>
+            <Editor Grid.Row="5"
+                    AutoSize="TextChanges"
+                    Text="{Binding Ingredient.Description}"/>
+            <ImageButton Grid.Row="6"
+                         WidthRequest="100"
+                         HeightRequest="100"
+                         Aspect="AspectFit"
+                         HorizontalOptions="Start"
+                         VerticalOptions="End"
+                         BackgroundColor="Transparent"
+                         Source="icon_cancel.png"
+                         Command="{Binding CancelCommand}"/>
+            <ImageButton Grid.Row="6"
+                         WidthRequest="100"
+                         HeightRequest="100"
+                         Aspect="AspectFit"
+                         HorizontalOptions="End"
+                         VerticalOptions="End"
+                         BackgroundColor="Transparent"
+                         Source="icon_save.png"
+                         Command="{Binding SaveCommand}"/>
+        </Grid>
     </ContentPage.Content>
 </views:ViewBase>

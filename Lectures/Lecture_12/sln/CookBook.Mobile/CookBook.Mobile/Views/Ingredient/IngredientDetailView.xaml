@@ -23,6 +23,7 @@
                          HeightRequest="100"
                          Aspect="AspectFit"
                          HorizontalOptions="End"
+                         VerticalOptions="End"
                          BackgroundColor="Transparent"
                          Source="icon_edit.png"
                          Command="{Binding NavigateToEditCommand}"
