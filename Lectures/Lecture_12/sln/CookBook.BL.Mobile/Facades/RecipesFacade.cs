@@ -1,5 +1,4 @@
 ﻿using CookBook.BL.Mobile.Api;
-using CookBook.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

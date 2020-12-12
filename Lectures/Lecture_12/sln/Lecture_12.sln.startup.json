@@ -5,9 +5,14 @@
   "ListAllProjects": false,
 
   "MultiProjectConfigurations": {
-    "API + WEB": {
+    "API + Web": {
       "Projects": {
         "CookBook.Api": {},
+        "CookBook.Web": {}
+      }
+    },
+    "Web": {
+      "Projects": {
         "CookBook.Web": {}
       }
     },

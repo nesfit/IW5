@@ -1,6 +1,5 @@
 ﻿using CookBook.BL.Mobile.Services;
 using CookBook.BL.Mobile.ViewModels;
-using System;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -24,7 +23,7 @@ namespace CookBook.Mobile.Services
                 var view = mvvmLocatorService.ResolveView(viewModel);
                 await navigation.PushAsync(view, animated);
             }
-            catch (Exception ex)
+            catch
             {
                 // ignored
             }
@@ -38,7 +37,7 @@ namespace CookBook.Mobile.Services
                 var view = mvvmLocatorService.ResolveView(viewModel, viewModelParameter);
                 await navigation.PushAsync(view, animated);
             }
-            catch (Exception ex)
+            catch
             {
                 // ignored
             }

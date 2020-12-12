@@ -5,13 +5,13 @@
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:views="clr-namespace:CookBook.Mobile.Views;assembly=CookBook.Mobile"
                 xmlns:viewModels="clr-namespace:CookBook.BL.Mobile.ViewModels;assembly=CookBook.BL.Mobile"
-                x:Class="CookBook.Mobile.Views.RecipeDetailView"
+                x:Class="CookBook.Mobile.Views.IngredientEditView"
                 mc:Ignorable="d"
-                d:DataContext="{d:DesignInstance viewModels:RecipeDetailViewModel}"
+                d:DataContext="{d:DesignInstance viewModels:IngredientListViewModel}"
                 x:Name="Root">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Recipe Detail!"
+            <Label Text="Welcome to Xamarin.Forms!"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
         </StackLayout>

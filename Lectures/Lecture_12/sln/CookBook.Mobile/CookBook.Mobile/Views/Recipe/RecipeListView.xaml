@@ -5,7 +5,7 @@
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:views="clr-namespace:CookBook.Mobile.Views;assembly=CookBook.Mobile"
                 xmlns:viewModels="clr-namespace:CookBook.BL.Mobile.ViewModels;assembly=CookBook.BL.Mobile"
-                xmlns:models="clr-namespace:CookBook.Models;assembly=CookBook.Models"
+                xmlns:api="clr-namespace:CookBook.BL.Mobile.Api;assembly=CookBook.BL.Mobile"
                 x:Class="CookBook.Mobile.Views.RecipeListView"
                 mc:Ignorable="d"
                 d:DataContext="{d:DesignInstance viewModels:RecipeListViewModel}"
@@ -15,7 +15,7 @@
         <CollectionView ItemsSource="{Binding Recipes}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Grid ColumnDefinitions="Auto, *" d:DataContext="{d:DesignInstance models:RecipeListModel}">
+                    <Grid ColumnDefinitions="Auto, *" d:DataContext="{d:DesignInstance api:RecipeListModel}">
                         <Grid.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding Source={x:Reference Root}, Path=BindingContext.NavigateToDetailCommand}"
                                                   CommandParameter="{Binding Id}"/>

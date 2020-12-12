@@ -3,7 +3,6 @@ using CookBook.BL.Mobile.Facades;
 using CookBook.BL.Mobile.Factories;
 using CookBook.BL.Mobile.Services;
 using CookBook.Common.Extensions;
-using CookBook.Models;
 using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;

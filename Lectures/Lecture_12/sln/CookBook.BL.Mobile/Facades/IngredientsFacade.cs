@@ -1,5 +1,5 @@
 ﻿using CookBook.BL.Mobile.Api;
-using CookBook.Models;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -17,6 +17,23 @@ namespace CookBook.BL.Mobile.Facades
         public async Task<ICollection<IngredientListModel>> GetIngredientsAsync()
         {
             return await ingredientClient.IngredientGetAsync(apiVersion, culture);
+        }
+
+        public async Task<IngredientDetailModel> GetIngredientAsync(Guid id)
+        {
+            return await ingredientClient.IngredientGetAsync(id, apiVersion, culture);
+        }
+
+        public async Task<Guid> SaveAsync(IngredientDetailModel ingredient)
+        {
+            return ingredient.Id == Guid.Empty
+                ? await ingredientClient.IngredientPostAsync(apiVersion, culture, ingredient)
+                : await ingredientClient.IngredientPutAsync(apiVersion, culture, ingredient);
+        }
+
+        public async Task DeleteAsync(Guid id)
+        {
+            await ingredientClient.IngredientDeleteAsync(id, apiVersion, culture);
         }
     }
 }
