@@ -31,13 +31,8 @@ namespace CookBook.BL.Mobile.ViewModels
             NavigateToAddCommand = commandFactory.CreateCommand(NavigateToAdd);
         }
 
-        private void NavigateToAdd()
-        {
-            navigationService.PushAsync<IngredientEditViewModel, Guid?>(null);
-        }
-
         public override async Task OnAppearing()
-        { 
+        {
             await base.OnAppearing();
 
             try
@@ -55,6 +50,11 @@ namespace CookBook.BL.Mobile.ViewModels
         private async void NavigateToDetail(Guid id)
         {
             await navigationService.PushAsync<IngredientDetailViewModel, Guid>(id);
+        }
+
+        private void NavigateToAdd()
+        {
+            navigationService.PushAsync<IngredientEditViewModel, Guid?>(null);
         }
     }
 }

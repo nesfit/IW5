@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:ViewBase xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:views="clr-namespace:CookBook.Mobile.Views;assembly=CookBook.Mobile"
+                xmlns:viewModels="clr-namespace:CookBook.BL.Mobile.ViewModels;assembly=CookBook.BL.Mobile"
+                xmlns:api="clr-namespace:CookBook.BL.Mobile.Api;assembly=CookBook.BL.Mobile"
+                x:Class="CookBook.Mobile.Views.RecipeEditView"
+                mc:Ignorable="d"
+                d:DataContext="{d:DesignInstance viewModels:RecipeEditViewModel}"
+                x:Name="Root"
+                Title="Recipes">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Welcome to Xamarin.Forms!"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+        </StackLayout>
+    </ContentPage.Content>
+</views:ViewBase>

@@ -12,19 +12,40 @@
                 x:Name="Root"
                 Title="Recipes">
     <ContentPage.Content>
-        <CollectionView ItemsSource="{Binding Recipes}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Grid ColumnDefinitions="Auto, *" d:DataContext="{d:DesignInstance api:RecipeListModel}">
-                        <Grid.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding Source={x:Reference Root}, Path=BindingContext.NavigateToDetailCommand}"
-                                                  CommandParameter="{Binding Id}"/>
-                        </Grid.GestureRecognizers>
-                        <Image Grid.Column="0" Source="{Binding ImageUrl}" WidthRequest="50" />
-                        <Label Grid.Column="1" Text="{Binding Name}" />
-                    </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+        <Grid>
+            <CollectionView ItemsSource="{Binding Recipes}">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical"
+                                     Span="2" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid RowDefinitions="Auto, *"
+                              d:DataContext="{d:DesignInstance api:RecipeListModel}">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={x:Reference Root}, Path=BindingContext.NavigateToDetailCommand}"
+                                                      CommandParameter="{Binding Id}"/>
+                            </Grid.GestureRecognizers>
+                            <Image Grid.Row="0"
+                                   Source="{Binding ImageUrl}"
+                                   HeightRequest="100" />
+                            <Label Grid.Row="1"
+                                   HorizontalOptions="Center"
+                                   Text="{Binding Name}"
+                                   Style="{StaticResource FormLabelStyle}"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <ImageButton Grid.Row="0"
+                         WidthRequest="100"
+                         HeightRequest="100"
+                         HorizontalOptions="End"
+                         VerticalOptions="End"
+                         Source="icon_add.png"
+                         Command="{Binding NavigateToAddCommand}"
+                         Style="{StaticResource FloatingImageButtonStyle}"/>
+        </Grid>
     </ContentPage.Content>
 </views:ViewBase>

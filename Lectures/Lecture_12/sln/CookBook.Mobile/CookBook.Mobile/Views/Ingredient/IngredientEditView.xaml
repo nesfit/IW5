@@ -8,7 +8,8 @@
                 x:Class="CookBook.Mobile.Views.IngredientEditView"
                 mc:Ignorable="d"
                 d:DataContext="{d:DesignInstance viewModels:IngredientEditViewModel}"
-                x:Name="Root">
+                x:Name="Root"
+                Title="{Binding Ingredient.Name}">
     <ContentPage.Content>
         <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, *, Auto">
             <Label Grid.Row="0"

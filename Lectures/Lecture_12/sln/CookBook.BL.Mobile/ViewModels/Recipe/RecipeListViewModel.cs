@@ -18,6 +18,7 @@ namespace CookBook.BL.Mobile.ViewModels
 
         public ObservableCollection<RecipeListModel> Recipes { get; set; } = new ObservableCollection<RecipeListModel>();
         public ICommand NavigateToDetailCommand { get; set; }
+        public ICommand NavigateToAddCommand { get; set; }
 
         public RecipeListViewModel(RecipesFacade recipesFacade,
             ICommandFactory commandFactory,
@@ -27,6 +28,7 @@ namespace CookBook.BL.Mobile.ViewModels
             this.navigationService = navigationService;
 
             NavigateToDetailCommand = commandFactory.CreateCommand<Guid>(NavigateToDetail);
+            NavigateToAddCommand = commandFactory.CreateCommand(NavigateToAdd);
         }
 
         public override async Task OnAppearing()
@@ -48,6 +50,11 @@ namespace CookBook.BL.Mobile.ViewModels
         private void NavigateToDetail(Guid id)
         {
             navigationService.PushAsync<RecipeDetailViewModel, Guid>(id);
+        }
+
+        private void NavigateToAdd()
+        {
+            navigationService.PushAsync<RecipeEditViewModel, Guid?>(null);
         }
     }
 }

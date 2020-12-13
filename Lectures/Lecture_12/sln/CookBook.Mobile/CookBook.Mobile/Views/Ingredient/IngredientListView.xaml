@@ -41,12 +41,11 @@
             <ImageButton Grid.Row="0"
                          WidthRequest="100"
                          HeightRequest="100"
-                         Aspect="AspectFit"
                          HorizontalOptions="End"
                          VerticalOptions="End"
-                         BackgroundColor="Transparent"
                          Source="icon_add.png"
-                         Command="{Binding NavigateToAddCommand}"/>
+                         Command="{Binding NavigateToAddCommand}"
+                         Style="{StaticResource FloatingImageButtonStyle}"/>
         </Grid>
     </ContentPage.Content>
 </views:ViewBase>
