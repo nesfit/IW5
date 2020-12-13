@@ -13,7 +13,7 @@
 
     <Style x:Key="FormLabelStyle"
            TargetType="Label"
-           BasedOn="{StaticResource LabelBaseStyle}}">
+           BasedOn="{StaticResource LabelBaseStyle}">
         <Setter Property="FontSize"
                 Value="12"/>
     </Style>
@@ -85,10 +85,5 @@
                 Value="5"/>
         <Setter Property="Margin"
                 Value="5"/>
-    </Style>
-
-    <!-- CollectionView -->
-    <Style x:Key="ListCollectionView">
-
     </Style>
 </ResourceDictionary>
