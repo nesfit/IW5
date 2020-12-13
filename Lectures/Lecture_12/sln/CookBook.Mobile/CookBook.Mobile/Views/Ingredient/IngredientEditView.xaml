@@ -12,41 +12,45 @@
     <ContentPage.Content>
         <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, *, Auto">
             <Label Grid.Row="0"
-                   Text="Name:"/>
+                   Text="Name:"
+                   Style="{StaticResource FormLabelStyle}"/>
             <Entry Grid.Row="1"
-                   Text="{Binding Ingredient.Name}"/>
+                   Text="{Binding Ingredient.Name}"
+                   Style="{StaticResource FormEntryStyle}"/>
             <Label Grid.Row="2"
-                   Text="Photo Url:"/>
+                   Text="Photo Url:"
+                   Style="{StaticResource FormLabelStyle}"/>
             <Grid Grid.Row="3" ColumnDefinitions="*, Auto">
-                <Image Grid.Column="0"
+                <Entry Grid.Column="0"
+                       Text="{Binding Ingredient.ImageUrl}"
+                       Style="{StaticResource FormEntryStyle}"/>
+                <Image Grid.Column="1"
                        WidthRequest="100"
                        Source="{Binding Ingredient.ImageUrl}"/>
-                <Entry Grid.Column="1"
-                       Text="{Binding Ingredient.ImageUrl}"/>
             </Grid>
             <Label Grid.Row="4"
-                   Text="Description:"/>
+                   Text="Description:"
+                   Style="{StaticResource FormLabelStyle}"/>
             <Editor Grid.Row="5"
                     AutoSize="TextChanges"
-                    Text="{Binding Ingredient.Description}"/>
+                    Text="{Binding Ingredient.Description}"
+                    Style="{StaticResource FormEditorStyle}"/>
             <ImageButton Grid.Row="6"
                          WidthRequest="100"
                          HeightRequest="100"
-                         Aspect="AspectFit"
                          HorizontalOptions="Start"
                          VerticalOptions="End"
-                         BackgroundColor="Transparent"
                          Source="icon_cancel.png"
-                         Command="{Binding CancelCommand}"/>
+                         Command="{Binding CancelCommand}"
+                         Style="{StaticResource FloatingImageButtonStyle}"/>
             <ImageButton Grid.Row="6"
                          WidthRequest="100"
                          HeightRequest="100"
-                         Aspect="AspectFit"
                          HorizontalOptions="End"
                          VerticalOptions="End"
-                         BackgroundColor="Transparent"
                          Source="icon_save.png"
-                         Command="{Binding SaveCommand}"/>
+                         Command="{Binding SaveCommand}"
+                         Style="{StaticResource FloatingImageButtonStyle}"/>
         </Grid>
     </ContentPage.Content>
 </views:ViewBase>

@@ -7,11 +7,21 @@
                 xmlns:viewModels="clr-namespace:CookBook.BL.Mobile.ViewModels;assembly=CookBook.BL.Mobile"
                 x:Class="CookBook.Mobile.Views.HomeView"
                 mc:Ignorable="d"
-                d:DataContext="{d:DesignInstance viewModels:HomeViewModel}">
+                d:DataContext="{d:DesignInstance viewModels:HomeViewModel}"
+                Title="CookBook">
+    <NavigationPage.TitleView>
+        <Image Source="icon_app.png"
+               HorizontalOptions="CenterAndExpand"
+               VerticalOptions="CenterAndExpand"/>
+    </NavigationPage.TitleView>
     <ContentPage.Content>
-        <StackLayout>
-            <Button Text="Recipes" Command="{Binding NavigateToRecipesCommand}"/>
-            <Button Text="Ingredients" Command="{Binding NavigateToIngredientsCommand}"/>
+        <StackLayout Style="{StaticResource MenuStackLayoutStyle}">
+            <Button Text="Recipes"
+                    Command="{Binding NavigateToRecipesCommand}"
+                    Style="{StaticResource MenuButtonStyle}"/>
+            <Button Text="Ingredients"
+                    Command="{Binding NavigateToIngredientsCommand}"
+                    Style="{StaticResource MenuButtonStyle}"/>
         </StackLayout>
     </ContentPage.Content>
 </views:ViewBase>

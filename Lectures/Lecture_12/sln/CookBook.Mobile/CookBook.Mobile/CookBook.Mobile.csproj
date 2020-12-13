@@ -26,6 +26,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Resources\ColorResources.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\ControlResources.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\PageResources.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\HomeView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -50,6 +59,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Resources\ColorResources.xaml.cs">
+      <DependentUpon>ColorResources.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Ingredient\IngredientDetailView.xaml.cs">
       <DependentUpon>IngredientDetailView.xaml</DependentUpon>
     </Compile>

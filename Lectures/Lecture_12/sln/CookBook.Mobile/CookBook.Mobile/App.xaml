@@ -3,6 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CookBook.Mobile.App">
     <Application.Resources>
-
+        <ResourceDictionary Source="Resources/ColorResources.xaml"/>
+        <ResourceDictionary Source="Resources/ControlResources.xaml"/>
+        <ResourceDictionary Source="Resources/PageResources.xaml"/>
     </Application.Resources>
 </Application>

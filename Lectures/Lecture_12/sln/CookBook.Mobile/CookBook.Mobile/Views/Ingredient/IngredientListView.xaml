@@ -14,15 +14,25 @@
     <ContentPage.Content>
         <Grid>
             <CollectionView ItemsSource="{Binding Ingredients}">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical"
+                                     Span="2" />
+                </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid ColumnDefinitions="Auto, *" d:DataContext="{d:DesignInstance api:IngredientListModel}">
+                        <Grid RowDefinitions="Auto, *"
+                              d:DataContext="{d:DesignInstance api:IngredientListModel}">
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding Source={x:Reference Root}, Path=BindingContext.NavigateToDetailCommand}"
-                                                  CommandParameter="{Binding Id}"/>
+                                                      CommandParameter="{Binding Id}"/>
                             </Grid.GestureRecognizers>
-                            <Image Grid.Column="0" Source="{Binding ImageUrl}" WidthRequest="50" />
-                            <Label Grid.Column="1" Text="{Binding Name}" />
+                            <Image Grid.Row="0"
+                                   Source="{Binding ImageUrl}"
+                                   HeightRequest="100" />
+                            <Label Grid.Row="1"
+                                   HorizontalOptions="Center"
+                                   Text="{Binding Name}"
+                                   Style="{StaticResource FormLabelStyle}"/>
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

@@ -8767,11 +8767,11 @@ namespace CookBook.Mobile.Droid
 			// aapt resource value: 0x7F07006B
 			public const int design_snackbar_background = 2131165291;
 			
-			// aapt resource value: 0x7F07006C
-			public const int hamburger = 2131165292;
+			// aapt resource value: 0x7F07006F
+			public const int icon_add = 2131165295;
 			
 			// aapt resource value: 0x7F070070
-			public const int icon_add = 2131165296;
+			public const int icon_app = 2131165296;
 			
 			// aapt resource value: 0x7F070071
 			public const int icon_cancel = 2131165297;
@@ -8785,14 +8785,14 @@ namespace CookBook.Mobile.Droid
 			// aapt resource value: 0x7F070074
 			public const int icon_save = 2131165300;
 			
+			// aapt resource value: 0x7F07006C
+			public const int ic_mtrl_chip_checked_black = 2131165292;
+			
 			// aapt resource value: 0x7F07006D
-			public const int ic_mtrl_chip_checked_black = 2131165293;
+			public const int ic_mtrl_chip_checked_circle = 2131165293;
 			
 			// aapt resource value: 0x7F07006E
-			public const int ic_mtrl_chip_checked_circle = 2131165294;
-			
-			// aapt resource value: 0x7F07006F
-			public const int ic_mtrl_chip_close_circle = 2131165295;
+			public const int ic_mtrl_chip_close_circle = 2131165294;
 			
 			// aapt resource value: 0x7F070075
 			public const int mtrl_snackbar_background = 2131165301;

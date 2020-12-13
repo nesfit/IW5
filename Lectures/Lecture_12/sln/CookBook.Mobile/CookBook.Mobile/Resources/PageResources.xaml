@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CookBook.Mobile.Resources.PageResources">
+    <ResourceDictionary Source="ColorResources.xaml"/>
+
+    <!-- Page -->
+    <Style x:Key="PageBaseStyle"
+           TargetType="Page">
+        <Setter Property="BackgroundColor"
+                Value="{StaticResource BackgroundColor}"/>
+    </Style>
+
+
+    <!-- NavigationPage -->
+    <Style TargetType="NavigationPage">
+        <Setter Property="BarBackgroundColor"
+                Value="{StaticResource ForegroundColor}"/>
+        <Setter Property="BarTextColor"
+                Value="{StaticResource SecondaryTextColor}"/>
+
+    </Style>
+</ResourceDictionary>

@@ -17,25 +17,24 @@
             <Label Grid.Row="1"
                    Grid.RowSpan="2"
                    HorizontalOptions="StartAndExpand"
-                   Text="{Binding Ingredient.Description}" />
+                   Text="{Binding Ingredient.Description}"
+                   Style="{StaticResource FormLabelStyle}"/>
             <ImageButton Grid.Row="2"
                          WidthRequest="100"
                          HeightRequest="100"
-                         Aspect="AspectFit"
                          HorizontalOptions="Start"
                          VerticalOptions="End"
-                         BackgroundColor="Transparent"
                          Source="icon_delete.png"
-                         Command="{Binding DeleteCommand}"/>
+                         Command="{Binding DeleteCommand}"
+                         Style="{StaticResource FloatingImageButtonStyle}"/>
             <ImageButton Grid.Row="2"
                          WidthRequest="100"
                          HeightRequest="100"
-                         Aspect="AspectFit"
                          HorizontalOptions="End"
                          VerticalOptions="End"
-                         BackgroundColor="Transparent"
                          Source="icon_edit.png"
-                         Command="{Binding NavigateToEditCommand}"/>
+                         Command="{Binding NavigateToEditCommand}"
+                         Style="{StaticResource FloatingImageButtonStyle}"/>
         </Grid>
     </ContentPage.Content>
 </views:ViewBase>

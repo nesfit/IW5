@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CookBook.Mobile.Resources.ControlResources">
+    <ResourceDictionary Source="ColorResources.xaml" />
+
+    <!-- Label -->
+    <Style x:Key="LabelBaseStyle"
+           TargetType="Label">
+        <Setter Property="TextColor"
+                Value="{StaticResource PrimaryTextColor}"/>
+    </Style>
+
+    <Style x:Key="FormLabelStyle"
+           TargetType="Label"
+           BasedOn="{StaticResource LabelBaseStyle}}">
+        <Setter Property="FontSize"
+                Value="12"/>
+    </Style>
+
+    <Style x:Key="EntryBaseStyle"
+           TargetType="Entry">
+        <Setter Property="BackgroundColor"
+                Value="{StaticResource ForegroundColor}"></Setter>
+        <Setter Property="TextColor"
+                Value="{StaticResource SecondaryTextColor}"></Setter>
+    </Style>
+
+    <Style x:Key="FormEntryStyle"
+           TargetType="Entry"
+           BasedOn="{StaticResource EntryBaseStyle}">
+        <Setter Property="FontSize"
+                Value="15"/>
+    </Style>
+
+    <!-- Editor -->
+    <Style x:Key="EditorBaseStyle"
+           TargetType="Editor">
+        <Setter Property="BackgroundColor"
+                Value="{StaticResource ForegroundColor}"/>
+        <Setter Property="TextColor"
+                Value="{StaticResource SecondaryTextColor}"/>
+    </Style>
+
+    <Style x:Key="FormEditorStyle"
+           BasedOn="{StaticResource EditorBaseStyle}"
+           TargetType="Editor">
+        <Setter Property="FontSize"
+                Value="15"/>
+    </Style>
+
+
+    <!-- Button -->
+    <Style x:Key="ButtonBaseStyle"
+           TargetType="Button">
+        <Setter Property="TextColor"
+                Value="{StaticResource SecondaryTextColor}"/>
+        <Setter Property="BackgroundColor"
+                Value="{StaticResource ForegroundColor}"/>
+    </Style>
+
+    <Style x:Key="MenuButtonStyle"
+           BasedOn="{StaticResource ButtonBaseStyle}"
+           TargetType="Button">
+        <Setter Property="FontSize"
+                Value="30"/>
+        <Setter Property="HorizontalOptions"
+                Value="FillAndExpand"/>
+    </Style>
+
+    <!-- ImageButton -->
+    <Style x:Key="FloatingImageButtonStyle"
+           TargetType="ImageButton">
+        <Setter Property="BackgroundColor"
+                Value="Transparent"/>
+        <Setter Property="Aspect"
+                Value="AspectFit"/>
+    </Style>
+
+
+    <!-- StackLayout -->
+    <Style x:Key="MenuStackLayoutStyle"
+           TargetType="StackLayout">
+        <Setter Property="Spacing"
+                Value="5"/>
+        <Setter Property="Margin"
+                Value="5"/>
+    </Style>
+</ResourceDictionary>
