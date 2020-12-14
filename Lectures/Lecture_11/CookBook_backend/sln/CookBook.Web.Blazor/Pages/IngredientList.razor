@@ -1,0 +1,50 @@
+﻿@page "/{Culture}/ingredients"
+@layout ListLayout
+@inherits PageBase
+
+<h1>Ingredients</h1>
+
+<div class="row">
+    <div class="col-md">
+        <IngredientForm OnModification="@LoadData" />
+    </div>
+    <div class="col-md">
+        <table class="table border table-striped">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="row">Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var ingredient in Ingredients)
+                {
+                    <tr>
+                        <td>
+                            <NavLink href="@($"/{Culture}/ingredients/{ingredient.Id}")">@ingredient.Name</NavLink>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@code {
+    [Inject]
+    private IIngredientsFacade ingredientsFacade { get; set; }
+
+    private IList<IngredientListModel> Ingredients { get; set; } = new List<IngredientListModel>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+
+        await LoadData();
+    }
+
+    public async Task LoadData()
+    {
+        Ingredients = await ingredientsFacade.IngredientsGetAsync(Culture);
+    }
+
+}
