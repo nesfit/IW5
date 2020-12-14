@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:ViewBase xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:views="clr-namespace:CookBook.Mobile.Views;assembly=CookBook.Mobile"
+                xmlns:viewModels="clr-namespace:CookBook.BL.Mobile.ViewModels;assembly=CookBook.BL.Mobile"
+                x:Class="CookBook.Mobile.Views.IngredientDetailView"
+                mc:Ignorable="d"
+                d:DataContext="{d:DesignInstance viewModels:IngredientDetailViewModel}"
+                x:Name="Root"
+                Title="{Binding Ingredient.Name}">
+    <ContentPage.Content>
+        <Grid RowDefinitions="200, *, Auto">
+            <Image Grid.Row="0"
+                   Source="{Binding Ingredient.ImageUrl}" />
+            <Label Grid.Row="1"
+                   Grid.RowSpan="2"
+                   HorizontalOptions="StartAndExpand"
+                   Text="{Binding Ingredient.Description}"
+                   Style="{StaticResource FormLabelStyle}"/>
+            <ImageButton Grid.Row="2"
+                         WidthRequest="100"
+                         HeightRequest="100"
+                         HorizontalOptions="Start"
+                         VerticalOptions="End"
+                         Source="icon_delete.png"
+                         Command="{Binding DeleteCommand}"
+                         Style="{StaticResource FloatingImageButtonStyle}"/>
+            <ImageButton Grid.Row="2"
+                         WidthRequest="100"
+                         HeightRequest="100"
+                         HorizontalOptions="End"
+                         VerticalOptions="End"
+                         Source="icon_edit.png"
+                         Command="{Binding NavigateToEditCommand}"
+                         Style="{StaticResource FloatingImageButtonStyle}"/>
+        </Grid>
+    </ContentPage.Content>
+</views:ViewBase>

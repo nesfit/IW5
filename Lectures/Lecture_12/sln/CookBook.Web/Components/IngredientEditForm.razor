@@ -1,0 +1,45 @@
+﻿@inherits CookBook.Web.Pages.PageBase
+
+<EditForm Model="@Data" OnValidSubmit="@Save">
+
+
+    <div class="d-flex flex-row mb-2">
+        <div class="mr-2 border p-1" style="width: 100px; height: 100px;">
+            <img src="@Data.ImageUrl" alt="image" style="height: auto; width: 100%;" />
+        </div>
+        <div>
+            <h1>Ingredient</h1>
+        </div>
+    </div>
+
+    <DataAnnotationsValidator />
+
+    <div class="form-group">
+        <label class="w-100">
+            Name:
+            <InputText @bind-Value="@Data.Name" class="form-control" />
+            <small class="form-text text-danger"><ValidationMessage For="@(()=>Data.Name)" /></small>
+        </label>
+    </div>
+
+    <div class="form-group">
+        <label class="w-100">
+            Description:
+            <InputTextArea @bind-Value="@Data.Description" class="form-control" />
+            <small class="form-text text-danger"><ValidationMessage For="@(()=>Data.Description)" /></small>
+        </label>
+    </div>
+
+    <div class="form-group">
+        <label class="w-100">
+            Photo Url:
+            <InputText @bind-Value="@Data.ImageUrl" class="form-control" />
+        </label>
+    </div>
+
+    <button type="submit" class="btn btn-success">Save</button>
+    @if (Id != Guid.Empty)
+    {
+        <button @onclick="@Delete" class="btn btn-danger">Delete</button>
+    }
+</EditForm>

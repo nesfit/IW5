@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:ViewBase xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:views="clr-namespace:CookBook.Mobile.Views;assembly=CookBook.Mobile"
+                xmlns:viewModels="clr-namespace:CookBook.BL.Mobile.ViewModels;assembly=CookBook.BL.Mobile"
+                xmlns:api="clr-namespace:CookBook.BL.Mobile.Api;assembly=CookBook.BL.Mobile"
+                x:Class="CookBook.Mobile.Views.RecipeEditView"
+                mc:Ignorable="d"
+                d:DataContext="{d:DesignInstance viewModels:RecipeEditViewModel}"
+                x:Name="Root"
+                Title="{Binding Recipe.Name}">
+    <ContentPage.Content>
+        <Grid RowDefinitions="*, Auto">
+            <ScrollView Grid.Row="0">
+                <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, *, Auto">
+                    <Label Grid.Row="0"
+                           Text="Name:"
+                           Style="{StaticResource FormLabelStyle}"/>
+                    <Entry Grid.Row="1"
+                           Text="{Binding Recipe.Name}"
+                           Style="{StaticResource FormEntryStyle}"/>
+                    <Label Grid.Row="2"
+                           Text="Photo Url:"
+                           Style="{StaticResource FormLabelStyle}"/>
+                    <Grid Grid.Row="3"
+                          ColumnDefinitions="*, Auto">
+                        <Entry Grid.Column="0"
+                               Text="{Binding Recipe.ImageUrl}"
+                               Style="{StaticResource FormEntryStyle}"/>
+                        <Image Grid.Column="1"
+                               WidthRequest="100"
+                               Source="{Binding Recipe.ImageUrl}"/>
+                    </Grid>
+                    <Label Grid.Row="4"
+                           Text="Description:"
+                           Style="{StaticResource FormLabelStyle}"/>
+                    <Editor Grid.Row="5"
+                            AutoSize="TextChanges"
+                            Text="{Binding Recipe.Description}"
+                            Style="{StaticResource FormEditorStyle}"/>
+                    <Label Grid.Row="6"
+                           Text="Duration:"
+                           Style="{StaticResource FormLabelStyle}"/>
+                    <TimePicker Grid.Row="7"
+                                Time="{Binding Recipe.Duration}"
+                                Style="{StaticResource FormTimePickerStyle}"/>
+                    <Label Grid.Row="8"
+                           Text="Food Type:"
+                           Style="{StaticResource FormLabelStyle}"/>
+                    <Picker Grid.Row="9"
+                            Title="Food Type"
+                            ItemsSource="{Binding FoodTypeTexts}"
+                            SelectedIndex="{Binding Recipe.FoodType, Converter={StaticResource IntEnumConverter}}"
+                            Style="{StaticResource FormPickerStyle}"/>
+                    <Label Grid.Row="10"
+                           Text="Ingredients:"
+                           Style="{StaticResource FormLabelStyle}"/>
+                    <Grid Grid.Row="11"
+                          Grid.ColumnDefinitions="Auto, *, Auto, *, Auto">
+                        <Picker Grid.Column="0"
+                                Title="Ingredient"
+                                ItemsSource="{Binding Source={x:Reference Root}, Path=BindingContext.IngredientsAll}"
+                                ItemDisplayBinding="{Binding Name}"
+                                SelectedItem="{Binding RecipeIngredientModelNew.Ingredient}"
+                                Style="{StaticResource FormPickerStyle}"/>
+                        <Entry Grid.Column="1"
+                               Text="{Binding RecipeIngredientModelNew.Amount}"
+                               Style="{StaticResource FormEntryStyle}"/>
+                        <Picker Grid.Column="2"
+                                Title="Unit"
+                                ItemsSource="{Binding Source={x:Reference Root}, Path=BindingContext.UnitTexts}"
+                                SelectedIndex="{Binding RecipeIngredientModelNew.Unit, Converter={StaticResource IntEnumConverter}}"
+                                Style="{StaticResource FormPickerStyle}"/>
+                        <ImageButton Grid.Column="3"
+                                     HeightRequest="30"
+                                     HorizontalOptions="End"
+                                     Source="icon_add.png"
+                                     Command="{Binding AddIngredientCommand}"
+                                     Style="{StaticResource FloatingImageButtonStyle}"/>
+                    </Grid>
+                    <CollectionView Grid.Row="12"
+                                    ItemsSource="{Binding Recipe.Ingredients}">
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Vertical"
+                                               ItemSpacing="5"/>
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Grid.ColumnDefinitions="Auto, Auto, Auto, Auto, *, Auto"
+                                      d:DataContext="{d:DesignInstance api:RecipeDetailIngredientModel}">
+                                    <Image Grid.Row="0"
+                                           HeightRequest="50"
+                                           Source="{Binding Ingredient.ImageUrl}"/>
+                                    <Label Grid.Column="1"
+                                           VerticalOptions="Center"
+                                           Text="{Binding Ingredient.Name}"
+                                           Style="{StaticResource FormLabelStyle}"/>
+                                    <Label Grid.Column="2"
+                                           VerticalOptions="Center"
+                                           Text="{Binding Amount}"
+                                           Style="{StaticResource FormLabelStyle}"/>
+                                    <Label Grid.Column="3"
+                                           VerticalOptions="Center"
+                                           Text="{Binding Unit}"
+                                           Style="{StaticResource FormLabelStyle}"/>
+                                    <ImageButton Grid.Column="5"
+                                                 HeightRequest="50"
+                                                 HorizontalOptions="End"
+                                                 Source="icon_delete.png"
+                                                 Command="{Binding Source={x:Reference Root}, Path=BindingContext.RemoveIngredientCommand}"
+                                                 CommandParameter="{Binding Ingredient.Id}"
+                                                 Style="{StaticResource FloatingImageButtonStyle}"/>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Grid>
+            </ScrollView>
+            <ImageButton Grid.Row="1"
+                         WidthRequest="100"
+                         HeightRequest="100"
+                         HorizontalOptions="Start"
+                         VerticalOptions="End"
+                         Source="icon_cancel.png"
+                         Command="{Binding CancelCommand}"
+                         Style="{StaticResource FloatingImageButtonStyle}"/>
+            <ImageButton Grid.Row="1"
+                         WidthRequest="100"
+                         HeightRequest="100"
+                         HorizontalOptions="End"
+                         VerticalOptions="End"
+                         Source="icon_save.png"
+                         Command="{Binding SaveCommand}"
+                         Style="{StaticResource FloatingImageButtonStyle}"/>
+        </Grid>
+    </ContentPage.Content>
+</views:ViewBase>
