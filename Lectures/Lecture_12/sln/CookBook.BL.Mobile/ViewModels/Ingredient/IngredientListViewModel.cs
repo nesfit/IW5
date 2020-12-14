@@ -2,10 +2,8 @@
 using CookBook.BL.Mobile.Facades;
 using CookBook.BL.Mobile.Factories;
 using CookBook.BL.Mobile.Services;
-using CookBook.Common.Extensions;
 using System;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -37,10 +35,7 @@ namespace CookBook.BL.Mobile.ViewModels
 
             try
             {
-                var ingredients = await ingredientsFacade.GetIngredientsAsync();
-
-                Ingredients.Clear();
-                Ingredients.AddRange(ingredients.OrderBy(ingredient => ingredient.Name));
+                Ingredients = await ingredientsFacade.GetIngredientsAsync();
             }
             catch (ApiException)
             {

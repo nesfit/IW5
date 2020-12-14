@@ -1,6 +1,6 @@
 ﻿using CookBook.BL.Mobile.Api;
 using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
 namespace CookBook.BL.Mobile.Facades
@@ -14,7 +14,7 @@ namespace CookBook.BL.Mobile.Facades
             this.recipeClient = recipeClient;
         }
 
-        public async Task<ICollection<RecipeListModel>> GetRecipesAsync()
+        public async Task<ObservableCollection<RecipeListModel>> GetRecipesAsync()
         {
             return await recipeClient.RecipeGetAsync(apiVersion, culture);
         }

@@ -2,8 +2,8 @@
 using CookBook.BL.Mobile.Facades;
 using CookBook.BL.Mobile.Factories;
 using CookBook.BL.Mobile.Services;
-using CookBook.Common.Extensions;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -18,7 +18,12 @@ namespace CookBook.BL.Mobile.ViewModels
         private readonly INavigationService navigationService;
 
         public RecipeDetailModel Recipe { get; set; }
+        public RecipeDetailIngredientModel RecipeIngredientModelNew { get; set; } = new RecipeDetailIngredientModel();
         public ObservableCollection<IngredientListModel> IngredientsAll { get; set; }
+        public List<string> UnitTexts { get; set; }
+        public List<string> FoodTypeTexts { get; set; }
+        public ICommand AddIngredientCommand { get; set; }
+        public ICommand RemoveIngredientCommand { get; set; }
         public ICommand SaveCommand { get; set; }
         public ICommand CancelCommand { get; set; }
 
@@ -33,6 +38,8 @@ namespace CookBook.BL.Mobile.ViewModels
             this.ingredientsFacade = ingredientsFacade;
             this.navigationService = navigationService;
 
+            AddIngredientCommand = commandFactory.CreateCommand(AddIngredient);
+            RemoveIngredientCommand = commandFactory.CreateCommand<Guid>(RemoveIngredient);
             SaveCommand = commandFactory.CreateCommand(Save);
             CancelCommand = commandFactory.CreateCommand(Cancel);
         }
@@ -48,15 +55,42 @@ namespace CookBook.BL.Mobile.ViewModels
             else
             {
                 Recipe = await recipesFacade.GetRecipeAsync(viewModelParameter.Value);
+                OnPropertyChanged("Recipe.FoodType");
             }
 
             if (IngredientsAll == null)
             {
-                IngredientsAll = new ObservableCollection<IngredientListModel>();
-
-                var ingredients = await ingredientsFacade.GetIngredientsAsync();
-                IngredientsAll.AddRange(ingredients.OrderBy(ingredient => ingredient.Name));
+                IngredientsAll = await ingredientsFacade.GetIngredientsAsync();
             }
+
+            if (UnitTexts == null)
+            {
+                UnitTexts = Enum.GetNames(typeof(Unit)).ToList();
+            }
+
+            if (FoodTypeTexts == null)
+            {
+                FoodTypeTexts = Enum.GetNames(typeof(FoodType)).ToList();
+            }
+        }
+
+        private void AddIngredient()
+        {
+            if (RecipeIngredientModelNew.Ingredient != null
+                && RecipeIngredientModelNew.Amount > 0
+                && RecipeIngredientModelNew.Unit != Unit.Unknown
+                && !Recipe.Ingredients.Any(recipeDetailIngredientModel =>
+                    recipeDetailIngredientModel.Ingredient.Id == RecipeIngredientModelNew.Ingredient.Id))
+            {
+                Recipe.Ingredients.Add(RecipeIngredientModelNew);
+                RecipeIngredientModelNew = new RecipeDetailIngredientModel();
+            }
+        }
+
+        private void RemoveIngredient(Guid ingredientId)
+        {
+            var recipeDetailIngredientModel = Recipe.Ingredients.FirstOrDefault(ingredient => ingredient.Ingredient.Id == ingredientId);
+            Recipe.Ingredients.Remove(recipeDetailIngredientModel);
         }
 
         private async void Save()

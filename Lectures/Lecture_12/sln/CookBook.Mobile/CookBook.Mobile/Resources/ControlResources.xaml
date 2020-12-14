@@ -86,4 +86,22 @@
         <Setter Property="Margin"
                 Value="5"/>
     </Style>
+
+    <!-- Picker -->
+    <Style x:Key="FormPickerStyle"
+           TargetType="Picker">
+        <Setter Property="TextColor"
+                Value="{StaticResource SecondaryTextColor}"/>
+        <Setter Property="BackgroundColor"
+                Value="{StaticResource ForegroundColor}"/>
+    </Style>
+
+    <!-- TimePicker -->
+    <Style x:Key="FormTimePickerStyle"
+           TargetType="TimePicker">
+        <Setter Property="TextColor"
+                Value="{StaticResource SecondaryTextColor}"/>
+        <Setter Property="BackgroundColor"
+                Value="{StaticResource ForegroundColor}"/>
+    </Style>
 </ResourceDictionary>

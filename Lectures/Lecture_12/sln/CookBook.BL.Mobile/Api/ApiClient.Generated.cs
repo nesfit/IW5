@@ -4,6 +4,8 @@
 // </auto-generated>
 //----------------------
 
+using System.Collections.ObjectModel;
+
 #pragma warning disable 108 // Disable "CS0108 '{derivedDto}.ToJson()' hides inherited member '{dtoBase}.ToJson()'. Use the new keyword if hiding was intended."
 #pragma warning disable 114 // Disable "CS0114 '{derivedDto}.RaisePropertyChanged(String)' hides inherited member 'dtoBase.RaisePropertyChanged(String)'. To make the current member override that implementation, add the override keyword. Otherwise add the new keyword."
 #pragma warning disable 472 // Disable "CS0472 The result of the expression is always 'false' since a value of type 'Int32' is never equal to 'null' of type 'Int32?'
@@ -19,11 +21,11 @@ namespace CookBook.BL.Mobile.Api
     public partial interface IIngredientClient
     {
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<System.Collections.Generic.ICollection<IngredientListModel>> IngredientGetAsync(string version, string culture);
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<IngredientListModel>> IngredientGetAsync(string version, string culture);
     
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<System.Collections.Generic.ICollection<IngredientListModel>> IngredientGetAsync(string version, string culture, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<IngredientListModel>> IngredientGetAsync(string version, string culture, System.Threading.CancellationToken cancellationToken);
     
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<System.Guid> IngredientPostAsync(string version, string culture, IngredientDetailModel ingredient);
@@ -89,14 +91,14 @@ namespace CookBook.BL.Mobile.Api
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
     
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<System.Collections.Generic.ICollection<IngredientListModel>> IngredientGetAsync(string version, string culture)
+        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<IngredientListModel>> IngredientGetAsync(string version, string culture)
         {
             return IngredientGetAsync(version, culture, System.Threading.CancellationToken.None);
         }
     
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<IngredientListModel>> IngredientGetAsync(string version, string culture, System.Threading.CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<IngredientListModel>> IngredientGetAsync(string version, string culture, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Ingredient?");
@@ -140,7 +142,7 @@ namespace CookBook.BL.Mobile.Api
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<System.Collections.Generic.ICollection<IngredientListModel>>(response_, headers_).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<System.Collections.ObjectModel.ObservableCollection<IngredientListModel>>(response_, headers_).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -829,11 +831,11 @@ namespace CookBook.BL.Mobile.Api
     public partial interface IRecipeClient
     {
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<System.Collections.Generic.ICollection<RecipeListModel>> RecipeGetAsync(string version, string culture);
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<RecipeListModel>> RecipeGetAsync(string version, string culture);
     
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<System.Collections.Generic.ICollection<RecipeListModel>> RecipeGetAsync(string version, string culture, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<RecipeListModel>> RecipeGetAsync(string version, string culture, System.Threading.CancellationToken cancellationToken);
     
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<System.Guid> RecipePostAsync(string version, string culture, RecipeDetailModel recipe);
@@ -899,14 +901,14 @@ namespace CookBook.BL.Mobile.Api
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
     
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<System.Collections.Generic.ICollection<RecipeListModel>> RecipeGetAsync(string version, string culture)
+        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<RecipeListModel>> RecipeGetAsync(string version, string culture)
         {
             return RecipeGetAsync(version, culture, System.Threading.CancellationToken.None);
         }
     
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<RecipeListModel>> RecipeGetAsync(string version, string culture, System.Threading.CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<RecipeListModel>> RecipeGetAsync(string version, string culture, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Recipe?");
@@ -950,7 +952,7 @@ namespace CookBook.BL.Mobile.Api
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<System.Collections.Generic.ICollection<RecipeListModel>>(response_, headers_).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<System.Collections.ObjectModel.ObservableCollection<RecipeListModel>>(response_, headers_).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -1675,7 +1677,7 @@ namespace CookBook.BL.Mobile.Api
         private System.TimeSpan _duration;
         private string _imageUrl;
         private FoodType _foodType;
-        private System.Collections.Generic.ICollection<RecipeDetailIngredientModel> _ingredients;
+        private System.Collections.ObjectModel.ObservableCollection<RecipeDetailIngredientModel> _ingredients;
     
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid Id
@@ -1762,7 +1764,7 @@ namespace CookBook.BL.Mobile.Api
         }
     
         [Newtonsoft.Json.JsonProperty("ingredients", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<RecipeDetailIngredientModel> Ingredients
+        public System.Collections.ObjectModel.ObservableCollection<RecipeDetailIngredientModel> Ingredients
         {
             get { return _ingredients; }
             set 
