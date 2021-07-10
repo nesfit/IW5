@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.JSInterop.WebAssembly" Version="5.0.4" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CookBook.BL.Common\CookBook.BL.Common.csproj" />
+    <ProjectReference Include="..\CookBook.DAL.Web\CookBook.DAL.Web.csproj" />
+    <ProjectReference Include="..\CookBook.Models\CookBook.Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="MapperProfiles\" />
+  </ItemGroup>
+
+</Project>
