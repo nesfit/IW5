@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31423.177
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookBook.App.Api", "CookBook.Api\CookBook.App.Api.csproj", "{29A8C5FE-6F4F-4E1A-9E47-9301618839EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookBook.App.Api", "CookBook.App.Api\CookBook.App.Api.csproj", "{29A8C5FE-6F4F-4E1A-9E47-9301618839EF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookBook.BL.Api", "CookBook.BL.Api\CookBook.BL.Api.csproj", "{E3C65D4C-3D59-4778-BAA0-87E43BCCD866}"
 EndProject
@@ -19,7 +19,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{777F05CE-DC7
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookBook.Models", "CookBook.Models\CookBook.Models.csproj", "{55F90B9C-084E-49FC-9D61-A638068886E2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookBook.App.Web", "CookBook.Web\CookBook.App.Web.csproj", "{AE669C4D-FC6C-4E2F-8722-1D6FCE6FB0FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookBook.App.Web", "CookBook.App.Web\CookBook.App.Web.csproj", "{AE669C4D-FC6C-4E2F-8722-1D6FCE6FB0FD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookBook.BL.Web", "CookBook.BL.Web\CookBook.BL.Web.csproj", "{0CCE7288-4F07-4F5A-8160-ACC5E7988DF2}"
 EndProject
