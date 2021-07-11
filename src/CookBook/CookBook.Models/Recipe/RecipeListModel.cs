@@ -5,12 +5,20 @@ using System;
 
 namespace CookBook.Models
 {
-    public class RecipeListModel : IId
+    public record RecipeListModel : IId
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
         public TimeSpan Duration { get; set; }
         public FoodType FoodType { get; set; }
-        public string FoodTypeText => FoodType.AsString(EnumFormat.Description);
+        public string FoodTypeText => FoodType.AsString(EnumFormat.Description)!;
+
+        public RecipeListModel(Guid id, string name, TimeSpan duration, FoodType foodType)
+        {
+            Id = id;
+            Name = name;
+            Duration = duration;
+            FoodType = foodType;
+        }
     }
 }

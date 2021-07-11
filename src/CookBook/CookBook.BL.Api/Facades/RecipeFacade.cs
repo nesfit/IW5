@@ -34,13 +34,16 @@ namespace CookBook.BL.Api.Facades
             return mapper.Map<List<RecipeListModel>>(recipeEntities);
         }
 
-        public RecipeDetailModel GetById(Guid id)
+        public RecipeDetailModel? GetById(Guid id)
         {
             var recipeEntity = recipeRepository.GetById(id);
-            recipeEntity.IngredientAmounts = ingredientAmountRepository.GetByRecipeId(id);
-            foreach (var ingredientAmount in recipeEntity.IngredientAmounts)
+            if(recipeEntity is not null)
             {
-                ingredientAmount.Ingredient = ingredientRepository.GetById(ingredientAmount.IngredientId);
+                recipeEntity.IngredientAmounts = ingredientAmountRepository.GetByRecipeId(id);
+                foreach (var ingredientAmount in recipeEntity.IngredientAmounts)
+                {
+                    ingredientAmount.Ingredient = ingredientRepository.GetById(ingredientAmount.IngredientId);
+                }
             }
 
             return mapper.Map<RecipeDetailModel>(recipeEntity);
@@ -64,26 +67,33 @@ namespace CookBook.BL.Api.Facades
         public Guid? Update(RecipeDetailModel recipeModel)
         {
             var recipeEntityExisting = recipeRepository.GetById(recipeModel.Id);
-            recipeEntityExisting.IngredientAmounts = ingredientAmountRepository.GetByRecipeId(recipeModel.Id);
-            UpdateIngredientAmounts(recipeModel, recipeEntityExisting);
+            if(recipeEntityExisting is not null)
+            {
+                recipeEntityExisting.IngredientAmounts = ingredientAmountRepository.GetByRecipeId(recipeModel.Id);
+                UpdateIngredientAmounts(recipeModel, recipeEntityExisting);
 
-            var recipeEntityUpdated = mapper.Map<RecipeEntity>(recipeModel);
-            return recipeRepository.Update(recipeEntityUpdated);
+                var recipeEntityUpdated = mapper.Map<RecipeEntity>(recipeModel);
+                return recipeRepository.Update(recipeEntityUpdated);
+            }
+            else
+            {
+                return null;
+            }
         }
 
         private void UpdateIngredientAmounts(RecipeDetailModel recipeModel, RecipeEntity recipeEntity)
         {
             var ingredientAmountsToDelete = recipeEntity.IngredientAmounts.Where(
                 ingredientAmount =>
-                    !recipeModel.Ingredients.Any(ingredient => ingredient.Ingredient.Id == ingredientAmount.IngredientId));
+                    !recipeModel.IngredientAmounts.Any(ia => ia.Ingredient.Id == ingredientAmount.IngredientId));
             DeleteIngredientAmounts(ingredientAmountsToDelete);
 
-            var recipeUpdateIngredientModelsToInsert = recipeModel.Ingredients.Where(
-                ingredient => !recipeEntity.IngredientAmounts.Any(ingredientAmount => ingredientAmount.IngredientId == ingredient.Ingredient.Id));
+            var recipeUpdateIngredientModelsToInsert = recipeModel.IngredientAmounts.Where(
+                ingredient => !recipeEntity.IngredientAmounts.Any(ia => ia.IngredientId == ingredient.Ingredient.Id));
             InsertIngredientAmounts(recipeEntity, recipeUpdateIngredientModelsToInsert);
 
-            var recipeUpdateIngredientModelsToUpdate = recipeModel.Ingredients.Where(
-                ingredient => recipeEntity.IngredientAmounts.Any(ingredientAmount => ingredientAmount.IngredientId == ingredient.Ingredient.Id));
+            var recipeUpdateIngredientModelsToUpdate = recipeModel.IngredientAmounts.Where(
+                ingredient => recipeEntity.IngredientAmounts.Any(ia => ia.IngredientId == ingredient.Ingredient.Id));
             UpdateIngredientAmounts(recipeEntity, recipeUpdateIngredientModelsToUpdate);
         }
 
@@ -95,7 +105,10 @@ namespace CookBook.BL.Api.Facades
                     ingredientAmountRepository.GetByRecipeIdAndIngredientId(recipeEntity.Id,
                         recipeUpdateIngredientModel.Ingredient.Id);
                 mapper.Map(recipeUpdateIngredientModel, ingredientAmountEntity);
-                ingredientAmountRepository.Update(ingredientAmountEntity);
+                if(ingredientAmountEntity is not null)
+                {
+                    ingredientAmountRepository.Update(ingredientAmountEntity);
+                }
             }
         }
 

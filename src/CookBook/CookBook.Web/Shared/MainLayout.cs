@@ -7,13 +7,13 @@ namespace CookBook.App.Web
     public partial class MainLayout
     {
         [Inject]
-        public RecipeFacade RecipeFacade { get; set; }
+        public RecipeFacade RecipeFacade { get; set; } = null!;
 
         [Inject]
-        public IngredientFacade IngredientFacade { get; set; }
+        public IngredientFacade IngredientFacade { get; set; } = null!;
 
         [Inject]
-        public NavigationManager NavigationManager { get; set; }
+        public NavigationManager NavigationManager { get; set; } = null!;
 
 
         public async Task OnlineStatusChangedAsync(bool isOnline)

@@ -37,18 +37,8 @@ namespace CookBook.DAL.Api
 
         private void SeedIngredients()
         {
-            Ingredients.Add(new IngredientEntity
-            {
-                Id = ingredientGuids[0],
-                Name = "Vejce",
-                Description = "Popis vajec"
-            });
-            Ingredients.Add(new IngredientEntity
-            {
-                Id = ingredientGuids[1],
-                Name = "Cibule",
-                Description = "Popis cibule"
-            });
+            Ingredients.Add(new IngredientEntity(ingredientGuids[0], "Vejce", "Popis vajec"));
+            Ingredients.Add(new IngredientEntity(ingredientGuids[1], "Cibule", "Popis cibule"));
         }
 
         private void SeedIngredientAmounts()

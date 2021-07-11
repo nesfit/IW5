@@ -29,7 +29,7 @@ namespace CookBook.App.Api.Controllers.v3
 
         [HttpGet("{id}")]
         [OpenApiOperation(ApiOperationBaseName + nameof(GetById))]
-        public ActionResult<RecipeDetailModel> GetById(Guid id)
+        public ActionResult<RecipeDetailModel?> GetById(Guid id)
         {
             return recipeFacade.GetById(id);
         }

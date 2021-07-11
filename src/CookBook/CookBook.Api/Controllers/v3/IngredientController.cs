@@ -56,7 +56,7 @@ namespace CookBook.App.Api.Controllers.v3
 
         [HttpPut]
         [OpenApiOperation(ApiOperationBaseName + nameof(Update))]
-        public ActionResult<Guid> Update(IngredientDetailModel ingredient)
+        public ActionResult<Guid?> Update(IngredientDetailModel ingredient)
         {
             return ingredientFacade.Update(ingredient);
         }

@@ -41,7 +41,7 @@ namespace CookBook.BL.Web.Facades
 
         public abstract Task<TDetailModel> GetByIdAsync(Guid id);
 
-        public async Task SaveAsync(TDetailModel data)
+        public virtual async Task SaveAsync(TDetailModel data)
         {
             try
             {

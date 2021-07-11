@@ -24,7 +24,7 @@ namespace CookBook.DAL.Api.Repositories
             return recipes;
         }
 
-        public RecipeEntity GetById(Guid id)
+        public RecipeEntity? GetById(Guid id)
         {
             return recipes.SingleOrDefault(recipe => recipe.Id == id);
         }

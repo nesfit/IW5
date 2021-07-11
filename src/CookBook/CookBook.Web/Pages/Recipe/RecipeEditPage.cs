@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CookBook.BL.Web.Facades;
+using CookBook.Common.Enums;
 using CookBook.Models;
 using Microsoft.AspNetCore.Components;
 
@@ -12,21 +13,21 @@ namespace CookBook.App.Web.Pages
     {
 
         [Inject]
-        private NavigationManager navigationManager { get; set; }
+        private NavigationManager navigationManager { get; set; } = null!;
 
         [Inject]
-        private RecipeFacade RecipeFacade { get; set; }
+        private RecipeFacade RecipeFacade { get; set; } = null!;
         [Inject]
-        private IngredientFacade IngredientFacade { get; set; }
+        private IngredientFacade IngredientFacade { get; set; } = null!;
 
-        private RecipeDetailModel Data { get; set; } = new RecipeDetailModel();
+        private RecipeDetailModel Data { get; set; } = new RecipeDetailModel(Guid.NewGuid(), string.Empty, string.Empty, TimeSpan.FromSeconds(0), FoodType.Unknown);
 
         [Parameter]
         public Guid Id { get; set; }
 
         public ICollection<IngredientListModel> Ingredients { get; set; } = new List<IngredientListModel>();
 
-        public RecipeDetailIngredientModel NewIngredientModel { get; set; } = new RecipeDetailIngredientModel();
+        public RecipeDetailIngredientModel NewIngredientModel { get; set; } = GetNewIngredientModel();
 
         public int DurationHours
         {
@@ -44,24 +45,17 @@ namespace CookBook.App.Web.Pages
         {
             get
             {
-                return NewIngredientModel.Ingredient.Name;
+                return NewIngredientModel.Ingredient?.Name ?? string.Empty;
             }
             set
             {
-                NewIngredientModel.Ingredient = Ingredients.SingleOrDefault(t => t.Name == value);
+                NewIngredientModel.Ingredient = Ingredients.First(t => t.Name == value);
             }
         }
 
         protected override async Task OnInitializedAsync()
         {
-            if (Id == Guid.Empty)
-            {
-                Data = new RecipeDetailModel
-                {
-                    Ingredients = new List<RecipeDetailIngredientModel>()
-                };
-            }
-            else
+            if (Id != Guid.Empty)
             {
                 Data = await RecipeFacade.GetByIdAsync(Id);
             }
@@ -85,14 +79,17 @@ namespace CookBook.App.Web.Pages
 
         public void DeleteIngredient(RecipeDetailIngredientModel ingredient)
         {
-            var ingredientIndex = Data.Ingredients.IndexOf(ingredient);
-            Data.Ingredients.RemoveAt(ingredientIndex);
+            var ingredientIndex = Data.IngredientAmounts.IndexOf(ingredient);
+            Data.IngredientAmounts.RemoveAt(ingredientIndex);
         }
 
         public void AddIngredient()
         {
-            Data.Ingredients.Add(NewIngredientModel);
-            NewIngredientModel = new RecipeDetailIngredientModel();
+            Data.IngredientAmounts.Add(NewIngredientModel);
+            NewIngredientModel = GetNewIngredientModel();
         }
+
+        private static RecipeDetailIngredientModel GetNewIngredientModel()
+            => new(0, Unit.Unknown, new IngredientListModel(Guid.Empty, string.Empty));
     }
 }

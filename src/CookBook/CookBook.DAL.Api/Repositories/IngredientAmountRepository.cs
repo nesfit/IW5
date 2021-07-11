@@ -29,12 +29,12 @@ namespace CookBook.DAL.Api.Repositories
             return ingredientAmounts.Where(ingredientAmount => ingredientAmount.RecipeId == recipeId).ToList();
         }
 
-        public IngredientAmountEntity GetByRecipeIdAndIngredientId(Guid recipeId, Guid ingredientId)
+        public IngredientAmountEntity? GetByRecipeIdAndIngredientId(Guid recipeId, Guid ingredientId)
         {
             return ingredientAmounts.SingleOrDefault(ingredientAmount => ingredientAmount.RecipeId == recipeId && ingredientAmount.IngredientId == ingredientId);
         }
 
-        public IngredientAmountEntity GetById(Guid id)
+        public IngredientAmountEntity? GetById(Guid id)
         {
             return ingredientAmounts.SingleOrDefault(ingredientAmount => ingredientAmount.Id == id);
         }

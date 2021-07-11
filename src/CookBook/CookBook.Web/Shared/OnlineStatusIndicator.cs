@@ -10,13 +10,13 @@ namespace CookBook.App.Web
         private const string DisposeInvokeName = "OnlineStatus.Dispose";
 
         [Inject]
-        private IJSRuntime jsRuntime { get; set; }
+        private IJSRuntime jsRuntime { get; set; } = null!;
 
         [Parameter]
-        public RenderFragment OnlineFragment { get; set; }
+        public RenderFragment OnlineFragment { get; set; } = null!;
 
         [Parameter]
-        public RenderFragment OfflineFragment { get; set; }
+        public RenderFragment OfflineFragment { get; set; } = null!;
 
         [Parameter]
         public bool IsOnline { get; set; }

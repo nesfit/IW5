@@ -1,15 +1,15 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using CookBook.BL.Web.Facades;
+﻿using CookBook.BL.Web.Facades;
 using CookBook.Models;
 using Microsoft.AspNetCore.Components;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace CookBook.App.Web.Pages
 {
     public partial class IngredientListPage
     {
         [Inject]
-        private IngredientFacade IngredientFacade { get; set; }
+        private IngredientFacade IngredientFacade { get; set; } = null!;
 
         private ICollection<IngredientListModel> Ingredients { get; set; } = new List<IngredientListModel>();
 

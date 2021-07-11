@@ -6,7 +6,7 @@ namespace CookBook.App.Web.Pages
     public partial class IngredientEditPage
     {
         [Inject]
-        private NavigationManager navigationManager { get; set; }
+        private NavigationManager navigationManager { get; set; } = null!;
 
         [Parameter]
         public Guid Id { get; set; }
