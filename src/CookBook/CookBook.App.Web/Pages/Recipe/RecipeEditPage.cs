@@ -20,7 +20,7 @@ namespace CookBook.App.Web.Pages
         [Inject]
         private IngredientFacade IngredientFacade { get; set; } = null!;
 
-        private RecipeDetailModel Data { get; set; } = new RecipeDetailModel(Guid.NewGuid(), string.Empty, string.Empty, TimeSpan.FromSeconds(0), FoodType.Unknown);
+        private RecipeDetailModel Data { get; set; } = new();
 
         [Parameter]
         public Guid Id { get; init; }
@@ -90,6 +90,8 @@ namespace CookBook.App.Web.Pages
         }
 
         private static RecipeDetailIngredientModel GetNewIngredientModel()
-            => new(0, Unit.Unknown, new IngredientListModel(Guid.Empty, string.Empty));
+        {
+            return new(0, Unit.Unknown, new IngredientListModel(Guid.Empty, string.Empty));
+        }
     }
 }

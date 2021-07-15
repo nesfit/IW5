@@ -19,7 +19,17 @@ namespace CookBook.Models
         public string? ImageUrl { get; set; }
         public TimeSpan Duration { get; set; }
         public FoodType FoodType { get; set; }
-        public IList<RecipeDetailIngredientModel> IngredientAmounts { get; set; }
+        public IList<RecipeDetailIngredientModel> IngredientAmounts { get; set; } = new List<RecipeDetailIngredientModel>();
+
+        public RecipeDetailModel()
+        {
+            Id = Guid.NewGuid();
+            Name = string.Empty;
+            Description = string.Empty;
+            ImageUrl = null;
+            Duration = TimeSpan.Zero;
+            FoodType = FoodType.Unknown;
+        }
 
         public RecipeDetailModel(Guid id, string name, string description, TimeSpan duration, FoodType foodType, string? imageUrl = null)
         {
@@ -29,7 +39,6 @@ namespace CookBook.Models
             Duration = duration;
             FoodType = foodType;
             ImageUrl = imageUrl;
-            IngredientAmounts = new List<RecipeDetailIngredientModel>();
         }
     }
 }

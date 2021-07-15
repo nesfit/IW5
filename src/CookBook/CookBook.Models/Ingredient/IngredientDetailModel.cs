@@ -16,6 +16,14 @@ namespace CookBook.Models
 
         public string? ImageUrl { get; set; }
 
+        public IngredientDetailModel()
+        {
+            Id = Guid.NewGuid();
+            Name = string.Empty;
+            Description = string.Empty;
+            ImageUrl = null;
+        }
+
         public IngredientDetailModel(Guid id, string name, string description, string? imageUrl = null)
         {
             Id = id;

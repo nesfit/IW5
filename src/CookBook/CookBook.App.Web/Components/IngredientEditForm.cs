@@ -17,7 +17,7 @@ namespace CookBook.App.Web
         [Parameter]
         public EventCallback OnModification { get; set; }
 
-        public IngredientDetailModel Data { get; set; } = new IngredientDetailModel(Guid.NewGuid(), string.Empty, string.Empty);
+        public IngredientDetailModel Data { get; set; } = new ();
 
         protected override async Task OnInitializedAsync()
         {
@@ -32,7 +32,7 @@ namespace CookBook.App.Web
         public async Task Save()
         {
             await IngredientFacade.SaveAsync(Data);
-            Data = new IngredientDetailModel(Guid.NewGuid(), string.Empty, string.Empty);
+            Data = new();
 
             if (OnModification.HasDelegate)
             {
