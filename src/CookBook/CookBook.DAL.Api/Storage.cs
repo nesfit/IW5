@@ -43,34 +43,22 @@ namespace CookBook.DAL.Api
 
         private void SeedIngredientAmounts()
         {
-            IngredientAmounts.Add(new IngredientAmountEntity
+            IngredientAmounts.Add(new IngredientAmountEntity(4.0, Unit.Pieces, ingredientGuids[0], recipeGuids[0])
             {
-                Id = ingredientAmountGuids[0],
-                Amount = 4.0,
-                Unit = Unit.Pieces,
-                IngredientId = ingredientGuids[0],
-                RecipeId = recipeGuids[0]
+                Id = ingredientAmountGuids[0]
             });
 
-            IngredientAmounts.Add(new IngredientAmountEntity
+            IngredientAmounts.Add(new IngredientAmountEntity(1.0, Unit.Pieces, ingredientGuids[1], recipeGuids[0])
             {
-                Id = ingredientAmountGuids[1],
-                Amount = 1.0,
-                Unit = Unit.Pieces,
-                IngredientId = ingredientGuids[1],
-                RecipeId = recipeGuids[0]
+                Id = ingredientAmountGuids[1]
             });
         }
 
         private void SeedRecipes()
         {
-            Recipes.Add(new RecipeEntity
+            Recipes.Add(new RecipeEntity("Míchaná vejce", "Popis míchaných vajec", TimeSpan.FromMinutes(15), FoodType.MainDish)
             {
-                Id = recipeGuids[0],
-                Name = "Míchaná vejce",
-                Description = "Popis míchaných vajec",
-                Duration = TimeSpan.FromMinutes(15),
-                FoodType = FoodType.MainDish
+                Id = recipeGuids[0]
             });
         }
     }

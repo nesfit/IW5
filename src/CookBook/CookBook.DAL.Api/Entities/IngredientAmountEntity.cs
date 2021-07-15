@@ -14,6 +14,14 @@ namespace CookBook.DAL.Api.Entities
 
         public Guid IngredientId { get; set; }
         public IngredientEntity? Ingredient { get; set; }
+
+        public IngredientAmountEntity(double amount, Unit unit, Guid recipeId, Guid ingredientId)
+        {
+            Amount = amount;
+            Unit = unit;
+            RecipeId = recipeId;
+            IngredientId = ingredientId;
+        }
     }
 
     public class IngredientAmountEntityMapperProfile : Profile
