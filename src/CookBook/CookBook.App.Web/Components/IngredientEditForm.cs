@@ -12,7 +12,7 @@ namespace CookBook.App.Web
         public IngredientFacade IngredientFacade { get; set; } = null!;
 
         [Parameter]
-        public Guid Id { get; set; }
+        public Guid Id { get; init; }
 
         [Parameter]
         public EventCallback OnModification { get; set; }

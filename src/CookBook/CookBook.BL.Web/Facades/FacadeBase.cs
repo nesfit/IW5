@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace CookBook.BL.Web.Facades
 {
     public abstract class FacadeBase<TDetailModel, TListModel> : IAppFacade
-        where TDetailModel : IId
+        where TDetailModel : IWithId
     {
         private readonly RepositoryBase<TDetailModel> repository;
         private readonly IMapper mapper;

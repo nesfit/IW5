@@ -11,15 +11,15 @@ namespace CookBook.BL.Api.Facades
 {
     public class RecipeFacade : IAppFacade
     {
-        private readonly RecipeRepository recipeRepository;
-        private readonly IngredientAmountRepository ingredientAmountRepository;
-        private readonly IngredientRepository ingredientRepository;
+        private readonly IRecipeRepository recipeRepository;
+        private readonly IIngredientAmountRepository ingredientAmountRepository;
+        private readonly IIngredientRepository ingredientRepository;
         private readonly IMapper mapper;
 
         public RecipeFacade(
-            RecipeRepository recipeRepository,
-            IngredientAmountRepository ingredientAmountRepository,
-            IngredientRepository ingredientRepository,
+            IRecipeRepository recipeRepository,
+            IIngredientAmountRepository ingredientAmountRepository,
+            IIngredientRepository ingredientRepository,
             IMapper mapper)
         {
             this.recipeRepository = recipeRepository;
@@ -52,7 +52,6 @@ namespace CookBook.BL.Api.Facades
         public Guid Create(RecipeDetailModel recipeModel)
         {
             var recipeEntity = mapper.Map<RecipeEntity>(recipeModel);
-            recipeEntity.Id = Guid.NewGuid();
             recipeRepository.Insert(recipeEntity);
 
             foreach (var ingredientAmount in recipeEntity.IngredientAmounts)

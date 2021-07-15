@@ -11,7 +11,7 @@ namespace CookBook.DAL.Api.Installers
             serviceCollection.Scan(selector =>
                 selector.FromAssemblyOf<DALInstaller>()
                         .AddClasses(classes => classes.AssignableTo(typeof(IApiRepository<>)))
-                            .AsSelfWithInterfaces()
+                            .AsMatchingInterface()
                             .WithTransientLifetime()
                         .AddClasses(classes => classes.AssignableTo<Storage>())
                             .AsSelf()

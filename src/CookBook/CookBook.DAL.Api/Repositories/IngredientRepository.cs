@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace CookBook.DAL.Api.Repositories
 {
-    public class IngredientRepository : IApiRepository<IngredientEntity>
+    public class IngredientRepository : IIngredientRepository
     {
         private readonly IList<IngredientEntity> ingredients;
         private readonly IMapper mapper;
@@ -31,7 +31,6 @@ namespace CookBook.DAL.Api.Repositories
 
         public Guid Insert(IngredientEntity ingredient)
         {
-            ingredient.Id = Guid.NewGuid();
             ingredients.Add(ingredient);
             return ingredient.Id;
         }

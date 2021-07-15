@@ -2,7 +2,7 @@
 
 namespace CookBook.DAL.Api.Entities
 {
-    public interface IEntity : IId
+    public interface IEntity : IWithId
     {
     }
 }

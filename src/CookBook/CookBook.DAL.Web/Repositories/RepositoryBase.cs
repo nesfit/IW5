@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 namespace CookBook.DAL.Web.Repositories
 {
     public abstract class RepositoryBase<T> : IWebRepository<T>
-        where T : IId
+        where T : IWithId
     {
         private readonly LocalDb localDb;
         public abstract string TableName { get; }

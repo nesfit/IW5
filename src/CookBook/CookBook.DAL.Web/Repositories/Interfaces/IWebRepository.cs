@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 namespace CookBook.DAL.Web.Repositories
 {
     public interface IWebRepository<T>
-        where T : IId
+        where T : IWithId
     {
         string TableName { get; }
         Task<IList<T>> GetAllAsync();

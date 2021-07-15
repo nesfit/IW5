@@ -1,14 +1,14 @@
-﻿using CookBook.Common;
-using CookBook.Common.Enums;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using CookBook.Common;
+using CookBook.Common.Enums;
 
 namespace CookBook.Models
 {
-    public record RecipeDetailModel : IId
+    public record RecipeDetailModel : IWithId
     {
-        public Guid Id { get; set; }
+        public Guid Id { get; init; }
 
         [Required]
         public string Name { get; set; }

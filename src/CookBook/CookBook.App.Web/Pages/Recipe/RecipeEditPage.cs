@@ -23,7 +23,7 @@ namespace CookBook.App.Web.Pages
         private RecipeDetailModel Data { get; set; } = new RecipeDetailModel(Guid.NewGuid(), string.Empty, string.Empty, TimeSpan.FromSeconds(0), FoodType.Unknown);
 
         [Parameter]
-        public Guid Id { get; set; }
+        public Guid Id { get; init; }
 
         public ICollection<IngredientListModel> Ingredients { get; set; } = new List<IngredientListModel>();
 

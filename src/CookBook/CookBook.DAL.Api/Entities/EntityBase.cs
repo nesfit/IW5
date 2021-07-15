@@ -4,7 +4,7 @@ namespace CookBook.DAL.Api.Entities
 {
     public abstract record EntityBase : IEntity
     {
-        public Guid Id { get; set; }
+        public Guid Id { get; init; } = Guid.NewGuid();
 
         protected EntityBase()
         {

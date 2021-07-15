@@ -9,7 +9,7 @@ namespace CookBook.App.Web.Pages
         private NavigationManager navigationManager { get; set; } = null!;
 
         [Parameter]
-        public Guid Id { get; set; }
+        public Guid Id { get; init; }
 
         public void NavigateBack()
         {

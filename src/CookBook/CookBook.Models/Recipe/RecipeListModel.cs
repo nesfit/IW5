@@ -5,9 +5,9 @@ using System;
 
 namespace CookBook.Models
 {
-    public record RecipeListModel : IId
+    public record RecipeListModel : IWithId
     {
-        public Guid Id { get; set; }
+        public Guid Id { get; init; }
         public string Name { get; set; }
         public TimeSpan Duration { get; set; }
         public FoodType FoodType { get; set; }

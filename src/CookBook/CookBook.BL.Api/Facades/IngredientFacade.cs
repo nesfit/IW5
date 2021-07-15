@@ -10,11 +10,11 @@ namespace CookBook.BL.Api.Facades
 {
     public class IngredientFacade : IAppFacade
     {
-        private readonly IngredientRepository ingredientRepository;
+        private readonly IIngredientRepository ingredientRepository;
         private readonly IMapper mapper;
 
         public IngredientFacade(
-            IngredientRepository ingredientRepository,
+            IIngredientRepository ingredientRepository,
             IMapper mapper)
         {
             this.ingredientRepository = ingredientRepository;
@@ -34,7 +34,6 @@ namespace CookBook.BL.Api.Facades
         public Guid Create(IngredientDetailModel ingredient)
         {
             var ingredientEntity = mapper.Map<IngredientEntity>(ingredient);
-            ingredientEntity.Id = Guid.NewGuid();
             return ingredientRepository.Insert(ingredientEntity);
         }
 

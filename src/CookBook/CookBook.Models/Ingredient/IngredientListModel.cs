@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace CookBook.Models
 {
-    public record IngredientListModel : IId
+    public record IngredientListModel : IWithId
     {
-        public Guid Id { get; set; }
+        public Guid Id { get; init; }
         [Required]
         public string Name { get; set; }
 
