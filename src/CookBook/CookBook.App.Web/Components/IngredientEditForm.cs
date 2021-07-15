@@ -33,17 +33,19 @@ namespace CookBook.App.Web
         {
             await IngredientFacade.SaveAsync(Data);
             Data = new();
-
-            if (OnModification.HasDelegate)
-            {
-                await OnModification.InvokeAsync(null);
-            }
+            
+            await NotifyOnModification();
         }
 
         public async Task Delete()
         {
             await IngredientFacade.DeleteAsync(Id);
 
+            await NotifyOnModification();
+        }
+
+        private async Task NotifyOnModification()
+        {
             if (OnModification.HasDelegate)
             {
                 await OnModification.InvokeAsync(null);
