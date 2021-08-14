@@ -118,24 +118,21 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Description_ValidationMessage" xml:space="preserve">
-    <value />
+    <value>Recipe description must be at least {0} characters long</value>
   </data>
   <data name="Duration_ValidationMessage" xml:space="preserve">
-    <value />
+    <value>Recipe duration must be at least {0} minutes</value>
   </data>
   <data name="FoodType_ValidationMessage" xml:space="preserve">
-    <value />
+    <value>Choose different food type than '{0}'</value>
   </data>
   <data name="Ingredients_Amount_ValidationMessage" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Ingredients_Unit_ValidationMessage" xml:space="preserve">
-    <value />
+    <value>Ingredient amount must be more than {0}</value>
   </data>
   <data name="Ingredients_ValidationMessage" xml:space="preserve">
-    <value />
+    <value>Recipe must contain some ingredients</value>
   </data>
   <data name="Name_ValidationMessage" xml:space="preserve">
-    <value />
+    <value>Recipe name must be at least {0} characters long</value>
   </data>
 </root>
