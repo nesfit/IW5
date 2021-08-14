@@ -1,0 +1,8 @@
+﻿@page "/ingredients/create"
+@page "/ingredients/{Id:guid}"
+@namespace CookBook.Web.App.Pages
+@inherits PageBase
+
+<h1>Ingredient</h1>
+
+<IngredientEditForm Id="@Id" OnModification="NavigateBack" />
