@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+    <PackageReference Include="Enums.NET" Version="4.0.0" />
+    <PackageReference Include="FluentValidation" Version="10.3.0" />
+    <PackageReference Include="Microsoft.Extensions.Localization" Version="6.0.0-preview.5.21301.17" />
+    <PackageReference Include="Scrutor" Version="3.3.0" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="6.0.0-preview.4.21253.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CookBook.BL.Common\CookBook.BL.Common.csproj" />
+    <ProjectReference Include="..\CookBook.DAL.Api\CookBook.DAL.Api.csproj" />
+    <ProjectReference Include="..\CookBook.Models\CookBook.Models.csproj" />
+  </ItemGroup>
+
+</Project>
