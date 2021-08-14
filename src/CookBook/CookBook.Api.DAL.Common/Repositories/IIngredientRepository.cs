@@ -1,6 +1,6 @@
-﻿using CookBook.Api.DAL.Entities;
+﻿using CookBook.Api.DAL.Common.Entities;
 
-namespace CookBook.Api.DAL.Repositories
+namespace CookBook.Api.DAL.Common.Repositories
 {
     public interface IIngredientRepository : IApiRepository<IngredientEntity>
     {

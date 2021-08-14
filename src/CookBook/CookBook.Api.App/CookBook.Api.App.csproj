@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CookBook.Api.BL\CookBook.Api.BL.csproj" />
+    <ProjectReference Include="..\CookBook.Api.DAL.Memory\CookBook.Api.DAL.Memory.csproj" />
   </ItemGroup>
 
 

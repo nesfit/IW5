@@ -4,7 +4,7 @@ using AutoMapper;
 using CookBook.Api.App.Extensions;
 using CookBook.Api.App.Processors;
 using CookBook.Api.BL.Installers;
-using CookBook.Api.DAL.Installers;
+using CookBook.Api.DAL.Memory.Installers;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -70,10 +70,10 @@ namespace CookBook.Api.App
                 document.OperationProcessors.Add(new RequestCultureOperationProcessor());
             });
 
-            new DALInstaller().Install(services);
+            new DALMemoryInstaller().Install(services);
             new BLApiInstaller().Install(services);
 
-            services.AddAutoMapper(typeof(DALInstaller), typeof(BLApiInstaller));
+            services.AddAutoMapper(typeof(DALMemoryInstaller), typeof(BLApiInstaller));
 
             services.AddCors(options =>
             {

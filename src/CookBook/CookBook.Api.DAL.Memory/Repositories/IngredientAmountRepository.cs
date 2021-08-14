@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
-using CookBook.Api.DAL.Entities;
+using CookBook.Api.DAL.Common.Entities;
+using CookBook.Api.DAL.Common.Repositories;
 
-namespace CookBook.Api.DAL.Repositories
+namespace CookBook.Api.DAL.Memory.Repositories
 {
     public class IngredientAmountRepository : IIngredientAmountRepository
     {

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using CookBook.Api.DAL.Entities;
+using CookBook.Api.DAL.Common.Entities;
 
-namespace CookBook.Api.DAL.Repositories
+namespace CookBook.Api.DAL.Common.Repositories
 {
     public interface IIngredientAmountRepository : IApiRepository<IngredientAmountEntity>
     {

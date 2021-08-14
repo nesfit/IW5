@@ -1,6 +1,6 @@
 ﻿using CookBook.Common;
 
-namespace CookBook.Api.DAL.Entities
+namespace CookBook.Api.DAL.Common.Entities.Interfaces
 {
     public interface IEntity : IWithId
     {

@@ -1,15 +1,15 @@
-﻿using CookBook.Api.DAL.Repositories;
+﻿using CookBook.Api.DAL.Common.Repositories;
 using CookBook.Common.Installers;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CookBook.Api.DAL.Installers
+namespace CookBook.Api.DAL.Memory.Installers
 {
-    public class DALInstaller : IInstaller
+    public class DALMemoryInstaller : IInstaller
     {
         public void Install(IServiceCollection serviceCollection)
         {
             serviceCollection.Scan(selector =>
-                selector.FromAssemblyOf<DALInstaller>()
+                selector.FromAssemblyOf<DALMemoryInstaller>()
                         .AddClasses(classes => classes.AssignableTo(typeof(IApiRepository<>)))
                             .AsMatchingInterface()
                             .WithTransientLifetime()

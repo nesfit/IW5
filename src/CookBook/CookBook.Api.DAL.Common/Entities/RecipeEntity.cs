@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using AutoMapper;
 using CookBook.Common.Enums;
 
-namespace CookBook.Api.DAL.Entities
+namespace CookBook.Api.DAL.Common.Entities
 {
     public record RecipeEntity : EntityBase
     {
