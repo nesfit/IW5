@@ -9,7 +9,6 @@ namespace CookBook.DAL.Web.Repositories
         public IngredientRepository(LocalDb localDb)
             : base(localDb)
         {
-
         }
     }
 }

@@ -27,7 +27,7 @@ namespace CookBook.App.Api.Controllers.v3
             return recipeFacade.GetAll();
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id:guid}")]
         [OpenApiOperation(ApiOperationBaseName + nameof(GetById))]
         public ActionResult<RecipeDetailModel?> GetById(Guid id)
         {
@@ -48,7 +48,15 @@ namespace CookBook.App.Api.Controllers.v3
             return recipeFacade.Update(recipe);
         }
 
-        [HttpDelete("{id}")]
+        [HttpPost("upsert")]
+        [OpenApiOperation(ApiOperationBaseName + nameof(CreateOrUpdate))]
+        public ActionResult<Guid> CreateOrUpdate(RecipeDetailModel recipe)
+        {
+            return recipeFacade.CreateOrUpdate(recipe);
+        }
+
+
+        [HttpDelete("{id:guid}")]
         [OpenApiOperation(ApiOperationBaseName + nameof(Delete))]
         public IActionResult Delete(Guid id)
         {

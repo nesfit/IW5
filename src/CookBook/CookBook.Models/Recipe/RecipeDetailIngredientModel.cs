@@ -1,6 +1,5 @@
 ﻿using CookBook.Common.Enums;
 using EnumsNET;
-using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace CookBook.Models

@@ -10,8 +10,7 @@ namespace CookBook.BL.Web
     {
         public void Install(IServiceCollection serviceCollection)
         {
-            serviceCollection.AddTransient<IIngredientClient, IngredientClient>();
-            serviceCollection.AddTransient<IRecipeClient, RecipeClient>();
+            serviceCollection.AddTransient<IApiClient, ApiClient>();
             serviceCollection.AddSingleton<LocalDb>();
 
             serviceCollection.Scan(selector =>

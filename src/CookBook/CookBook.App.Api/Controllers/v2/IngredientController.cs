@@ -26,7 +26,7 @@ namespace CookBook.App.Api.Controllers.v2
             return ingredientRepository.GetAll();
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id:guid}")]
         [OpenApiOperation("Ingredient" + nameof(GetById))]
         public IngredientEntity? GetById(Guid id)
         {

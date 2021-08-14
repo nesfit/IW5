@@ -1,7 +1,7 @@
 ﻿@namespace CookBook.App.Web
 @inherits CookBook.App.Web.Pages.PageBase
 
-<EditForm Model="@Data" OnValidSubmit="@Save">
+<EditForm Model="@Data">
     <DataAnnotationsValidator />
 
     <div class="form-group">
@@ -20,7 +20,8 @@
         </label>
     </div>
 
-    <button type="submit" class="btn btn-success">Save</button>
+    <button type="submit" class="btn btn-success" @onclick="@Save">Save</button>
+
     @if (Id != Guid.Empty)
     {
         <button @onclick="@Delete" class="btn btn-danger">Delete</button>

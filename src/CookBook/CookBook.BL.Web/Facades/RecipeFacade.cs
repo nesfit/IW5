@@ -11,25 +11,25 @@ namespace CookBook.BL.Web.Facades
 {
     public class RecipeFacade : FacadeBase<RecipeDetailModel, RecipeListModel>
     {
-        private readonly IRecipeClient recipeClient;
+        private readonly IApiClient apiClient;
 
         public RecipeFacade(
-            IRecipeClient recipeClient,
+            IApiClient apiClient,
             RecipeRepository recipeRepository,
             IMapper mapper)
             : base(recipeRepository, mapper)
         {
-            this.recipeClient = recipeClient;
+            this.apiClient = apiClient;
         }
 
         public override async Task<List<RecipeListModel>> GetAllAsync()
         {
             var recipesAll = await base.GetAllAsync();
 
-            var recipesFromApi = await recipeClient.RecipeGetAsync(apiVersion, culture);
+            var recipesFromApi = await apiClient.RecipeGetAllAsync(apiVersion, culture);
             foreach (var recipeFromApi in recipesFromApi)
             {
-                if (!recipesAll.Any(r => r.Id == recipeFromApi.Id))
+                if (recipesAll.Any(r => r.Id == recipeFromApi.Id) is false)
                 {
                     recipesAll.Add(recipeFromApi);
                 }
@@ -40,24 +40,17 @@ namespace CookBook.BL.Web.Facades
 
         public override async Task<RecipeDetailModel> GetByIdAsync(Guid id)
         {
-            return await recipeClient.RecipeGetAsync(id, apiVersion, culture);
+            return await apiClient.RecipeGetByIdAsync(id, apiVersion, culture);
         }
 
-        public override async Task SaveToApiAsync(RecipeDetailModel data)
+        protected override async Task<Guid> SaveToApiAsync(RecipeDetailModel data)
         {
-            if (data.Id == Guid.Empty)
-            {
-                await recipeClient.RecipePostAsync(apiVersion, culture, data);
-            }
-            else
-            {
-                await recipeClient.RecipePutAsync(apiVersion, culture, data);
-            }
+            return await apiClient.RecipeCreateOrUpdateAsync(apiVersion, culture, data);
         }
 
         public override async Task DeleteAsync(Guid id)
         {
-            await recipeClient.RecipeDeleteAsync(id, apiVersion, culture);
+            await apiClient.RecipeDeleteAsync(id, apiVersion, culture);
         }
     }
 }

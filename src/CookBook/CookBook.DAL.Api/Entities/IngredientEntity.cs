@@ -8,7 +8,7 @@ namespace CookBook.DAL.Api.Entities
         public string Name { get; set; }
         public string Description { get; set; }
         public string? ImageUrl { get; set; }
-
+        
         public IngredientEntity(Guid id, string name, string description, string? imageUrl = null)
             : base(id)
         {

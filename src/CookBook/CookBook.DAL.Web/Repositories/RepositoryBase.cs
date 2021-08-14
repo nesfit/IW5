@@ -11,7 +11,7 @@ namespace CookBook.DAL.Web.Repositories
         private readonly LocalDb localDb;
         public abstract string TableName { get; }
 
-        public RepositoryBase(LocalDb localDb)
+        protected RepositoryBase(LocalDb localDb)
         {
             this.localDb = localDb;
         }

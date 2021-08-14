@@ -26,20 +26,33 @@ namespace CookBook.BL.Api.Facades
             return mapper.Map<List<IngredientListModel>>(ingredientRepository.GetAll());
         }
 
-        public IngredientDetailModel GetById(Guid id)
+        public IngredientDetailModel? GetById(Guid id)
         {
-            return mapper.Map<IngredientDetailModel>(ingredientRepository.GetById(id));
+            var ingredientEntity = ingredientRepository.GetById(id);
+            return ingredientEntity is null
+                ? null
+                : mapper.Map<IngredientDetailModel>(ingredientEntity);
         }
 
-        public Guid Create(IngredientDetailModel ingredient)
+        public Guid CreateOrUpdate(IngredientDetailModel ingredientModel)
         {
-            var ingredientEntity = mapper.Map<IngredientEntity>(ingredient);
+            var existingEntity = ingredientRepository.GetById(ingredientModel.Id);
+            return existingEntity is null
+                ? Create(ingredientModel)
+                : Update(ingredientModel)!.Value;
+        }
+
+        public Guid Create(IngredientDetailModel ingredientModel)
+        {
+            var ingredientEntity = mapper.Map<IngredientEntity>(ingredientModel);
             return ingredientRepository.Insert(ingredientEntity);
         }
 
-        public Guid? Update(IngredientDetailModel ingredient)
+        
+
+        public Guid? Update(IngredientDetailModel ingredientModel)
         {
-            var ingredientEntity = mapper.Map<IngredientEntity>(ingredient);
+            var ingredientEntity = mapper.Map<IngredientEntity>(ingredientModel);
             return ingredientRepository.Update(ingredientEntity);
         }
 

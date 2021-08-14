@@ -18,7 +18,7 @@ namespace CookBook.BL.Web.Facades
         protected virtual string apiVersion => "3";
         protected virtual string culture => "en";
 
-        public FacadeBase(
+        protected FacadeBase(
             RepositoryBase<TDetailModel> repository,
             IMapper mapper)
         {
@@ -53,8 +53,7 @@ namespace CookBook.BL.Web.Facades
             }
         }
 
-        public abstract Task SaveToApiAsync(TDetailModel data);
-
+        protected abstract Task<Guid> SaveToApiAsync(TDetailModel data);
         public abstract Task DeleteAsync(Guid id);
 
         public async Task<bool> SynchronizeLocalDataAsync()

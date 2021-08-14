@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Globalization;
 using AutoMapper;
 using CookBook.App.Api.Extensions;
@@ -50,18 +50,21 @@ namespace CookBook.App.Api
 
             services.AddOpenApiDocument(document =>
             {
+                document.Title = "CookBook API v1";
                 document.DocumentName = "v1";
                 document.ApiGroupNames = new[] { "1.0" };
             });
 
             services.AddOpenApiDocument(document =>
             {
+                document.Title = "CookBook API v2";
                 document.DocumentName = "v2";
                 document.ApiGroupNames = new[] { "2.0" };
             });
 
             services.AddOpenApiDocument(document =>
             {
+                document.Title = "CookBook API v3";
                 document.DocumentName = "v3";
                 document.ApiGroupNames = new[] { "3.0" };
                 document.OperationProcessors.Add(new RequestCultureOperationProcessor());
@@ -99,8 +102,8 @@ namespace CookBook.App.Api
                 DefaultRequestCulture = new RequestCulture(new CultureInfo("en")),
                 SupportedCultures = new List<CultureInfo>
                 {
-                    new CultureInfo("en"),
-                    new CultureInfo("cs")
+                    new("en"),
+                    new("cs")
                 }
             });
 
@@ -117,6 +120,7 @@ namespace CookBook.App.Api
             app.UseOpenApi();
             app.UseSwaggerUi3(settings =>
             {
+                settings.DocumentTitle = "Test";
                 settings.SwaggerRoutes.Add(new SwaggerUi3Route("v3.0", "/swagger/v3/swagger.json"));
                 settings.SwaggerRoutes.Add(new SwaggerUi3Route("v2.0", "/swagger/v2/swagger.json"));
                 settings.SwaggerRoutes.Add(new SwaggerUi3Route("v1.0", "/swagger/v1/swagger.json"));

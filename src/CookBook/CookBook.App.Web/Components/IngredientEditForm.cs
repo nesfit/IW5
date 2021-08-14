@@ -32,15 +32,12 @@ namespace CookBook.App.Web
         public async Task Save()
         {
             await IngredientFacade.SaveAsync(Data);
-            Data = new();
-            
             await NotifyOnModification();
         }
 
         public async Task Delete()
         {
             await IngredientFacade.DeleteAsync(Id);
-
             await NotifyOnModification();
         }
 

@@ -21,7 +21,7 @@ namespace CookBook.App.Api.Controllers.v1
             return Ok(ingredients);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id:guid}")]
         public IActionResult GetById(Guid id)
         {
             if (id == new Guid("df935095-8709-4040-a2bb-b6f97cb416dc"))

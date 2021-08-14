@@ -49,15 +49,24 @@ namespace CookBook.BL.Api.Facades
             return mapper.Map<RecipeDetailModel>(recipeEntity);
         }
 
+        public Guid CreateOrUpdate(RecipeDetailModel recipeModel)
+        {
+            var existingEntity = recipeRepository.GetById(recipeModel.Id);
+            return existingEntity is null
+                ? Create(recipeModel)
+                : Update(recipeModel)!.Value;
+        }
+
         public Guid Create(RecipeDetailModel recipeModel)
         {
             var recipeEntity = mapper.Map<RecipeEntity>(recipeModel);
             recipeRepository.Insert(recipeEntity);
 
-            foreach (var ingredientAmount in recipeEntity.IngredientAmounts)
+            foreach (var ingredientAmountModel in recipeModel.IngredientAmounts)
             {
-                ingredientAmount.RecipeId = recipeEntity.Id;
-                ingredientAmountRepository.Insert(ingredientAmount);
+                var ingredientAmountEntity = new IngredientAmountEntity(ingredientAmountModel.Amount, ingredientAmountModel.Unit,
+                    recipeEntity.Id, ingredientAmountModel.Ingredient.Id);
+                ingredientAmountRepository.Insert(ingredientAmountEntity);
             }
 
             return recipeEntity.Id;
@@ -103,9 +112,13 @@ namespace CookBook.BL.Api.Facades
                 var ingredientAmountEntity =
                     ingredientAmountRepository.GetByRecipeIdAndIngredientId(recipeEntity.Id,
                         recipeUpdateIngredientModel.Ingredient.Id);
-                mapper.Map(recipeUpdateIngredientModel, ingredientAmountEntity);
+
                 if(ingredientAmountEntity is not null)
                 {
+                    ingredientAmountEntity.Amount = recipeUpdateIngredientModel.Amount;
+                    ingredientAmountEntity.Unit = recipeUpdateIngredientModel.Unit;
+                    ingredientAmountEntity.IngredientId = recipeUpdateIngredientModel.Ingredient.Id;
+
                     ingredientAmountRepository.Update(ingredientAmountEntity);
                 }
             }
@@ -113,9 +126,10 @@ namespace CookBook.BL.Api.Facades
 
         private void InsertIngredientAmounts(RecipeEntity recipeEntity, IEnumerable<RecipeDetailIngredientModel> recipeIngredientModelsToInsert)
         {
-            foreach (var recipeUpdateIngredientModel in recipeIngredientModelsToInsert)
+            foreach (var ingredientModel in recipeIngredientModelsToInsert)
             {
-                var ingredientAmountEntity = mapper.Map<IngredientAmountEntity>(recipeUpdateIngredientModel);
+                var ingredientAmountEntity = new IngredientAmountEntity(ingredientModel.Amount, ingredientModel.Unit,
+                    recipeEntity.Id, ingredientModel.Ingredient.Id);
                 ingredientAmountEntity.RecipeId = recipeEntity.Id;
                 ingredientAmountRepository.Insert(ingredientAmountEntity);
             }
