@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31423.177
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookBook.App.Api", "CookBook.App.Api\CookBook.App.Api.csproj", "{29A8C5FE-6F4F-4E1A-9E47-9301618839EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookBook.Api.App", "CookBook.Api.App\CookBook.Api.App.csproj", "{29A8C5FE-6F4F-4E1A-9E47-9301618839EF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookBook.BL.Api", "CookBook.BL.Api\CookBook.BL.Api.csproj", "{E3C65D4C-3D59-4778-BAA0-87E43BCCD866}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookBook.Api.BL", "CookBook.Api.BL\CookBook.Api.BL.csproj", "{E3C65D4C-3D59-4778-BAA0-87E43BCCD866}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookBook.Common", "CookBook.Common\CookBook.Common.csproj", "{359ED7FA-EEE9-4CA5-BFF8-9AA7B6C0E3E2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookBook.BL.Common", "CookBook.BL.Common\CookBook.BL.Common.csproj", "{3EE5A708-5D27-427A-8C1F-8F79CD354D7C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookBook.Common.BL", "CookBook.Common.BL\CookBook.Common.BL.csproj", "{3EE5A708-5D27-427A-8C1F-8F79CD354D7C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{CE4F5F83-8F08-4F26-A46D-52370701657D}"
 EndProject
@@ -17,15 +17,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{B0D294
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{777F05CE-DC73-46AE-BA0F-CCF368D381A1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookBook.Models", "CookBook.Models\CookBook.Models.csproj", "{55F90B9C-084E-49FC-9D61-A638068886E2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookBook.Common.Models", "CookBook.Common.Models\CookBook.Common.Models.csproj", "{55F90B9C-084E-49FC-9D61-A638068886E2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookBook.App.Web", "CookBook.App.Web\CookBook.App.Web.csproj", "{AE669C4D-FC6C-4E2F-8722-1D6FCE6FB0FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookBook.Web.App", "CookBook.Web.App\CookBook.Web.App.csproj", "{AE669C4D-FC6C-4E2F-8722-1D6FCE6FB0FD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookBook.BL.Web", "CookBook.BL.Web\CookBook.BL.Web.csproj", "{0CCE7288-4F07-4F5A-8160-ACC5E7988DF2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookBook.Web.BL", "CookBook.Web.BL\CookBook.Web.BL.csproj", "{0CCE7288-4F07-4F5A-8160-ACC5E7988DF2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookBook.DAL.Web", "CookBook.DAL.Web\CookBook.DAL.Web.csproj", "{B0D7D099-6E7E-4476-A8FE-3573E5857BB6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookBook.Web.DAL", "CookBook.Web.DAL\CookBook.Web.DAL.csproj", "{B0D7D099-6E7E-4476-A8FE-3573E5857BB6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookBook.DAL.Api", "CookBook.DAL.Api\CookBook.DAL.Api.csproj", "{E914A67E-C3AC-45FB-9EDB-7062AE1C6E90}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookBook.Api.DAL", "CookBook.Api.DAL\CookBook.Api.DAL.csproj", "{E914A67E-C3AC-45FB-9EDB-7062AE1C6E90}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1B830E23-DE7F-451B-B5CC-EB70A66AD6BB}"
 	ProjectSection(SolutionItems) = preProject
