@@ -3,7 +3,7 @@ using NSwag;
 using NSwag.Generation.Processors;
 using NSwag.Generation.Processors.Contexts;
 
-namespace CookBook.App.Api.Processors
+namespace CookBook.Api.App.Processors
 {
     public class RequestCultureOperationProcessor : IOperationProcessor
     {

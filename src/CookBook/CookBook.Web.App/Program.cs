@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Net.Http;
 using System.Threading.Tasks;
-using CookBook.BL.Web;
-using CookBook.DAL.Web;
+using CookBook.Web.BL;
+using CookBook.Web.DAL;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 

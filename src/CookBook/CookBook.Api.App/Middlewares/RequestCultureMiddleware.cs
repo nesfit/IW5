@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 
-namespace CookBook.App.Api.Middlewares
+namespace CookBook.Api.App.Middlewares
 {
     public class RequestCultureMiddleware
     {

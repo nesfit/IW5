@@ -1,9 +1,9 @@
-﻿using CookBook.Common.Enums;
-using CookBook.DAL.Api.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using CookBook.Api.DAL.Entities;
+using CookBook.Common.Enums;
 
-namespace CookBook.DAL.Api
+namespace CookBook.Api.DAL
 {
     public class Storage
     {

@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using CookBook.DAL.Api.Entities;
-using CookBook.Models;
+using CookBook.Api.DAL.Entities;
+using CookBook.Common.Models;
 
-namespace CookBook.BL.Api.MapperProfiles
+namespace CookBook.Api.BL.MapperProfiles
 {
     public class IngredientMapperProfile : Profile
     {

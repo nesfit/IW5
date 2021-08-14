@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using NSwag.Annotations;
 
-namespace CookBook.App.Api.Controllers.v3
+namespace CookBook.Api.App.Controllers.v3
 {
     [ApiController]
     [Route("api/[controller]")]

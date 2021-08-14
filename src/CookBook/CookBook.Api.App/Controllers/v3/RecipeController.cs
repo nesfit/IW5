@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using CookBook.BL.Api.Facades;
-using CookBook.Models;
+using CookBook.Api.BL.Facades;
+using CookBook.Common.Models;
 using Microsoft.AspNetCore.Mvc;
 using NSwag.Annotations;
 
-namespace CookBook.App.Api.Controllers.v3
+namespace CookBook.Api.App.Controllers.v3
 {
     [ApiController]
     [Route("api/[controller]")]

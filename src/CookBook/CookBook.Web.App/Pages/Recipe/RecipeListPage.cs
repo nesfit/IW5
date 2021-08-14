@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using CookBook.BL.Web.Facades;
-using CookBook.Models;
+using CookBook.Common.Models;
+using CookBook.Web.BL.Facades;
 using Microsoft.AspNetCore.Components;
 
 namespace CookBook.Web.App.Pages

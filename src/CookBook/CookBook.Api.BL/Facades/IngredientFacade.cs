@@ -1,12 +1,12 @@
-﻿using AutoMapper;
-using CookBook.BL.Common.Facades;
-using CookBook.DAL.Api.Entities;
-using CookBook.DAL.Api.Repositories;
-using CookBook.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using AutoMapper;
+using CookBook.Api.DAL.Entities;
+using CookBook.Api.DAL.Repositories;
+using CookBook.Common.BL.Facades;
+using CookBook.Common.Models;
 
-namespace CookBook.BL.Api.Facades
+namespace CookBook.Api.BL.Facades
 {
     public class IngredientFacade : IAppFacade
     {

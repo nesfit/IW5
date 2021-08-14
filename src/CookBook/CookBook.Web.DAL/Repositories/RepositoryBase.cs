@@ -1,9 +1,9 @@
-﻿using CookBook.Common;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using CookBook.Common;
 
-namespace CookBook.DAL.Web.Repositories
+namespace CookBook.Web.DAL.Repositories
 {
     public abstract class RepositoryBase<T> : IWebRepository<T>
         where T : IWithId

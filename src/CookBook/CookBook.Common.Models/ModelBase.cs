@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CookBook.Models
+﻿namespace CookBook.Common.Models
 {
     public abstract record ModelBase
     {

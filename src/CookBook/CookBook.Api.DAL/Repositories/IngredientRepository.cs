@@ -1,10 +1,10 @@
-﻿using AutoMapper;
-using CookBook.DAL.Api.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using AutoMapper;
+using CookBook.Api.DAL.Entities;
 
-namespace CookBook.DAL.Api.Repositories
+namespace CookBook.Api.DAL.Repositories
 {
     public class IngredientRepository : IIngredientRepository
     {

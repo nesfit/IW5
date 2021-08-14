@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using CookBook.BL.Api.Facades;
+using CookBook.Api.BL.Facades;
+using CookBook.Common.Models;
 using CookBook.Common.Resources;
-using CookBook.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using NSwag.Annotations;
 
-namespace CookBook.App.Api.Controllers.v3
+namespace CookBook.Api.App.Controllers.v3
 {
     [ApiController]
     [Route("api/[controller]")]

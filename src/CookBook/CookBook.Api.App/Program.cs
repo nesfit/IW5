@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace CookBook.App.Api
+namespace CookBook.Api.App
 {
     public class Program
     {

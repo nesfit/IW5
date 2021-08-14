@@ -1,10 +1,10 @@
 ﻿using CookBook.ApiClients;
-using CookBook.BL.Common.Facades;
+using CookBook.Common.BL.Facades;
 using CookBook.Common.Installers;
-using CookBook.DAL.Web;
+using CookBook.Web.DAL;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CookBook.BL.Web
+namespace CookBook.Web.BL
 {
     public class BLWebInstaller : IInstaller
     {

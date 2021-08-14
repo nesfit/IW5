@@ -1,13 +1,13 @@
-﻿using AutoMapper;
-using CookBook.ApiClients;
-using CookBook.DAL.Web.Repositories;
-using CookBook.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using CookBook.ApiClients;
+using CookBook.Common.Models;
+using CookBook.Web.DAL.Repositories;
 
-namespace CookBook.BL.Web.Facades
+namespace CookBook.Web.BL.Facades
 {
     public class RecipeFacade : FacadeBase<RecipeDetailModel, RecipeListModel>
     {

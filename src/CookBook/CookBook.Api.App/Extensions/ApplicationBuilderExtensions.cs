@@ -1,7 +1,7 @@
-﻿using CookBook.App.Api.Middlewares;
+﻿using CookBook.Api.App.Middlewares;
 using Microsoft.AspNetCore.Builder;
 
-namespace CookBook.App.Api.Extensions
+namespace CookBook.Api.App.Extensions
 {
     public static class ApplicationBuilderExtensions
     {

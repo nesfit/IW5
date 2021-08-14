@@ -1,8 +1,7 @@
-﻿using CookBook.Common;
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace CookBook.Models
+namespace CookBook.Common.Models
 {
     public record IngredientDetailModel : IWithId
     {

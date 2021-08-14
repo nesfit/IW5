@@ -1,7 +1,7 @@
-﻿using AutoMapper;
-using System;
+﻿using System;
+using AutoMapper;
 
-namespace CookBook.DAL.Api.Entities
+namespace CookBook.Api.DAL.Entities
 {
     public record IngredientEntity : EntityBase
     {

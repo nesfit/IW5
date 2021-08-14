@@ -1,8 +1,8 @@
-﻿using CookBook.Common.Enums;
+﻿using System.ComponentModel.DataAnnotations;
+using CookBook.Common.Enums;
 using EnumsNET;
-using System.ComponentModel.DataAnnotations;
 
-namespace CookBook.Models
+namespace CookBook.Common.Models
 {
     public record RecipeDetailIngredientModel
     {

@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using NSwag.Annotations;
 
-namespace CookBook.App.Api.Controllers.v1
+namespace CookBook.Api.App.Controllers.v1
 {
     [ApiController]
     [Route("api/[controller]")]

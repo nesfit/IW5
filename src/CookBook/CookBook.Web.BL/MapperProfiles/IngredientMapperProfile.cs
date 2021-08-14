@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using CookBook.Models;
+using CookBook.Common.Models;
 
-namespace CookBook.BL.Web.MapperProfiles
+namespace CookBook.Web.BL.MapperProfiles
 {
     public class IngredientMapperProfile : Profile
     {

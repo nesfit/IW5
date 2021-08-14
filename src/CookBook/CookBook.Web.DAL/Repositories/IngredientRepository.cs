@@ -1,6 +1,6 @@
-﻿using CookBook.Models;
+﻿using CookBook.Common.Models;
 
-namespace CookBook.DAL.Web.Repositories
+namespace CookBook.Web.DAL.Repositories
 {
     public class IngredientRepository : RepositoryBase<IngredientDetailModel>
     {

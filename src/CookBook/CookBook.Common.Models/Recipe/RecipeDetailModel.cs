@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using CookBook.Common;
 using CookBook.Common.Enums;
 
-namespace CookBook.Models
+namespace CookBook.Common.Models
 {
     public record RecipeDetailModel : IWithId
     {

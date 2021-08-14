@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Globalization;
 using AutoMapper;
-using CookBook.App.Api.Extensions;
-using CookBook.App.Api.Processors;
-using CookBook.BL.Api.Installers;
-using CookBook.DAL.Api.Installers;
+using CookBook.Api.App.Extensions;
+using CookBook.Api.App.Processors;
+using CookBook.Api.BL.Installers;
+using CookBook.Api.DAL.Installers;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -16,7 +16,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NSwag.AspNetCore;
 
-namespace CookBook.App.Api
+namespace CookBook.Api.App
 {
     public class Startup
     {

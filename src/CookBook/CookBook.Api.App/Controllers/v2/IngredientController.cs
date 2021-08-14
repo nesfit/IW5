@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using CookBook.DAL.Api.Entities;
-using CookBook.DAL.Api.Repositories;
+using CookBook.Api.DAL.Entities;
+using CookBook.Api.DAL.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using NSwag.Annotations;
 
-namespace CookBook.App.Api.Controllers.v2
+namespace CookBook.Api.App.Controllers.v2
 {
     [ApiController]
     [Route("api/[controller]")]

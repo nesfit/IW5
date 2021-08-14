@@ -1,8 +1,8 @@
-﻿using CookBook.BL.Common.Facades;
+﻿using CookBook.Common.BL.Facades;
 using CookBook.Common.Installers;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CookBook.BL.Api.Installers
+namespace CookBook.Api.BL.Installers
 {
     public class BLApiInstaller : IInstaller
     {

@@ -1,14 +1,14 @@
-﻿using AutoMapper;
-using CookBook.BL.Common.Facades;
-using CookBook.Common;
-using CookBook.DAL.Web.Repositories;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using AutoMapper;
+using CookBook.Common;
+using CookBook.Common.BL.Facades;
+using CookBook.Web.DAL.Repositories;
 
-namespace CookBook.BL.Web.Facades
+namespace CookBook.Web.BL.Facades
 {
     public abstract class FacadeBase<TDetailModel, TListModel> : IAppFacade
         where TDetailModel : IWithId

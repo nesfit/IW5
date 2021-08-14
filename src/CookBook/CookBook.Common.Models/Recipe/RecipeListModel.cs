@@ -1,9 +1,8 @@
-﻿using CookBook.Common;
+﻿using System;
 using CookBook.Common.Enums;
 using EnumsNET;
-using System;
 
-namespace CookBook.Models
+namespace CookBook.Common.Models
 {
     public record RecipeListModel : IWithId
     {

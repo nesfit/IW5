@@ -1,8 +1,8 @@
-﻿using CookBook.Common.Installers;
-using CookBook.DAL.Api.Repositories;
+﻿using CookBook.Api.DAL.Repositories;
+using CookBook.Common.Installers;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CookBook.DAL.Api.Installers
+namespace CookBook.Api.DAL.Installers
 {
     public class DALInstaller : IInstaller
     {

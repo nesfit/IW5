@@ -1,8 +1,8 @@
-﻿using CookBook.DAL.Api.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using CookBook.Api.DAL.Entities;
 
-namespace CookBook.DAL.Api.Repositories
+namespace CookBook.Api.DAL.Repositories
 {
     public interface IApiRepository<TEntity>
         where TEntity : IEntity
