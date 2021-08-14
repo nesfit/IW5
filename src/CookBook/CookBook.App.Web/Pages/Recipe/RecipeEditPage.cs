@@ -11,7 +11,6 @@ namespace CookBook.App.Web.Pages
 {
     public partial class RecipeEditPage
     {
-
         [Inject]
         private NavigationManager navigationManager { get; set; } = null!;
 
@@ -25,27 +24,27 @@ namespace CookBook.App.Web.Pages
         [Parameter]
         public Guid Id { get; init; }
 
-        public ICollection<IngredientListModel> Ingredients { get; set; } = new List<IngredientListModel>();
+        private ICollection<IngredientListModel> Ingredients { get; set; } = new List<IngredientListModel>();
 
-        public RecipeDetailIngredientModel NewIngredientModel { get; set; } = GetNewIngredientModel();
+        private RecipeDetailIngredientModel NewIngredientModel { get; set; } = GetNewIngredientModel();
 
-        public int DurationHours
+        private int DurationHours
         {
             get => Data.Duration.Hours;
             set => Data.Duration = new TimeSpan(value, DurationMinutes, 0);
         }
 
-        public int DurationMinutes
+        private int DurationMinutes
         {
             get => Data.Duration.Minutes;
             set => Data.Duration = new TimeSpan(DurationHours, value, 0);
         }
 
-        public string SelectedIngredientName
+        private string SelectedIngredientName
         {
             get
             {
-                return NewIngredientModel.Ingredient?.Name ?? string.Empty;
+                return NewIngredientModel.Ingredient.Name;
             }
             set
             {

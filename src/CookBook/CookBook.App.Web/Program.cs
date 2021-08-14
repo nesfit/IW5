@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using CookBook.BL.Web;
@@ -23,7 +23,7 @@ namespace CookBook.App.Web
             new DALWebInstaller().Install(builder.Services);
             new BLWebInstaller().Install(builder.Services);
 
-            builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+            builder.Services.AddScoped(_ => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
             builder.Services.AddAutoMapper(typeof(BLWebInstaller));
         }
     }
