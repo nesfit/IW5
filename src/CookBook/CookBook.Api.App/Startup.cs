@@ -1,10 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using AutoMapper;
 using CookBook.Api.App.Extensions;
 using CookBook.Api.App.Processors;
 using CookBook.Api.BL.Installers;
-using CookBook.Api.DAL.Installers;
+using CookBook.Api.DAL.Common;
+using CookBook.Api.DAL.Common.Entities;
+using CookBook.Api.DAL.EF.Installers;
+using CookBook.Api.DAL.Memory.Installers;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -39,7 +43,7 @@ namespace CookBook.Api.App
 
             services.AddControllers()
                 .AddNewtonsoftJson()
-                .AddFluentValidation(configuration => configuration.RegisterValidatorsFromAssemblyContaining<BLApiInstaller>());
+                .AddFluentValidation(configuration => configuration.RegisterValidatorsFromAssemblyContaining<ApiBLInstaller>());
 
             services.AddLocalization(options => options.ResourcesPath = string.Empty);
 
@@ -70,10 +74,11 @@ namespace CookBook.Api.App
                 document.OperationProcessors.Add(new RequestCultureOperationProcessor());
             });
 
-            new DALInstaller().Install(services);
-            new BLApiInstaller().Install(services);
+            InstallDAL(services);
 
-            services.AddAutoMapper(typeof(DALInstaller), typeof(BLApiInstaller));
+            new ApiBLInstaller().Install(services);
+
+            services.AddAutoMapper(typeof(EntityBase), typeof(ApiBLInstaller));
 
             services.AddCors(options =>
             {
@@ -82,6 +87,24 @@ namespace CookBook.Api.App
                         .AllowAnyHeader()
                         .AllowAnyMethod());
             });
+        }
+
+        private void InstallDAL(IServiceCollection services)
+        {
+            Enum.TryParse<DALType>(Configuration.GetSection("DALSelectionOptions")["Type"], out var dalType);
+
+            switch (dalType)
+            {
+                case DALType.Memory:
+                    new ApiDALMemoryInstaller().Install(services);
+                    break;
+                case DALType.EntityFramework:
+                    var connectionString = Configuration.GetConnectionString("DefaultConnection");
+                    new ApiDALEFInstaller().Install(services, connectionString);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException("DALSelectionOptions:Type");
+            }
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IMapper mapper)

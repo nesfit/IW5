@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
-using CookBook.Api.DAL.Entities;
-using CookBook.Api.DAL.Repositories;
+using CookBook.Api.DAL.Common.Entities;
+using CookBook.Api.DAL.Common.Repositories;
 using CookBook.Common.BL.Facades;
 using CookBook.Common.Models;
 

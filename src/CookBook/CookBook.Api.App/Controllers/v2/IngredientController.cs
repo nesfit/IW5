@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using CookBook.Api.DAL.Entities;
-using CookBook.Api.DAL.Repositories;
+using CookBook.Api.DAL.Common.Entities;
+using CookBook.Api.DAL.Common.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using NSwag.Annotations;
 
@@ -12,9 +12,9 @@ namespace CookBook.Api.App.Controllers.v2
     [ApiVersion("2.0")]
     public class IngredientController : ControllerBase
     {
-        private readonly IngredientRepository ingredientRepository;
+        private readonly IIngredientRepository ingredientRepository;
 
-        public IngredientController(IngredientRepository ingredientRepository)
+        public IngredientController(IIngredientRepository ingredientRepository)
         {
             this.ingredientRepository = ingredientRepository;
         }
