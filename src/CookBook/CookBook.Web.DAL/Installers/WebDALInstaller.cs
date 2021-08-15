@@ -2,7 +2,7 @@
 using CookBook.Web.DAL.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CookBook.Web.DAL
+namespace CookBook.Web.DAL.Installers
 {
     public class WebDALInstaller : IInstaller
     {

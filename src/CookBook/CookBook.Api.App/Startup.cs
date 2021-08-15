@@ -143,7 +143,7 @@ namespace CookBook.Api.App
             app.UseOpenApi();
             app.UseSwaggerUi3(settings =>
             {
-                settings.DocumentTitle = "Test";
+                settings.DocumentTitle = "CookBook Swagger UI";
                 settings.SwaggerRoutes.Add(new SwaggerUi3Route("v3.0", "/swagger/v3/swagger.json"));
                 settings.SwaggerRoutes.Add(new SwaggerUi3Route("v2.0", "/swagger/v2/swagger.json"));
                 settings.SwaggerRoutes.Add(new SwaggerUi3Route("v1.0", "/swagger/v1/swagger.json"));
