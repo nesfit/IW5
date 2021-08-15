@@ -48,8 +48,6 @@ namespace CookBook.Api.BL.Facades
             return ingredientRepository.Insert(ingredientEntity);
         }
 
-        
-
         public Guid? Update(IngredientDetailModel ingredientModel)
         {
             var ingredientEntity = mapper.Map<IngredientEntity>(ingredientModel);
