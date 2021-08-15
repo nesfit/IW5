@@ -1,19 +1,23 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using AutoMapper;
 using CookBook.Api.BL.Facades;
 using CookBook.Api.BL.Installers;
 using CookBook.Api.DAL.Common.Entities;
 using CookBook.Api.DAL.Memory.Installers;
 using CookBook.Common.Models;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using NSwag.Annotations;
+using NSwag.AspNetCore;
+using NSwag.Generation.Processors.Collections;
 
 var builder = WebApplication.CreateBuilder(args);
 
-new ApiDALMemoryInstaller().Install(builder.Services);
-new ApiBLInstaller().Install(builder.Services);
 builder.Services.AddAutoMapper(typeof(EntityBase), typeof(ApiBLInstaller));
-
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(builder =>
@@ -22,7 +26,13 @@ builder.Services.AddCors(options =>
             .AllowAnyMethod());
 });
 
+new ApiDALMemoryInstaller().Install(builder.Services);
+new ApiBLInstaller().Install(builder.Services);
+
 var app = builder.Build();
+
+var mapper = app.Services.GetRequiredService<IMapper>();
+mapper.ConfigurationProvider.AssertConfigurationIsValid();
 
 app.UseCors();
 app.UseHttpsRedirection();
@@ -37,7 +47,7 @@ app.MapDelete("api/ingredient/{id:guid}", [OpenApiOperation("IngredientDelete")]
 app.MapGet("api/recipe", [OpenApiOperation("RecipeGetAll")](RecipeFacade recipeFacade) => recipeFacade.GetAll());
 app.MapGet("api/recipe/{id:guid}", [OpenApiOperation("RecipeGetById")](RecipeFacade recipeFacade, Guid id) => recipeFacade.GetById(id));
 
-app.MapPost("api/recipe", [OpenApiOperation("RecipeCreate")](RecipeFacade recipeFacade, RecipeDetailModel recipe) => recipeFacade.Create(recipe));
+app.MapPost("api/recipe", [ApiExplorerSettings(GroupName = "v3")][OpenApiOperation("RecipeCreate")](RecipeFacade recipeFacade, RecipeDetailModel recipe) => recipeFacade.Create(recipe));
 app.MapPost("api/recipe/upsert", [OpenApiOperation("RecipeCreateOrUpdate")](RecipeFacade recipeFacade, RecipeDetailModel recipe) => recipeFacade.CreateOrUpdate(recipe));
 app.MapPut("api/recipe", [OpenApiOperation("RecipeUpdate")](RecipeFacade recipeFacade, RecipeDetailModel recipe) => recipeFacade.Update(recipe));
 app.MapDelete("api/recipe/{id:guid}", [OpenApiOperation("RecipeDelete")](RecipeFacade recipeFacade, Guid id) => recipeFacade.Delete(id));
