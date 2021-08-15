@@ -4,12 +4,15 @@ using System.Globalization;
 using AutoMapper;
 using CookBook.Api.BL.Facades;
 using CookBook.Api.BL.Installers;
+using CookBook.Api.DAL.Common;
 using CookBook.Api.DAL.Common.Entities;
+using CookBook.Api.DAL.EF.Installers;
 using CookBook.Api.DAL.Memory.Installers;
 using CookBook.Common.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NSwag.Annotations;
 using NSwag.AspNetCore;
@@ -26,7 +29,21 @@ builder.Services.AddCors(options =>
             .AllowAnyMethod());
 });
 
-new ApiDALMemoryInstaller().Install(builder.Services);
+Enum.TryParse<DALType>(builder.Configuration.GetSection("DALSelectionOptions")["Type"], out var dalType);
+
+switch (dalType)
+{
+    case DALType.Memory:
+        new ApiDALMemoryInstaller().Install(builder.Services);
+        break;
+    case DALType.EntityFramework:
+        var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+        new ApiDALEFInstaller().Install(builder.Services, connectionString);
+        break;
+    default:
+        throw new ArgumentOutOfRangeException("DALSelectionOptions:Type");
+}
+
 new ApiBLInstaller().Install(builder.Services);
 
 var app = builder.Build();
