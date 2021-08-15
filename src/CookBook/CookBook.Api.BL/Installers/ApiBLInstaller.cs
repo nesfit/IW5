@@ -4,12 +4,12 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace CookBook.Api.BL.Installers
 {
-    public class BLApiInstaller : IInstaller
+    public class ApiBLInstaller : IInstaller
     {
         public void Install(IServiceCollection serviceCollection)
         {
             serviceCollection.Scan(selector =>
-                selector.FromAssemblyOf<BLApiInstaller>()
+                selector.FromAssemblyOf<ApiBLInstaller>()
                         .AddClasses(classes => classes.AssignableTo<IAppFacade>())
                         .AsSelfWithInterfaces()
                         .WithTransientLifetime());

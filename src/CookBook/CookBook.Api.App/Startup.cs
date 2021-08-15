@@ -4,6 +4,8 @@ using AutoMapper;
 using CookBook.Api.App.Extensions;
 using CookBook.Api.App.Processors;
 using CookBook.Api.BL.Installers;
+using CookBook.Api.DAL.Common.Entities;
+using CookBook.Api.DAL.EF.Installers;
 using CookBook.Api.DAL.Memory.Installers;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
@@ -39,7 +41,7 @@ namespace CookBook.Api.App
 
             services.AddControllers()
                 .AddNewtonsoftJson()
-                .AddFluentValidation(configuration => configuration.RegisterValidatorsFromAssemblyContaining<BLApiInstaller>());
+                .AddFluentValidation(configuration => configuration.RegisterValidatorsFromAssemblyContaining<ApiBLInstaller>());
 
             services.AddLocalization(options => options.ResourcesPath = string.Empty);
 
@@ -70,10 +72,14 @@ namespace CookBook.Api.App
                 document.OperationProcessors.Add(new RequestCultureOperationProcessor());
             });
 
-            new DALMemoryInstaller().Install(services);
-            new BLApiInstaller().Install(services);
+            //new ApiDALMemoryInstaller().Install(services);
 
-            services.AddAutoMapper(typeof(DALMemoryInstaller), typeof(BLApiInstaller));
+            var connectionString = Configuration.GetConnectionString("DefaultConnection");
+            new ApiDALEFInstaller().Install(services, connectionString);
+
+            new ApiBLInstaller().Install(services);
+
+            services.AddAutoMapper(typeof(EntityBase), typeof(ApiBLInstaller));
 
             services.AddCors(options =>
             {

@@ -20,11 +20,11 @@ namespace CookBook.Web.App
 
         private static void Install(WebAssemblyHostBuilder builder)
         {
-            new DALWebInstaller().Install(builder.Services);
-            new BLWebInstaller().Install(builder.Services);
+            new WebDALInstaller().Install(builder.Services);
+            new WebBLInstaller().Install(builder.Services);
 
             builder.Services.AddScoped(_ => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-            builder.Services.AddAutoMapper(typeof(BLWebInstaller));
+            builder.Services.AddAutoMapper(typeof(WebBLInstaller));
         }
     }
 }

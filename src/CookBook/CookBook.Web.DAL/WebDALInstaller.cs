@@ -4,13 +4,13 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace CookBook.Web.DAL
 {
-    public class DALWebInstaller : IInstaller
+    public class WebDALInstaller : IInstaller
     {
         public void Install(IServiceCollection serviceCollection)
         {
             serviceCollection.AddSingleton<LocalDb>();
             serviceCollection.Scan(scan =>
-                scan.FromAssemblyOf<DALWebInstaller>()
+                scan.FromAssemblyOf<WebDALInstaller>()
                     .AddClasses(classes => classes.AssignableTo(typeof(IWebRepository<>)))
                     .AsSelf()
                     .WithSingletonLifetime());

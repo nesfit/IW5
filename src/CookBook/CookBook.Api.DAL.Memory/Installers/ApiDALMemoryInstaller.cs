@@ -4,12 +4,12 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace CookBook.Api.DAL.Memory.Installers
 {
-    public class DALMemoryInstaller : IInstaller
+    public class ApiDALMemoryInstaller : IInstaller
     {
         public void Install(IServiceCollection serviceCollection)
         {
             serviceCollection.Scan(selector =>
-                selector.FromAssemblyOf<DALMemoryInstaller>()
+                selector.FromAssemblyOf<ApiDALMemoryInstaller>()
                         .AddClasses(classes => classes.AssignableTo(typeof(IApiRepository<>)))
                             .AsMatchingInterface()
                             .WithTransientLifetime()

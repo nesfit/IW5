@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace CookBook.Web.BL
 {
-    public class BLWebInstaller : IInstaller
+    public class WebBLInstaller : IInstaller
     {
         public void Install(IServiceCollection serviceCollection)
         {
@@ -14,7 +14,7 @@ namespace CookBook.Web.BL
             serviceCollection.AddSingleton<LocalDb>();
 
             serviceCollection.Scan(selector =>
-                selector.FromAssemblyOf<BLWebInstaller>()
+                selector.FromAssemblyOf<WebBLInstaller>()
                     .AddClasses(classes => classes.AssignableTo<IAppFacade>())
                     .AsSelfWithInterfaces()
                     .WithTransientLifetime());
