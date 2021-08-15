@@ -32,6 +32,7 @@ namespace CookBook.Web.App
         public async Task Save()
         {
             await IngredientFacade.SaveAsync(Data);
+            Data = new();
             await NotifyOnModification();
         }
 

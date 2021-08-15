@@ -9,8 +9,7 @@ namespace CookBook.Api.DAL.EF.Installers
     {
         public void Install(IServiceCollection serviceCollection, string connectionString)
         {
-            serviceCollection.AddDbContext<CookBookDbContext>(options => options.UseSqlServer(connectionString));
-            serviceCollection.AddTransient<Func<CookBookDbContext>>(provider => () => provider.GetService<CookBookDbContext>()!);
+            serviceCollection.AddDbContextFactory<CookBookDbContext>(options => options.UseSqlServer(connectionString));
 
             serviceCollection.Scan(selector =>
                 selector.FromAssemblyOf<ApiDALEFInstaller>()
