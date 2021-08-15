@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using CookBook.ApiClients;
 using CookBook.Common.Models;
 using CookBook.Web.DAL.Repositories;
 

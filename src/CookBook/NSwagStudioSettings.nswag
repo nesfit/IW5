@@ -44,7 +44,7 @@
       "className": "{controller}ApiClient",
       "operationGenerationMode": "SingleClientFromOperationId",
       "additionalNamespaceUsages": [
-        "CookBook.Models"
+        "CookBook.Common.Models"
       ],
       "additionalContractNamespaceUsages": [],
       "generateOptionalParameters": false,
@@ -58,7 +58,7 @@
       "wrapResponseMethods": [],
       "generateResponseClasses": true,
       "responseClass": "SwaggerResponse",
-      "namespace": "CookBook.ApiClients",
+      "namespace": "CookBook.Web.BL",
       "requiredPropertiesMustBeDefined": true,
       "dateType": "System.DateTimeOffset",
       "jsonConverters": null,
@@ -96,7 +96,7 @@
       "checksumCacheEnabled": false,
       "serviceHost": null,
       "serviceSchemes": null,
-      "output": "CookBook.BL.Web/GeneratedApiClient.cs",
+      "output": "CookBook.Web.BL/GeneratedApiClient.cs",
       "newLineBehavior": "Auto"
     }
   }
