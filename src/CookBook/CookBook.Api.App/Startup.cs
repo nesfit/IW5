@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using AutoMapper;
 using CookBook.Api.App.Extensions;
 using CookBook.Api.App.Processors;
 using CookBook.Api.BL.Installers;
+using CookBook.Api.DAL.Common;
 using CookBook.Api.DAL.Common.Entities;
 using CookBook.Api.DAL.EF.Installers;
 using CookBook.Api.DAL.Memory.Installers;
@@ -72,10 +74,7 @@ namespace CookBook.Api.App
                 document.OperationProcessors.Add(new RequestCultureOperationProcessor());
             });
 
-            //new ApiDALMemoryInstaller().Install(services);
-
-            var connectionString = Configuration.GetConnectionString("DefaultConnection");
-            new ApiDALEFInstaller().Install(services, connectionString);
+            InstallDAL(services);
 
             new ApiBLInstaller().Install(services);
 
@@ -88,6 +87,24 @@ namespace CookBook.Api.App
                         .AllowAnyHeader()
                         .AllowAnyMethod());
             });
+        }
+
+        private void InstallDAL(IServiceCollection services)
+        {
+            Enum.TryParse<DALType>(Configuration.GetSection("DALSelectionOptions")["Type"], out var dalType);
+
+            switch (dalType)
+            {
+                case DALType.Memory:
+                    new ApiDALMemoryInstaller().Install(services);
+                    break;
+                case DALType.EntityFramework:
+                    var connectionString = Configuration.GetConnectionString("DefaultConnection");
+                    new ApiDALEFInstaller().Install(services, connectionString);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException("DALSelectionOptions:Type");
+            }
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IMapper mapper)
