@@ -4,6 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
+    <UserSecretsId>4adb9845-9932-4403-81ea-c4eac0bbd68f</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

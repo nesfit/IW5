@@ -31,7 +31,7 @@ namespace CookBook.Api.App.Controllers.v3
         [OpenApiOperation(ApiOperationBaseName + nameof(GetAll))]
         public ActionResult<List<IngredientListModel>> GetAll()
         {
-            return ingredientFacade.GetAll().ToList();
+            return ingredientFacade.GetAll();
         }
 
         [HttpGet("{id:guid}")]
