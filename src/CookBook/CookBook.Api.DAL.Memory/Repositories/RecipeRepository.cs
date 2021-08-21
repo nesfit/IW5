@@ -143,13 +143,15 @@ namespace CookBook.Api.DAL.Memory.Repositories
 
         public void Remove(Guid id)
         {
-            var recipeToRemove = recipes.SingleOrDefault(recipeEntity => recipeEntity.Id == id);
-            for (var i = 0; i < recipeToRemove.IngredientAmounts.Count; i++)
+            var ingredientAmountsToRemove = ingredientAmounts.Where(ingredientAmount => ingredientAmount.RecipeId == id).ToList();
+
+            for (var i = 0; i < ingredientAmountsToRemove.Count; i++)
             {
-                var ingredientAmountToRemove = recipeToRemove.IngredientAmounts.ElementAt(i);
+                var ingredientAmountToRemove = ingredientAmountsToRemove.ElementAt(i);
                 ingredientAmounts.Remove(ingredientAmountToRemove);
             }
-
+            
+            var recipeToRemove = recipes.SingleOrDefault(recipeEntity => recipeEntity.Id == id);
             recipes.Remove(recipeToRemove);
         }
 
