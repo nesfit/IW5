@@ -46,12 +46,13 @@ namespace CookBook.Api.DAL.Memory.Repositories
             return ingredientAmount.Id;
         }
 
-        public Guid? Update(IngredientAmountEntity ingredientAmoungUpdated)
+        public Guid? Update(IngredientAmountEntity entity)
         {
-            var ingredientAmountExisting = ingredientAmounts.SingleOrDefault(ingredientAmountInStorage => ingredientAmountInStorage.Id == ingredientAmoungUpdated.Id);
+            var ingredientAmountExisting = ingredientAmounts.SingleOrDefault(ingredientAmountInStorage =>
+                ingredientAmountInStorage.Id == entity.Id);
             if (ingredientAmountExisting != null)
             {
-                mapper.Map(ingredientAmoungUpdated, ingredientAmountExisting);
+                mapper.Map(entity, ingredientAmountExisting);
             }
 
             return ingredientAmountExisting?.Id;

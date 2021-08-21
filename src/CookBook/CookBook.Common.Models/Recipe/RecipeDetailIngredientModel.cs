@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using CookBook.Common.Enums;
-using EnumsNET;
 
 namespace CookBook.Common.Models
 {
@@ -10,7 +9,6 @@ namespace CookBook.Common.Models
         public double Amount { get; set; }
         public Unit Unit { get; set; }
         public IngredientListModel Ingredient { get; set; }
-        public string UnitText => Unit.AsString(EnumFormat.Description)!;
 
         public RecipeDetailIngredientModel(double amount, Unit unit, IngredientListModel ingredient)
         {
