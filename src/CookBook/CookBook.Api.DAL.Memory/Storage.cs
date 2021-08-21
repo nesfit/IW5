@@ -37,8 +37,8 @@ namespace CookBook.Api.DAL.Memory
 
         private void SeedIngredients()
         {
-            Ingredients.Add(new IngredientEntity(ingredientGuids[0], "Vejce", "Popis vajec"));
-            Ingredients.Add(new IngredientEntity(ingredientGuids[1], "Cibule", "Popis cibule"));
+            Ingredients.Add(new IngredientEntity(ingredientGuids[0], "Vejce", "Popis vajec", "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Chicken_egg_2009-06-04.jpg/428px-Chicken_egg_2009-06-04.jpg"));
+            Ingredients.Add(new IngredientEntity(ingredientGuids[1], "Cibule", "Popis cibule", "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Onion_on_White.JPG/480px-Onion_on_White.JPG"));
         }
 
         private void SeedIngredientAmounts()
