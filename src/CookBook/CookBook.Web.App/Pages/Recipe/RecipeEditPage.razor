@@ -50,11 +50,14 @@
             <div class="mt-2 mb-2">
                 <h2>Ingredients:</h2>
                 <ul class="list-group mb-4">
-                    @foreach (var ingredient in Data.IngredientAmounts)
+                    @foreach (var ingredientAmount in Data.IngredientAmounts)
                     {
                         <li class="d-flex justify-content-between align-items-center list-group-item list-group-item-secondary">
-                            @ingredient.Ingredient.Name @ingredient.Amount @ingredient.UnitText
-                            <button class="btn btn-danger btn-sm" type="button" @onclick="() => DeleteIngredient(ingredient)">Delete</button>
+                            <img src="@ingredientAmount.Ingredient.ImageUrl" height="50px"/>
+                            <span>
+                                @ingredientAmount.Ingredient.Name @ingredientAmount.Amount @ingredientAmount.UnitText
+                                <button class="btn btn-danger btn-sm" type="button" @onclick="() => DeleteIngredient(ingredientAmount)">Delete</button>
+                            </span>
                         </li>
                     }
                 </ul>
