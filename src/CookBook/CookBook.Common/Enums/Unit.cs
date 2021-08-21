@@ -1,22 +1,42 @@
-﻿using System.ComponentModel;
+﻿using System.Resources;
+using CookBook.Common.Attributes;
+using CookBook.Common.Resources;
 
 namespace CookBook.Common.Enums
 {
     public enum Unit
     {
-        [Description("neznámý")]
+        [UnitDescription(nameof(UnitResources.UnknownDescription))]
         Unknown = 0,
-        [Description("kg")]
+
+        [UnitDescription(nameof(UnitResources.KgDescription))]
         Kg = 1,
-        [Description("l")]
+
+        [UnitDescription(nameof(UnitResources.LiterDescription))]
         L = 2,
-        [Description("ml")]
+
+        [UnitDescription(nameof(UnitResources.MlDescription))]
         Ml = 3,
-        [Description("g")]
+
+        [UnitDescription(nameof(UnitResources.GDescription))]
         G = 4,
-        [Description("kusy")]
+
+        [UnitDescription(nameof(UnitResources.PiecesDescription))]
         Pieces = 5,
-        [Description("lžíce")]
+
+        [UnitDescription(nameof(UnitResources.SpoonDescription))]
         Spoon = 6
+    }
+
+    public class UnitDescription : LocalizableDescriptionAttribute
+    {
+        public UnitDescription(string resourceName) : base(resourceName)
+        {
+        }
+
+        protected override ResourceManager GetResource()
+        {
+            return UnitResources.ResourceManager;
+        }
     }
 }

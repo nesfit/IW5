@@ -1,16 +1,34 @@
-﻿using System.ComponentModel;
+﻿using System.Resources;
+using CookBook.Common.Attributes;
+using CookBook.Common.Resources;
 
 namespace CookBook.Common.Enums
 {
     public enum FoodType
     {
-        [Description("Neznámý")]
+        [FoodTypeDescription(nameof(FoodTypeResources.UnknownDescription))]
         Unknown = 0,
-        [Description("Hlavní chod")]
+
+        [FoodTypeDescription(nameof(FoodTypeResources.MainDishDescription))]
         MainDish = 1,
-        [Description("Polévka")]
+
+        [FoodTypeDescription(nameof(FoodTypeResources.SoupDescription))]
         Soup = 2,
-        [Description("Dezert")]
+
+        [FoodTypeDescription(nameof(FoodTypeResources.DessertDescription))]
         Dessert = 3
+    }
+
+
+    public class FoodTypeDescription : LocalizableDescriptionAttribute
+    {
+        public FoodTypeDescription(string resourceName) : base(resourceName)
+        {
+        }
+
+        protected override ResourceManager GetResource()
+        {
+            return FoodTypeResources.ResourceManager;
+        }
     }
 }
