@@ -7,8 +7,8 @@
   "MultiProjectConfigurations": {
     "API + WEB": {
       "Projects": {
-        "CookBook.Api": {},
-        "CookBook.Web": {}
+        "CookBook.Api.App": {},
+        "CookBook.Web.App": {}
       }
 
     }
