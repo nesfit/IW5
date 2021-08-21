@@ -3,6 +3,7 @@
 @inherits CookBook.Web.App.Pages.PageBase
 @namespace CookBook.Web.App.Pages
 @using CookBook.Common.Enums
+@using CookBook.Web.App.Extensions
 
 <h3>Recipe</h3>
 
@@ -38,9 +39,9 @@
                 <label class="w-100">
                     FoodType:
                     <InputSelect @bind-Value="Data.FoodType" class="form-control">
-                        @foreach (var foodType in Enum.GetValues(typeof(FoodType)))
+                        @foreach (var foodType in Enum.GetValues<FoodType>())
                         {
-                            <option value="@foodType">@foodType</option>
+                            <option value="@foodType">@foodType.GetReadableName()</option>
                         }
                     </InputSelect>
                 </label>
@@ -82,9 +83,9 @@
                     </div>
                     <InputNumber min="0" @bind-Value="NewIngredientModel.Amount" class="form-control" />
                     <InputSelect @bind-Value="NewIngredientModel.Unit" class="form-control">
-                        @foreach (var unit in Enum.GetValues(typeof(Unit)))
+                        @foreach (var unit in Enum.GetValues<Unit>())
                         {
-                            <option value="@unit">@unit</option>
+                            <option value="@unit">@unit.GetReadableName()</option>
                         }
                     </InputSelect>
                     <div class="input-group-append">
