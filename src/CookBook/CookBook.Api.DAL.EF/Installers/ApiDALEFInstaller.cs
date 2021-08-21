@@ -9,13 +9,13 @@ namespace CookBook.Api.DAL.EF.Installers
     {
         public void Install(IServiceCollection serviceCollection, string connectionString)
         {
-            serviceCollection.AddDbContextFactory<CookBookDbContext>(options => options.UseSqlServer(connectionString));
+            serviceCollection.AddDbContext<CookBookDbContext>(options => options.UseSqlServer(connectionString));
 
             serviceCollection.Scan(selector =>
                 selector.FromAssemblyOf<ApiDALEFInstaller>()
                     .AddClasses(classes => classes.AssignableTo(typeof(IApiRepository<>)))
                     .AsMatchingInterface()
-                    .WithTransientLifetime());
+                    .WithScopedLifetime());
         }
     }
 }

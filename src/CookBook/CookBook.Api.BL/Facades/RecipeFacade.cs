@@ -75,13 +75,13 @@ namespace CookBook.Api.BL.Facades
         public Guid? Update(RecipeDetailModel recipeModel)
         {
             var recipeEntityExisting = recipeRepository.GetById(recipeModel.Id);
-            if(recipeEntityExisting is not null)
+            if (recipeEntityExisting is not null)
             {
                 recipeEntityExisting.IngredientAmounts = ingredientAmountRepository.GetByRecipeId(recipeModel.Id);
                 UpdateIngredientAmounts(recipeModel, recipeEntityExisting);
 
-                var recipeEntityUpdated = mapper.Map<RecipeEntity>(recipeModel);
-                return recipeRepository.Update(recipeEntityUpdated);
+                mapper.Map(recipeModel, recipeEntityExisting);
+                return recipeRepository.Update(recipeEntityExisting);
             }
             else
             {

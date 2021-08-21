@@ -9,8 +9,8 @@ namespace CookBook.Api.DAL.EF.Repositories
 {
     public class IngredientRepository : RepositoryBase<IngredientEntity>, IIngredientRepository
     {
-        public IngredientRepository(IDbContextFactory<CookBookDbContext> dbContextFactory)
-            : base(dbContextFactory)
+        public IngredientRepository(CookBookDbContext dbContext)
+            : base(dbContext)
         {
         }
     }

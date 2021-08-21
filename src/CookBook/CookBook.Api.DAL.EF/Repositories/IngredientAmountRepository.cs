@@ -9,14 +9,13 @@ namespace CookBook.Api.DAL.EF.Repositories
 {
     public class IngredientAmountRepository : RepositoryBase<IngredientAmountEntity>, IIngredientAmountRepository
     {
-        public IngredientAmountRepository(IDbContextFactory<CookBookDbContext> dbContextFactory)
-            : base(dbContextFactory)
+        public IngredientAmountRepository(CookBookDbContext dbContext)
+            : base(dbContext)
         {
         }
 
         public IList<IngredientAmountEntity> GetByRecipeId(Guid recipeId)
         {
-            using var dbContext = dbContextFactory.CreateDbContext();
             return dbContext.IngredientAmounts
                 .Where(entity => entity.RecipeId == recipeId)
                 .ToList();
@@ -24,7 +23,6 @@ namespace CookBook.Api.DAL.EF.Repositories
 
         public IngredientAmountEntity? GetByRecipeIdAndIngredientId(Guid recipeId, Guid ingredientId)
         {
-            using var dbContext = dbContextFactory.CreateDbContext();
             return dbContext.IngredientAmounts
                 .SingleOrDefault(entity => entity.RecipeId == recipeId && entity.IngredientId == ingredientId);
         }
