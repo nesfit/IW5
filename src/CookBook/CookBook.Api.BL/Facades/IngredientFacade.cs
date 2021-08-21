@@ -29,9 +29,7 @@ namespace CookBook.Api.BL.Facades
         public IngredientDetailModel? GetById(Guid id)
         {
             var ingredientEntity = ingredientRepository.GetById(id);
-            return ingredientEntity is null
-                ? null
-                : mapper.Map<IngredientDetailModel>(ingredientEntity);
+            return mapper.Map<IngredientDetailModel>(ingredientEntity);
         }
 
         public Guid CreateOrUpdate(IngredientDetailModel ingredientModel)

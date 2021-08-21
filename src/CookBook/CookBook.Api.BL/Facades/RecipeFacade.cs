@@ -16,8 +16,6 @@ namespace CookBook.Api.BL.Facades
 
         public RecipeFacade(
             IRecipeRepository recipeRepository,
-            IIngredientAmountRepository ingredientAmountRepository,
-            IIngredientRepository ingredientRepository,
             IMapper mapper)
         {
             this.recipeRepository = recipeRepository;
@@ -45,38 +43,37 @@ namespace CookBook.Api.BL.Facades
 
         public Guid Create(RecipeDetailModel recipeModel)
         {
-            MergeIngredients(recipeModel);
+            MergeIngredientAmounts(recipeModel);
             var recipeEntity = mapper.Map<RecipeEntity>(recipeModel);
-            var result = recipeRepository.Insert(recipeEntity);
-            return result;
-        }
-
-        private void MergeIngredients(RecipeDetailModel recipe)
-        {
-            var result = new List<RecipeDetailIngredientModel>();
-            var ingredientGroups = recipe.IngredientAmounts.GroupBy(t => $"{t.Ingredient.Id}-{t.Unit}");
-
-            foreach (var group in ingredientGroups)
-            {
-                var representative = @group.First();
-                var totalAmount = group.Sum(t => t.Amount);
-                var ingredient =
-                    new RecipeDetailIngredientModel(totalAmount, representative.Unit, representative.Ingredient);
-                result.Add(ingredient);
-            }
-
-            recipe.IngredientAmounts = result;
+            return recipeRepository.Insert(recipeEntity);
         }
 
         public Guid? Update(RecipeDetailModel recipeModel)
         {
-            MergeIngredients(recipeModel);
+            MergeIngredientAmounts(recipeModel);
 
             var recipeEntity = mapper.Map<RecipeEntity>(recipeModel);
             recipeEntity.IngredientAmounts = recipeModel.IngredientAmounts.Select(t =>
                 new IngredientAmountEntity(t.Amount, t.Unit, recipeEntity.Id, t.Ingredient.Id)).ToList();
             var result = recipeRepository.Update(recipeEntity);
             return result;
+        }
+
+        private void MergeIngredientAmounts(RecipeDetailModel recipe)
+        {
+            var result = new List<RecipeDetailIngredientModel>();
+            var ingredientAmountGroups = recipe.IngredientAmounts.GroupBy(t => t.Ingredient.Id);
+
+            foreach (var ingredientAmountGroup in ingredientAmountGroups)
+            {
+                var ingredientAmountFirst = ingredientAmountGroup.First();
+                var totalAmount = ingredientAmountGroup.Sum(t => t.Amount);
+                var ingredientAmount =
+                    new RecipeDetailIngredientModel(totalAmount, ingredientAmountFirst.Unit, ingredientAmountFirst.Ingredient);
+                result.Add(ingredientAmount);
+            }
+
+            recipe.IngredientAmounts = result;
         }
 
         public void Delete(Guid id)
