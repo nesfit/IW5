@@ -36,10 +36,9 @@ namespace CookBook.Api.BL.Facades
 
         public Guid CreateOrUpdate(IngredientDetailModel ingredientModel)
         {
-            var existingEntity = ingredientRepository.GetById(ingredientModel.Id);
-            return existingEntity is null
-                ? Create(ingredientModel)
-                : Update(ingredientModel)!.Value;
+            return ingredientRepository.Exists(ingredientModel.Id)
+                ? Update(ingredientModel)!.Value
+                : Create(ingredientModel);
         }
 
         public Guid Create(IngredientDetailModel ingredientModel)

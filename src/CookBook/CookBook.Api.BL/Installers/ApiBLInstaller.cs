@@ -12,7 +12,7 @@ namespace CookBook.Api.BL.Installers
                 selector.FromAssemblyOf<ApiBLInstaller>()
                         .AddClasses(classes => classes.AssignableTo<IAppFacade>())
                         .AsSelfWithInterfaces()
-                        .WithTransientLifetime());
+                        .WithScopedLifetime());
         }
     }
 }
