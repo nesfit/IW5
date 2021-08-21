@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Net.Http;
+using CookBook.Common.Extensions;
+using CookBook.Web.BL.Extensions;
 using CookBook.Web.BL.Installers;
 using CookBook.Web.DAL.Installers;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
@@ -10,8 +12,9 @@ var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<CookBook.Web.App.App>("app");
 
 var apiBaseUrl = builder.Configuration.GetValue<string>("ApiBaseUrl");
-new WebDALInstaller().Install(builder.Services);
-new WebBLInstaller().Install(builder.Services, apiBaseUrl);
+
+builder.Services.AddInstaller<WebDALInstaller>();
+builder.Services.AddInstaller<WebBLInstaller>(apiBaseUrl);
 builder.Services.AddScoped(_ => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 builder.Services.AddAutoMapper(typeof(WebBLInstaller));
 

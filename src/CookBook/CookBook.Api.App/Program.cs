@@ -7,8 +7,10 @@ using CookBook.Api.App.Processors;
 using CookBook.Api.BL.Installers;
 using CookBook.Api.DAL.Common;
 using CookBook.Api.DAL.Common.Entities;
+using CookBook.Api.DAL.EF.Extensions;
 using CookBook.Api.DAL.EF.Installers;
 using CookBook.Api.DAL.Memory.Installers;
+using CookBook.Common.Extensions;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -62,17 +64,17 @@ Enum.TryParse<DALType>(builder.Configuration.GetSection("DALSelectionOptions")["
 switch (dalType)
 {
     case DALType.Memory:
-        new ApiDALMemoryInstaller().Install(builder.Services);
+        builder.Services.AddInstaller<ApiDALMemoryInstaller>();
         break;
     case DALType.EntityFramework:
         var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-        new ApiDALEFInstaller().Install(builder.Services, connectionString);
+        builder.Services.AddInstaller<ApiDALEFInstaller>(connectionString);
         break;
     default:
         throw new ArgumentOutOfRangeException("DALSelectionOptions:Type");
 }
 
-new ApiBLInstaller().Install(builder.Services);
+builder.Services.AddInstaller<ApiBLInstaller>();
 builder.Services.AddAutoMapper(typeof(EntityBase), typeof(ApiBLInstaller));
 builder.Services.AddCors(options =>
 {
