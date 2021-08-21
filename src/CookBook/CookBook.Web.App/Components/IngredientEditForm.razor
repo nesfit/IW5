@@ -8,7 +8,9 @@
         <label class="w-100">
             Name:
             <InputText @bind-Value="@Data.Name" class="form-control" />
-            <small class="form-text text-danger"><ValidationMessage For="@(()=>Data.Name)" /></small>
+            <small class="form-text text-danger">
+                <ValidationMessage For="@(() => Data.Name)"/>
+            </small>
         </label>
     </div>
 
@@ -18,6 +20,17 @@
             <InputTextArea @bind-Value="@Data.Description" class="form-control" />
             <small class="form-text text-danger"><ValidationMessage For="@(()=>Data.Description)" /></small>
         </label>
+    </div>
+	
+    <div class="form-group">
+        <label class="w-100">
+            Image URL:
+            <InputText @bind-Value="@Data.ImageUrl" class="form-control" />
+            <small class="form-text text-danger">
+                <ValidationMessage For="@(() => Data.ImageUrl)"/>
+            </small>
+        </label>
+        <img src="@Data.ImageUrl" height="100px"/>
     </div>
 
     <button type="submit" class="btn btn-success" @onclick="@Save">Save</button>

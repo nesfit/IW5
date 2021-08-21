@@ -8,11 +8,13 @@ namespace CookBook.Common.Models
         public Guid Id { get; init; }
         [Required]
         public string Name { get; set; }
+        public string? ImageUrl { get; set; }
 
-        public IngredientListModel(Guid id, string name)
+        public IngredientListModel(Guid id, string name, string? imageUrl = null)
         {
             Id = id;
             Name = name;
+            ImageUrl = imageUrl;
         }
     }
 }

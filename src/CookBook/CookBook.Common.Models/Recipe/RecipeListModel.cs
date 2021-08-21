@@ -11,13 +11,15 @@ namespace CookBook.Common.Models
         public TimeSpan Duration { get; set; }
         public FoodType FoodType { get; set; }
         public string FoodTypeText => FoodType.AsString(EnumFormat.Description)!;
+        public string? ImageUrl { get; set; }
 
-        public RecipeListModel(Guid id, string name, TimeSpan duration, FoodType foodType)
+        public RecipeListModel(Guid id, string name, TimeSpan duration, FoodType foodType, string? imageUrl = null)
         {
             Id = id;
             Name = name;
             Duration = duration;
             FoodType = foodType;
+            ImageUrl = imageUrl;
         }
     }
 }
