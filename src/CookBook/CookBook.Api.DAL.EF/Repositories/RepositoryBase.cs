@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using CookBook.Api.DAL.Common.Entities.Interfaces;
 using CookBook.Api.DAL.Common.Repositories;
-using Microsoft.EntityFrameworkCore;
 
 namespace CookBook.Api.DAL.EF.Repositories
 {

@@ -1,6 +1,7 @@
 ﻿@page "/recipes"
 @namespace CookBook.Web.App.Pages
 @layout ListLayout
+@using CookBook.Web.App.Extensions
 @inherits PageBase
 
 <h1>Recipes</h1>
@@ -33,7 +34,7 @@
                         }
                     }
                 </td>
-                <td>@recipe.FoodTypeText</td>
+                <td>@recipe.FoodType.GetReadableName()</td>
                 <td>
                     @{
                         if (recipe.Id == Guid.Empty)
