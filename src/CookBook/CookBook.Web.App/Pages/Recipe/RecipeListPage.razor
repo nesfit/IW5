@@ -7,16 +7,20 @@
 
 <table class="table border table-striped">
     <thead class="thead-light">
-        <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Food type</th>
-            <th scope="col">Note</th>
-        </tr>
+    <tr>
+        <th scope="col">Image</th>
+        <th scope="col">Name</th>
+        <th scope="col">Food type</th>
+        <th scope="col">Note</th>
+    </tr>
     </thead>
     <tbody>
         @foreach (var recipe in Recipes)
         {
             <tr>
+                <td style="vertical-align: central">
+                    <img src="@recipe.ImageUrl" height="50"/>
+                </td>
                 <td>
                     @{
                         if (recipe.Id == Guid.Empty)

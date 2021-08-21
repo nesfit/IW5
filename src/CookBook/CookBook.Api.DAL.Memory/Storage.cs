@@ -56,7 +56,12 @@ namespace CookBook.Api.DAL.Memory
 
         private void SeedRecipes()
         {
-            Recipes.Add(new RecipeEntity("Míchaná vejce", "Popis míchaných vajec", TimeSpan.FromMinutes(15), FoodType.MainDish)
+            Recipes.Add(new RecipeEntity(
+                "Míchaná vejce", 
+                "Popis míchaných vajec", 
+                TimeSpan.FromMinutes(15), 
+                FoodType.MainDish,
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Scrambled_eggs-01.jpg/320px-Scrambled_eggs-01.jpg")
             {
                 Id = recipeGuids[0]
             });
