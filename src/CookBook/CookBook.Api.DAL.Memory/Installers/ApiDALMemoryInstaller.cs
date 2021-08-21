@@ -18,8 +18,6 @@ namespace CookBook.Api.DAL.Memory.Installers
                             .AsSelf()
                             .WithSingletonLifetime()
             );
-
-            serviceCollection.AddTransient<RecipeCoreRepository>();
         }
     }
 }

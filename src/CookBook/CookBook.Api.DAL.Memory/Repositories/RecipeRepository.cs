@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using AutoMapper;
 using CookBook.Api.DAL.Common.Entities;
 using CookBook.Api.DAL.Common.Repositories;
 
@@ -8,32 +9,37 @@ namespace CookBook.Api.DAL.Memory.Repositories
 {
     public class RecipeRepository : IRecipeRepository
     {
-        private readonly RecipeCoreRepository recipeRepository;
-        private readonly IIngredientAmountRepository ingredientAmountRepository;
-        private readonly IIngredientRepository ingredientRepository;
+        private readonly IMapper mapper;
+        private readonly IList<RecipeEntity> recipes;
+        private readonly IList<IngredientAmountEntity> ingredientAmounts;
+        private readonly IList<IngredientEntity> ingredients;
 
-        public RecipeRepository(RecipeCoreRepository recipeRepository,
-            IIngredientAmountRepository ingredientAmountRepository, IIngredientRepository ingredientRepository)
+        public RecipeRepository(
+            Storage storage,
+            IMapper mapper)
         {
-            this.recipeRepository = recipeRepository;
-            this.ingredientAmountRepository = ingredientAmountRepository;
-            this.ingredientRepository = ingredientRepository;
+            this.mapper = mapper;
+            this.recipes = storage.Recipes;
+            this.ingredientAmounts = storage.IngredientAmounts;
+            this.ingredients = storage.Ingredients;
+
         }
 
         public IList<RecipeEntity> GetAll()
         {
-            return recipeRepository.GetAll();
+            return this.recipes;
         }
 
         public RecipeEntity? GetById(Guid id)
         {
-            var recipeEntity = recipeRepository.GetById(id);
+            var recipeEntity = recipes.SingleOrDefault(recipe => recipe.Id == id);
+
             if (recipeEntity is not null)
             {
-                recipeEntity.IngredientAmounts = ingredientAmountRepository.GetByRecipeId(id);
+                recipeEntity.IngredientAmounts = GetIngredientAmountsByRecipeId(id);
                 foreach (var ingredientAmount in recipeEntity.IngredientAmounts)
                 {
-                    ingredientAmount.Ingredient = ingredientRepository.GetById(ingredientAmount.IngredientId);
+                    ingredientAmount.Ingredient = ingredients.SingleOrDefault(ingredientEntity => ingredientEntity.Id == ingredientAmount.IngredientId);
                 }
             }
 
@@ -42,13 +48,13 @@ namespace CookBook.Api.DAL.Memory.Repositories
 
         public Guid Insert(RecipeEntity entity)
         {
-            recipeRepository.Insert(entity);
+            recipes.Add(entity);
 
             foreach (var ingredientAmount in entity.IngredientAmounts)
             {
                 var ingredientAmountEntity = new IngredientAmountEntity(ingredientAmount.Amount, ingredientAmount.Unit,
-                    entity.Id, ingredientAmount.Ingredient!.Id);
-                ingredientAmountRepository.Insert(ingredientAmountEntity);
+                    entity.Id, ingredientAmount.IngredientId);
+                ingredientAmounts.Add(ingredientAmountEntity);
             }
 
             return entity.Id;
@@ -56,15 +62,13 @@ namespace CookBook.Api.DAL.Memory.Repositories
 
         public Guid? Update(RecipeEntity entity)
         {
-            var recipeEntityExisting = recipeRepository.GetById(entity.Id);
+            var recipeEntityExisting = recipes.SingleOrDefault(recipeEntity => recipeEntity.Id == entity.Id);
 
             if (recipeEntityExisting is not null)
             {
-                recipeEntityExisting.IngredientAmounts =
-                    ingredientAmountRepository.GetByRecipeId(entity.Id);
+                recipeEntityExisting.IngredientAmounts = GetIngredientAmountsByRecipeId(entity.Id);
                 UpdateIngredientAmounts(entity, recipeEntityExisting);
-
-                return recipeRepository.Update(recipeEntityExisting);
+                return recipeEntityExisting.Id;
             }
             else
             {
@@ -72,12 +76,11 @@ namespace CookBook.Api.DAL.Memory.Repositories
             }
         }
 
-
         private void UpdateIngredientAmounts(RecipeEntity updatedEntity, RecipeEntity existingEntity)
         {
             var ingredientAmountsToDelete = existingEntity.IngredientAmounts.Where(
-                ingredientAmount =>
-                    updatedEntity.IngredientAmounts.All(ia => ia.IngredientId != ingredientAmount.IngredientId));
+                    ingredientAmount => updatedEntity.IngredientAmounts.All(ia => ia.IngredientId != ingredientAmount.IngredientId))
+                    .ToList();
             DeleteIngredientAmounts(ingredientAmountsToDelete);
 
             var recipeUpdateIngredientModelsToInsert = updatedEntity.IngredientAmounts.Where(
@@ -95,7 +98,7 @@ namespace CookBook.Api.DAL.Memory.Repositories
             foreach (var recipeUpdateIngredientModel in recipeIngredientModelsToUpdate)
             {
                 var ingredientAmountEntity =
-                    ingredientAmountRepository.GetByRecipeIdAndIngredientId(recipeEntity.Id,
+                    GetIngredientAmountRecipeIdAndIngredientId(recipeEntity.Id,
                         recipeUpdateIngredientModel.IngredientId);
 
                 if (ingredientAmountEntity is not null)
@@ -103,20 +106,16 @@ namespace CookBook.Api.DAL.Memory.Repositories
                     ingredientAmountEntity.Amount = recipeUpdateIngredientModel.Amount;
                     ingredientAmountEntity.Unit = recipeUpdateIngredientModel.Unit;
                     ingredientAmountEntity.IngredientId = recipeUpdateIngredientModel.IngredientId;
-
-                    ingredientAmountRepository.Update(ingredientAmountEntity);
                 }
             }
         }
 
-        private void DeleteIngredientAmounts(IEnumerable<IngredientAmountEntity> ingredientAmountsToDelete)
+        private void DeleteIngredientAmounts(IList<IngredientAmountEntity> ingredientAmountsToDelete)
         {
-            var ingredients = ingredientAmountsToDelete as IngredientAmountEntity[] ??
-                              ingredientAmountsToDelete.ToArray();
-            for (int i = 0; i < ingredients.Count(); i++)
+            for (int i = 0; i < ingredientAmountsToDelete.Count(); i++)
             {
-                var ingredientAmountEntity = ingredients.ElementAt(i);
-                ingredientAmountRepository.Remove(ingredientAmountEntity.Id);
+                var ingredientAmountEntity = ingredientAmountsToDelete.ElementAt(i);
+                ingredientAmounts.Remove(ingredientAmountEntity);
             }
         }
 
@@ -127,19 +126,36 @@ namespace CookBook.Api.DAL.Memory.Repositories
             {
                 var ingredientAmountEntity = new IngredientAmountEntity(ingredientModel.Amount, ingredientModel.Unit,
                     existingEntity.Id, ingredientModel.IngredientId) { RecipeId = existingEntity.Id };
-                ingredientAmountRepository.Insert(ingredientAmountEntity);
+
+                ingredientAmounts.Add(ingredientAmountEntity);
             }
         }
 
+        private IList<IngredientAmountEntity> GetIngredientAmountsByRecipeId(Guid recipeId)
+        {
+            return ingredientAmounts.Where(ingredientAmountEntity => ingredientAmountEntity.RecipeId == recipeId).ToList();
+        }
+
+        private IngredientAmountEntity? GetIngredientAmountRecipeIdAndIngredientId(Guid recipeId, Guid ingredientId)
+        {
+            return ingredientAmounts.SingleOrDefault(entity => entity.RecipeId == recipeId && entity.IngredientId == ingredientId);
+        }
 
         public void Remove(Guid id)
         {
-            recipeRepository.Remove(id);
+            var recipeToRemove = recipes.SingleOrDefault(recipeEntity => recipeEntity.Id == id);
+            for (var i = 0; i < recipeToRemove.IngredientAmounts.Count; i++)
+            {
+                var ingredientAmountToRemove = recipeToRemove.IngredientAmounts.ElementAt(i);
+                ingredientAmounts.Remove(ingredientAmountToRemove);
+            }
+
+            recipes.Remove(recipeToRemove);
         }
 
         public bool Exists(Guid id)
         {
-            return recipeRepository.Exists(id);
+            return recipes.Any(recipe => recipe.Id == id);
         }
     }
 }

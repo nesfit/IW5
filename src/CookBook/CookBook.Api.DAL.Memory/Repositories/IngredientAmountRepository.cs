@@ -25,16 +25,6 @@ namespace CookBook.Api.DAL.Memory.Repositories
             return ingredientAmounts;
         }
 
-        public IList<IngredientAmountEntity> GetByRecipeId(Guid recipeId)
-        {
-            return ingredientAmounts.Where(ingredientAmount => ingredientAmount.RecipeId == recipeId).ToList();
-        }
-
-        public IngredientAmountEntity? GetByRecipeIdAndIngredientId(Guid recipeId, Guid ingredientId)
-        {
-            return ingredientAmounts.SingleOrDefault(ingredientAmount => ingredientAmount.RecipeId == recipeId && ingredientAmount.IngredientId == ingredientId);
-        }
-
         public IngredientAmountEntity? GetById(Guid id)
         {
             return ingredientAmounts.SingleOrDefault(ingredientAmount => ingredientAmount.Id == id);
