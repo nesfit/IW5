@@ -52,5 +52,10 @@ namespace CookBook.Api.DAL.Memory.Repositories
             var ingredientToRemove = ingredients.Single(ingredient => ingredient.Id.Equals(id));
             ingredients.Remove(ingredientToRemove);
         }
+
+        public bool Exists(Guid id)
+        {
+            return ingredients.Any(ingredient => ingredient.Id == id);
+        }
     }
 }

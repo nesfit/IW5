@@ -51,10 +51,9 @@ namespace CookBook.Api.BL.Facades
 
         public Guid CreateOrUpdate(RecipeDetailModel recipeModel)
         {
-            var existingEntity = recipeRepository.GetById(recipeModel.Id);
-            return existingEntity is null
-                ? Create(recipeModel)
-                : Update(recipeModel)!.Value;
+            return recipeRepository.Exists(recipeModel.Id)
+                ? Update(recipeModel)!.Value
+                : Create(recipeModel);
         }
 
         public Guid Create(RecipeDetailModel recipeModel)
@@ -129,16 +128,19 @@ namespace CookBook.Api.BL.Facades
             foreach (var ingredientModel in recipeIngredientModelsToInsert)
             {
                 var ingredientAmountEntity = new IngredientAmountEntity(ingredientModel.Amount, ingredientModel.Unit,
-                    recipeEntity.Id, ingredientModel.Ingredient.Id);
-                ingredientAmountEntity.RecipeId = recipeEntity.Id;
+                    recipeEntity.Id, ingredientModel.Ingredient.Id)
+                {
+                    RecipeId = recipeEntity.Id
+                };
                 ingredientAmountRepository.Insert(ingredientAmountEntity);
             }
         }
 
         private void DeleteIngredientAmounts(IEnumerable<IngredientAmountEntity> ingredientAmountsToDelete)
         {
-            foreach (var ingredientAmountEntity in ingredientAmountsToDelete)
+            for (int i = 0; i < ingredientAmountsToDelete.Count(); i++)
             {
+                var ingredientAmountEntity = ingredientAmountsToDelete.ElementAt(i);
                 ingredientAmountRepository.Remove(ingredientAmountEntity.Id);
             }
         }

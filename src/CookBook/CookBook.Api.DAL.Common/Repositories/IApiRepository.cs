@@ -12,5 +12,6 @@ namespace CookBook.Api.DAL.Common.Repositories
         Guid Insert(TEntity entity);
         Guid? Update(TEntity entity);
         void Remove(Guid id);
+        bool Exists(Guid id);
     }
 }

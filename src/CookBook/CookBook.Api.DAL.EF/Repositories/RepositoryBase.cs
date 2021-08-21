@@ -60,5 +60,10 @@ namespace CookBook.Api.DAL.EF.Repositories
                 dbContext.SaveChanges();
             }
         }
+
+        public virtual bool Exists(Guid id)
+        {
+            return dbContext.Set<TEntity>().Any(entity => entity.Id == id);
+        }
     }
 }
