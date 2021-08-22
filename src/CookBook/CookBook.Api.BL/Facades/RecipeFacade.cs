@@ -59,7 +59,7 @@ namespace CookBook.Api.BL.Facades
             return result;
         }
 
-        private void MergeIngredientAmounts(RecipeDetailModel recipe)
+        private static void MergeIngredientAmounts(RecipeDetailModel recipe)
         {
             var result = new List<RecipeDetailIngredientModel>();
             var ingredientAmountGroups = recipe.IngredientAmounts.GroupBy(t => t.Ingredient.Id);
