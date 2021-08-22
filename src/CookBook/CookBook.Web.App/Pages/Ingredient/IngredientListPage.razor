@@ -1,7 +1,12 @@
 ﻿@page "/ingredients"
 @namespace CookBook.Web.App.Pages
+@using CookBook.Web.App.Resources.Texts
+@using Microsoft.Extensions.Localization
 @inherits PageBase
 @layout ListLayout
+@inject IStringLocalizer<IngredientListPageResources> IngredientListPageLocalizer
+
+<h1>@IngredientListPageLocalizer["Page_Title"]</h1>
 
 <div class="row">
     <div class="col-md">
@@ -13,8 +18,8 @@
             <table class="table border table-striped">
                 <thead class="thead-light">
                     <tr>
-                        <th scope="row">Image</th>
-                        <th scope="row">Name</th>
+                        <th scope="row">@IngredientListPageLocalizer["Image_TableHeader"]</th>
+                        <th scope="row">@IngredientListPageLocalizer["Name_TableHeader"]</th>
                     </tr>
                 </thead>
                 <tbody>
