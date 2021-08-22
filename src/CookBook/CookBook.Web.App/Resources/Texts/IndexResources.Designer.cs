@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CookBook.Common.Resources {
+namespace CookBook.Web.App.Resources.Texts {
     using System;
     
     
@@ -19,17 +19,17 @@ namespace CookBook.Common.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class IngredientNewModelResources {
+    public class IndexResources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal IngredientNewModelResources() {
+        internal IndexResources() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace CookBook.Common.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CookBook.Common.Resources.IngredientNewModelResources", typeof(IngredientNewModelResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CookBook.Web.App.Resources.Texts.IndexResources", typeof(IndexResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -63,36 +63,27 @@ namespace CookBook.Common.Resources {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
-        public static string Description_MinLength {
+        public static string GoToRecipesList_Button {
             get {
-                return ResourceManager.GetString("Description_MinLength", resourceCulture);
+                return ResourceManager.GetString("GoToRecipesList_Button", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
-        public static string Description_Required {
+        public static string Page_Description {
             get {
-                return ResourceManager.GetString("Description_Required", resourceCulture);
+                return ResourceManager.GetString("Page_Description", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
-        public static string Name_Required {
+        public static string Page_Title {
             get {
-                return ResourceManager.GetString("Name_Required", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        public static string Name_StringLength {
-            get {
-                return ResourceManager.GetString("Name_StringLength", resourceCulture);
+                return ResourceManager.GetString("Page_Title", resourceCulture);
             }
         }
     }

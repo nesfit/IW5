@@ -117,16 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Description_MinLength" xml:space="preserve">
-    <value>Ingredient description length must be at least 10 characters</value>
+  <data name="Page_Title" xml:space="preserve">
+    <value>Recipe</value>
   </data>
-  <data name="Description_Required" xml:space="preserve">
-    <value>Ingredient description is required</value>
+  <data name="Name_FormLabel" xml:space="preserve">
+    <value>Name</value>
   </data>
-  <data name="Name_Required" xml:space="preserve">
-    <value>Ingredient name is required</value>
+  <data name="Description_FormLabel" xml:space="preserve">
+    <value>Description</value>
   </data>
-  <data name="Name_StringLength" xml:space="preserve">
-    <value>Ingredient name length must be between 3 and 100 characters</value>
+  <data name="Duration_FormLabel" xml:space="preserve">
+    <value>Duration</value>
+  </data>
+  <data name="FoodType_FormLabel" xml:space="preserve">
+    <value>Food Type</value>
+  </data>
+  <data name="ImageUrl_FormLabel" xml:space="preserve">
+    <value>Image URL</value>
+  </data>
+  <data name="Ingredients_SectionLabel" xml:space="preserve">
+    <value>Ingredients</value>
+  </data>
+  <data name="AddNewIngredient_FormLabel" xml:space="preserve">
+    <value>Add new ingredient</value>
+  </data>
+  <data name="AddIngredient_Button" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="RemoveIngredient_Button" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="Save_Button" xml:space="preserve">
+    <value>Save</value>
   </data>
 </root>

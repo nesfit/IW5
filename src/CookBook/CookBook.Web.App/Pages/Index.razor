@@ -1,14 +1,17 @@
 ﻿@page "/"
+@using CookBook.Web.App.Resources.Texts
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<IndexResources> IndexLocalizer
 
 
 <div class="jumbotron">
-    <h1>Hello, CookBook!</h1>
+    <h1>@IndexLocalizer["Page_Title"]</h1>
     <hr class="my-4" />
     <p class="lead">
-        This project lets you make your own recipes, so don't hesitate to show the world, what you can cook!
+        @IndexLocalizer["Page_Description"]
     </p>
     <NavLink href="/recipes" Match="NavLinkMatch.All" class="btn btn-primary btn-lg">
-        Go to Recipes list
+        @IndexLocalizer["GoToRecipesList_Button"]
     </NavLink>
 
 </div>

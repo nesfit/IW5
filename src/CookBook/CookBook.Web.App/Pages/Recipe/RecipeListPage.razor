@@ -2,17 +2,20 @@
 @namespace CookBook.Web.App.Pages
 @layout ListLayout
 @using CookBook.Web.App.Extensions
+@using CookBook.Web.App.Resources.Texts
+@using Microsoft.Extensions.Localization
 @inherits PageBase
+@inject IStringLocalizer<RecipeListPageResources> RecipeListPageLocalizer
 
-<h1>Recipes</h1>
+<h1>@RecipeListPageLocalizer["Page_Title"]</h1>
 
 <table class="table border table-striped">
     <thead class="thead-light">
     <tr>
-        <th scope="col">Image</th>
-        <th scope="col">Name</th>
-        <th scope="col">Food type</th>
-        <th scope="col">Note</th>
+        <th scope="col">@RecipeListPageLocalizer["Image_TableHeader"]</th>
+        <th scope="col">@RecipeListPageLocalizer["Name_TableHeader"]</th>
+        <th scope="col">@RecipeListPageLocalizer["FoodType_TableHeader"]</th>
+        <th scope="col">@RecipeListPageLocalizer["Note_TableHeader"]</th>
     </tr>
     </thead>
     <tbody>
@@ -51,7 +54,9 @@
 <div class="text-center">
     <OnlineStatusIndicator>
         <OnlineFragment>
-            <NavLink href="@("/recipe/create")" class="btn btn-primary">Create new recipe</NavLink>
+            <NavLink href="@("/recipe/create")" class="btn btn-primary">
+                @RecipeListPageLocalizer["CreateNewRecipe_Button"]
+            </NavLink>
         </OnlineFragment>
         <OfflineFragment>
             <h1>You are offline. Cannot create new recipe when offline!</h1>

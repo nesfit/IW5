@@ -34,5 +34,12 @@
             navigator.serviceWorker.register('service-worker.js');
         }
     </script>
+
+    <script>
+        window.blazorCulture = {
+            get: () => window.localStorage['BlazorCulture'],
+            set: (value) => window.localStorage['BlazorCulture'] = value
+        };
+    </script>
 </body>
 </html>

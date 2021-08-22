@@ -52,7 +52,8 @@ void ConfigureControllers(IServiceCollection serviceCollection)
 
     serviceCollection.AddControllers()
         .AddNewtonsoftJson()
-        .AddFluentValidation(options => options.RegisterValidatorsFromAssemblyContaining<ApiBLInstaller>());
+        .AddFluentValidation(options => options.RegisterValidatorsFromAssemblyContaining<ApiBLInstaller>())
+        .AddDataAnnotationsLocalization();
     serviceCollection.AddLocalization(options => options.ResourcesPath = string.Empty);
 
     serviceCollection.AddCors(options =>

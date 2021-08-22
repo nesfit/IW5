@@ -117,16 +117,40 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Description_MinLength" xml:space="preserve">
-    <value>Délka popisu ingredience musí být alespoň 10 znaků</value>
+  <data name="Page_Title" xml:space="preserve">
+    <value />
   </data>
-  <data name="Description_Required" xml:space="preserve">
-    <value>Popis ingredience je povinný</value>
+  <data name="Name_FormLabel" xml:space="preserve">
+    <value></value>
   </data>
-  <data name="Name_Required" xml:space="preserve">
-    <value>Jméno ingredience je povinné</value>
+  <data name="Description_FormLabel" xml:space="preserve">
+    <value></value>
   </data>
-  <data name="Name_StringLength" xml:space="preserve">
-    <value>Délka jména ingredience musí být mezi 3 a 100 znaky</value>
+  <data name="Duration_FormLabel" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="FoodType_FormLabel" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="ImageUrl_FormLabel" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Ingredients_SectionLabel" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AddNewIngredient_FormLabel" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AddIngredient_Button" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="RemoveIngredient_Button" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Save_Button" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Delete_Button" xml:space="preserve">
+    <value></value>
   </data>
 </root>
