@@ -6,6 +6,11 @@
     <UserSecretsId>70e22f70-c609-4d6a-9be8-b462915b90e5</UserSecretsId>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <AnalysisLevel>preview</AnalysisLevel>
+    <AnalysisMode>AllEnabledByDefault</AnalysisMode>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="10.3.0" />

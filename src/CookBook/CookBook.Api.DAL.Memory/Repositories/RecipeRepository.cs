@@ -9,16 +9,13 @@ namespace CookBook.Api.DAL.Memory.Repositories
 {
     public class RecipeRepository : IRecipeRepository
     {
-        private readonly IMapper mapper;
         private readonly IList<RecipeEntity> recipes;
         private readonly IList<IngredientAmountEntity> ingredientAmounts;
         private readonly IList<IngredientEntity> ingredients;
 
         public RecipeRepository(
-            Storage storage,
-            IMapper mapper)
+            Storage storage)
         {
-            this.mapper = mapper;
             this.recipes = storage.Recipes;
             this.ingredientAmounts = storage.IngredientAmounts;
             this.ingredients = storage.Ingredients;
@@ -112,7 +109,7 @@ namespace CookBook.Api.DAL.Memory.Repositories
 
         private void DeleteIngredientAmounts(IList<IngredientAmountEntity> ingredientAmountsToDelete)
         {
-            for (int i = 0; i < ingredientAmountsToDelete.Count(); i++)
+            for (int i = 0; i < ingredientAmountsToDelete.Count; i++)
             {
                 var ingredientAmountEntity = ingredientAmountsToDelete.ElementAt(i);
                 ingredientAmounts.Remove(ingredientAmountEntity);
@@ -152,7 +149,10 @@ namespace CookBook.Api.DAL.Memory.Repositories
             }
             
             var recipeToRemove = recipes.SingleOrDefault(recipeEntity => recipeEntity.Id == id);
-            recipes.Remove(recipeToRemove);
+            if (recipeToRemove is not null)
+            {
+                recipes.Remove(recipeToRemove);
+            }
         }
 
         public bool Exists(Guid id)
