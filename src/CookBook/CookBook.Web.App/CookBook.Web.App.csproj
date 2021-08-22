@@ -38,6 +38,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Resources\Texts\RecipeEditPageResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>RecipeEditPageResources.resx</DependentUpon>
+    </Compile>
     <Compile Update="Resources\Texts\RecipeListPageResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -46,6 +51,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Resources\Texts\RecipeEditPageResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RecipeEditPageResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="Resources\Texts\RecipeListPageResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>RecipeListPageResources.Designer.cs</LastGenOutput>
