@@ -18,7 +18,9 @@
         <label class="w-100">
             Description:
             <InputTextArea @bind-Value="@Data.Description" class="form-control" />
-            <small class="form-text text-danger"><ValidationMessage For="@(()=>Data.Description)" /></small>
+            <small class="form-text text-danger">
+                <ValidationMessage For="@(() => Data.Description)"/>
+            </small>
         </label>
     </div>
 	
@@ -31,6 +33,9 @@
             </small>
         </label>
         <img src="@Data.ImageUrl" height="100px"/>
+        <small class="form-text text-danger">
+            <ValidationMessage For="@(() => Data.ImageUrl)"/>
+        </small>
     </div>
 
     <button type="submit" class="btn btn-success" @onclick="@Save">Save</button>

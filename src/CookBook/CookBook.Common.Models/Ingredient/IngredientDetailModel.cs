@@ -1,6 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using CookBook.Common.Resources;
+using CookBook.Common.Models.Resources.Texts;
 
 namespace CookBook.Common.Models
 {

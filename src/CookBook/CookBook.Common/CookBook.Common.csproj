@@ -27,11 +27,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>IngredientControllerResources.resx</DependentUpon>
     </Compile>
-    <Compile Update="Resources\IngredientDetailModelResources.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>IngredientDetailModelResources.resx</DependentUpon>
-    </Compile>
     <Compile Update="Resources\UnitResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -47,10 +42,6 @@
     <EmbeddedResource Update="Resources\IngredientControllerResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>IngredientControllerResources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resources\IngredientDetailModelResources.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>IngredientDetailModelResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\UnitResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
