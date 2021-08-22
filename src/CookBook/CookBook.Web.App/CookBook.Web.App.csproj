@@ -43,6 +43,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>IngredientEditFormResources.resx</DependentUpon>
     </Compile>
+    <Compile Update="Resources\Texts\IngredientEditPageResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>IngredientEditPageResources.resx</DependentUpon>
+    </Compile>
     <Compile Update="Resources\Texts\IngredientListPageResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -64,6 +69,10 @@
     <EmbeddedResource Update="Resources\Texts\IngredientEditFormResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>IngredientEditFormResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Texts\IngredientEditPageResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>IngredientEditPageResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\Texts\IngredientListPageResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
