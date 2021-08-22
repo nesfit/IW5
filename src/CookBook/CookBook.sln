@@ -38,7 +38,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookBook.Api.DAL.Common", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookBook.Api.DAL.EF", "CookBook.Api.DAL.EF\CookBook.Api.DAL.EF.csproj", "{EC6D7327-9903-4738-B5F4-ECAF8F993AA0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CookBook.MinimalApi.App", "CookBook.MinimalApi.App\CookBook.MinimalApi.App.csproj", "{D7F9EBCB-0745-402A-A648-5831004AFADA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookBook.MinimalApi.App", "CookBook.MinimalApi.App\CookBook.MinimalApi.App.csproj", "{D7F9EBCB-0745-402A-A648-5831004AFADA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
