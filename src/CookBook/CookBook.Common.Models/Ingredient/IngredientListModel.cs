@@ -6,7 +6,6 @@ namespace CookBook.Common.Models
     public record IngredientListModel : IWithId
     {
         public Guid Id { get; init; }
-        [Required]
         public string Name { get; set; }
         public string? ImageUrl { get; set; }
 

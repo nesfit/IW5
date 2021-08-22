@@ -27,15 +27,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>IngredientControllerResources.resx</DependentUpon>
     </Compile>
-    <Compile Update="Resources\IngredientNewModelResources.Designer.cs">
+    <Compile Update="Resources\IngredientDetailModelResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>IngredientNewModelResources.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Resources\RecipeNewModelResources.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>RecipeNewModelResources.resx</DependentUpon>
+      <DependentUpon>IngredientDetailModelResources.resx</DependentUpon>
     </Compile>
     <Compile Update="Resources\UnitResources.Designer.cs">
       <DesignTime>True</DesignTime>
@@ -53,13 +48,9 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>IngredientControllerResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="Resources\IngredientNewModelResources.resx">
+    <EmbeddedResource Update="Resources\IngredientDetailModelResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>IngredientNewModelResources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resources\RecipeNewModelResources.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>RecipeNewModelResources.Designer.cs</LastGenOutput>
+      <LastGenOutput>IngredientDetailModelResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\UnitResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
