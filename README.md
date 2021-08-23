@@ -6,60 +6,46 @@ Pro připojení do týmu **IW5-2020Z** použijte přístupový kód **txdbgzd**.
 
 ---
 # Aktuality k předmětu 
-<!---  - **18.04.2019** | *Jan Pluskal* | [Registrace](http://goo.gl/mj3ODO) obhajoby projektů - autentizace xlogin00@vutbr.cz. Odevzdání projektu proveďte do WISu jako zip archív bez obj, bin, packages. V případě FEKTu není třeba odevzdávat. --->
-  - **22.09.2020** | *Jan Pluskal* | [Visual Studio 2019 Enterprise](https://aka.ms/devtoolsforteaching) je nově dostupné v Azure Dev Tools for Teaching. Přihlášení je nutné s loginem z domény VUT, tj xlogin00@vutbr.cz
-  - **22.09.2020** | *Jan Pluskal* | Při vytváření repozitáře respektujte schéma ze [zadání](/Project/README.md) *https://dev.azure.com/iw5-2020Z-team0000/project*. Je nezbytně nutné použít Vaše účty z doménu *vutbr.cz*. Do Vašich repozitářů pro projekt přidejte účet **uciteliw5@vutbr.cz**. Pokud uděláte chybu a pouze nesedí url, dá se v nastavení změnit.
+  - **22.08.2021** | Při vytváření repozitáře respektujte schéma ze [zadání](/Project/README.md) *https://dev.azure.com/iw5-2021-team0000/project*. Je nezbytně nutné použít Vaše účty z domény *vutbr.cz*. Do Vašich repozitářů pro projekt přidejte účet **uciteliw5@vutbr.cz**. Pokud uděláte chybu a pouze nesedí url, dá se v nastavení změnit.
 
     * Pokud máte vytvořeno pod soukromými účty, je třeba vytvořit projekt znovu pod univerzitními a pushnout existující repozitář tak, aby Vám zůstala historie včetně správných časů commitů. 
     * Pokud bude kolize s existující organizací, použijte suffix *team0000-01*.
  
 --- 
-# Přednášky
+# Přednášky a demonstrační cvičení
 
-[Organizace kurzu](https://gitpitch.com/fitiw/5?grs=github&t=white&p=Lectures%2FLecture_00#/)
+Organizace kurzu
 
-| Fakulta |    Místnost |            Čas |
-| ------- |-------------| -------------- |
-| FIT     | G0202       | Ut 08:00-09:50 |
+|                      |    Místnost |            Čas |
+| -                    | -           | -              |
+| Přednáška            | A112        | Ut 08:00-09:50 |
+| Demonstrační cvičení | A112        | Ut 10:00-11:50 |
 
 +++
 
-| Datum  |                                                                                            Téma přednášky | 
-| ------ | ------------------------------------------------------------------------------------------------------- |
-| 22. 9. | [Úvod do jazyka C# a platformy .NET](https://gitpitch.com/fitiw/5?grs=github&t=white&p=Lectures%2FLecture_01#/) & [Úvod do objektově orientovaného programování](https://gitpitch.com/fitiw/5?grs=github&t=white&p=Lectures%2FLecture_02#/) |
-| 29. 9. | Inversion of Control, konfigurace, middleware, logging (Michal Mrnuštík) |
-| 06. 10. | ASP.NET Core Web API (Roman Jašek) |
-| 13. 10. | Jak psát testy |
-| 20. 10. | Web - Blazor (Roman Jašek) |
-| 27. 10. | Web - frontend (Maroš Janota) |
-| 03. 11. | Web - napojení na API (Michal Tichý) |
-| 10. 11. | .NET Internals, Intermediate Language, Code Generation (Roman Jašek) |
-| 17. 11. | **Státní svátek** |
-| 24. 11. | Design Patterns v C# (Martin Dybal) |
-| 01. 12. | Softwarové architektury v C# (Martin Dybal) |
-| 08. 12. | Angular frontend for .NET backend (Erik Macháček)|
-| 15. 12. | Xamarin - vývoj multiplatformních mobilních aplikací v С# (Roman Jašek) |
+| Datum   | Téma |
+| -       | -    |
+| 21. 09. | Úvod, představení předmětu, projektu, setup prostředí (Roman Jašek) |
+|         | (cvičení) Minimal API v .NET 6, routing (Roman Jašek) |
+| 28. 09. | **Státní svátek** |
+| 05. 10. | ASP&#46;NET Core Web API, controller, swagger, Postman, middleware (Michal Mrnuštík) |
+|         | **(cvičení)** Inversion of Control, konfigurace, lokalizace (Michal Mrnuštík) |
+| 12. 10. | Testování (Michal Tichý) |
+|         | **(cvičení)** CI/CD, nasazování do Azure (Michal Tichý) |
+| 19. 10. | Web - Blazor (Roman Jašek) |
+|         | **(cvičení)** Web - Blazor (Roman Jašek) |
+| 26. 10. | Web - frontend (Maroš Janota) |
+|         | **(cvičení)** Web (Maroš Janota/Roman Jašek) |
+| 02. 11. | Web - napojení na API (Michal Tichý) |
+|         | **(cvičení)** Takhle napište projekt?! (Roman Jašek) |
+| 09. 11. | Progressive Web Apps (Roman Jašek) |
+| 16. 11. | .NET MAUI (Roman Jašek) |
+| 23. 12. | Clean Architecture (Martin Dybal) |
+| 30. 11. | Unity (???) |
+| 07. 12. | DotVVM (???)|
+| 14. 12. | Téma na přání studentů (???) |
 
 --- 
-# Cvičení 
-Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení na kterém budete moct cvičení aktivně zúčastnit. Bude potřeba vývojové prostředí ideálně Visual Studio 2019 / Rider / VSCode.
-
-| Typ                                  | Místnost | Čas            |
-| ------------------------------------ |----------| -------------- |
-| Demonstrační cvičení                 | G0202    | Ut 10:00-11:50 |
-
-+++
-
-| Datum   |                                                                                            Téma cvičení | 
-| ------- | ------------------------------------------------------------------------------------------------------- | 
-| 22. 9.  | C# tooling, VS - zalozeni projektu ASP.NET Core, zalozeni VSTS | 
-| 06. 10. | Controller, endpoint, postman, curl, swagger | 
-| 13. 10. | VS Test Explorer, Resharper, Code coverage, Live Tests, CI v VSTS (Demonstracne) a důraz na psaní testů |
-| 20. 10. | Web - Blazor |
-| 27. 10. | Web - Progressive Web Apps |
-| 03. 11. | Takhle napiste projekt? |
-
----
 
 # Projekt
 * Projekt bude vypracovaný v 3-členném týmu. 
@@ -76,14 +62,16 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení n
   * projekt musí bezpodmínečně obsahovat **Must have features!**
 
 --- 
-# Nástroje použity ve cvičeních
+# Nástroje použity v přednáškách a cvičeních
 
 | Nástroj  |  Typ   | Popis |
 | -------- |  ------| -------|
 |[Visual Studio 2019 Enterprise](https://aka.ms/devtoolsforteaching)| Samostatný program | Hlavní vývojové prostředí pro .Net |
+|[Visual Studio 2022 Preview](https://visualstudio.microsoft.com/vs/preview/)| Samostatný program | Preview verze následující verze Visual Studia |
 |[Resharper](https://www.jetbrains.com/resharper/) | Doplněk | Nástroje na lepší produktivitu, refaktorování. Studentská licence je k dispozici zdarma [zde](https://www.jetbrains.com/student/) |
-|[Code metrices](https://visualstudiogallery.msdn.microsoft.com/369d38e1-53d3-4f5c-9351-a0560162a6d9) | Doplněk | Zobrazování složitosti jednotlivých metod |
 |[Postifx templates](https://github.com/controlflow/resharper-postfix) | Doplněk | Plynulé doplňování částí kódu bez nutnosti vracení se |
+|[ResXManager](https://github.com/dotnet/ResXResourceManager) | Doplněk | Práce s lokalizačními soubory |
+
 
 +++
 
@@ -91,11 +79,9 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení n
 | -------- |  ------| -------|
 |[Mnemonic Live Templates](https://github.com/JetBrains/mnemonics) | Doplněk | Doplňování částí kódu |
 |[LinqPad](http://www.linqpad.net/) | Samostatný program  | Nástroj na přístup do databáze přes Linq, SQL… |
+|[Postman](https://www.postman.com/) | Samostatný program  | Nástroj na provolávání Web API |
 |[DotPeek](https://www.jetbrains.com/decompiler/) | Samostatný program  | Dekompilátor C# kódu |
 |[MarkdownEditor](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)| Doplněk| Handy Markdown editor for VS |
-|[Entity Framework 6 Power Tools](https://marketplace.visualstudio.com/items?itemName=ErikEJ.EntityFramework6PowerToolsCommunityEdition)| Doplněk| View Entity Data Model|
-|[OzCode](https://www.oz-code.com/)| Doplněk| Advanced debugging tools |
-|[GitFlow](https://marketplace.visualstudio.com/items?itemName=vs-publisher-57624.GitFlowforVisualStudio2017)| Doplněk| GitFlow|
 
 --- 
 # Q&A
@@ -112,25 +98,20 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení n
 
 --- 
 # Vyučující
-* [Martin Dybal](https://www.dybal.it/)
-fixed mail* [Roman Jašek](mailto:roman.jasek@hotmail.com )
-* [Tibor Jašek](mailto:tibor.jasek@gmail.com )
-* [Michal Mrnušťík](mailto:michal.mrnustik@outlook.com )
-* [Michal Tichý](mailto:edu@tichymichal.net )
-* [Jan Pluskal](http://www.fit.vutbr.cz/~ipluskal/)
-* [Erik Macháček](mailto:erik.machacek@solarwinds.com)
+* Martin Dybal: [www](https://www.dybal.it/)
+* Roman Jašek: [e-mail](mailto:roman.jasek@hotmail.com)
+* Michal Mrnuštík: [e-mail](mailto:michal.mrnustik@outlook.com)
+* Michal Tichý: [e-mail](mailto:edu@tichymichal.net)
+* Maroš Janota
 
 --- 
 # Užitečné odkazy
-* [WPF-Tutorial](https://wpf-tutorial.com/)
-* [Entity framework tutorial](http://www.entityframeworktutorial.net/code-first/entity-framework-code-first.aspx)
 * [R. C. Martin SOLID](https://youtu.be/TMuno5RZNeE?t=757) Bob Martin SOLID Principles of Object Oriented and Agile Design 
 * [Resharper features](https://www.jetbrains.com/resharper/features/) and how to use them.
-* [Pro Git book](https://git-scm.com/book/en/v2)
 
 --- 
 # Užitečná literatura
-* [C# 7.0 in a Nutshell](http://www.albahari.com/nutshell/about.aspx), Ben Albahari, Joseph Albahari
+* [C# 9.0 in a Nutshell](http://www.albahari.com/nutshell/), Ben Albahari, Joseph Albahari
 * [Clean Code: A Handbook of Agile Software Craftsmanship](https://books.google.cz/books?id=hjEFCAAAQBAJ), Robert C. Martin
 * [Agile Principles, Patterns, and Practices in C#](https://books.google.cz/books?id=hckt7v6g09oC), Robert C. Martin
-* [C# 3.0 Design Patterns](https://books.google.cz/books?id=pD2XMZLGUAYC), Judith Bishop
+* [.NET Blog](https://devblogs.microsoft.com/dotnet/)
