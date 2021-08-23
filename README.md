@@ -2,7 +2,7 @@
 
 # MS Teams
 
-Pro připojení do týmu **IW5-2020Z** použijte přístupový kód **txdbgzd**.
+Pro připojení do týmu **IW5-2021** použijte přístupový kód **122t6tt**.
 
 ---
 # Aktuality k předmětu 
