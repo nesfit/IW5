@@ -150,4 +150,7 @@
   <data name="Save_Button" xml:space="preserve">
     <value>Uložit</value>
   </data>
+  <data name="Delete_Button" xml:space="preserve">
+    <value>Smazat</value>
+  </data>
 </root>

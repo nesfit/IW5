@@ -36,7 +36,7 @@ namespace CookBook.Api.DAL.EF.Repositories
 
         public virtual Guid? Update(TEntity entity)
         {
-            if (dbContext.Set<TEntity>().Any(dbEntity => dbEntity.Id == entity.Id))
+            if (Exists(entity.Id))
             {
                 dbContext.Set<TEntity>().Attach(entity);
                 var updatedEntity = dbContext.Set<TEntity>().Update(entity);

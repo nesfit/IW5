@@ -49,7 +49,7 @@ namespace CookBook.Api.DAL.Memory.Repositories
 
             foreach (var ingredientAmount in entity.IngredientAmounts)
             {
-                var ingredientAmountEntity = new IngredientAmountEntity(ingredientAmount.Amount, ingredientAmount.Unit,
+                var ingredientAmountEntity = new IngredientAmountEntity(ingredientAmount.Id, ingredientAmount.Amount, ingredientAmount.Unit,
                     entity.Id, ingredientAmount.IngredientId);
                 ingredientAmounts.Add(ingredientAmountEntity);
             }
@@ -121,7 +121,7 @@ namespace CookBook.Api.DAL.Memory.Repositories
         {
             foreach (var ingredientModel in recipeIngredientModelsToInsert)
             {
-                var ingredientAmountEntity = new IngredientAmountEntity(ingredientModel.Amount, ingredientModel.Unit,
+                var ingredientAmountEntity = new IngredientAmountEntity(ingredientModel.Id, ingredientModel.Amount, ingredientModel.Unit,
                     existingEntity.Id, ingredientModel.IngredientId) { RecipeId = existingEntity.Id };
 
                 ingredientAmounts.Add(ingredientAmountEntity);
