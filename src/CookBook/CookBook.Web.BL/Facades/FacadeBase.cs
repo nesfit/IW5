@@ -7,7 +7,9 @@ using System.Threading.Tasks;
 using AutoMapper;
 using CookBook.Common;
 using CookBook.Common.BL.Facades;
+using CookBook.Web.BL.Options;
 using CookBook.Web.DAL.Repositories;
+using Microsoft.Extensions.Options;
 
 namespace CookBook.Web.BL.Facades
 {
@@ -16,21 +18,28 @@ namespace CookBook.Web.BL.Facades
     {
         private readonly RepositoryBase<TDetailModel> repository;
         private readonly IMapper mapper;
+        private readonly LocalDbOptions localDbOptions;
         protected virtual string apiVersion => "3";
         protected virtual string culture => CultureInfo.DefaultThreadCurrentCulture?.Name ?? "cs";
 
         protected FacadeBase(
             RepositoryBase<TDetailModel> repository,
-            IMapper mapper)
+            IMapper mapper,
+            IOptions<LocalDbOptions> localDbOptions)
         {
             this.repository = repository;
             this.mapper = mapper;
+            this.localDbOptions = localDbOptions.Value;
         }
 
         public virtual async Task<List<TListModel>> GetAllAsync()
         {
             var itemsAll = new List<TListModel>();
-            itemsAll.AddRange(await GetAllFromLocalDbAsync());
+
+            if (localDbOptions.IsLocalDbEnabled)
+            {
+                itemsAll.AddRange(await GetAllFromLocalDbAsync());
+            }
             return itemsAll;
         }
 
@@ -50,7 +59,10 @@ namespace CookBook.Web.BL.Facades
             }
             catch (HttpRequestException exception) when (exception.Message.Contains("Failed to fetch"))
             {
-                await repository.InsertAsync(data);
+                if (localDbOptions.IsLocalDbEnabled)
+                {
+                    await repository.InsertAsync(data);
+                }
             }
         }
 
