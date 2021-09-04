@@ -68,7 +68,6 @@ namespace CookBook.Web.App.Pages
         {
             await RecipeFacade.SaveAsync(Data);
             navigationManager.NavigateTo($"/recipes");
-
         }
 
         public async Task Delete()
@@ -91,7 +90,7 @@ namespace CookBook.Web.App.Pages
 
         private static RecipeDetailIngredientModel GetNewIngredientModel()
         {
-            return new(0, Unit.Unknown, new IngredientListModel(Guid.Empty, string.Empty));
+            return new(null, 0, Unit.Unknown, new IngredientListModel(Guid.Empty, string.Empty));
         }
     }
 }
