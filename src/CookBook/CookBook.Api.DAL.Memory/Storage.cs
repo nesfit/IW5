@@ -43,12 +43,12 @@ namespace CookBook.Api.DAL.Memory
 
         private void SeedIngredientAmounts()
         {
-            IngredientAmounts.Add(new IngredientAmountEntity(4.0, Unit.Pieces, recipeGuids[0], ingredientGuids[0])
+            IngredientAmounts.Add(new IngredientAmountEntity(ingredientAmountGuids[0], 4.0, Unit.Pieces, recipeGuids[0], ingredientGuids[0])
             {
                 Id = ingredientAmountGuids[0]
             });
 
-            IngredientAmounts.Add(new IngredientAmountEntity(1.0, Unit.Pieces, recipeGuids[0], ingredientGuids[1])
+            IngredientAmounts.Add(new IngredientAmountEntity(ingredientAmountGuids[1], 1.0, Unit.Pieces, recipeGuids[0], ingredientGuids[1])
             {
                 Id = ingredientAmountGuids[1]
             });
