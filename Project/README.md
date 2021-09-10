@@ -153,18 +153,20 @@ V první fázi se zaměříme na vytvoření Web API služby. Výstupem tedy bud
    - Získání výsledků vyhledávání
 Vzorové API, dle kterého se můžete inspirovat bude ukazováno na přednáškách/cvičeních.
 
-V 1. fázi bude také požadováno pokrytí API testy. Minimálně musí být pokryty všechny API endpointy dostatečným počtem testů, aby se pomocí nich dala ověřit správnost funkcionality API. Počítáme tedy s tím, že budete mít vytvořeny testy, které můžeme u sebe spustit a tyto testy otestují správnost Vašeho řešení. To, jak psát testy bude ukázáno v rámci přednášek/cvičení.
+V 1. fázi bude také požadováno pokrytí API testy. Minimálně musí být pokryty všechny API endpointy dostatečným počtem testů, aby se pomocí nich dala ověřit správnost funkcionality API.
+
+Počítáme tedy s tím, že budete mít vytvořeny testy, které můžeme spustit jak lokálně tak v rámci Azure DevOps a tyto testy testují správnost Vašeho řešení. To, jak psát testy bude ukázáno v rámci přednášek/cvičení.
+
 Budeme tedy kontrolovat jak to, že máte napsány správné testy tak to, že aplikace funguje.
 
 Hodnotíme:
 - logický návrh tříd
 - splnění funkcionality
-- testy
 - využití abstrakce, zapouzdření, polymorfismu
 - čistotu kódu
 - verzování v GITu po logických částech
-- nasazení do Azure
-- nastavení automatizovaného nasazování v Azure DevOps
+- testy
+- automatizované nasazení do Azure (CI + CD) z Azure DevOps
 - logické rozšíření datového návrhu nad rámec zadání (bonusové body)
 
 ---
