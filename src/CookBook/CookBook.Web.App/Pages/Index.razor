@@ -13,14 +13,15 @@
     left: 0;
     z-index: -1;">
 </div>
+<div class="row">
+    <div class="jumbotron col-md-6 bg-transparent text-white mt-5">
+        <h1>@IndexLocalizer["Page_Title"]</h1>
+        <p class="lead font-weight-bold mt-5 mb-4">
+            @IndexLocalizer["Page_Description"]
+        </p>
+        <NavLink href="/recipes" Match="NavLinkMatch.All" class="btn btn-success btn-lg">
+            @IndexLocalizer["GoToRecipesList_Button"]
+        </NavLink>
 
-<div class="jumbotron w-50 bg-transparent text-white mt-5">
-    <h1>@IndexLocalizer["Page_Title"]</h1>
-    <p class="lead font-weight-bold mt-5 mb-4">
-        @IndexLocalizer["Page_Description"]
-    </p>
-    <NavLink href="/recipes" Match="NavLinkMatch.All" class="btn btn-success btn-lg">
-        @IndexLocalizer["GoToRecipesList_Button"]
-    </NavLink>
-
+    </div>
 </div>
