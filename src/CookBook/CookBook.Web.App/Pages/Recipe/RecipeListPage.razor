@@ -7,25 +7,32 @@
 @inherits PageBase
 @inject IStringLocalizer<RecipeListPageResources> RecipeListPageLocalizer
 
-<h1>@RecipeListPageLocalizer["Page_Title"]</h1>
 
-<table class="table border table-striped">
-    <thead class="thead-light">
-    <tr>
-        <th scope="col">@RecipeListPageLocalizer["Image_TableHeader"]</th>
-        <th scope="col">@RecipeListPageLocalizer["Name_TableHeader"]</th>
-        <th scope="col">@RecipeListPageLocalizer["FoodType_TableHeader"]</th>
-        <th scope="col">@RecipeListPageLocalizer["Note_TableHeader"]</th>
-    </tr>
-    </thead>
-    <tbody>
-        @foreach (var recipe in Recipes)
-        {
-            <tr>
-                <td style="vertical-align: central">
-                    <img src="@recipe.ImageUrl" height="50"/>
-                </td>
-                <td>
+<div class="d-flex flex-row justify-content-between align-items-center mb-4" >
+    <h1>@RecipeListPageLocalizer["Page_Title"]</h1>
+
+    <div class="text-center">
+        <OnlineStatusIndicator>
+            <OnlineFragment>
+                <NavLink href="@("/recipe/create")" class="btn btn-success">
+                    @RecipeListPageLocalizer["CreateNewRecipe_Button"]
+                </NavLink>
+            </OnlineFragment>
+            <OfflineFragment>
+                <h1>You are offline. Cannot create new recipe when offline!</h1>
+            </OfflineFragment>
+        </OnlineStatusIndicator>
+    </div>
+</div>
+
+<div class="d-flex flex-wrap">
+    @foreach (var recipe in Recipes)
+    {
+
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="@recipe.ImageUrl" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">
                     @{
                         if (recipe.Id == Guid.Empty)
                         {
@@ -36,30 +43,17 @@
                             <NavLink href="@($"/recipe/{recipe.Id}")">@recipe.Name</NavLink>
                         }
                     }
-                </td>
-                <td>@recipe.FoodType.GetReadableName()</td>
-                <td>
-                    @{
+                </h5>
+                <p class="card-text">
+                    @recipe.FoodType.GetReadableName()
+                        @{
                         if (recipe.Id == Guid.Empty)
                         {
-                            <span>Not Synced</span>
+                            <p>Not Synced</p>
                         }
                     }
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
-
-<div class="text-center">
-    <OnlineStatusIndicator>
-        <OnlineFragment>
-            <NavLink href="@("/recipe/create")" class="btn btn-primary">
-                @RecipeListPageLocalizer["CreateNewRecipe_Button"]
-            </NavLink>
-        </OnlineFragment>
-        <OfflineFragment>
-            <h1>You are offline. Cannot create new recipe when offline!</h1>
-        </OfflineFragment>
-    </OnlineStatusIndicator>
+                </p>
+            </div>
+        </div>
+    }
 </div>
