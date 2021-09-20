@@ -1,7 +1,7 @@
 ﻿@namespace CookBook.Web.App
 
-<label>
-    <select @bind="Culture">
+<label class="ml-auto">
+    <select @bind="Culture" class="form-control bg-dark text-light border-0">
         @foreach (var culture in supportedCultures)
         {
             <option value="@culture">@culture.DisplayName</option>

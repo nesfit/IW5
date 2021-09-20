@@ -9,15 +9,15 @@
 @inject IStringLocalizer<RecipeEditPageResources> RecipeEditPageLocalizer
 
 
-<h3>@RecipeEditPageLocalizer["Page_Title"]</h3>
+<h3 class="mb-4">@RecipeEditPageLocalizer["Page_Title"]</h3>
 
 <EditForm Model="@Data">
     <DataAnnotationsValidator />
 
     <div class="row">
-        <div class="col-md">
+        <div class="col-md-8">
             <div class="form-group">
-                <label class="w-100">
+                <label class="w-100 font-weight-bold">
                     @RecipeEditPageLocalizer["Name_FormLabel"]
                     <InputText @bind-Value="@Data.Name" class="form-control"/>
                     <small class="form-text text-danger">
@@ -25,74 +25,64 @@
                     </small>
                 </label>
             </div>
-
-            <div class="form-group">
-                <label class="w-100">
-                    @RecipeEditPageLocalizer["Description_FormLabel"]
-                    <InputTextArea @bind-Value="@Data.Description" class="form-control"/>
-                    <small class="form-text text-danger">
-                        <ValidationMessage For="@(() => Data.Description)"/>
-                    </small>
-                </label>
-            </div>
-
-            <div class="form-group">
-                <label class="w-100" for="durationInput">
-                    @RecipeEditPageLocalizer["Duration_FormLabel"]
-                </label>
-                <div class="input-group">
-                    <InputNumber min="0" @bind-Value="DurationHours" class="form-control" id="durationInput"/>
-                    <div class="p-2">:</div>
-                    <InputNumber min="0" @bind-Value="DurationMinutes" class="form-control"/>
-                    <small class="form-text text-danger">
-                        <ValidationMessage For="@(() => Data.Duration)"/>
-                    </small>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="w-100 font-weight-bold">
+                            @RecipeEditPageLocalizer["FoodType_FormLabel"]
+                            <InputSelect @bind-Value="Data.FoodType" class="form-control">
+                                @foreach (var foodType in Enum.GetValues<FoodType>())
+                                {
+                                    <option value="@foodType">@foodType.GetReadableName()</option>
+                                }
+                            </InputSelect>
+                            <small class="form-text text-danger">
+                                <ValidationMessage For="@(() => Data.FoodType)"/>
+                            </small>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="w-100 font-weight-bold mb-0" for="durationInput">
+                            @RecipeEditPageLocalizer["Duration_FormLabel"]
+                        </label>
+                        <div class="input-group">
+                            <InputNumber min="0" @bind-Value="DurationHours" class="form-control" id="durationInput"/>
+                            <div class="p-2">:</div>
+                            <InputNumber min="0" @bind-Value="DurationMinutes" class="form-control"/>
+                            <small class="form-text text-danger">
+                                <ValidationMessage For="@(() => Data.Duration)"/>
+                            </small>
+                        </div>
+                    </div>                    
                 </div>
             </div>
-
-            <div class="form-group">
-                <label class="w-100">
-                    @RecipeEditPageLocalizer["FoodType_FormLabel"]
-                    <InputSelect @bind-Value="Data.FoodType" class="form-control">
-                        @foreach (var foodType in Enum.GetValues<FoodType>())
-                        {
-                            <option value="@foodType">@foodType.GetReadableName()</option>
-                        }
-                    </InputSelect>
-                    <small class="form-text text-danger">
-                        <ValidationMessage For="@(() => Data.FoodType)"/>
-                    </small>
-                </label>
-            </div>
-
-            <div class="form-group">
-                <label class="w-100">
+            <div class="form-group mb-0">
+                <label class="w-100 font-weight-bold mb-0">
                     @RecipeEditPageLocalizer["ImageUrl_FormLabel"]
                     <InputText @bind-Value="@Data.ImageUrl" class="form-control"/>
                 </label>
-                <img src="@Data.ImageUrl" height="100px"/>
+                
                 <small class="form-text text-danger">
                     <ValidationMessage For="@(() => Data.ImageUrl)"/>
                 </small>
             </div>
         </div>
-        <div class="col-md">
-            <div class="mt-2 mb-2">
-                <h2>@RecipeEditPageLocalizer["Ingredients_SectionLabel"]</h2>
-                <ul class="list-group mb-4">
-                    @foreach (var ingredientAmount in Data.IngredientAmounts)
-                    {
-                        <li class="d-flex justify-content-between align-items-center list-group-item list-group-item-secondary">
-                            <img src="@ingredientAmount.Ingredient.ImageUrl" height="50px"/>
-                            <span>
-                                @ingredientAmount.Ingredient.Name @ingredientAmount.Amount @ingredientAmount.Unit.GetReadableName()
-                                <button class="btn btn-danger btn-sm" type="button" @onclick="() => DeleteIngredient(ingredientAmount)">@RecipeEditPageLocalizer["RemoveIngredient_Button"]</button>
-                            </span>
-                        </li>
-                    }
-                </ul>
 
-                <h2>@RecipeEditPageLocalizer["AddNewIngredient_FormLabel"]</h2>
+        <div class="col-md-4">
+            <div class="bg-warning rounded overflow-hidden h-100 d-flex">
+                <img src="@Data.ImageUrl" class="m-auto" style="max-width: 100%; max-height: 100%;"/>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 p-3 ">
+            <div class="bg-sec p-3 rounded">
+                <h2>@RecipeEditPageLocalizer["Ingredients_SectionLabel"]</h2>
+
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <InputSelect @bind-Value="SelectedIngredientName" class="form-control">
@@ -110,10 +100,36 @@
                         }
                     </InputSelect>
                     <div class="input-group-append">
-                        <button type="button" class="btn btn-primary" @onclick="@AddIngredient">
+                        <button type="button" class="btn btn-outline-success" @onclick="@AddIngredient">
                             @RecipeEditPageLocalizer["AddIngredient_Button"]
                         </button>
                     </div>
+                </div>
+                <hr/>
+                <ul class="list-group mb-4">
+                    @foreach (var ingredientAmount in Data.IngredientAmounts)
+                    {
+                        <li class="d-flex justify-content-between align-items-center list-group-item list-group-item-secondary">
+                            <img src="@ingredientAmount.Ingredient.ImageUrl" height="50px"/>
+                            <span>
+                                @ingredientAmount.Ingredient.Name @ingredientAmount.Amount @ingredientAmount.Unit.GetReadableName()
+                                <button class="btn btn-danger btn-sm" type="button" @onclick="() => DeleteIngredient(ingredientAmount)">@RecipeEditPageLocalizer["RemoveIngredient_Button"]</button>
+                            </span>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-6 p-3">
+            <div class="bg-sec p-3 rounded">
+                <div class="form-group">
+                    <label class="w-100 font-weight-bold">
+                        @RecipeEditPageLocalizer["Description_FormLabel"]
+                        <InputTextArea @bind-Value="@Data.Description" class="form-control"/>
+                        <small class="form-text text-danger">
+                            <ValidationMessage For="@(() => Data.Description)"/>
+                        </small>
+                    </label>
                 </div>
             </div>
         </div>
