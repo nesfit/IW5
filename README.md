@@ -97,12 +97,17 @@ Organizace kurzu
 | Projekt            |                       100 |
 
 --- 
-# Vyučující
-* Martin Dybal: [www](https://www.dybal.it/)
+# Lidé podílející se na kurzu
 * Roman Jašek: [e-mail](mailto:roman.jasek@hotmail.com)
 * Michal Mrnuštík: [e-mail](mailto:michal.mrnustik@outlook.com)
 * Michal Tichý: [e-mail](mailto:edu@tichymichal.net)
+* Martin Dybal: [www](https://www.dybal.it/)
 * Maroš Janota
+* Vojtěch Brůža
+* Tomáš Herceg
+* Tibor Jašek
+* Silvia Sojčáková
+* Jan Pluskal
 
 --- 
 # Užitečné odkazy
