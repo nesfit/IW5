@@ -1,0 +1,11 @@
+steps:
+  - task: UseDotNet@2
+    inputs:
+      version: $(dotNetVersion)
+      includePreviewVersions: true
+
+  - task: DotNetCoreCLI@2
+    name: "Build"
+    inputs:
+      command: 'build'
+      projects: '**/CookBook.Web.App.csproj'
