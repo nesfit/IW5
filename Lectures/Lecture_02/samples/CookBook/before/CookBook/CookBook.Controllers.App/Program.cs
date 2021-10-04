@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using AutoMapper;
@@ -80,8 +80,6 @@ builder.Services.AddOpenApiDocument(document =>
     document.ApiGroupNames = new[] { "3.0" };
     document.OperationProcessors.Add(new RequestCultureOperationProcessor());
 });
-
-builder.Services.AddLocalization();
 
 var app = builder.Build();
 
