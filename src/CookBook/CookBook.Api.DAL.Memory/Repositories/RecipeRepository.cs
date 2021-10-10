@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using AutoMapper;
 using CookBook.Api.DAL.Common.Entities;
 using CookBook.Api.DAL.Common.Repositories;
 
@@ -75,13 +74,12 @@ namespace CookBook.Api.DAL.Memory.Repositories
 
         private void UpdateIngredientAmounts(RecipeEntity updatedEntity, RecipeEntity existingEntity)
         {
-            var ingredientAmountsToDelete = existingEntity.IngredientAmounts.Where(
-                    ingredientAmount => updatedEntity.IngredientAmounts.All(ia => ia.IngredientId != ingredientAmount.IngredientId))
-                    .ToList();
+            var ingredientAmountsToDelete = existingEntity.IngredientAmounts.Where(t =>
+                !updatedEntity.IngredientAmounts.Select(a => a.Id).Contains(t.Id));
             DeleteIngredientAmounts(ingredientAmountsToDelete);
 
-            var recipeUpdateIngredientModelsToInsert = updatedEntity.IngredientAmounts.Where(
-                ingredient => existingEntity.IngredientAmounts.All(ia => ia.IngredientId != ingredient.IngredientId));
+            var recipeUpdateIngredientModelsToInsert = updatedEntity.IngredientAmounts.Where(t =>
+                !existingEntity.IngredientAmounts.Select(a => a.Id).Contains(t.Id));
             InsertIngredientAmounts(existingEntity, recipeUpdateIngredientModelsToInsert);
 
             var recipeUpdateIngredientModelsToUpdate = updatedEntity.IngredientAmounts.Where(
@@ -94,9 +92,16 @@ namespace CookBook.Api.DAL.Memory.Repositories
         {
             foreach (var recipeUpdateIngredientModel in recipeIngredientModelsToUpdate)
             {
-                var ingredientAmountEntity =
-                    GetIngredientAmountRecipeIdAndIngredientId(recipeEntity.Id,
+                IngredientAmountEntity? ingredientAmountEntity;
+                if (recipeUpdateIngredientModel.Id == null)
+                {
+                    ingredientAmountEntity = GetIngredientAmountRecipeIdAndIngredientId(recipeEntity.Id,
                         recipeUpdateIngredientModel.IngredientId);
+                }
+                else
+                {
+                    ingredientAmountEntity = ingredientAmounts.Single(t => t.Id == recipeUpdateIngredientModel.Id);
+                }
 
                 if (ingredientAmountEntity is not null)
                 {
@@ -107,11 +112,12 @@ namespace CookBook.Api.DAL.Memory.Repositories
             }
         }
 
-        private void DeleteIngredientAmounts(IList<IngredientAmountEntity> ingredientAmountsToDelete)
+        private void DeleteIngredientAmounts(IEnumerable<IngredientAmountEntity> ingredientAmountsToDelete)
         {
-            for (int i = 0; i < ingredientAmountsToDelete.Count; i++)
+            var toDelete = ingredientAmountsToDelete.ToList();
+            for (int i = 0; i < toDelete.Count; i++)
             {
-                var ingredientAmountEntity = ingredientAmountsToDelete.ElementAt(i);
+                var ingredientAmountEntity = toDelete.ElementAt(i);
                 ingredientAmounts.Remove(ingredientAmountEntity);
             }
         }

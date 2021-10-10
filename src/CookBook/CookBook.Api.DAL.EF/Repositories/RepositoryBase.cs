@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using CookBook.Api.DAL.Common.Entities.Interfaces;
+﻿using CookBook.Api.DAL.Common.Entities.Interfaces;
 using CookBook.Api.DAL.Common.Repositories;
 
 namespace CookBook.Api.DAL.EF.Repositories
 {
-    public class RepositoryBase<TEntity> : IApiRepository<TEntity>
+    public class RepositoryBase<TEntity> : IApiRepository<TEntity>, IDisposable
         where TEntity : class, IEntity
     {
         protected readonly CookBookDbContext dbContext;
@@ -63,6 +60,11 @@ namespace CookBook.Api.DAL.EF.Repositories
         public virtual bool Exists(Guid id)
         {
             return dbContext.Set<TEntity>().Any(entity => entity.Id == id);
+        }
+
+        public void Dispose()
+        {
+            dbContext.Dispose();
         }
     }
 }

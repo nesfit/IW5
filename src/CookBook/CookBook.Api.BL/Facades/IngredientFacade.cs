@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using AutoMapper;
 using CookBook.Api.DAL.Common.Entities;
 using CookBook.Api.DAL.Common.Repositories;
-using CookBook.Common.BL.Facades;
 using CookBook.Common.Models;
 
 namespace CookBook.Api.BL.Facades
 {
-    public class IngredientFacade : IAppFacade
+    public class IngredientFacade : IIngredientFacade
     {
         private readonly IIngredientRepository ingredientRepository;
         private readonly IMapper mapper;

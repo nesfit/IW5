@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
 using AutoMapper;
 using CookBook.Api.BL.Facades;
 using CookBook.Api.BL.Installers;
@@ -10,13 +8,10 @@ using CookBook.Api.DAL.EF.Installers;
 using CookBook.Api.DAL.Memory.Installers;
 using CookBook.Common.Models;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NSwag.Annotations;
-using NSwag.AspNetCore;
-using NSwag.Generation.Processors.Collections;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -54,19 +49,37 @@ mapper.ConfigurationProvider.AssertConfigurationIsValid();
 app.UseCors();
 app.UseHttpsRedirection();
 
-app.MapGet("api/ingredient", [OpenApiOperation("IngredientGetAll")](IngredientFacade ingredientFacade) => ingredientFacade.GetAll());
-app.MapGet("api/ingredient/{id:guid}", [OpenApiOperation("IngredientGetById")](IngredientFacade ingredientFacade, Guid id) => ingredientFacade.GetById(id));
-app.MapPost("api/ingredient", [OpenApiOperation("IngredientCreate")](IngredientFacade ingredientFacade, IngredientDetailModel ingredient) => ingredientFacade.Create(ingredient));
-app.MapPost("api/ingredient/upsert", [OpenApiOperation("IngredientCreateOrUpdate")](IngredientFacade ingredientFacade, IngredientDetailModel ingredient) => ingredientFacade.CreateOrUpdate(ingredient));
-app.MapPut("api/ingredient", [OpenApiOperation("IngredientUpdate")](IngredientFacade ingredientFacade, IngredientDetailModel ingredient) => ingredientFacade.Update(ingredient));
-app.MapDelete("api/ingredient/{id:guid}", [OpenApiOperation("IngredientDelete")](IngredientFacade ingredientFacade, Guid id) => ingredientFacade.Delete(id));
+app.MapGet("api/ingredient",
+    [OpenApiOperation("IngredientGetAll")](IIngredientFacade ingredientFacade) => ingredientFacade.GetAll());
+app.MapGet("api/ingredient/{id:guid}",
+    [OpenApiOperation("IngredientGetById")](IIngredientFacade ingredientFacade, Guid id) =>
+        ingredientFacade.GetById(id));
+app.MapPost("api/ingredient",
+    [OpenApiOperation("IngredientCreate")](IIngredientFacade ingredientFacade, IngredientDetailModel ingredient) =>
+        ingredientFacade.Create(ingredient));
+app.MapPost("api/ingredient/upsert",
+    [OpenApiOperation("IngredientCreateOrUpdate")](IIngredientFacade ingredientFacade,
+        IngredientDetailModel ingredient) => ingredientFacade.CreateOrUpdate(ingredient));
+app.MapPut("api/ingredient",
+    [OpenApiOperation("IngredientUpdate")](IIngredientFacade ingredientFacade, IngredientDetailModel ingredient) =>
+        ingredientFacade.Update(ingredient));
+app.MapDelete("api/ingredient/{id:guid}",
+    [OpenApiOperation("IngredientDelete")](IIngredientFacade ingredientFacade, Guid id) => ingredientFacade.Delete(id));
 
-app.MapGet("api/recipe", [OpenApiOperation("RecipeGetAll")](RecipeFacade recipeFacade) => recipeFacade.GetAll());
-app.MapGet("api/recipe/{id:guid}", [OpenApiOperation("RecipeGetById")](RecipeFacade recipeFacade, Guid id) => recipeFacade.GetById(id));
+app.MapGet("api/recipe", [OpenApiOperation("RecipeGetAll")](IRecipeFacade recipeFacade) => recipeFacade.GetAll());
+app.MapGet("api/recipe/{id:guid}",
+    [OpenApiOperation("RecipeGetById")](IRecipeFacade recipeFacade, Guid id) => recipeFacade.GetById(id));
 
-app.MapPost("api/recipe", [ApiExplorerSettings(GroupName = "v3")][OpenApiOperation("RecipeCreate")](RecipeFacade recipeFacade, RecipeDetailModel recipe) => recipeFacade.Create(recipe));
-app.MapPost("api/recipe/upsert", [OpenApiOperation("RecipeCreateOrUpdate")](RecipeFacade recipeFacade, RecipeDetailModel recipe) => recipeFacade.CreateOrUpdate(recipe));
-app.MapPut("api/recipe", [OpenApiOperation("RecipeUpdate")](RecipeFacade recipeFacade, RecipeDetailModel recipe) => recipeFacade.Update(recipe));
-app.MapDelete("api/recipe/{id:guid}", [OpenApiOperation("RecipeDelete")](RecipeFacade recipeFacade, Guid id) => recipeFacade.Delete(id));
+app.MapPost("api/recipe",
+    [ApiExplorerSettings(GroupName = "v3")] [OpenApiOperation("RecipeCreate")](IRecipeFacade recipeFacade,
+        RecipeDetailModel recipe) => recipeFacade.Create(recipe));
+app.MapPost("api/recipe/upsert",
+    [OpenApiOperation("RecipeCreateOrUpdate")](IRecipeFacade recipeFacade, RecipeDetailModel recipe) =>
+        recipeFacade.CreateOrUpdate(recipe));
+app.MapPut("api/recipe",
+    [OpenApiOperation("RecipeUpdate")](IRecipeFacade recipeFacade, RecipeDetailModel recipe) =>
+        recipeFacade.Update(recipe));
+app.MapDelete("api/recipe/{id:guid}",
+    [OpenApiOperation("RecipeDelete")](IRecipeFacade recipeFacade, Guid id) => recipeFacade.Delete(id));
 
 app.Run();

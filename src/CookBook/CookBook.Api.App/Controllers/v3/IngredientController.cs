@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using CookBook.Api.BL.Facades;
 using CookBook.Common.Models;
 using CookBook.Common.Resources;
@@ -16,11 +15,11 @@ namespace CookBook.Api.App.Controllers.v3
     public class IngredientController : ControllerBase
     {
         private const string ApiOperationBaseName = "Ingredient";
-        private readonly IngredientFacade ingredientFacade;
+        private readonly IIngredientFacade ingredientFacade;
         private readonly IStringLocalizer<IngredientControllerResources> ingredientControllerLocalizer;
 
         public IngredientController(
-            IngredientFacade ingredientFacade,
+            IIngredientFacade ingredientFacade,
             IStringLocalizer<IngredientControllerResources> ingredientControllerLocalizer)
         {
             this.ingredientFacade = ingredientFacade;

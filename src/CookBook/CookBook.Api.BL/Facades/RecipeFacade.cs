@@ -4,12 +4,11 @@ using System.Linq;
 using AutoMapper;
 using CookBook.Api.DAL.Common.Entities;
 using CookBook.Api.DAL.Common.Repositories;
-using CookBook.Common.BL.Facades;
 using CookBook.Common.Models;
 
 namespace CookBook.Api.BL.Facades
 {
-    public class RecipeFacade : IAppFacade
+    public class RecipeFacade : IRecipeFacade
     {
         private readonly IRecipeRepository recipeRepository;
         private readonly IMapper mapper;
@@ -59,10 +58,10 @@ namespace CookBook.Api.BL.Facades
             return result;
         }
 
-        private static void MergeIngredientAmounts(RecipeDetailModel recipe)
+        public void MergeIngredientAmounts(RecipeDetailModel recipe)
         {
             var result = new List<RecipeDetailIngredientModel>();
-            var ingredientAmountGroups = recipe.IngredientAmounts.GroupBy(t => t.Ingredient.Id);
+            var ingredientAmountGroups = recipe.IngredientAmounts.GroupBy(t => $"{t.Ingredient.Id}-{t.Unit}");
 
             foreach (var ingredientAmountGroup in ingredientAmountGroups)
             {

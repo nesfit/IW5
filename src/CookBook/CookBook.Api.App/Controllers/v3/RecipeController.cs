@@ -13,9 +13,9 @@ namespace CookBook.Api.App.Controllers.v3
     public class RecipeController : ControllerBase
     {
         private const string ApiOperationBaseName = "Recipe";
-        private readonly RecipeFacade recipeFacade;
+        private readonly IRecipeFacade recipeFacade;
 
-        public RecipeController(RecipeFacade recipeFacade)
+        public RecipeController(IRecipeFacade recipeFacade)
         {
             this.recipeFacade = recipeFacade;
         }

@@ -28,11 +28,14 @@ namespace CookBook.Api.DAL.Memory
         public IList<IngredientAmountEntity> IngredientAmounts { get; } = new List<IngredientAmountEntity>();
         public IList<RecipeEntity> Recipes { get; } = new List<RecipeEntity>();
 
-        public Storage()
+        public Storage(bool seedData = true)
         {
-            SeedIngredients();
-            SeedIngredientAmounts();
-            SeedRecipes();
+            if (seedData)
+            {
+                SeedIngredients();
+                SeedIngredientAmounts();
+                SeedRecipes();
+            }
         }
 
         private void SeedIngredients()
