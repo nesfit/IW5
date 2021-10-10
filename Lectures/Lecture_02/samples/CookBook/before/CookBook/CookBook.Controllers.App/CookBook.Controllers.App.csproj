@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.0.0" />
+        <PackageReference Include="NSwag.AspNetCore" Version="13.13.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\CookBook.Api.BL\CookBook.Api.BL.csproj" />
+        <ProjectReference Include="..\CookBook.Api.DAL.Common\CookBook.Api.DAL.Common.csproj" />
+        <ProjectReference Include="..\CookBook.Api.DAL.EF\CookBook.Api.DAL.EF.csproj" />
+        <ProjectReference Include="..\CookBook.Api.DAL.Memory\CookBook.Api.DAL.Memory.csproj" />
+    </ItemGroup>
+
+</Project>
