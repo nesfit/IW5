@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
+﻿using System.Globalization;
 using AutoMapper;
 using CookBook.Api.App.Extensions;
 using CookBook.Api.App.Processors;
@@ -12,14 +10,9 @@ using CookBook.Api.DAL.EF.Installers;
 using CookBook.Api.DAL.Memory.Installers;
 using CookBook.Common.Extensions;
 using FluentValidation.AspNetCore;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Versioning;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using NSwag.AspNetCore;
 
 var builder = WebApplication.CreateBuilder();
@@ -148,11 +141,7 @@ void UseLocalization(IApplicationBuilder application)
     application.UseRequestLocalization(new RequestLocalizationOptions
     {
         DefaultRequestCulture = new RequestCulture(new CultureInfo("en")),
-        SupportedCultures = new List<CultureInfo>
-        {
-            new("en"),
-            new("cs")
-        }
+        SupportedCultures = new List<CultureInfo> { new("en"), new("cs") }
     });
 
     application.UseRequestCulture();
@@ -178,4 +167,10 @@ void UseOpenApi(IApplicationBuilder application)
         settings.SwaggerRoutes.Add(new SwaggerUi3Route("v2.0", "/swagger/v2/swagger.json"));
         settings.SwaggerRoutes.Add(new SwaggerUi3Route("v1.0", "/swagger/v1/swagger.json"));
     });
+}
+
+
+// Make the implicit Program class public so test projects can access it
+public partial class Program
+{
 }

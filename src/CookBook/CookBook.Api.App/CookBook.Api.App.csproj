@@ -33,6 +33,8 @@
     <ProjectReference Include="..\CookBook.Api.DAL.EF\CookBook.Api.DAL.EF.csproj" />
     <ProjectReference Include="..\CookBook.Api.DAL.Memory\CookBook.Api.DAL.Memory.csproj" />
   </ItemGroup>
+    <ItemGroup>
 
-
+        <InternalsVisibleTo Include="CookBook.Api.App.EndToEndTests" />
+    </ItemGroup>
 </Project>
