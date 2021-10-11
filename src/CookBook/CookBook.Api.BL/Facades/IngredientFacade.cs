@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using AutoMapper;
 using CookBook.Api.DAL.Common.Entities;
 using CookBook.Api.DAL.Common.Repositories;
-using CookBook.Common.BL.Facades;
 using CookBook.Common.Models;
 
 namespace CookBook.Api.BL.Facades
 {
-    public class IngredientFacade : IAppFacade
+    public class IngredientFacade : IIngredientFacade
     {
         private readonly IIngredientRepository ingredientRepository;
         private readonly IMapper mapper;
@@ -29,9 +28,7 @@ namespace CookBook.Api.BL.Facades
         public IngredientDetailModel? GetById(Guid id)
         {
             var ingredientEntity = ingredientRepository.GetById(id);
-            return ingredientEntity is null
-                ? null
-                : mapper.Map<IngredientDetailModel>(ingredientEntity);
+            return mapper.Map<IngredientDetailModel>(ingredientEntity);
         }
 
         public Guid CreateOrUpdate(IngredientDetailModel ingredientModel)

@@ -1,8 +1,11 @@
 ﻿@page "/ingredients/create"
 @page "/ingredients/{Id:guid}"
 @namespace CookBook.Web.App.Pages
+@using CookBook.Web.App.Resources.Texts
+@using Microsoft.Extensions.Localization
 @inherits PageBase
+@inject IStringLocalizer<IngredientEditPageResources> IngredientEditPageLocalizer
 
-<h1>Ingredient</h1>
+<h1 class="mb-4">@IngredientEditPageLocalizer["Page_Title"]</h1>
 
 <IngredientEditForm Id="@Id" OnModification="NavigateBack" />

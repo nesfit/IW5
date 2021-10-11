@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using CookBook.Api.DAL.Common.Entities.Interfaces;
+﻿using CookBook.Api.DAL.Common.Entities.Interfaces;
 using CookBook.Api.DAL.Common.Repositories;
-using Microsoft.EntityFrameworkCore;
 
 namespace CookBook.Api.DAL.EF.Repositories
 {
-    public class RepositoryBase<TEntity> : IApiRepository<TEntity>
+    public class RepositoryBase<TEntity> : IApiRepository<TEntity>, IDisposable
         where TEntity : class, IEntity
     {
         protected readonly CookBookDbContext dbContext;
@@ -37,7 +33,7 @@ namespace CookBook.Api.DAL.EF.Repositories
 
         public virtual Guid? Update(TEntity entity)
         {
-            if (dbContext.Set<TEntity>().Any(dbEntity => dbEntity.Id == entity.Id))
+            if (Exists(entity.Id))
             {
                 dbContext.Set<TEntity>().Attach(entity);
                 var updatedEntity = dbContext.Set<TEntity>().Update(entity);
@@ -64,6 +60,11 @@ namespace CookBook.Api.DAL.EF.Repositories
         public virtual bool Exists(Guid id)
         {
             return dbContext.Set<TEntity>().Any(entity => entity.Id == id);
+        }
+
+        public void Dispose()
+        {
+            dbContext.Dispose();
         }
     }
 }

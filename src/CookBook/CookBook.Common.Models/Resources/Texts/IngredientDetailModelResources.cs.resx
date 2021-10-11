@@ -117,16 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Description_MinLength" xml:space="preserve">
-      <value>Ingredient description length must be at least 10 characters</value>
+  <data name="Name_Required_ErrorMessage" xml:space="preserve">
+    <value>Název je povinný</value>
   </data>
-  <data name="Description_Required" xml:space="preserve">
-      <value>Ingredient description is required</value>
-  </data>
-  <data name="Name_Required" xml:space="preserve">
-      <value>Ingredient name is required</value>
-  </data>
-  <data name="Name_StringLength" xml:space="preserve">
-      <value>Ingredient name length must be between 3 and 100 characters</value>
+  <data name="Description_Required_ErrorMessage" xml:space="preserve">
+    <value>Popis je povinný</value>
   </data>
 </root>

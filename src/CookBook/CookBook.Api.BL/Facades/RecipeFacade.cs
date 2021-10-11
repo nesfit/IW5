@@ -4,27 +4,20 @@ using System.Linq;
 using AutoMapper;
 using CookBook.Api.DAL.Common.Entities;
 using CookBook.Api.DAL.Common.Repositories;
-using CookBook.Common.BL.Facades;
 using CookBook.Common.Models;
 
 namespace CookBook.Api.BL.Facades
 {
-    public class RecipeFacade : IAppFacade
+    public class RecipeFacade : IRecipeFacade
     {
         private readonly IRecipeRepository recipeRepository;
-        private readonly IIngredientAmountRepository ingredientAmountRepository;
-        private readonly IIngredientRepository ingredientRepository;
         private readonly IMapper mapper;
 
         public RecipeFacade(
             IRecipeRepository recipeRepository,
-            IIngredientAmountRepository ingredientAmountRepository,
-            IIngredientRepository ingredientRepository,
             IMapper mapper)
         {
             this.recipeRepository = recipeRepository;
-            this.ingredientAmountRepository = ingredientAmountRepository;
-            this.ingredientRepository = ingredientRepository;
             this.mapper = mapper;
         }
 
@@ -37,15 +30,6 @@ namespace CookBook.Api.BL.Facades
         public RecipeDetailModel? GetById(Guid id)
         {
             var recipeEntity = recipeRepository.GetById(id);
-            if(recipeEntity is not null)
-            {
-                recipeEntity.IngredientAmounts = ingredientAmountRepository.GetByRecipeId(id);
-                foreach (var ingredientAmount in recipeEntity.IngredientAmounts)
-                {
-                    ingredientAmount.Ingredient = ingredientRepository.GetById(ingredientAmount.IngredientId);
-                }
-            }
-
             return mapper.Map<RecipeDetailModel>(recipeEntity);
         }
 
@@ -58,91 +42,36 @@ namespace CookBook.Api.BL.Facades
 
         public Guid Create(RecipeDetailModel recipeModel)
         {
+            MergeIngredientAmounts(recipeModel);
             var recipeEntity = mapper.Map<RecipeEntity>(recipeModel);
-            recipeRepository.Insert(recipeEntity);
-
-            foreach (var ingredientAmountModel in recipeModel.IngredientAmounts)
-            {
-                var ingredientAmountEntity = new IngredientAmountEntity(ingredientAmountModel.Amount, ingredientAmountModel.Unit,
-                    recipeEntity.Id, ingredientAmountModel.Ingredient.Id);
-                ingredientAmountRepository.Insert(ingredientAmountEntity);
-            }
-
-            return recipeEntity.Id;
+            return recipeRepository.Insert(recipeEntity);
         }
 
         public Guid? Update(RecipeDetailModel recipeModel)
         {
-            var recipeEntityExisting = recipeRepository.GetById(recipeModel.Id);
-            if (recipeEntityExisting is not null)
-            {
-                recipeEntityExisting.IngredientAmounts = ingredientAmountRepository.GetByRecipeId(recipeModel.Id);
-                UpdateIngredientAmounts(recipeModel, recipeEntityExisting);
+            MergeIngredientAmounts(recipeModel);
 
-                mapper.Map(recipeModel, recipeEntityExisting);
-                return recipeRepository.Update(recipeEntityExisting);
-            }
-            else
-            {
-                return null;
-            }
+            var recipeEntity = mapper.Map<RecipeEntity>(recipeModel);
+            recipeEntity.IngredientAmounts = recipeModel.IngredientAmounts.Select(t =>
+                new IngredientAmountEntity(t.Id, t.Amount, t.Unit, recipeEntity.Id, t.Ingredient.Id)).ToList();
+            var result = recipeRepository.Update(recipeEntity);
+            return result;
         }
 
-        private void UpdateIngredientAmounts(RecipeDetailModel recipeModel, RecipeEntity recipeEntity)
+        public void MergeIngredientAmounts(RecipeDetailModel recipe)
         {
-            var ingredientAmountsToDelete = recipeEntity.IngredientAmounts.Where(
-                ingredientAmount =>
-                    !recipeModel.IngredientAmounts.Any(ia => ia.Ingredient.Id == ingredientAmount.IngredientId));
-            DeleteIngredientAmounts(ingredientAmountsToDelete);
+            var result = new List<RecipeDetailIngredientModel>();
+            var ingredientAmountGroups = recipe.IngredientAmounts.GroupBy(t => $"{t.Ingredient.Id}-{t.Unit}");
 
-            var recipeUpdateIngredientModelsToInsert = recipeModel.IngredientAmounts.Where(
-                ingredient => !recipeEntity.IngredientAmounts.Any(ia => ia.IngredientId == ingredient.Ingredient.Id));
-            InsertIngredientAmounts(recipeEntity, recipeUpdateIngredientModelsToInsert);
-
-            var recipeUpdateIngredientModelsToUpdate = recipeModel.IngredientAmounts.Where(
-                ingredient => recipeEntity.IngredientAmounts.Any(ia => ia.IngredientId == ingredient.Ingredient.Id));
-            UpdateIngredientAmounts(recipeEntity, recipeUpdateIngredientModelsToUpdate);
-        }
-
-        private void UpdateIngredientAmounts(RecipeEntity recipeEntity, IEnumerable<RecipeDetailIngredientModel> recipeIngredientModelsToUpdate)
-        {
-            foreach (var recipeUpdateIngredientModel in recipeIngredientModelsToUpdate)
+            foreach (var ingredientAmountGroup in ingredientAmountGroups)
             {
-                var ingredientAmountEntity =
-                    ingredientAmountRepository.GetByRecipeIdAndIngredientId(recipeEntity.Id,
-                        recipeUpdateIngredientModel.Ingredient.Id);
-
-                if(ingredientAmountEntity is not null)
-                {
-                    ingredientAmountEntity.Amount = recipeUpdateIngredientModel.Amount;
-                    ingredientAmountEntity.Unit = recipeUpdateIngredientModel.Unit;
-                    ingredientAmountEntity.IngredientId = recipeUpdateIngredientModel.Ingredient.Id;
-
-                    ingredientAmountRepository.Update(ingredientAmountEntity);
-                }
+                var ingredientAmountFirst = ingredientAmountGroup.First();
+                var totalAmount = ingredientAmountGroup.Sum(t => t.Amount);
+                var ingredientAmount = new RecipeDetailIngredientModel(ingredientAmountFirst.Id, totalAmount, ingredientAmountFirst.Unit, ingredientAmountFirst.Ingredient);
+                result.Add(ingredientAmount);
             }
-        }
 
-        private void InsertIngredientAmounts(RecipeEntity recipeEntity, IEnumerable<RecipeDetailIngredientModel> recipeIngredientModelsToInsert)
-        {
-            foreach (var ingredientModel in recipeIngredientModelsToInsert)
-            {
-                var ingredientAmountEntity = new IngredientAmountEntity(ingredientModel.Amount, ingredientModel.Unit,
-                    recipeEntity.Id, ingredientModel.Ingredient.Id)
-                {
-                    RecipeId = recipeEntity.Id
-                };
-                ingredientAmountRepository.Insert(ingredientAmountEntity);
-            }
-        }
-
-        private void DeleteIngredientAmounts(IEnumerable<IngredientAmountEntity> ingredientAmountsToDelete)
-        {
-            for (int i = 0; i < ingredientAmountsToDelete.Count(); i++)
-            {
-                var ingredientAmountEntity = ingredientAmountsToDelete.ElementAt(i);
-                ingredientAmountRepository.Remove(ingredientAmountEntity.Id);
-            }
+            recipe.IngredientAmounts = result;
         }
 
         public void Delete(Guid id)

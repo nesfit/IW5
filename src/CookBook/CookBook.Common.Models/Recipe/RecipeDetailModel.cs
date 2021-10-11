@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using CookBook.Common.Enums;
+using CookBook.Common.Models.Resources.Texts;
 
 namespace CookBook.Common.Models
 {
@@ -9,10 +10,11 @@ namespace CookBook.Common.Models
     {
         public Guid Id { get; init; }
 
-        [Required]
+        [Required(ErrorMessageResourceName = nameof(RecipeDetailModelResources.Name_Required_ErrorMessage), ErrorMessageResourceType = typeof(RecipeDetailModelResources))]
         public string Name { get; set; }
 
-        [Required]
+        [Required(ErrorMessageResourceName = nameof(RecipeDetailModelResources.Description_Required_ErrorMessage), ErrorMessageResourceType = typeof(RecipeDetailModelResources))]
+        [MinLength(10, ErrorMessageResourceName = nameof(RecipeDetailModelResources.Description_MinLength_ErrorMessage), ErrorMessageResourceType = typeof(RecipeDetailModelResources))]
         public string Description { get; set; }
 
         public string? ImageUrl { get; set; }

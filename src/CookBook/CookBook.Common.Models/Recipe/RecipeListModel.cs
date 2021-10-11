@@ -1,6 +1,5 @@
 ﻿using System;
 using CookBook.Common.Enums;
-using EnumsNET;
 
 namespace CookBook.Common.Models
 {
@@ -10,7 +9,6 @@ namespace CookBook.Common.Models
         public string Name { get; set; }
         public TimeSpan Duration { get; set; }
         public FoodType FoodType { get; set; }
-        public string FoodTypeText => FoodType.AsString(EnumFormat.Description)!;
         public string? ImageUrl { get; set; }
 
         public RecipeListModel(Guid id, string name, TimeSpan duration, FoodType foodType, string? imageUrl = null)

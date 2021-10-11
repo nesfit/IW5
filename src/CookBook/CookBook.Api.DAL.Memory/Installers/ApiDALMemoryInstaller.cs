@@ -1,4 +1,5 @@
 ﻿using CookBook.Api.DAL.Common.Repositories;
+using CookBook.Api.DAL.Memory.Repositories;
 using CookBook.Common.Installers;
 using Microsoft.Extensions.DependencyInjection;
 
