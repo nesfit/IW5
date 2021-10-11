@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using AutoMapper;
+﻿using AutoMapper;
 using CookBook.Api.BL.Facades;
-using CookBook.Api.BL.MapperProfiles;
-using CookBook.Api.DAL.Common.Entities;
 using CookBook.Api.DAL.Common.Repositories;
 using CookBook.Common.Enums;
 using CookBook.Common.Models;
@@ -14,6 +9,25 @@ using Xunit;
 namespace CookBook.Api.BL.UnitTests;
 public class RecipeFacadeTests
 {
+    [Fact]
+    public void Delete_Calls_Correct_Method_On_Repository()
+    {
+        //arrange
+        var repositoryMock = new Mock<IRecipeRepository>(MockBehavior.Strict);
+        repositoryMock.Setup(recipeRepository => recipeRepository.Remove(It.IsAny<Guid>()));
+
+        var repository = repositoryMock.Object;
+        var mapper = new Mock<IMapper>(MockBehavior.Strict).Object;
+        var facade = new RecipeFacade(repository, mapper);
+
+        var itemId = Guid.NewGuid();
+        //act
+        facade.Delete(itemId);
+
+        //assert
+        repositoryMock.Verify(recipeRepository => recipeRepository.Remove(itemId));
+    }
+
     [Fact]
     public void MergeIngredientAmounts_Merges_Recipe_With_Multiple_IngredientAmounts_Of_Same_Ingredient_And_Unit()
     {
@@ -52,7 +66,6 @@ public class RecipeFacadeTests
     {
         //arrange
         var facade = GetFacadeWithForbiddenDependencyCalls();
-
 
         var mergedIngredientId = Guid.NewGuid();
         var ingredientAmount1Id = Guid.NewGuid();
@@ -155,24 +168,7 @@ public class RecipeFacadeTests
         //assert
         Assert.Empty(recipe.IngredientAmounts);
     }
-    [Fact]
-    public void Delete_Calls_Correct_Method_On_Repository()
-    {
-        //arrange
-        var repositoryMock = new Mock<IRecipeRepository>(MockBehavior.Strict);
-        repositoryMock.Setup(recipeRepository => recipeRepository.Remove(It.IsAny<Guid>()));
 
-        var repository = repositoryMock.Object;
-        var mapper = new Mock<IMapper>(MockBehavior.Strict).Object;
-        var facade = new RecipeFacade(repository, mapper);
-
-        var itemId = Guid.NewGuid();
-        //act
-        facade.Delete(itemId);
-
-        //assert
-        repositoryMock.Verify(recipeRepository => recipeRepository.Remove(itemId));
-    }
 
     private static RecipeFacade GetFacadeWithForbiddenDependencyCalls()
     {
