@@ -1,6 +1,8 @@
-using System.Reflection;
+﻿using System.Reflection;
 using CookBook.Api.App.Controllers.v3;
 using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace CookBook.Api.App.EndToEndTests;
 

@@ -1,4 +1,7 @@
-﻿using CookBook.Api.DAL.Common.Entities;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using CookBook.Api.DAL.Common.Entities;
 using CookBook.Common.Enums;
 using Xunit;
 
