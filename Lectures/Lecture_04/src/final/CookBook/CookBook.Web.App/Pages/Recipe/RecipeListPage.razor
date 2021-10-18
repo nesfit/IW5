@@ -5,24 +5,35 @@
 
 <h1>Recipes</h1>
 
-<table class="table border table-striped">
-    <thead class="thead-light">
-    <tr>
-        <th scope="col">Name</th>
-        <th scope="col">Food type</th>
-    </tr>
-    </thead>
-    <tbody>
+<div class="d-flex flex-wrap">
     @foreach (var recipe in Recipes)
     {
-        <tr>
-            <td><NavLink href="@($"/recipe/{recipe.Id}")">@recipe.Name</NavLink></td>
-            @*<td>@recipe.FoodTypeText</td>*@
-        </tr>
-    }
-    </tbody>
-</table>
 
-<div class="text-center">
-    <NavLink href="@("/recipe/create")" class="btn btn-primary">Create new recipe</NavLink>
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="@recipe.ImageUrl" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">
+                    @{
+                        if (recipe.Id == Guid.Empty)
+                        {
+                            <span>@recipe.Name</span>
+                        }
+                        else
+                        {
+                            <NavLink href="@($"/recipe/{recipe.Id}")">@recipe.Name</NavLink>
+                        }
+                    }
+                </h5>
+                <p class="card-text">
+                    @recipe.FoodType
+                    @{
+                        if (recipe.Id == Guid.Empty)
+                        {
+                            <p>Not Synced</p>
+                        }
+                    }
+                </p>
+            </div>
+        </div>
+    }
 </div>

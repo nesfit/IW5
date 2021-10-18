@@ -2,11 +2,13 @@
   {
     "Id": "df935095-8709-4040-a2bb-b6f97cb416dc",
     "Name": "Vejce",
-    "Description": "Popis vajec"
+    "Description": "Popis vajec",
+    "ImageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Chicken_egg_2009-06-04.jpg/428px-Chicken_egg_2009-06-04.jpg"
   },
   {
     "Id": "23b3902d-7d4f-4213-9cf0-112348f56238",
     "Name": "Cibule",
-    "Description": "Popis cibule"
+    "Description": "Popis cibule",
+    "ImageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Onion_on_White.JPG/480px-Onion_on_White.JPG"
   }
 ]

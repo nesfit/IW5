@@ -31,6 +31,18 @@ namespace CookBook.Web.App.Pages
             set => Data.Duration = new TimeSpan(DurationHours, value, 0);
         }
 
+        private string SelectedIngredientName
+        {
+            get
+            {
+                return NewIngredientModel.Ingredient.Name;
+            }
+            set
+            {
+                NewIngredientModel.Ingredient = Ingredients.First(t => t.Name == value);
+            }
+        }
+
         protected override async Task OnInitializedAsync()
         {
             if (Id == Guid.Empty)
