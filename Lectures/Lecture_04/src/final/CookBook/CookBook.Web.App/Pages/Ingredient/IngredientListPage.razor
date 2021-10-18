@@ -21,10 +21,10 @@
                     @foreach (var ingredient in Ingredients)
                     {
                         <tr>
-                            <td style="vertical-align: central">
+                            <td style="vertical-align: middle;">
                                 <img src="@ingredient.ImageUrl" height="50"/>
                             </td>
-                            <td>
+                            <td style="vertical-align: middle;">
                                 <NavLink href="@($"/ingredients/{ingredient.Id}")">@ingredient.Name</NavLink>
                             </td>
                         </tr>
