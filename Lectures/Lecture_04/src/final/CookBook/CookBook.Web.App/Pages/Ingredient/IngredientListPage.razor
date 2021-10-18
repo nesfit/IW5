@@ -1,0 +1,40 @@
+﻿@page "/ingredients"
+@namespace CookBook.Web.App.Pages
+@inherits CookBook.Web.App.Pages.PageBase
+@layout ListLayout
+
+<h1 class="mb-4">Ingredients</h1>
+
+<div class="row">
+    <div class="col-md">
+        <div class="bg-sec h-100 rounded">
+            @if (Ingredients.Count != 0)
+            {
+                <table class="table border table-striped">
+                    <thead class="thead-light">
+                    <tr>
+                        <th scope="row">Image</th>
+                        <th scope="row">Name</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var ingredient in Ingredients)
+                    {
+                        <tr>
+                            <td style="vertical-align: central">
+                                <img src="@ingredient.ImageUrl" height="50"/>
+                            </td>
+                            <td>
+                                <NavLink href="@($"/ingredients/{ingredient.Id}")">@ingredient.Name</NavLink>
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            }
+        </div>
+    </div>
+    <div class="col-md">
+        <IngredientEditForm/>
+    </div>
+</div>

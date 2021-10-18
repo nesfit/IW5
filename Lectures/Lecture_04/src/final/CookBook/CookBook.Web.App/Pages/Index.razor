@@ -1,0 +1,24 @@
+﻿@page "/"
+
+<div class="position-fixed" style="
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.83)), url('/images/background.png');     
+    background-position: center; 
+    background-size: cover; 
+    min-height: 100vh; 
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;">
+</div>
+<div class="row">
+    <div class="jumbotron col-md-6 bg-transparent text-white mt-5">
+        <h1>Hello, CookBook!</h1>
+        <p class="lead font-weight-bold mt-5 mb-4">
+            This project lets you make your own recipes, so don't hesitate to show the world, what you can cook!
+        </p>
+        <NavLink href="/recipes" Match="NavLinkMatch.All" class="btn btn-success btn-lg">
+            Go to Recipes List
+        </NavLink>
+
+    </div>
+</div>
