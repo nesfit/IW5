@@ -1,6 +1,6 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.Net.Http;
 using CookBook.Common.BL.Facades;
-using CookBook.Web.DAL;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CookBook.Web.BL.Installers
@@ -9,15 +9,30 @@ namespace CookBook.Web.BL.Installers
     {
         public void Install(IServiceCollection serviceCollection, string apiBaseUrl)
         {
-            serviceCollection.AddTransient<IApiClient>(provider =>
-                new ApiClient(provider.GetService<HttpClient>(), apiBaseUrl));
-            serviceCollection.AddSingleton<LocalDb>();
+            serviceCollection.AddTransient<IRecipeApiClient, RecipeApiClient>(provider =>
+            {
+                var client = CreateApiHttpClient(provider, apiBaseUrl);
+                return new RecipeApiClient(client);
+            });
+
+            serviceCollection.AddTransient<IIngredientApiClient, IngredientApiClient>(provider =>
+            {
+                var client = CreateApiHttpClient(provider, apiBaseUrl);
+                return new IngredientApiClient(client);
+            });
 
             serviceCollection.Scan(selector =>
                 selector.FromAssemblyOf<WebBLInstaller>()
                     .AddClasses(classes => classes.AssignableTo<IAppFacade>())
                     .AsSelfWithInterfaces()
                     .WithTransientLifetime());
+        }
+
+        public HttpClient CreateApiHttpClient(IServiceProvider serviceProvider, string apiBaseUrl)
+        {
+            var client = new HttpClient() { BaseAddress = new Uri(apiBaseUrl) };
+            client.BaseAddress = new Uri(apiBaseUrl);
+            return client;
         }
     }
 }

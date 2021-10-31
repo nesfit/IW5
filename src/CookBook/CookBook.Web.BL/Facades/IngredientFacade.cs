@@ -11,10 +11,10 @@ namespace CookBook.Web.BL.Facades
 {
     public class IngredientFacade : FacadeBase<IngredientDetailModel, IngredientListModel>
     {
-        private readonly IApiClient apiClient;
+        private readonly IIngredientApiClient apiClient;
 
         public IngredientFacade(
-            IApiClient apiClient,
+            IIngredientApiClient apiClient,
             IngredientRepository ingredientRepository,
             IMapper mapper,
             IOptions<LocalDbOptions> localDbOptions)
@@ -27,7 +27,7 @@ namespace CookBook.Web.BL.Facades
         {
             var ingredientsAll = await base.GetAllAsync();
 
-            var ingredientsFromApi = await apiClient.IngredientGetAllAsync(apiVersion, culture);
+            var ingredientsFromApi = await apiClient.IngredientGetAsync(apiVersion, culture);
             ingredientsAll.AddRange(ingredientsFromApi);
 
             return ingredientsAll;
@@ -35,12 +35,12 @@ namespace CookBook.Web.BL.Facades
 
         public override async Task<IngredientDetailModel> GetByIdAsync(Guid id)
         {
-            return await apiClient.IngredientGetByIdAsync(id, apiVersion, culture);
+            return await apiClient.IngredientGetAsync(id, apiVersion, culture);
         }
 
         protected override async Task<Guid> SaveToApiAsync(IngredientDetailModel data)
         {
-            return await apiClient.IngredientCreateOrUpdateAsync(apiVersion, culture, data);
+            return await apiClient.UpsertAsync(apiVersion, culture, data);
         }
 
         public override async Task DeleteAsync(Guid id)
