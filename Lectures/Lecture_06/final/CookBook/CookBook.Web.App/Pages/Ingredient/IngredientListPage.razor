@@ -1,0 +1,43 @@
+﻿@page "/ingredients"
+@namespace CookBook.Web.App.Pages
+@using CookBook.Web.App.Resources.Texts
+@using Microsoft.Extensions.Localization
+@inherits PageBase
+@layout ListLayout
+@inject IStringLocalizer<IngredientListPageResources> IngredientListPageLocalizer
+
+<h1 class="mb-4">@IngredientListPageLocalizer["Page_Title"]</h1>
+
+<div class="row">
+    <div class="col-md">
+        <div class="bg-sec h-100 rounded">
+            @if (Ingredients.Count != 0)
+            {
+                <table class="table border table-striped">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="row">@IngredientListPageLocalizer["Image_TableHeader"]</th>
+                            <th scope="row">@IngredientListPageLocalizer["Name_TableHeader"]</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var ingredient in Ingredients)
+                        {
+                            <tr>
+                                <td style="vertical-align: middle;">
+                                    <img src="@ingredient.ImageUrl" height="50"/>
+                                </td>
+                                <td style="vertical-align: middle;">
+                                    <NavLink href="@($"/ingredients/{ingredient.Id}")">@ingredient.Name</NavLink>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+        </div>
+    </div>
+    <div class="col-md">
+        <IngredientEditForm OnModification="@LoadData" />
+    </div>
+</div>
