@@ -12,10 +12,10 @@ namespace CookBook.Web.BL.Facades
 {
     public class RecipeFacade : FacadeBase<RecipeDetailModel, RecipeListModel>
     {
-        private readonly IApiClient apiClient;
+        private readonly IRecipeApiClient apiClient;
 
         public RecipeFacade(
-            IApiClient apiClient,
+            IRecipeApiClient apiClient,
             RecipeRepository recipeRepository,
             IMapper mapper,
             IOptions<LocalDbOptions> localDbOptions)
@@ -28,7 +28,7 @@ namespace CookBook.Web.BL.Facades
         {
             var recipesAll = await base.GetAllAsync();
 
-            var recipesFromApi = await apiClient.RecipeGetAllAsync(apiVersion, culture);
+            var recipesFromApi = await apiClient.RecipeGetAsync(apiVersion, culture);
             foreach (var recipeFromApi in recipesFromApi)
             {
                 if (recipesAll.Any(r => r.Id == recipeFromApi.Id) is false)
@@ -42,12 +42,12 @@ namespace CookBook.Web.BL.Facades
 
         public override async Task<RecipeDetailModel> GetByIdAsync(Guid id)
         {
-            return await apiClient.RecipeGetByIdAsync(id, apiVersion, culture);
+            return await apiClient.RecipeGetAsync(id, apiVersion, culture);
         }
 
         protected override async Task<Guid> SaveToApiAsync(RecipeDetailModel data)
         {
-            return await apiClient.RecipeCreateOrUpdateAsync(apiVersion, culture, data);
+            return await apiClient.UpsertAsync(apiVersion, culture, data);
         }
 
         public override async Task DeleteAsync(Guid id)
