@@ -2,9 +2,9 @@
 
 namespace CookBook.Web.BL
 {
-    public partial class ApiClient
+    public partial class IngredientApiClient
     {
-        public ApiClient(HttpClient httpClient, string baseUrl)
+        public IngredientApiClient(HttpClient httpClient, string baseUrl)
             : this(httpClient)
         {
             BaseUrl = baseUrl;

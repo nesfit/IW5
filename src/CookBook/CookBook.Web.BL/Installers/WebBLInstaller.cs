@@ -12,13 +12,13 @@ namespace CookBook.Web.BL.Installers
             serviceCollection.AddTransient<IRecipeApiClient, RecipeApiClient>(provider =>
             {
                 var client = CreateApiHttpClient(provider, apiBaseUrl);
-                return new RecipeApiClient(client);
+                return new RecipeApiClient(client, apiBaseUrl);
             });
 
             serviceCollection.AddTransient<IIngredientApiClient, IngredientApiClient>(provider =>
             {
                 var client = CreateApiHttpClient(provider, apiBaseUrl);
-                return new IngredientApiClient(client);
+                return new IngredientApiClient(client, apiBaseUrl);
             });
 
             serviceCollection.Scan(selector =>
