@@ -5,27 +5,31 @@
                        BackgroundColor="{DynamicResource SecondaryColor}"
                        x:Name="Root">
     <CollectionView ItemsSource="{Binding Items}"
-                    ItemsLayout="HorizontalGrid, 2">
+                    BackgroundColor="Black">
+        <CollectionView.ItemsLayout>
+            <GridItemsLayout Orientation="Vertical"
+                             Span="2"
+                             VerticalItemSpacing="20"
+                             HorizontalItemSpacing="20"/>
+        </CollectionView.ItemsLayout>
         <CollectionView.ItemTemplate>
             <DataTemplate>
-                <Grid RowDefinitions="60, Auto"
-                      HorizontalOptions="Start"
-                      RowSpacing="10" ColumnSpacing="10"
-                      BackgroundColor="Blue"
-                      Padding="10">
+                <Grid HorizontalOptions="Fill" VerticalOptions="Fill">
                     <Grid.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding Source={x:Reference Root}, Path=BindingContext.ItemSelectedCommand}"
                                               CommandParameter="{Binding Id}"/>
                     </Grid.GestureRecognizers>
-                    <Image Grid.Row="0"
-                           HorizontalOptions="Start"
-                           HeightRequest="50"
-                           Source="{Binding ImageUrl}"/>
-                    <Button Grid.Row="1"
+                    <Image x:Name="IngredientImage"
                            HorizontalOptions="Center"
-                           Text="{Binding Name}"
-                           Command="{Binding Source={x:Reference Root}, Path=BindingContext.ItemSelectedCommand}"
-                           CommandParameter="{Binding Id}"/>
+                           Aspect="Fill"
+                           Source="{Binding ImageUrl}"/>
+                    <BoxView Grid.Row="0"
+                             BackgroundColor="Black"
+                             Opacity="0.2"/>
+                    <Label Grid.Row="1"
+                           HorizontalOptions="Center" VerticalOptions="Center"
+                           FontSize="Title"
+                           Text="{Binding Name}"/>
                 </Grid>
             </DataTemplate>
         </CollectionView.ItemTemplate>

@@ -15,8 +15,8 @@ namespace CookBook.Maui.App.Installers
             serviceCollection.AddSingleton<NavigationService>();
             serviceCollection.AddSingleton<INavigationService, NavigationService>();
 
-            serviceCollection.AddSingleton<IngredientListView>();
-            serviceCollection.AddSingleton<IngredientDetailView>();
+            serviceCollection.AddTransient<IngredientListView>();
+            serviceCollection.AddTransient<IngredientDetailView>();
 
         }
     }

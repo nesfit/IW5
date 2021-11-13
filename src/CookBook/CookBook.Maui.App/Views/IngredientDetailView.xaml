@@ -9,8 +9,8 @@
                Aspect="AspectFill"
                Source="{Binding Item.ImageUrl}"/>
         <BoxView Grid.Row="0"
-                 BackgroundColor="Gray"
-                 Opacity="0.3"/>
+                 BackgroundColor="Black"
+                 Opacity="0.2"/>
         <Label Grid.Row="0"
                HorizontalOptions="Center"  VerticalOptions="Center"
                FontSize="Title"
