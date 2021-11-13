@@ -25,8 +25,11 @@ public class MauiBLInstaller
             return new IngredientApiClient(client, apiBaseUrl);
         });
 
-        serviceCollection.AddTransient<IngredientListViewModel>();
-        serviceCollection.AddTransient<IngredientDetailViewModel>();
+        serviceCollection.Scan(selector =>
+            selector.FromAssemblyOf<MauiBLInstaller>()
+                .AddClasses(classes => classes.AssignableTo<ViewModelBase>())
+                .AsSelf()
+                .WithTransientLifetime());
     }
 
     private HttpClient CreateApiHttpClient(IServiceProvider serviceProvider, string apiBaseUrl)

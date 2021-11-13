@@ -24,5 +24,15 @@ namespace CookBook.Maui.BL.Facades
         {
             return await ingredientApiClient.IngredientGetAsync(id, apiVersion, culture);
         }
+
+        public async Task DeleteAsync(Guid id)
+        {
+            await ingredientApiClient.IngredientDeleteAsync(id, apiVersion, culture);
+        }
+
+        public async Task UpsertAsync(IngredientDetailModel ingredient)
+        {
+            await ingredientApiClient.UpsertAsync(apiVersion, culture, ingredient);
+        }
     }
 }

@@ -4,7 +4,7 @@
                        x:Class="CookBook.Maui.App.Views.IngredientDetailView"
                        BackgroundColor="{DynamicResource SecondaryColor}"
                        x:Name="Root">
-    <Grid RowDefinitions="300, *">
+    <Grid RowDefinitions="300, *, 80">
         <Image Grid.Row="0"
                Aspect="AspectFill"
                Source="{Binding Item.ImageUrl}"/>
@@ -15,11 +15,25 @@
                HorizontalOptions="Center"  VerticalOptions="Center"
                FontSize="Title"
                Text="{Binding Item.Name}"/>
-        <BoxView Grid.Row="1"
-                 BackgroundColor="Black"/>
-        <Label Grid.Row="1"
-               HorizontalOptions="Start" VerticalOptions="Start"
-               FontSize="Body"
-               Text="{Binding Item.Description}"/>
+        <ScrollView Grid.Row="1">
+            <Grid>
+                <BoxView BackgroundColor="Black"/>
+
+                <Label HorizontalOptions="Start" VerticalOptions="Start"
+                       FontSize="Body"
+                       Text="{Binding Item.Description}"/>
+            </Grid>
+        </ScrollView>
+
+        <Grid Grid.Row="2"
+              ColumnDefinitions="*, *">
+            <Button Grid.Column="0"
+                    Text="Delete"
+                    BackgroundColor="Red"
+                    Command="{Binding DeleteCommand}"/>
+            <Button Grid.Column="1"
+                    Text="Edit"
+                    Command="{Binding NavigateToEditPageCommand}"/>
+        </Grid>
     </Grid>
 </views:ContentPageBase>

@@ -42,6 +42,11 @@ public class NavigationService : INavigationService
         await PushAsync(viewType, viewModel);
     }
 
+    public async Task PopAsync()
+    {
+        await RootNavigationPage.Navigation.PopAsync();
+    }
+
     private async Task PushAsync<TViewModel>(Type viewType, TViewModel viewModel)
         where TViewModel : ViewModelBase
     {

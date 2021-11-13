@@ -49,6 +49,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <PackageReference Include="Scrutor" Version="3.3.0" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <ProjectReference Include="..\CookBook.Maui.BL\CookBook.Maui.BL.csproj" />
 	</ItemGroup>
 
@@ -56,10 +60,13 @@
 	  <Compile Update="Views\Base\ContentPageBase.xaml.cs">
 	    <DependentUpon>ContentPageBase.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\IngredientDetailView.xaml.cs">
+	  <Compile Update="Views\Ingredient\IngredientEditView.xaml.cs">
+	    <DependentUpon>IngredientEditView.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\Ingredient\IngredientDetailView.xaml.cs">
 	    <DependentUpon>IngredientDetailView.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\IngredientListView.xaml.cs">
+	  <Compile Update="Views\Ingredient\IngredientListView.xaml.cs">
 	    <DependentUpon>IngredientListView.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
@@ -69,11 +76,15 @@
 	    <SubType>Designer</SubType>
 	    <Generator></Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\IngredientDetailView.xaml">
+	  <MauiXaml Update="Views\Ingredient\IngredientEditView.xaml">
+	    <SubType>Designer</SubType>
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Ingredient\IngredientDetailView.xaml">
 	    <SubType>Designer</SubType>
 	    <Generator></Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\IngredientListView.xaml">
+	  <MauiXaml Update="Views\Ingredient\IngredientListView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

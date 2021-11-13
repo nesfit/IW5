@@ -1,0 +1,13 @@
+<views:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                       xmlns:views="clr-namespace:CookBook.Maui.App.Views"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       x:Class="CookBook.Maui.App.Views.IngredientEditView"
+                       BackgroundColor="{DynamicResource SecondaryColor}"
+                       x:Name="Root">
+    <Grid RowDefinitions="Auto, Auto, Auto, *" ColumnDefinitions="Auto, *">
+        <Label Grid.Row="0" Grid.Column="0"
+               Text="Name:"/>
+        <Entry Grid.Row="0" Grid.Column="1"
+               Text="{Binding Item.Name}"/>
+    </Grid>
+</views:ContentPageBase>

@@ -9,4 +9,6 @@ public interface INavigationService
 
     Task PushAsync<TViewModel, TParameter>(TParameter parameter)
         where TViewModel : ViewModelWithParameterBase<TParameter>;
+
+    Task PopAsync();
 }
