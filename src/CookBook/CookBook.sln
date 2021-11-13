@@ -46,7 +46,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookBook.Api.BL.UnitTests",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookBook.API.DAL.IntegrationTests", "CookBook.API.DAL.IntegrationTests\CookBook.API.DAL.IntegrationTests.csproj", "{CDED4C89-4B14-4D77-8F6C-8E2889B706A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CookBook.Api.App.EndToEndTests", "CookBook.Api.App.EndToEndTests\CookBook.Api.App.EndToEndTests.csproj", "{4087CC13-3279-4F7F-9723-4B86EC35FD39}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookBook.Api.App.EndToEndTests", "CookBook.Api.App.EndToEndTests\CookBook.Api.App.EndToEndTests.csproj", "{4087CC13-3279-4F7F-9723-4B86EC35FD39}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Maui", "Maui", "{C256A976-D064-4450-92A4-3CD7581F39F9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookBook.Maui.App", "CookBook.Maui.App\CookBook.Maui.App.csproj", "{192967F5-AA43-425D-852C-16E4D142C2AD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -114,6 +118,12 @@ Global
 		{4087CC13-3279-4F7F-9723-4B86EC35FD39}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4087CC13-3279-4F7F-9723-4B86EC35FD39}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4087CC13-3279-4F7F-9723-4B86EC35FD39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{192967F5-AA43-425D-852C-16E4D142C2AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{192967F5-AA43-425D-852C-16E4D142C2AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{192967F5-AA43-425D-852C-16E4D142C2AD}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{192967F5-AA43-425D-852C-16E4D142C2AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{192967F5-AA43-425D-852C-16E4D142C2AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{192967F5-AA43-425D-852C-16E4D142C2AD}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -136,6 +146,7 @@ Global
 		{89797A6C-B555-4C60-8D7C-D80B5024217D} = {4411F92C-9E5A-4C6B-9E1E-84AD9180DF08}
 		{CDED4C89-4B14-4D77-8F6C-8E2889B706A0} = {DA7BE6FF-5E94-4000-9BD7-A7DA82EF224F}
 		{4087CC13-3279-4F7F-9723-4B86EC35FD39} = {CE4F5F83-8F08-4F26-A46D-52370701657D}
+		{192967F5-AA43-425D-852C-16E4D142C2AD} = {C256A976-D064-4450-92A4-3CD7581F39F9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {10E5D329-1983-4C74-838B-CA0CFC4A2256}
