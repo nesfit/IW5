@@ -6,7 +6,7 @@
                     ItemsLayout="VerticalList">
         <CollectionView.ItemTemplate>
             <DataTemplate>
-                <Label Text="Test"/>
+                <Label Text="{Binding Name}"/>
             </DataTemplate>
         </CollectionView.ItemTemplate>
     </CollectionView>

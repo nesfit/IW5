@@ -4,12 +4,8 @@ namespace CookBook.Maui.App.Views
 {
     public partial class IngredientListView
     {
-        private readonly IngredientListViewModel ingredientListViewModel;
-
         public IngredientListView(IngredientListViewModel ingredientListViewModel)
         {
-            this.ingredientListViewModel = ingredientListViewModel;
-
             InitializeComponent();
             BindingContext = ingredientListViewModel;
         }

@@ -18,7 +18,8 @@ namespace CookBook.Maui.App
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 });
 
-            new MauiBLInstaller().Install(builder.Services);
+
+            new MauiBLInstaller().Install(builder.Services, "https://app-iw5-api.azurewebsites.net/");
 
             builder.Services.AddSingleton<IngredientListView>();
 
