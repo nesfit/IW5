@@ -4,5 +4,22 @@
                        x:Class="CookBook.Maui.App.Views.IngredientDetailView"
                        BackgroundColor="{DynamicResource SecondaryColor}"
                        x:Name="Root">
-    <Label Text="Detail"/>
+    <Grid RowDefinitions="300, *">
+        <Image Grid.Row="0"
+               Aspect="AspectFill"
+               Source="{Binding Item.ImageUrl}"/>
+        <BoxView Grid.Row="0"
+                 BackgroundColor="Gray"
+                 Opacity="0.3"/>
+        <Label Grid.Row="0"
+               HorizontalOptions="Center"  VerticalOptions="Center"
+               FontSize="Title"
+               Text="{Binding Item.Name}"/>
+        <BoxView Grid.Row="1"
+                 BackgroundColor="Black"/>
+        <Label Grid.Row="1"
+               HorizontalOptions="Start" VerticalOptions="Start"
+               FontSize="Body"
+               Text="{Binding Item.Description}"/>
+    </Grid>
 </views:ContentPageBase>
