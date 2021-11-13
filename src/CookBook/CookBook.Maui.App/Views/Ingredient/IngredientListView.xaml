@@ -16,7 +16,7 @@
             <DataTemplate>
                 <Grid HorizontalOptions="Fill" VerticalOptions="Fill">
                     <Grid.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding Source={x:Reference Root}, Path=BindingContext.ItemSelectedCommand}"
+                        <TapGestureRecognizer Command="{Binding Source={x:Reference Root}, Path=BindingContext.NavigateToDetailViewCommand}"
                                               CommandParameter="{Binding Id}"/>
                     </Grid.GestureRecognizers>
                     <Image x:Name="IngredientImage"

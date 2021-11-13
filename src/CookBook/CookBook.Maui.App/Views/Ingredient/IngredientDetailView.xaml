@@ -32,7 +32,7 @@
                     Command="{Binding DeleteCommand}"/>
             <Button Grid.Column="1"
                     Text="Edit"
-                    Command="{Binding NavigateToEditPageCommand}"/>
+                    Command="{Binding NavigateToEditViewCommand}"/>
         </Grid>
     </Grid>
 </views:ContentPageBase>

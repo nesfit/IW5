@@ -10,31 +10,46 @@ public class MauiBLInstaller
 {
     public void Install(IServiceCollection serviceCollection, string apiBaseUrl)
     {
-        serviceCollection.AddSingleton<IIngredientFacade, IngredientFacade>();
         serviceCollection.AddSingleton<ICommandFactory, CommandFactory>();
 
-        serviceCollection.AddTransient<IRecipeApiClient, RecipeApiClient>(provider =>
+        serviceCollection.AddTransient<IRecipeApiClient, RecipeApiClient>(_ =>
         {
-            var client = CreateApiHttpClient(provider, apiBaseUrl);
+            var client = CreateApiHttpClient(apiBaseUrl);
             return new RecipeApiClient(client, apiBaseUrl);
         });
 
-        serviceCollection.AddTransient<IIngredientApiClient, IngredientApiClient>(provider =>
+        serviceCollection.AddTransient<IIngredientApiClient, IngredientApiClient>(_ =>
         {
-            var client = CreateApiHttpClient(provider, apiBaseUrl);
+            var client = CreateApiHttpClient(apiBaseUrl);
             return new IngredientApiClient(client, apiBaseUrl);
         });
+
+        serviceCollection.Scan(selector =>
+            selector.FromAssemblyOf<MauiBLInstaller>()
+                .AddClasses(classes => classes.AssignableTo(typeof(IListFacade<>)))
+                .AsImplementedInterfaces()
+                .WithSingletonLifetime());
+
+        serviceCollection.Scan(selector =>
+            selector.FromAssemblyOf<MauiBLInstaller>()
+                .AddClasses(classes => classes.AssignableTo(typeof(IDetailFacade<>)))
+                .AsImplementedInterfaces()
+                .WithSingletonLifetime());
 
         serviceCollection.Scan(selector =>
             selector.FromAssemblyOf<MauiBLInstaller>()
                 .AddClasses(classes => classes.AssignableTo<ViewModelBase>())
                 .AsSelf()
                 .WithTransientLifetime());
+
+        serviceCollection.AddTransient(typeof(ListViewModelBase<>.Dependencies));
+        serviceCollection.AddTransient(typeof(DetailViewModelBase<>.Dependencies));
+        serviceCollection.AddTransient(typeof(EditViewModelBase<>.Dependencies));
     }
 
-    private HttpClient CreateApiHttpClient(IServiceProvider serviceProvider, string apiBaseUrl)
+    private HttpClient CreateApiHttpClient(string apiBaseUrl)
     {
-        var client = new HttpClient() { BaseAddress = new Uri(apiBaseUrl) };
+        var client = new HttpClient { BaseAddress = new Uri(apiBaseUrl) };
         client.BaseAddress = new Uri(apiBaseUrl);
         return client;
     }

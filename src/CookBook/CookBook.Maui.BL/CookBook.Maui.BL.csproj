@@ -22,6 +22,7 @@
   <ItemGroup>
     <Folder Include="Factories\Interfaces\" />
     <Folder Include="Installers\" />
+    <Folder Include="ViewModels\Recipe\" />
   </ItemGroup>
 
 </Project>
