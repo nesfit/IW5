@@ -53,12 +53,26 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Views\Base\ContentPageBase.xaml.cs">
+	    <DependentUpon>ContentPageBase.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\IngredientDetailView.xaml.cs">
+	    <DependentUpon>IngredientDetailView.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\IngredientListView.xaml.cs">
 	    <DependentUpon>IngredientListView.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Views\Base\ContentPageBase.xaml">
+	    <SubType>Designer</SubType>
+	    <Generator></Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\IngredientDetailView.xaml">
+	    <SubType>Designer</SubType>
+	    <Generator></Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\IngredientListView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

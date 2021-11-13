@@ -19,8 +19,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Factories\Interfaces\" />
     <Folder Include="Installers\" />
-    <Folder Include="ViewModels\" />
   </ItemGroup>
 
 </Project>

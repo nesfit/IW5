@@ -1,5 +1,6 @@
 ﻿using CookBook.Maui.BL.Api;
 using CookBook.Maui.BL.Facades;
+using CookBook.Maui.BL.Factories;
 using CookBook.Maui.BL.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -10,6 +11,7 @@ public class MauiBLInstaller
     public void Install(IServiceCollection serviceCollection, string apiBaseUrl)
     {
         serviceCollection.AddSingleton<IIngredientFacade, IngredientFacade>();
+        serviceCollection.AddSingleton<ICommandFactory, CommandFactory>();
 
         serviceCollection.AddTransient<IRecipeApiClient, RecipeApiClient>(provider =>
         {
@@ -24,6 +26,7 @@ public class MauiBLInstaller
         });
 
         serviceCollection.AddSingleton<IngredientListViewModel>();
+        serviceCollection.AddSingleton<IngredientDetailViewModel>();
     }
 
     private HttpClient CreateApiHttpClient(IServiceProvider serviceProvider, string apiBaseUrl)

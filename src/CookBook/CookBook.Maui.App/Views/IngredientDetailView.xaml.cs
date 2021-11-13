@@ -1,8 +1,8 @@
 ﻿namespace CookBook.Maui.App.Views
 {
-    public partial class IngredientListView
+    public partial class IngredientDetailView
     {
-        public IngredientListView()
+        public IngredientDetailView()
         {
             InitializeComponent();
         }

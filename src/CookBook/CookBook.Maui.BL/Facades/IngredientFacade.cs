@@ -5,6 +5,9 @@ namespace CookBook.Maui.BL.Facades
 {
     public class IngredientFacade : IIngredientFacade
     {
+        private const string apiVersion = "3.0";
+        private const string culture = "en";
+
         private readonly IIngredientApiClient ingredientApiClient;
 
         public IngredientFacade(IIngredientApiClient ingredientApiClient)
@@ -14,7 +17,12 @@ namespace CookBook.Maui.BL.Facades
 
         public async Task<List<IngredientListModel>> GetAllAsync()
         {
-            return (await ingredientApiClient.IngredientGetAsync("3.0", "en")).ToList();
+            return (await ingredientApiClient.IngredientGetAsync(apiVersion, culture)).ToList();
+        }
+
+        public async Task<IngredientDetailModel> GetByIdAsync(Guid id)
+        {
+            return await ingredientApiClient.IngredientGetAsync(id, apiVersion, culture);
         }
     }
 }

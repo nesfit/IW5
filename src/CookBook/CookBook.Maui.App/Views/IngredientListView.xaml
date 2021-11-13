@@ -1,13 +1,33 @@
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="CookBook.Maui.App.Views.IngredientListView"
-             BackgroundColor="{DynamicResource SecondaryColor}">
+<views:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                       xmlns:views="clr-namespace:CookBook.Maui.App.Views"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       x:Class="CookBook.Maui.App.Views.IngredientListView"
+                       BackgroundColor="{DynamicResource SecondaryColor}"
+                       x:Name="Root">
     <CollectionView ItemsSource="{Binding Items}"
-                    ItemsLayout="VerticalList">
+                    ItemsLayout="HorizontalGrid, 2">
         <CollectionView.ItemTemplate>
             <DataTemplate>
-                <Label Text="{Binding Name}"/>
+                <Grid RowDefinitions="60, Auto"
+                      HorizontalOptions="Start"
+                      RowSpacing="10" ColumnSpacing="10"
+                      BackgroundColor="Blue"
+                      Padding="10">
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Source={x:Reference Root}, Path=BindingContext.ItemSelectedCommand}"
+                                              CommandParameter="{Binding Id}"/>
+                    </Grid.GestureRecognizers>
+                    <Image Grid.Row="0"
+                           HorizontalOptions="Start"
+                           HeightRequest="50"
+                           Source="{Binding ImageUrl}"/>
+                    <Button Grid.Row="1"
+                           HorizontalOptions="Center"
+                           Text="{Binding Name}"
+                           Command="{Binding Source={x:Reference Root}, Path=BindingContext.ItemSelectedCommand}"
+                           CommandParameter="{Binding Id}"/>
+                </Grid>
             </DataTemplate>
         </CollectionView.ItemTemplate>
     </CollectionView>
-</ContentPage>
+</views:ContentPageBase>
