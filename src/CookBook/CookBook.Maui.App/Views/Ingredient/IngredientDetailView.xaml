@@ -16,14 +16,13 @@
                FontSize="Title"
                Text="{Binding Item.Name}"/>
         <ScrollView Grid.Row="1">
-            <Grid>
-                <BoxView BackgroundColor="Black"/>
-
-                <Label HorizontalOptions="Start" VerticalOptions="Start"
-                       FontSize="Body"
-                       Text="{Binding Item.Description}"/>
-            </Grid>
+            <Label HorizontalOptions="Start" VerticalOptions="Start"
+                   FontSize="Body"
+                   Text="{Binding Item.Description}"/>
         </ScrollView>
+
+        <BoxView Grid.Row="1"
+                 BackgroundColor="Black"/>
 
         <Grid Grid.Row="2"
               ColumnDefinitions="*, *">
