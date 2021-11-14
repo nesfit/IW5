@@ -14,20 +14,21 @@
         </CollectionView.ItemsLayout>
         <CollectionView.ItemTemplate>
             <DataTemplate>
-                <Grid HorizontalOptions="Fill" VerticalOptions="Fill">
+                <Grid HorizontalOptions="Fill" VerticalOptions="Fill"
+                      HeightRequest="200">
                     <Grid.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding Source={x:Reference Root}, Path=BindingContext.NavigateToDetailViewCommand}"
                                               CommandParameter="{Binding Id}"/>
                     </Grid.GestureRecognizers>
                     <Image x:Name="IngredientImage"
                            HorizontalOptions="Center"
-                           Aspect="Fill"
+                           Aspect="AspectFill"
                            Source="{Binding ImageUrl}"/>
                     <BoxView Grid.Row="0"
                              BackgroundColor="Black"
                              Opacity="0.2"/>
-                    <Label Grid.Row="1"
-                           HorizontalOptions="Center" VerticalOptions="Center"
+                    <Label HorizontalOptions="Center" VerticalOptions="Center"
+                           HorizontalTextAlignment="Center"
                            FontSize="Title"
                            Text="{Binding Name}"/>
                 </Grid>
