@@ -1,0 +1,27 @@
+<views:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                       xmlns:views="clr-namespace:CookBook.Maui.App.Views"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       x:Class="CookBook.Maui.App.Views.IngredientEditView"
+                       x:Name="Root"
+                       NavigationPage.Title="{Binding Item.Name}">
+    <Grid RowDefinitions="Auto, Auto, *, 80" ColumnDefinitions="Auto, *">
+        <Label Grid.Row="0" Grid.Column="0"
+               Text="Name:"/>
+        <Entry Grid.Row="0" Grid.Column="1"
+               Text="{Binding Item.Name}"/>
+
+        <Label Grid.Row="1" Grid.Column="0"
+               Text="Image URL:"/>
+        <Entry Grid.Row="1" Grid.Column="1"
+               Text="{Binding Item.ImageUrl}"/>
+
+        <Label Grid.Row="2" Grid.Column="0"
+               Text="Description:"/>
+        <Editor Grid.Row="2" Grid.Column="1"
+               Text="{Binding Item.Description}"/>
+
+        <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
+                Text="Save"
+                Command="{Binding SaveCommand}"/>
+    </Grid>
+</views:ContentPageBase>

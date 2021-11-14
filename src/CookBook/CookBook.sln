@@ -46,7 +46,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookBook.Api.BL.UnitTests",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookBook.API.DAL.IntegrationTests", "CookBook.API.DAL.IntegrationTests\CookBook.API.DAL.IntegrationTests.csproj", "{CDED4C89-4B14-4D77-8F6C-8E2889B706A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CookBook.Api.App.EndToEndTests", "CookBook.Api.App.EndToEndTests\CookBook.Api.App.EndToEndTests.csproj", "{4087CC13-3279-4F7F-9723-4B86EC35FD39}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookBook.Api.App.EndToEndTests", "CookBook.Api.App.EndToEndTests\CookBook.Api.App.EndToEndTests.csproj", "{4087CC13-3279-4F7F-9723-4B86EC35FD39}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
