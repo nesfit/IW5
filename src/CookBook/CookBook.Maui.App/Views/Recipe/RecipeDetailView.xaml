@@ -13,9 +13,39 @@
         <BoxView Grid.Row="1"
                  BackgroundColor="Black"/>
         <ScrollView Grid.Row="1">
-            <Label HorizontalOptions="Start" VerticalOptions="Start"
-                   FontSize="Body"
-                   Text="{Binding Item.Description}"/>
+            <StackLayout Spacing="10">
+                <Label Text="Food Type:"
+                       FontSize="Title"/>
+                <Label Text="{Binding Item.FoodType}"/>
+
+                <Label Text="Duration:"
+                       FontSize="Title"/>
+                <Label Text="{Binding Item.Duration}"/>
+
+                <Label Text="Description:"
+                       FontSize="Title"/>
+                <Label HorizontalOptions="Start" VerticalOptions="Start"
+                       FontSize="Body"
+                       Text="{Binding Item.Description}"/>
+
+                <Label Text="Ingredients:"
+                       FontSize="Title"/>
+                <CollectionView ItemsSource="{Binding Item.IngredientAmounts}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid ColumnDefinitions="Auto, Auto, *"
+                                  ColumnSpacing="5">
+                                <Label Grid.Column="0"
+                                       Text="{Binding Amount}"/>
+                                <Label Grid.Column="1"
+                                       Text="{Binding Unit}"/>
+                                <Label Grid.Column="2"
+                                       Text="{Binding Ingredient.Name}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
         </ScrollView>
         
         <Grid Grid.Row="2"
