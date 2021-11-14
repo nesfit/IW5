@@ -2,11 +2,9 @@
                        xmlns:views="clr-namespace:CookBook.Maui.App.Views"
                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                        x:Class="CookBook.Maui.App.Views.IngredientListView"
-                       BackgroundColor="{DynamicResource SecondaryColor}"
                        x:Name="Root"
                        NavigationPage.Title="Ingredients">
-    <CollectionView ItemsSource="{Binding Items}"
-                    BackgroundColor="Black">
+    <CollectionView ItemsSource="{Binding Items}">
         <CollectionView.ItemsLayout>
             <GridItemsLayout Orientation="Vertical"
                              Span="2"

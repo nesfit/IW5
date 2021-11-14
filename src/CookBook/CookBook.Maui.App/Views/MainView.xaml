@@ -2,7 +2,6 @@
                        xmlns:views="clr-namespace:CookBook.Maui.App.Views"
                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                        x:Class="CookBook.Maui.App.Views.MainView"
-                       BackgroundColor="{DynamicResource SecondaryColor}"
                        x:Name="Root"
                        NavigationPage.Title="CookBook">
     <StackLayout Margin="10"

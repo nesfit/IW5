@@ -2,7 +2,6 @@
                        xmlns:views="clr-namespace:CookBook.Maui.App.Views"
                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                        x:Class="CookBook.Maui.App.Views.IngredientEditView"
-                       BackgroundColor="{DynamicResource SecondaryColor}"
                        x:Name="Root"
                        NavigationPage.Title="{Binding Item.Name}">
     <Grid RowDefinitions="Auto, Auto, *, 80" ColumnDefinitions="Auto, *">
