@@ -10,7 +10,7 @@ namespace CookBook.Maui.App
         {
             InitializeComponent();
 
-            var _ = navigationService.PushAsync<IngredientListViewModel>();
+            var _ = navigationService.PushAsync<MainViewModel>();
             MainPage = navigationService.RootNavigationPage;
         }
     }
