@@ -5,12 +5,11 @@ using CookBook.Maui.BL.Services;
 
 namespace CookBook.Maui.BL.ViewModels;
 
-public abstract class EditViewModelBase<TDetailModel> : ViewModelWithParameterBase<Guid?>
+public abstract class EditViewModelBase<TDetailModel> : ViewModelWithParameterBase<TDetailModel, Guid?>, IEditViewModel<TDetailModel, Guid?>
 {
     private readonly IDetailFacade<TDetailModel> detailFacade;
     private readonly INavigationService navigationService;
 
-    public TDetailModel Item { get; set; }
     public ICommand SaveCommand { get; set; }
 
     public EditViewModelBase(Dependencies dependencies)

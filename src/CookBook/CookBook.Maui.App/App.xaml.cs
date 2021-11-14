@@ -4,14 +4,14 @@ using Microsoft.Maui.Controls;
 
 namespace CookBook.Maui.App
 {
-	public partial class App : Application
-	{
-		public App(NavigationService navigationService)
-		{
-			InitializeComponent();
-            
+    public partial class App : Application
+    {
+        public App(NavigationService navigationService)
+        {
+            InitializeComponent();
+
             var _ = navigationService.PushAsync<IngredientListViewModel>();
             MainPage = navigationService.RootNavigationPage;
-		}
-	}
+        }
+    }
 }

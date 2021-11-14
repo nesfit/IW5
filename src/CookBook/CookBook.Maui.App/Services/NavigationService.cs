@@ -24,21 +24,21 @@ public class NavigationService : INavigationService
     }
 
     public async Task PushAsync<TViewModel>()
-        where TViewModel : ViewModelBase
+        where TViewModel : IViewModel
     {
         var viewModel = dependencyInjectionService.GetRequiredService<TViewModel>();
         
-        var viewType = GetViewType<TViewModel>();
+        var viewType = GetViewType(viewModel.GetType());
         await PushAsync(viewType, viewModel);
     }
 
-    public async Task PushAsync<TViewModel, TParameter>(TParameter parameter)
-        where TViewModel : ViewModelWithParameterBase<TParameter>
+    public async Task PushAsync<TViewModel, TDetailModel, TParameter>(TParameter parameter)
+        where TViewModel : IViewModelWithParameter<TDetailModel, TParameter>
     {
         var viewModel = dependencyInjectionService.GetRequiredService<TViewModel>();
         viewModel.Parameter = parameter;
 
-        var viewType = GetViewType<TViewModel>();
+        var viewType = GetViewType(viewModel.GetType());
         await PushAsync(viewType, viewModel);
     }
 
@@ -48,14 +48,14 @@ public class NavigationService : INavigationService
     }
 
     private async Task PushAsync<TViewModel>(Type viewType, TViewModel viewModel)
-        where TViewModel : ViewModelBase
+        where TViewModel : IViewModel
     {
         var contentPage = GetView(viewType, viewModel);
         await RootNavigationPage.Navigation.PushAsync(contentPage);
     }
 
     private ContentPage GetView<TViewModel>(Type viewType, TViewModel viewModel)
-        where TViewModel : ViewModelBase
+        where TViewModel : IViewModel
     {
         var contentPage = (ContentPageBase) dependencyInjectionService.GetRequiredService(viewType);
         contentPage.ViewModel = viewModel;
@@ -63,10 +63,8 @@ public class NavigationService : INavigationService
         return contentPage;
     }
 
-    private Type? GetViewType<TViewModel>()
+    private Type? GetViewType(Type viewModelType)
     {
-        var viewModelType = typeof(TViewModel);
-
         var viewTypeName = viewModelType
             .AssemblyQualifiedName
             ?.Replace(viewModelType.Assembly.GetName().Name, typeof(MauiAppInstaller).Assembly.GetName().Name)

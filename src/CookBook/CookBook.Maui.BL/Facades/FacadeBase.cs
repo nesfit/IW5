@@ -8,5 +8,5 @@ public abstract class FacadeBase<TDetailModel, TListModel> : IDetailFacade<TDeta
     public abstract Task<List<TListModel>> GetAllAsync();
     public abstract Task<TDetailModel> GetByIdAsync(Guid id);
     public abstract Task DeleteAsync(Guid id);
-    public abstract Task UpsertAsync(TDetailModel ingredient);
+    public abstract Task UpsertAsync(TDetailModel model);
 }

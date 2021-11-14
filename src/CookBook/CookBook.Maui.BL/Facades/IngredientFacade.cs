@@ -27,9 +27,9 @@ namespace CookBook.Maui.BL.Facades
             await ingredientApiClient.IngredientDeleteAsync(id, apiVersion, culture);
         }
 
-        public override async Task UpsertAsync(IngredientDetailModel ingredient)
+        public override async Task UpsertAsync(IngredientDetailModel model)
         {
-            await ingredientApiClient.UpsertAsync(apiVersion, culture, ingredient);
+            await ingredientApiClient.UpsertAsync(apiVersion, culture, model);
         }
     }
 }

@@ -1,0 +1,38 @@
+<views:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                       xmlns:views="clr-namespace:CookBook.Maui.App.Views"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       x:Class="CookBook.Maui.App.Views.RecipeDetailView"
+                       BackgroundColor="{DynamicResource SecondaryColor}"
+                       x:Name="Root">
+    <Grid RowDefinitions="300, *, 80">
+        <Image Grid.Row="0"
+               Aspect="AspectFill"
+               Source="{Binding Item.ImageUrl}"/>
+        <BoxView Grid.Row="0"
+                 BackgroundColor="Black"
+                 Opacity="0.2"/>
+        <Label Grid.Row="0"
+               HorizontalOptions="Center"  VerticalOptions="Center"
+               FontSize="Title"
+               Text="{Binding Item.Name}"/>
+        <ScrollView Grid.Row="1">
+            <Label HorizontalOptions="Start" VerticalOptions="Start"
+                   FontSize="Body"
+                   Text="{Binding Item.Description}"/>
+        </ScrollView>
+
+        <BoxView Grid.Row="1"
+                 BackgroundColor="Black"/>
+
+        <Grid Grid.Row="2"
+              ColumnDefinitions="*, *">
+            <Button Grid.Column="0"
+                    Text="Delete"
+                    BackgroundColor="Red"
+                    Command="{Binding DeleteCommand}"/>
+            <Button Grid.Column="1"
+                    Text="Edit"
+                    Command="{Binding NavigateToEditViewCommand}"/>
+        </Grid>
+    </Grid>
+</views:ContentPageBase>

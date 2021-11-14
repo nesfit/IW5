@@ -38,11 +38,11 @@ public class MauiBLInstaller
 
         serviceCollection.Scan(selector =>
             selector.FromAssemblyOf<MauiBLInstaller>()
-                .AddClasses(classes => classes.AssignableTo<ViewModelBase>())
-                .AsSelf()
+                .AddClasses(classes => classes.AssignableTo<IViewModel>())
+                .AsSelfWithInterfaces()
                 .WithTransientLifetime());
 
-        serviceCollection.AddTransient(typeof(ListViewModelBase<>.Dependencies));
+        serviceCollection.AddTransient(typeof(ListViewModelBase<,>.Dependencies));
         serviceCollection.AddTransient(typeof(DetailViewModelBase<>.Dependencies));
         serviceCollection.AddTransient(typeof(EditViewModelBase<>.Dependencies));
     }

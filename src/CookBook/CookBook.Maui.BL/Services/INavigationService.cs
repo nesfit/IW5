@@ -5,10 +5,10 @@ namespace CookBook.Maui.BL.Services;
 public interface INavigationService
 {
     Task PushAsync<TViewModel>()
-        where TViewModel : ViewModelBase;
+        where TViewModel : IViewModel;
 
-    Task PushAsync<TViewModel, TParameter>(TParameter parameter)
-        where TViewModel : ViewModelWithParameterBase<TParameter>;
+    Task PushAsync<TViewModel, TDetailModel, TParameter>(TParameter parameter)
+        where TViewModel : IViewModelWithParameter<TDetailModel, TParameter>;
 
     Task PopAsync();
 }

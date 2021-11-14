@@ -4,7 +4,7 @@ namespace CookBook.Maui.App.Views
 {
     public abstract partial class ContentPageBase
     {
-        public ViewModelBase ViewModel
+        public IViewModel ViewModel
         {
             set
             {
@@ -21,7 +21,7 @@ namespace CookBook.Maui.App.Views
         {
             base.OnAppearing();
 
-            if (BindingContext is ViewModelBase viewModel)
+            if (BindingContext is IViewModel viewModel)
             {
                 await viewModel.OnAppearingAsync();
             }

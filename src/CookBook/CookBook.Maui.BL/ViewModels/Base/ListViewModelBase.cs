@@ -5,7 +5,7 @@ using CookBook.Maui.BL.Services;
 
 namespace CookBook.Maui.BL.ViewModels;
 
-public abstract class ListViewModelBase<TListModel> : ViewModelBase
+public abstract class ListViewModelBase<TDetailModel, TListModel> : ViewModelBase, IListViewModel<TListModel>
 {
     protected readonly IListFacade<TListModel> listFacade;
     protected readonly INavigationService navigationService;
@@ -29,7 +29,7 @@ public abstract class ListViewModelBase<TListModel> : ViewModelBase
 
     private async Task NavigateToDetailViewAsync(Guid id)
     {
-        await navigationService.PushAsync<IngredientDetailViewModel, Guid?>(id);
+        await navigationService.PushAsync<IDetailViewModel<TDetailModel, Guid?>, TDetailModel, Guid?>(id);
     }
 
     public class Dependencies

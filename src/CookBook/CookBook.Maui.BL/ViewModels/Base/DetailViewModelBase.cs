@@ -5,12 +5,11 @@ using CookBook.Maui.BL.Services;
 
 namespace CookBook.Maui.BL.ViewModels;
 
-public abstract class DetailViewModelBase<TDetailModel> : ViewModelWithParameterBase<Guid?>
+public abstract class DetailViewModelBase<TDetailModel> : ViewModelWithParameterBase<TDetailModel, Guid?>, IDetailViewModel<TDetailModel, Guid?>
 {
     protected readonly IDetailFacade<TDetailModel> detailFacade;
     protected readonly INavigationService navigationService;
 
-    public TDetailModel Item { get; set; }
     public ICommand NavigateToEditViewCommand { get; set; }
     public ICommand DeleteCommand { get; set; }
 
@@ -35,7 +34,7 @@ public abstract class DetailViewModelBase<TDetailModel> : ViewModelWithParameter
     {
         if (Parameter is not null)
         {
-            await navigationService.PushAsync<IngredientEditViewModel, Guid?>(Parameter.Value);
+            await navigationService.PushAsync<IEditViewModel<TDetailModel, Guid?>, TDetailModel, Guid?>(Parameter.Value);
         }
     }
 
