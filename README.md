@@ -41,7 +41,7 @@ Organizace kurzu
 | 09. 11. | Progressive Web Apps (Roman Jašek) |
 | 16. 11. | .NET MAUI (Roman Jašek) |
 | 23. 12. | Clean Architecture (Martin Dybal) |
-| 30. 11. | DotVVM (???) |
+| 30. 11. | DotVVM (Tomáš Herceg) |
 | 07. 12. | Unity (Vojtěch Brůža) |
 | 14. 12. | Téma na přání studentů (???) |
 
