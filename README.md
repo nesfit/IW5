@@ -40,10 +40,10 @@ Organizace kurzu
 |         | **(cvičení)** Takhle napište projekt?! (Roman Jašek) |
 | 09. 11. | Progressive Web Apps (Roman Jašek) |
 | 16. 11. | .NET MAUI (Roman Jašek) |
-| 23. 12. | Clean Architecture (Martin Dybal) |
+| 23. 12. | Azure (Roman Jašek) |
 | 30. 11. | DotVVM (Tomáš Herceg) |
 | 07. 12. | Unity (Vojtěch Brůža) |
-| 14. 12. | Téma na přání studentů (???) |
+| 14. 12. | Clean Architecture (Martin Dybal) |
 
 --- 
 
