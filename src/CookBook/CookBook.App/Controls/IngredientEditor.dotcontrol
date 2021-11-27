@@ -1,0 +1,49 @@
+﻿@viewModel CookBook.App.ViewModels.IngredientEditorViewModel, CookBook.App
+
+<form DataContext="{value: Data}">
+    <dot:ValidationSummary Validation.Target="{value: _this}" 
+                           class="text-danger" />
+
+    <div class="form-group">
+        <label class="w-100">
+            {{resource: IngredientEditFormResources.Name_FormLabel}}
+            <dot:TextBox Text="{value: Name}" class="form-control" />
+            <small class="form-text text-danger">
+                <dot:Validator Value="{value: Name}" />
+            </small>
+        </label>
+    </div>
+
+    <div class="form-group">
+        <label class="w-100">
+            {{resource: IngredientEditFormResources.Description_FormLabel}}
+            <dot:TextBox Text="{value: Description}" Type="MultiLine" class="form-control" />
+            <small class="form-text text-danger">
+                <dot:Validator Value="{value: Description}" />
+            </small>
+        </label>
+    </div>
+
+    <div class="form-group">
+        <label class="w-100">
+            {{resource: IngredientEditFormResources.ImageUrl_FormLabel}}
+            <dot:TextBox Text="{value: ImageUrl}" class="form-control" />
+            <small class="form-text text-danger">
+                <dot:Validator Value="{value: ImageUrl}" />
+            </small>
+        </label>
+        <img src="{value: ImageUrl}" height="100px" />
+    </div>
+
+    <dot:Button IsSubmitButton class="btn btn-success"
+            Click="{command: _root.Save()}">
+        {{resource: IngredientEditFormResources.Save_Button}}
+    </dot:Button>
+
+    <dot:Button Click="{command: _root.Delete()}" 
+            Validation.Enabled="false"
+            class="btn btn-danger ml-1" 
+            IncludeInPage="{value: Id != _root.EmptyGuid}">
+        {{resource: IngredientEditFormResources.Delete_Button}}
+    </dot:Button>
+</form>

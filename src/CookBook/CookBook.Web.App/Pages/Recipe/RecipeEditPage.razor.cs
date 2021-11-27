@@ -30,14 +30,14 @@ namespace CookBook.Web.App.Pages
 
         private int DurationHours
         {
-            get => Data.Duration.Hours;
-            set => Data.Duration = new TimeSpan(value, DurationMinutes, 0);
+            get => Data.DurationHours;
+            set => Data.DurationHours = value;
         }
 
         private int DurationMinutes
         {
-            get => Data.Duration.Minutes;
-            set => Data.Duration = new TimeSpan(DurationHours, value, 0);
+            get => Data.DurationMinutes;
+            set => Data.DurationMinutes = value;
         }
 
         private string SelectedIngredientName

@@ -1,0 +1,11 @@
+﻿@viewModel CookBook.App.ViewModels.IngredientDetailViewModel, CookBook.App
+@masterPage Views/MasterPage.dotmaster
+
+<dot:Content ContentPlaceHolderID="MainContent">
+
+    <h1 class="mb-4">{{resource: IngredientEditPageResources.Page_Title}}</h1>
+
+    <cc:IngredientEditor DataContext="{value: EditorViewModel}" />
+
+</dot:Content>
+

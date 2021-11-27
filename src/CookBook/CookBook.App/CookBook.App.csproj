@@ -1,0 +1,88 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="**/*.dothtml;**/*.dotmaster;**/*.dotcontrol" Exclude="obj/**/*.*;bin/**/*.*" CopyToPublishDirectory="Always" />
+    <None Remove="**/*.dothtml;**/*.dotmaster;**/*.dotcontrol" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="dotvvm_serialized_config.json.tmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="DotVVM.AspNetCore" Version="4.0.0-preview03-final" />
+    <PackageReference Include="DotVVM.HotReload.AspNetCore" Version="4.0.0-preview03-final" />
+
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CookBook.Api.BL\CookBook.Api.BL.csproj" />
+    <ProjectReference Include="..\CookBook.Api.DAL.Memory\CookBook.Api.DAL.Memory.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Resources\Texts\IndexResources.Designer.cs">
+      <DependentUpon>IndexResources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Resources\Texts\IngredientEditFormResources.Designer.cs">
+      <DependentUpon>IngredientEditFormResources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Resources\Texts\IngredientEditPageResources.Designer.cs">
+      <DependentUpon>IngredientEditPageResources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Resources\Texts\IngredientListPageResources.Designer.cs">
+      <DependentUpon>IngredientListPageResources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Resources\Texts\NavMenuResources.Designer.cs">
+      <DependentUpon>NavMenuResources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Resources\Texts\RecipeEditPageResources.Designer.cs">
+      <DependentUpon>RecipeEditPageResources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Resources\Texts\RecipeListPageResources.Designer.cs">
+      <DependentUpon>RecipeListPageResources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\Texts\IndexResources.resx">
+      <LastGenOutput>IndexResources.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Texts\IngredientEditFormResources.resx">
+      <LastGenOutput>IngredientEditFormResources.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Texts\IngredientEditPageResources.resx">
+      <LastGenOutput>IngredientEditPageResources.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Texts\IngredientListPageResources.resx">
+      <LastGenOutput>IngredientListPageResources.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Texts\NavMenuResources.resx">
+      <LastGenOutput>NavMenuResources.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Texts\RecipeEditPageResources.resx">
+      <LastGenOutput>RecipeEditPageResources.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Texts\RecipeListPageResources.resx">
+      <LastGenOutput>RecipeListPageResources.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>

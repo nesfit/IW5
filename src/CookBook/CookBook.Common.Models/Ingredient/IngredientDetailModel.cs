@@ -4,9 +4,9 @@ using CookBook.Common.Models.Resources.Texts;
 
 namespace CookBook.Common.Models
 {
-    public record IngredientDetailModel : IWithId
+    public class IngredientDetailModel : IWithId
     {
-        public Guid Id { get; init; }
+        public Guid Id { get; set; }
 
         [Required(ErrorMessageResourceName = nameof(IngredientDetailModelResources.Name_Required_ErrorMessage), ErrorMessageResourceType = typeof(IngredientDetailModelResources))]
         public string Name { get; set; }
@@ -18,7 +18,7 @@ namespace CookBook.Common.Models
 
         public IngredientDetailModel()
         {
-            Id = Guid.NewGuid();
+            Id = Guid.Empty;
             Name = string.Empty;
             Description = string.Empty;
             ImageUrl = null;

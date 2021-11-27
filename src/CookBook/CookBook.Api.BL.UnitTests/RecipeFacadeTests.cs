@@ -44,7 +44,7 @@ public class RecipeFacadeTests
             Name = "Name",
             Description = "Description",
             ImageUrl = "Url",
-            Duration = TimeSpan.FromMinutes(5),
+            DurationMinutes = 5,
             FoodType = FoodType.Dessert,
             IngredientAmounts = new List<RecipeDetailIngredientModel>()
             {
@@ -79,7 +79,7 @@ public class RecipeFacadeTests
             Name = "Name",
             Description = "Description",
             ImageUrl = "Url",
-            Duration = TimeSpan.FromMinutes(5),
+            DurationMinutes = 5,
             FoodType = FoodType.Dessert,
             IngredientAmounts = new List<RecipeDetailIngredientModel>()
             {
@@ -122,7 +122,7 @@ public class RecipeFacadeTests
             Name = "Name",
             Description = "Description",
             ImageUrl = "Url",
-            Duration = TimeSpan.FromMinutes(5),
+            DurationMinutes = 5,
             FoodType = FoodType.Dessert,
             IngredientAmounts = new List<RecipeDetailIngredientModel>()
             {
@@ -159,7 +159,7 @@ public class RecipeFacadeTests
             Name = "Name",
             Description = "Description",
             ImageUrl = "Url",
-            Duration = TimeSpan.FromMinutes(5),
+            DurationMinutes = 5,
             FoodType = FoodType.Dessert,
             IngredientAmounts = new List<RecipeDetailIngredientModel>()
             {

@@ -1,0 +1,32 @@
+﻿@viewModel CookBook.App.ViewModels.RecipesViewModel, CookBook.App
+@masterPage Views/MasterPage.dotmaster
+
+<dot:Content ContentPlaceHolderID="MainContent">
+
+    <div class="d-flex flex-row justify-content-between align-items-center mb-4">
+        <h1>{{resource: RecipeListPageResources.Page_Title}}</h1>
+
+        <div class="text-center">
+            <dot:RouteLink RouteName="RecipeDetail" class="btn btn-success">
+                {{resource: RecipeListPageResources.CreateNewRecipe_Button}}
+            </dot:RouteLink>
+        </div>
+    </div>
+
+    <dot:Repeater DataSource="{value: Recipes}" class="d-flex flex-wrap">
+        <div class="card m-1" style="width: 16rem;">
+            <img class="card-img-top" src="{value: ImageUrl}" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <dot:RouteLink RouteName="RecipeDetail" 
+                                   Param-Id="{value: Id}">{{value: Name}}</dot:RouteLink>
+                </h5>
+                <p class="card-text">
+                    {{value: FoodTypeDisplayText}}
+                </p>
+            </div>
+        </div>
+    </dot:Repeater>
+
+</dot:Content>
+

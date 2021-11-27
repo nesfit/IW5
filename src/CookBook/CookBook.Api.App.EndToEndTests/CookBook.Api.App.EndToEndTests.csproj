@@ -21,8 +21,4 @@
 
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\CookBook.Api.App\CookBook.Api.App.csproj" />
-  </ItemGroup>
-
 </Project>

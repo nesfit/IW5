@@ -1,0 +1,165 @@
+﻿@viewModel CookBook.App.ViewModels.RecipeDetailViewModel, CookBook.App
+@masterPage Views/MasterPage.dotmaster
+
+<dot:Content ContentPlaceHolderID="MainContent">
+
+    <h3 class="mb-4">{{resource: RecipeEditPageResources.Page_Title}}</h3>
+
+    <form DataContext="{value: Data}">
+        <dot:ValidationSummary Validation.Target="{value: _this}" class="text-danger" />
+
+        <div class="row">
+            <div class="col-md-8">
+                <div class="form-group">
+                    <label class="w-100 font-weight-bold">
+                        {{resource: RecipeEditPageResources.Name_FormLabel}}
+                        <dot:TextBox Text="{value: Name}" class="form-control" />
+                        <small class="form-text text-danger">
+                            <dot:Validator Value="{value: Name}" />
+                        </small>
+                    </label>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="w-100 font-weight-bold">
+                                {{resource: RecipeEditPageResources.FoodType_FormLabel}}
+                                <dot:ComboBox SelectedValue="{value: FoodType}"
+                                              DataSource="{value: _root.FoodTypes}"
+                                              ItemTextBinding="{value: Name}"
+                                              ItemValueBinding="{value: Value}"                                              
+                                              class="form-control"/>
+                                <small class="form-text text-danger">
+                                    <dot:Validator Value="{value: FoodType}" />
+                                </small>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="w-100 font-weight-bold mb-0">
+                                {{resource: RecipeEditPageResources.Duration_FormLabel}}
+                            </label>
+                            <div class="input-group">
+                                <dot:TextBox Type="Number" min="0" max="23" 
+                                             Text="{value: DurationHours}" class="form-control" />
+                                <div class="p-2">:</div>
+                                <dot:TextBox Type="Number" min="0" max="59" 
+                                             Text="{value: DurationMinutes}" class="form-control" />
+                                <small class="form-text text-danger">
+                                    <dot:Validator For="{value: DurationHours}" />
+                                    <dot:Validator For="{value: DurationMinutes}" />
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group mb-0">
+                    <label class="w-100 font-weight-bold mb-0">
+                        {{resource: RecipeEditPageResources.ImageUrl_FormLabel}}
+                        <dot:TextBox Text="{value: ImageUrl}" class="form-control" />
+                    </label>
+
+                    <small class="form-text text-danger">
+                        <dot:Validator Value="{value: ImageUrl}" />
+                    </small>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="bg-warning rounded overflow-hidden h-100 d-flex">
+                    <img src="{value: ImageUrl}" class="m-auto" style="max-width: 100%; max-height: 100%;" />
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 p-3 ">
+                <div class="bg-sec p-3 rounded">
+                    <h2>
+                        {{resource: RecipeEditPageResources.Ingredients_SectionLabel}}
+                    </h2>
+
+                    <div DataContext="{value: _root.NewIngredientModel}">
+                        <dot:ValidationSummary Validation.Target="{value: _this}" class="text-danger" />
+
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <dot:ComboBox DataSource="{value: _root.Ingredients}"
+                                              SelectedValue="{value: IngredientId}"
+                                              ItemTextBinding="{value: Name}"
+                                              ItemValueBinding="{value: Id}"
+                                              class="form-control" />
+                            </div>
+
+                            <dot:TextBox Type="Number" min="0"
+                                         Text="{value: _root.NewIngredientModel.Amount}" class="form-control" />
+                            <dot:ComboBox SelectedValue="{value: Unit}"
+                                          DataSource="{value: _root.Units}"
+                                          ItemTextBinding="{value: Name}"
+                                          ItemValueBinding="{value: Value}"
+                                          class="form-control" />
+                            <div class="input-group-append">
+                                <dot:Button class="btn btn-outline-success"
+                                            Click="{command: _root.AddIngredientAmount()}"
+                                            Validation.Target="{value: _this}">
+                                    {{resource: RecipeEditPageResources.AddIngredient_Button}}
+                                </dot:Button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr />
+                    <dot:Repeater DataSource="{value: IngredientAmounts}"
+                                  class="list-group mb-4"
+                                  WrapperTagName="ul">
+                        <li class="d-flex justify-content-between align-items-center list-group-item list-group-item-secondary">
+                            <img src="{value: Ingredient.ImageUrl}" height="50px" />
+                            <span>
+                                {{value: Ingredient.Name}}
+                                {{value: Amount}}
+                                {{value: UnitDisplayText}}
+                                <dot:Button class="btn btn-danger btn-sm" type="button"
+                                            Validation.Enabled="false"
+                                            Click="{command: _root.RemoveIngredientAmount(_this)}">
+                                    {{resource: RecipeEditPageResources.RemoveIngredient_Button}}
+                                </dot:Button>
+                            </span>
+                        </li>
+                    </dot:Repeater>
+                </div>
+            </div>
+            <div class="col-md-6 p-3">
+                <div class="bg-sec p-3 rounded">
+                    <div class="form-group">
+                        <label class="w-100 font-weight-bold">
+                            {{resource: RecipeEditPageResources.Description_FormLabel}}
+                            <dot:TextBox Text="{value: Description}" class="form-control" Type="MultiLine" />
+                            <small class="form-text text-danger">
+                                <dot:Validator Value="{value: Description}" />
+                            </small>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr />
+
+        <div class="d-flex justify-content-end mt-2 mb-2">
+            <dot:Button IsSubmitButton class="btn btn-success mr-2" 
+                        Click="{command: _root.Save()}"
+                        Validation.Target="{value: _this}">
+                {{resource: RecipeEditPageResources.Save_Button}}
+            </dot:Button>
+            <dot:Button class="btn btn-danger" 
+                        Click="{command: _root.Delete()}"
+                        Validation.Enabled="false">
+                {{resource: RecipeEditPageResources.Delete_Button}}
+            </dot:Button>
+        </div>
+    </form>
+
+</dot:Content>
+

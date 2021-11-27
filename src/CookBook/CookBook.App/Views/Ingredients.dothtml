@@ -1,0 +1,44 @@
+﻿@viewModel CookBook.App.ViewModels.IngredientsViewModel, CookBook.App
+@masterPage Views/MasterPage.dotmaster
+
+<dot:Content ContentPlaceHolderID="MainContent">
+
+    <h1 class="mb-4">{{resource: IngredientListPageResources.Page_Title}}</h1>
+
+    <div class="row">
+        <div class="col-md">
+            <div class="bg-sec h-100 rounded" IncludeInPage="{value: Ingredients.Count > 0}">
+                <table class="table border table-striped">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="row">
+                                {{resource: IngredientListPageResources.Image_TableHeader}}
+                            </th>
+                            <th scope="row">
+                                {{resource: IngredientListPageResources.Name_TableHeader}}
+                            </th>
+                        </tr>
+                    </thead>
+                    <dot:Repeater WrapperTagName="tbody" DataSource="{value: Ingredients}">
+                        <tr>
+                            <td style="vertical-align: middle;">
+                                <img src="{value: ImageUrl}" height="50" />
+                            </td>
+                            <td style="vertical-align: middle;">
+                                <dot:RouteLink RouteName="IngredientDetail"
+                                               Param-id="{value: Id}">
+                                    {{value: Name}}
+                                </dot:RouteLink>
+                            </td>
+                        </tr>
+                    </dot:Repeater>
+                </table>
+            </div>
+        </div>
+        <div class="col-md">
+            <cc:IngredientEditor DataContext="{value: EditorViewModel}" />
+        </div>
+    </div>
+
+</dot:Content>
+

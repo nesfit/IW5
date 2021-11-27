@@ -44,6 +44,10 @@ namespace CookBook.Api.DAL.Memory.Repositories
 
         public Guid Insert(RecipeEntity entity)
         {
+            if (entity.Id == Guid.Empty)
+            {
+                entity.Id = Guid.NewGuid();
+            }
             recipes.Add(entity);
 
             foreach (var ingredientAmount in entity.IngredientAmounts)

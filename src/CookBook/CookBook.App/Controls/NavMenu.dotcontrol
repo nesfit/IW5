@@ -1,0 +1,45 @@
+﻿@viewModel CookBook.App.ViewModels.MasterPageViewModel, CookBook.App
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand mr-xl-5" href="#">
+            <img src="/images/cook-book.svg" class="d-inline mr-2" />
+        </a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <dot:RouteLink RouteName="Home" 
+                                   class="nav-link font-weight-bold"
+                                   class-active="{resource: Context.Route.RouteName == "Home"}"
+                                   class-border-bottom="{resource: Context.Route.RouteName == "Home"}"
+                                   class-border-success="{resource: Context.Route.RouteName == "Home"}">
+                        {{resource: NavMenuResources.Home_Label}}
+                    </dot:RouteLink>
+                </li>
+                <li class="nav-item">
+                    <dot:RouteLink RouteName="Recipes" 
+                                   class="nav-link font-weight-bold"
+                                   class-active="{resource: Context.Route.RouteName == "Recipes"}"
+                                   class-border-bottom="{resource: Context.Route.RouteName == "Recipes"}"
+                                   class-border-success="{resource: Context.Route.RouteName == "Recipes"}">
+                        {{resource: NavMenuResources.Recipes_Label}}
+                    </dot:RouteLink>
+                </li>
+                <li class="nav-item">
+                    <dot:RouteLink RouteName="Ingredients"
+                                   class="nav-link font-weight-bold"
+                                   class-active="{resource: Context.Route.RouteName == "Ingredients"}"
+                                   class-border-bottom="{resource: Context.Route.RouteName == "Ingredients"}"
+                                   class-border-success="{resource: Context.Route.RouteName == "Ingredients"}">
+                        {{resource: NavMenuResources.Ingredients_Label}}
+                    </dot:RouteLink>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

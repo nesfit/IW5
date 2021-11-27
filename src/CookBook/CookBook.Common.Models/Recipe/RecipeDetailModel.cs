@@ -6,9 +6,9 @@ using CookBook.Common.Models.Resources.Texts;
 
 namespace CookBook.Common.Models
 {
-    public record RecipeDetailModel : IWithId
+    public class RecipeDetailModel : IWithId
     {
-        public Guid Id { get; init; }
+        public Guid Id { get; set; }
 
         [Required(ErrorMessageResourceName = nameof(RecipeDetailModelResources.Name_Required_ErrorMessage), ErrorMessageResourceType = typeof(RecipeDetailModelResources))]
         public string Name { get; set; }
@@ -18,17 +18,25 @@ namespace CookBook.Common.Models
         public string Description { get; set; }
 
         public string? ImageUrl { get; set; }
-        public TimeSpan Duration { get; set; }
+
+        public TimeSpan Duration => new TimeSpan(DurationHours, DurationMinutes, 0);
+
+        [Range(0, 23)]
+        public int DurationHours { get; set; }
+
+        [Range(0, 59)]
+        public int DurationMinutes { get; set; }
+
         public FoodType FoodType { get; set; }
-        public IList<RecipeDetailIngredientModel> IngredientAmounts { get; set; } = new List<RecipeDetailIngredientModel>();
+
+        public List<RecipeDetailIngredientModel> IngredientAmounts { get; set; } = new List<RecipeDetailIngredientModel>();
 
         public RecipeDetailModel()
         {
-            Id = Guid.NewGuid();
+            Id = Guid.Empty;
             Name = string.Empty;
             Description = string.Empty;
             ImageUrl = null;
-            Duration = TimeSpan.Zero;
             FoodType = FoodType.Unknown;
         }
 
@@ -37,7 +45,8 @@ namespace CookBook.Common.Models
             Id = id;
             Name = name;
             Description = description;
-            Duration = duration;
+            DurationHours = duration.Hours;
+            DurationMinutes = duration.Minutes;
             FoodType = foodType;
             ImageUrl = imageUrl;
         }

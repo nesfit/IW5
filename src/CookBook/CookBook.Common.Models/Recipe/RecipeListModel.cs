@@ -1,23 +1,17 @@
 ﻿using System;
 using CookBook.Common.Enums;
+using CookBook.Common.Extensions;
 
 namespace CookBook.Common.Models
 {
-    public record RecipeListModel : IWithId
+    public class RecipeListModel : IWithId
     {
-        public Guid Id { get; init; }
-        public string Name { get; set; }
+        public Guid Id { get; set; }
+        public string? Name { get; set; }
         public TimeSpan Duration { get; set; }
         public FoodType FoodType { get; set; }
+        public string FoodTypeDisplayText => FoodType.GetReadableName();
         public string? ImageUrl { get; set; }
 
-        public RecipeListModel(Guid id, string name, TimeSpan duration, FoodType foodType, string? imageUrl = null)
-        {
-            Id = id;
-            Name = name;
-            Duration = duration;
-            FoodType = foodType;
-            ImageUrl = imageUrl;
-        }
     }
 }
