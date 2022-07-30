@@ -124,6 +124,8 @@ V rámci přednášek se budeme věnovat také nasazení celého řešení do pr
 # Odevzdávání
 Odevzdávání projektu má **2 fáze**. V každé fázi se hodnotí jiné vlastnosti projektu. Nicméně fáze na sebe navzájem následují a studenti pokračují v práci na svém kódu i po jeho odevzdání v rámci následující fáze.
 
+Pokud se týmově rozhodnete, že všichni členové nepřispěli rovnoměrně k vypracování projektu. Přidejte do kořene repozitáře textový soubor s názvem ROZDELENI.txt, ve kterém uveďte loginy všech členů týmu a poměrné rozdělení bodů v procentech (struktura není pevně daná). V případě, že soubor nepřiložíte nebo nebude srozumitelný tak implicitně uvažujeme rovnoměrné rozdělení bodů. Pro rovnoměrné rozložení bodů tedy není nutné soubor přikládat.
+
 **Kontroluje se kód, který je nahrán v GIT** ve větvi `master` nebo `main`. Vždy se kontroluje **poslední commit před časem odevzdávání** dané fáze projektu. Na commity nahrány po času odevzdávání nebo v jiných větvích nebude brán zřetel. Pokud commit, který máme hodnotit otagujete, např. `v1, v2`, usnadníte nám orietaci při hodnocení.
 
 Je silně doporučováno projekty v průběhu semestru konzultovat po přednášce/cvičení, předejdete tak případným komplikacím při odevzdání.
@@ -174,6 +176,7 @@ Hodnotíme:
 V druhé fázi se od vás bude požadovat vytvoření webové aplikace pomocí technologie Blazor. Webová aplikace bude napojena na API vytvořeno v první fázy projektu.
 
 Hodnotíme:
+- opravení chyb a zapracování připomínek, které jsme vám dali v rámci hodnocení fáze 1
 - funkčnost celé výsledné aplikace
 - zobrazení jednotlivých informací dle zadání – seznam, detail, vytváření, editace, mazání…
 - čistotu kódu
