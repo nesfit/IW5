@@ -1,5 +1,6 @@
 ﻿using System;
 using AutoMapper;
+using AutoMapper.Internal;
 using CookBook.Api.BL.Facades;
 using CookBook.Api.BL.Installers;
 using CookBook.Api.DAL.Common;
@@ -15,7 +16,12 @@ using NSwag.Annotations;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddAutoMapper(typeof(EntityBase), typeof(ApiBLInstaller));
+builder.Services.AddAutoMapper(configuration =>
+{
+    // This is a temporary fix - should be able to remove this when version 11.0.2 comes out
+    // More information here: https://github.com/AutoMapper/AutoMapper/issues/3988
+    configuration.Internal().MethodMappingEnabled = false;
+}, typeof(EntityBase), typeof(ApiBLInstaller));
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(builder =>

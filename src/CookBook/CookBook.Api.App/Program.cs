@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using AutoMapper;
+using AutoMapper.Internal;
 using CookBook.Api.App.Extensions;
 using CookBook.Api.App.Processors;
 using CookBook.Api.BL.Installers;
@@ -116,7 +117,12 @@ void ConfigureDependencies(IServiceCollection serviceCollection, IConfiguration 
 
 void ConfigureAutoMapper(IServiceCollection serviceCollection)
 {
-    serviceCollection.AddAutoMapper(typeof(EntityBase), typeof(ApiBLInstaller));
+    serviceCollection.AddAutoMapper(configuration =>
+    {
+        // This is a temporary fix - should be able to remove this when version 11.0.2 comes out
+        // More information here: https://github.com/AutoMapper/AutoMapper/issues/3988
+        configuration.Internal().MethodMappingEnabled = false;
+    }, typeof(EntityBase), typeof(ApiBLInstaller));
 }
 
 

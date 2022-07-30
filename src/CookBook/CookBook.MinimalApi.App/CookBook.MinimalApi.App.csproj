@@ -1,7 +1,7 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <LangVersion>preview</LangVersion>
     <Nullable>enable</Nullable>
   </PropertyGroup>
@@ -9,11 +9,11 @@
   <PropertyGroup>
     <AnalysisLevel>preview</AnalysisLevel>
     <AnalysisMode>AllEnabledByDefault</AnalysisMode>
+    <UserSecretsId>dbce2a89-113c-4b9c-b39a-ec04608efc20</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
-    <PackageReference Include="NSwag.AspNetCore" Version="13.13.2" />
+    <PackageReference Include="NSwag.AspNetCore" Version="13.16.1" />
   </ItemGroup>
 
   <ItemGroup>
