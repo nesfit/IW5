@@ -19,14 +19,14 @@ namespace CookBook.Web.App.Pages
         [Inject]
         private IngredientFacade IngredientFacade { get; set; } = null!;
 
-        private RecipeDetailModel Data { get; set; } = new();
+        private RecipeDetailModel Data { get; set; } = GetNewRecipeDetailModel();
 
         [Parameter]
         public Guid Id { get; init; }
 
         private ICollection<IngredientListModel> Ingredients { get; set; } = new List<IngredientListModel>();
 
-        private RecipeDetailIngredientModel NewIngredientModel { get; set; } = GetNewIngredientModel();
+        private RecipeDetailIngredientModel NewIngredientModel { get; set; } = GetNewRecipeDetailIngredientModel();
 
         private int DurationHours
         {
@@ -85,12 +85,30 @@ namespace CookBook.Web.App.Pages
         public void AddIngredient()
         {
             Data.IngredientAmounts.Add(NewIngredientModel);
-            NewIngredientModel = GetNewIngredientModel();
+            NewIngredientModel = GetNewRecipeDetailIngredientModel();
         }
 
-        private static RecipeDetailIngredientModel GetNewIngredientModel()
-        {
-            return new(Guid.NewGuid(), 0, Unit.Unknown, new IngredientListModel(Guid.Empty, string.Empty));
-        }
+        private static RecipeDetailModel GetNewRecipeDetailModel()
+            => new()
+            {
+                Id = Guid.NewGuid(),
+                Name = string.Empty,
+                Description = string.Empty,
+                Duration = TimeSpan.Zero,
+                FoodType = FoodType.Unknown,
+            };
+
+        private static RecipeDetailIngredientModel GetNewRecipeDetailIngredientModel()
+            => new()
+            {
+                Id = Guid.NewGuid(),
+                Amount = 0,
+                Unit = Unit.Unknown,
+                Ingredient = new IngredientListModel
+                {
+                    Id = Guid.Empty,
+                    Name = string.Empty
+                }
+            };
     }
 }
