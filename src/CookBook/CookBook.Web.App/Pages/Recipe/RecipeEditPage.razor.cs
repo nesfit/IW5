@@ -90,7 +90,7 @@ namespace CookBook.Web.App.Pages
 
         private static RecipeDetailIngredientModel GetNewIngredientModel()
         {
-            return new(null, 0, Unit.Unknown, new IngredientListModel(Guid.Empty, string.Empty));
+            return new(Guid.NewGuid(), 0, Unit.Unknown, new IngredientListModel(Guid.Empty, string.Empty));
         }
     }
 }
