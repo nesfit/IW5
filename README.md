@@ -1,15 +1,7 @@
 # IW5 Programming in .NET and C#, Organizational Details
 
-# MS Teams
-
-Pro připojení do týmu **IW5-2021** použijte přístupový kód **122t6tt**.
-
 ---
-# Aktuality k předmětu 
-  - **22.08.2021** | Při vytváření repozitáře respektujte schéma ze [zadání](/Project/README.md) *https://dev.azure.com/iw5-2021-team0000/project*. Je nezbytně nutné použít Vaše účty z domény *vutbr.cz*. Do Vašich repozitářů pro projekt přidejte účet **uciteliw5@vutbr.cz**. Pokud uděláte chybu a pouze nesedí url, dá se v nastavení změnit.
-
-    * Pokud máte vytvořeno pod soukromými účty, je třeba vytvořit projekt znovu pod univerzitními a pushnout existující repozitář tak, aby Vám zůstala historie včetně správných časů commitů. 
-    * Pokud bude kolize s existující organizací, použijte suffix *team0000-01*.
+# Aktuality k předmětu
  
 --- 
 # Přednášky a demonstrační cvičení
@@ -18,32 +10,32 @@ Organizace kurzu
 
 |                      |    Místnost |            Čas |
 | -                    | -           | -              |
-| Přednáška            | A112        | Ut 08:00-09:50 |
-| Demonstrační cvičení | A112        | Ut 10:00-11:50 |
+| Přednáška            | D0206       | Ut 10:00-11:50 |
+| Demonstrační cvičení | A112        | Ut 13:00-14:50 |
 
 +++
 
 | Datum   | Téma |
 | -       | -    |
-| 21. 09. | Úvod, představení předmětu, projektu, setup prostředí (Roman Jašek) |
+| 20. 09. | Úvod, představení předmětu, projektu, setup prostředí (Roman Jašek) |
 |         | (cvičení) Minimal API v .NET 6, routing (Roman Jašek) |
-| 28. 09. | **Státní svátek** |
-| 05. 10. | ASP&#46;NET Core Web API, controller, swagger, Postman, middleware (Michal Mrnuštík) |
-|         | **(cvičení)** Inversion of Control, konfigurace, lokalizace (Michal Mrnuštík) |
-| 12. 10. | Testování (Michal Tichý) |
-|         | **(cvičení)** CI/CD, nasazování do Azure (Michal Tichý) |
-| 19. 10. | Web - Blazor (Roman Jašek) |
+| 27. 09. | Inversion of Control, konfigurace, lokalizace (Michal Mrnuštík) |
+|         | **(cvičení)** ASP&#46;NET Core Web API, controller, swagger, Postman, middleware (Michal Mrnuštík) |
+| 04. 10. | Web - Blazor (Roman Jašek)  |
 |         | **(cvičení)** Web - Blazor (Roman Jašek) |
-| 26. 10. | Web - frontend (Maroš Janota) |
+| 11. 10. | Web - Blazor (Roman Jašek) |
+|         | **(cvičení)** Testování, CI/CD, nasazování do Azure (Michal Tichý) |
+| 18. 10. | Web - frontend (Maroš Janota) |
 |         | **(cvičení)** Web (Maroš Janota/Roman Jašek) |
-| 02. 11. | Web - napojení na API (Michal Tichý) |
+| 25. 10. | Web - napojení na API (Michal Tichý) |
 |         | **(cvičení)** Takhle napište projekt?! (Roman Jašek) |
-| 09. 11. | Progressive Web Apps (Roman Jašek) |
-| 16. 11. | .NET MAUI (Roman Jašek) |
-| 23. 12. | Azure (Roman Jašek) |
-| 30. 11. | DotVVM (Tomáš Herceg) |
-| 07. 12. | Unity (Vojtěch Brůža) |
-| 14. 12. | Clean Architecture (Martin Dybal) |
+| 01. 11. | Progressive Web Apps, Blazor MAUI (Roman Jašek) |
+| 08. 11. | .NET MAUI (Roman Jašek) |
+| 15. 11. | Clean Architecture (Martin Dybal) |
+| 22. 12. | Architektura a struktura projektu pro enterprise aplikace (Roman Jašek) |
+| 29. 11. | Vue.js (Patrik Švikruha) |
+| 06. 12. | Unity (Vojtěch Brůža) |
+| 13. 12. | Přednáška dle hlasování studentů |
 
 --- 
 
@@ -66,7 +58,7 @@ Organizace kurzu
 
 | Nástroj  |  Typ   | Popis |
 | -------- |  ------| -------|
-|[Visual Studio 2019 Enterprise](https://aka.ms/devtoolsforteaching)| Samostatný program | Hlavní vývojové prostředí pro .Net |
+|[Visual Studio 2022](https://aka.ms/devtoolsforteaching)| Samostatný program | Hlavní vývojové prostředí pro .Net |
 |[Visual Studio 2022 Preview](https://visualstudio.microsoft.com/vs/preview/)| Samostatný program | Preview verze následující verze Visual Studia |
 |[Resharper](https://www.jetbrains.com/resharper/) | Doplněk | Nástroje na lepší produktivitu, refaktorování. Studentská licence je k dispozici zdarma [zde](https://www.jetbrains.com/student/) |
 |[Postifx templates](https://github.com/controlflow/resharper-postfix) | Doplněk | Plynulé doplňování částí kódu bez nutnosti vracení se |
@@ -104,7 +96,8 @@ Organizace kurzu
 * Martin Dybal: [www](https://www.dybal.it/)
 * Maroš Janota
 * Vojtěch Brůža
-* Tomáš Herceg
+* Jiří Pokorný
+* Patrik Švikruha
 * Tibor Jašek
 * Silvia Sojčáková
 * Jan Pluskal
