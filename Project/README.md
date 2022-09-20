@@ -8,39 +8,34 @@ Cílem je vytvořit použitelnou a snadno rozšiřitelnou aplikaci, která splň
 
 Zadání úmyslně není striktní, je Vám ponechána volnost, pro vlastní realizaci. Při hodnocení je kladen důraz na technické zpracování a kvalitu kódu, ale hodnotíme i použitelnost a grafické zpracování aplikace. Pokud Vám přijde, že v zadání chybí nějaká funkcionalita, neváhejte ji doplnit. Pište aplikaci tak, aby jste ji sami chtěli používat.
 
-# Zadání - Webová aplikace pro organizaci soutěžního turnaje
-Výsledná aplikace má sloužit jako jednoduchá aplikace pro organizaci soutěžního turnaje.
+# Zadání - Webová aplikace pro donášku jídel
+Výsledná aplikace má sloužit jako jednoduchá aplikace simulující webovou stránku pro donášku jídel.
 
 ---
 ## Data
 V rámci dat, se kterými se bude pracovat budeme požadovat minimálně následující data.
 
-### Soutěžní tým
+### Restaurace
 - Název
 - Logo
 - Textový popis
-- Země registrace
-- Seznam osob v týmu
+- Adresa
+- Souřadnice na mapě
 
-### Osoba
-- Jméno
-- Příjmení
+### Jídlo
+- Název
 - Fotografie
 - Textový popis
-- Osoba může být přiřazena nanejvýš do jednoho soutěžního týmu
+- Cena
+- Seznam alergenů
 
-### Místo na turnaji (hřiště, stůl, místnost - záleží dle typu turnaje)
-- Název
-- Textový popis dle kterého jej návštěvníci turnaje najdou
-
-### Utkání v rámci turnaje
-- Týmy, které se utkají
-- Čas utkání
-- Místo utkání
-- Výsledek utkání
-
-### Program turnaje
-- Časové sloty pro jednotlivá utkání v průběhu turnaje
+### Objednávka
+- Jméno
+- Adresa
+- Požadovaný čas doručení
+- Poznámka
+- Stav objednávky
+- Seznam a počet objednaných jídel i s možnými poznámkami
 
 ---
 ## Funkcionalita
@@ -50,50 +45,43 @@ V zadání není požadováno perzistentní uložení dat. To znamená, že kdy�
 
 Minimální rozsah, který je požadován v rámci projektu je popsán v této kapitole.
 
-### Téma turnaje
-Necháme na Vás o jaký turnaj se bude jednat. Může jít o nějaký sport, e-sport, deskové hry nebo jiné téma, které Vám vyhovuje. Jediná podmínka pro splnění zadání je, že hra, která se bude hrát je **TÝMOVÁ** (myslete ale na to, že řešení budete obhajovat).
+### Seznam restaurací
+Seznam bude obsahovat všechny restaurace dostupné v aplikaci. Bude možno se z něj překliknout na detail restaurace a na pohled pro přidání nové restaurace.
 
-### Seznam týmů
-Seznam bude obsahovat všechny týmy dostupné v aplikaci. Bude možno se z něj překliknout na detail týmu a na pohled pro přidání nového týmu.
+### Detail restaurace
+Zobrazuje detail restaurace se všemi informacemi o něm a se seznamem jídel.
 
-### Detail týmu
-Zobrazuje detail týmu se všemi informacemi o něm a se seznamem členů týmu.
+### Editace restaurace
+Stránka, která slouží na editaci restaurace. Může se využít na vytvoření nové restaurace nebo na editaci existující. Bude obsahovat všechny informace o restauraci.
 
-### Editace týmu
-Stránka, která slouží na editaci týmu. Může se využít na vytvoření nového týmu nebo na editaci existujícího. Bude obsahovat všechny informace o týmu.
+### Seznam jídel
+Seznam jídel v restauraci. Bude možno se překliknout na detail jídla a přidání nového jídla. Jídla se budou dát řadit minimálně dle ceny. A budou se dát filtrovat minimálně pomocí alergenů.
 
-### Seznam osob
-Seznam všech osob v systému. Bude možno se překliknout na detail osoby a přidání nové osoby.
+### Detail jídla
+Zobrazuje detail jídla se všemi informacemi o něm.
 
-### Detail osoby
-Zobrazuje detail osoby se všemi informacemi o ní.
+### Editace jídla
+Stránka, která slouží na editaci jídla. Může se využít na vytvoření nového jídla nebo na editaci existujícího. Bude obsahovat všechny informace o jídle.
 
-### Editace osoby
-Stránka, která slouží na editaci osoby. Může se využít na vytvoření nové osoby nebo na editaci existující. Bude obsahovat všechny informace o osobě.
+### Seznam objednávek
+Pohled obsahuje všechny objednávky v rámci systému. Bude možno se z něj překliknout na detail objednávky a na pohled pro přidání nové objednávky.
 
-### Seznam míst
-Pohled obsahuje všechna místa v rámci turnaje. Bude možno se z něj překliknout na detail místa a na pohled pro přidání nového místa.
+### Detail objednávky
+Stránka zobrazuje všechny informace o konkrétní objednávce včetně jejího stavu.
 
-### Detail místa
-Stránka zobrazuje všechny informace o konkrétním místě včetně utkání, které se na daném místě konají.
+### Editace objednávky
+Stránka, která slouží na editaci objednávky. Může se využít na vytvoření nové objednávky nebo na editaci existující. Bude obsahovat všechny informace o objednávce.
 
-### Editace místa
-Stránka, která slouží na editaci místa. Může se využít na vytvoření nového místa nebo na editaci existujícího. Bude obsahovat všechny informace o místě.
-
-### Program turnaje
-Stránka s přehledem jednotlivých utkání pro jednotlivá místa v rámci turnaje. Bude na ní vidět všechna utkání všech týmů v průběhu turnaje. Utkání můžou být různě dlouhé a můžou mezi nimi být přestávky.
+### Stránka "Tržby restaurace"
+Stránka zobrazí tržby pro vybranou restauraci - t.j. sumu z objednávek, které byly úspěšně doručeny a zaplaceny.
 
 ### Stránka "Vyhledávání"
 Stránka, na které můžete použít textové vyhledávání napříč záznamy v aplikaci. Seznam všech nalezených záznamů se zobrazí na stránce a bude se dát překlikem dostat na detail daného záznamu (tedy například v případě týmu se odnaviguje na detail týmu). Textově se vyhledává minimálně v těchto atributech:
-- Tým
+- Restaurace
    - Název
    - Textový popis
-   - Země registrace
-- Osoba
-   - Jméno
-   - Příjmení
-   - Textový popis
-- Místo
+   - Adresa
+- Jídlo
    - Název
    - Textový popis
 
@@ -107,7 +95,7 @@ Při řešení projektu týmy využívají Azure DevOps a využívají GIT na sd
 
 Návod na přidání člena projektu můžete najít zde: *https://docs.microsoft.com/en-us/vsts/accounts/add-team-members-vs*
 
-Z GITu *musí být viditelná postupná práce na projektu a spolupráce týmu*. Pokud uvidíme, že existuje malé množství nelogických a nepřeložitelných commitů tak nás bude zajímat, jak jste spolupracovali a může to vést na snížení bodového hodnocení. Organizaci pojmenujte **iw5-2021-team<0000>** dle Vašeho čísla týmu a projekt **project** tak, že výsledné URL pro přístup pro tento imaginární tým by bylo https://dev.azure.com/iw5-2021-team0000/project. Nezapomeňte nastavit **Work item process** template na **Scrum**.
+Z GITu *musí být viditelná postupná práce na projektu a spolupráce týmu*. Pokud uvidíme, že existuje malé množství nelogických a nepřeložitelných commitů tak nás bude zajímat, jak jste spolupracovali a může to vést na snížení bodového hodnocení. Organizaci pojmenujte **iw5-2022-team<0000>** dle Vašeho čísla týmu a projekt **project** tak, že výsledné URL pro přístup pro tento imaginární tým by bylo https://dev.azure.com/iw5-2022-team0000/project. Nezapomeňte nastavit **Work item process** template na **Scrum**.
 
 ## Architektura projektu
 
@@ -121,8 +109,12 @@ V každém případě ale budeme chtít aby výsledné řešení obsahovalo víc
 
 V rámci přednášek se budeme věnovat také nasazení celého řešení do prostředí Azure. Zkusíte si tedy nasadit všechny části Vašeho řešení a také automatizaci nasazování celého systému. Při pojmenování webů, databáze (pokud ji budete používat) a dalších částí, které budete vytvářet vycházejte z návodu, který máte k dispozici v rámci 1. přednášky. Také nezapomeňte přiřadit přístup k projektové části Azure pro učitelský účet (dle pokynů v 1. přednášce).
 
+Schéma pojmenování věcí, které budete potřebovat založit v Azure je ukázána v prezentaci k 1. přednášce - prosím držte se tohoto schématu.
+
 # Odevzdávání
 Odevzdávání projektu má **2 fáze**. V každé fázi se hodnotí jiné vlastnosti projektu. Nicméně fáze na sebe navzájem následují a studenti pokračují v práci na svém kódu i po jeho odevzdání v rámci následující fáze.
+
+Pokud se týmově rozhodnete, že všichni členové nepřispěli rovnoměrně k vypracování projektu. Přidejte do kořene repozitáře textový soubor s názvem ROZDELENI.txt, ve kterém uveďte loginy všech členů týmu a poměrné rozdělení bodů v procentech (struktura není pevně daná). V případě, že soubor nepřiložíte nebo nebude srozumitelný tak implicitně uvažujeme rovnoměrné rozdělení bodů. Pro rovnoměrné rozložení bodů tedy není nutné soubor přikládat.
 
 **Kontroluje se kód, který je nahrán v GIT** ve větvi `master` nebo `main`. Vždy se kontroluje **poslední commit před časem odevzdávání** dané fáze projektu. Na commity nahrány po času odevzdávání nebo v jiných větvích nebude brán zřetel. Pokud commit, který máme hodnotit otagujete, např. `v1, v2`, usnadníte nám orietaci při hodnocení.
 
@@ -131,24 +123,26 @@ Je silně doporučováno projekty v průběhu semestru konzultovat po přednáš
 ---
 ### Fáze 1 – API (50 bodů)
 V první fázi se zaměříme na vytvoření Web API služby. Výstupem tedy bude spustitelný projekt, který obsahuje Web API, poskytuje specifikaci ve standardu OpenAPI (výběr verze necháme na vás) a poskytuje přístup k API pomocí Swagger inspektoru. API obsahuje minimálně metody pro:
-- Soutěžní tým
-   - Získání seznamu všech týmů
-   - Získání detailu týmu
-   - Vytvoření nového týmu
-   - Upravení existujícího týmu
-   - Smazání existujícího týmu
-- Osoba
-   - Získání seznamu všech osob
-   - Získání detailu osoby
-   - Vytvoření nové osoby
-   - Upravení existující osoby
-   - Smazání existující osoby
-- Místo
-   - Získání seznamu všech míst
-   - Získání detailu místa
-   - Vytvoření nového místa
-   - Upravení existujícího místa
-   - Smazání existujícího místa
+- Restaurace
+   - Získání seznamu restaurací
+   - Získání detailu restaurace
+   - Vytvoření nové restaurace
+   - Upravení existující restaurace
+   - Smazání existující restaurace
+- Jídlo
+   - Získání seznamu všech jídel pro restauraci
+   - Získání detailu jídla
+   - Vytvoření nového jídla
+   - Upravení existujícího jídla
+   - Smazání existujícího jídla
+- Objednávka
+   - Získání seznamu všech objednávek pro restauraci
+   - Získání detailu objednávky
+   - Vytvoření nové objednávky
+   - Upravení existující objednávky
+   - Smazání existující objednávky
+- Tržby
+   - Získání seznamu tržeb pro jednotlivé restaurace
 - Vyhledávání
    - Získání výsledků vyhledávání
 Vzorové API, dle kterého se můžete inspirovat bude ukazováno na přednáškách/cvičeních.
@@ -174,6 +168,7 @@ Hodnotíme:
 V druhé fázi se od vás bude požadovat vytvoření webové aplikace pomocí technologie Blazor. Webová aplikace bude napojena na API vytvořeno v první fázy projektu.
 
 Hodnotíme:
+- opravení chyb a zapracování připomínek, které jsme vám dali v rámci hodnocení fáze 1
 - funkčnost celé výsledné aplikace
 - zobrazení jednotlivých informací dle zadání – seznam, detail, vytváření, editace, mazání…
 - čistotu kódu
