@@ -96,7 +96,7 @@ Při řešení projektu týmy využívají Azure DevOps a využívají GIT na sd
 
 Návod na přidání člena projektu můžete najít zde: *https://docs.microsoft.com/en-us/vsts/accounts/add-team-members-vs*
 
-Z GITu *musí být viditelná postupná práce na projektu a spolupráce týmu*. Pokud uvidíme, že existuje malé množství nelogických a nepřeložitelných commitů tak nás bude zajímat, jak jste spolupracovali a může to vést na snížení bodového hodnocení. Organizaci pojmenujte **iw5-2021-team<0000>** dle Vašeho čísla týmu a projekt **project** tak, že výsledné URL pro přístup pro tento imaginární tým by bylo https://dev.azure.com/iw5-2021-team0000/project. Nezapomeňte nastavit **Work item process** template na **Scrum**.
+Z GITu *musí být viditelná postupná práce na projektu a spolupráce týmu*. Pokud uvidíme, že existuje malé množství nelogických a nepřeložitelných commitů tak nás bude zajímat, jak jste spolupracovali a může to vést na snížení bodového hodnocení. Organizaci pojmenujte **iw5-2022-team<0000>** dle Vašeho čísla týmu a projekt **project** tak, že výsledné URL pro přístup pro tento imaginární tým by bylo https://dev.azure.com/iw5-2022-team0000/project. Nezapomeňte nastavit **Work item process** template na **Scrum**.
 
 ## Architektura projektu
 
@@ -109,6 +109,8 @@ V každém případě ale budeme chtít aby výsledné řešení obsahovalo víc
 ## Nasazení do Azure
 
 V rámci přednášek se budeme věnovat také nasazení celého řešení do prostředí Azure. Zkusíte si tedy nasadit všechny části Vašeho řešení a také automatizaci nasazování celého systému. Při pojmenování webů, databáze (pokud ji budete používat) a dalších částí, které budete vytvářet vycházejte z návodu, který máte k dispozici v rámci 1. přednášky. Také nezapomeňte přiřadit přístup k projektové části Azure pro učitelský účet (dle pokynů v 1. přednášce).
+
+Schéma pojmenování věcí, které budete potřebovat založit v Azure je ukázána v prezentaci k 1. přednášce - prosím držte se tohoto schématu.
 
 # Odevzdávání
 Odevzdávání projektu má **2 fáze**. V každé fázi se hodnotí jiné vlastnosti projektu. Nicméně fáze na sebe navzájem následují a studenti pokračují v práci na svém kódu i po jeho odevzdání v rámci následující fáze.
