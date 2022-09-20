@@ -21,7 +21,6 @@ V rámci dat, se kterými se bude pracovat budeme požadovat minimálně násled
 - Textový popis
 - Adresa
 - Souřadnice na mapě
-- Seznam jídel
 
 ### Jídlo
 - Název
@@ -47,7 +46,7 @@ V zadání není požadováno perzistentní uložení dat. To znamená, že kdy�
 Minimální rozsah, který je požadován v rámci projektu je popsán v této kapitole.
 
 ### Seznam restaurací
-Seznam bude obsahovat všechny restaurace dostupné v aplikaci. Bude možno se z něj překliknout na detail restaurace a na pohled pro přidání nové restaurace. V seznamu restaurací se bude dát filtrovat dle vzdálenosti od vybraného bodu (můžete implementovat pomocí GPS souřadnic nebo adresy).
+Seznam bude obsahovat všechny restaurace dostupné v aplikaci. Bude možno se z něj překliknout na detail restaurace a na pohled pro přidání nové restaurace.
 
 ### Detail restaurace
 Zobrazuje detail restaurace se všemi informacemi o něm a se seznamem jídel.
@@ -126,7 +125,6 @@ Je silně doporučováno projekty v průběhu semestru konzultovat po přednáš
 V první fázi se zaměříme na vytvoření Web API služby. Výstupem tedy bude spustitelný projekt, který obsahuje Web API, poskytuje specifikaci ve standardu OpenAPI (výběr verze necháme na vás) a poskytuje přístup k API pomocí Swagger inspektoru. API obsahuje minimálně metody pro:
 - Restaurace
    - Získání seznamu restaurací
-      - Bude také podporovat řazení a filtr "dle vzdálenosti"
    - Získání detailu restaurace
    - Vytvoření nové restaurace
    - Upravení existující restaurace
