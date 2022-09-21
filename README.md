@@ -2,6 +2,7 @@
 
 ---
 # Aktuality k předmětu
+ 2022-09-21 - Update k pojmenování týmů v Azure DevOps a pojmenování resources v Azure podle nového pojmenování týmů ve VUT IS.
  
 --- 
 # Přednášky a demonstrační cvičení
