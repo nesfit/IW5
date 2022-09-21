@@ -95,7 +95,7 @@ Při řešení projektu týmy využívají Azure DevOps a využívají GIT na sd
 
 Návod na přidání člena projektu můžete najít zde: *https://docs.microsoft.com/en-us/vsts/accounts/add-team-members-vs*
 
-Z GITu *musí být viditelná postupná práce na projektu a spolupráce týmu*. Pokud uvidíme, že existuje malé množství nelogických a nepřeložitelných commitů tak nás bude zajímat, jak jste spolupracovali a může to vést na snížení bodového hodnocení. Organizaci pojmenujte **iw5-2022-team<0000>** dle Vašeho čísla týmu a projekt **project** tak, že výsledné URL pro přístup pro tento imaginární tým by bylo https://dev.azure.com/iw5-2022-team0000/project. Nezapomeňte nastavit **Work item process** template na **Scrum**.
+Z GITu *musí být viditelná postupná práce na projektu a spolupráce týmu*. Pokud uvidíme, že existuje malé množství nelogických a nepřeložitelných commitů tak nás bude zajímat, jak jste spolupracovali a může to vést na snížení bodového hodnocení. Organizaci pojmenujte **iw5-2022-team-<xlogin00>** dle Vašeho názvu týmu (xlogin00 je xlogin vedoucího týmu - máte jej v názvu týmu ve VUT IS) a projekt **project** tak, že výsledné URL pro přístup pro tento imaginární tým by bylo https://dev.azure.com/iw5-2022-team-xlogin00/project. Nezapomeňte nastavit **Work item process** template na **Scrum**.
 
 ## Architektura projektu
 
