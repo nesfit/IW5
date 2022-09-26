@@ -27,13 +27,13 @@ Organizace kurzu
 | 11. 10. | Web - Blazor (Roman Jašek) |
 |         | **(cvičení)** Testování, CI/CD, nasazování do Azure (Michal Tichý) |
 | 18. 10. | Web - frontend (Maroš Janota) |
-|         | **(cvičení)** Web (Maroš Janota/Roman Jašek) |
+|         | **(cvičení)** Web (Roman Jašek) |
 | 25. 10. | Web - napojení na API (Michal Tichý) |
 |         | **(cvičení)** Takhle napište projekt?! (Roman Jašek) |
 | 01. 11. | Progressive Web Apps, Blazor MAUI (Roman Jašek) |
 | 08. 11. | .NET MAUI (Roman Jašek) |
 | 15. 11. | Clean Architecture (Martin Dybal) |
-| 22. 12. | Architektura a struktura projektu pro enterprise aplikace (Roman Jašek) |
+| 22. 12. | Architektura a struktura projektu pro enterprise aplikace (Jiří Pokorný) |
 | 29. 11. | Vue.js (Patrik Švikruha) |
 | 06. 12. | Unity (Vojtěch Brůža) |
 | 13. 12. | Přednáška dle hlasování studentů |
