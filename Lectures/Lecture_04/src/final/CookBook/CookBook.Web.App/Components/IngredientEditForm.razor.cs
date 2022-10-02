@@ -12,13 +12,13 @@ namespace CookBook.Web.App.Components
         [Parameter]
         public Guid Id { get; set; }
 
-        public IngredientDetailModel Data { get; set; } = new();
+        public IngredientDetailModel Data { get; set; } = GetNewIngredientModel();
 
         protected override async Task OnInitializedAsync()
         {
             if (Id == Guid.Empty)
             {
-                Data = new IngredientDetailModel();
+                Data = GetNewIngredientModel();
             }
             else
             {
@@ -31,5 +31,13 @@ namespace CookBook.Web.App.Components
 
             await base.OnInitializedAsync();
         }
+
+        private static IngredientDetailModel GetNewIngredientModel()
+            => new()
+            {
+                Id = Guid.NewGuid(),
+                Name = string.Empty,
+                Description = string.Empty,
+            };
     }
 }
