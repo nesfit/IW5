@@ -40,33 +40,52 @@ namespace CookBook.Api.DAL.Memory
 
         private void SeedIngredients()
         {
-            Ingredients.Add(new IngredientEntity(ingredientGuids[0], "Vejce", "Popis vajec", "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Chicken_egg_2009-06-04.jpg/428px-Chicken_egg_2009-06-04.jpg"));
-            Ingredients.Add(new IngredientEntity(ingredientGuids[1], "Cibule", "Popis cibule", "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Onion_on_White.JPG/480px-Onion_on_White.JPG"));
+            Ingredients.Add(new IngredientEntity
+            {
+                Id = ingredientGuids[0],
+                Name = "Vejce",
+                Description = "Popis vajec",
+                ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Chicken_egg_2009-06-04.jpg/428px-Chicken_egg_2009-06-04.jpg",
+            });
+            Ingredients.Add(new IngredientEntity
+            { 
+                Id = ingredientGuids[1],
+                Name = "Cibule",
+                Description = "Popis cibule",
+                ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Onion_on_White.JPG/480px-Onion_on_White.JPG",
+            });
         }
 
         private void SeedIngredientAmounts()
         {
-            IngredientAmounts.Add(new IngredientAmountEntity(ingredientAmountGuids[0], 4.0, Unit.Pieces, recipeGuids[0], ingredientGuids[0])
+            IngredientAmounts.Add(new IngredientAmountEntity
             {
-                Id = ingredientAmountGuids[0]
+                Id = ingredientAmountGuids[0],
+                Amount = 4.0,
+                Unit = Unit.Pieces,
+                RecipeId = recipeGuids[0],
+                IngredientId = ingredientGuids[0],
             });
 
-            IngredientAmounts.Add(new IngredientAmountEntity(ingredientAmountGuids[1], 1.0, Unit.Pieces, recipeGuids[0], ingredientGuids[1])
+            IngredientAmounts.Add(new IngredientAmountEntity
             {
-                Id = ingredientAmountGuids[1]
+                Id = ingredientAmountGuids[1],
+                Amount = 1.0,
+                Unit = Unit.Pieces,
+                RecipeId = recipeGuids[0],
+                IngredientId = ingredientGuids[1]
             });
         }
 
         private void SeedRecipes()
         {
-            Recipes.Add(new RecipeEntity(
-                "Míchaná vejce", 
-                "Popis míchaných vajec", 
-                TimeSpan.FromMinutes(15), 
-                FoodType.MainDish,
-                "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Scrambled_eggs-01.jpg/320px-Scrambled_eggs-01.jpg")
-            {
-                Id = recipeGuids[0]
+            Recipes.Add(new RecipeEntity{
+                Id = recipeGuids[0],
+                Name = "Míchaná vejce", 
+                Description = "Popis míchaných vajec", 
+                Duration = TimeSpan.FromMinutes(15), 
+                FoodType = FoodType.MainDish,
+                ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Scrambled_eggs-01.jpg/320px-Scrambled_eggs-01.jpg",
             });
         }
     }

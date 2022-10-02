@@ -48,10 +48,28 @@ public class RecipeFacadeTests
             FoodType = FoodType.Dessert,
             IngredientAmounts = new List<RecipeDetailIngredientModel>()
             {
-                new RecipeDetailIngredientModel(Guid.NewGuid(), 5, Unit.Pieces,
-                    new IngredientListModel(mergedIngredientId, "MergedIngredient")),
-                new RecipeDetailIngredientModel(Guid.NewGuid(), 2, Unit.Pieces,
-                    new IngredientListModel(mergedIngredientId, "MergedIngredient"))
+                new RecipeDetailIngredientModel
+                {
+                    Id = Guid.NewGuid(),
+                    Amount = 5,
+                    Unit = Unit.Pieces,
+                    Ingredient = new IngredientListModel
+                    {
+                        Id = mergedIngredientId,
+                        Name = "MergedIngredient",
+                    }
+                },
+                new RecipeDetailIngredientModel
+                {
+                    Id = Guid.NewGuid(),
+                    Amount = 2,
+                    Unit = Unit.Pieces,
+                    Ingredient = new IngredientListModel
+                    {
+                        Id = mergedIngredientId,
+                        Name = "MergedIngredient",
+                    }
+                }
             }
         };
         //act
@@ -83,10 +101,26 @@ public class RecipeFacadeTests
             FoodType = FoodType.Dessert,
             IngredientAmounts = new List<RecipeDetailIngredientModel>()
             {
-                new RecipeDetailIngredientModel(ingredientAmount1Id, 5, Unit.Pieces,
-                    new IngredientListModel(mergedIngredientId, "MergedIngredient")),
-                new RecipeDetailIngredientModel(ingredientAmount2Id, 2, Unit.Kg,
-                    new IngredientListModel(mergedIngredientId, "MergedIngredient"))
+                new RecipeDetailIngredientModel
+                {
+                    Id = ingredientAmount1Id,
+                    Amount = 5,
+                    Unit = Unit.Pieces,
+                    Ingredient = new IngredientListModel
+                    {
+                        Id = mergedIngredientId,
+                        Name = "MergedIngredient",
+                    }
+                },
+                new RecipeDetailIngredientModel{
+                    Id = ingredientAmount2Id,
+                    Amount = 2,
+                    Unit = Unit.Kg,
+                    Ingredient = new IngredientListModel
+                    {
+                        Id = mergedIngredientId,
+                        Name = "MergedIngredient",
+                    }}
             }
         };
 
@@ -126,10 +160,26 @@ public class RecipeFacadeTests
             FoodType = FoodType.Dessert,
             IngredientAmounts = new List<RecipeDetailIngredientModel>()
             {
-                new RecipeDetailIngredientModel(ingredientAmount1Id, 5, Unit.Pieces,
-                    new IngredientListModel(notIngredientId, "NotMergedIngredient")),
-                new RecipeDetailIngredientModel(ingredientAmount2Id, 2, Unit.Pieces,
-                    new IngredientListModel(not1IngredientId, "NotMergedIngredient2"))
+                new RecipeDetailIngredientModel
+                {
+                    Id = ingredientAmount1Id,
+                    Amount = 5,
+                    Unit = Unit.Pieces,
+                    Ingredient = new IngredientListModel
+                    {
+                        Id = notIngredientId,
+                        Name = "NotMergedIngredient",
+                    }},
+                new RecipeDetailIngredientModel
+                {
+                    Id = ingredientAmount2Id,
+                    Amount = 2,
+                    Unit = Unit.Pieces,
+                    Ingredient = new IngredientListModel
+                    {
+                        Id = not1IngredientId,
+                        Name = "NotMergedIngredient2",
+                    }}
             }
         };
 
