@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <LangVersion>preview</LangVersion>
     <Nullable>enable</Nullable>
   </PropertyGroup>
@@ -12,12 +12,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="10.1.1" />
-    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+    <PackageReference Include="AutoMapper" Version="12.0.0" />
     <PackageReference Include="Enums.NET" Version="4.0.0" />
-    <PackageReference Include="FluentValidation" Version="10.3.3" />
-    <PackageReference Include="Microsoft.Extensions.Localization" Version="6.0.0-rc.1.21452.15" />
-    <PackageReference Include="Scrutor" Version="3.3.0" />
+    <PackageReference Include="FluentValidation" Version="11.2.2" />
+    <PackageReference Include="Microsoft.Extensions.Localization" Version="7.0.0-rc.1.22427.2" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="6.0.0-preview.4.21253.7" />
   </ItemGroup>
 

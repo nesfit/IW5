@@ -53,7 +53,14 @@ namespace CookBook.Api.BL.Facades
 
             var recipeEntity = mapper.Map<RecipeEntity>(recipeModel);
             recipeEntity.IngredientAmounts = recipeModel.IngredientAmounts.Select(t =>
-                new IngredientAmountEntity(t.Id, t.Amount, t.Unit, recipeEntity.Id, t.Ingredient.Id)).ToList();
+                new IngredientAmountEntity
+                {
+                    Id = t.Id,
+                    Amount = t.Amount,
+                    Unit = t.Unit,
+                    RecipeId = recipeEntity.Id,
+                    IngredientId = t.Ingredient.Id
+                }).ToList();
             var result = recipeRepository.Update(recipeEntity);
             return result;
         }
@@ -67,7 +74,8 @@ namespace CookBook.Api.BL.Facades
             {
                 var ingredientAmountFirst = ingredientAmountGroup.First();
                 var totalAmount = ingredientAmountGroup.Sum(t => t.Amount);
-                var ingredientAmount = new RecipeDetailIngredientModel(ingredientAmountFirst.Id, totalAmount, ingredientAmountFirst.Unit, ingredientAmountFirst.Ingredient);
+                var ingredientAmount = ingredientAmountFirst with { Amount = totalAmount };
+
                 result.Add(ingredientAmount);
             }
 
