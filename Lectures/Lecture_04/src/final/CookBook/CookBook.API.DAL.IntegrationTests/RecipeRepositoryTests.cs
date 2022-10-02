@@ -56,13 +56,23 @@ public class RecipeRepositoryTests
         var recipeId = Guid.NewGuid();
         var foodType = FoodType.MainDish;
         var duration = TimeSpan.FromMinutes(5);
-        var newRecipe = new RecipeEntity("Name", "Description", duration, foodType, "ImageUrl")
-        {
+        var newRecipe = new RecipeEntity{
             Id = recipeId,
+            Name = "Name",
+            Description = "Description",
+            Duration = duration,
+            FoodType = foodType,
+            ImageUrl = "ImageUrl",
             IngredientAmounts = new List<IngredientAmountEntity>()
             {
-                new IngredientAmountEntity(ingredientAmountId, 5, Unit.Pieces, recipeId,
-                    dbFixture.IngredientGuids[0])
+                new IngredientAmountEntity
+                {
+                    Id = ingredientAmountId,
+                    Amount = 5,
+                    Unit = Unit.Pieces,
+                    RecipeId = recipeId,
+                    IngredientId = dbFixture.IngredientGuids[0]
+                }
             }
         };
         
@@ -89,8 +99,15 @@ public class RecipeRepositoryTests
         var recipe = dbFixture.GetRecipeDirectly(recipeId);
         var ingredientAmountId = Guid.NewGuid();
 
-        var newIngredientAmount =
-            new IngredientAmountEntity(ingredientAmountId, 5, Unit.Pieces, recipeId, dbFixture.IngredientGuids[0]);
+        var newIngredientAmount = 
+            new IngredientAmountEntity
+            {
+                Id = ingredientAmountId,
+                Amount = 5,
+                Unit = Unit.Pieces,
+                RecipeId = recipeId,
+                IngredientId = dbFixture.IngredientGuids[0]
+            };
 
         //act
         recipe.IngredientAmounts.Add(newIngredientAmount);
@@ -147,7 +164,7 @@ public class RecipeRepositoryTests
         Assert.NotNull(recipeFromDb);
         Assert.Empty(recipeFromDb.IngredientAmounts);
 
-        var ingredientAmountFromDb = dbFixture.GetIngredientAmountDirectly(ingredientAmountId.Value);
+        var ingredientAmountFromDb = dbFixture.GetIngredientAmountDirectly(ingredientAmountId);
         Assert.Null(ingredientAmountFromDb);
     }
 }

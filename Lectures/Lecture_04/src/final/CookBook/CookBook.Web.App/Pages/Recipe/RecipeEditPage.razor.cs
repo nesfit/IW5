@@ -10,14 +10,14 @@ namespace CookBook.Web.App.Pages
         [Inject]
         private HttpClient httpClient { get; set; } = null!;
 
-        private RecipeDetailModel Data { get; set; } = new();
+        private RecipeDetailModel Data { get; set; } = GetNewRecipeDetailModel();
 
         [Parameter]
         public Guid Id { get; init; }
 
         private IList<IngredientListModel> Ingredients { get; set; } = new List<IngredientListModel>();
 
-        private RecipeDetailIngredientModel NewIngredientModel { get; set; } = new(null, 0, Unit.Unknown, new IngredientListModel(Guid.Empty, string.Empty));
+        private RecipeDetailIngredientModel NewIngredientModel { get; set; } = GetNewRecipeDetailIngredientModel();
 
         private int DurationHours
         {
@@ -47,10 +47,7 @@ namespace CookBook.Web.App.Pages
         {
             if (Id == Guid.Empty)
             {
-                Data = new RecipeDetailModel
-                {
-                    IngredientAmounts = new List<RecipeDetailIngredientModel>()
-                };
+                Data = GetNewRecipeDetailModel();
             }
             else
             {
@@ -66,5 +63,28 @@ namespace CookBook.Web.App.Pages
 
             await base.OnInitializedAsync();
         }
+
+        private static RecipeDetailModel GetNewRecipeDetailModel()
+            => new()
+            {
+                Id = Guid.NewGuid(),
+                Name = string.Empty,
+                Description = string.Empty,
+                Duration = TimeSpan.Zero,
+                FoodType = FoodType.Unknown,
+            };
+
+        private static RecipeDetailIngredientModel GetNewRecipeDetailIngredientModel()
+            => new()
+            {
+                Id = Guid.NewGuid(),
+                Amount = 0,
+                Unit = Unit.Unknown,
+                Ingredient = new IngredientListModel
+                {
+                    Id = Guid.Empty,
+                    Name = string.Empty
+                }
+            };
     }
 }
