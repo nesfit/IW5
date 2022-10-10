@@ -91,7 +91,7 @@ Organizace kurzu
 
 --- 
 # Lidé podílející se na kurzu
-* Roman Jašek: [e-mail](mailto:roman.jasek@hotmail.com)
+* Roman Jašek: [e-mail](mailto:roman.jasek@riganti.cz)
 * Michal Mrnuštík: [e-mail](mailto:michal.mrnustik@outlook.com)
 * Michal Tichý: [e-mail](mailto:edu@tichymichal.net)
 * Martin Dybal: [www](https://www.dybal.it/)
