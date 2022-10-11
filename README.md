@@ -24,8 +24,8 @@ Organizace kurzu
 |         | **(cvičení)** ASP&#46;NET Core Web API, controller, swagger, Postman, middleware (Michal Mrnuštík) |
 | 04. 10. | Web - Blazor (Roman Jašek)  |
 |         | **(cvičení)** Web - Blazor (Roman Jašek) |
-| 11. 10. | Web - Blazor (Roman Jašek) |
-|         | **(cvičení)** Testování, CI/CD, nasazování do Azure (Michal Tichý) |
+| 11. 10. | Testování, CI/CD, nasazování do Azure (Michal Tichý) |
+|         | **(cvičení)** Web - Blazor (Roman Jašek) |
 | 18. 10. | Web - frontend (Maroš Janota) |
 |         | **(cvičení)** Web (Roman Jašek) |
 | 25. 10. | Web - napojení na API (Michal Tichý) |
