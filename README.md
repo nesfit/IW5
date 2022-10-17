@@ -27,7 +27,7 @@ Organizace kurzu
 | 11. 10. | Testování, CI/CD, nasazování do Azure (Michal Tichý) |
 |         | **(cvičení)** Web - Blazor (Roman Jašek) |
 | 18. 10. | Web - frontend (Maroš Janota) |
-|         | **(cvičení)** Web (Roman Jašek) |
+|         | **(cvičení)** Web - frontend (Maroš Janota) |
 | 25. 10. | Web - napojení na API (Michal Tichý) |
 |         | **(cvičení)** Takhle napište projekt?! (Roman Jašek) |
 | 01. 11. | Progressive Web Apps, Blazor MAUI (Roman Jašek) |
