@@ -36,6 +36,8 @@
 
   <ItemGroup>
     <Folder Include="Extensions\" />
+    <Folder Include="wwwroot\images\screenshots\mobile\" />
+    <Folder Include="wwwroot\images\screenshots\desktop\" />
   </ItemGroup>
 
   <ItemGroup>

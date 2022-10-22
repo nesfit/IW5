@@ -21,13 +21,13 @@
       "src": "/images/icon-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
       "src": "/images/icon-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any"
+      "purpose": "maskable"
     },
     {
       "src": "/images/icon-384x384.png",
@@ -101,7 +101,6 @@
       "type": "image/png",
       "purpose": "maskable"
     }
-
   ],
   "shortcuts": [
     {
@@ -115,19 +114,44 @@
   ],
   "screenshots": [
     {
-      "src": "/images/sreenshots/screenshot01.jpg",
-      "sizes": "1080x2246",
-      "type": "image/jpeg"
+      "src": "/images/screenshots/desktop/screenshot01.png",
+      "sizes": "1677x1159",
+      "type": "image/png"
     },
     {
-      "src": "/images/sreenshots/screenshot02.jpg",
-      "sizes": "1080x2246",
-      "type": "image/jpeg"
+      "src": "/images/screenshots/desktop/screenshot02.png",
+      "sizes": "1677x1159",
+      "type": "image/png"
     },
     {
-      "src": "/images/sreenshots/screenshot03.jpg",
-      "sizes": "1080x2246",
-      "type": "image/jpeg"
+      "src": "/images/screenshots/desktop/screenshot03.png",
+      "sizes": "1677x1159",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/screenshots/desktop/screenshot04.png",
+      "sizes": "1677x1159",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/screenshots/mobile/screenshot01.png",
+      "sizes": "750x1334",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/screenshots/mobile/screenshot02.png",
+      "sizes": "750x1334",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/screenshots/mobile/screenshot03.png",
+      "sizes": "750x1334",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/screenshots/mobile/screenshot04.png",
+      "sizes": "750x1334",
+      "type": "image/png"
     }
   ]
 }
