@@ -105,11 +105,27 @@
   "shortcuts": [
     {
       "name": "Recipes",
-      "url": "/recipes"
+      "url": "/recipes",
+      "icons": [
+        {
+          "src": "/images/icon-096x096.png",
+          "sizes": "96x96",
+          "type": "image/png",
+          "purpose": "maskable"
+        }
+      ]
     },
     {
       "name": "Ingredients",
-      "url": "/ingredients"
+      "url": "/ingredients",
+      "icons": [
+        {
+          "src": "/images/icon-096x096.png",
+          "sizes": "96x96",
+          "type": "image/png",
+          "purpose": "maskable"
+        }
+      ]
     }
   ],
   "screenshots": [
