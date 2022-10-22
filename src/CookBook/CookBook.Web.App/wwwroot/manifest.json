@@ -4,21 +4,19 @@
   "display": "standalone",
   "theme_color": "#04173D",
   "background_color": "#FFFFFF",
-  "permissions": [ "storage" ],
+  "permissions": [
+    "storage"
+  ],
   "scope": "/",
   "start_url": "/",
   "offline_enabled": true,
   "orientation": "portrait",
-  "categories": [ "lifestyle", "food" ],
-  "prefer_related_applications": false,
-  "icons": [
-    {
-      "src": "/images/icon-512x512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
-    }
+  "categories": [
+    "lifestyle",
+    "food"
   ],
+  "prefer_related_applications": false,
+  "icons": [],
   "shortcuts": [
     {
       "name": "Recipes",
