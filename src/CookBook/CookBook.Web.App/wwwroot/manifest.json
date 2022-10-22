@@ -1,7 +1,15 @@
 {
-  "name": "CookBook - your online list of recipes",
+  "name": "CookBook",
   "short_name": "CookBook",
-  "display": "standalone",
+  "description": "CookBook - your online list of recipes",
+  "lang": "cs",
+  "dir": "ltr",
+  "display": "fullscreen",
+  "display_override": [
+    "fullscreen",
+    "standalone",
+    "minimal-ui"
+  ],
   "theme_color": "#04173D",
   "background_color": "#FFFFFF",
   "permissions": [
