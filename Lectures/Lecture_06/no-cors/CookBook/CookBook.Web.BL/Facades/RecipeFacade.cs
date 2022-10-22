@@ -16,22 +16,22 @@ namespace CookBook.Web.BL.Facades
 
         public async Task<ICollection<RecipeListModel>> GetAllAsync()
         {
-            return await apiClient.RecipeGetAsync(apiVersion, culture);
+            return await apiClient.RecipeGetAsync(culture);
         }
 
         public async Task<RecipeDetailModel> GetByIdAsync(Guid id)
         {
-            return await apiClient.RecipeGetAsync(id, apiVersion, culture);
+            return await apiClient.RecipeGetAsync(id, culture);
         }
 
         public async Task DeleteAsync(Guid id)
         {
-            await apiClient.RecipeDeleteAsync(id, apiVersion, culture);
+            await apiClient.RecipeDeleteAsync(id, culture);
         }
 
         public async Task SaveAsync(RecipeDetailModel data)
         {
-            await apiClient.UpsertAsync(apiVersion, culture, data);
+            await apiClient.UpsertAsync(culture, data);
         }
     }
 }
