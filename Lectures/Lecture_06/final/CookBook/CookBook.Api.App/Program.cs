@@ -4,6 +4,7 @@ using System.Globalization;
 using AutoMapper;
 using AutoMapper.Internal;
 using CookBook.Api.App.Extensions;
+using CookBook.Api.App.Processors;
 using CookBook.Api.BL.Facades;
 using CookBook.Api.BL.Installers;
 using CookBook.Api.DAL.Common;
@@ -66,7 +67,8 @@ void ConfigureLocalization(IServiceCollection serviceCollection)
 void ConfigureOpenApiDocuments(IServiceCollection serviceCollection)
 {
     serviceCollection.AddEndpointsApiExplorer();
-    serviceCollection.AddOpenApiDocument();
+    serviceCollection.AddOpenApiDocument(
+        settings => settings.OperationProcessors.Add(new RequestCultureOperationProcessor()));
 }
 
 void ConfigureDependencies(IServiceCollection serviceCollection, IConfiguration configuration)
