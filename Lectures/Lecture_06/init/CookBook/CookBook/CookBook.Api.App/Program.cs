@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Globalization;
 using AutoMapper;
+using AutoMapper.Internal;
 using CookBook.Api.App.Extensions;
 using CookBook.Api.App.Processors;
+using CookBook.Api.BL.Facades;
 using CookBook.Api.BL.Installers;
 using CookBook.Api.DAL.Common;
 using CookBook.Api.DAL.Common.Entities;
@@ -11,20 +13,24 @@ using CookBook.Api.DAL.EF.Extensions;
 using CookBook.Api.DAL.EF.Installers;
 using CookBook.Api.DAL.Memory.Installers;
 using CookBook.Common.Extensions;
-using FluentValidation.AspNetCore;
+using CookBook.Common.Models;
+using CookBook.Common.Resources;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Localization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Versioning;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using NSwag.AspNetCore;
+using Microsoft.Extensions.Localization;
 
 var builder = WebApplication.CreateBuilder();
 
-ConfigureControllers(builder.Services);
+ConfigureCors(builder.Services);
+ConfigureLocalization(builder.Services);
+
 ConfigureOpenApiDocuments(builder.Services);
 ConfigureDependencies(builder.Services, builder.Configuration);
 ConfigureAutoMapper(builder.Services);
@@ -32,72 +38,44 @@ ConfigureAutoMapper(builder.Services);
 var app = builder.Build();
 
 ValidateAutoMapperConfiguration(app.Services);
+
 UseDevelopmentSettings(app);
 UseSecurityFeatures(app);
 UseLocalization(app);
 UseRouting(app);
+UseEndpoints(app);
 UseOpenApi(app);
 
 app.Run();
 
-void ConfigureControllers(IServiceCollection serviceCollection)
+void ConfigureCors(IServiceCollection serviceCollection)
 {
-    serviceCollection.AddApiVersioning(options =>
-    {
-        options.ApiVersionReader = new QueryStringApiVersionReader("version");
-        options.DefaultApiVersion = new ApiVersion(3, 0);
-        options.ReportApiVersions = true;
-        options.AssumeDefaultVersionWhenUnspecified = true;
-    });
-
-    serviceCollection.AddControllers()
-        .AddNewtonsoftJson()
-        .AddFluentValidation(options => options.RegisterValidatorsFromAssemblyContaining<ApiBLInstaller>())
-        .AddDataAnnotationsLocalization();
-    serviceCollection.AddLocalization(options => options.ResourcesPath = string.Empty);
-
     serviceCollection.AddCors(options =>
     {
-        options.AddDefaultPolicy(options =>
-            options.AllowAnyOrigin()
+        options.AddDefaultPolicy(o =>
+            o.AllowAnyOrigin()
                 .AllowAnyHeader()
                 .AllowAnyMethod());
     });
 }
 
+void ConfigureLocalization(IServiceCollection serviceCollection)
+{
+    serviceCollection.AddLocalization(options => options.ResourcesPath = string.Empty);
+}
+
 void ConfigureOpenApiDocuments(IServiceCollection serviceCollection)
 {
-    serviceCollection.AddVersionedApiExplorer(options =>
-    {
-        options.AddApiVersionParametersWhenVersionNeutral = true;
-    });
-
-    serviceCollection.AddOpenApiDocument(document =>
-    {
-        document.Title = "CookBook API v1";
-        document.DocumentName = "v1";
-        document.ApiGroupNames = new[] { "1.0" };
-    });
-    serviceCollection.AddOpenApiDocument(document =>
-    {
-        document.Title = "CookBook API v2";
-        document.DocumentName = "v2";
-        document.ApiGroupNames = new[] { "2.0" };
-    });
-    serviceCollection.AddOpenApiDocument(document =>
-    {
-        document.Title = "CookBook API v3";
-        document.DocumentName = "v3";
-        document.ApiGroupNames = new[] { "3.0" };
-        document.OperationProcessors.Add(new RequestCultureOperationProcessor());
-    });
+    serviceCollection.AddEndpointsApiExplorer();
+    serviceCollection.AddOpenApiDocument(
+        settings => settings.OperationProcessors.Add(new RequestCultureOperationProcessor()));
 }
 
 void ConfigureDependencies(IServiceCollection serviceCollection, IConfiguration configuration)
 {
     if (!Enum.TryParse<DALType>(configuration.GetSection("DALSelectionOptions")["Type"], out var dalType))
     {
-        throw new ArgumentOutOfRangeException("DALSelectionOptions:Type");
+        throw new ArgumentException("DALSelectionOptions:Type");
     }
 
     switch (dalType)
@@ -106,7 +84,8 @@ void ConfigureDependencies(IServiceCollection serviceCollection, IConfiguration 
             serviceCollection.AddInstaller<ApiDALMemoryInstaller>();
             break;
         case DALType.EntityFramework:
-            var connectionString = configuration.GetConnectionString("DefaultConnection");
+            var connectionString = configuration.GetConnectionString("DefaultConnection")
+                ?? throw new ArgumentException("The connection string is missing");
             serviceCollection.AddInstaller<ApiDALEFInstaller>(connectionString);
             break;
     }
@@ -116,15 +95,65 @@ void ConfigureDependencies(IServiceCollection serviceCollection, IConfiguration 
 
 void ConfigureAutoMapper(IServiceCollection serviceCollection)
 {
-    serviceCollection.AddAutoMapper(typeof(EntityBase), typeof(ApiBLInstaller));
+    serviceCollection.AddAutoMapper(configuration =>
+    {
+        // This is a temporary fix - should be able to remove this when version 11.0.2 comes out
+        // More information here: https://github.com/AutoMapper/AutoMapper/issues/3988
+        configuration.Internal().MethodMappingEnabled = false;
+    }, typeof(EntityBase), typeof(ApiBLInstaller));
 }
-
 
 void ValidateAutoMapperConfiguration(IServiceProvider serviceProvider)
 {
     var mapper = serviceProvider.GetRequiredService<IMapper>();
     mapper.ConfigurationProvider.AssertConfigurationIsValid();
 }
+
+void UseEndpoints(WebApplication application)
+{
+    var endpointsBase = application.MapGroup("api")
+        .WithOpenApi();
+
+    UseIngredientEndpoints(endpointsBase);
+    UseRecipeEndpoints(endpointsBase);
+}
+
+void UseIngredientEndpoints(RouteGroupBuilder routeGroupBuilder)
+{
+    var ingredientEndpoints = routeGroupBuilder.MapGroup("ingredient")
+        .WithTags("ingredient");
+
+    ingredientEndpoints.MapGet("", (IIngredientFacade ingredientFacade) => ingredientFacade.GetAll());
+
+    ingredientEndpoints.MapGet("{id:guid}", Results<Ok<IngredientDetailModel>, NotFound<string>> (Guid id, IIngredientFacade ingredientFacade, IStringLocalizer<IngredientEndpointsResources> ingredientEndpointsLocalizer)
+        => ingredientFacade.GetById(id) is { } ingredient
+            ? TypedResults.Ok(ingredient)
+            : TypedResults.NotFound(ingredientEndpointsLocalizer[nameof(IngredientEndpointsResources.GetById_NotFound), id].Value));
+
+    ingredientEndpoints.MapPost("", (IngredientDetailModel ingredient, IIngredientFacade ingredientFacade) => ingredientFacade.Create(ingredient));
+    ingredientEndpoints.MapPut("", (IngredientDetailModel ingredient, IIngredientFacade ingredientFacade) => ingredientFacade.Update(ingredient));
+    ingredientEndpoints.MapPost("upsert", (IngredientDetailModel ingredient, IIngredientFacade ingredientFacade) => ingredientFacade.CreateOrUpdate(ingredient));
+    ingredientEndpoints.MapDelete("{id:guid}", (Guid id, IIngredientFacade ingredientFacade) => ingredientFacade.Delete(id));
+}
+
+void UseRecipeEndpoints(RouteGroupBuilder routeGroupBuilder)
+{
+    var recipeEndpoints = routeGroupBuilder.MapGroup("recipe")
+        .WithTags("recipe");
+
+    recipeEndpoints.MapGet("", (IRecipeFacade recipeFacade) => recipeFacade.GetAll());
+
+    recipeEndpoints.MapGet("{id:guid}", Results<Ok<RecipeDetailModel>, NotFound<string>> (Guid id, IRecipeFacade recipeFacade, IStringLocalizer<RecipeEndpointsResources> recipeEndpointsLocalizer)
+        => recipeFacade.GetById(id) is { } recipe
+            ? TypedResults.Ok(recipe)
+            : TypedResults.NotFound(recipeEndpointsLocalizer[nameof(RecipeEndpointsResources.GetById_NotFound), id].Value));
+
+    recipeEndpoints.MapPost("", (RecipeDetailModel recipe, IRecipeFacade recipeFacade) => recipeFacade.Create(recipe));
+    recipeEndpoints.MapPut("", (RecipeDetailModel recipe, IRecipeFacade recipeFacade) => recipeFacade.Update(recipe));
+    recipeEndpoints.MapPost("upsert", (RecipeDetailModel recipe, IRecipeFacade recipeFacade) => recipeFacade.CreateOrUpdate(recipe));
+    recipeEndpoints.MapDelete("{id:guid}", (Guid id, IRecipeFacade recipeFacade) => recipeFacade.Delete(id));
+}
+
 
 void UseDevelopmentSettings(WebApplication application)
 {
@@ -140,7 +169,6 @@ void UseSecurityFeatures(IApplicationBuilder application)
 {
     application.UseCors();
     application.UseHttpsRedirection();
-    application.UseAuthorization();
 }
 
 void UseLocalization(IApplicationBuilder application)
@@ -157,23 +185,12 @@ void UseLocalization(IApplicationBuilder application)
 void UseRouting(IApplicationBuilder application)
 {
     application.UseRouting();
-
-    application.UseEndpoints(endpoints =>
-    {
-        endpoints.MapControllers();
-    });
 }
 
 void UseOpenApi(IApplicationBuilder application)
 {
     application.UseOpenApi();
-    application.UseSwaggerUi3(settings =>
-    {
-        settings.DocumentTitle = "CookBook Swagger UI";
-        settings.SwaggerRoutes.Add(new SwaggerUi3Route("v3.0", "/swagger/v3/swagger.json"));
-        settings.SwaggerRoutes.Add(new SwaggerUi3Route("v2.0", "/swagger/v2/swagger.json"));
-        settings.SwaggerRoutes.Add(new SwaggerUi3Route("v1.0", "/swagger/v1/swagger.json"));
-    });
+    application.UseSwaggerUi3();
 }
 
 

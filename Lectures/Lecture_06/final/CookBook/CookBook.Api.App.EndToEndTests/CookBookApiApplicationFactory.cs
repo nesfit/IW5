@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using CookBook.Api.App.Controllers.v3;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -12,7 +11,7 @@ public class CookBookApiApplicationFactory : WebApplicationFactory<Program>
     {
         builder.ConfigureServices(collection =>
         {
-            var controllerAssemblyName = typeof(RecipeController).Assembly.FullName;
+            var controllerAssemblyName = typeof(Program).Assembly.FullName;
             collection.AddMvc().AddApplicationPart(Assembly.Load(controllerAssemblyName));
         });
         return base.CreateHost(builder);
