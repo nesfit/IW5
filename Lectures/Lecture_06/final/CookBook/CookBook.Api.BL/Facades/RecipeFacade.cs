@@ -67,7 +67,7 @@ namespace CookBook.Api.BL.Facades
             {
                 var ingredientAmountFirst = ingredientAmountGroup.First();
                 var totalAmount = ingredientAmountGroup.Sum(t => t.Amount);
-                var ingredientAmount = new RecipeDetailIngredientModel(ingredientAmountFirst.Id, totalAmount, ingredientAmountFirst.Unit, ingredientAmountFirst.Ingredient);
+                var ingredientAmount = ingredientAmountFirst with { Amount = totalAmount };
                 result.Add(ingredientAmount);
             }
 
