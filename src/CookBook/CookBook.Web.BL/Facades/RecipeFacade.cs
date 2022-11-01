@@ -28,7 +28,7 @@ namespace CookBook.Web.BL.Facades
         {
             var recipesAll = await base.GetAllAsync();
 
-            var recipesFromApi = await apiClient.RecipeGetAsync(apiVersion, culture);
+            var recipesFromApi = await apiClient.RecipeGetAsync(culture);
             foreach (var recipeFromApi in recipesFromApi)
             {
                 if (recipesAll.Any(r => r.Id == recipeFromApi.Id) is false)
@@ -42,17 +42,17 @@ namespace CookBook.Web.BL.Facades
 
         public override async Task<RecipeDetailModel> GetByIdAsync(Guid id)
         {
-            return await apiClient.RecipeGetAsync(id, apiVersion, culture);
+            return await apiClient.RecipeGetAsync(id, culture);
         }
 
         protected override async Task<Guid> SaveToApiAsync(RecipeDetailModel data)
         {
-            return await apiClient.UpsertAsync(apiVersion, culture, data);
+            return await apiClient.UpsertAsync(culture, data);
         }
 
         public override async Task DeleteAsync(Guid id)
         {
-            await apiClient.RecipeDeleteAsync(id, apiVersion, culture);
+            await apiClient.RecipeDeleteAsync(id, culture);
         }
     }
 }

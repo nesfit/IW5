@@ -27,7 +27,7 @@ namespace CookBook.Web.BL.Facades
         {
             var ingredientsAll = await base.GetAllAsync();
 
-            var ingredientsFromApi = await apiClient.IngredientGetAsync(apiVersion, culture);
+            var ingredientsFromApi = await apiClient.IngredientGetAsync(culture);
             ingredientsAll.AddRange(ingredientsFromApi);
 
             return ingredientsAll;
@@ -35,17 +35,17 @@ namespace CookBook.Web.BL.Facades
 
         public override async Task<IngredientDetailModel> GetByIdAsync(Guid id)
         {
-            return await apiClient.IngredientGetAsync(id, apiVersion, culture);
+            return await apiClient.IngredientGetAsync(id, culture);
         }
 
         protected override async Task<Guid> SaveToApiAsync(IngredientDetailModel data)
         {
-            return await apiClient.UpsertAsync(apiVersion, culture, data);
+            return await apiClient.UpsertAsync(apiVersion, data);
         }
 
         public override async Task DeleteAsync(Guid id)
         {
-            await apiClient.IngredientDeleteAsync(id, apiVersion, culture);
+            await apiClient.IngredientDeleteAsync(id, culture);
         }
     }
 }
