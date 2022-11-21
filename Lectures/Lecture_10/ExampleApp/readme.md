@@ -1,21 +1,17 @@
 # Example continuous integration/delivery
 
-This example shows how to configure automated builds including quality checks.
-Used source code contains web and console calculator application which shares engine.dll.
+This example shows how to use large application configuration using .net, nuget packages, powershell and msbuild.
 
-Used tasks:
+* nuget.config - for general nuget configuraion
+* Directory.Packages.props - example global packages versioning
+* Build directory - for commandline build scripts using dotnet cli
+* *.csproj files - Project dependencies, target framework and package references
+* Console\ConsoleCalculator\Properties\PublishProfiles\ - publish profiles for console application with platform properties and selfcontained package
 
-* Compile
-* Run tests (End to end tests and unit tests) including code coverage
-* Create installer
-* Deploy the application to Azure
-
-the automated builds are covered by two popular build servers:
-* [Visual Studio DevOps (online)](VisualStudioDevOps.md)
-* [TeamCity](TeamCityNotes.md)
 
 ## General notes
 
+* Teh concrete application source code is not relevant for our examples
 * Visual studio has to be installed on the build agent like usually and have to correspond with the build solution file step and also .net inspections step tooling.
 * The driver servers for each browsers also have to be available in output directory, we reference them as links in the test project file
 * Nunit SingleThread apartment has to be defined using assembly attribute, because test runner doesn't have to load values from app.config.
