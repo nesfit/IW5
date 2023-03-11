@@ -12,7 +12,6 @@ namespace CookBook.Api.BL.MapperProfiles
             CreateMap<RecipeEntity, RecipeListModel>();
             CreateMap<RecipeEntity, RecipeDetailModel>()
                 .MapMember(dst => dst.IngredientAmounts, src => src.IngredientAmounts);
-            CreateMap<IngredientAmountEntity, RecipeDetailIngredientModel>();
 
             CreateMap<RecipeDetailModel, RecipeEntity>()
                 .Ignore(dst => dst.IngredientAmounts);

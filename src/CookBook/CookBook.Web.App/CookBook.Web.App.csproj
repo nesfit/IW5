@@ -15,6 +15,7 @@
 
   <PropertyGroup>
     <BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
+    <BlazorCacheBootResources>false</BlazorCacheBootResources>
   </PropertyGroup>
 
   <ItemGroup>

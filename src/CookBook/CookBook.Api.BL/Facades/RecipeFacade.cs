@@ -11,13 +11,16 @@ namespace CookBook.Api.BL.Facades
     public class RecipeFacade : IRecipeFacade
     {
         private readonly IRecipeRepository recipeRepository;
+        private readonly IIngredientAmountRepository ingredientAmountRepository;
         private readonly IMapper mapper;
 
         public RecipeFacade(
             IRecipeRepository recipeRepository,
+            IIngredientAmountRepository ingredientAmountRepository,
             IMapper mapper)
         {
             this.recipeRepository = recipeRepository;
+            this.ingredientAmountRepository = ingredientAmountRepository;
             this.mapper = mapper;
         }
 
@@ -42,33 +45,50 @@ namespace CookBook.Api.BL.Facades
 
         public Guid Create(RecipeDetailModel recipeModel)
         {
-            MergeIngredientAmounts(recipeModel);
             var recipeEntity = mapper.Map<RecipeEntity>(recipeModel);
-            return recipeRepository.Insert(recipeEntity);
+            var result = recipeRepository.Insert(recipeEntity);
+            CreateOrUpdateIngredientAmounts(result, recipeModel.IngredientAmounts);
+            
+            return result;
         }
 
         public Guid? Update(RecipeDetailModel recipeModel)
         {
-            MergeIngredientAmounts(recipeModel);
-
             var recipeEntity = mapper.Map<RecipeEntity>(recipeModel);
-            recipeEntity.IngredientAmounts = recipeModel.IngredientAmounts.Select(t =>
-                new IngredientAmountEntity
-                {
-                    Id = t.Id,
-                    Amount = t.Amount,
-                    Unit = t.Unit,
-                    RecipeId = recipeEntity.Id,
-                    IngredientId = t.Ingredient.Id
-                }).ToList();
             var result = recipeRepository.Update(recipeEntity);
+            if (result is not null)
+            {
+                CreateOrUpdateIngredientAmounts(result.Value, recipeModel.IngredientAmounts);
+            }
+
             return result;
         }
 
-        public void MergeIngredientAmounts(RecipeDetailModel recipe)
+        private void CreateOrUpdateIngredientAmounts(Guid recipeId, IEnumerable<RecipeDetailIngredientModel> ingredientAmountModels)
+        {
+            foreach (var ingredientAmountModel in MergeIngredientAmounts(ingredientAmountModels))
+            {
+                var existingIngredientAmountEntity = ingredientAmountRepository.GetById(ingredientAmountModel.Id);
+
+                if (existingIngredientAmountEntity is null)
+                {
+                    var ingredientAmountEntity = mapper.Map<IngredientAmountEntity>(ingredientAmountModel);
+                    ingredientAmountEntity.RecipeId = recipeId;
+                    ingredientAmountRepository.Insert(ingredientAmountEntity);
+                }
+                else
+                {
+                    var ingredientAmountEntity = mapper.Map<IngredientAmountEntity>(ingredientAmountModel);
+                    ingredientAmountEntity.RecipeId = recipeId;
+                    ingredientAmountRepository.Update(ingredientAmountEntity);
+                }
+            }
+        }
+
+        public IList<RecipeDetailIngredientModel> MergeIngredientAmounts(IEnumerable<RecipeDetailIngredientModel> ingredientAmountModels)
         {
             var result = new List<RecipeDetailIngredientModel>();
-            var ingredientAmountGroups = recipe.IngredientAmounts.GroupBy(t => $"{t.Ingredient.Id}-{t.Unit}");
+            var ingredientAmountGroups = ingredientAmountModels.GroupBy(t => $"{t.Ingredient.Id}-{t.Unit}");
 
             foreach (var ingredientAmountGroup in ingredientAmountGroups)
             {
@@ -79,7 +99,7 @@ namespace CookBook.Api.BL.Facades
                 result.Add(ingredientAmount);
             }
 
-            recipe.IngredientAmounts = result;
+            return result;
         }
 
         public void Delete(Guid id)
