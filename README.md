@@ -44,7 +44,7 @@ Organizace kurzu
 
 | Fáze |               Deadline |                                   Obsah |
 | ---- |------------------------| --------------------------------------- |
-| 1    |                viz WIS | API                                     |
+| 1    |                 viz IS | API                                     |
 | 2    |    Den před odevzdáním | Finalizace aplikace a následná obhajoba |
 
 * Při obhajobě:
