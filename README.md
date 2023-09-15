@@ -2,7 +2,6 @@
 
 ---
 # Aktuality k předmětu
- 2022-09-21 - Update k pojmenování týmů v Azure DevOps a pojmenování resources v Azure podle nového pojmenování týmů ve VUT IS.
  
 --- 
 # Přednášky a demonstrační cvičení
@@ -11,32 +10,32 @@ Organizace kurzu
 
 |                      |    Místnost |            Čas |
 | -                    | -           | -              |
-| Přednáška            | D0206       | Ut 10:00-11:50 |
-| Demonstrační cvičení | A112        | Ut 13:00-14:50 |
+| Přednáška            | G202        | Ut 10:00-11:50 |
+| Demonstrační cvičení | G202        | Ut 12:00-13:50 |
 
 +++
 
 | Datum   | Téma |
 | -       | -    |
-| 20. 09. | Úvod, představení předmětu, projektu, setup prostředí (Roman Jašek) |
-|         | (cvičení) Minimal API v .NET 6, routing (Roman Jašek) |
-| 27. 09. | Inversion of Control, konfigurace, lokalizace (Michal Mrnuštík) |
+| 19. 09. | Úvod, představení předmětu, projektu, setup prostředí (Roman Jašek) |
+|         | (cvičení) Minimal API, routing (Roman Jašek) |
+| 26. 09. | Inversion of Control, konfigurace, lokalizace (Michal Mrnuštík) |
 |         | **(cvičení)** ASP&#46;NET Core Web API, controller, swagger, Postman, middleware (Michal Mrnuštík) |
-| 04. 10. | Web - Blazor (Roman Jašek)  |
+| 03. 10. | Web - Blazor (Roman Jašek)  |
 |         | **(cvičení)** Web - Blazor (Roman Jašek) |
-| 11. 10. | Testování, CI/CD, nasazování do Azure (Michal Tichý) |
-|         | **(cvičení)** Web - Blazor (Roman Jašek) |
-| 18. 10. | Web - frontend (Maroš Janota) |
+| 10. 10. |  Web - Blazor (Roman Jašek) |
+|         | **(cvičení)** Testování, CI/CD, nasazování do Azure (Michal Tichý) |
+| 17. 10. | Web - frontend (Maroš Janota) |
 |         | **(cvičení)** Web - frontend (Maroš Janota) |
-| 25. 10. | Web - napojení na API (Michal Tichý) |
+| 24. 10. | Web - napojení na API (Michal Tichý) |
+| 31. 10. | Progressive Web Apps, Blazor MAUI (Roman Jašek) |
 |         | **(cvičení)** Takhle napište projekt?! (Roman Jašek) |
-| 01. 11. | Progressive Web Apps, Blazor MAUI (Roman Jašek) |
-| 08. 11. | .NET MAUI (Roman Jašek) |
-| 15. 11. | Clean Architecture (Martin Dybal) |
-| 22. 12. | Architektura a struktura projektu pro enterprise aplikace (Jiří Pokorný) |
-| 29. 11. | Vue.js (Patrik Švikruha) |
-| 06. 12. | Unity (Vojtěch Brůža) |
-| 13. 12. | Přednáška dle hlasování studentů |
+| 07. 11. | Identity Management - část 1 (Roman Jašek) |
+| 14. 11. | Identity Management - část 2 (Roman Jašek) |
+| 21. 12. | Clean Architecture (Martin Dybal)  |
+| 28. 11. | Architektura a struktura projektu pro enterprise aplikace (Jiří Pokorný) |
+| 05. 12. | React (Tadeáš Pavlík, Miroslav Janska) |
+| 12. 12. | Přednáška dle hlasování studentů |
 
 --- 
 
@@ -45,7 +44,7 @@ Organizace kurzu
 
 | Fáze |               Deadline |                                   Obsah |
 | ---- |------------------------| --------------------------------------- |
-| 1    |                viz WIS | API                                     |
+| 1    |                 viz IS | API                                     |
 | 2    |    Den před odevzdáním | Finalizace aplikace a následná obhajoba |
 
 * Při obhajobě:
@@ -64,7 +63,6 @@ Organizace kurzu
 |[Resharper](https://www.jetbrains.com/resharper/) | Doplněk | Nástroje na lepší produktivitu, refaktorování. Studentská licence je k dispozici zdarma [zde](https://www.jetbrains.com/student/) |
 |[Postifx templates](https://github.com/controlflow/resharper-postfix) | Doplněk | Plynulé doplňování částí kódu bez nutnosti vracení se |
 |[ResXManager](https://github.com/dotnet/ResXResourceManager) | Doplněk | Práce s lokalizačními soubory |
-
 
 +++
 
@@ -96,12 +94,12 @@ Organizace kurzu
 * Michal Tichý: [e-mail](mailto:edu@tichymichal.net)
 * Martin Dybal: [www](https://www.dybal.it/)
 * Maroš Janota
-* Vojtěch Brůža
 * Jiří Pokorný
-* Patrik Švikruha
 * Tibor Jašek
-* Silvia Sojčáková
 * Jan Pluskal
+* Silvia Sojčáková
+* Tadeáš Pavlík
+* Miroslav Janska
 
 --- 
 # Užitečné odkazy
