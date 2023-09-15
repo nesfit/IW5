@@ -1,4 +1,4 @@
-![image](https://github.com/nesfit/IW5/assets/5084180/b344c9d5-e56b-47f7-8ef2-188d7b74d8ae)# IW5 Programming in .NET and C#, Organizational Details
+# IW5 Programming in .NET and C#, Organizational Details
 
 ---
 # Aktuality k předmětu
