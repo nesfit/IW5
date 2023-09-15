@@ -1,4 +1,4 @@
-# IW5 Programming in .NET and C#, Organizational Details
+![image](https://github.com/nesfit/IW5/assets/5084180/b344c9d5-e56b-47f7-8ef2-188d7b74d8ae)# IW5 Programming in .NET and C#, Organizational Details
 
 ---
 # Aktuality k předmětu
@@ -30,8 +30,8 @@ Organizace kurzu
 | 24. 10. | Web - napojení na API (Michal Tichý) |
 | 31. 10. | Progressive Web Apps, Blazor MAUI (Roman Jašek) |
 |         | **(cvičení)** Takhle napište projekt?! (Roman Jašek) |
-| 07. 11. | Identity part 1 (Roman Jašek) |
-| 14. 11. | Identity part 2 (Roman Jašek) |
+| 07. 11. | Identity Management - část 1 (Roman Jašek) |
+| 14. 11. | Identity Management - část 2 (Roman Jašek) |
 | 21. 12. | Clean Architecture (Martin Dybal)  |
 | 28. 11. | Architektura a struktura projektu pro enterprise aplikace (Jiří Pokorný) |
 | 05. 12. | React (Tadeáš Pavlík, Miroslav Janska) |
