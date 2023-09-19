@@ -1,3 +1,5 @@
+> :warning: **Neaktuální**: Zadání z minulého roku, bude aktualizováno.
+
 # IW5 projekt
 
 ## Důležité upozornění
