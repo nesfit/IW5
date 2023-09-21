@@ -1,5 +1,3 @@
-> :warning: **Neaktuální**: Zadání z minulého roku, bude aktualizováno.
-
 # IW5 projekt
 
 ## Důležité upozornění
@@ -10,34 +8,32 @@ Cílem je vytvořit použitelnou a snadno rozšiřitelnou aplikaci, která splň
 
 Zadání úmyslně není striktní, je Vám ponechána volnost, pro vlastní realizaci. Při hodnocení je kladen důraz na technické zpracování a kvalitu kódu, ale hodnotíme i použitelnost a grafické zpracování aplikace. Pokud Vám přijde, že v zadání chybí nějaká funkcionalita, neváhejte ji doplnit. Pište aplikaci tak, aby jste ji sami chtěli používat.
 
-# Zadání - Webová aplikace pro donášku jídel
-Výsledná aplikace má sloužit jako jednoduchá aplikace simulující webovou stránku pro donášku jídel.
+# Zadání - Webová aplikace pro online kvízy
+Výsledná aplikace má sloužit jako jednoduchá webová stránka pro pořádání online kvízů. Pro inspiraci se můžete podívat třeba na aplikace jako Kahoot!, Quizizz, Quizlet...
 
 ---
 ## Data
 V rámci dat, se kterými se bude pracovat budeme požadovat minimálně následující data.
 
-### Restaurace
-- Název
-- Logo
-- Textový popis
-- Adresa
-- Souřadnice na mapě
+### Otázka
+- Text
+- Odpovědi
 
-### Jídlo
-- Název
-- Fotografie
-- Textový popis
-- Cena
-- Seznam alergenů
+### Odpověď
+- Typ
+- Text
+- Obrázek
+- Příznak správnosti
 
-### Objednávka
+### Uživatel
 - Jméno
-- Adresa
-- Požadovaný čas doručení
-- Poznámka
-- Stav objednávky
-- Seznam a počet objednaných jídel i s možnými poznámkami
+- Fotografie (postačí url)
+
+### Kvíz
+- Otázky
+- Datum a čas konání
+- Vybrané odpovědi
+- Skóre pro jednotlivé uživatele
 
 ---
 ## Funkcionalita
@@ -47,45 +43,27 @@ V zadání není požadováno perzistentní uložení dat. To znamená, že kdy�
 
 Minimální rozsah, který je požadován v rámci projektu je popsán v této kapitole.
 
-### Seznam restaurací
-Seznam bude obsahovat všechny restaurace dostupné v aplikaci. Bude možno se z něj překliknout na detail restaurace a na pohled pro přidání nové restaurace.
+## Stránka typu "seznam" pro každou datovou entitu
+Seznam bude obsahovat všechny záznamy daného typu dostupné v aplikaci. Bude možno se z něj překliknout na detail záznamu a na pohled pro přidání nového záznamu.
 
-### Detail restaurace
-Zobrazuje detail restaurace se všemi informacemi o něm a se seznamem jídel.
-
-### Editace restaurace
-Stránka, která slouží na editaci restaurace. Může se využít na vytvoření nové restaurace nebo na editaci existující. Bude obsahovat všechny informace o restauraci.
+## Stránka typu "detail" pro každou datovou entitu
+Zobrazuje detail daného typu záznamu se všemi informacemi o něm. Editace záznamu může být implementována na stránce "detail", nebo na samostatné stránce.
 
 ### Seznam jídel
-Seznam jídel v restauraci. Bude možno se překliknout na detail jídla a přidání nového jídla. Jídla se budou dát řadit minimálně dle ceny. A budou se dát filtrovat minimálně pomocí alergenů.
-
-### Detail jídla
-Zobrazuje detail jídla se všemi informacemi o něm.
-
-### Editace jídla
-Stránka, která slouží na editaci jídla. Může se využít na vytvoření nového jídla nebo na editaci existujícího. Bude obsahovat všechny informace o jídle.
-
-### Seznam objednávek
-Pohled obsahuje všechny objednávky v rámci systému. Bude možno se z něj překliknout na detail objednávky a na pohled pro přidání nové objednávky.
-
-### Detail objednávky
-Stránka zobrazuje všechny informace o konkrétní objednávce včetně jejího stavu.
-
-### Editace objednávky
-Stránka, která slouží na editaci objednávky. Může se využít na vytvoření nové objednávky nebo na editaci existující. Bude obsahovat všechny informace o objednávce.
-
-### Stránka "Tržby restaurace"
-Stránka zobrazí tržby pro vybranou restauraci - t.j. sumu z objednávek, které byly úspěšně doručeny a zaplaceny.
+Seznam jídel v restauraci. Bude možno se překliknout na detail jídla a přidání nového jídla. Stránka podporuje možnost smazání záznamu. Jídla se budou dát řadit minimálně dle ceny. A budou se dát filtrovat minimálně pomocí alergenů.
 
 ### Stránka "Vyhledávání"
 Stránka, na které můžete použít textové vyhledávání napříč záznamy v aplikaci. Seznam všech nalezených záznamů se zobrazí na stránce a bude se dát překlikem dostat na detail daného záznamu (tedy například v případě týmu se odnaviguje na detail týmu). Textově se vyhledává minimálně v těchto atributech:
-- Restaurace
-   - Název
-   - Textový popis
-   - Adresa
-- Jídlo
-   - Název
-   - Textový popis
+- Otázka
+   - Text
+- Odpověď
+   - Text
+- Uživatel
+   - Jméno
+
+## Návrhy na rozšíření za bonusové body
+- Přidejte do aplikace práci s uživatelskými účty - možnost registrace uživatelů, přihlašování, práci s přihlášeným uživatelem atd. (10b)
+- Přidejte do aplikace real-time komunikaci za pomocí SignalR. Aplikace poté nebude nutno refreshovat ale pokud někdo zahlasuje data se automaticky zobrazí (10b).
 
 ---
 ## Správa projektu - Azure DevOps
@@ -125,28 +103,12 @@ Je silně doporučováno projekty v průběhu semestru konzultovat po přednáš
 ---
 ### Fáze 1 – API (50 bodů)
 V první fázi se zaměříme na vytvoření Web API služby. Výstupem tedy bude spustitelný projekt, který obsahuje Web API, poskytuje specifikaci ve standardu OpenAPI (výběr verze necháme na vás) a poskytuje přístup k API pomocí Swagger inspektoru. API obsahuje minimálně metody pro:
-- Restaurace
-   - Získání seznamu restaurací
-   - Získání detailu restaurace
-   - Vytvoření nové restaurace
-   - Upravení existující restaurace
-   - Smazání existující restaurace
-- Jídlo
-   - Získání seznamu všech jídel pro restauraci
-   - Získání detailu jídla
-   - Vytvoření nového jídla
-   - Upravení existujícího jídla
-   - Smazání existujícího jídla
-- Objednávka
-   - Získání seznamu všech objednávek pro restauraci
-   - Získání detailu objednávky
-   - Vytvoření nové objednávky
-   - Upravení existující objednávky
-   - Smazání existující objednávky
-- Tržby
-   - Získání seznamu tržeb pro jednotlivé restaurace
-- Vyhledávání
-   - Získání výsledků vyhledávání
+- Získání dat pro stránku typu "seznam" pro každou datovou entitu
+- Získáni dat pro stránku typu "detail" pro každou datovou entitu
+- Vytvoření záznamu pro každou datovou entitu
+- Upravení existujícího záznamu pro každou datovou entitu
+- Smazání záznamu pro každou datovou entitu
+- Získání výsledků vyhledávání
 Vzorové API, dle kterého se můžete inspirovat bude ukazováno na přednáškách/cvičeních.
 
 V 1. fázi bude také požadováno pokrytí API testy. Minimálně musí být pokryty všechny API endpointy dostatečným počtem testů, aby se pomocí nich dala ověřit správnost funkcionality API.
@@ -167,7 +129,7 @@ Hodnotíme:
 
 ---
 ### Fáze 2 - Web (50 bodů)
-V druhé fázi se od vás bude požadovat vytvoření webové aplikace pomocí technologie Blazor. Webová aplikace bude napojena na API vytvořeno v první fázy projektu.
+V druhé fázi se od vás bude požadovat vytvoření webové aplikace pomocí technologie Blazor WebAssembly. Webová aplikace bude napojena na API vytvořeno v první fázy projektu.
 
 Hodnotíme:
 - opravení chyb a zapracování připomínek, které jsme vám dali v rámci hodnocení fáze 1
