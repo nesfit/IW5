@@ -106,6 +106,7 @@ V první fázi se zaměříme na vytvoření Web API služby. Výstupem tedy bud
 - Upravení existujícího záznamu pro každou datovou entitu
 - Smazání záznamu pro každou datovou entitu
 - Získání výsledků vyhledávání
+
 Vzorové API, dle kterého se můžete inspirovat bude ukazováno na přednáškách/cvičeních.
 
 V 1. fázi bude také požadováno pokrytí API testy. Minimálně musí být pokryty všechny API endpointy dostatečným počtem testů, aby se pomocí nich dala ověřit správnost funkcionality API.
