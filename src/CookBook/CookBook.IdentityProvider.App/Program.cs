@@ -1,4 +1,5 @@
 ﻿using CookBook.IdentityProvider;
+using CookBook.IdentityProvider.App;
 using Serilog;
 
 Log.Logger = new LoggerConfiguration()

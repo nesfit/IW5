@@ -1,6 +1,6 @@
-﻿using Serilog;
+using Serilog;
 
-namespace CookBook.IdentityProvider
+namespace CookBook.IdentityProvider.App
 {
     internal static class HostingExtensions
     {

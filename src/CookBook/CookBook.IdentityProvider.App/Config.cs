@@ -1,7 +1,7 @@
 ﻿using Duende.IdentityServer;
 using Duende.IdentityServer.Models;
 
-namespace CookBook.IdentityProvider
+namespace CookBook.IdentityProvider.App
 {
     public static class Config
     {
