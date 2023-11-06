@@ -1,3 +1,5 @@
+﻿using CookBook.IdentityProvider.BL.Facades;
+using CookBook.IdentityProvider.BL.Models;
 using Duende.IdentityServer;
 using Duende.IdentityServer.Events;
 using Duende.IdentityServer.Models;
@@ -15,20 +17,18 @@ namespace CookBook.IdentityProvider.App.Pages.Create;
 [AllowAnonymous]
 public class Index : PageModel
 {
-    private readonly TestUserStore _users;
     private readonly IIdentityServerInteractionService _interaction;
+    private readonly IAppUserFacade appUserFacade;
 
     [BindProperty]
     public InputModel Input { get; set; }
         
     public Index(
         IIdentityServerInteractionService interaction,
-        TestUserStore users = null)
+        IAppUserFacade appUserFacade)
     {
-        // this is where you would plug in your own custom identity management library (e.g. ASP.NET Identity)
-        _users = users ?? throw new Exception("Please call 'AddTestUsers(TestUsers.Users)' on the IIdentityServerBuilder in Startup or remove the TestUserStore from the AccountController.");
-            
         _interaction = interaction;
+        this.appUserFacade = appUserFacade;
     }
 
     public IActionResult OnGet(string returnUrl)
@@ -69,22 +69,29 @@ public class Index : PageModel
             }
         }
 
-        if (_users.FindByUsername(Input.Username) != null)
+        if ((await appUserFacade.GetUserByUserNameAsync(Input.Username)) != null)
         {
             ModelState.AddModelError("Input.Username", "Invalid username");
         }
 
         if (ModelState.IsValid)
         {
-            var user = _users.CreateUser(Input.Username, Input.Password, Input.Name, Input.Email);
+            var appUserCreateModel = new AppUserCreateModel
+            {
+                UserName = Input.Username,
+                Password = Input.Password,
+                Email = Input.Email,
+                Subject = Input.Username,
+            };
+            var user = await appUserFacade.CreateAppUserAsync(appUserCreateModel);
 
             // issue authentication cookie with subject ID and username
-            var isuser = new IdentityServerUser(user.SubjectId)
+            var issuer = new IdentityServerUser(user.Subject)
             {
-                DisplayName = user.Username
+                DisplayName = user.UserName
             };
 
-            await HttpContext.SignInAsync(isuser);
+            await HttpContext.SignInAsync(issuer);
 
             if (context != null)
             {
