@@ -11,11 +11,12 @@ namespace CookBook.Api.BL.MapperProfiles
         {
             CreateMap<RecipeEntity, RecipeListModel>();
             CreateMap<RecipeEntity, RecipeDetailModel>()
-                .MapMember(dst => dst.IngredientAmounts, src => src.IngredientAmounts);
+                .MapMember(model => model.IngredientAmounts, entity => entity.IngredientAmounts);
             CreateMap<IngredientAmountEntity, RecipeDetailIngredientModel>();
 
             CreateMap<RecipeDetailModel, RecipeEntity>()
-                .Ignore(dst => dst.IngredientAmounts);
+                .Ignore(entity => entity.UserId)
+                .Ignore(entity => entity.IngredientAmounts);
         }
     }
 }

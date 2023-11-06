@@ -12,6 +12,7 @@ namespace CookBook.Api.DAL.Common.Entities
         public required TimeSpan Duration { get; set; }
         public required FoodType FoodType { get; set; }
         public string? ImageUrl { get; set; }
+        public string? UserId { get; set; }
 
         public ICollection<IngredientAmountEntity> IngredientAmounts { get; set; } = new List<IngredientAmountEntity>();
     }

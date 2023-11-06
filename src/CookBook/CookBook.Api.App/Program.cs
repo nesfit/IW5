@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Security.Claims;
 using AutoMapper;
 using AutoMapper.Internal;
 using CookBook.Api.App.Extensions;
@@ -15,11 +16,13 @@ using CookBook.Api.DAL.Memory.Installers;
 using CookBook.Common.Extensions;
 using CookBook.Common.Models;
 using CookBook.Common.Resources;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -34,6 +37,7 @@ ConfigureLocalization(builder.Services);
 ConfigureOpenApiDocuments(builder.Services);
 ConfigureDependencies(builder.Services, builder.Configuration);
 ConfigureAutoMapper(builder.Services);
+ConfigureAuthentication(builder.Services, builder.Configuration.GetSection("IdentityServer")["Url"]);
 
 var app = builder.Build();
 
@@ -43,6 +47,7 @@ UseDevelopmentSettings(app);
 UseSecurityFeatures(app);
 UseLocalization(app);
 UseRouting(app);
+UseAuthorization(app);
 UseEndpoints(app);
 UseOpenApi(app);
 
@@ -103,6 +108,20 @@ void ConfigureAutoMapper(IServiceCollection serviceCollection)
     }, typeof(EntityBase), typeof(ApiBLInstaller));
 }
 
+void ConfigureAuthentication(IServiceCollection serviceCollection, string identityServerUrl)
+{
+    serviceCollection.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+        .AddJwtBearer(options =>
+        {
+            options.Authority = identityServerUrl;
+            options.TokenValidationParameters.ValidateAudience = false;
+        });
+
+    serviceCollection.AddAuthorization();
+    serviceCollection.AddHttpContextAccessor();
+}
+
+
 void ValidateAutoMapperConfiguration(IServiceProvider serviceProvider)
 {
     var mapper = serviceProvider.GetRequiredService<IMapper>();
@@ -123,12 +142,14 @@ void UseIngredientEndpoints(RouteGroupBuilder routeGroupBuilder)
     var ingredientEndpoints = routeGroupBuilder.MapGroup("ingredient")
         .WithTags("ingredient");
 
-    ingredientEndpoints.MapGet("", (IIngredientFacade ingredientFacade) => ingredientFacade.GetAll());
+    ingredientEndpoints.MapGet("", (IIngredientFacade ingredientFacade) => ingredientFacade.GetAll())
+        .RequireAuthorization();
 
     ingredientEndpoints.MapGet("{id:guid}", Results<Ok<IngredientDetailModel>, NotFound<string>> (Guid id, IIngredientFacade ingredientFacade, IStringLocalizer<IngredientEndpointsResources> ingredientEndpointsLocalizer)
         => ingredientFacade.GetById(id) is { } ingredient
             ? TypedResults.Ok(ingredient)
-            : TypedResults.NotFound(ingredientEndpointsLocalizer[nameof(IngredientEndpointsResources.GetById_NotFound), id].Value));
+            : TypedResults.NotFound(ingredientEndpointsLocalizer[nameof(IngredientEndpointsResources.GetById_NotFound), id].Value))
+        .RequireAuthorization();
 
     ingredientEndpoints.MapPost("", (IngredientDetailModel ingredient, IIngredientFacade ingredientFacade) => ingredientFacade.Create(ingredient));
     ingredientEndpoints.MapPut("", (IngredientDetailModel ingredient, IIngredientFacade ingredientFacade) => ingredientFacade.Update(ingredient));
@@ -148,12 +169,17 @@ void UseRecipeEndpoints(RouteGroupBuilder routeGroupBuilder)
             ? TypedResults.Ok(recipe)
             : TypedResults.NotFound(recipeEndpointsLocalizer[nameof(RecipeEndpointsResources.GetById_NotFound), id].Value));
 
-    recipeEndpoints.MapPost("", (RecipeDetailModel recipe, IRecipeFacade recipeFacade) => recipeFacade.Create(recipe));
+    recipeEndpoints.MapPost("", (RecipeDetailModel recipe, IRecipeFacade recipeFacade, IHttpContextAccessor httpContextAccessor) =>
+    {
+        var idClaim = httpContextAccessor.HttpContext?.User.FindFirst(ClaimTypes.NameIdentifier);
+        var userId = idClaim?.Value;
+        return recipeFacade.Create(recipe, userId);
+    });
+
     recipeEndpoints.MapPut("", (RecipeDetailModel recipe, IRecipeFacade recipeFacade) => recipeFacade.Update(recipe));
     recipeEndpoints.MapPost("upsert", (RecipeDetailModel recipe, IRecipeFacade recipeFacade) => recipeFacade.CreateOrUpdate(recipe));
     recipeEndpoints.MapDelete("{id:guid}", (Guid id, IRecipeFacade recipeFacade) => recipeFacade.Delete(id));
 }
-
 
 void UseDevelopmentSettings(WebApplication application)
 {
@@ -187,12 +213,17 @@ void UseRouting(IApplicationBuilder application)
     application.UseRouting();
 }
 
+void UseAuthorization(WebApplication application)
+{
+    application.UseAuthentication();
+    application.UseAuthorization();
+}
+
 void UseOpenApi(IApplicationBuilder application)
 {
     application.UseOpenApi();
     application.UseSwaggerUi3();
 }
-
 
 // Make the implicit Program class public so test projects can access it
 public partial class Program

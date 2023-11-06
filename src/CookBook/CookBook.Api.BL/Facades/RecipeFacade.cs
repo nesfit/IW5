@@ -33,17 +33,18 @@ namespace CookBook.Api.BL.Facades
             return mapper.Map<RecipeDetailModel>(recipeEntity);
         }
 
-        public Guid CreateOrUpdate(RecipeDetailModel recipeModel)
+        public Guid CreateOrUpdate(RecipeDetailModel recipeModel, string? userId)
         {
             return recipeRepository.Exists(recipeModel.Id)
                 ? Update(recipeModel)!.Value
-                : Create(recipeModel);
+                : Create(recipeModel, userId);
         }
 
-        public Guid Create(RecipeDetailModel recipeModel)
+        public Guid Create(RecipeDetailModel recipeModel, string? userId)
         {
             MergeIngredientAmounts(recipeModel);
             var recipeEntity = mapper.Map<RecipeEntity>(recipeModel);
+            recipeEntity.UserId = userId;
             return recipeRepository.Insert(recipeEntity);
         }
 

@@ -2,15 +2,41 @@
   "Version": 3,
 
   /*  Create an item in the dropdown list for each project in the solution?  */
-  "ListAllProjects": true,
-
+  "ListAllProjects": false,
   "MultiProjectConfigurations": {
-    "API + WEB": {
+    "API": {
+      "Projects": {
+        "CookBook.Api.App": {}
+      }
+    },
+    "IDP": {
+      "Projects": {
+        "CookBook.IdentityProvider.App": {}
+      }
+    },
+    "Web": {
+      "Projects": {
+        "CookBook.Web.App": {}
+      }
+    },
+    "API + Web": {
       "Projects": {
         "CookBook.Api.App": {},
         "CookBook.Web.App": {}
       }
-
+    },
+    "API + IDP": {
+      "Projects": {
+        "CookBook.Api.App": {},
+        "CookBook.IdentityProvider.App": {}
+      }
+    },
+    "API + IDP + Web": {
+      "Projects": {
+        "CookBook.Api.App": {},
+        "CookBook.IdentityProvider.App": {},
+        "CookBook.Web.App": {}
+      }
     }
   }
 }
