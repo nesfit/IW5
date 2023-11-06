@@ -21,7 +21,7 @@ public class AppUserFacade : IAppUserFacade
     public async Task<AppUserEntity?> CreateAppUserAsync(AppUserCreateModel appUserModel)
     {
         var appUserEntity = mapper.Map<AppUserEntity>(appUserModel);
-        var identityResult = await userManager.CreateAsync(appUserEntity, appUserModel.Password);
+        await userManager.CreateAsync(appUserEntity, appUserModel.Password);
         return await userManager.FindByNameAsync(appUserModel.UserName);
     }
 

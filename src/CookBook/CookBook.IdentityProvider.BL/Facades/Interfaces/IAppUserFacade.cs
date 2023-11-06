@@ -1,9 +1,10 @@
-﻿using CookBook.IdentityProvider.BL.Models;
+﻿using CookBook.Common.BL.Facades;
+using CookBook.IdentityProvider.BL.Models;
 using CookBook.IdentityProvider.DAL.Entities;
 
 namespace CookBook.IdentityProvider.BL.Facades;
 
-public interface IAppUserFacade
+public interface IAppUserFacade : IAppFacade
 {
     Task<AppUserEntity?> CreateAppUserAsync(AppUserCreateModel appUserModel);
     Task<bool> ValidateCredentialsAsync(string userName, string password);

@@ -1,3 +1,4 @@
+﻿using CookBook.IdentityProvider.App.Services;
 using Serilog;
 
 namespace CookBook.IdentityProvider.App
@@ -17,7 +18,9 @@ namespace CookBook.IdentityProvider.App
                 .AddInMemoryIdentityResources(Config.IdentityResources)
                 .AddInMemoryApiResources(Config.ApiResources)
                 .AddInMemoryApiScopes(Config.ApiScopes)
-                .AddInMemoryClients(Config.Clients);
+                .AddInMemoryClients(Config.Clients)
+                .AddResourceOwnerValidator<ResourceOwnerPasswordValidator>()
+                .AddProfileService<LocalAppUserProfileService>();
 
             return builder.Build();
         }

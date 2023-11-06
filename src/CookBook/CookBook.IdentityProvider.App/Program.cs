@@ -1,5 +1,11 @@
-﻿using CookBook.IdentityProvider;
+﻿using CookBook.Common.Extensions;
 using CookBook.IdentityProvider.App;
+using CookBook.IdentityProvider.App.Installers;
+using CookBook.IdentityProvider.BL.Facades;
+using CookBook.IdentityProvider.BL.Installers;
+using CookBook.IdentityProvider.BL.Models;
+using CookBook.IdentityProvider.DAL.Installers;
+using Microsoft.AspNetCore.Mvc;
 using Serilog;
 
 Log.Logger = new LoggerConfiguration()
@@ -12,6 +18,10 @@ try
 {
     var builder = WebApplication.CreateBuilder(args);
 
+    builder.Services.AddInstaller<IdentityProviderDALInstaller>();
+    builder.Services.AddInstaller<IdentityProviderBLInstaller>();
+    builder.Services.AddInstaller<IdentityProviderAppInstaller>();
+
     builder.Host.UseSerilog((ctx, lc) => lc
         .WriteTo.Console(outputTemplate: "[{Timestamp:HH:mm:ss} {Level}] {SourceContext}{NewLine}{Message:lj}{NewLine}{Exception}{NewLine}")
         .Enrich.FromLogContext()
@@ -20,6 +30,8 @@ try
     var app = builder
         .ConfigureServices()
         .ConfigurePipeline();
+
+    app.MapPost("/user", (IAppUserFacade appUserFacade, [FromBody] AppUserCreateModel appUser) => appUserFacade.CreateAppUserAsync(appUser));
 
     app.Run();
 }
