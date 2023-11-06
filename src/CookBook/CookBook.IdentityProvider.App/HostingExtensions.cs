@@ -1,4 +1,7 @@
 ﻿using CookBook.IdentityProvider.App.Services;
+using CookBook.IdentityProvider.BL.Facades;
+using CookBook.IdentityProvider.BL.Models;
+using Microsoft.AspNetCore.Mvc;
 using Serilog;
 
 namespace CookBook.IdentityProvider.App
@@ -40,6 +43,8 @@ namespace CookBook.IdentityProvider.App
 
             app.UseAuthorization();
             app.MapRazorPages().RequireAuthorization();
+
+            app.MapPost("/user", (IAppUserFacade appUserFacade, [FromBody] AppUserCreateModel appUser) => appUserFacade.CreateAppUserAsync(appUser));
 
             return app;
         }

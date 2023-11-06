@@ -5,5 +5,5 @@ namespace CookBook.IdentityProvider.BL.Facades;
 
 public interface IAppUserClaimsFacade : IAppFacade
 {
-    Task<IEnumerable<AppUserClaimListModel>> GetAppUserClaimsBySubjectAsync(string subject);
+    Task<IEnumerable<AppUserClaimListModel>> GetAppUserClaimsByUserIdAsync(Guid userId);
 }

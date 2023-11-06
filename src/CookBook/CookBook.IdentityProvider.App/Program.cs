@@ -1,4 +1,5 @@
-﻿using CookBook.Common.Extensions;
+﻿using AutoMapper;
+using CookBook.Common.Extensions;
 using CookBook.IdentityProvider.App;
 using CookBook.IdentityProvider.App.Installers;
 using CookBook.IdentityProvider.BL.Facades;
@@ -6,6 +7,7 @@ using CookBook.IdentityProvider.BL.Installers;
 using CookBook.IdentityProvider.BL.Models;
 using CookBook.IdentityProvider.DAL.Installers;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 
 Log.Logger = new LoggerConfiguration()
@@ -27,11 +29,12 @@ try
         .Enrich.FromLogContext()
         .ReadFrom.Configuration(ctx.Configuration));
 
-    var app = builder
-        .ConfigureServices()
-        .ConfigurePipeline();
+    var app = builder.ConfigureServices();
 
-    app.MapPost("/user", (IAppUserFacade appUserFacade, [FromBody] AppUserCreateModel appUser) => appUserFacade.CreateAppUserAsync(appUser));
+    var mapper = app.Services.GetRequiredService<IMapper>();
+    mapper.ConfigurationProvider.AssertConfigurationIsValid();
+
+    app.ConfigurePipeline();
 
     app.Run();
 }
