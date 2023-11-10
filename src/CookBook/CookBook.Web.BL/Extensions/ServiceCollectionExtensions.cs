@@ -5,11 +5,11 @@ namespace CookBook.Web.BL.Extensions
 {
     public static class ServiceCollectionExtensions
     {
-        public static void AddInstaller<TInstaller>(this IServiceCollection serviceCollection, string apiBaseUrl)
+        public static void AddInstaller<TInstaller>(this IServiceCollection serviceCollection)
             where TInstaller : WebBLInstaller, new()
         {
             var installer = new TInstaller();
-            installer.Install(serviceCollection, apiBaseUrl);
+            installer.Install(serviceCollection);
         }
     }
 }

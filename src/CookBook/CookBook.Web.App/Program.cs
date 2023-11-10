@@ -8,6 +8,7 @@ using CookBook.Web.BL.Extensions;
 using CookBook.Web.BL.Installers;
 using CookBook.Web.BL.Options;
 using CookBook.Web.DAL.Installers;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,8 +22,16 @@ builder.RootComponents.Add<App>("app");
 var apiBaseUrl = builder.Configuration.GetValue<string>("ApiBaseUrl");
 
 builder.Services.AddInstaller<WebDALInstaller>();
-builder.Services.AddInstaller<WebBLInstaller>(apiBaseUrl);
-builder.Services.AddScoped(_ => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+builder.Services.AddInstaller<WebBLInstaller>();
+
+builder.Services.AddHttpClient("api", client => client.BaseAddress = new Uri(apiBaseUrl))
+    .AddHttpMessageHandler(serviceProvider
+    => serviceProvider?.GetService<AuthorizationMessageHandler>()
+        ?.ConfigureHandler(
+            authorizedUrls: new[] { apiBaseUrl },
+            scopes: new[] { "cookbookapi" }));
+builder.Services.AddScoped<HttpClient>(serviceProvider => serviceProvider.GetService<IHttpClientFactory>().CreateClient("api"));
+
 builder.Services.AddAutoMapper(configuration =>
     {
         // This is a temporary fix - should be able to remove this when version 11.0.2 comes out
