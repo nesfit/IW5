@@ -31,6 +31,13 @@ namespace CookBook.IdentityProvider.App
         {
             app.UseSerilogRequestLogging();
 
+            app.UseCors(policy =>
+            {
+                policy.AllowAnyHeader();
+                policy.AllowAnyMethod();
+                policy.AllowAnyOrigin();
+            });
+
             if (app.Environment.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

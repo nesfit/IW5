@@ -37,6 +37,12 @@
         "CookBook.IdentityProvider.App": {},
         "CookBook.Web.App": {}
       }
+    },
+    "IDP + Web": {
+      "Projects": {
+        "CookBook.IdentityProvider.App": {},
+        "CookBook.Web.App": {}
+      }
     }
   }
 }

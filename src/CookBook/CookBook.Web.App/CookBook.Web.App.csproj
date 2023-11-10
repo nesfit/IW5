@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.13" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="7.0.13" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.13" PrivateAssets="all" />
     <PackageReference Include="Microsoft.Extensions.Localization" Version="7.0.13" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
@@ -30,6 +31,7 @@
 
   <ItemGroup>
     <Folder Include="Extensions\" />
+    <Folder Include="Pages\Authentication\" />
     <Folder Include="wwwroot\images\screenshots\mobile\" />
     <Folder Include="wwwroot\images\screenshots\desktop\" />
   </ItemGroup>
@@ -101,6 +103,14 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>RecipeListPageResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Shared\LoginDisplay.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Shared\LoginDisplay.razor" />
   </ItemGroup>
 
 </Project>

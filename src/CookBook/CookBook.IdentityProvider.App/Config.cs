@@ -35,6 +35,7 @@ namespace CookBook.IdentityProvider.App
                     RedirectUris = new List<string>
                     {
                         "https://oauth.pstmn.io/v1/callback",
+                        "https://localhost:44355/authentication/login-callback",
                     },
                     AllowedGrantTypes = new List<string>
                     {
@@ -51,7 +52,8 @@ namespace CookBook.IdentityProvider.App
                     ClientSecrets =
                     {
                         new Secret("secret".Sha256())
-                    }
+                    },
+                    RequireClientSecret = false
                 }
             };
     }

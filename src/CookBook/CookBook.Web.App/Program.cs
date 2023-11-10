@@ -31,6 +31,15 @@ builder.Services.AddAutoMapper(configuration =>
     }, typeof(WebBLInstaller));
 builder.Services.AddLocalization();
 
+builder.Services.AddOidcAuthentication(options =>
+{
+    builder.Configuration.Bind("IdentityServer", options.ProviderOptions);
+    var configurationSection = builder.Configuration.GetSection("IdentityServer");
+    var authority = configurationSection["Authority"];
+
+    options.ProviderOptions.DefaultScopes.Add("cookbookapi");
+});
+
 builder.Services.Configure<LocalDbOptions>(options =>
 {
     options.IsLocalDbEnabled = bool.Parse(builder.Configuration.GetSection(nameof(LocalDbOptions))[nameof(LocalDbOptions.IsLocalDbEnabled)]);

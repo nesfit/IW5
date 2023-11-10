@@ -2,12 +2,8 @@
 using CookBook.Common.Extensions;
 using CookBook.IdentityProvider.App;
 using CookBook.IdentityProvider.App.Installers;
-using CookBook.IdentityProvider.BL.Facades;
 using CookBook.IdentityProvider.BL.Installers;
-using CookBook.IdentityProvider.BL.Models;
 using CookBook.IdentityProvider.DAL.Installers;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 
 Log.Logger = new LoggerConfiguration()
