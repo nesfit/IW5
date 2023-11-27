@@ -10,7 +10,7 @@ namespace Calculator.Engine.Tests
         public void FiveTwo_Add_ReturnsSeven()
         {
             int current = Mathematics.Add(5, 2);
-            Assert.AreEqual(7, current, "the mathematic operation add should add first number to second.");
+            Assert.That(7, Is.EqualTo(current), "the mathematic operation add should add first number to second.");
         }
     }
 }

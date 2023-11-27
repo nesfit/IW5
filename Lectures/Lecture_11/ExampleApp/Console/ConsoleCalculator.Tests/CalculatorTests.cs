@@ -24,7 +24,7 @@ namespace ConsoleCalculator.Tests
             process.WaitForExit(5000);
             
             bool outputContainsResult = result.Contains("Result is: 7");
-            Assert.IsTrue(outputContainsResult, "The calculated value wasn't reported to the console:\r\n" + result);
+            Assert.That(outputContainsResult, Is.True, "The calculated value wasn't reported to the console:\r\n" + result);
         }
 
         private void StartApplication()

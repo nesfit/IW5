@@ -15,7 +15,7 @@ namespace WebCalculator.Tests
         {
             var viewResult = this.controller.Index() as ViewResult;
             const string message = "The initial model is used to render default values";
-            Assert.IsInstanceOf(typeof(MathematicModel), viewResult.Model, message);
+            Assert.That(viewResult.Model, Is.InstanceOf<MathematicModel>(), message);
         }
 
         [Test]
@@ -28,7 +28,7 @@ namespace WebCalculator.Tests
             };
             var viewResult = this.controller.Calculate(input) as ViewResult;
             const string message = "The calculated result should be delivered as model to the view";
-            Assert.IsInstanceOf(typeof(int), viewResult.Model, message);
+            Assert.That(viewResult.Model, Is.InstanceOf<int>(), message);
         }
     }
 }

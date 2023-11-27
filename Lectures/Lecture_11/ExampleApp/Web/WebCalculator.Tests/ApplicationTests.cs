@@ -59,7 +59,7 @@ namespace WebCalculator.Tests
             btnCalculate.Click();
             var pageSource = this.browser.PageSource;
             bool containsReusltText = pageSource.Contains("Calculation result is:");
-            Assert.IsTrue(containsReusltText, "The calculated value wasn't presented on result screen.");
+            Assert.That(containsReusltText, Is.True, "The calculated value wasn't presented on result screen.");
         }
     }
 }

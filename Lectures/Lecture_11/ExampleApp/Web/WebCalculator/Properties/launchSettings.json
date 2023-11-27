@@ -18,7 +18,7 @@
     "WebCalculator": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "https://localhost:42015;http://localhost:42014",
+      "applicationUrl": "http://localhost:42014",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
