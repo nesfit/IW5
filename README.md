@@ -15,27 +15,27 @@ Organizace kurzu
 
 +++
 
-| Datum   | Téma |
-| -       | -    |
-| 19. 09. | Úvod, představení předmětu, projektu, setup prostředí (Roman Jašek) |
-|         | (cvičení) Minimal API, routing (Roman Jašek) |
-| 26. 09. | Inversion of Control, konfigurace, lokalizace (Michal Mrnuštík) |
-|         | **(cvičení)** ASP&#46;NET Core Web API, controller, swagger, Postman, middleware (Michal Mrnuštík) |
-| 03. 10. | Web - Blazor (Roman Jašek)  |
-|         | **(cvičení)** Web - Blazor (Roman Jašek) |
-| 10. 10. |  Web - Blazor (Roman Jašek) |
-|         | **(cvičení)** Testování, CI/CD, nasazování do Azure (Michal Tichý) |
-| 17. 10. | Web - frontend (Maroš Janota) |
-|         | **(cvičení)** Web - frontend (Maroš Janota) |
-| 24. 10. | Web - napojení na API (Michal Tichý) |
-| 31. 10. | Progressive Web Apps, Blazor MAUI (Roman Jašek) |
-|         | **(cvičení)** Takhle napište projekt?! (Roman Jašek) |
-| 07. 11. | Identity Management - část 1 (Roman Jašek) |
-| 14. 11. | Identity Management - část 2 (Roman Jašek) |
-| 21. 12. | Clean Architecture (Martin Dybal)  |
-| 28. 11. | Architektura a struktura projektu pro enterprise aplikace (Jiří Pokorný) |
-| 05. 12. | React (Tadeáš Pavlík, Miroslav Janska) |
-| 12. 12. | Přednáška dle hlasování studentů |
+| Datum   | Téma                                                                                                   |
+| -       |--------------------------------------------------------------------------------------------------------|
+| 19. 09. | 1. [Úvod, představení předmětu, projektu, setup prostředí](./Lectures/Lecture_01/) (Roman Jašek)       |
+|         | (cvičení) Minimal API, routing (Roman Jašek)                                                           |
+| 26. 09. | 2. [Inversion of Control, konfigurace, lokalizace](./Lectures/Lecture_02/) (Michal Mrnuštík)           |
+|         | **(cvičení)** ASP&#46;NET Core Web API, controller, swagger, Postman, middleware (Michal Mrnuštík)     |
+| 03. 10. | 3. [Web - Blazor](./Lectures/Lecture_03/) (Roman Jašek)                                                |
+|         | **(cvičení)** Web - Blazor (Roman Jašek)                                                               |
+| 10. 10. | 4. [Web - Blazor](./Lectures/Lecture_04/) (Roman Jašek)                                                |
+|         | **(cvičení)** Testování, CI/CD, nasazování do Azure (Michal Tichý)                                     |
+| 17. 10. | 5. [Web - frontend](./Lectures/Lecture_05/) (Maroš Janota)                                             |
+|         | **(cvičení)** Web - frontend (Maroš Janota)                                                            |
+| 24. 10. | 6. [Web - napojení na API](./Lectures/Lecture_06/) (Michal Tichý)                                      |
+| 31. 10. | 7. [Progressive Web Apps, Blazor MAUI](./Lectures/Lecture_07/) (Roman Jašek)                           |
+|         | **(cvičení)** Takhle napište projekt?! (Roman Jašek)                                                   |
+| 07. 11. | 8. [Identity Management - část 1](./Lectures/Lecture_08/) (Roman Jašek)                                |
+| 14. 11. | 9. [Identity Management - část 2](./Lectures/Lecture_09/) (Roman Jašek)                                |
+| 21. 12. | 10. [Clean Architecture](./Lectures/Lecture_10/) (Martin Dybal)                                        |
+| 28. 11. | 11. [Architektura a struktura projektu pro enterprise aplikace](./Lectures/Lecture_11/) (Jiří Pokorný) |
+| 05. 12. | React (Tadeáš Pavlík, Miroslav Janska)                                                                 |
+| 12. 12. | Přednáška dle hlasování studentů                                                                       |
 
 --- 
 
