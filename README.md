@@ -2,7 +2,7 @@
 
 ---
 # Aktuality k předmětu
- 
+ - 2023-12-04 - Změna v osnově - přednáška na téma **React** nahrazena přednáškou na téma **Serverless**
 --- 
 # Přednášky a demonstrační cvičení
 
@@ -34,7 +34,7 @@ Organizace kurzu
 | 14. 11. | 9. [Identity Management - část 2](./Lectures/Lecture_09/) (Roman Jašek)                                |
 | 21. 12. | 10. [Clean Architecture](./Lectures/Lecture_10/) (Martin Dybal)                                        |
 | 28. 11. | 11. [Architektura a struktura projektu pro enterprise aplikace](./Lectures/Lecture_11/) (Jiří Pokorný) |
-| 05. 12. | React (Tadeáš Pavlík, Miroslav Janska)                                                                 |
+| 05. 12. | 12. Serverless (Roman Jašek)                                                                           |
 | 12. 12. | Přednáška dle hlasování studentů                                                                       |
 
 --- 
@@ -98,8 +98,6 @@ Organizace kurzu
 * Tibor Jašek
 * Jan Pluskal
 * Silvia Sojčáková
-* Tadeáš Pavlík
-* Miroslav Janska
 
 --- 
 # Užitečné odkazy
