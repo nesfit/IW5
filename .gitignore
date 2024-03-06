@@ -263,3 +263,4 @@ __pycache__/
 .vscode
 
 appsettings.*.json
+/src/CookBook/CookBook.IdentityProvider.App/keys/*

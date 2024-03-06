@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CookBook.Api.DAL.Common.Entities;
+using CookBook.Common.Extensions;
 using CookBook.Common.Models;
 
 namespace CookBook.Api.BL.MapperProfiles
@@ -11,7 +12,8 @@ namespace CookBook.Api.BL.MapperProfiles
             CreateMap<IngredientEntity, IngredientListModel>();
             CreateMap<IngredientEntity, IngredientDetailModel>();
 
-            CreateMap<IngredientDetailModel, IngredientEntity>();
+            CreateMap<IngredientDetailModel, IngredientEntity>()
+                .Ignore(entity => entity.OwnerId);
         }
     }
 }

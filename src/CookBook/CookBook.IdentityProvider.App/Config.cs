@@ -21,7 +21,7 @@ namespace CookBook.IdentityProvider.App
         public static IEnumerable<ApiScope> ApiScopes =>
             new ApiScope[]
             {
-                new("cookbookapi")
+                new("cookbookapi", new[] { "role" })
             };
 
         public static IEnumerable<Client> Clients =>
@@ -43,6 +43,7 @@ namespace CookBook.IdentityProvider.App
                         GrantType.ResourceOwnerPassword,
                         GrantType.AuthorizationCode
                     },
+                    RequirePkce = true,
                     AllowedScopes = new List<string>
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
@@ -53,7 +54,7 @@ namespace CookBook.IdentityProvider.App
                     {
                         new Secret("secret".Sha256())
                     },
-                    RequireClientSecret = false
+                    //RequireClientSecret = false
                 }
             };
     }
