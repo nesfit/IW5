@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <UserSecretsId>70e22f70-c609-4d6a-9be8-b462915b90e5</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
 
   <ItemGroup>
@@ -24,5 +25,10 @@
     <ItemGroup>
 
         <InternalsVisibleTo Include="CookBook.Api.App.EndToEndTests" />
+    </ItemGroup>
+    <ItemGroup>
+      <Content Include="..\.dockerignore">
+        <Link>.dockerignore</Link>
+      </Content>
     </ItemGroup>
 </Project>
