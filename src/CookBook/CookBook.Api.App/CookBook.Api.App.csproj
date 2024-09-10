@@ -1,8 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
-    <Nullable>enable</Nullable>
     <UserSecretsId>70e22f70-c609-4d6a-9be8-b462915b90e5</UserSecretsId>
   </PropertyGroup>
 
@@ -24,7 +22,6 @@
     <ProjectReference Include="..\CookBook.Api.DAL.Memory\CookBook.Api.DAL.Memory.csproj" />
   </ItemGroup>
     <ItemGroup>
-
         <InternalsVisibleTo Include="CookBook.Api.App.EndToEndTests" />
     </ItemGroup>
 </Project>

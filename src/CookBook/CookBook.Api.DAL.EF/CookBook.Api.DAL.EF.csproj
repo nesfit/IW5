@@ -1,8 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
-    <Nullable>enable</Nullable>
     <UserSecretsId>2acf2952-b0ed-4e95-9f1f-9f1fe6060c8e</UserSecretsId>
   </PropertyGroup>
 
