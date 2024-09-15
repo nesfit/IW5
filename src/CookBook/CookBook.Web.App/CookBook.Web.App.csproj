@@ -1,37 +1,13 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
-
-  <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
-    <UserSecretsId>4adb9845-9932-4403-81ea-c4eac0bbd68f</UserSecretsId>
-  </PropertyGroup>
-
-  <PropertyGroup>
-    <BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
-  </PropertyGroup>
+<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.13" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.13" PrivateAssets="all" />
-    <PackageReference Include="Microsoft.Extensions.Localization" Version="7.0.13" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="System.Net.Http.Json" Version="7.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.8" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.Extensions.Localization" Version="8.0.8" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\CookBook.Web.BL\CookBook.Web.BL.csproj" />
-    <ProjectReference Include="..\CookBook.Common\CookBook.Common.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ServiceWorker Include="wwwroot\service-worker.js" PublishedContent="wwwroot\service-worker.published.js" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Extensions\" />
-    <Folder Include="wwwroot\images\screenshots\mobile\" />
-    <Folder Include="wwwroot\images\screenshots\desktop\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -74,30 +50,37 @@
 
   <ItemGroup>
     <EmbeddedResource Update="Resources\Texts\IndexResources.resx">
+      <CustomToolNamespace></CustomToolNamespace>
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>IndexResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\Texts\IngredientEditFormResources.resx">
+      <CustomToolNamespace></CustomToolNamespace>
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>IngredientEditFormResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\Texts\IngredientEditPageResources.resx">
+      <CustomToolNamespace></CustomToolNamespace>
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>IngredientEditPageResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\Texts\IngredientListPageResources.resx">
+      <CustomToolNamespace></CustomToolNamespace>
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>IngredientListPageResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\Texts\NavMenuResources.resx">
+      <CustomToolNamespace></CustomToolNamespace>
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>NavMenuResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\Texts\RecipeEditPageResources.resx">
+      <CustomToolNamespace></CustomToolNamespace>
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>RecipeEditPageResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\Texts\RecipeListPageResources.resx">
+      <CustomToolNamespace></CustomToolNamespace>
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>RecipeListPageResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>

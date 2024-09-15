@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using CookBook.Web.BL.Facades;
+﻿using CookBook.Web.BL.Facades;
 using Microsoft.AspNetCore.Components;
 
 namespace CookBook.Web.App
