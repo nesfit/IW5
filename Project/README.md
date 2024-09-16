@@ -1,6 +1,3 @@
-> [!WARNING]  
-> Zadání z minulého roku, aktuální bude doplněno.
-
 # IW5 projekt
 
 ## Důležité upozornění
