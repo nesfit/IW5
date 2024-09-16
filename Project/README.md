@@ -8,8 +8,8 @@ Cílem je vytvořit použitelnou a snadno rozšiřitelnou aplikaci, která splň
 
 Zadání úmyslně není striktní, je Vám ponechána volnost, pro vlastní realizaci. Při hodnocení je kladen důraz na technické zpracování a kvalitu kódu, ale hodnotíme i použitelnost a grafické zpracování aplikace. Pokud Vám přijde, že v zadání chybí nějaká funkcionalita, neváhejte ji doplnit. Pište aplikaci tak, abyste ji sami chtěli používat.
 
-# Zadání - Webová aplikace pro online kvízy
-Výsledná aplikace má sloužit jako jednoduchá webová stránka pro pořádání online kvízů. Pro inspiraci se můžete podívat třeba na aplikace jako Kahoot!, Quizizz, Quizlet...
+# Zadání - Webová aplikace pro online formuláře
+Výsledná aplikace má sloužit jako jednoduchá webová stránka pro vytváření a správu online formulářů. Pro inspiraci se můžete podívat třeba na aplikace jako Google Forms, Microsoft Forms, Zoho Forms, SurveyMonkey...
 
 ---
 ## Data
@@ -17,23 +17,19 @@ V rámci dat, se kterými se bude pracovat budeme požadovat minimálně násled
 
 ### Otázka
 - Text
-- Odpovědi
-
-### Odpověď
-- Typ
-- Text
-- Obrázek
-- Příznak správnosti
+- Popis
 
 ### Uživatel
 - Jméno
 - Fotografie (postačí url)
+- Role
 
-### Kvíz
+### Formulář
 - Otázky
-- Datum a čas konání
-- Vybrané odpovědi
-- Skóre pro jednotlivé uživatele
+- Datum a čas začátku pro akceptování odpovědí
+- Datum a čas konce pro akceptování odpovědí
+
+### Vyplněné formuláře
 
 ---
 ## Funkcionalita
@@ -53,14 +49,16 @@ Zobrazuje detail daného typu záznamu se všemi informacemi o něm. Editace zá
 Stránka, na které můžete použít textové vyhledávání napříč záznamy v aplikaci. Seznam všech nalezených záznamů se zobrazí na stránce a bude se dát překlikem dostat na detail daného záznamu (tedy například v případě týmu se odnaviguje na detail týmu). Textově se vyhledává minimálně v těchto atributech:
 - Otázka
    - Text
-- Odpověď
-   - Text
+   - Popis
 - Uživatel
    - Jméno
 
-## Návrhy na rozšíření za bonusové body
-- Přidejte do aplikace práci s uživatelskými účty - možnost registrace uživatelů, přihlašování, práci s přihlášeným uživatelem atd. (10b)
-- Přidejte do aplikace real-time komunikaci za pomocí SignalR. Pokud změní hlasování, data se automaticky zobrazí bez nutnosti obnovení stránky (10b).
+### Práce s uživatelskými účty
+Jelikož práce s přihlašováním a uživatelskými účty je v předmětu zařazená až v 2. části semestru a bude se řešiť až po odevzdání první fáze projektu (API) není v API v první fázi projektu nutno pracovat s uživatelskými rolemi. V první fázi tedy vytvořte aplikaci, která bude obsahovat práci s daty ale není nutno řešit omezení uživatelů na jednotlivé akce. Práce s uživatelskými rolemi bude hodnocena až ve 2. fázi projektu.
+
+V 2. fázi můžete použít přihlašování pomocí .NET Identity tak jak, bude ukazovánú v předmětu, nebo řešit změnu uživatele jenom přepnutím uživatelského účtu - v tom případě budete potřebovat vyřešit práci s uživatelskými rolemi vlastním řešením.
+
+V systému budou vystupovat minimálně role uživatel a administrátor. **Uživatel** může vytvářet formuláře a editovat a mazat formuláře, které vytvořil. **Administrátor** může vytvářet, editovat a mazat libovolné formuláře. **Administrátor** také může vytvářet a mazat nové uživatele.
 
 ---
 ## Správa projektu - Azure DevOps
@@ -127,7 +125,7 @@ Hodnotíme:
 
 ---
 ### Fáze 2 - Web (50 bodů)
-V druhé fázi se od vás bude požadovat vytvoření webové aplikace pomocí technologie Blazor WebAssembly. Webová aplikace bude napojena na API vytvořeno v první fázi projektu.
+V druhé fázi se od vás bude požadovat vytvoření webové aplikace pomocí technologie Blazor WebAssembly. Webová aplikace bude napojena na API vytvořeno v první fázi projektu. Do aplikace se také přidá práce s uživatelskými rolemi.
 
 Hodnotíme:
 - opravení chyb a zapracování připomínek, které jsme vám dali v rámci hodnocení fáze 1
