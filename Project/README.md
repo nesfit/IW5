@@ -16,6 +16,7 @@ Výsledná aplikace má sloužit jako jednoduchá webová stránka pro vytváře
 V rámci dat, se kterými se bude pracovat budeme požadovat minimálně následující data.
 
 ### Otázka
+- Typ (výběr z možností, textová odpověď, číselná hodnota od-do)
 - Text
 - Popis
 
