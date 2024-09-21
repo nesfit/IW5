@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
+﻿using System.Globalization;
 using AutoMapper;
-using AutoMapper.Internal;
 using CookBook.Api.App.Extensions;
 using CookBook.Api.App.Processors;
 using CookBook.Api.BL.Facades;
@@ -15,18 +12,13 @@ using CookBook.Api.DAL.Memory.Installers;
 using CookBook.Common.Extensions;
 using CookBook.Common.Models;
 using CookBook.Common.Resources;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
+using CookBook.Hosting.ServiceDefaults;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Localization;
-using Microsoft.AspNetCore.Routing;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Localization;
 
 var builder = WebApplication.CreateBuilder();
+builder.AddServiceDefaults();
 
 ConfigureCors(builder.Services);
 ConfigureLocalization(builder.Services);

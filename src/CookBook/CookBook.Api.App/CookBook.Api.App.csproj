@@ -20,6 +20,7 @@
     <ProjectReference Include="..\CookBook.Api.BL\CookBook.Api.BL.csproj" />
     <ProjectReference Include="..\CookBook.Api.DAL.EF\CookBook.Api.DAL.EF.csproj" />
     <ProjectReference Include="..\CookBook.Api.DAL.Memory\CookBook.Api.DAL.Memory.csproj" />
+    <ProjectReference Include="..\CookBook.Hosting.ServiceDefaults\CookBook.Hosting.ServiceDefaults.csproj" />
   </ItemGroup>
     <ItemGroup>
         <InternalsVisibleTo Include="CookBook.Api.App.EndToEndTests" />
