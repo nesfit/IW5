@@ -7,6 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="Aspirant.Hosting.Yarp" Version="0.0.4" />
       <PackageReference Include="Yarp.ReverseProxy" Version="2.2.0" />
       <PackageReference Include="Yarp.Telemetry.Consumption" Version="2.2.0" />
     </ItemGroup>
