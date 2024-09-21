@@ -28,6 +28,7 @@ ConfigureDependencies(builder.Services, builder.Configuration);
 ConfigureAutoMapper(builder.Services);
 
 var app = builder.Build();
+app.MapDefaultEndpoints();
 
 ValidateAutoMapperConfiguration(app.Services);
 
