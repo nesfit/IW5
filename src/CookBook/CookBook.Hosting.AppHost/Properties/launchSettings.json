@@ -8,6 +8,7 @@
       "applicationUrl": "http://localhost:15079",
       "environmentVariables": {
         "ASPIRE_ALLOW_UNSECURED_TRANSPORT": "true",
+//        "DOTNET_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS": "true",
         "ASPNETCORE_ENVIRONMENT": "Development",
         "DOTNET_ENVIRONMENT": "Development",
         "DOTNET_DASHBOARD_OTLP_ENDPOINT_URL": "http://localhost:19066",
