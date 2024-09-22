@@ -6,12 +6,13 @@ var api = builder.AddProject<Projects.CookBook_Api_App>("api")
 
 var web = builder.AddProject<Projects.CookBook_Web_App>("web")
     .WithOtlpExporter()
-    .WithHttpEndpoint();
+    .WithHttpEndpoint(targetPort: 8080, env: "HTTP_PORT");
 
 builder.AddProject<Projects.CookBook_Hosting_Gateway>("gateway")
+    .WithReference(api)
+    .WithReference(web)
     .WithOtlpExporter()
     .WithHttpEndpoint()
-    .WithReference(api)
-    .WithReference(web);
+    .WithExternalHttpEndpoints();
 
 builder.Build().Run();

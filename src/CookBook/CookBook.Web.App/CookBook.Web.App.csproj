@@ -5,7 +5,13 @@
         <PublishTrimmed>false</PublishTrimmed>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
         <IncludeAllContentForSelfExtract>true</IncludeAllContentForSelfExtract>
+        <RuntimeIdentifier>linux-x64</RuntimeIdentifier>
+        <ContainerBaseImage>dolejskad/busybox:latest</ContainerBaseImage>
     </PropertyGroup>
+
+    <ItemGroup>
+        <ContainerEntrypoint Include="busybox; httpd; -f; -v; -p; 8080; -h; ./wwwroot" />
+    </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.8" />
