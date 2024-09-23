@@ -41,7 +41,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BL", "BL", "{4411F92C-9E5A-
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookBook.Api.BL.UnitTests", "CookBook.Api.BL.UnitTests\CookBook.Api.BL.UnitTests.csproj", "{89797A6C-B555-4C60-8D7C-D80B5024217D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookBook.API.DAL.IntegrationTests", "CookBook.API.DAL.IntegrationTests\CookBook.API.DAL.IntegrationTests.csproj", "{CDED4C89-4B14-4D77-8F6C-8E2889B706A0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookBook.Api.DAL.IntegrationTests", "CookBook.Api.DAL.IntegrationTests\CookBook.Api.DAL.IntegrationTests.csproj", "{CDED4C89-4B14-4D77-8F6C-8E2889B706A0}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookBook.Api.App.EndToEndTests", "CookBook.Api.App.EndToEndTests\CookBook.Api.App.EndToEndTests.csproj", "{4087CC13-3279-4F7F-9723-4B86EC35FD39}"
 EndProject
