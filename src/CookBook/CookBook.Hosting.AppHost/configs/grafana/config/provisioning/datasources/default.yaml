@@ -1,0 +1,45 @@
+﻿apiVersion: 1
+
+datasources:
+  - name: Prometheus
+    type: prometheus
+    access: proxy
+    url: $__env{services__prometheus__http__0}
+    uid: prometheus
+    isDefault: true
+  - name: Loki
+    type: loki
+    access: proxy
+    url: $__env{services__grafanaLoki__http__0}
+    uid: loki
+    jsonData:
+      timeout: 300
+      maxLines: 100000
+  - name: Tempo
+    type: tempo
+    access: proxy
+    url: $__env{services__grafanaTempo__http__0}
+    uid: tempo
+    basicAuth: false
+    jsonData:
+      serviceMap:
+        datasourceUid: 'prometheus'
+      tracesToLogsV2:
+        datasourceUid: 'loki'
+        spanStartTimeShift: '-1h'
+        spanEndTimeShift: '1h'
+      tracesToMetrics:
+        datasourceUid: 'prometheus'
+        spanStartTimeShift: '1h'
+        spanEndTimeShift: '-1h'
+      nodeGraph:
+        enabled: true
+      search:
+        hide: false
+      traceQuery:
+        timeShiftEnabled: true
+        spanStartTimeShift: '1h'
+        spanEndTimeShift: '-1h'
+      spanBar:
+        type: 'Tag'
+        tag: 'url.path'

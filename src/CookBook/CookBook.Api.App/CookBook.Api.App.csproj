@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <UserSecretsId>70e22f70-c609-4d6a-9be8-b462915b90e5</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
 
   <ItemGroup>
@@ -20,8 +21,14 @@
     <ProjectReference Include="..\CookBook.Api.BL\CookBook.Api.BL.csproj" />
     <ProjectReference Include="..\CookBook.Api.DAL.EF\CookBook.Api.DAL.EF.csproj" />
     <ProjectReference Include="..\CookBook.Api.DAL.Memory\CookBook.Api.DAL.Memory.csproj" />
+    <ProjectReference Include="..\CookBook.Hosting.ServiceDefaults\CookBook.Hosting.ServiceDefaults.csproj" />
   </ItemGroup>
     <ItemGroup>
         <InternalsVisibleTo Include="CookBook.Api.App.EndToEndTests" />
+    </ItemGroup>
+    <ItemGroup>
+      <Content Include="..\.dockerignore">
+        <Link>.dockerignore</Link>
+      </Content>
     </ItemGroup>
 </Project>

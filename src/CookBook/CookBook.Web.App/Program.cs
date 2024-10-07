@@ -14,11 +14,11 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Configuration.AddJsonFile("appsettings.json");
 
-var apiBaseUrl = builder.Configuration.GetValue<string>("ApiBaseUrl");
+var apiBaseUrl = builder.Configuration.GetValue<string>("ApiBaseUrl") ?? builder.HostEnvironment.BaseAddress;
 
 builder.Services.AddInstaller<WebDALInstaller>();
 builder.Services.AddInstaller<WebBLInstaller>(apiBaseUrl);
-builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+builder.Services.AddScoped(_ => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 builder.Services.AddAutoMapper(configuration =>
 {
     // This is a temporary fix - should be able to remove this when version 11.0.2 comes out
@@ -27,12 +27,7 @@ builder.Services.AddAutoMapper(configuration =>
 }, typeof(WebBLInstaller));
 builder.Services.AddLocalization();
 
-builder.Services.Configure<LocalDbOptions>(options =>
-{
-    options.IsLocalDbEnabled = bool.Parse(builder.Configuration.GetSection(nameof(LocalDbOptions))[nameof(LocalDbOptions.IsLocalDbEnabled)]);
-});
-
-
-builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+builder.Services.Configure<LocalDbOptions>(obj => builder.Configuration.GetRequiredSection(nameof(LocalDbOptions))
+    .Bind(obj, opts => opts.ErrorOnUnknownConfiguration = true));
 
 await builder.Build().RunAsync();

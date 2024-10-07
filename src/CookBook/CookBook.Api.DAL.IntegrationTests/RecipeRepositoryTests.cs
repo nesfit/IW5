@@ -5,7 +5,7 @@ using CookBook.Api.DAL.Common.Entities;
 using CookBook.Common.Enums;
 using Xunit;
 
-namespace CookBook.API.DAL.IntegrationTests;
+namespace CookBook.Api.DAL.IntegrationTests;
 
 public class RecipeRepositoryTests
 {
