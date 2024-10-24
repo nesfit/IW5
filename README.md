@@ -3,6 +3,7 @@
 ---
 # Aktuality k předmětu
 --- 
+2024-10-24 - Prohození témat u posledních 2 přednášek - Serverless a Clean Architecture
 # Přednášky a demonstrační cvičení
 
 Organizace kurzu
@@ -33,8 +34,8 @@ Organizace kurzu
 | 11. 11. | 8. [Identity Management - část 1](./Lectures/Lecture_08/) (Roman Jašek)                                |
 | 18. 11. | 9. [Identity Management - část 2](./Lectures/Lecture_09/) (Roman Jašek)                                |
 | 25. 11. | 10. Clean Code (Michal Tichý)                                                                          |
-| 02. 11. | 11. [Clean Architecture](./Lectures/Lecture_10/) (Martin Dybal)                                        |
-| 12. 12. | 12. Přednáška dle hlasování studentů                                                                   |
+| 02. 12. | 11. Serverless (Roman Jašek)                                                                           |
+| 09. 12. | 12. [Clean Architecture](./Lectures/Lecture_10/) (Martin Dybal)                                        |
 
 --- 
 
