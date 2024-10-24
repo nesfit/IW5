@@ -2,8 +2,10 @@
 
 ---
 # Aktuality k předmětu
---- 
+
 2024-10-24 - Prohození témat u posledních 2 přednášek - Serverless a Clean Architecture
+
+--- 
 # Přednášky a demonstrační cvičení
 
 Organizace kurzu
