@@ -31,9 +31,9 @@ public class Index : PageModel
         this.appUserFacade = appUserFacade;
     }
 
-    public IActionResult OnGet(string returnUrl)
+    public IActionResult OnGet(string? returnUrl)
     {
-        Input = new InputModel { ReturnUrl = returnUrl };
+        Input = new InputModel { ReturnUrl = returnUrl ?? "~/" };
         return Page();
     }
         

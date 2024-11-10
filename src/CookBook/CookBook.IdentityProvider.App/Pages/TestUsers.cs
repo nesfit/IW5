@@ -29,28 +29,28 @@ public class TestUsers
                 new TestUser
                 {
                     SubjectId = "1",
-                    Username = "chirurg",
+                    Username = "user",
                     Password = "password",
                     Claims =
                     {
-                        new Claim(JwtClaimTypes.Name, "Kachnička Chirurg"),
-                        new Claim(JwtClaimTypes.GivenName, "Kachnička"),
-                        new Claim(JwtClaimTypes.FamilyName, "Chirurg"),
-                        new Claim(JwtClaimTypes.Email, "kachnickachirurg@email.com"),
+                        new Claim(JwtClaimTypes.Name, "User CookBook"),
+                        new Claim(JwtClaimTypes.GivenName, "User"),
+                        new Claim(JwtClaimTypes.FamilyName, "CookBook"),
+                        new Claim(JwtClaimTypes.Email, "usercookbook@email.com"),
                         new Claim(JwtClaimTypes.EmailVerified, "true", ClaimValueTypes.Boolean)
                     }
                 },
                 new TestUser
                 {
                     SubjectId = "2",
-                    Username = "fuhrer",
+                    Username = "admin",
                     Password = "password",
                     Claims =
                     {
-                        new Claim(JwtClaimTypes.Name, "Malý Fuhrer"),
-                        new Claim(JwtClaimTypes.GivenName, "Malý"),
-                        new Claim(JwtClaimTypes.FamilyName, "Fuhrer"),
-                        new Claim(JwtClaimTypes.Email, "malyfuhrer@email.com"),
+                        new Claim(JwtClaimTypes.Name, "Admin CookBook"),
+                        new Claim(JwtClaimTypes.GivenName, "Admin"),
+                        new Claim(JwtClaimTypes.FamilyName, "CookBook"),
+                        new Claim(JwtClaimTypes.Email, "admincookbook@email.com"),
                         new Claim(JwtClaimTypes.Role, "admin")
                     }
                 }
