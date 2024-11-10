@@ -170,7 +170,7 @@ void UseAuthorization(WebApplication application)
 void UseOpenApi(IApplicationBuilder application)
 {
     application.UseOpenApi();
-    application.UseSwaggerUi3();
+    application.UseSwaggerUi();
 }
 
 // Make the implicit Program class public so test projects can access it

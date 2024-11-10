@@ -6,28 +6,24 @@ namespace CookBook.IdentityProvider.App
     public static class Config
     {
         public static IEnumerable<IdentityResource> IdentityResources =>
-            new IdentityResource[]
-            {
-                new IdentityResources.OpenId(),
-                new IdentityResources.Profile(),
-            };
+        [
+            new IdentityResources.OpenId(),
+            new IdentityResources.Profile()
+        ];
 
         public static IEnumerable<ApiResource> ApiResources =>
-            new ApiResource[]
-            {
-                new ("cookbookclientaudience"),
-            };
+        [
+            new ("cookbookclientaudience")
+        ];
 
         public static IEnumerable<ApiScope> ApiScopes =>
-            new ApiScope[]
-            {
-                new("cookbookapi", new[] { "role" })
-            };
+        [
+            new("cookbookapi", ["role"])
+        ];
 
         public static IEnumerable<Client> Clients =>
-            new Client[]
-            {
-                new()
+        [
+            new()
                 {
                     ClientName = "CookBook Client",
                     ClientId = "cookbookclient",
@@ -56,6 +52,6 @@ namespace CookBook.IdentityProvider.App
                     },
                     //RequireClientSecret = false
                 }
-            };
+        ];
     }
 }
