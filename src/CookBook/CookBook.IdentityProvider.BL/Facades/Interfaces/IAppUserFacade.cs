@@ -6,7 +6,7 @@ namespace CookBook.IdentityProvider.BL.Facades;
 
 public interface IAppUserFacade : IAppFacade
 {
-    Task<AppUserEntity?> CreateAppUserAsync(AppUserCreateModel appUserModel);
+    Task<Guid?> CreateAppUserAsync(AppUserCreateModel appUserModel);
     Task<bool> ValidateCredentialsAsync(string userName, string password);
     Task<Guid> GetUserIdByUserNameAsync(string userName);
     Task<AppUserDetailModel?> GetUserByUserNameAsync(string userName);
@@ -14,5 +14,4 @@ public interface IAppUserFacade : IAppFacade
     Task<AppUserDetailModel> CreateExternalAppUserAsync(AppUserExternalCreateModel appUserModel);
     Task<bool> ActivateUserAsync(string securityCode, string email);
     Task<bool> IsEmailConfirmedAsync(string userName);
-    Task<string> CreateAppUserAndGenerateEmailConfirmationTokenAsync(AppUserCreateModel appUserModel);
 }

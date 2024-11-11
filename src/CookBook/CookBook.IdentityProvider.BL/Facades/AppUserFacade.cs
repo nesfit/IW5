@@ -18,11 +18,16 @@ public class AppUserFacade : IAppUserFacade
         this.mapper = mapper;
     }
 
-    public async Task<AppUserEntity?> CreateAppUserAsync(AppUserCreateModel appUserModel)
+    public async Task<Guid?> CreateAppUserAsync(AppUserCreateModel appUserModel)
     {
+        if (await userManager.FindByNameAsync(appUserModel.UserName) is not null)
+        {
+            throw new ArgumentException($"User with username '{appUserModel.UserName}' already exists");
+        }
+
         var appUserEntity = mapper.Map<AppUserEntity>(appUserModel);
         await userManager.CreateAsync(appUserEntity, appUserModel.Password);
-        return await userManager.FindByNameAsync(appUserModel.UserName);
+        return (await userManager.FindByNameAsync(appUserModel.UserName))?.Id;
     }
 
     public async Task<bool> ValidateCredentialsAsync(string userName, string password)
@@ -108,11 +113,5 @@ public class AppUserFacade : IAppUserFacade
 
             return await userManager.IsEmailConfirmedAsync(user);
         }
-    }
-
-    public async Task<string> CreateAppUserAndGenerateEmailConfirmationTokenAsync(AppUserCreateModel appUserModel)
-    {
-        var createdUser = await CreateAppUserAsync(appUserModel);
-        return await userManager.GenerateEmailConfirmationTokenAsync(createdUser);
     }
 }
