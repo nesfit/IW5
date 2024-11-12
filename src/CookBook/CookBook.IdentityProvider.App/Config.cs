@@ -18,7 +18,7 @@ namespace CookBook.IdentityProvider.App
 
         public static IEnumerable<ApiScope> ApiScopes =>
         [
-            new("cookbookapi", ["role"])
+            new ("cookbookapi", ["role"])
         ];
 
         public static IEnumerable<Client> Clients =>
@@ -28,24 +28,24 @@ namespace CookBook.IdentityProvider.App
                     ClientName = "CookBook Client",
                     ClientId = "cookbookclient",
                     AllowOfflineAccess = true,
-                    RedirectUris = new List<string>
-                    {
+                    RedirectUris =
+                    [
                         "https://oauth.pstmn.io/v1/callback",
                         "https://localhost:44355/authentication/login-callback",
-                    },
-                    AllowedGrantTypes = new List<string>
-                    {
+                    ],
+                    AllowedGrantTypes =
+                    [
                         GrantType.ClientCredentials,
                         GrantType.ResourceOwnerPassword,
                         GrantType.AuthorizationCode
-                    },
+                    ],
                     RequirePkce = true,
-                    AllowedScopes = new List<string>
-                    {
+                    AllowedScopes =
+                    [
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
                         "cookbookapi"
-                    },
+                    ],
                     ClientSecrets =
                     {
                         new Secret("secret".Sha256())

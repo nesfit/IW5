@@ -21,23 +21,27 @@ public class LocalAppUserProfileService : IProfileService
 
     public async Task GetProfileDataAsync(ProfileDataRequestContext context)
     {
-        var userName = context.Subject.GetSubjectId();
-        var user = await appUserFacade.GetUserByUserNameAsync(userName);
-        if (user is not null)
-        {
-            var appUserClaims = await appUserClaimsFacade.GetAppUserClaimsByUserIdAsync(user.Id);
-            var claims = appUserClaims.Select(claim =>
-            {
-                if (claim.ClaimType is not null
-                    && claim.ClaimValue is not null)
-                {
-                    return new Claim(claim.ClaimType, claim.ClaimValue);
-                }
-                return null;
-            }).ToList();
-            context.AddRequestedClaims(claims);
-        }
+        var idString = context.Subject.GetSubjectId();
 
+        if(Guid.TryParse(idString, out var id) is true)
+        {
+            var user = await appUserFacade.GetUserByIdAsync(id);
+            if (user is not null)
+            {
+                var appUserClaims = await appUserClaimsFacade.GetAppUserClaimsByUserIdAsync(user.Id);
+                var claims = appUserClaims.Select(claim =>
+                {
+                    if (claim.ClaimType is not null
+                        && claim.ClaimValue is not null)
+                    {
+                        return new Claim(claim.ClaimType, claim.ClaimValue);
+                    }
+                    return null;
+                });
+
+                context.AddRequestedClaims(claims);
+            }
+        }
     }
 
     public async Task IsActiveAsync(IsActiveContext context)

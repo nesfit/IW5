@@ -50,6 +50,18 @@ public class AppUserFacade : IAppUserFacade
         return user.Id;
     }
 
+    public async Task<AppUserDetailModel?> GetUserByIdAsync(Guid id)
+    {
+        var user = await userManager.FindByIdAsync(id.ToString());
+
+        if(user is null)
+        {
+            return null;
+        }
+
+        return mapper.Map<AppUserDetailModel>(user);
+    }
+
     public async Task<AppUserDetailModel?> GetUserByUserNameAsync(string userName)
     {
         var user = await userManager.FindByNameAsync(userName);

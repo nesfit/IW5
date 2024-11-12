@@ -21,9 +21,9 @@ namespace CookBook.IdentityProvider.App
                 .AddInMemoryApiResources(Config.ApiResources)
                 .AddInMemoryApiScopes(Config.ApiScopes)
                 .AddInMemoryClients(Config.Clients)
-                //.AddResourceOwnerValidator<ResourceOwnerPasswordValidator>()
-                //.AddProfileService<LocalAppUserProfileService>()
-                .AddTestUsers(TestUsers.Users)
+                .AddResourceOwnerValidator<ResourceOwnerPasswordValidator>()
+                .AddProfileService<LocalAppUserProfileService>()
+                //.AddTestUsers(TestUsers.Users)
                 ;
 
             return builder.Build();
