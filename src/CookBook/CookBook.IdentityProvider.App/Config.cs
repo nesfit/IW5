@@ -5,11 +5,20 @@ namespace CookBook.IdentityProvider.App
 {
     public static class Config
     {
-        public static IEnumerable<IdentityResource> IdentityResources =>
-        [
-            new IdentityResources.OpenId(),
-            new IdentityResources.Profile()
-        ];
+        public static IEnumerable<IdentityResource> IdentityResources
+        {
+            get
+            {
+                var profileIdentityResources = new IdentityResources.Profile();
+                profileIdentityResources.UserClaims.Add("username");
+                
+                return
+                [
+                    new IdentityResources.OpenId(),
+                    profileIdentityResources
+                ];
+            }
+        }
 
         public static IEnumerable<ApiResource> ApiResources =>
         [

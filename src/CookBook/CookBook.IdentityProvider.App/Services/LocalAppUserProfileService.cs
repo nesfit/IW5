@@ -37,8 +37,9 @@ public class LocalAppUserProfileService : IProfileService
                         return new Claim(claim.ClaimType, claim.ClaimValue);
                     }
                     return null;
-                });
+                }).ToList();
 
+                claims.Add(new Claim("username", user.UserName));
                 context.AddRequestedClaims(claims);
             }
         }
