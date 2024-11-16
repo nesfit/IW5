@@ -1,4 +1,4 @@
-﻿using CookBook.IdentityProvider.App.Services;
+﻿using CookBook.IdentityProvider.App.Endpoints;
 using CookBook.IdentityProvider.BL.Facades;
 using CookBook.IdentityProvider.BL.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -52,8 +52,7 @@ namespace CookBook.IdentityProvider.App
 
             app.UseAuthorization();
             app.MapRazorPages().RequireAuthorization();
-
-            app.MapPost("/user", (IAppUserFacade appUserFacade, [FromBody] AppUserCreateModel appUser) => appUserFacade.CreateAppUserAsync(appUser));
+            app.UseUserEndpoints();
 
             return app;
         }
