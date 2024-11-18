@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using AutoMapper;
 using AutoMapper.Internal;
+using CookBook.Api.App;
 using CookBook.Api.App.Endpoints;
 using CookBook.Api.App.Extensions;
 using CookBook.Api.App.Processors;
@@ -12,8 +13,10 @@ using CookBook.Api.DAL.Common.Entities;
 using CookBook.Api.DAL.EF.Extensions;
 using CookBook.Api.DAL.EF.Installers;
 using CookBook.Api.DAL.Memory.Installers;
+using CookBook.Common;
 using CookBook.Common.Extensions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Localization;
@@ -109,7 +112,11 @@ void ConfigureAuthentication(IServiceCollection serviceCollection, string identi
             options.TokenValidationParameters.ValidateAudience = false;
         });
 
-    serviceCollection.AddAuthorization();
+    serviceCollection.AddAuthorization(
+        options =>
+        {
+            options.AddPolicy(Policy.IngredientAdmin, policy => policy.RequireRole(Role.Admin));
+        });
     serviceCollection.AddHttpContextAccessor();
 }
 

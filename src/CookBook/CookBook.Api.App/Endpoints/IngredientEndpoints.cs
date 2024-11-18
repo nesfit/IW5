@@ -3,10 +3,7 @@ using CookBook.Api.App.Filters;
 using CookBook.Api.BL.Facades;
 using CookBook.Common.Models;
 using CookBook.Common.Resources;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Localization;
 
 namespace CookBook.Api.App.Endpoints;
@@ -62,6 +59,6 @@ public static class IngredientEndpoints
             {
                 return TypedResults.Forbid();
             }
-        });
+        }).RequireAuthorization(Policy.IngredientAdmin);
     }
 }
