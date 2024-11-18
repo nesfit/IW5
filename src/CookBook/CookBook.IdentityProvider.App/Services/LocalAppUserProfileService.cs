@@ -1,5 +1,6 @@
 ﻿using System.Security.Claims;
 using CookBook.IdentityProvider.BL.Facades;
+using CookBook.IdentityProvider.BL.Models;
 using Duende.IdentityServer.Extensions;
 using Duende.IdentityServer.Models;
 using Duende.IdentityServer.Services;
@@ -21,11 +22,21 @@ public class LocalAppUserProfileService : IProfileService
 
     public async Task GetProfileDataAsync(ProfileDataRequestContext context)
     {
-        var idString = context.Subject.GetSubjectId();
+        var subjectId = context.Subject.GetSubjectId();
 
-        if(Guid.TryParse(idString, out var id) is true)
+        AppUserDetailModel? user;
+
+        if(Guid.TryParse(subjectId, out var id))
         {
-            var user = await appUserFacade.GetUserByIdAsync(id);        
+            user = await appUserFacade.GetUserByIdAsync(id);
+        }
+        else
+        {
+            user = await appUserFacade.GetUserByUserNameAsync(subjectId);
+        }
+
+        if(user is not null)
+        {
             if (user is not null)
             {
                 var appUserClaims = await appUserClaimsFacade.GetAppUserClaimsByUserIdAsync(user.Id);

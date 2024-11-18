@@ -1,5 +1,7 @@
-﻿using Duende.IdentityServer;
+﻿using System.Security.Claims;
+using Duende.IdentityServer;
 using Duende.IdentityServer.Models;
+using IdentityModel;
 
 namespace CookBook.IdentityProvider.App
 {
@@ -27,7 +29,7 @@ namespace CookBook.IdentityProvider.App
 
         public static IEnumerable<ApiScope> ApiScopes =>
         [
-            new ("cookbookapi", ["role"])
+            new ("cookbookapi", [JwtClaimTypes.Role])
         ];
 
         public static IEnumerable<Client> Clients =>
