@@ -115,7 +115,7 @@ void ConfigureAuthentication(IServiceCollection serviceCollection, string identi
     serviceCollection.AddAuthorization(
         options =>
         {
-            options.AddPolicy(Policy.IngredientAdmin, policy => policy.RequireRole(Role.Admin));
+            options.AddPolicy(ApiPolicies.IngredientAdmin, policy => policy.RequireRole(AppRoles.Admin));
         });
     serviceCollection.AddHttpContextAccessor();
 }

@@ -59,6 +59,6 @@ public static class IngredientEndpoints
             {
                 return TypedResults.Forbid();
             }
-        }).RequireAuthorization(Policy.IngredientAdmin);
+        }).RequireAuthorization(ApiPolicies.IngredientAdmin);
     }
 }

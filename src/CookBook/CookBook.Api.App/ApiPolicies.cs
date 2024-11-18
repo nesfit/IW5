@@ -1,6 +1,6 @@
 ﻿namespace CookBook.Api.App;
 
-public static class Policy
+public static class ApiPolicies
 {
     public static string IngredientAdmin = "ingredient-admin";
 }

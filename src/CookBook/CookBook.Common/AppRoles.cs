@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CookBook.Common;
 
-public static class Role
+public static class AppRoles
 {
     public static string User = "user";
     public static string Admin = "admin";
