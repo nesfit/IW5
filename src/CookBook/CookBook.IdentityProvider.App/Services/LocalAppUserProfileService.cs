@@ -25,7 +25,7 @@ public class LocalAppUserProfileService : IProfileService
 
         if(Guid.TryParse(idString, out var id) is true)
         {
-            var user = await appUserFacade.GetUserByIdAsync(id);
+            var user = await appUserFacade.GetUserByIdAsync(id);        
             if (user is not null)
             {
                 var appUserClaims = await appUserClaimsFacade.GetAppUserClaimsByUserIdAsync(user.Id);

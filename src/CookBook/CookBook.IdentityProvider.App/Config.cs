@@ -59,7 +59,7 @@ namespace CookBook.IdentityProvider.App
                     {
                         new Secret("secret".Sha256())
                     },
-                    //RequireClientSecret = false
+                    RequireClientSecret = false
                 }
         ];
     }

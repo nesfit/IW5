@@ -7,9 +7,17 @@ namespace CookBook.IdentityProvider.App.Endpoints;
 
 public static class UserEndpoints
 {
-    public static void UseUserEndpoints(this IEndpointRouteBuilder endpointRouteBuilder)
+    public static IEndpointRouteBuilder UseUserEndpoints(this IEndpointRouteBuilder endpointRouteBuilder)
     {
-        endpointRouteBuilder.MapPost("/user",
+        var userEndpoints = endpointRouteBuilder.MapGroup("user");
+
+        userEndpoints.MapGet("search",
+            async (
+                IAppUserFacade appUserFacade,
+                string searchString)
+                => await appUserFacade.SearchAsync(searchString));
+
+        userEndpoints.MapPost("",
             async Task<Results<Created<Guid>, BadRequest, BadRequest<string>>> (
                     IAppUserFacade appUserFacade,
                     [FromBody] AppUserCreateModel appUser)
@@ -31,5 +39,7 @@ public static class UserEndpoints
                     throw;
                 }
             });
+
+        return endpointRouteBuilder;
     }
 }

@@ -1,23 +1,17 @@
 ﻿using AutoMapper;
+using CookBook.Common.Models.User;
 using CookBook.IdentityProvider.BL.Models;
 using CookBook.IdentityProvider.DAL.Entities;
+using CookBook.IdentityProvider.DAL.Repositories;
 using Microsoft.AspNetCore.Identity;
 
 namespace CookBook.IdentityProvider.BL.Facades;
 
-public class AppUserFacade : IAppUserFacade
+public class AppUserFacade(
+    UserManager<AppUserEntity> userManager,
+    IAppUserRepository appUserRepository,
+    IMapper mapper) : IAppUserFacade
 {
-    private readonly UserManager<AppUserEntity> userManager;
-    private readonly IMapper mapper;
-
-    public AppUserFacade(
-        UserManager<AppUserEntity> userManager,
-        IMapper mapper)
-    {
-        this.userManager = userManager;
-        this.mapper = mapper;
-    }
-
     public async Task<Guid?> CreateAppUserAsync(AppUserCreateModel appUserModel)
     {
         if (await userManager.FindByNameAsync(appUserModel.UserName) is not null)
@@ -125,5 +119,11 @@ public class AppUserFacade : IAppUserFacade
 
             return await userManager.IsEmailConfirmedAsync(user);
         }
+    }
+
+    public async Task<IList<AppUserListModel>> SearchAsync(string searchString)
+    {
+        var users = await appUserRepository.SearchAsync(searchString);
+        return mapper.Map<List<AppUserListModel>>(users);
     }
 }

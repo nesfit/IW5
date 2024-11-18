@@ -1,4 +1,5 @@
 ﻿using CookBook.IdentityProvider.App.Endpoints;
+using CookBook.IdentityProvider.App.Services;
 using CookBook.IdentityProvider.BL.Facades;
 using CookBook.IdentityProvider.BL.Models;
 using Microsoft.AspNetCore.Mvc;

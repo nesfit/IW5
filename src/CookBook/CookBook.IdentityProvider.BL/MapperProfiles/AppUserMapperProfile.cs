@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CookBook.Common.Extensions;
+using CookBook.Common.Models.User;
 using CookBook.IdentityProvider.BL.Models;
 using CookBook.IdentityProvider.DAL.Entities;
 
@@ -26,5 +27,6 @@ public class AppUserMapperProfile : Profile
             .Ignore(entity => entity.AccessFailedCount);
 
         CreateMap<AppUserEntity, AppUserDetailModel>();
+        CreateMap<AppUserEntity, AppUserListModel>();
     }
 }

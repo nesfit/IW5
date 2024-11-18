@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using CookBook.Common.Extensions;
 using CookBook.IdentityProvider.App;
+using CookBook.IdentityProvider.App.Endpoints;
 using CookBook.IdentityProvider.App.Installers;
 using CookBook.IdentityProvider.BL.Installers;
 using CookBook.IdentityProvider.DAL.Installers;
@@ -31,6 +32,10 @@ try
     mapper.ConfigurationProvider.AssertConfigurationIsValid();
 
     app.ConfigurePipeline();
+
+    app.MapGroup("api")
+        .AllowAnonymous()
+        .UseUserEndpoints();
 
     app.Run();
 }
