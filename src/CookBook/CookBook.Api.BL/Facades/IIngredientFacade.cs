@@ -11,6 +11,7 @@ namespace CookBook.Api.BL.Facades
         IngredientDetailModel? GetById(Guid id);
         Guid Create(IngredientDetailModel ingredientModel, string? ownerId = null);
         Guid? Update(IngredientDetailModel ingredientModel, string? ownerId = null);
+        Guid CreateOrUpdate(IngredientDetailModel ingredientModel, string? ownerId = null);
         void Delete(Guid id, string? ownerId = null);
     }
 }

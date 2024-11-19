@@ -47,6 +47,22 @@ public static class IngredientEndpoints
             }
         });
 
+        ingredientModifyingEndpoints.MapPost("upsert", Results<Ok<Guid>, ForbidHttpResult> (IngredientDetailModel ingredient, IIngredientFacade ingredientFacade, IHttpContextAccessor httpContextAccessor)
+            =>
+        {
+            var userId = EndpointsBase.GetUserId(httpContextAccessor);
+
+            try
+            {
+                return TypedResults.Ok(ingredientFacade.CreateOrUpdate(ingredient, userId));
+            }
+            catch (UnauthorizedAccessException)
+            {
+
+                throw;
+            }
+        });
+
         ingredientModifyingEndpoints.MapDelete("{id:guid}", Results<Ok, ForbidHttpResult> (Guid id, IIngredientFacade ingredientFacade, IHttpContextAccessor httpContextAccessor) =>
         {
             var userId = EndpointsBase.GetUserId(httpContextAccessor);

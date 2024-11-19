@@ -31,6 +31,11 @@ namespace CookBook.Api.BL.Facades
             return mapper.Map<IngredientDetailModel>(ingredientEntity);
         }
 
+        public Guid CreateOrUpdate(IngredientDetailModel ingredientModel, string? ownerId = null)
+            => ingredientRepository.Exists(ingredientModel.Id)
+                ? Update(ingredientModel, ownerId)!.Value
+                : Create(ingredientModel, ownerId);
+
         public Guid Create(IngredientDetailModel ingredientModel, string? ownerId = null)
         {
             var ingredientEntity = mapper.Map<IngredientEntity>(ingredientModel);
