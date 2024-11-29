@@ -1,0 +1,63 @@
+﻿receivers:
+  otlp:
+    protocols:
+      grpc:
+        endpoint: 0.0.0.0:4317
+      http:
+        endpoint: 0.0.0.0:4318
+
+processors:
+  batch:
+
+exporters:
+  otlp/aspire:
+    endpoint: ${env:DOTNET_DASHBOARD_OTLP_ENDPOINT}
+    tls:
+      insecure: true
+
+  # Grafana Tempo -- traces
+  otlp/tempo:
+    endpoint: ${env:GRAFANA_TEMPO_GRPC}
+    tls:
+      insecure: true
+
+  # Grafana Loki -- logs
+  otlphttp/loki:
+    endpoint: ${env:services__grafanaLoki__http__0}/otlp
+  
+  # Grafana Mimir -- metrics
+  prometheusremotewrite/prometheus:
+    endpoint: ${env:services__prometheus__http__0}/api/v1/write
+
+extensions:
+  health_check:
+  pprof:
+  zpages:
+
+service:
+  extensions: [health_check, pprof, zpages]
+  pipelines:
+    traces:
+      receivers:
+        - otlp
+      processors:
+        - batch
+      exporters:
+        - otlp/aspire
+        - otlp/tempo
+    metrics:
+      receivers:
+        - otlp
+      processors:
+        - batch
+      exporters:
+        - otlp/aspire
+        - prometheusremotewrite/prometheus
+    logs:
+      receivers:
+        - otlp
+      processors:
+        - batch
+      exporters:
+        - otlp/aspire
+        - otlphttp/loki

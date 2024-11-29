@@ -8,7 +8,7 @@ using CookBook.Api.DAL.Memory.Repositories;
 using CookBook.Common.Enums;
 using Newtonsoft.Json;
 
-namespace CookBook.API.DAL.IntegrationTests;
+namespace CookBook.Api.DAL.IntegrationTests;
 
 public class InMemoryDatabaseFixture : IDatabaseFixture
 {

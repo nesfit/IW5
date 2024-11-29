@@ -1,0 +1,11 @@
+{
+  "TemplatePath": null,
+  "ContainerSettings": {
+    "Registry": null,
+    "RepositoryPrefix": "iw5",
+    "Tags": [
+      "latest"
+    ],
+    "Builder": null
+  }
+}

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using CookBook.Api.DAL.Common.Entities;
 using CookBook.Api.DAL.Common.Repositories;
 
-namespace CookBook.API.DAL.IntegrationTests;
+namespace CookBook.Api.DAL.IntegrationTests;
 
 public interface IDatabaseFixture
 {
