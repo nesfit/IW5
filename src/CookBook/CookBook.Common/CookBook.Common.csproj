@@ -5,7 +5,7 @@
     </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="13.0.1" />
-    <PackageReference Include="Scrutor" Version="4.2.2" />
+    <PackageReference Include="Scrutor" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>
