@@ -11,7 +11,7 @@ public class RecipeRepositoryTests
         dbFixture = new InMemoryDatabaseFixture();
     }
 
-    private readonly IDatabaseFixture dbFixture;
+    private readonly InMemoryDatabaseFixture dbFixture;
 
     [Fact]
     public void GetById_Returns_Requested_Recipe_Including_Their_IngredientAmounts()
@@ -62,8 +62,8 @@ public class RecipeRepositoryTests
             Duration = duration,
             FoodType = foodType,
             ImageUrl = "ImageUrl",
-            IngredientAmounts = new List<IngredientAmountEntity>()
-            {
+            IngredientAmounts =
+            [
                 new IngredientAmountEntity
                 {
                     Id = ingredientAmountId,
@@ -72,7 +72,7 @@ public class RecipeRepositoryTests
                     RecipeId = recipeId,
                     IngredientId = dbFixture.IngredientGuids[0]
                 }
-            }
+            ]
         };
 
         //act

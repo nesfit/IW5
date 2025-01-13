@@ -4,14 +4,9 @@ using Microsoft.AspNetCore.Http;
 
 namespace CookBook.Api.App.Middlewares
 {
-    public class RequestCultureMiddleware
+    public class RequestCultureMiddleware(RequestDelegate next)
     {
-        private readonly RequestDelegate next;
-
-        public RequestCultureMiddleware(RequestDelegate next)
-        {
-            this.next = next;
-        }
+        private readonly RequestDelegate next = next;
 
         public async Task InvokeAsync(HttpContext context)
         {

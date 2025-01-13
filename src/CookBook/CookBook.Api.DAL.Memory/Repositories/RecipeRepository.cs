@@ -6,20 +6,12 @@ using CookBook.Api.DAL.Common.Repositories;
 
 namespace CookBook.Api.DAL.Memory.Repositories
 {
-    public class RecipeRepository : IRecipeRepository
+    public class RecipeRepository(Storage storage)
+        : IRecipeRepository
     {
-        private readonly IList<RecipeEntity> recipes;
-        private readonly IList<IngredientAmountEntity> ingredientAmounts;
-        private readonly IList<IngredientEntity> ingredients;
-
-        public RecipeRepository(
-            Storage storage)
-        {
-            this.recipes = storage.Recipes;
-            this.ingredientAmounts = storage.IngredientAmounts;
-            this.ingredients = storage.Ingredients;
-
-        }
+        private readonly IList<RecipeEntity> recipes = storage.Recipes;
+        private readonly IList<IngredientAmountEntity> ingredientAmounts = storage.IngredientAmounts;
+        private readonly IList<IngredientEntity> ingredients = storage.Ingredients;
 
         public IList<RecipeEntity> GetAll()
         {

@@ -46,8 +46,8 @@ public class RecipeFacadeTests
             ImageUrl = "Url",
             Duration = TimeSpan.FromMinutes(5),
             FoodType = FoodType.Dessert,
-            IngredientAmounts = new List<RecipeDetailIngredientModel>()
-            {
+            IngredientAmounts =
+            [
                 new RecipeDetailIngredientModel
                 {
                     Id = Guid.NewGuid(),
@@ -70,7 +70,7 @@ public class RecipeFacadeTests
                         Name = "MergedIngredient",
                     }
                 }
-            }
+            ]
         };
         //act
         facade.MergeIngredientAmounts(recipe);

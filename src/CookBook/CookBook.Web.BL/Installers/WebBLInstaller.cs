@@ -28,7 +28,7 @@ namespace CookBook.Web.BL.Installers
                     .WithTransientLifetime());
         }
 
-        public HttpClient CreateApiHttpClient(IServiceProvider serviceProvider, string apiBaseUrl)
+        public static HttpClient CreateApiHttpClient(IServiceProvider serviceProvider, string apiBaseUrl)
         {
             var client = new HttpClient() { BaseAddress = new Uri(apiBaseUrl) };
             client.BaseAddress = new Uri(apiBaseUrl);
