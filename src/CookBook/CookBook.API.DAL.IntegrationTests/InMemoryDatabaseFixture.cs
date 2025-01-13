@@ -33,7 +33,7 @@ public class InMemoryDatabaseFixture : IDatabaseFixture
         return DeepClone(recipe);
     }
 
-    private T DeepClone<T>(T input)
+    private T? DeepClone<T>(T input)
     {
         var json = JsonConvert.SerializeObject(input);
         return JsonConvert.DeserializeObject<T>(json);

@@ -97,16 +97,7 @@ namespace CookBook.Api.DAL.Memory.Repositories
         {
             foreach (var recipeUpdateIngredientModel in recipeIngredientModelsToUpdate)
             {
-                IngredientAmountEntity? ingredientAmountEntity;
-                if (recipeUpdateIngredientModel.Id == null)
-                {
-                    ingredientAmountEntity = GetIngredientAmountRecipeIdAndIngredientId(recipeEntity.Id,
-                        recipeUpdateIngredientModel.IngredientId);
-                }
-                else
-                {
-                    ingredientAmountEntity = ingredientAmounts.Single(t => t.Id == recipeUpdateIngredientModel.Id);
-                }
+                var ingredientAmountEntity = ingredientAmounts.SingleOrDefault(t => t.Id == recipeUpdateIngredientModel.Id);
 
                 if (ingredientAmountEntity is not null)
                 {

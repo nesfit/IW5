@@ -15,12 +15,15 @@ namespace CookBook.Api.App.Middlewares
 
         public async Task InvokeAsync(HttpContext context)
         {
-            var culture = context.Request.Query["culture"];
-            if (!string.IsNullOrWhiteSpace(culture))
+            if(context.Request.Query.TryGetValue("culture", out var cultureValues))
             {
-                var cultureInfo = new CultureInfo(culture);
-                CultureInfo.CurrentCulture = cultureInfo;
-                CultureInfo.CurrentUICulture = cultureInfo;
+                var culture = cultureValues.FirstOrDefault();
+                if (!string.IsNullOrWhiteSpace(culture))
+                {
+                    var cultureInfo = new CultureInfo(culture);
+                    CultureInfo.CurrentCulture = cultureInfo;
+                    CultureInfo.CurrentUICulture = cultureInfo;
+                }
             }
 
             await next(context);

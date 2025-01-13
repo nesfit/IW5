@@ -129,8 +129,8 @@ public class RecipeFacadeTests
         
         //assert
         Assert.Equal(2,recipe.IngredientAmounts.Count);
-        var ingredientAmount1 = Assert.Single(recipe.IngredientAmounts.Where(t=>t.Id==ingredientAmount1Id));
-        var ingredientAmount2 = Assert.Single(recipe.IngredientAmounts.Where(t=>t.Id==ingredientAmount2Id));
+        var ingredientAmount1 = Assert.Single(recipe.IngredientAmounts, t =>t.Id==ingredientAmount1Id);
+        var ingredientAmount2 = Assert.Single(recipe.IngredientAmounts, t =>t.Id==ingredientAmount2Id);
         
         Assert.Equal(5,ingredientAmount1.Amount);
         Assert.Equal(Unit.Pieces,ingredientAmount1.Unit);
@@ -188,8 +188,8 @@ public class RecipeFacadeTests
         
         //assert
         Assert.Equal(2,recipe.IngredientAmounts.Count);
-        var ingredientAmount1 = Assert.Single(recipe.IngredientAmounts.Where(t=>t.Id==ingredientAmount1Id));
-        var ingredientAmount2 = Assert.Single(recipe.IngredientAmounts.Where(t=>t.Id==ingredientAmount2Id));
+        var ingredientAmount1 = Assert.Single(recipe.IngredientAmounts, t =>t.Id==ingredientAmount1Id);
+        var ingredientAmount2 = Assert.Single(recipe.IngredientAmounts, t =>t.Id==ingredientAmount2Id);
         
         Assert.Equal(5,ingredientAmount1.Amount);
         Assert.Equal(Unit.Pieces,ingredientAmount1.Unit);
