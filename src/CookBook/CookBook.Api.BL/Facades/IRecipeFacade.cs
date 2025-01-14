@@ -9,9 +9,8 @@ namespace CookBook.Api.BL.Facades
     {
         List<RecipeListModel> GetAll();
         RecipeDetailModel? GetById(Guid id);
-        Guid CreateOrUpdate(RecipeDetailModel recipeModel);
-        Guid Create(RecipeDetailModel recipeModel);
-        Guid? Update(RecipeDetailModel recipeModel);
-        void Delete(Guid id);
+        Guid Create(RecipeDetailModel recipeModel, string? ownerId = null);
+        Guid? Update(RecipeDetailModel recipeModel, string? ownerId = null);
+        void Delete(Guid id, string? ownerId = null);
     }
 }

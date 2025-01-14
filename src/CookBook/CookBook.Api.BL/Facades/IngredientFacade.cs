@@ -7,14 +7,14 @@ using CookBook.Common.Models;
 
 namespace CookBook.Api.BL.Facades
 {
-    public class IngredientFacade : IIngredientFacade
+    public class IngredientFacade : FacadeBase<IIngredientRepository, IngredientEntity>, IIngredientFacade
     {
         private readonly IIngredientRepository ingredientRepository;
         private readonly IMapper mapper;
 
         public IngredientFacade(
             IIngredientRepository ingredientRepository,
-            IMapper mapper)
+            IMapper mapper) : base(ingredientRepository)
         {
             this.ingredientRepository = ingredientRepository;
             this.mapper = mapper;
@@ -31,27 +31,33 @@ namespace CookBook.Api.BL.Facades
             return mapper.Map<IngredientDetailModel>(ingredientEntity);
         }
 
-        public Guid CreateOrUpdate(IngredientDetailModel ingredientModel)
-        {
-            return ingredientRepository.Exists(ingredientModel.Id)
-                ? Update(ingredientModel)!.Value
-                : Create(ingredientModel);
-        }
+        public Guid CreateOrUpdate(IngredientDetailModel ingredientModel, string? ownerId = null)
+            => ingredientRepository.Exists(ingredientModel.Id)
+                ? Update(ingredientModel, ownerId)!.Value
+                : Create(ingredientModel, ownerId);
 
-        public Guid Create(IngredientDetailModel ingredientModel)
+        public Guid Create(IngredientDetailModel ingredientModel, string? ownerId = null)
         {
             var ingredientEntity = mapper.Map<IngredientEntity>(ingredientModel);
+            if (ownerId is not null)
+            {
+                ingredientEntity.OwnerId = ownerId;
+            }
             return ingredientRepository.Insert(ingredientEntity);
         }
 
-        public Guid? Update(IngredientDetailModel ingredientModel)
+        public Guid? Update(IngredientDetailModel ingredientModel, string? ownerId = null)
         {
+            ThrowIfWrongOwner(ingredientModel.Id, ownerId);
+
             var ingredientEntity = mapper.Map<IngredientEntity>(ingredientModel);
             return ingredientRepository.Update(ingredientEntity);
         }
 
-        public void Delete(Guid id)
+        public void Delete(Guid id, string? ownerId = null)
         {
+            ThrowIfWrongOwner(id, ownerId);
+
             ingredientRepository.Remove(id);
         }
     }

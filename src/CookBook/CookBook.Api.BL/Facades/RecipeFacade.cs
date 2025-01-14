@@ -8,7 +8,7 @@ using CookBook.Common.Models;
 
 namespace CookBook.Api.BL.Facades
 {
-    public class RecipeFacade : IRecipeFacade
+    public class RecipeFacade : FacadeBase<IRecipeRepository, RecipeEntity>, IRecipeFacade
     {
         private readonly IRecipeRepository recipeRepository;
         private readonly IMapper mapper;
@@ -16,6 +16,7 @@ namespace CookBook.Api.BL.Facades
         public RecipeFacade(
             IRecipeRepository recipeRepository,
             IMapper mapper)
+            : base(recipeRepository)
         {
             this.recipeRepository = recipeRepository;
             this.mapper = mapper;
@@ -33,22 +34,18 @@ namespace CookBook.Api.BL.Facades
             return mapper.Map<RecipeDetailModel>(recipeEntity);
         }
 
-        public Guid CreateOrUpdate(RecipeDetailModel recipeModel)
-        {
-            return recipeRepository.Exists(recipeModel.Id)
-                ? Update(recipeModel)!.Value
-                : Create(recipeModel);
-        }
-
-        public Guid Create(RecipeDetailModel recipeModel)
+        public Guid Create(RecipeDetailModel recipeModel, string? ownerId)
         {
             MergeIngredientAmounts(recipeModel);
             var recipeEntity = mapper.Map<RecipeEntity>(recipeModel);
+            recipeEntity.OwnerId = ownerId;
             return recipeRepository.Insert(recipeEntity);
         }
 
-        public Guid? Update(RecipeDetailModel recipeModel)
+        public Guid? Update(RecipeDetailModel recipeModel, string? ownerId = null)
         {
+            ThrowIfWrongOwner(recipeModel.Id, ownerId);
+
             MergeIngredientAmounts(recipeModel);
 
             var recipeEntity = mapper.Map<RecipeEntity>(recipeModel);
@@ -82,8 +79,10 @@ namespace CookBook.Api.BL.Facades
             recipe.IngredientAmounts = result;
         }
 
-        public void Delete(Guid id)
+        public void Delete(Guid id, string? ownerId = null)
         {
+            ThrowIfWrongOwner(id, ownerId);
+
             recipeRepository.Remove(id);
         }
     }

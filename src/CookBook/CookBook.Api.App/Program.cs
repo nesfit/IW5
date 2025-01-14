@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
+﻿using System.Globalization;
 using AutoMapper;
-using AutoMapper.Internal;
+using CookBook.Api.App;
+using CookBook.Api.App.Endpoints;
 using CookBook.Api.App.Extensions;
 using CookBook.Api.App.Processors;
 using CookBook.Api.BL.Facades;
@@ -12,21 +11,23 @@ using CookBook.Api.DAL.Common.Entities;
 using CookBook.Api.DAL.EF.Extensions;
 using CookBook.Api.DAL.EF.Installers;
 using CookBook.Api.DAL.Memory.Installers;
+using CookBook.Common;
 using CookBook.Common.Extensions;
 using CookBook.Common.Models;
+using CookBook.Common.Options;
 using CookBook.Common.Resources;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Localization;
-using Microsoft.AspNetCore.Routing;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Localization;
 
 var builder = WebApplication.CreateBuilder();
+var identityOptions = builder.Configuration.GetSection(nameof(IdentityOptions)).Get<IdentityOptions>()
+    ?? new()
+    {
+        IsEnabled = false,
+        IdentityServerUrl = string.Empty
+    };
 
 ConfigureCors(builder.Services);
 ConfigureLocalization(builder.Services);
@@ -34,6 +35,10 @@ ConfigureLocalization(builder.Services);
 ConfigureOpenApiDocuments(builder.Services);
 ConfigureDependencies(builder.Services, builder.Configuration);
 ConfigureAutoMapper(builder.Services);
+if (identityOptions.IsEnabled)
+{
+    ConfigureAuthentication(builder.Services, identityOptions.IdentityServerUrl);
+}
 
 var app = builder.Build();
 
@@ -43,7 +48,11 @@ UseDevelopmentSettings(app);
 UseSecurityFeatures(app);
 UseLocalization(app);
 UseRouting(app);
-UseEndpoints(app);
+if (identityOptions.IsEnabled)
+{
+    UseAuthorization(app);
+}
+UseEndpoints(app, identityOptions);
 UseOpenApi(app);
 
 app.Run();
@@ -98,57 +107,37 @@ void ConfigureAutoMapper(IServiceCollection serviceCollection)
     serviceCollection.AddAutoMapper(typeof(EntityBase), typeof(ApiBLInstaller));
 }
 
+void ConfigureAuthentication(IServiceCollection serviceCollection, string identityServerUrl)
+{
+    serviceCollection.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+        .AddJwtBearer(options =>
+        {
+            options.Authority = identityServerUrl;
+            options.TokenValidationParameters.ValidateAudience = false;
+        });
+
+    serviceCollection.AddAuthorization(
+        options =>
+        {
+            options.AddPolicy(ApiPolicies.IngredientAdmin, policy => policy.RequireRole(AppRoles.Admin));
+        });
+    serviceCollection.AddHttpContextAccessor();
+}
+
 void ValidateAutoMapperConfiguration(IServiceProvider serviceProvider)
 {
     var mapper = serviceProvider.GetRequiredService<IMapper>();
     mapper.ConfigurationProvider.AssertConfigurationIsValid();
 }
 
-void UseEndpoints(WebApplication application)
+void UseEndpoints(WebApplication application, IdentityOptions identityOptions)
 {
     var endpointsBase = application.MapGroup("api")
         .WithOpenApi();
 
-    UseIngredientEndpoints(endpointsBase);
-    UseRecipeEndpoints(endpointsBase);
+    endpointsBase.UseIngredientEndpoints(identityOptions);
+    endpointsBase.UseRecipeEndpoints(identityOptions);
 }
-
-void UseIngredientEndpoints(RouteGroupBuilder routeGroupBuilder)
-{
-    var ingredientEndpoints = routeGroupBuilder.MapGroup("ingredient")
-        .WithTags("ingredient");
-
-    ingredientEndpoints.MapGet("", (IIngredientFacade ingredientFacade) => ingredientFacade.GetAll());
-
-    ingredientEndpoints.MapGet("{id:guid}", Results<Ok<IngredientDetailModel>, NotFound<string>> (Guid id, IIngredientFacade ingredientFacade, IStringLocalizer<IngredientEndpointsResources> ingredientEndpointsLocalizer)
-        => ingredientFacade.GetById(id) is { } ingredient
-            ? TypedResults.Ok(ingredient)
-            : TypedResults.NotFound(ingredientEndpointsLocalizer[nameof(IngredientEndpointsResources.GetById_NotFound), id].Value));
-
-    ingredientEndpoints.MapPost("", (IngredientDetailModel ingredient, IIngredientFacade ingredientFacade) => ingredientFacade.Create(ingredient));
-    ingredientEndpoints.MapPut("", (IngredientDetailModel ingredient, IIngredientFacade ingredientFacade) => ingredientFacade.Update(ingredient));
-    ingredientEndpoints.MapPost("upsert", (IngredientDetailModel ingredient, IIngredientFacade ingredientFacade) => ingredientFacade.CreateOrUpdate(ingredient));
-    ingredientEndpoints.MapDelete("{id:guid}", (Guid id, IIngredientFacade ingredientFacade) => ingredientFacade.Delete(id));
-}
-
-void UseRecipeEndpoints(RouteGroupBuilder routeGroupBuilder)
-{
-    var recipeEndpoints = routeGroupBuilder.MapGroup("recipe")
-        .WithTags("recipe");
-
-    recipeEndpoints.MapGet("", (IRecipeFacade recipeFacade) => recipeFacade.GetAll());
-
-    recipeEndpoints.MapGet("{id:guid}", Results<Ok<RecipeDetailModel>, NotFound<string>> (Guid id, IRecipeFacade recipeFacade, IStringLocalizer<RecipeEndpointsResources> recipeEndpointsLocalizer)
-        => recipeFacade.GetById(id) is { } recipe
-            ? TypedResults.Ok(recipe)
-            : TypedResults.NotFound(recipeEndpointsLocalizer[nameof(RecipeEndpointsResources.GetById_NotFound), id].Value));
-
-    recipeEndpoints.MapPost("", (RecipeDetailModel recipe, IRecipeFacade recipeFacade) => recipeFacade.Create(recipe));
-    recipeEndpoints.MapPut("", (RecipeDetailModel recipe, IRecipeFacade recipeFacade) => recipeFacade.Update(recipe));
-    recipeEndpoints.MapPost("upsert", (RecipeDetailModel recipe, IRecipeFacade recipeFacade) => recipeFacade.CreateOrUpdate(recipe));
-    recipeEndpoints.MapDelete("{id:guid}", (Guid id, IRecipeFacade recipeFacade) => recipeFacade.Delete(id));
-}
-
 
 void UseDevelopmentSettings(WebApplication application)
 {
@@ -180,6 +169,12 @@ void UseLocalization(IApplicationBuilder application)
 void UseRouting(IApplicationBuilder application)
 {
     application.UseRouting();
+}
+
+void UseAuthorization(WebApplication application)
+{
+    application.UseAuthentication();
+    application.UseAuthorization();
 }
 
 void UseOpenApi(IApplicationBuilder application)
