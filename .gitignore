@@ -263,3 +263,5 @@ __pycache__/
 .vscode
 
 appsettings.*.json
+
+**/keys/*.json
