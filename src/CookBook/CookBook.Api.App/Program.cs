@@ -3,8 +3,8 @@ using AutoMapper;
 using CookBook.Api.App;
 using CookBook.Api.App.Endpoints;
 using CookBook.Api.App.Extensions;
+using CookBook.Api.App.Installers;
 using CookBook.Api.App.Processors;
-using CookBook.Api.BL.Facades;
 using CookBook.Api.BL.Installers;
 using CookBook.Api.DAL.Common;
 using CookBook.Api.DAL.Common.Entities;
@@ -13,13 +13,9 @@ using CookBook.Api.DAL.EF.Installers;
 using CookBook.Api.DAL.Memory.Installers;
 using CookBook.Common;
 using CookBook.Common.Extensions;
-using CookBook.Common.Models;
 using CookBook.Common.Options;
-using CookBook.Common.Resources;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Localization;
-using Microsoft.Extensions.Localization;
 
 var builder = WebApplication.CreateBuilder();
 var identityOptions = builder.Configuration.GetSection(nameof(IdentityOptions)).Get<IdentityOptions>()
@@ -100,6 +96,7 @@ void ConfigureDependencies(IServiceCollection serviceCollection, IConfiguration 
     }
 
     serviceCollection.AddInstaller<ApiBLInstaller>();
+    serviceCollection.AddInstaller<ApiAppInstaller>();
 }
 
 void ConfigureAutoMapper(IServiceCollection serviceCollection)
@@ -121,7 +118,6 @@ void ConfigureAuthentication(IServiceCollection serviceCollection, string identi
         {
             options.AddPolicy(ApiPolicies.IngredientAdmin, policy => policy.RequireRole(AppRoles.Admin));
         });
-    serviceCollection.AddHttpContextAccessor();
 }
 
 void ValidateAutoMapperConfiguration(IServiceProvider serviceProvider)
