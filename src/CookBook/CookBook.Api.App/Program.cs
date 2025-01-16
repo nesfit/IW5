@@ -16,6 +16,8 @@ using CookBook.Common.Extensions;
 using CookBook.Common.Options;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Localization;
+using NSwag;
+using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder();
 var identityOptions = builder.Configuration.GetSection(nameof(IdentityOptions)).Get<IdentityOptions>()
@@ -28,7 +30,7 @@ var identityOptions = builder.Configuration.GetSection(nameof(IdentityOptions)).
 ConfigureCors(builder.Services);
 ConfigureLocalization(builder.Services);
 
-ConfigureOpenApiDocuments(builder.Services);
+ConfigureOpenApiDocuments(builder.Services, identityOptions);
 ConfigureDependencies(builder.Services, builder.Configuration);
 ConfigureAutoMapper(builder.Services);
 if (identityOptions.IsEnabled)
@@ -69,11 +71,33 @@ void ConfigureLocalization(IServiceCollection serviceCollection)
     serviceCollection.AddLocalization(options => options.ResourcesPath = string.Empty);
 }
 
-void ConfigureOpenApiDocuments(IServiceCollection serviceCollection)
+void ConfigureOpenApiDocuments(IServiceCollection serviceCollection, IdentityOptions identityOptions)
 {
     serviceCollection.AddEndpointsApiExplorer();
     serviceCollection.AddOpenApiDocument(settings =>
-        settings.OperationProcessors.Add(new RequestCultureOperationProcessor()));
+    {
+        if(identityOptions.IsEnabled)
+        {
+            settings.AddSecurity(JwtBearerDefaults.AuthenticationScheme,
+            [],
+            new OpenApiSecurityScheme()
+            {
+                Type = OpenApiSecuritySchemeType.OAuth2,
+                Flows = new OpenApiOAuthFlows
+                {
+                    ClientCredentials = new OpenApiOAuthFlow
+                    {
+                        Scopes = new Dictionary<string, string>{
+                          { "cookbookapi", "CookBook API access" },
+                        },
+                        TokenUrl = $"{identityOptions.IdentityServerUrl}/connect/token"
+                    }
+                }
+            });
+        }
+
+        settings.OperationProcessors.Add(new RequestCultureOperationProcessor());
+    });
 }
 
 void ConfigureDependencies(IServiceCollection serviceCollection, IConfiguration configuration)
@@ -173,12 +197,14 @@ void UseAuthorization(WebApplication application)
     application.UseAuthorization();
 }
 
-void UseOpenApi(IApplicationBuilder application)
+void UseOpenApi(WebApplication application)
 {
-    application.UseOpenApi();
+    application.UseOpenApi(
+        //options => options.Path = "openapi/{documentName}.json"
+        );
+    application.MapScalarApiReference();
     application.UseSwaggerUi();
 }
-
 
 // Make the implicit Program class public so test projects can access it
 public partial class Program
