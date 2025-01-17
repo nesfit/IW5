@@ -200,10 +200,9 @@ void UseAuthorization(WebApplication application)
 void UseOpenApi(WebApplication application)
 {
     application.UseOpenApi(
-        //options => options.Path = "openapi/{documentName}.json"
+        options => options.Path = "openapi/{documentName}.json"
         );
     application.MapScalarApiReference();
-    application.UseSwaggerUi();
 }
 
 // Make the implicit Program class public so test projects can access it
