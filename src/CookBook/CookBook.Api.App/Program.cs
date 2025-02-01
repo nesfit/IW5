@@ -137,11 +137,8 @@ void ConfigureAuthentication(IServiceCollection serviceCollection, string identi
             options.TokenValidationParameters.ValidateAudience = false;
         });
 
-    serviceCollection.AddAuthorization(
-        options =>
-        {
-            options.AddPolicy(ApiPolicies.IngredientAdmin, policy => policy.RequireRole(AppRoles.Admin));
-        });
+    serviceCollection.AddAuthorizationBuilder()
+        .AddPolicy(ApiPolicies.IngredientAdmin, policy => policy.RequireRole(AppRoles.Admin));
 }
 
 void ValidateAutoMapperConfiguration(IServiceProvider serviceProvider)
