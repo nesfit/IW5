@@ -41,19 +41,14 @@ public class AppUserFacade(
     {
         var user = await userManager.FindByNameAsync(userName);
 
-        if (user is null)
-        {
-            throw new Exception("User not found");
-        }
-
-        return user.Id;
+        return user?.Id ?? throw new Exception("User not found");
     }
 
     public async Task<AppUserDetailModel?> GetUserByIdAsync(Guid id)
     {
         var user = await userManager.FindByIdAsync(id.ToString());
 
-        if(user is null)
+        if (user is null)
         {
             return null;
         }
@@ -73,13 +68,13 @@ public class AppUserFacade(
         return mapper.Map<AppUserDetailModel>(user);
     }
 
-    public async Task<AppUserDetailModel?> GetAppUserByExternalProviderAsync(string provider, string providerIdentityKey)
+    public Task<AppUserDetailModel?> GetAppUserByExternalProviderAsync(string provider, string providerIdentityKey)
     {
         var user = userManager.FindByLoginAsync(provider, providerIdentityKey);
-        return mapper.Map<AppUserDetailModel>(user);
+        return Task.FromResult(mapper.Map<AppUserDetailModel?>(user));
     }
 
-    public async Task<AppUserDetailModel> CreateExternalAppUserAsync(AppUserExternalCreateModel appUserModel)
+    public async Task<AppUserDetailModel?> CreateExternalAppUserAsync(AppUserExternalCreateModel appUserModel)
     {
         var appUserEntity = new AppUserEntity
         {
@@ -94,17 +89,29 @@ public class AppUserFacade(
         await userManager.CreateAsync(appUserEntity);
         await userManager.AddLoginAsync(appUserEntity, userLoginInfo);
 
-        var createdAppUserEntity = await userManager.FindByNameAsync(appUserEntity.UserName);
-
-        return mapper.Map<AppUserDetailModel>(createdAppUserEntity);
+        if (appUserEntity.UserName is not null)
+        {
+            var createdAppUserEntity = await userManager.FindByNameAsync(appUserEntity.UserName);
+            return mapper.Map<AppUserDetailModel>(createdAppUserEntity);
+        }
+        else
+        {
+            return null;
+        }
     }
 
     public async Task<bool> ActivateUserAsync(string securityCode, string email)
     {
         var appUserEntity = await userManager.FindByEmailAsync(email);
-        var identityResult = await userManager.ConfirmEmailAsync(appUserEntity, securityCode);
-
-        return identityResult.Succeeded;
+        if (appUserEntity is not null)
+        {
+            var identityResult = await userManager.ConfirmEmailAsync(appUserEntity, securityCode);
+            return identityResult.Succeeded;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     public async Task<bool> IsEmailConfirmedAsync(string userName)

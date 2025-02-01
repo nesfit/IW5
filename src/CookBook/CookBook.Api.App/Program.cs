@@ -76,7 +76,7 @@ void ConfigureOpenApiDocuments(IServiceCollection serviceCollection, IdentityOpt
     serviceCollection.AddEndpointsApiExplorer();
     serviceCollection.AddOpenApiDocument(settings =>
     {
-        if(identityOptions.IsEnabled)
+        if (identityOptions.IsEnabled)
         {
             settings.AddSecurity(JwtBearerDefaults.AuthenticationScheme,
             [],
@@ -180,7 +180,7 @@ void UseLocalization(IApplicationBuilder application)
     application.UseRequestLocalization(new RequestLocalizationOptions
     {
         DefaultRequestCulture = new RequestCulture(new CultureInfo("en")),
-        SupportedCultures = new List<CultureInfo> { new("en"), new("cs") }
+        SupportedCultures = [new("en"), new("cs")]
     });
 
     application.UseRequestCulture();

@@ -7,26 +7,18 @@ using Duende.IdentityServer.Services;
 
 namespace CookBook.IdentityProvider.App.Services;
 
-public class LocalAppUserProfileService : IProfileService
+public class LocalAppUserProfileService(
+    IAppUserFacade appUserFacade,
+    IAppUserClaimsFacade appUserClaimsFacade)
+    : IProfileService
 {
-    private readonly IAppUserFacade appUserFacade;
-    private readonly IAppUserClaimsFacade appUserClaimsFacade;
-
-    public LocalAppUserProfileService(
-        IAppUserFacade appUserFacade,
-        IAppUserClaimsFacade appUserClaimsFacade)
-    {
-        this.appUserFacade = appUserFacade;
-        this.appUserClaimsFacade = appUserClaimsFacade;
-    }
-
     public async Task GetProfileDataAsync(ProfileDataRequestContext context)
     {
         var subjectId = context.Subject.GetSubjectId();
 
         AppUserDetailModel? user;
 
-        if(Guid.TryParse(subjectId, out var id))
+        if (Guid.TryParse(subjectId, out var id))
         {
             user = await appUserFacade.GetUserByIdAsync(id);
         }
@@ -35,29 +27,30 @@ public class LocalAppUserProfileService : IProfileService
             user = await appUserFacade.GetUserByUserNameAsync(subjectId);
         }
 
-        if(user is not null)
+        if (user is not null)
         {
-            if (user is not null)
+            var appUserClaims = await appUserClaimsFacade.GetAppUserClaimsByUserIdAsync(user.Id);
+            var claims = appUserClaims.Select(claim =>
             {
-                var appUserClaims = await appUserClaimsFacade.GetAppUserClaimsByUserIdAsync(user.Id);
-                var claims = appUserClaims.Select(claim =>
+                if (claim.ClaimType is not null
+                    && claim.ClaimValue is not null)
                 {
-                    if (claim.ClaimType is not null
-                        && claim.ClaimValue is not null)
-                    {
-                        return new Claim(claim.ClaimType, claim.ClaimValue);
-                    }
-                    return null;
-                }).ToList();
+                    return new Claim(claim.ClaimType, claim.ClaimValue);
+                }
+                return null;
+            }).ToList();
 
+            if (user.UserName is not null)
+            {
                 claims.Add(new Claim("username", user.UserName));
-                context.AddRequestedClaims(claims);
             }
+            context.AddRequestedClaims(claims);
         }
     }
 
-    public async Task IsActiveAsync(IsActiveContext context)
+    public Task IsActiveAsync(IsActiveContext context)
     {
         context.IsActive = true;
+        return Task.CompletedTask;
     }
 }
