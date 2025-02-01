@@ -18,4 +18,12 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\CookBook.IdentityProvider.BL\CookBook.IdentityProvider.BL.csproj" />
 	</ItemGroup>
+
+	<ItemGroup>
+	  <EditorConfigFiles Remove="D:\Projects\IW5\GIT\src\CookBook\CookBook.IdentityProvider.App\Pages\.editorconfig" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="D:\Projects\IW5\GIT\src\CookBook\CookBook.IdentityProvider.App\Pages\.editorconfig" />
+	</ItemGroup>
 </Project>

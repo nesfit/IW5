@@ -1,0 +1,9 @@
+# C# files
+[*.cs]
+generated_code = true
+dotnet_analyzer_diagnostic.severity = none
+
+[*]
+generated_code = true
+dotnet_diagnostic.CS8600.severity = none
+dotnet_diagnostic.CS8602.severity = none
