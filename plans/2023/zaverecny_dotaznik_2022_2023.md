@@ -1,4 +1,4 @@
-# IW5 závěrečný dotazník 2023
+# IW5 závěrečný dotazník po ročníku 2022/2023
 
 Celkový počet studentů v předmětu: 39 <br>
 Počet odpovědí v dotazníku: 19
