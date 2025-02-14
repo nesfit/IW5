@@ -1,27 +1,26 @@
-﻿using CookBook.IdentityProvider.BL.Facades;
+﻿using CookBook.IdentityProvider.DAL.Entities;
 using Duende.IdentityServer.Validation;
 using IdentityModel;
+using Microsoft.AspNetCore.Identity;
 
 namespace CookBook.IdentityProvider.App.Services;
 
 public class ResourceOwnerPasswordValidator : IResourceOwnerPasswordValidator
 {
-    private readonly IAppUserFacade appUserFacade;
+    private readonly UserManager<AppUserEntity> userManager;
 
-    public ResourceOwnerPasswordValidator(IAppUserFacade appUserFacade)
+    public ResourceOwnerPasswordValidator(UserManager<AppUserEntity> userManager)
     {
-        this.appUserFacade = appUserFacade;
+        this.userManager = userManager;
     }
 
     public async Task ValidateAsync(ResourceOwnerPasswordValidationContext context)
     {
-        var areCredentialsValid = await appUserFacade.ValidateCredentialsAsync(context.UserName, context.Password);
-
-        if (areCredentialsValid)
+        var user = await userManager.FindByNameAsync(context.UserName);
+        if (user is not null
+            && await userManager.CheckPasswordAsync(user, context.Password))
         {
-            var userId = await appUserFacade.GetUserIdByUserNameAsync(context.UserName);
-
-            context.Result = new GrantValidationResult(userId.ToString(), OidcConstants.AuthenticationMethods.Password);
+            context.Result = new GrantValidationResult(user.Id.ToString(), OidcConstants.AuthenticationMethods.Password);
         }
     }
 }

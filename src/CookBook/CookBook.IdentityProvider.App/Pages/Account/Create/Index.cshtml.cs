@@ -1,5 +1,4 @@
-﻿using CookBook.IdentityProvider.BL.Facades;
-using CookBook.IdentityProvider.BL.Models;
+﻿using CookBook.IdentityProvider.DAL.Entities;
 using Duende.IdentityServer;
 using Duende.IdentityServer.Events;
 using Duende.IdentityServer.Models;
@@ -8,6 +7,7 @@ using Duende.IdentityServer.Stores;
 using Duende.IdentityServer.Test;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -18,17 +18,17 @@ namespace CookBook.IdentityProvider.App.Pages.Create;
 public class Index : PageModel
 {
     private readonly IIdentityServerInteractionService _interaction;
-    private readonly IAppUserFacade appUserFacade;
+    private readonly UserManager<AppUserEntity> userManager;
 
     [BindProperty]
     public InputModel Input { get; set; }
 
     public Index(
         IIdentityServerInteractionService interaction,
-        IAppUserFacade appUserFacade)
+        UserManager<AppUserEntity> userManager)
     {
         _interaction = interaction;
-        this.appUserFacade = appUserFacade;
+        this.userManager = userManager;
     }
 
     public IActionResult OnGet(string? returnUrl)
@@ -69,29 +69,33 @@ public class Index : PageModel
             }
         }
 
-        if ((await appUserFacade.GetUserByUserNameAsync(Input.Username)) != null)
+        if ((await userManager.FindByNameAsync(Input.Username)) is not null)
         {
             ModelState.AddModelError("Input.Username", "Invalid username");
         }
 
         if (ModelState.IsValid)
         {
-            var appUserCreateModel = new AppUserCreateModel
+            var result = await userManager.CreateAsync(
+                new AppUserEntity 
+                { 
+                    UserName = Input.Username,
+                    Email = Input.Email 
+                },
+                Input.Password);
+
+            if (result.Succeeded)
             {
-                UserName = Input.Username,
-                Password = Input.Password,
-                Email = Input.Email,
-                Subject = Input.Username,
-            };
-            var user = await appUserFacade.CreateAppUserAsync(appUserCreateModel);
+                var user = await userManager.FindByNameAsync(Input.Username);
 
-            // issue authentication cookie with subject ID and username
-            //var issuer = new IdentityServerUser(user.Subject)
-            //{
-            //    DisplayName = user.UserName
-            //};
+                // issue authentication cookie with subject ID and username
+                var identityServerUser = new IdentityServerUser(user.Id.ToString())
+                {
+                    DisplayName = user.UserName
+                };
 
-            //await HttpContext.SignInAsync(issuer);
+                await HttpContext.SignInAsync(identityServerUser);
+            }
 
             if (context != null)
             {

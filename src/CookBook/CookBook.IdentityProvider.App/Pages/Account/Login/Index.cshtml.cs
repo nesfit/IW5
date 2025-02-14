@@ -1,4 +1,4 @@
-﻿using CookBook.IdentityProvider.BL.Facades;
+﻿using CookBook.IdentityProvider.DAL.Entities;
 using Duende.IdentityServer;
 using Duende.IdentityServer.Events;
 using Duende.IdentityServer.Models;
@@ -7,6 +7,7 @@ using Duende.IdentityServer.Stores;
 using Duende.IdentityServer.Test;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -18,7 +19,7 @@ public class Index : PageModel
 {
     private readonly IIdentityServerInteractionService _interaction;
     private readonly IEventService _events;
-    private readonly IAppUserFacade appUserFacade;
+    private readonly UserManager<AppUserEntity> userManager;
     private readonly IAuthenticationSchemeProvider _schemeProvider;
     private readonly IIdentityProviderStore _identityProviderStore;
 
@@ -32,13 +33,13 @@ public class Index : PageModel
         IAuthenticationSchemeProvider schemeProvider,
         IIdentityProviderStore identityProviderStore,
         IEventService events,
-        IAppUserFacade appUserFacade)
+        UserManager<AppUserEntity> userManager)
     {
         _interaction = interaction;
         _schemeProvider = schemeProvider;
         _identityProviderStore = identityProviderStore;
         _events = events;
-        this.appUserFacade = appUserFacade;
+        this.userManager = userManager;
     }
 
     public async Task<IActionResult> OnGet(string returnUrl)
@@ -88,21 +89,11 @@ public class Index : PageModel
 
         if (ModelState.IsValid)
         {
-            // validate email is verified
-            //if (await appUserFacade.IsEmailConfirmedAsync(Input.Username) is false)
-            //{
-            //    await _events.RaiseAsync(new UserLoginFailureEvent(Input.Username, "not verified email address", clientId: context?.Client.ClientId));
-            //    ModelState.AddModelError(string.Empty, LoginOptions.NotVerifiedEmailAddress);
+            var user = await userManager.FindByNameAsync(Input.Username);
 
-            //    // something went wrong, show form with error
-            //    await BuildModelAsync(Input.ReturnUrl);
-            //    return Page();
-            //}
-
-            // validate username/password against in-memory store
-            if (await appUserFacade.ValidateCredentialsAsync(Input.Username, Input.Password))
+            if (user is not null
+                && await userManager.CheckPasswordAsync(user, Input.Password))
             {
-                var user = await appUserFacade.GetUserByUserNameAsync(Input.Username);
                 await _events.RaiseAsync(new UserLoginSuccessEvent(user.UserName, user.Subject, user.UserName, clientId: context?.Client.ClientId));
 
                 // only set explicit expiration here if user chooses "remember me". 

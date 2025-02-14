@@ -1,7 +1,4 @@
-﻿using CookBook.IdentityProvider.App.Endpoints;
-using CookBook.IdentityProvider.App.Services;
-using CookBook.IdentityProvider.BL.Facades;
-using CookBook.IdentityProvider.BL.Models;
+﻿using CookBook.IdentityProvider.App.Services;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
 
@@ -53,7 +50,6 @@ namespace CookBook.IdentityProvider.App
 
             app.UseAuthorization();
             app.MapRazorPages().RequireAuthorization();
-            app.UseUserEndpoints();
 
             return app;
         }

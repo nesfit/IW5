@@ -1,9 +1,7 @@
 ﻿using AutoMapper;
 using CookBook.Common.Extensions;
 using CookBook.IdentityProvider.App;
-using CookBook.IdentityProvider.App.Endpoints;
 using CookBook.IdentityProvider.App.Installers;
-using CookBook.IdentityProvider.BL.Installers;
 using CookBook.IdentityProvider.DAL.Installers;
 using Serilog;
 
@@ -18,7 +16,6 @@ try
     var builder = WebApplication.CreateBuilder(args);
 
     builder.Services.AddInstaller<IdentityProviderDALInstaller>();
-    builder.Services.AddInstaller<IdentityProviderBLInstaller>();
     builder.Services.AddInstaller<IdentityProviderAppInstaller>();
 
     builder.Host.UseSerilog((ctx, lc) => lc
@@ -32,11 +29,6 @@ try
     mapper.ConfigurationProvider.AssertConfigurationIsValid();
 
     app.ConfigurePipeline();
-
-    app.MapGroup("api")
-        .AllowAnonymous()
-        .UseUserEndpoints();
-
     app.Run();
 }
 catch (Exception ex)
