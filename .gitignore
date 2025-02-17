@@ -261,5 +261,5 @@ __pycache__/
 *.pyc
 
 .vscode
-
+.DS_Store
 appsettings.*.json
