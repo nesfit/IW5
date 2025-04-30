@@ -1,0 +1,19 @@
+[
+  {
+    "Name": "API + Web + Identity",
+    "Projects": [
+      {
+        "Path": "CookBook.Api.App\\CookBook.Api.App.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "CookBook.Web.App\\CookBook.Web.App.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "CookBook.IdentityProvider.App\\CookBook.IdentityProvider.App.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]
