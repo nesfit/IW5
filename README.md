@@ -33,8 +33,8 @@ Organizace kurzu
 |         | **(cvičení)** Web - frontend (Maroš Janota)                                                            |
 | 10. 11. | 9. Identity Management overflow/Serverless (Roman Jašek)                                               |
 | 17. 11. | **STÁTNÍ SVÁTEK**                                                                                      |
-| 01. 12. | 10. Clean Code (Michal Tichý)                                                                          |
-| 24. 11. | 11. [Clean Architecture](./Lectures/Lecture_10/) (Martin Dybal)                                        |
+| 24. 11. | 10. [Clean Architecture](./Lectures/Lecture_10/) (Martin Dybal)                                        |
+| 01. 12. | 11. Clean Code (Michal Tichý)                                                                          |
 | 08. 12. | 12. .NET Aspire (Jan Pluskal)                                                                          |
 
 --- 
