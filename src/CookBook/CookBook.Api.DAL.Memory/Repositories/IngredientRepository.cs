@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using AutoMapper;
+using Mapster;
 using CookBook.Api.DAL.Common.Entities;
 using CookBook.Api.DAL.Common.Repositories;
 
@@ -11,15 +11,11 @@ namespace CookBook.Api.DAL.Memory.Repositories
     {
         private readonly IList<IngredientEntity> ingredients;
         private readonly IList<IngredientAmountEntity> ingredientAmounts;
-        private readonly IMapper mapper;
 
-        public IngredientRepository(
-            Storage storage,
-            IMapper mapper)
+        public IngredientRepository(Storage storage)
         {
             this.ingredients = storage.Ingredients;
             this.ingredientAmounts = storage.IngredientAmounts;
-            this.mapper = mapper;
         }
 
         public IList<IngredientEntity> GetAll()
@@ -44,7 +40,7 @@ namespace CookBook.Api.DAL.Memory.Repositories
                 ingredientInStorage.Id == entity.Id);
             if (ingredientExisting != null)
             {
-                mapper.Map(entity, ingredientExisting);
+                entity.Adapt(ingredientExisting);
             }
 
             return ingredientExisting?.Id;

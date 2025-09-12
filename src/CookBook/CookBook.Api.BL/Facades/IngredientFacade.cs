@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using AutoMapper;
+using Mapster;
 using CookBook.Api.DAL.Common.Entities;
 using CookBook.Api.DAL.Common.Repositories;
 using CookBook.Common.Models;
@@ -10,25 +10,22 @@ namespace CookBook.Api.BL.Facades
     public class IngredientFacade : IIngredientFacade
     {
         private readonly IIngredientRepository ingredientRepository;
-        private readonly IMapper mapper;
 
         public IngredientFacade(
-            IIngredientRepository ingredientRepository,
-            IMapper mapper)
+            IIngredientRepository ingredientRepository)
         {
             this.ingredientRepository = ingredientRepository;
-            this.mapper = mapper;
         }
 
         public List<IngredientListModel> GetAll()
         {
-            return mapper.Map<List<IngredientListModel>>(ingredientRepository.GetAll());
+            return ingredientRepository.GetAll().Adapt<List<IngredientListModel>>();
         }
 
         public IngredientDetailModel? GetById(Guid id)
         {
             var ingredientEntity = ingredientRepository.GetById(id);
-            return mapper.Map<IngredientDetailModel>(ingredientEntity);
+            return ingredientEntity?.Adapt<IngredientDetailModel>();
         }
 
         public Guid CreateOrUpdate(IngredientDetailModel ingredientModel)
@@ -40,13 +37,13 @@ namespace CookBook.Api.BL.Facades
 
         public Guid Create(IngredientDetailModel ingredientModel)
         {
-            var ingredientEntity = mapper.Map<IngredientEntity>(ingredientModel);
+            var ingredientEntity = ingredientModel.Adapt<IngredientEntity>();
             return ingredientRepository.Insert(ingredientEntity);
         }
 
         public Guid? Update(IngredientDetailModel ingredientModel)
         {
-            var ingredientEntity = mapper.Map<IngredientEntity>(ingredientModel);
+            var ingredientEntity = ingredientModel.Adapt<IngredientEntity>();
             return ingredientRepository.Update(ingredientEntity);
         }
 

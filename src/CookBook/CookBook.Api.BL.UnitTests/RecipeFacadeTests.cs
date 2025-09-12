@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using AutoMapper;
 using CookBook.Api.BL.Facades;
+using CookBook.Api.BL.Mapping;
 using CookBook.Api.DAL.Common.Repositories;
 using CookBook.Common.Enums;
 using CookBook.Common.Models;
@@ -12,6 +12,10 @@ using Xunit;
 namespace CookBook.Api.BL.UnitTests;
 public class RecipeFacadeTests
 {
+    static RecipeFacadeTests()
+    {
+        ApiMapsterConfig.RegisterMappings();
+    }
     [Fact]
     public void Delete_Calls_Correct_Method_On_Repository()
     {
@@ -20,8 +24,7 @@ public class RecipeFacadeTests
         repositoryMock.Setup(recipeRepository => recipeRepository.Remove(It.IsAny<Guid>()));
 
         var repository = repositoryMock.Object;
-        var mapper = new Mock<IMapper>(MockBehavior.Strict).Object;
-        var facade = new RecipeFacade(repository, mapper);
+        var facade = new RecipeFacade(repository);
 
         var itemId = Guid.NewGuid();
         //act
@@ -226,8 +229,7 @@ public class RecipeFacadeTests
     private static RecipeFacade GetFacadeWithForbiddenDependencyCalls()
     {
         var repository = new Mock<IRecipeRepository>(MockBehavior.Strict).Object;
-        var mapper = new Mock<IMapper>(MockBehavior.Strict).Object;
-        var facade = new RecipeFacade(repository, mapper);
+        var facade = new RecipeFacade(repository);
         return facade;
     }
 }

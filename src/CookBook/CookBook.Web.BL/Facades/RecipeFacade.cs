@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AutoMapper;
 using CookBook.Common.Models;
 using CookBook.Web.BL.Options;
 using CookBook.Web.DAL.Repositories;
@@ -17,9 +16,8 @@ namespace CookBook.Web.BL.Facades
         public RecipeFacade(
             IRecipeApiClient apiClient,
             RecipeRepository recipeRepository,
-            IMapper mapper,
             IOptions<LocalDbOptions> localDbOptions)
-            : base(recipeRepository, mapper, localDbOptions)
+            : base(recipeRepository, localDbOptions)
         {
             this.apiClient = apiClient;
         }

@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using AutoMapper;
-using AutoMapper.Internal;
 using CookBook.Api.App.Extensions;
 using CookBook.Api.App.Processors;
 using CookBook.Api.BL.Facades;
 using CookBook.Api.BL.Installers;
+using CookBook.Api.BL.Mapping;
 using CookBook.Api.DAL.Common;
 using CookBook.Api.DAL.Common.Entities;
 using CookBook.Api.DAL.EF.Extensions;
@@ -33,11 +32,9 @@ ConfigureLocalization(builder.Services);
 
 ConfigureOpenApiDocuments(builder.Services);
 ConfigureDependencies(builder.Services, builder.Configuration);
-ConfigureAutoMapper(builder.Services);
+ConfigureMapster(builder.Services);
 
 var app = builder.Build();
-
-ValidateAutoMapperConfiguration(app.Services);
 
 UseDevelopmentSettings(app);
 UseSecurityFeatures(app);
@@ -93,15 +90,9 @@ void ConfigureDependencies(IServiceCollection serviceCollection, IConfiguration 
     serviceCollection.AddInstaller<ApiBLInstaller>();
 }
 
-void ConfigureAutoMapper(IServiceCollection serviceCollection)
+void ConfigureMapster(IServiceCollection serviceCollection)
 {
-    serviceCollection.AddAutoMapper(cfg => { }, typeof(EntityBase).Assembly, typeof(ApiBLInstaller).Assembly);
-}
-
-void ValidateAutoMapperConfiguration(IServiceProvider serviceProvider)
-{
-    var mapper = serviceProvider.GetRequiredService<IMapper>();
-    mapper.ConfigurationProvider.AssertConfigurationIsValid();
+    ApiMapsterConfig.RegisterMappings();
 }
 
 void UseEndpoints(WebApplication application)

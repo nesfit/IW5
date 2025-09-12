@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using AutoMapper;
+using Mapster;
 using CookBook.Api.DAL.Common.Entities;
 using CookBook.Api.DAL.Common.Repositories;
 using CookBook.Common.Models;
@@ -11,26 +11,23 @@ namespace CookBook.Api.BL.Facades
     public class RecipeFacade : IRecipeFacade
     {
         private readonly IRecipeRepository recipeRepository;
-        private readonly IMapper mapper;
 
         public RecipeFacade(
-            IRecipeRepository recipeRepository,
-            IMapper mapper)
+            IRecipeRepository recipeRepository)
         {
             this.recipeRepository = recipeRepository;
-            this.mapper = mapper;
         }
 
         public List<RecipeListModel> GetAll()
         {
             var recipeEntities = recipeRepository.GetAll();
-            return mapper.Map<List<RecipeListModel>>(recipeEntities);
+            return recipeEntities.Adapt<List<RecipeListModel>>();
         }
 
         public RecipeDetailModel? GetById(Guid id)
         {
             var recipeEntity = recipeRepository.GetById(id);
-            return mapper.Map<RecipeDetailModel>(recipeEntity);
+            return recipeEntity?.Adapt<RecipeDetailModel>();
         }
 
         public Guid CreateOrUpdate(RecipeDetailModel recipeModel)
@@ -43,7 +40,7 @@ namespace CookBook.Api.BL.Facades
         public Guid Create(RecipeDetailModel recipeModel)
         {
             MergeIngredientAmounts(recipeModel);
-            var recipeEntity = mapper.Map<RecipeEntity>(recipeModel);
+            var recipeEntity = recipeModel.Adapt<RecipeEntity>();
             return recipeRepository.Insert(recipeEntity);
         }
 
@@ -51,7 +48,7 @@ namespace CookBook.Api.BL.Facades
         {
             MergeIngredientAmounts(recipeModel);
 
-            var recipeEntity = mapper.Map<RecipeEntity>(recipeModel);
+            var recipeEntity = recipeModel.Adapt<RecipeEntity>();
             recipeEntity.IngredientAmounts = recipeModel.IngredientAmounts.Select(t =>
                 new IngredientAmountEntity
                 {
