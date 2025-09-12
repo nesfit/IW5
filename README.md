@@ -3,8 +3,6 @@
 ---
 # Aktuality k předmětu
 
-2024-10-24 - Prohození témat u posledních 2 přednášek - Serverless a Clean Architecture
-
 --- 
 # Přednášky a demonstrační cvičení
 
@@ -12,32 +10,32 @@ Organizace kurzu
 
 |                      |    Místnost |            Čas |
 | -                    | -           | -              |
-| Přednáška            | G202        | Ut 10:00-11:50 |
-| Demonstrační cvičení | G202        | Ut 12:00-13:50 |
+| Přednáška            | L314        | Po 14:00-15:50 |
+| Demonstrační cvičení | L314        | Po 16:00-17:50 |
 
 +++
 
 | Datum   | Téma                                                                                                   |
 | -       |--------------------------------------------------------------------------------------------------------|
-| 16. 09. | 1. [Úvod, představení předmětu, projektu, setup prostředí](./Lectures/Lecture_01/) (Roman Jašek)       |
+| 15. 09. | 1. [Úvod, představení předmětu, projektu, setup prostředí](./Lectures/Lecture_01/) (Roman Jašek)       |
 |         | **(cvičení)** Minimal API, routing (Roman Jašek)                                                       |
-| 23. 09. | 2. .NET Aspire (Daniel Dolejška)                                                                       |
-| 30. 09. | 3. [Inversion of Control, konfigurace, lokalizace](./Lectures/Lecture_02/) (Michal Mrnuštík)           |
+| 22. 09. | 2. [Inversion of Control, konfigurace, lokalizace](./Lectures/Lecture_02/) (Michal Mrnuštík)           |
 |         | **(cvičení)** ASP&#46;NET Core Web API, controller, swagger, Postman, middleware (Michal Mrnuštík)     |
-| 07. 10. | 4. [Web - Blazor](./Lectures/Lecture_03/) (Roman Jašek)                                                |
+| 29. 09. | 3.[Web - Blazor](./Lectures/Lecture_03/) (Roman Jašek)                                                 |
 |         | **(cvičení)** Web - Blazor (Roman Jašek)                                                               |
-| 14. 10. | 5. [Web - Blazor](./Lectures/Lecture_04/) (Roman Jašek)                                                |
+| 06. 10. | 4. [Web - Blazor](./Lectures/Lecture_04/) (Roman Jašek)                                                |
 |         | **(cvičení)** Testování, CI/CD, nasazování do Azure (Michal Tichý)                                     |
-| 21. 10. | 6. [Web - napojení na API](./Lectures/Lecture_06/) (Roman Jašek)                                       |
+| 13. 10. | 5. [Web - napojení na API](./Lectures/Lecture_06/) (Roman Jašek)                                       |
 |         | **(cvičení)** Takhle napište projekt?! (Roman Jašek)                                                   |
-| 28. 10. | **STÁTNÍ SVÁTEK**                                                                                      |
-| 04. 11. | 7. [Web - frontend](./Lectures/Lecture_05/) (Maroš Janota)                                             |
-|         | **(cvičení)** Web - frontend (Maroš Janota)                                                   |        |
-| 11. 11. | 8. [Identity Management - část 1](./Lectures/Lecture_08/) (Roman Jašek)                                |
-| 18. 11. | 9. [Identity Management - část 2](./Lectures/Lecture_09/) (Roman Jašek)                                |
-| 25. 11. | 10. Clean Code (Michal Tichý)                                                                          |
-| 02. 12. | 11. Serverless (Roman Jašek)                                                                           |
-| 09. 12. | 12. [Clean Architecture](./Lectures/Lecture_10/) (Martin Dybal)                                        |
+| 20. 10. | 6. [Identity Management - část 1](./Lectures/Lecture_08/) (Roman Jašek)                                |
+| 27. 10. | 7. [Identity Management - část 2](./Lectures/Lecture_09/) (Roman Jašek)                                |
+| 03. 11. | 8. [Web - frontend](./Lectures/Lecture_05/) (Maroš Janota)                                             |
+|         | **(cvičení)** Web - frontend (Maroš Janota)                                                            |
+| 10. 11. | 9. Identity Management overflow/Serverless (Roman Jašek)                                               |
+| 17. 11. | **STÁTNÍ SVÁTEK**                                                                                      |
+| 24. 11. | 10. [Clean Architecture](./Lectures/Lecture_10/) (Martin Dybal)                                        |
+| 01. 12. | 11. Clean Code (Michal Tichý)                                                                          |
+| 08. 12. | 12. .NET Aspire (Jan Pluskal)                                                                          |
 
 --- 
 
@@ -95,7 +93,6 @@ Organizace kurzu
 * Michal Mrnuštík: [e-mail](mailto:michal.mrnustik@outlook.com)
 * Michal Tichý: [e-mail](mailto:edu@tichymichal.net)
 * Martin Dybal: [www](https://www.dybal.it/)
-* Daniel Dolejška
 * Maroš Janota
 * Tibor Jašek
 * Jan Pluskal
