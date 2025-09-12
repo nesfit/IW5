@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     
   <ItemGroup>
-    <PackageReference Include="Microsoft.JSInterop" Version="8.0.8" />
+    <PackageReference Include="Microsoft.JSInterop" Version="9.0.9" />
   </ItemGroup>
 
   <ItemGroup>
