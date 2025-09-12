@@ -95,7 +95,7 @@ void ConfigureDependencies(IServiceCollection serviceCollection, IConfiguration 
 
 void ConfigureAutoMapper(IServiceCollection serviceCollection)
 {
-    serviceCollection.AddAutoMapper(typeof(EntityBase), typeof(ApiBLInstaller));
+    serviceCollection.AddAutoMapper(cfg => { }, typeof(EntityBase).Assembly, typeof(ApiBLInstaller).Assembly);
 }
 
 void ValidateAutoMapperConfiguration(IServiceProvider serviceProvider)
