@@ -1,8 +1,8 @@
-﻿using CookBook.Common.Installers;
-using Microsoft.Extensions.DependencyInjection;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using CookBook.Common.Installers;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace CookBook.Common.Extensions
 {

@@ -10,7 +10,7 @@ namespace CookBook.Web.App
         private IJSRuntime jsRuntime { get; set; } = null!;
 
         [Inject]
-        private NavigationManager navigationManager {  get; set; } = null!;
+        private NavigationManager navigationManager { get; set; } = null!;
 
         private CultureInfo[] supportedCultures = {
             new("cs"),

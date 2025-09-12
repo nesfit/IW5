@@ -73,47 +73,47 @@ public class InMemoryDatabaseFixture : IDatabaseFixture
     private void SeedStorage(Storage storage)
     {
         storage.Ingredients.Add(new IngredientEntity
-            {
-                Id = IngredientGuids[0],
-                Name = "Vejce",
-                Description = "Popis vajec",
-                ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Chicken_egg_2009-06-04.jpg/428px-Chicken_egg_2009-06-04.jpg",
-            });
+        {
+            Id = IngredientGuids[0],
+            Name = "Vejce",
+            Description = "Popis vajec",
+            ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Chicken_egg_2009-06-04.jpg/428px-Chicken_egg_2009-06-04.jpg",
+        });
 
         storage.Ingredients.Add(new IngredientEntity
-            {
-                Id = IngredientGuids[1],
-                Name = "Cibule",
-                Description = "Popis cibule",
-                ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Onion_on_White.JPG/480px-Onion_on_White.JPG"
-            });
+        {
+            Id = IngredientGuids[1],
+            Name = "Cibule",
+            Description = "Popis cibule",
+            ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Onion_on_White.JPG/480px-Onion_on_White.JPG"
+        });
 
         storage.IngredientAmounts.Add(new IngredientAmountEntity
-            {
-                Id = IngredientAmountGuids[0],
-                Amount = 4.0,
-                Unit = Unit.Pieces,
-                RecipeId = RecipeGuids[0],
-                IngredientId = IngredientGuids[0]
-            });
+        {
+            Id = IngredientAmountGuids[0],
+            Amount = 4.0,
+            Unit = Unit.Pieces,
+            RecipeId = RecipeGuids[0],
+            IngredientId = IngredientGuids[0]
+        });
 
         storage.IngredientAmounts.Add(new IngredientAmountEntity
-            {
-                Id = IngredientAmountGuids[1],
-                Amount = 1.0,
-                Unit = Unit.Pieces,
-                RecipeId = RecipeGuids[0],
-                IngredientId = IngredientGuids[1]
-            });
+        {
+            Id = IngredientAmountGuids[1],
+            Amount = 1.0,
+            Unit = Unit.Pieces,
+            RecipeId = RecipeGuids[0],
+            IngredientId = IngredientGuids[1]
+        });
 
         storage.Recipes.Add(new RecipeEntity
-            {
-                Id = RecipeGuids[0],
-                Name = "Míchaná vejce",
-                Description = "Popis míchaných vajec",
-                Duration = TimeSpan.FromMinutes(15),
-                FoodType = FoodType.MainDish,
-                ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Scrambled_eggs-01.jpg/320px-Scrambled_eggs-01.jpg",
-            });
+        {
+            Id = RecipeGuids[0],
+            Name = "Míchaná vejce",
+            Description = "Popis míchaných vajec",
+            Duration = TimeSpan.FromMinutes(15),
+            FoodType = FoodType.MainDish,
+            ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Scrambled_eggs-01.jpg/320px-Scrambled_eggs-01.jpg",
+        });
     }
 }

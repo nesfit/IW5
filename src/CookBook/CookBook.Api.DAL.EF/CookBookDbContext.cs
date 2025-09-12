@@ -8,7 +8,7 @@ namespace CookBook.Api.DAL.EF
         public DbSet<IngredientEntity> Ingredients { get; set; } = null!;
         public DbSet<RecipeEntity> Recipes { get; set; } = null!;
         public DbSet<IngredientAmountEntity> IngredientAmounts { get; set; } = null!;
-        
+
         public CookBookDbContext(DbContextOptions<CookBookDbContext> options)
             : base(options)
         {

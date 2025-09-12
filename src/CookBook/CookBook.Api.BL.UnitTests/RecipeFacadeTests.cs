@@ -78,10 +78,10 @@ public class RecipeFacadeTests
 
         //assert
         var mergedIngredient = Assert.Single(recipe.IngredientAmounts);
-        Assert.Equal(7,mergedIngredient.Amount);
-        Assert.Equal(mergedIngredientId,mergedIngredient.Ingredient.Id);
+        Assert.Equal(7, mergedIngredient.Amount);
+        Assert.Equal(mergedIngredientId, mergedIngredient.Ingredient.Id);
     }
-    
+
     [Fact]
     public void MergeIngredientAmounts_Does_Not_Merge_Recipe_With_Multiple_IngredientAmounts_Of_Same_Ingredient_And_Different_Units()
     {
@@ -126,19 +126,19 @@ public class RecipeFacadeTests
 
         //act
         facade.MergeIngredientAmounts(recipe);
-        
-        //assert
-        Assert.Equal(2,recipe.IngredientAmounts.Count);
-        var ingredientAmount1 = Assert.Single(recipe.IngredientAmounts.Where(t=>t.Id==ingredientAmount1Id));
-        var ingredientAmount2 = Assert.Single(recipe.IngredientAmounts.Where(t=>t.Id==ingredientAmount2Id));
-        
-        Assert.Equal(5,ingredientAmount1.Amount);
-        Assert.Equal(Unit.Pieces,ingredientAmount1.Unit);
 
-        Assert.Equal(2,ingredientAmount2.Amount);
+        //assert
+        Assert.Equal(2, recipe.IngredientAmounts.Count);
+        var ingredientAmount1 = Assert.Single(recipe.IngredientAmounts.Where(t => t.Id == ingredientAmount1Id));
+        var ingredientAmount2 = Assert.Single(recipe.IngredientAmounts.Where(t => t.Id == ingredientAmount2Id));
+
+        Assert.Equal(5, ingredientAmount1.Amount);
+        Assert.Equal(Unit.Pieces, ingredientAmount1.Unit);
+
+        Assert.Equal(2, ingredientAmount2.Amount);
         Assert.Equal(Unit.Kg, ingredientAmount2.Unit);
     }
-    
+
     [Fact]
     public void MergeIngredientAmounts_Does_Not_Merge_Recipe_With_Multiple_IngredientAmounts_Of_Different_Ingredient_And_Same_Units()
     {
@@ -185,16 +185,16 @@ public class RecipeFacadeTests
 
         //act
         facade.MergeIngredientAmounts(recipe);
-        
-        //assert
-        Assert.Equal(2,recipe.IngredientAmounts.Count);
-        var ingredientAmount1 = Assert.Single(recipe.IngredientAmounts.Where(t=>t.Id==ingredientAmount1Id));
-        var ingredientAmount2 = Assert.Single(recipe.IngredientAmounts.Where(t=>t.Id==ingredientAmount2Id));
-        
-        Assert.Equal(5,ingredientAmount1.Amount);
-        Assert.Equal(Unit.Pieces,ingredientAmount1.Unit);
 
-        Assert.Equal(2,ingredientAmount2.Amount);
+        //assert
+        Assert.Equal(2, recipe.IngredientAmounts.Count);
+        var ingredientAmount1 = Assert.Single(recipe.IngredientAmounts.Where(t => t.Id == ingredientAmount1Id));
+        var ingredientAmount2 = Assert.Single(recipe.IngredientAmounts.Where(t => t.Id == ingredientAmount2Id));
+
+        Assert.Equal(5, ingredientAmount1.Amount);
+        Assert.Equal(Unit.Pieces, ingredientAmount1.Unit);
+
+        Assert.Equal(2, ingredientAmount2.Amount);
         Assert.Equal(Unit.Pieces, ingredientAmount2.Unit);
     }
 

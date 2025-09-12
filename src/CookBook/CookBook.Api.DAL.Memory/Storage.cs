@@ -49,141 +49,141 @@ namespace CookBook.Api.DAL.Memory
         }
 
         private void SeedIngredients()
-    {
-        Ingredients.Add(new IngredientEntity
         {
-            Id = ingredientGuids[0],
-            Name = "Vejce",
-            Description = "Popis vejce",
-            ImageUrl = "https://i.ibb.co/d7mZWGN/image.jpg"
-        });
+            Ingredients.Add(new IngredientEntity
+            {
+                Id = ingredientGuids[0],
+                Name = "Vejce",
+                Description = "Popis vejce",
+                ImageUrl = "https://i.ibb.co/d7mZWGN/image.jpg"
+            });
 
-        Ingredients.Add(new IngredientEntity
+            Ingredients.Add(new IngredientEntity
+            {
+                Id = ingredientGuids[1],
+                Name = "Cibule",
+                Description = "Popis cibule",
+                ImageUrl = "https://i.ibb.co/sbXC0rS/480px-Onion-on-White.jpg"
+            });
+
+            Ingredients.Add(new IngredientEntity
+            {
+                Id = ingredientGuids[2],
+                Name = "Slanina",
+                Description = "Popis slaniny"
+            });
+
+            Ingredients.Add(new IngredientEntity
+            {
+                Id = ingredientGuids[3],
+                Name = "Rajče",
+                Description = "Popis rajčete",
+                ImageUrl = "https://i.ibb.co/1TzsF6B/ingredient-7.jpg"
+            });
+
+            Ingredients.Add(new IngredientEntity
+            {
+                Id = ingredientGuids[4],
+                Name = "Mléko",
+                Description = "Popis mléka",
+                ImageUrl = "https://i.ibb.co/BB3gVxr/ingredient-2.jpg"
+            });
+
+            Ingredients.Add(new IngredientEntity
+            {
+                Id = ingredientGuids[5],
+                Name = "Rýže",
+                Description = "Popis rýže",
+                ImageUrl = "https://i.ibb.co/98CGN3H/ingredient-3.jpg"
+            });
+
+            Ingredients.Add(new IngredientEntity
+            {
+                Id = ingredientGuids[6],
+                Name = "Citron",
+                Description = "Popis citronu",
+                ImageUrl = "https://i.ibb.co/0KQgsdT/ingredient-4.jpg"
+            });
+
+            Ingredients.Add(new IngredientEntity
+            {
+                Id = ingredientGuids[7],
+                Name = "Kuřecí maso",
+                Description = "Popis kuřecího masa",
+                ImageUrl = "https://i.ibb.co/4KVB05k/ingredient-5.jpg"
+            });
+
+            Ingredients.Add(new IngredientEntity
+            {
+                Id = ingredientGuids[8],
+                Name = "Chilli paprička",
+                Description = "Popis chilli papričky",
+                ImageUrl = "https://i.ibb.co/VDB2bQT/ingredient-6.jpg"
+            });
+        }
+
+        private void SeedIngredientAmounts()
         {
-            Id = ingredientGuids[1],
-            Name = "Cibule",
-            Description = "Popis cibule",
-            ImageUrl = "https://i.ibb.co/sbXC0rS/480px-Onion-on-White.jpg"
-        });
+            IngredientAmounts.Add(new IngredientAmountEntity
+            {
+                Id = ingredientAmountGuids[0],
+                Amount = 4.0,
+                Unit = Unit.Pieces,
+                RecipeId = recipeGuids[0],
+                IngredientId = ingredientGuids[0]
+            });
 
-        Ingredients.Add(new IngredientEntity
+            IngredientAmounts.Add(new IngredientAmountEntity
+            {
+                Id = ingredientAmountGuids[1],
+                Amount = 1.0,
+                Unit = Unit.Pieces,
+                RecipeId = recipeGuids[0],
+                IngredientId = ingredientGuids[1]
+            });
+        }
+
+        private void SeedRecipes()
         {
-            Id = ingredientGuids[2],
-            Name = "Slanina",
-            Description = "Popis slaniny"
-        });
+            Recipes.Add(new RecipeEntity
+            {
+                Id = recipeGuids[0],
+                Name = "Míchaná vejce",
+                Description = "Popis míchaných vajec",
+                Duration = TimeSpan.FromMinutes(15),
+                FoodType = FoodType.MainDish,
+                ImageUrl = "https://i.ibb.co/mJgrX6B/Scrambled-eggs-01.jpg"
+            });
 
-        Ingredients.Add(new IngredientEntity
-        {
-            Id = ingredientGuids[3],
-            Name = "Rajče",
-            Description = "Popis rajčete",
-            ImageUrl = "https://i.ibb.co/1TzsF6B/ingredient-7.jpg"
-        });
-
-        Ingredients.Add(new IngredientEntity
-        {
-            Id = ingredientGuids[4],
-            Name = "Mléko",
-            Description = "Popis mléka",
-            ImageUrl = "https://i.ibb.co/BB3gVxr/ingredient-2.jpg"
-        });
-
-        Ingredients.Add(new IngredientEntity
-        {
-            Id = ingredientGuids[5],
-            Name = "Rýže",
-            Description = "Popis rýže",
-            ImageUrl = "https://i.ibb.co/98CGN3H/ingredient-3.jpg"
-        });
-
-        Ingredients.Add(new IngredientEntity
-        {
-            Id = ingredientGuids[6],
-            Name = "Citron",
-            Description = "Popis citronu",
-            ImageUrl = "https://i.ibb.co/0KQgsdT/ingredient-4.jpg"
-        });
-
-        Ingredients.Add(new IngredientEntity
-        {
-            Id = ingredientGuids[7],
-            Name = "Kuřecí maso",
-            Description = "Popis kuřecího masa",
-            ImageUrl = "https://i.ibb.co/4KVB05k/ingredient-5.jpg"
-        });
-
-        Ingredients.Add(new IngredientEntity
-        {
-            Id = ingredientGuids[8],
-            Name = "Chilli paprička",
-            Description = "Popis chilli papričky",
-            ImageUrl = "https://i.ibb.co/VDB2bQT/ingredient-6.jpg"
-        });
-    }
-
-    private void SeedIngredientAmounts()
-    {
-        IngredientAmounts.Add(new IngredientAmountEntity
-        {
-            Id = ingredientAmountGuids[0],
-            Amount = 4.0,
-            Unit = Unit.Pieces,
-            RecipeId = recipeGuids[0],
-            IngredientId = ingredientGuids[0]
-        });
-
-        IngredientAmounts.Add(new IngredientAmountEntity
-        {
-            Id = ingredientAmountGuids[1],
-            Amount = 1.0,
-            Unit = Unit.Pieces,
-            RecipeId = recipeGuids[0],
-            IngredientId = ingredientGuids[1]
-        });
-    }
-
-    private void SeedRecipes()
-    {
-        Recipes.Add(new RecipeEntity
-        {
-            Id = recipeGuids[0],
-            Name = "Míchaná vejce",
-            Description = "Popis míchaných vajec",
-            Duration = TimeSpan.FromMinutes(15),
-            FoodType = FoodType.MainDish,
-            ImageUrl = "https://i.ibb.co/mJgrX6B/Scrambled-eggs-01.jpg"
-        });
-
-        Recipes.Add(new RecipeEntity
-        {
-            Id = recipeGuids[1],
-            Name = "Miso polévka",
-            Duration = TimeSpan.FromMinutes(60),
-            FoodType = FoodType.Soup,
-            Description = "Polévka!",
-            ImageUrl = "https://i.ibb.co/RY1XKmL/recipe-2.jpg",
-        });
+            Recipes.Add(new RecipeEntity
+            {
+                Id = recipeGuids[1],
+                Name = "Miso polévka",
+                Duration = TimeSpan.FromMinutes(60),
+                FoodType = FoodType.Soup,
+                Description = "Polévka!",
+                ImageUrl = "https://i.ibb.co/RY1XKmL/recipe-2.jpg",
+            });
 
 
-        Recipes.Add(new RecipeEntity
-        {
-            Id = recipeGuids[2],
-            Name = "Vykoštěné kuře s citronem a bylinkami",
-            Duration = TimeSpan.FromMinutes(60),
-            FoodType = FoodType.MainDish,
-            Description = "Popis kuřete",
-            ImageUrl = "https://i.ibb.co/QJF2ZxX/recipe-1.jpg",
-        });
+            Recipes.Add(new RecipeEntity
+            {
+                Id = recipeGuids[2],
+                Name = "Vykoštěné kuře s citronem a bylinkami",
+                Duration = TimeSpan.FromMinutes(60),
+                FoodType = FoodType.MainDish,
+                Description = "Popis kuřete",
+                ImageUrl = "https://i.ibb.co/QJF2ZxX/recipe-1.jpg",
+            });
 
-        Recipes.Add(new RecipeEntity
-        {
-            Id = recipeGuids[3],
-            Name = "Citronový sorbet",
-            Duration = TimeSpan.FromMinutes(30),
-            FoodType = FoodType.Dessert,
-            Description = "Zákusek",
-        });
-    }
+            Recipes.Add(new RecipeEntity
+            {
+                Id = recipeGuids[3],
+                Name = "Citronový sorbet",
+                Duration = TimeSpan.FromMinutes(30),
+                FoodType = FoodType.Dessert,
+                Description = "Zákusek",
+            });
+        }
     }
 }

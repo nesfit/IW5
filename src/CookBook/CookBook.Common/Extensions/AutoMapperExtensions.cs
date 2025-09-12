@@ -1,6 +1,6 @@
-﻿using AutoMapper;
-using System;
+﻿using System;
 using System.Linq.Expressions;
+using AutoMapper;
 
 namespace CookBook.Common.Extensions
 {

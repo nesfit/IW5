@@ -133,13 +133,13 @@ namespace CookBook.Api.DAL.Memory.Repositories
             foreach (var ingredientModel in recipeIngredientModelsToInsert)
             {
                 ingredientAmounts.Add(new IngredientAmountEntity
-                    {
-                        Id = ingredientModel.Id,
-                        Amount = ingredientModel.Amount,
-                        Unit = ingredientModel.Unit,
-                        RecipeId = existingEntity.Id,
-                        IngredientId = ingredientModel.IngredientId
-                    });
+                {
+                    Id = ingredientModel.Id,
+                    Amount = ingredientModel.Amount,
+                    Unit = ingredientModel.Unit,
+                    RecipeId = existingEntity.Id,
+                    IngredientId = ingredientModel.IngredientId
+                });
             }
         }
 
@@ -162,7 +162,7 @@ namespace CookBook.Api.DAL.Memory.Repositories
                 var ingredientAmountToRemove = ingredientAmountsToRemove.ElementAt(i);
                 ingredientAmounts.Remove(ingredientAmountToRemove);
             }
-            
+
             var recipeToRemove = recipes.SingleOrDefault(recipeEntity => recipeEntity.Id == id);
             if (recipeToRemove is not null)
             {

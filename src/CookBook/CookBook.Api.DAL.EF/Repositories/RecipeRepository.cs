@@ -37,7 +37,7 @@ namespace CookBook.Api.DAL.EF.Repositories
                     .Single(r => r.Id == recipe.Id);
 
                 mapper.Map(recipe, existingRecipe);
-                
+
                 dbContext.Recipes.Update(existingRecipe);
                 dbContext.SaveChanges();
 

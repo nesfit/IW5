@@ -51,7 +51,7 @@ namespace CookBook.Web.App
         }
 
         private static IngredientDetailModel GetNewIngredientModel()
-            => new() 
+            => new()
             {
                 Id = Guid.NewGuid(),
                 Name = string.Empty,
