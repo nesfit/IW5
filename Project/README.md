@@ -8,29 +8,34 @@ Cílem je vytvořit použitelnou a snadno rozšiřitelnou aplikaci, která splň
 
 Zadání úmyslně není striktní, je Vám ponechána volnost, pro vlastní realizaci. Při hodnocení je kladen důraz na technické zpracování a kvalitu kódu, ale hodnotíme i použitelnost a grafické zpracování aplikace. Pokud Vám přijde, že v zadání chybí nějaká funkcionalita, neváhejte ji doplnit. Pište aplikaci tak, abyste ji sami chtěli používat.
 
-# Zadání - Webová aplikace pro online formuláře
-Výsledná aplikace má sloužit jako jednoduchá webová stránka pro vytváření a správu online formulářů. Pro inspiraci se můžete podívat třeba na aplikace jako Google Forms, Microsoft Forms, Zoho Forms, SurveyMonkey...
+# Zadání - Webová aplikace "Flash cards"
+Výsledná aplikace má sloužit jako jednoduchá webová stránka pro vytváření a správu pomocného nástroje na výuku - tzv. flash cards. Pro inspiraci se můžete podívat třeba na aplikace jako Quizlet, Flashcards World...
 
 ---
 ## Data
 V rámci dat, se kterými se bude pracovat budeme požadovat minimálně následující data.
 
-### Otázka
-- Typ (výběr z možností, textová odpověď, číselná hodnota od-do)
-- Text
-- Popis
+### Karta
+- Typ otázky (textová, obrázková)
+- Typ odpovědi
+- Otázka - Text/URL obrázku
+- Správná odpověď - Text/URL obrázku
+- Doplňující popis (nemusí být uveden u každé karty)
 
 ### Uživatel
 - Jméno
-- Fotografie (postačí url)
+- Fotografie (postačí URL)
 - Role
 
-### Formulář
-- Otázky
+### Kolekce karet
+- Název
+- Karty
 - Datum a čas začátku pro akceptování odpovědí
 - Datum a čas konce pro akceptování odpovědí
 
-### Vyplněné formuláře
+### Absolvované lekce
+- Záznam správných a nesprávných odpovědí
+- Statistiky uživatele
 
 ---
 ## Funkcionalita
@@ -45,11 +50,13 @@ Seznam bude obsahovat všechny typy záznamů kde dává smysl zobrazovat všech
 Tyto stránky budou podporovat filtraci záznamů.
 
 Aplikace podporuje textové vyhledávání vyhledávání minimálně v těchto datech:
-- Otázka
+- Karta
    - Text
    - Popis
 - Uživatel
    - Jméno
+- Kolekce karet
+   - Název
  
 ## Stránka typu "detail" pro každou datovou entitu
 Zobrazuje detail daného typu záznamu se všemi informacemi o něm. Editace záznamu může být implementována na stránce "detail", nebo na samostatné stránce.
@@ -59,7 +66,14 @@ Jelikož práce s přihlašováním a uživatelskými účty je v předmětu za�
 
 V 2. fázi můžete použít přihlašování pomocí .NET Identity tak jak, bude ukazovánú v předmětu, nebo řešit změnu uživatele jenom přepnutím uživatelského účtu - v tom případě budete potřebovat vyřešit práci s uživatelskými rolemi vlastním řešením.
 
-V systému budou vystupovat minimálně role uživatel a administrátor. **Uživatel** může vytvářet formuláře a editovat a mazat formuláře, které vytvořil. **Administrátor** může vytvářet, editovat a mazat libovolné formuláře. **Administrátor** také může vytvářet a mazat nové uživatele.
+V systému budou vystupovat minimálně role uživatel a administrátor.
+**Uživatel** může:
+- Vytvářet karty a kolekce karet
+- Editovat a mazat karty a kolekce karet, které vytvořil
+
+**Administrátor** může:
+- Vytvářet, editovat a mazat libovolné karty a kolekce karet
+- Vytvářet a mazat uživatele
 
 ---
 ## Správa projektu - Azure DevOps
@@ -71,7 +85,7 @@ Při řešení projektu týmy využívají Azure DevOps a využívají GIT na sd
 
 Návod na přidání člena projektu můžete najít zde: *https://docs.microsoft.com/en-us/vsts/accounts/add-team-members-vs*
 
-Z GITu *musí být viditelná postupná práce na projektu a spolupráce týmu*. Pokud uvidíme, že existuje malé množství nelogických a nepřeložitelných commitů tak nás bude zajímat, jak jste spolupracovali a může to vést na snížení bodového hodnocení. Organizaci pojmenujte **iw5-2024-team-\<xlogin00\>** dle Vašeho názvu týmu (xlogin00 je xlogin vedoucího týmu - máte jej v názvu týmu ve VUT IS) a projekt **project** tak, že výsledné URL pro přístup pro tento imaginární tým by bylo https://dev.azure.com/iw5-2024-team-xlogin00/project. Nezapomeňte nastavit **Work item process** template na **Scrum**.
+Z GITu *musí být viditelná postupná práce na projektu a spolupráce týmu*. Pokud uvidíme, že existuje malé množství nelogických a nepřeložitelných commitů tak nás bude zajímat, jak jste spolupracovali a může to vést na snížení bodového hodnocení. Organizaci pojmenujte **iw5-2025-team-\<xlogin00\>** dle Vašeho názvu týmu (xlogin00 je xlogin vedoucího týmu - máte jej v názvu týmu ve VUT IS) a projekt **project** tak, že výsledné URL pro přístup pro tento imaginární tým by bylo https://dev.azure.com/iw5-2025-team-xlogin00/project. Nezapomeňte nastavit **Work item process** template na **Scrum**.
 
 ## Architektura projektu
 
