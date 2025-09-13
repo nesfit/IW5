@@ -25,13 +25,13 @@ Organizace kurzu
 |         | **(cvičení)** Web - Blazor (Roman Jašek)                                                               |
 | 06. 10. | 4. [Web - Blazor](./Lectures/Lecture_04/) (Roman Jašek)                                                |
 |         | **(cvičení)** Testování, CI/CD, nasazování do Azure (Michal Tichý)                                     |
-| 13. 10. | 5. [Web - napojení na API](./Lectures/Lecture_06/) (Roman Jašek)                                       |
+| 13. 10. | 5. [Web - napojení na API](./Lectures/Lecture_05/) (Roman Jašek)                                       |
 |         | **(cvičení)** Takhle napište projekt?! (Roman Jašek)                                                   |
-| 20. 10. | 6. [Identity Management - část 1](./Lectures/Lecture_08/) (Roman Jašek)                                |
-| 27. 10. | 7. [Identity Management - část 2](./Lectures/Lecture_09/) (Roman Jašek)                                |
-| 03. 11. | 8. [Web - frontend](./Lectures/Lecture_05/) (Maroš Janota)                                             |
+| 20. 10. | 6. [Identity Management - část 1](./Lectures/Lecture_06/) (Roman Jašek)                                |
+| 27. 10. | 7. [Identity Management - část 2](./Lectures/Lecture_07/) (Roman Jašek)                                |
+| 03. 11. | 8. [Web - frontend](./Lectures/Lecture_08/) (Maroš Janota)                                             |
 |         | **(cvičení)** Web - frontend (Maroš Janota)                                                            |
-| 10. 11. | 9. Identity Management overflow/Serverless (Roman Jašek)                                               |
+| 10. 11. | 9. [Identity Management overflow/Serverless](./Lectures/Lecture_09/) (Roman Jašek)                                               |
 | 17. 11. | **STÁTNÍ SVÁTEK**                                                                                      |
 | 24. 11. | 10. [Clean Architecture](./Lectures/Lecture_10/) (Martin Dybal)                                        |
 | 01. 12. | 11. Clean Code (Michal Tichý)                                                                          |
