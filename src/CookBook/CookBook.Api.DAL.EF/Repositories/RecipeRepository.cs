@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using AutoMapper;
 using CookBook.Api.DAL.Common.Entities;
 using CookBook.Api.DAL.Common.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -10,14 +9,9 @@ namespace CookBook.Api.DAL.EF.Repositories
 {
     public class RecipeRepository : RepositoryBase<RecipeEntity>, IRecipeRepository
     {
-        private readonly IMapper mapper;
-
-        public RecipeRepository(
-            CookBookDbContext dbContext,
-            IMapper mapper)
+        public RecipeRepository(CookBookDbContext dbContext)
             : base(dbContext)
         {
-            this.mapper = mapper;
         }
 
         public override RecipeEntity? GetById(Guid id)
@@ -36,7 +30,13 @@ namespace CookBook.Api.DAL.EF.Repositories
                     .Include(r => r.IngredientAmounts)
                     .Single(r => r.Id == recipe.Id);
 
-                mapper.Map(recipe, existingRecipe);
+                // Manual property copying to replace AutoMapper
+                existingRecipe.Name = recipe.Name;
+                existingRecipe.Description = recipe.Description;
+                existingRecipe.Duration = recipe.Duration;
+                existingRecipe.FoodType = recipe.FoodType;
+                existingRecipe.ImageUrl = recipe.ImageUrl;
+                existingRecipe.IngredientAmounts = recipe.IngredientAmounts;
                 
                 dbContext.Recipes.Update(existingRecipe);
                 dbContext.SaveChanges();
