@@ -8,6 +8,7 @@ namespace CookBook.Api.DAL.Common.Installers
     {
         public virtual void Install(IServiceCollection serviceCollection)
         {
+            serviceCollection.AddSingleton<IngredientMapper>();
             serviceCollection.AddSingleton<RecipeMapper>();
         }
     }

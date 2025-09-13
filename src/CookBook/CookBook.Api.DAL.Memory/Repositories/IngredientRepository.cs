@@ -1,21 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using CookBook.Api.DAL.Common.Entities;
+﻿using CookBook.Api.DAL.Common.Entities;
+using CookBook.Api.DAL.Common.Mappers;
 using CookBook.Api.DAL.Common.Repositories;
 
 namespace CookBook.Api.DAL.Memory.Repositories
 {
-    public class IngredientRepository : IIngredientRepository
+    public class IngredientRepository(
+        IngredientMapper ingredientMapper,
+        Storage storage)
+        : IIngredientRepository
     {
-        private readonly IList<IngredientEntity> ingredients;
-        private readonly IList<IngredientAmountEntity> ingredientAmounts;
-
-        public IngredientRepository(Storage storage)
-        {
-            this.ingredients = storage.Ingredients;
-            this.ingredientAmounts = storage.IngredientAmounts;
-        }
+        private readonly IList<IngredientEntity> ingredients = storage.Ingredients;
+        private readonly IList<IngredientAmountEntity> ingredientAmounts = storage.IngredientAmounts;
 
         public IList<IngredientEntity> GetAll()
         {
@@ -37,21 +32,11 @@ namespace CookBook.Api.DAL.Memory.Repositories
         {
             var ingredientExisting = ingredients.SingleOrDefault(ingredientInStorage =>
                 ingredientInStorage.Id == entity.Id);
-            if (ingredientExisting != null)
+
+            if (ingredientExisting is not null)
             {
-                // Manual property copying to replace AutoMapper
-                var updatedIngredient = ingredientExisting with
-                {
-                    Name = entity.Name,
-                    Description = entity.Description,
-                    ImageUrl = entity.ImageUrl
-                };
-                
-                // Replace the existing ingredient in the list
-                var index = ingredients.IndexOf(ingredientExisting);
-                ingredients[index] = updatedIngredient;
-                
-                return updatedIngredient.Id;
+                ingredientMapper.UpdateEntity(entity, ingredientExisting);
+                return ingredientExisting.Id;
             }
 
             return null;
