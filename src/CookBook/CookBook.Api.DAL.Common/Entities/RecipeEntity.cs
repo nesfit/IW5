@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using AutoMapper;
 using CookBook.Common.Enums;
 
 namespace CookBook.Api.DAL.Common.Entities
@@ -14,13 +13,5 @@ namespace CookBook.Api.DAL.Common.Entities
         public string? ImageUrl { get; set; }
 
         public ICollection<IngredientAmountEntity> IngredientAmounts { get; set; } = new List<IngredientAmountEntity>();
-    }
-
-    public class RecipeEntityMapperProfile : Profile
-    {
-        public RecipeEntityMapperProfile()
-        {
-            CreateMap<RecipeEntity, RecipeEntity>();
-        }
     }
 }
