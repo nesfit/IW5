@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using CookBook.Api.DAL.Common.Entities;
+using CookBook.Api.DAL.Common.Mappers;
 using CookBook.Api.DAL.Common.Repositories;
 using CookBook.Api.DAL.Memory;
 using CookBook.Api.DAL.Memory.Repositories;
@@ -41,7 +42,7 @@ public class InMemoryDatabaseFixture : IDatabaseFixture
 
     public IRecipeRepository GetRecipeRepository()
     {
-        return new RecipeRepository(inMemoryStorage.Value);
+        return new RecipeRepository(recipeMapper, inMemoryStorage.Value);
     }
 
     public IList<Guid> IngredientGuids { get; } = new List<Guid>
@@ -57,6 +58,7 @@ public class InMemoryDatabaseFixture : IDatabaseFixture
     public IList<Guid> RecipeGuids { get; } = new List<Guid> { new("fabde0cd-eefe-443f-baf6-3d96cc2cbf2e") };
 
     private readonly Lazy<Storage> inMemoryStorage;
+    private readonly RecipeMapper recipeMapper = new();
 
     public InMemoryDatabaseFixture()
     {

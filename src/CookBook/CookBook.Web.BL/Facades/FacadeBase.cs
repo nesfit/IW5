@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
-using AutoMapper;
 using CookBook.Common;
 using CookBook.Common.BL.Facades;
+using CookBook.Web.BL.Mappers;
 using CookBook.Web.BL.Options;
 using CookBook.Web.DAL.Repositories;
 using Microsoft.Extensions.Options;
@@ -12,13 +12,13 @@ namespace CookBook.Web.BL.Facades
         where TDetailModel : IWithId
     {
         private readonly RepositoryBase<TDetailModel> repository;
-        private readonly IMapper mapper;
+        private readonly IMapper<TDetailModel, TListModel> mapper;
         private readonly LocalDbOptions localDbOptions;
         protected virtual string culture => CultureInfo.DefaultThreadCurrentCulture?.Name ?? "cs";
 
         protected FacadeBase(
             RepositoryBase<TDetailModel> repository,
-            IMapper mapper,
+            IMapper<TDetailModel, TListModel> mapper,
             IOptions<LocalDbOptions> localDbOptions)
         {
             this.repository = repository;
@@ -40,7 +40,7 @@ namespace CookBook.Web.BL.Facades
         protected async Task<IList<TListModel>> GetAllFromLocalDbAsync()
         {
             var recipesLocal = await repository.GetAllAsync();
-            return mapper.Map<IList<TListModel>>(recipesLocal);
+            return mapper.ToListModels(recipesLocal);
         }
 
         public abstract Task<TDetailModel> GetByIdAsync(Guid id);
