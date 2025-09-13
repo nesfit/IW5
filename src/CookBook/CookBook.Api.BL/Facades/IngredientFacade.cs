@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using CookBook.Api.BL.Mappers;
-using CookBook.Api.DAL.Common.Entities;
+﻿using CookBook.Api.BL.Mappers;
 using CookBook.Api.DAL.Common.Repositories;
 using CookBook.Common.Models;
 
@@ -28,7 +25,9 @@ namespace CookBook.Api.BL.Facades
         public IngredientDetailModel? GetById(Guid id)
         {
             var ingredientEntity = ingredientRepository.GetById(id);
-            return ingredientEntity == null ? null : mapper.ToDetailModel(ingredientEntity);
+            return ingredientEntity == null
+                ? null
+                : mapper.ToDetailModel(ingredientEntity);
         }
 
         public Guid CreateOrUpdate(IngredientDetailModel ingredientModel)
