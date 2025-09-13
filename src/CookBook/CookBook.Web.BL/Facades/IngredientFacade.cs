@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using CookBook.Common.Models;
 using CookBook.Web.BL.Options;
 using CookBook.Web.DAL.Repositories;
@@ -40,7 +37,7 @@ namespace CookBook.Web.BL.Facades
 
         protected override async Task<Guid> SaveToApiAsync(IngredientDetailModel data)
         {
-            return await apiClient.UpsertAsync(apiVersion, data);
+            return await apiClient.UpsertAsync(culture, data);
         }
 
         public override async Task DeleteAsync(Guid id)
