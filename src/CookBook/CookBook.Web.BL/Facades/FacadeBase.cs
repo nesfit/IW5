@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Net.Http;
-using System.Threading.Tasks;
+﻿using System.Globalization;
 using AutoMapper;
 using CookBook.Common;
 using CookBook.Common.BL.Facades;
@@ -19,7 +14,6 @@ namespace CookBook.Web.BL.Facades
         private readonly RepositoryBase<TDetailModel> repository;
         private readonly IMapper mapper;
         private readonly LocalDbOptions localDbOptions;
-        protected virtual string apiVersion => "3";
         protected virtual string culture => CultureInfo.DefaultThreadCurrentCulture?.Name ?? "cs";
 
         protected FacadeBase(
