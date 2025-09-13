@@ -1,8 +1,8 @@
-﻿using AutoMapper.Internal;
-using CookBook.Common.Extensions;
+﻿using CookBook.Common.Extensions;
 using CookBook.Web.App;
 using CookBook.Web.BL.Extensions;
 using CookBook.Web.BL.Installers;
+using CookBook.Web.BL.Mappers;
 using CookBook.Web.BL.Options;
 using CookBook.Web.DAL.Installers;
 using Microsoft.AspNetCore.Components.Web;
@@ -19,12 +19,13 @@ var apiBaseUrl = builder.Configuration.GetValue<string>("ApiBaseUrl");
 builder.Services.AddInstaller<WebDALInstaller>();
 builder.Services.AddInstaller<WebBLInstaller>(apiBaseUrl);
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-builder.Services.AddAutoMapper(configuration =>
-{
-    // This is a temporary fix - should be able to remove this when version 11.0.2 comes out
-    // More information here: https://github.com/AutoMapper/AutoMapper/issues/3988
-    configuration.Internal().MethodMappingEnabled = false;
-}, typeof(WebBLInstaller));
+
+// Configure Mapperly mappers
+builder.Services.AddScoped<IngredientMapper>();
+builder.Services.AddScoped<RecipeMapper>();
+builder.Services.AddScoped<IMapper<CookBook.Common.Models.IngredientDetailModel, CookBook.Common.Models.IngredientListModel>>(sp => sp.GetService<IngredientMapper>()!);
+builder.Services.AddScoped<IMapper<CookBook.Common.Models.RecipeDetailModel, CookBook.Common.Models.RecipeListModel>>(sp => sp.GetService<RecipeMapper>()!);
+
 builder.Services.AddLocalization();
 
 builder.Services.Configure<LocalDbOptions>(options =>

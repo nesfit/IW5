@@ -3,7 +3,7 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="15.0.1" />
+    <PackageReference Include="Riok.Mapperly" Version="4.2.0" />
     <PackageReference Include="Scrutor" Version="6.1.0" />
   </ItemGroup>
 

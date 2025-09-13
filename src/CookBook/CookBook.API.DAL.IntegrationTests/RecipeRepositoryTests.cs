@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using CookBook.Api.DAL.Common.Entities;
+﻿using CookBook.Api.DAL.Common.Entities;
 using CookBook.Common.Enums;
 using Xunit;
 
@@ -27,7 +24,7 @@ public class RecipeRepositoryTests
 
         //assert
         Assert.Equal(dbFixture.RecipeGuids[0], recipe.Id);
-        Assert.Equal("Míchaná vejce",recipe.Name);
+        Assert.Equal("Míchaná vejce", recipe.Name);
 
         Assert.Equal(2, recipe.IngredientAmounts.Count);
         var ingredientAmount1 =
@@ -56,7 +53,8 @@ public class RecipeRepositoryTests
         var recipeId = Guid.NewGuid();
         var foodType = FoodType.MainDish;
         var duration = TimeSpan.FromMinutes(5);
-        var newRecipe = new RecipeEntity{
+        var newRecipe = new RecipeEntity
+        {
             Id = recipeId,
             Name = "Name",
             Description = "Description",
@@ -75,15 +73,15 @@ public class RecipeRepositoryTests
                 }
             }
         };
-        
+
         //act
         recipeRepository.Insert(newRecipe);
 
         //assert
         var recipe = dbFixture.GetRecipeDirectly(recipeId);
         Assert.NotNull(recipe);
-        Assert.Equal(foodType,recipe.FoodType);
-        Assert.Equal(duration,recipe.Duration);
+        Assert.Equal(foodType, recipe.FoodType);
+        Assert.Equal(duration, recipe.Duration);
 
         var ingredientAmount = dbFixture.GetIngredientAmountDirectly(ingredientAmountId);
         Assert.NotNull(ingredientAmount);
@@ -99,7 +97,7 @@ public class RecipeRepositoryTests
         var recipe = dbFixture.GetRecipeDirectly(recipeId);
         var ingredientAmountId = Guid.NewGuid();
 
-        var newIngredientAmount = 
+        var newIngredientAmount =
             new IngredientAmountEntity
             {
                 Id = ingredientAmountId,
@@ -132,7 +130,7 @@ public class RecipeRepositoryTests
         var recipeId = dbFixture.RecipeGuids[0];
         var recipe = dbFixture.GetRecipeDirectly(recipeId);
         var ingredientAmount = recipe.IngredientAmounts.First();
-        
+
         //act
         ingredientAmount.Amount = 3;
         recipeRepository.Update(recipe);
@@ -141,8 +139,8 @@ public class RecipeRepositoryTests
         var recipeFromDb = dbFixture.GetRecipeDirectly(recipeId);
         Assert.NotNull(recipeFromDb);
         var ingredientAmountFromDb = recipeFromDb.IngredientAmounts.First();
-        Assert.Equal(ingredientAmount.Id,ingredientAmountFromDb.Id);
-        Assert.Equal(3,ingredientAmountFromDb.Amount);
+        Assert.Equal(ingredientAmount.Id, ingredientAmountFromDb.Id);
+        Assert.Equal(3, ingredientAmountFromDb.Amount);
     }
 
     [Fact]

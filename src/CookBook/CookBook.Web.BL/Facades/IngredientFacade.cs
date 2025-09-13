@@ -1,5 +1,5 @@
-﻿using AutoMapper;
-using CookBook.Common.Models;
+﻿using CookBook.Common.Models;
+using CookBook.Web.BL.Mappers;
 using CookBook.Web.BL.Options;
 using CookBook.Web.DAL.Repositories;
 using Microsoft.Extensions.Options;
@@ -13,7 +13,7 @@ namespace CookBook.Web.BL.Facades
         public IngredientFacade(
             IIngredientApiClient apiClient,
             IngredientRepository ingredientRepository,
-            IMapper mapper,
+            IMapper<IngredientDetailModel, IngredientListModel> mapper,
             IOptions<LocalDbOptions> localDbOptions)
             : base(ingredientRepository, mapper, localDbOptions)
         {
