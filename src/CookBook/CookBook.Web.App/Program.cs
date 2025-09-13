@@ -21,10 +21,10 @@ builder.Services.AddInstaller<WebBLInstaller>(apiBaseUrl);
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
 // Configure Mapperly mappers
-builder.Services.AddScoped<IngredientWebMapper>();
-builder.Services.AddScoped<RecipeWebMapper>();
-builder.Services.AddScoped<IWebMapper<CookBook.Common.Models.IngredientDetailModel, CookBook.Common.Models.IngredientListModel>>(sp => sp.GetService<IngredientWebMapper>()!);
-builder.Services.AddScoped<IWebMapper<CookBook.Common.Models.RecipeDetailModel, CookBook.Common.Models.RecipeListModel>>(sp => sp.GetService<RecipeWebMapper>()!);
+builder.Services.AddScoped<IngredientMapper>();
+builder.Services.AddScoped<RecipeMapper>();
+builder.Services.AddScoped<IMapper<CookBook.Common.Models.IngredientDetailModel, CookBook.Common.Models.IngredientListModel>>(sp => sp.GetService<IngredientMapper>()!);
+builder.Services.AddScoped<IMapper<CookBook.Common.Models.RecipeDetailModel, CookBook.Common.Models.RecipeListModel>>(sp => sp.GetService<RecipeMapper>()!);
 
 builder.Services.AddLocalization();
 

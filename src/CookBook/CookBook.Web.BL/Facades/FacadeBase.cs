@@ -12,13 +12,13 @@ namespace CookBook.Web.BL.Facades
         where TDetailModel : IWithId
     {
         private readonly RepositoryBase<TDetailModel> repository;
-        private readonly IWebMapper<TDetailModel, TListModel> mapper;
+        private readonly IMapper<TDetailModel, TListModel> mapper;
         private readonly LocalDbOptions localDbOptions;
         protected virtual string culture => CultureInfo.DefaultThreadCurrentCulture?.Name ?? "cs";
 
         protected FacadeBase(
             RepositoryBase<TDetailModel> repository,
-            IWebMapper<TDetailModel, TListModel> mapper,
+            IMapper<TDetailModel, TListModel> mapper,
             IOptions<LocalDbOptions> localDbOptions)
         {
             this.repository = repository;

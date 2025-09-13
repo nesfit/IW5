@@ -13,7 +13,7 @@ namespace CookBook.Web.BL.Facades
         public IngredientFacade(
             IIngredientApiClient apiClient,
             IngredientRepository ingredientRepository,
-            IWebMapper<IngredientDetailModel, IngredientListModel> mapper,
+            IMapper<IngredientDetailModel, IngredientListModel> mapper,
             IOptions<LocalDbOptions> localDbOptions)
             : base(ingredientRepository, mapper, localDbOptions)
         {

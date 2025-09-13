@@ -17,7 +17,7 @@ namespace CookBook.Web.BL.Facades
         public RecipeFacade(
             IRecipeApiClient apiClient,
             RecipeRepository recipeRepository,
-            IWebMapper<RecipeDetailModel, RecipeListModel> mapper,
+            IMapper<RecipeDetailModel, RecipeListModel> mapper,
             IOptions<LocalDbOptions> localDbOptions)
             : base(recipeRepository, mapper, localDbOptions)
         {
