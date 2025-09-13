@@ -41,18 +41,18 @@ V zadání není požadováno perzistentní uložení dat. To znamená, že kdy�
 Minimální rozsah, který je požadován v rámci projektu je popsán v této kapitole.
 
 ## Stránka typu "seznam" pro každou datovou entitu
-Seznam bude obsahovat všechny záznamy daného typu dostupné v aplikaci. Bude možno se z něj překliknout na detail záznamu a na pohled pro přidání nového záznamu.
+Seznam bude obsahovat všechny typy záznamů kde dává smysl zobrazovat všechny položky. Bude možno se z něj překliknout na detail záznamu a na pohled pro přidání nového záznamu.
+Tyto stránky budou podporovat filtraci záznamů.
 
-## Stránka typu "detail" pro každou datovou entitu
-Zobrazuje detail daného typu záznamu se všemi informacemi o něm. Editace záznamu může být implementována na stránce "detail", nebo na samostatné stránce.
-
-### Stránka "Vyhledávání"
-Stránka, na které můžete použít textové vyhledávání napříč záznamy v aplikaci. Seznam všech nalezených záznamů se zobrazí na stránce a bude se dát překlikem dostat na detail daného záznamu (tedy například v případě týmu se odnaviguje na detail týmu). Textově se vyhledává minimálně v těchto atributech:
+Aplikace podporuje textové vyhledávání vyhledávání minimálně v těchto datech:
 - Otázka
    - Text
    - Popis
 - Uživatel
    - Jméno
+ 
+## Stránka typu "detail" pro každou datovou entitu
+Zobrazuje detail daného typu záznamu se všemi informacemi o něm. Editace záznamu může být implementována na stránce "detail", nebo na samostatné stránce.
 
 ### Práce s uživatelskými účty
 Jelikož práce s přihlašováním a uživatelskými účty je v předmětu zařazená až v 2. části semestru a bude se řešiť až po odevzdání první fáze projektu (API) není v API v první fázi projektu nutno pracovat s uživatelskými rolemi. V první fázi tedy vytvořte aplikaci, která bude obsahovat práci s daty ale není nutno řešit omezení uživatelů na jednotlivé akce. Práce s uživatelskými rolemi bude hodnocena až ve 2. fázi projektu.
@@ -99,7 +99,7 @@ Je silně doporučováno projekty v průběhu semestru konzultovat po přednáš
 ---
 ### Fáze 1 – API (50 bodů)
 V první fázi se zaměříme na vytvoření Web API služby. Výstupem tedy bude spustitelný projekt, který obsahuje Web API, poskytuje specifikaci ve standardu OpenAPI (výběr verze necháme na vás) a poskytuje přístup k API pomocí Swagger inspektoru. API obsahuje minimálně metody pro:
-- Získání dat pro stránku typu "seznam" pro každou datovou entitu
+- Získání dat pro stránky typu "seznam" pro každou obrazovku se seznamem. Endpointy musí podporovat filtraci.
 - Získáni dat pro stránku typu "detail" pro každou datovou entitu
 - Vytvoření záznamu pro každou datovou entitu
 - Upravení existujícího záznamu pro každou datovou entitu
