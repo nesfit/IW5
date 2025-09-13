@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Net.Http;
-using System.Threading.Tasks;
-using Mapster;
+﻿using System.Globalization;
 using CookBook.Common;
 using CookBook.Common.BL.Facades;
 using CookBook.Web.BL.Options;
 using CookBook.Web.DAL.Repositories;
+using Mapster;
 using Microsoft.Extensions.Options;
 
 namespace CookBook.Web.BL.Facades
@@ -18,7 +13,6 @@ namespace CookBook.Web.BL.Facades
     {
         private readonly RepositoryBase<TDetailModel> repository;
         private readonly LocalDbOptions localDbOptions;
-        protected virtual string apiVersion => "3";
         protected virtual string culture => CultureInfo.DefaultThreadCurrentCulture?.Name ?? "cs";
 
         protected FacadeBase(
