@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using AutoMapper;
-using CookBook.Api.DAL.Common.Entities;
+﻿using CookBook.Api.BL.Mappers;
 using CookBook.Api.DAL.Common.Repositories;
 using CookBook.Common.Models;
 
@@ -10,11 +7,11 @@ namespace CookBook.Api.BL.Facades
     public class IngredientFacade : IIngredientFacade
     {
         private readonly IIngredientRepository ingredientRepository;
-        private readonly IMapper mapper;
+        private readonly IngredientMapper mapper;
 
         public IngredientFacade(
             IIngredientRepository ingredientRepository,
-            IMapper mapper)
+            IngredientMapper mapper)
         {
             this.ingredientRepository = ingredientRepository;
             this.mapper = mapper;
@@ -22,13 +19,15 @@ namespace CookBook.Api.BL.Facades
 
         public List<IngredientListModel> GetAll()
         {
-            return mapper.Map<List<IngredientListModel>>(ingredientRepository.GetAll());
+            return mapper.ToListModels(ingredientRepository.GetAll());
         }
 
         public IngredientDetailModel? GetById(Guid id)
         {
             var ingredientEntity = ingredientRepository.GetById(id);
-            return mapper.Map<IngredientDetailModel>(ingredientEntity);
+            return ingredientEntity == null
+                ? null
+                : mapper.ToDetailModel(ingredientEntity);
         }
 
         public Guid CreateOrUpdate(IngredientDetailModel ingredientModel)
@@ -40,13 +39,13 @@ namespace CookBook.Api.BL.Facades
 
         public Guid Create(IngredientDetailModel ingredientModel)
         {
-            var ingredientEntity = mapper.Map<IngredientEntity>(ingredientModel);
+            var ingredientEntity = mapper.ToEntity(ingredientModel);
             return ingredientRepository.Insert(ingredientEntity);
         }
 
         public Guid? Update(IngredientDetailModel ingredientModel)
         {
-            var ingredientEntity = mapper.Map<IngredientEntity>(ingredientModel);
+            var ingredientEntity = mapper.ToEntity(ingredientModel);
             return ingredientRepository.Update(ingredientEntity);
         }
 

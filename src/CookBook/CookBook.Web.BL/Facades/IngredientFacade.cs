@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using AutoMapper;
-using CookBook.Common.Models;
+﻿using CookBook.Common.Models;
+using CookBook.Web.BL.Mappers;
 using CookBook.Web.BL.Options;
 using CookBook.Web.DAL.Repositories;
 using Microsoft.Extensions.Options;
@@ -16,7 +13,7 @@ namespace CookBook.Web.BL.Facades
         public IngredientFacade(
             IIngredientApiClient apiClient,
             IngredientRepository ingredientRepository,
-            IMapper mapper,
+            IMapper<IngredientDetailModel, IngredientListModel> mapper,
             IOptions<LocalDbOptions> localDbOptions)
             : base(ingredientRepository, mapper, localDbOptions)
         {
@@ -40,7 +37,7 @@ namespace CookBook.Web.BL.Facades
 
         protected override async Task<Guid> SaveToApiAsync(IngredientDetailModel data)
         {
-            return await apiClient.UpsertAsync(apiVersion, data);
+            return await apiClient.UpsertAsync(culture, data);
         }
 
         public override async Task DeleteAsync(Guid id)
