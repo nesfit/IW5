@@ -189,7 +189,7 @@ void UseRouting(IApplicationBuilder application)
 void UseOpenApi(IApplicationBuilder application)
 {
     application.UseOpenApi();
-    application.UseSwaggerUi3();
+    application.UseSwaggerUi();
 }
 
 
