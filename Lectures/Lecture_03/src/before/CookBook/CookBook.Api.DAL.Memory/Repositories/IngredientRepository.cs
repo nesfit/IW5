@@ -1,26 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using AutoMapper;
 using CookBook.Api.DAL.Common.Entities;
+using CookBook.Api.DAL.Common.Mappers;
 using CookBook.Api.DAL.Common.Repositories;
 
 namespace CookBook.Api.DAL.Memory.Repositories
 {
-    public class IngredientRepository : IIngredientRepository
+    public class IngredientRepository(
+        IngredientMapper ingredientMapper,
+        Storage storage)
+        : IIngredientRepository
     {
-        private readonly IList<IngredientEntity> ingredients;
-        private readonly IList<IngredientAmountEntity> ingredientAmounts;
-        private readonly IMapper mapper;
-
-        public IngredientRepository(
-            Storage storage,
-            IMapper mapper)
-        {
-            this.ingredients = storage.Ingredients;
-            this.ingredientAmounts = storage.IngredientAmounts;
-            this.mapper = mapper;
-        }
+        private readonly IList<IngredientEntity> ingredients = storage.Ingredients;
+        private readonly IList<IngredientAmountEntity> ingredientAmounts = storage.IngredientAmounts;
 
         public IList<IngredientEntity> GetAll()
         {
@@ -42,12 +35,14 @@ namespace CookBook.Api.DAL.Memory.Repositories
         {
             var ingredientExisting = ingredients.SingleOrDefault(ingredientInStorage =>
                 ingredientInStorage.Id == entity.Id);
-            if (ingredientExisting != null)
+
+            if (ingredientExisting is not null)
             {
-                mapper.Map(entity, ingredientExisting);
+                ingredientMapper.UpdateEntity(entity, ingredientExisting);
+                return ingredientExisting.Id;
             }
 
-            return ingredientExisting?.Id;
+            return null;
         }
 
         public void Remove(Guid id)
