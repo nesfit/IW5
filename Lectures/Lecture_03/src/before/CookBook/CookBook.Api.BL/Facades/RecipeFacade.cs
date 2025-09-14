@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using AutoMapper;
+using CookBook.Api.BL.Mappers;
 using CookBook.Api.DAL.Common.Entities;
 using CookBook.Api.DAL.Common.Repositories;
 using CookBook.Common.Models;
@@ -11,11 +11,11 @@ namespace CookBook.Api.BL.Facades
     public class RecipeFacade : IRecipeFacade
     {
         private readonly IRecipeRepository recipeRepository;
-        private readonly IMapper mapper;
+        private readonly RecipeMapper mapper;
 
         public RecipeFacade(
             IRecipeRepository recipeRepository,
-            IMapper mapper)
+            RecipeMapper mapper)
         {
             this.recipeRepository = recipeRepository;
             this.mapper = mapper;
@@ -24,13 +24,15 @@ namespace CookBook.Api.BL.Facades
         public List<RecipeListModel> GetAll()
         {
             var recipeEntities = recipeRepository.GetAll();
-            return mapper.Map<List<RecipeListModel>>(recipeEntities);
+            return mapper.ToListModels(recipeEntities);
         }
 
         public RecipeDetailModel? GetById(Guid id)
         {
             var recipeEntity = recipeRepository.GetById(id);
-            return mapper.Map<RecipeDetailModel>(recipeEntity);
+            return recipeEntity == null
+                ? null
+                : mapper.ToDetailModel(recipeEntity);
         }
 
         public Guid CreateOrUpdate(RecipeDetailModel recipeModel)
@@ -43,7 +45,7 @@ namespace CookBook.Api.BL.Facades
         public Guid Create(RecipeDetailModel recipeModel)
         {
             MergeIngredientAmounts(recipeModel);
-            var recipeEntity = mapper.Map<RecipeEntity>(recipeModel);
+            var recipeEntity = mapper.ToEntity(recipeModel);
             return recipeRepository.Insert(recipeEntity);
         }
 
@@ -51,7 +53,7 @@ namespace CookBook.Api.BL.Facades
         {
             MergeIngredientAmounts(recipeModel);
 
-            var recipeEntity = mapper.Map<RecipeEntity>(recipeModel);
+            var recipeEntity = mapper.ToEntity(recipeModel);
             recipeEntity.IngredientAmounts = recipeModel.IngredientAmounts.Select(t =>
                 new IngredientAmountEntity
                 {
