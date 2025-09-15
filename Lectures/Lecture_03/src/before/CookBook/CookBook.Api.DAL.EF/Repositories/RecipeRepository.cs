@@ -1,25 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using AutoMapper;
 using CookBook.Api.DAL.Common.Entities;
+using CookBook.Api.DAL.Common.Mappers;
 using CookBook.Api.DAL.Common.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace CookBook.Api.DAL.EF.Repositories
 {
-    public class RecipeRepository : RepositoryBase<RecipeEntity>, IRecipeRepository
+    public class RecipeRepository(
+        RecipeMapper recipeMapper,
+        CookBookDbContext dbContext)
+        : RepositoryBase<RecipeEntity>(dbContext), IRecipeRepository
     {
-        private readonly IMapper mapper;
-
-        public RecipeRepository(
-            CookBookDbContext dbContext,
-            IMapper mapper)
-            : base(dbContext)
-        {
-            this.mapper = mapper;
-        }
-
         public override RecipeEntity? GetById(Guid id)
         {
             return dbContext.Recipes
@@ -28,20 +20,19 @@ namespace CookBook.Api.DAL.EF.Repositories
                 .SingleOrDefault(entity => entity.Id == id);
         }
 
-        public override Guid? Update(RecipeEntity recipe)
+        public override Guid? Update(RecipeEntity recipeUpdated)
         {
-            if (Exists(recipe.Id))
-            {
-                var existingRecipe = dbContext.Recipes
+            var recipeExisting = dbContext.Recipes
                     .Include(r => r.IngredientAmounts)
-                    .Single(r => r.Id == recipe.Id);
+                    .SingleOrDefault(r => r.Id == recipeUpdated.Id);
 
-                mapper.Map(recipe, existingRecipe);
-                
-                dbContext.Recipes.Update(existingRecipe);
+            if (recipeExisting is not null)
+            {
+                recipeMapper.UpdateEntity(recipeUpdated, recipeExisting);
+                dbContext.Recipes.Update(recipeExisting);
                 dbContext.SaveChanges();
 
-                return existingRecipe.Id;
+                return recipeExisting.Id;
             }
             else
             {
