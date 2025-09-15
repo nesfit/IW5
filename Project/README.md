@@ -47,7 +47,7 @@ Minimální rozsah, který je požadován v rámci projektu je popsán v této k
 
 ## Stránka typu "seznam" pro každou datovou entitu
 Seznam bude obsahovat všechny typy záznamů kde dává smysl zobrazovat všechny položky. Bude možno se z něj překliknout na detail záznamu a na pohled pro přidání nového záznamu.
-Tyto stránky budou podporovat filtraci záznamů.
+Tyto stránky budou podporovat filtraci, řazení a stránkování záznamů.
 
 Aplikace podporuje textové vyhledávání vyhledávání minimálně v těchto datech:
 - Karta
@@ -113,7 +113,7 @@ Je silně doporučováno projekty v průběhu semestru konzultovat po přednáš
 ---
 ### Fáze 1 – API (50 bodů)
 V první fázi se zaměříme na vytvoření Web API služby. Výstupem tedy bude spustitelný projekt, který obsahuje Web API, poskytuje specifikaci ve standardu OpenAPI (výběr verze necháme na vás) a poskytuje přístup k API pomocí Swagger inspektoru. API obsahuje minimálně metody pro:
-- Získání dat pro stránky typu "seznam" pro každou obrazovku se seznamem. Endpointy musí podporovat filtraci.
+- Získání dat pro stránky typu "seznam" pro každou obrazovku se seznamem. Endpointy musí podporovat filtrování, řazení a stránkování.
 - Získáni dat pro stránku typu "detail" pro každou datovou entitu
 - Vytvoření záznamu pro každou datovou entitu
 - Upravení existujícího záznamu pro každou datovou entitu
