@@ -1,12 +1,10 @@
 using ConfigurationSample;
-using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddControllers();
-builder.Services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new() {Title = "ConfigurationSample", Version = "v1"}); });
-
+builder.Services.AddOpenApi();
 builder.Services.Configure<ServerNameConfiguration>(builder.Configuration.GetSection("ServerName"));
 
 var app = builder.Build();
@@ -14,14 +12,24 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ConfigurationSample v1"));
+    app.MapOpenApi();
+
+    app.UseSwaggerUI(options =>
+    {
+        options.SwaggerEndpoint("/openapi/v1.json", "v1");
+    });
 }
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
+app.MapGet("/configuration", ([FromServices] IOptions<ServerNameConfiguration> options) =>
+{
+    return options.Value.Name;
+});
 
-app.MapControllers();
+app.MapGet("/configuration/root", ([FromServices] IConfigurationRoot configurationRoot) =>
+{
+    return configurationRoot.GetChildren();
+});
 
 app.Run();
