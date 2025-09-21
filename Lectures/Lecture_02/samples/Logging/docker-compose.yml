@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  seq:
+    image: datalust/seq:latest
+    container_name: seq
+    environment:
+      - ACCEPT_EULA=Y
+      - SEQ_FIRSTRUN_NOAUTHENTICATION=true
+    ports:
+      - "5341:80"
+    volumes:
+      - seq-data:/data
+    restart: unless-stopped
+
+volumes:
+  seq-data:
