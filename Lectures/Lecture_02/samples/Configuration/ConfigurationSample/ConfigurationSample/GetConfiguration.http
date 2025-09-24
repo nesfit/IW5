@@ -1,0 +1,4 @@
+﻿### GET request to example server
+GET https://localhost:7220/Configuration
+
+###

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30516.212
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DependencyInjection", "DependencyInjection\DependencyInjection.csproj", "{CF37054D-9C2A-4429-8B5C-BBAA7F11755F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DependencyInjection.Web", "DependencyInjection.Web\DependencyInjection.Web.csproj", "{653C8B08-DEAE-4547-801C-B1B8A7FD441E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{CF37054D-9C2A-4429-8B5C-BBAA7F11755F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CF37054D-9C2A-4429-8B5C-BBAA7F11755F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CF37054D-9C2A-4429-8B5C-BBAA7F11755F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CF37054D-9C2A-4429-8B5C-BBAA7F11755F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{653C8B08-DEAE-4547-801C-B1B8A7FD441E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{653C8B08-DEAE-4547-801C-B1B8A7FD441E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{653C8B08-DEAE-4547-801C-B1B8A7FD441E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{653C8B08-DEAE-4547-801C-B1B8A7FD441E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

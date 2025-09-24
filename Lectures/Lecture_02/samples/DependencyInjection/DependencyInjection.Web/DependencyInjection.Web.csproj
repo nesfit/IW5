@@ -1,15 +1,13 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
     <PropertyGroup>
         <TargetFramework>net9.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
-        <UserSecretsId>dd4e0fd5-3a3b-4dab-a839-bb4cb16f6cc1</UserSecretsId>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.3"/>
-        <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="9.0.4" />
     </ItemGroup>
-    
+
 </Project>
