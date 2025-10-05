@@ -132,4 +132,10 @@
   <data name="Delete_Button" xml:space="preserve">
     <value>Delete</value>
   </data>
+  <data name="ErrorMessage_General" xml:space="preserve">
+    <value>An unexpected error occurred: {0}</value>
+  </data>
+  <data name="ErrorMessage_FailedToDelete" xml:space="preserve">
+    <value>Failed to delete ingredient: {0}</value>
+  </data>
 </root>

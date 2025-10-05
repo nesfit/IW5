@@ -132,4 +132,10 @@
   <data name="Delete_Button" xml:space="preserve">
     <value>Smazat</value>
   </data>
+  <data name="ErrorMessage_General" xml:space="preserve">
+    <value>Došlo k neočekávané chybě: {0}</value>
+  </data>
+  <data name="ErrorMessage_FailedToDelete" xml:space="preserve">
+    <value>Nepovedlo se vymazat ingredienci: {0}</value>
+  </data>
 </root>
