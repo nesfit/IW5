@@ -7,6 +7,8 @@ using CookBook.Web.BL.Options;
 using CookBook.Web.DAL.Installers;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using Microsoft.JSInterop;
+using System.Globalization;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -36,4 +38,27 @@ builder.Services.Configure<LocalDbOptions>(options =>
 
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
-await builder.Build().RunAsync();
+var host = builder.Build();
+
+// Initialize culture from localStorage
+var jsRuntime = host.Services.GetRequiredService<IJSRuntime>();
+var jsInProcessRuntime = (IJSInProcessRuntime)jsRuntime;
+
+try
+{
+    var culture = jsInProcessRuntime.Invoke<string>("language.get");
+    if (!string.IsNullOrEmpty(culture))
+    {
+        var cultureInfo = new CultureInfo(culture);
+        CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+        CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
+    }
+}
+catch
+{
+    // If there's any error reading from localStorage, use default culture
+    CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("en-US");
+    CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("en-US");
+}
+
+await host.RunAsync();

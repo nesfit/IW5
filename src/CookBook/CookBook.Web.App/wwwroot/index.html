@@ -25,19 +25,13 @@
     </div>
     <script src="_framework/blazor.webassembly.js"></script>
 
+    <script src="scripts/local-storage.js"></script>
     <script src="scripts/online-status.js"></script>
     <script src="scripts/local-db.js"></script>
     <script>
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('service-worker.js');
-    }
-    </script>
-
-    <script>
-    window.blazorCulture = {
-        get: () => window.localStorage['BlazorCulture'],
-        set: (value) => window.localStorage['BlazorCulture'] = value
-    };
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('service-worker.js');
+        }
     </script>
 </body>
 
