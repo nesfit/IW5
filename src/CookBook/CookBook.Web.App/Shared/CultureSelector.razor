@@ -1,10 +1,31 @@
 ﻿@namespace CookBook.Web.App
 
 <label class="ml-auto">
-    <select @bind="Culture" class="form-control bg-dark text-light border-0">
+    <select @bind="SelectedLanguageName" class="form-control bg-dark text-light border-0 culture-select">
         @foreach (var culture in supportedCultures)
         {
-            <option value="@culture">@culture.DisplayName</option>
+            <option value="@culture.TwoLetterISOLanguageName">@GetLanguageDisplay(culture)</option>
         }
     </select>
 </label>
+
+<style>
+    .culture-select {
+        font-family: "Noto Color Emoji", "Apple Color Emoji", "Segoe UI Emoji", "Twemoji Mozilla", "Android Emoji", "EmojiSymbols", system-ui, sans-serif;
+        font-size: 14px;
+    }
+    
+    .culture-select option {
+        font-family: "Noto Color Emoji", "Apple Color Emoji", "Segoe UI Emoji", "Twemoji Mozilla", "Android Emoji", "EmojiSymbols", system-ui, sans-serif;
+        font-size: 14px;
+        padding: 4px 8px;
+        background-color: #343a40;
+        color: #f8f9fa;
+    }
+    
+    /* Force emoji rendering */
+    .culture-select, .culture-select option {
+        font-variant-emoji: emoji;
+        text-rendering: optimizeLegibility;
+    }
+</style>

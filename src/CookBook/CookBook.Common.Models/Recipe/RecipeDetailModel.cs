@@ -1,25 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using CookBook.Common.Enums;
+﻿using CookBook.Common.Enums;
 using CookBook.Common.Models.Resources.Texts;
+using FluentValidation;
 
-namespace CookBook.Common.Models
+namespace CookBook.Common.Models;
+
+public record RecipeDetailModel : IWithId
 {
-    public record RecipeDetailModel : IWithId
+    public required Guid Id { get; init; }
+    public required string Name { get; set; }
+    public required string Description { get; set; }
+    public string? ImageUrl { get; set; }
+    public required TimeSpan Duration { get; set; }
+    public required FoodType FoodType { get; set; }
+    public IList<RecipeDetailIngredientModel> IngredientAmounts { get; set; } = new List<RecipeDetailIngredientModel>();
+}
+
+public class RecipeDetailModelValidator : AbstractValidator<RecipeDetailModel>
+{
+    public RecipeDetailModelValidator()
     {
-        public required Guid Id { get; init; }
+        RuleFor(x => x.Name)
+            .NotEmpty()
+            .WithMessage(RecipeDetailModelResources.Name_Required_ErrorMessage);
 
-        [Required(ErrorMessageResourceName = nameof(RecipeDetailModelResources.Name_Required_ErrorMessage), ErrorMessageResourceType = typeof(RecipeDetailModelResources))]
-        public required string Name { get; set; }
+        RuleFor(x => x.Description)
+            .NotEmpty()
+            .WithMessage(RecipeDetailModelResources.Description_Required_ErrorMessage)
+            .MinimumLength(10)
+            .WithMessage(RecipeDetailModelResources.Description_MinLength_ErrorMessage);
 
-        [Required(ErrorMessageResourceName = nameof(RecipeDetailModelResources.Description_Required_ErrorMessage), ErrorMessageResourceType = typeof(RecipeDetailModelResources))]
-        [MinLength(10, ErrorMessageResourceName = nameof(RecipeDetailModelResources.Description_MinLength_ErrorMessage), ErrorMessageResourceType = typeof(RecipeDetailModelResources))]
-        public required string Description { get; set; }
-
-        public string? ImageUrl { get; set; }
-        public required TimeSpan Duration { get; set; }
-        public required FoodType FoodType { get; set; }
-        public IList<RecipeDetailIngredientModel> IngredientAmounts { get; set; } = new List<RecipeDetailIngredientModel>();
+        RuleForEach(x => x.IngredientAmounts)
+            .SetValidator(new RecipeDetailIngredientModelValidator());
     }
 }

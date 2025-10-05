@@ -7,6 +7,10 @@ using CookBook.Web.BL.Options;
 using CookBook.Web.DAL.Installers;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using Microsoft.JSInterop;
+using System.Globalization;
+using FluentValidation;
+using CookBook.Common.Models;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -17,7 +21,11 @@ builder.Configuration.AddJsonFile("appsettings.json");
 var apiBaseUrl = builder.Configuration.GetValue<string>("ApiBaseUrl");
 
 builder.Services.AddInstaller<WebDALInstaller>();
-builder.Services.AddInstaller<WebBLInstaller>(apiBaseUrl);
+if (apiBaseUrl != null)
+{
+    builder.Services.AddInstaller<WebBLInstaller>(apiBaseUrl);
+}
+
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
 // Configure Mapperly mappers
@@ -26,14 +34,37 @@ builder.Services.AddScoped<RecipeMapper>();
 builder.Services.AddScoped<IMapper<CookBook.Common.Models.IngredientDetailModel, CookBook.Common.Models.IngredientListModel>>(sp => sp.GetService<IngredientMapper>()!);
 builder.Services.AddScoped<IMapper<CookBook.Common.Models.RecipeDetailModel, CookBook.Common.Models.RecipeListModel>>(sp => sp.GetService<RecipeMapper>()!);
 
+builder.Services.AddValidatorsFromAssemblyContaining<IngredientDetailModel>();
+
 builder.Services.AddLocalization();
 
+var localDbEnabledString = builder.Configuration.GetSection(nameof(LocalDbOptions))[nameof(LocalDbOptions.IsLocalDbEnabled)];
 builder.Services.Configure<LocalDbOptions>(options =>
 {
-    options.IsLocalDbEnabled = bool.Parse(builder.Configuration.GetSection(nameof(LocalDbOptions))[nameof(LocalDbOptions.IsLocalDbEnabled)]);
+    options.IsLocalDbEnabled = !string.IsNullOrEmpty(localDbEnabledString) && bool.Parse(localDbEnabledString);
 });
 
+var host = builder.Build();
 
-builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+// Initialize culture from localStorage
+var jsRuntime = host.Services.GetRequiredService<IJSRuntime>();
+var jsInProcessRuntime = (IJSInProcessRuntime)jsRuntime;
 
-await builder.Build().RunAsync();
+try
+{
+    var culture = jsInProcessRuntime.Invoke<string>("language.get");
+    if (!string.IsNullOrEmpty(culture))
+    {
+        var cultureInfo = new CultureInfo(culture);
+        CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+        CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
+    }
+}
+catch
+{
+    // If there's any error reading from localStorage, use default culture
+    CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("en-US");
+    CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("en-US");
+}
+
+await host.RunAsync();

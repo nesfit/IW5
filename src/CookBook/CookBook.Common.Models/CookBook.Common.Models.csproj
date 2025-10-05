@@ -4,6 +4,7 @@
     </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Enums.NET" Version="5.0.0" />
+    <PackageReference Include="FluentValidation" Version="11.9.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -16,6 +17,11 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
+    <Compile Update="Resources\Texts\RecipeDetailIngredientModelResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>RecipeDetailIngredientModelResources.resx</DependentUpon>
+    </Compile>
     <Compile Update="Resources\Texts\RecipeDetailModelResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -27,6 +33,10 @@
     <EmbeddedResource Update="Resources\Texts\IngredientDetailModelResources.resx">
       <LastGenOutput>IngredientDetailModelResources.Designer.cs</LastGenOutput>
       <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Texts\RecipeDetailIngredientModelResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>RecipeDetailIngredientModelResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\Texts\RecipeDetailModelResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

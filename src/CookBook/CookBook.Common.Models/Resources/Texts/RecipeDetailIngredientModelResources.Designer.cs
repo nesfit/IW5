@@ -22,24 +22,24 @@ namespace CookBook.Common.Models.Resources.Texts {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "18.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class IngredientDetailModelResources {
+    internal class RecipeDetailIngredientModelResources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal IngredientDetailModelResources() {
+        internal RecipeDetailIngredientModelResources() {
         }
         
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager {
+        internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CookBook.Common.Models.Resources.Texts.IngredientDetailModelResources", typeof(IngredientDetailModelResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CookBook.Common.Models.Resources.Texts.RecipeDetailIngredientModelResources", typeof(RecipeDetailIngredientModelResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -51,7 +51,7 @@ namespace CookBook.Common.Models.Resources.Texts {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture {
+        internal static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,38 +61,11 @@ namespace CookBook.Common.Models.Resources.Texts {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Description must be at least {0} characters long.
+        ///   Looks up a localized string similar to Amount must be greater than {0}.
         /// </summary>
-        public static string Description_MinimumLength_ErrorMessage {
+        internal static string Amount_GreaterThan_ErrorMessage {
             get {
-                return ResourceManager.GetString("Description_MinimumLength_ErrorMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The Description field is required.
-        /// </summary>
-        public static string Description_Required_ErrorMessage {
-            get {
-                return ResourceManager.GetString("Description_Required_ErrorMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Name must be at least {0} characters long.
-        /// </summary>
-        public static string Name_MinimumLength_ErrorMessage {
-            get {
-                return ResourceManager.GetString("Name_MinimumLength_ErrorMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The Name field is required.
-        /// </summary>
-        public static string Name_Required_ErrorMessage {
-            get {
-                return ResourceManager.GetString("Name_Required_ErrorMessage", resourceCulture);
+                return ResourceManager.GetString("Amount_GreaterThan_ErrorMessage", resourceCulture);
             }
         }
     }

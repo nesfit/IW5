@@ -17,19 +17,38 @@ namespace CookBook.Web.App
             new("en"),
         };
 
-        private CultureInfo Culture
+        private string SelectedLanguageName
         {
-            get => CultureInfo.CurrentCulture;
+            get => CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
             set
             {
-                if (!Equals(CultureInfo.CurrentCulture, value))
+                if (value != CultureInfo.CurrentCulture.TwoLetterISOLanguageName)
                 {
-                    var jsInProcessRuntime = (IJSInProcessRuntime)jsRuntime;
-                    jsInProcessRuntime.InvokeVoid("blazorCulture.set", value.Name);
-
-                    navigationManager.NavigateTo(navigationManager.Uri, true);
+                    try
+                    {
+                        var jsInProcessRuntime = (IJSInProcessRuntime)jsRuntime;
+                        jsInProcessRuntime.InvokeVoid("language.set", value);
+                        
+                        navigationManager.NavigateTo(navigationManager.Uri, true);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Error setting culture: {ex.Message}");
+                    }
                 }
             }
+        }
+
+        private string GetLanguageDisplay(CultureInfo culture)
+        {
+            var icon = culture.TwoLetterISOLanguageName switch
+            {
+                "cs" => "🇨🇿",
+                "en" => "🇺🇸",
+                _ => $"🏳️"
+            };
+
+            return $"{icon} {culture.TwoLetterISOLanguageName.ToUpper()}";
         }
     }
 }

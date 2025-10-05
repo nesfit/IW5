@@ -123,4 +123,10 @@
   <data name="Description_Required_ErrorMessage" xml:space="preserve">
     <value>Popis je povinný</value>
   </data>
+  <data name="Name_MinimumLength_ErrorMessage" xml:space="preserve">
+    <value>Název musí být dlouhý minimálně {0} znaky</value>
+  </data>
+  <data name="Description_MinimumLength_ErrorMessage" xml:space="preserve">
+    <value>Popis musí být dlouhý minimálně {0} znaků</value>
+  </data>
 </root>
