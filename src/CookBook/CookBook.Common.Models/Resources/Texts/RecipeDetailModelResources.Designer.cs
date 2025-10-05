@@ -19,7 +19,7 @@ namespace CookBook.Common.Models.Resources.Texts {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "18.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class RecipeDetailModelResources {
@@ -61,7 +61,7 @@ namespace CookBook.Common.Models.Resources.Texts {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to The Description field minimum length is 10.
         /// </summary>
         public static string Description_MinLength_ErrorMessage {
             get {
@@ -70,7 +70,7 @@ namespace CookBook.Common.Models.Resources.Texts {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to The Description field is required.
         /// </summary>
         public static string Description_Required_ErrorMessage {
             get {
@@ -79,7 +79,7 @@ namespace CookBook.Common.Models.Resources.Texts {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to The Name field is required.
         /// </summary>
         public static string Name_Required_ErrorMessage {
             get {
