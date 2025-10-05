@@ -1,34 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
+﻿using System.Globalization;
 using CookBook.Api.App.Extensions;
 using CookBook.Api.App.Processors;
 using CookBook.Api.BL.Facades;
 using CookBook.Api.BL.Installers;
 using CookBook.Api.BL.Mappers;
 using CookBook.Api.DAL.Common;
-using CookBook.Api.DAL.Common.Entities;
 using CookBook.Api.DAL.EF.Extensions;
 using CookBook.Api.DAL.EF.Installers;
 using CookBook.Api.DAL.Memory.Installers;
 using CookBook.Common.Extensions;
 using CookBook.Common.Models;
 using CookBook.Common.Resources;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
+using FluentValidation;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Localization;
-using Microsoft.AspNetCore.Routing;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Localization;
 
 var builder = WebApplication.CreateBuilder();
 
 ConfigureCors(builder.Services);
 ConfigureLocalization(builder.Services);
+ConfigureValidation(builder.Services);
 
 ConfigureOpenApiDocuments(builder.Services);
 ConfigureDependencies(builder.Services, builder.Configuration);
@@ -59,6 +51,13 @@ void ConfigureCors(IServiceCollection serviceCollection)
 void ConfigureLocalization(IServiceCollection serviceCollection)
 {
     serviceCollection.AddLocalization(options => options.ResourcesPath = string.Empty);
+}
+
+void ConfigureValidation(IServiceCollection serviceCollection)
+{
+    serviceCollection.AddScoped<IValidator<IngredientDetailModel>, IngredientDetailModelValidator>();
+    serviceCollection.AddScoped<IValidator<RecipeDetailModel>, RecipeDetailModelValidator>();
+    serviceCollection.AddScoped<IValidator<RecipeDetailIngredientModel>, RecipeDetailIngredientModelValidator>();
 }
 
 void ConfigureOpenApiDocuments(IServiceCollection serviceCollection)
@@ -96,6 +95,23 @@ void ConfigureMapperly(IServiceCollection serviceCollection)
     serviceCollection.AddSingleton<RecipeMapper>();
 }
 
+async Task<Dictionary<string, string[]>?> ValidateModelAsync<T>(T model, IValidator<T> validator)
+{
+    var validationResult = await validator.ValidateAsync(model);
+
+    if (validationResult.IsValid)
+    {
+        return null;
+    }
+
+    return validationResult.Errors
+        .GroupBy(e => e.PropertyName)
+        .ToDictionary(
+            g => g.Key,
+            g => g.Select(e => e.ErrorMessage).ToArray()
+        );
+}
+
 void UseEndpoints(WebApplication application)
 {
     var endpointsBase = application.MapGroup("api")
@@ -117,9 +133,42 @@ void UseIngredientEndpoints(RouteGroupBuilder routeGroupBuilder)
             ? TypedResults.Ok(ingredient)
             : TypedResults.NotFound(ingredientEndpointsLocalizer[nameof(IngredientEndpointsResources.GetById_NotFound), id].Value));
 
-    ingredientEndpoints.MapPost("", (IngredientDetailModel ingredient, IIngredientFacade ingredientFacade) => ingredientFacade.Create(ingredient));
-    ingredientEndpoints.MapPut("", (IngredientDetailModel ingredient, IIngredientFacade ingredientFacade) => ingredientFacade.Update(ingredient));
-    ingredientEndpoints.MapPost("upsert", (IngredientDetailModel ingredient, IIngredientFacade ingredientFacade) => ingredientFacade.CreateOrUpdate(ingredient));
+    ingredientEndpoints.MapPost("", async Task<Results<Ok<Guid>, ValidationProblem>> (IngredientDetailModel ingredient, IIngredientFacade ingredientFacade, IValidator<IngredientDetailModel> validator) =>
+    {
+        var validationErrors = await ValidateModelAsync(ingredient, validator);
+        if (validationErrors != null)
+        {
+            return TypedResults.ValidationProblem(validationErrors);
+        }
+
+        var id = ingredientFacade.Create(ingredient);
+        return TypedResults.Ok(id);
+    });
+
+    ingredientEndpoints.MapPut("", async Task<Results<Ok<Guid?>, ValidationProblem>> (IngredientDetailModel ingredient, IIngredientFacade ingredientFacade, IValidator<IngredientDetailModel> validator) =>
+    {
+        var validationErrors = await ValidateModelAsync(ingredient, validator);
+        if (validationErrors != null)
+        {
+            return TypedResults.ValidationProblem(validationErrors);
+        }
+
+        var id = ingredientFacade.Update(ingredient);
+        return TypedResults.Ok(id);
+    });
+
+    ingredientEndpoints.MapPost("upsert", async Task<Results<Ok<Guid>, ValidationProblem>> (IngredientDetailModel ingredient, IIngredientFacade ingredientFacade, IValidator<IngredientDetailModel> validator) =>
+    {
+        var validationErrors = await ValidateModelAsync(ingredient, validator);
+        if (validationErrors != null)
+        {
+            return TypedResults.ValidationProblem(validationErrors);
+        }
+
+        var id = ingredientFacade.CreateOrUpdate(ingredient);
+        return TypedResults.Ok(id);
+    });
+
     ingredientEndpoints.MapDelete("{id:guid}", (Guid id, IIngredientFacade ingredientFacade) => ingredientFacade.Delete(id));
 }
 
@@ -135,9 +184,42 @@ void UseRecipeEndpoints(RouteGroupBuilder routeGroupBuilder)
             ? TypedResults.Ok(recipe)
             : TypedResults.NotFound(recipeEndpointsLocalizer[nameof(RecipeEndpointsResources.GetById_NotFound), id].Value));
 
-    recipeEndpoints.MapPost("", (RecipeDetailModel recipe, IRecipeFacade recipeFacade) => recipeFacade.Create(recipe));
-    recipeEndpoints.MapPut("", (RecipeDetailModel recipe, IRecipeFacade recipeFacade) => recipeFacade.Update(recipe));
-    recipeEndpoints.MapPost("upsert", (RecipeDetailModel recipe, IRecipeFacade recipeFacade) => recipeFacade.CreateOrUpdate(recipe));
+    recipeEndpoints.MapPost("", async Task<Results<Ok<Guid>, ValidationProblem>> (RecipeDetailModel recipe, IRecipeFacade recipeFacade, IValidator<RecipeDetailModel> validator) =>
+    {
+        var validationErrors = await ValidateModelAsync(recipe, validator);
+        if (validationErrors != null)
+        {
+            return TypedResults.ValidationProblem(validationErrors);
+        }
+
+        var id = recipeFacade.Create(recipe);
+        return TypedResults.Ok(id);
+    });
+
+    recipeEndpoints.MapPut("", async Task<Results<Ok<Guid?>, ValidationProblem>> (RecipeDetailModel recipe, IRecipeFacade recipeFacade, IValidator<RecipeDetailModel> validator) =>
+    {
+        var validationErrors = await ValidateModelAsync(recipe, validator);
+        if (validationErrors != null)
+        {
+            return TypedResults.ValidationProblem(validationErrors);
+        }
+
+        var id = recipeFacade.Update(recipe);
+        return TypedResults.Ok(id);
+    });
+
+    recipeEndpoints.MapPost("upsert", async Task<Results<Ok<Guid>, ValidationProblem>> (RecipeDetailModel recipe, IRecipeFacade recipeFacade, IValidator<RecipeDetailModel> validator) =>
+    {
+        var validationErrors = await ValidateModelAsync(recipe, validator);
+        if (validationErrors != null)
+        {
+            return TypedResults.ValidationProblem(validationErrors);
+        }
+
+        var id = recipeFacade.CreateOrUpdate(recipe);
+        return TypedResults.Ok(id);
+    });
+
     recipeEndpoints.MapDelete("{id:guid}", (Guid id, IRecipeFacade recipeFacade) => recipeFacade.Delete(id));
 }
 
@@ -179,7 +261,6 @@ void UseOpenApi(IApplicationBuilder application)
     application.UseOpenApi();
     application.UseSwaggerUi();
 }
-
 
 // Make the implicit Program class public so test projects can access it
 public partial class Program

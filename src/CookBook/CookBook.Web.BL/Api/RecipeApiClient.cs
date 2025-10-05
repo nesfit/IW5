@@ -1,12 +1,10 @@
-﻿using System.Net.Http;
-
-namespace CookBook.Web.BL;
+﻿namespace CookBook.Web.BL.Api;
 
 public partial class RecipeApiClient
 {
     public RecipeApiClient(HttpClient httpClient, string baseUrl)
         : this(httpClient)
     {
-            BaseUrl = baseUrl;
+        BaseUrl = baseUrl;
     }
 }

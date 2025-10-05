@@ -1,6 +1,5 @@
-﻿using System;
-using System.Net.Http;
-using CookBook.Common.BL.Facades;
+﻿using CookBook.Common.BL.Facades;
+using CookBook.Web.BL.Api;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CookBook.Web.BL.Installers

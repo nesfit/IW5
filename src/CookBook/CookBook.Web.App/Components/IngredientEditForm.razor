@@ -1,11 +1,24 @@
 ﻿@namespace CookBook.Web.App
 @using CookBook.Web.App.Resources.Texts
+@using Blazored.FluentValidation
 @using Microsoft.Extensions.Localization
 @inherits CookBook.Web.App.Pages.PageBase
 @inject IStringLocalizer<IngredientEditFormResources> IngredientEditFormLocalizer
 
-<EditForm Model="@Data">
-    <DataAnnotationsValidator />
+<EditForm EditContext="@editContext">
+    <FluentValidationValidator />
+
+    @* Display general error messages that aren't tied to specific fields *@
+    @if (GeneralErrorMessages.Any())
+    {
+        <div class="alert alert-danger" role="alert">
+            <h6 class="alert-heading">Error</h6>
+            @foreach (var errorMessage in GeneralErrorMessages)
+            {
+                <div>@errorMessage</div>
+            }
+        </div>
+    }
 
     <div class="form-group">
         <label class="w-100">
@@ -35,10 +48,10 @@
                 <ValidationMessage For="@(() => Data.ImageUrl)"/>
             </small>
         </label>
-        <img src="@Data.ImageUrl" height="100px"/>
-        <small class="form-text text-danger">
-            <ValidationMessage For="@(() => Data.ImageUrl)"/>
-        </small>
+        @if (!string.IsNullOrEmpty(Data.ImageUrl))
+        {
+            <img src="@Data.ImageUrl" height="100px" alt="Ingredient image"/>
+        }
     </div>
 
     <button type="submit" class="btn btn-success" @onclick="@Save">
