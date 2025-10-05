@@ -38,5 +38,17 @@ namespace CookBook.Web.App
                 }
             }
         }
+
+        private string GetLanguageDisplay(CultureInfo culture)
+        {
+            var icon = culture.TwoLetterISOLanguageName switch
+            {
+                "cs" => "🇨🇿",
+                "en" => "🇺🇸",
+                _ => $"🏳️"
+            };
+
+            return $"{icon} {culture.TwoLetterISOLanguageName.ToUpper()}";
+        }
     }
 }
