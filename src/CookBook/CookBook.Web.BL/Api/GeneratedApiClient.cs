@@ -27,7 +27,7 @@ namespace CookBook.Web.BL.Api
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "14.6.1.0 (NJsonSchema v11.5.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial interface IIngredientApiClient
+    public partial interface IIngredientApiClient : IApiClient
     {
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<System.Collections.Generic.ICollection<IngredientListModel>> IngredientGetAsync(string culture);
@@ -76,10 +76,6 @@ namespace CookBook.Web.BL.Api
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "14.6.1.0 (NJsonSchema v11.5.1.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial class IngredientApiClient : IIngredientApiClient
     {
-        #pragma warning disable 8618
-        private string _baseUrl;
-        #pragma warning restore 8618
-
         private System.Net.Http.HttpClient _httpClient;
         private static System.Lazy<Newtonsoft.Json.JsonSerializerSettings> _settings = new System.Lazy<Newtonsoft.Json.JsonSerializerSettings>(CreateSerializerSettings, true);
         private Newtonsoft.Json.JsonSerializerSettings _instanceSettings;
@@ -88,7 +84,6 @@ namespace CookBook.Web.BL.Api
         public IngredientApiClient(System.Net.Http.HttpClient httpClient)
     #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         {
-            BaseUrl = "https://localhost:44378";
             _httpClient = httpClient;
             Initialize();
         }
@@ -98,17 +93,6 @@ namespace CookBook.Web.BL.Api
             var settings = new Newtonsoft.Json.JsonSerializerSettings();
             UpdateJsonSerializerSettings(settings);
             return settings;
-        }
-
-        public string BaseUrl
-        {
-            get { return _baseUrl; }
-            set
-            {
-                _baseUrl = value;
-                if (!string.IsNullOrEmpty(_baseUrl) && !_baseUrl.EndsWith("/"))
-                    _baseUrl += '/';
-            }
         }
 
         protected Newtonsoft.Json.JsonSerializerSettings JsonSerializerSettings { get { return _instanceSettings ?? _settings.Value; } }
@@ -141,7 +125,7 @@ namespace CookBook.Web.BL.Api
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
                     var urlBuilder_ = new System.Text.StringBuilder();
-                    if (!string.IsNullOrEmpty(_baseUrl)) urlBuilder_.Append(_baseUrl);
+                
                     // Operation Path: "api/ingredient"
                     urlBuilder_.Append("api/ingredient");
                     urlBuilder_.Append('?');
@@ -230,7 +214,7 @@ namespace CookBook.Web.BL.Api
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
                     var urlBuilder_ = new System.Text.StringBuilder();
-                    if (!string.IsNullOrEmpty(_baseUrl)) urlBuilder_.Append(_baseUrl);
+                
                     // Operation Path: "api/ingredient"
                     urlBuilder_.Append("api/ingredient");
                     urlBuilder_.Append('?');
@@ -329,7 +313,7 @@ namespace CookBook.Web.BL.Api
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
                     var urlBuilder_ = new System.Text.StringBuilder();
-                    if (!string.IsNullOrEmpty(_baseUrl)) urlBuilder_.Append(_baseUrl);
+                
                     // Operation Path: "api/ingredient"
                     urlBuilder_.Append("api/ingredient");
                     urlBuilder_.Append('?');
@@ -420,7 +404,7 @@ namespace CookBook.Web.BL.Api
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
                     var urlBuilder_ = new System.Text.StringBuilder();
-                    if (!string.IsNullOrEmpty(_baseUrl)) urlBuilder_.Append(_baseUrl);
+                
                     // Operation Path: "api/ingredient/{id}"
                     urlBuilder_.Append("api/ingredient/");
                     urlBuilder_.Append(System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
@@ -515,7 +499,7 @@ namespace CookBook.Web.BL.Api
                     request_.Method = new System.Net.Http.HttpMethod("DELETE");
 
                     var urlBuilder_ = new System.Text.StringBuilder();
-                    if (!string.IsNullOrEmpty(_baseUrl)) urlBuilder_.Append(_baseUrl);
+                
                     // Operation Path: "api/ingredient/{id}"
                     urlBuilder_.Append("api/ingredient/");
                     urlBuilder_.Append(System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
@@ -600,7 +584,7 @@ namespace CookBook.Web.BL.Api
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
                     var urlBuilder_ = new System.Text.StringBuilder();
-                    if (!string.IsNullOrEmpty(_baseUrl)) urlBuilder_.Append(_baseUrl);
+                
                     // Operation Path: "api/ingredient/upsert"
                     urlBuilder_.Append("api/ingredient/upsert");
                     urlBuilder_.Append('?');
@@ -805,7 +789,7 @@ namespace CookBook.Web.BL.Api
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "14.6.1.0 (NJsonSchema v11.5.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial interface IRecipeApiClient
+    public partial interface IRecipeApiClient : IApiClient
     {
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<System.Collections.Generic.ICollection<RecipeListModel>> RecipeGetAsync(string culture);
@@ -854,10 +838,6 @@ namespace CookBook.Web.BL.Api
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "14.6.1.0 (NJsonSchema v11.5.1.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial class RecipeApiClient : IRecipeApiClient
     {
-        #pragma warning disable 8618
-        private string _baseUrl;
-        #pragma warning restore 8618
-
         private System.Net.Http.HttpClient _httpClient;
         private static System.Lazy<Newtonsoft.Json.JsonSerializerSettings> _settings = new System.Lazy<Newtonsoft.Json.JsonSerializerSettings>(CreateSerializerSettings, true);
         private Newtonsoft.Json.JsonSerializerSettings _instanceSettings;
@@ -866,7 +846,6 @@ namespace CookBook.Web.BL.Api
         public RecipeApiClient(System.Net.Http.HttpClient httpClient)
     #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         {
-            BaseUrl = "https://localhost:44378";
             _httpClient = httpClient;
             Initialize();
         }
@@ -876,17 +855,6 @@ namespace CookBook.Web.BL.Api
             var settings = new Newtonsoft.Json.JsonSerializerSettings();
             UpdateJsonSerializerSettings(settings);
             return settings;
-        }
-
-        public string BaseUrl
-        {
-            get { return _baseUrl; }
-            set
-            {
-                _baseUrl = value;
-                if (!string.IsNullOrEmpty(_baseUrl) && !_baseUrl.EndsWith("/"))
-                    _baseUrl += '/';
-            }
         }
 
         protected Newtonsoft.Json.JsonSerializerSettings JsonSerializerSettings { get { return _instanceSettings ?? _settings.Value; } }
@@ -919,7 +887,7 @@ namespace CookBook.Web.BL.Api
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
                     var urlBuilder_ = new System.Text.StringBuilder();
-                    if (!string.IsNullOrEmpty(_baseUrl)) urlBuilder_.Append(_baseUrl);
+                
                     // Operation Path: "api/recipe"
                     urlBuilder_.Append("api/recipe");
                     urlBuilder_.Append('?');
@@ -1008,7 +976,7 @@ namespace CookBook.Web.BL.Api
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
                     var urlBuilder_ = new System.Text.StringBuilder();
-                    if (!string.IsNullOrEmpty(_baseUrl)) urlBuilder_.Append(_baseUrl);
+                
                     // Operation Path: "api/recipe"
                     urlBuilder_.Append("api/recipe");
                     urlBuilder_.Append('?');
@@ -1107,7 +1075,7 @@ namespace CookBook.Web.BL.Api
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
                     var urlBuilder_ = new System.Text.StringBuilder();
-                    if (!string.IsNullOrEmpty(_baseUrl)) urlBuilder_.Append(_baseUrl);
+                
                     // Operation Path: "api/recipe"
                     urlBuilder_.Append("api/recipe");
                     urlBuilder_.Append('?');
@@ -1198,7 +1166,7 @@ namespace CookBook.Web.BL.Api
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
                     var urlBuilder_ = new System.Text.StringBuilder();
-                    if (!string.IsNullOrEmpty(_baseUrl)) urlBuilder_.Append(_baseUrl);
+                
                     // Operation Path: "api/recipe/{id}"
                     urlBuilder_.Append("api/recipe/");
                     urlBuilder_.Append(System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
@@ -1293,7 +1261,7 @@ namespace CookBook.Web.BL.Api
                     request_.Method = new System.Net.Http.HttpMethod("DELETE");
 
                     var urlBuilder_ = new System.Text.StringBuilder();
-                    if (!string.IsNullOrEmpty(_baseUrl)) urlBuilder_.Append(_baseUrl);
+                
                     // Operation Path: "api/recipe/{id}"
                     urlBuilder_.Append("api/recipe/");
                     urlBuilder_.Append(System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
@@ -1378,7 +1346,7 @@ namespace CookBook.Web.BL.Api
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
                     var urlBuilder_ = new System.Text.StringBuilder();
-                    if (!string.IsNullOrEmpty(_baseUrl)) urlBuilder_.Append(_baseUrl);
+                
                     // Operation Path: "api/recipe/upsert"
                     urlBuilder_.Append("api/recipe/upsert");
                     urlBuilder_.Append('?');
