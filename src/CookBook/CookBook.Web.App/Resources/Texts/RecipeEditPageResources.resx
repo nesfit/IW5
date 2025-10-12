@@ -121,36 +121,42 @@
     <value />
   </data>
   <data name="Name_FormLabel" xml:space="preserve">
-    <value></value>
+    <value />
   </data>
   <data name="Description_FormLabel" xml:space="preserve">
-    <value></value>
+    <value />
   </data>
   <data name="Duration_FormLabel" xml:space="preserve">
-    <value></value>
+    <value />
   </data>
   <data name="FoodType_FormLabel" xml:space="preserve">
-    <value></value>
+    <value />
   </data>
   <data name="ImageUrl_FormLabel" xml:space="preserve">
-    <value></value>
+    <value />
   </data>
   <data name="Ingredients_SectionLabel" xml:space="preserve">
-    <value></value>
+    <value />
   </data>
   <data name="AddNewIngredient_FormLabel" xml:space="preserve">
-    <value></value>
+    <value />
   </data>
   <data name="AddIngredient_Button" xml:space="preserve">
-    <value></value>
+    <value />
   </data>
   <data name="RemoveIngredient_Button" xml:space="preserve">
-    <value></value>
+    <value />
   </data>
   <data name="Save_Button" xml:space="preserve">
-    <value></value>
+    <value />
   </data>
   <data name="Delete_Button" xml:space="preserve">
-    <value></value>
+    <value />
+  </data>
+  <data name="ErrorMessage_General" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ErrorMessage_FailedToDelete" xml:space="preserve">
+    <value />
   </data>
 </root>

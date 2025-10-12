@@ -19,7 +19,7 @@ namespace CookBook.Web.App.Resources.Texts {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "18.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class RecipeEditPageResources {
@@ -102,6 +102,24 @@ namespace CookBook.Web.App.Resources.Texts {
         public static string Duration_FormLabel {
             get {
                 return ResourceManager.GetString("Duration_FormLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string ErrorMessage_FailedToDelete {
+            get {
+                return ResourceManager.GetString("ErrorMessage_FailedToDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string ErrorMessage_General {
+            get {
+                return ResourceManager.GetString("ErrorMessage_General", resourceCulture);
             }
         }
         

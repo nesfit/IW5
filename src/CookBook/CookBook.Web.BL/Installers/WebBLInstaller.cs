@@ -2,36 +2,29 @@
 using CookBook.Web.BL.Api;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CookBook.Web.BL.Installers
+namespace CookBook.Web.BL.Installers;
+
+public class WebBLInstaller
 {
-    public class WebBLInstaller
+    public void Install(IServiceCollection serviceCollection, string apiBaseUrl)
     {
-        public void Install(IServiceCollection serviceCollection, string apiBaseUrl)
+        AddApiClient<IIngredientApiClient, IngredientApiClient>(serviceCollection, apiBaseUrl);
+        AddApiClient<IRecipeApiClient, RecipeApiClient>(serviceCollection, apiBaseUrl);
+
+        serviceCollection.Scan(selector =>
+            selector.FromAssemblyOf<WebBLInstaller>()
+                .AddClasses(classes => classes.AssignableTo<IAppFacade>())
+                .AsSelfWithInterfaces()
+                .WithTransientLifetime());
+    }
+
+    private void AddApiClient<TInterface, TImplementation>(IServiceCollection serviceCollection, string apiBaseUrl)
+        where TInterface : class, IApiClient
+        where TImplementation : class, TInterface
+    {
+        serviceCollection.AddHttpClient<TInterface, TImplementation>(client =>
         {
-            serviceCollection.AddTransient<IRecipeApiClient, RecipeApiClient>(provider =>
-            {
-                var client = CreateApiHttpClient(provider, apiBaseUrl);
-                return new RecipeApiClient(client, apiBaseUrl);
-            });
-
-            serviceCollection.AddTransient<IIngredientApiClient, IngredientApiClient>(provider =>
-            {
-                var client = CreateApiHttpClient(provider, apiBaseUrl);
-                return new IngredientApiClient(client, apiBaseUrl);
-            });
-
-            serviceCollection.Scan(selector =>
-                selector.FromAssemblyOf<WebBLInstaller>()
-                    .AddClasses(classes => classes.AssignableTo<IAppFacade>())
-                    .AsSelfWithInterfaces()
-                    .WithTransientLifetime());
-        }
-
-        public HttpClient CreateApiHttpClient(IServiceProvider serviceProvider, string apiBaseUrl)
-        {
-            var client = new HttpClient() { BaseAddress = new Uri(apiBaseUrl) };
             client.BaseAddress = new Uri(apiBaseUrl);
-            return client;
-        }
+        });
     }
 }
