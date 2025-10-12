@@ -5,14 +5,27 @@
 @using CookBook.Common.Enums
 @using CookBook.Web.App.Extensions
 @using CookBook.Web.App.Resources.Texts
+@using Blazored.FluentValidation
 @using Microsoft.Extensions.Localization
 @inject IStringLocalizer<RecipeEditPageResources> RecipeEditPageLocalizer
 
 
 <h3 class="mb-4">@RecipeEditPageLocalizer["Page_Title"]</h3>
 
-<EditForm Model="@Data">
-    <DataAnnotationsValidator />
+<EditForm EditContext="@editContext">
+<FluentValidationValidator />
+
+@* Display general error messages that aren't tied to specific fields *@
+@if (GeneralErrorMessages.Any())
+{
+    <div class="alert alert-danger" role="alert">
+        <h6 class="alert-heading">Error</h6>
+        @foreach (var errorMessage in GeneralErrorMessages)
+        {
+            <div>@errorMessage</div>
+        }
+    </div>
+}
 
     <div class="row">
         <div class="col-md-8">
