@@ -22,6 +22,7 @@ namespace CookBook.Web.App
         public IngredientDetailModel Data { get; set; } = GetNewIngredientModel();
 
         private EditContext? editContext;
+        private ValidationMessageStore? validationMessageStore;
 
         // Property to store general error messages that aren't tied to specific fields
         public List<string> GeneralErrorMessages { get; set; } = new();
@@ -34,6 +35,7 @@ namespace CookBook.Web.App
             }
 
             editContext = new EditContext(Data);
+            validationMessageStore = new ValidationMessageStore(editContext);
             await base.OnInitializedAsync();
         }
 
@@ -43,6 +45,7 @@ namespace CookBook.Web.App
             if (editContext?.Model != Data)
             {
                 editContext = new EditContext(Data);
+                validationMessageStore = new ValidationMessageStore(editContext);
             }
             await base.OnParametersSetAsync();
         }
@@ -50,6 +53,9 @@ namespace CookBook.Web.App
         public async Task Save()
         {
             GeneralErrorMessages.Clear();
+            
+            // Clear any previous API validation errors
+            validationMessageStore?.Clear();
 
             if (editContext == null)
             {
@@ -68,6 +74,7 @@ namespace CookBook.Web.App
 
                 Data = GetNewIngredientModel();
                 editContext = new EditContext(Data);
+                validationMessageStore = new ValidationMessageStore(editContext);
                 await NotifyOnModification();
             }
             catch (ApiException<HttpValidationProblemDetails> ex)
@@ -123,10 +130,9 @@ namespace CookBook.Web.App
 
         private void HandleValidationErrors(HttpValidationProblemDetails validationProblem)
         {
-            if (editContext == null || validationProblem?.Errors == null) return;
+            if (editContext == null || validationMessageStore == null || validationProblem?.Errors == null) return;
 
-            var messages = new ValidationMessageStore(editContext);
-            messages.Clear();
+            validationMessageStore.Clear();
 
             foreach (var error in validationProblem.Errors)
             {
@@ -144,7 +150,7 @@ namespace CookBook.Web.App
                     var fieldIdentifier = new FieldIdentifier(Data, error.Key);
                     foreach (var message in error.Value)
                     {
-                        messages.Add(fieldIdentifier, message);
+                        validationMessageStore.Add(fieldIdentifier, message);
                     }
                 }
             }
