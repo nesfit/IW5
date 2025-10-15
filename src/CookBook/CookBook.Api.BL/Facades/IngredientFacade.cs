@@ -1,57 +1,57 @@
 ﻿using CookBook.Api.BL.Mappers;
+using CookBook.Api.DAL.Common.Entities;
 using CookBook.Api.DAL.Common.Repositories;
 using CookBook.Common.Models;
 
-namespace CookBook.Api.BL.Facades
+namespace CookBook.Api.BL.Facades;
+
+public class IngredientFacade(
+    IIngredientRepository ingredientRepository,
+    IngredientMapper mapper)
+    : FacadeBase<IIngredientRepository, IngredientEntity>(ingredientRepository),
+    IIngredientFacade
 {
-    public class IngredientFacade : IIngredientFacade
+    private readonly IIngredientRepository ingredientRepository = ingredientRepository;
+    private readonly IngredientMapper mapper = mapper;
+
+    public List<IngredientListModel> GetAll()
     {
-        private readonly IIngredientRepository ingredientRepository;
-        private readonly IngredientMapper mapper;
+        return mapper.ToListModels(ingredientRepository.GetAll());
+    }
 
-        public IngredientFacade(
-            IIngredientRepository ingredientRepository,
-            IngredientMapper mapper)
-        {
-            this.ingredientRepository = ingredientRepository;
-            this.mapper = mapper;
-        }
+    public IngredientDetailModel? GetById(Guid id)
+    {
+        var ingredientEntity = ingredientRepository.GetById(id);
+        return ingredientEntity == null
+            ? null
+            : mapper.ToDetailModel(ingredientEntity);
+    }
 
-        public List<IngredientListModel> GetAll()
-        {
-            return mapper.ToListModels(ingredientRepository.GetAll());
-        }
+    public Guid CreateOrUpdate(IngredientDetailModel ingredientModel, string? ownerId = null)
+    {
+        return ingredientRepository.Exists(ingredientModel.Id)
+            ? Update(ingredientModel, ownerId)!.Value
+            : Create(ingredientModel, ownerId);
+    }
 
-        public IngredientDetailModel? GetById(Guid id)
-        {
-            var ingredientEntity = ingredientRepository.GetById(id);
-            return ingredientEntity == null
-                ? null
-                : mapper.ToDetailModel(ingredientEntity);
-        }
+    public Guid Create(IngredientDetailModel ingredientModel, string? ownerId = null)
+    {
+        var ingredientEntity = mapper.ToEntity(ingredientModel, ownerId);
+        return ingredientRepository.Insert(ingredientEntity);
+    }
 
-        public Guid CreateOrUpdate(IngredientDetailModel ingredientModel)
-        {
-            return ingredientRepository.Exists(ingredientModel.Id)
-                ? Update(ingredientModel)!.Value
-                : Create(ingredientModel);
-        }
+    public Guid? Update(IngredientDetailModel ingredientModel, string? ownerId = null)
+    {
+        ThrowIfWrongOwner(ingredientModel?.Id, ownerId);
 
-        public Guid Create(IngredientDetailModel ingredientModel)
-        {
-            var ingredientEntity = mapper.ToEntity(ingredientModel);
-            return ingredientRepository.Insert(ingredientEntity);
-        }
+        var ingredientEntity = mapper.ToEntity(ingredientModel, ownerId);
+        return ingredientRepository.Update(ingredientEntity);
+    }
 
-        public Guid? Update(IngredientDetailModel ingredientModel)
-        {
-            var ingredientEntity = mapper.ToEntity(ingredientModel);
-            return ingredientRepository.Update(ingredientEntity);
-        }
+    public void Delete(Guid id, string? ownerId = null)
+    {
+        ThrowIfWrongOwner(id, ownerId);
 
-        public void Delete(Guid id)
-        {
-            ingredientRepository.Remove(id);
-        }
+        ingredientRepository.Remove(id);
     }
 }
