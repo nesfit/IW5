@@ -8,7 +8,7 @@ namespace CookBook.Api.App.Endpoints;
 
 public class IngredientEndpoints : EndpointsBase
 {
-    public void MapIngredientEndpoints(IEndpointRouteBuilder endpointRouteBuilder)
+    public override IEndpointRouteBuilder MapEndpoints(IEndpointRouteBuilder endpointRouteBuilder)
     {
         var ingredientEndpoints = endpointRouteBuilder.MapGroup("ingredient")
             .WithTags("ingredient");
@@ -72,5 +72,7 @@ public class IngredientEndpoints : EndpointsBase
                 return TypedResults.Forbid();
             }
         }).RequireAuthorization(ApiPolicies.IngredientAdmin);
+
+        return endpointRouteBuilder;
     }
 }
