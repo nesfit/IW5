@@ -1,5 +1,6 @@
 ﻿using CookBook.Common.BL.Facades;
 using CookBook.Web.BL.Api;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CookBook.Web.BL.Installers;
@@ -25,6 +26,10 @@ public class WebBLInstaller
         serviceCollection.AddHttpClient<TInterface, TImplementation>(client =>
         {
             client.BaseAddress = new Uri(apiBaseUrl);
-        });
+        }).AddHttpMessageHandler(serviceProvider
+    => serviceProvider.GetRequiredService<AuthorizationMessageHandler>()
+        .ConfigureHandler(
+            authorizedUrls: [apiBaseUrl],
+            scopes: ["cookbookapi"])); ;
     }
 }

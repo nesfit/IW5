@@ -38,6 +38,15 @@ builder.Services.AddValidatorsFromAssemblyContaining<IngredientDetailModel>();
 
 builder.Services.AddLocalization();
 
+builder.Services.AddOidcAuthentication(options =>
+{
+    builder.Configuration.Bind("IdentityServer", options.ProviderOptions);
+    var configurationSection = builder.Configuration.GetSection("IdentityServer");
+    var authority = configurationSection["Authority"];
+
+    options.ProviderOptions.DefaultScopes.Add("cookbookapi");
+});
+
 var localDbEnabledString = builder.Configuration.GetSection(nameof(LocalDbOptions))[nameof(LocalDbOptions.IsLocalDbEnabled)];
 builder.Services.Configure<LocalDbOptions>(options =>
 {

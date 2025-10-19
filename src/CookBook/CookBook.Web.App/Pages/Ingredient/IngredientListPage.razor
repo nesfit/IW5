@@ -1,10 +1,12 @@
 ﻿@page "/ingredients"
 @namespace CookBook.Web.App.Pages
 @using CookBook.Web.App.Resources.Texts
+@using Microsoft.AspNetCore.Authorization
 @using Microsoft.Extensions.Localization
 @inherits PageBase
 @layout ListLayout
 @inject IStringLocalizer<IngredientListPageResources> IngredientListPageLocalizer
+@attribute [Authorize]
 
 <h1 class="mb-4">@IngredientListPageLocalizer["Page_Title"]</h1>
 

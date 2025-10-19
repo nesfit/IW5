@@ -3,10 +3,11 @@
 @layout ListLayout
 @using CookBook.Web.App.Extensions
 @using CookBook.Web.App.Resources.Texts
+@using Microsoft.AspNetCore.Authorization
 @using Microsoft.Extensions.Localization
 @inherits PageBase
 @inject IStringLocalizer<RecipeListPageResources> RecipeListPageLocalizer
-
+@attribute [Authorize]
 
 <div class="d-flex flex-row justify-content-between align-items-center mb-4" >
     <h1>@RecipeListPageLocalizer["Page_Title"]</h1>

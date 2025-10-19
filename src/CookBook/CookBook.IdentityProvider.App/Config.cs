@@ -44,6 +44,10 @@ namespace CookBook.IdentityProvider.App
                         "https://oauth.pstmn.io/v1/callback",
                         "https://localhost:44355/authentication/login-callback",
                     ],
+                    PostLogoutRedirectUris =
+                    [
+                        "https://localhost:44355"
+                    ],
                     AllowedGrantTypes =
                     [
                         GrantType.ClientCredentials,

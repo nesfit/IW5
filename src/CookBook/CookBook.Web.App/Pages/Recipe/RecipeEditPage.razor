@@ -6,9 +6,10 @@
 @using CookBook.Web.App.Extensions
 @using CookBook.Web.App.Resources.Texts
 @using Blazored.FluentValidation
+@using Microsoft.AspNetCore.Authorization
 @using Microsoft.Extensions.Localization
 @inject IStringLocalizer<RecipeEditPageResources> RecipeEditPageLocalizer
-
+@attribute [Authorize]
 
 <h3 class="mb-4">@RecipeEditPageLocalizer["Page_Title"]</h3>
 
