@@ -28,23 +28,23 @@ public class RecipeFacade(
             : mapper.ToDetailModel(recipeEntity);
     }
 
-    public Guid CreateOrUpdate(RecipeDetailModel recipeModel, string ownerId = null)
+    public Guid CreateOrUpdate(RecipeDetailModel recipeModel, IList<string> userRoles, string ownerId = null)
     {
         return recipeRepository.Exists(recipeModel.Id)
-            ? Update(recipeModel, ownerId)!.Value
-            : Create(recipeModel, ownerId);
+            ? Update(recipeModel, userRoles, ownerId)!.Value
+            : Create(recipeModel, userRoles, ownerId);
     }
 
-    public Guid Create(RecipeDetailModel recipeModel, string? ownerId = null)
+    public Guid Create(RecipeDetailModel recipeModel, IList<string> userRoles, string? ownerId = null)
     {
         MergeIngredientAmounts(recipeModel);
         var recipeEntity = mapper.ToEntity(recipeModel, ownerId);
         return recipeRepository.Insert(recipeEntity);
     }
 
-    public Guid? Update(RecipeDetailModel recipeModel, string? ownerId = null)
+    public Guid? Update(RecipeDetailModel recipeModel, IList<string> userRoles, string? ownerId = null)
     {
-        ThrowIfWrongOwner(recipeModel.Id, ownerId);
+        ThrowIfWrongOwnerAndNotAdmin(recipeModel.Id, userRoles, ownerId);
 
         MergeIngredientAmounts(recipeModel);
 
@@ -79,9 +79,9 @@ public class RecipeFacade(
         recipe.IngredientAmounts = result;
     }
 
-    public void Delete(Guid id, string? ownerId = null)
+    public void Delete(Guid id, IList<string> userRoles, string? ownerId = null)
     {
-        ThrowIfWrongOwner(id, ownerId);
+        ThrowIfWrongOwnerAndNotAdmin(id, userRoles, ownerId);
 
         recipeRepository.Remove(id);
     }

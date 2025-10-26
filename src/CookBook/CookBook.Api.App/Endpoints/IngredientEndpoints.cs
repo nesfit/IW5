@@ -35,15 +35,19 @@ public class IngredientEndpoints(IOptions<IdentityOptions> identityOptions)
                 =>
         {
             var userId = GetUserId(httpContextAccessor);
-            return TypedResults.Ok(ingredientFacade.Create(ingredient, userId));
+            var userRoles = GetUserRoles(httpContextAccessor);
+
+            return TypedResults.Ok(ingredientFacade.Create(ingredient, userRoles, userId));
         }).AddEndpointFilter<ValidationFilter<IngredientDetailModel>>();
 
         ingredientModifyingEndpoints.MapPut("", Results<Ok<Guid?>, ForbidHttpResult> (IngredientDetailModel ingredient, IIngredientFacade ingredientFacade, IHttpContextAccessor httpContextAccessor) =>
         {
             var userId = GetUserId(httpContextAccessor);
+            var userRoles = GetUserRoles(httpContextAccessor);
+
             try
             {
-                return TypedResults.Ok(ingredientFacade.Update(ingredient, userId));
+                return TypedResults.Ok(ingredientFacade.Update(ingredient, userRoles, userId));
             }
             catch (UnauthorizedAccessException)
             {
@@ -55,10 +59,11 @@ public class IngredientEndpoints(IOptions<IdentityOptions> identityOptions)
             =>
         {
             var userId = GetUserId(httpContextAccessor);
+            var userRoles = GetUserRoles(httpContextAccessor);
 
             try
             {
-                return TypedResults.Ok(ingredientFacade.CreateOrUpdate(ingredient, userId));
+                return TypedResults.Ok(ingredientFacade.CreateOrUpdate(ingredient, userRoles, userId));
             }
             catch (UnauthorizedAccessException)
             {
@@ -69,19 +74,12 @@ public class IngredientEndpoints(IOptions<IdentityOptions> identityOptions)
 
         var ingredientDeleteEndpoint = ingredientModifyingEndpoints.MapDelete("{id:guid}", Results<Ok, ForbidHttpResult> (Guid id, IIngredientFacade ingredientFacade, IHttpContextAccessor httpContextAccessor) =>
         {
-            string? userId;
-            if(IsUserInRole(httpContextAccessor, UserRoles.Admin))
-            {
-                userId = null;
-            }
-            else
-            {
-                userId = GetUserId(httpContextAccessor);
-            }
-
+            var userRoles = GetUserRoles(httpContextAccessor);
+            var userId = GetUserId(httpContextAccessor);
+            
             try
             {
-                ingredientFacade.Delete(id, userId);
+                ingredientFacade.Delete(id, userRoles, userId);
                 return TypedResults.Ok();
             }
             catch (UnauthorizedAccessException)

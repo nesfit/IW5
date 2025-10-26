@@ -27,30 +27,30 @@ public class IngredientFacade(
             : mapper.ToDetailModel(ingredientEntity);
     }
 
-    public Guid CreateOrUpdate(IngredientDetailModel ingredientModel, string? ownerId = null)
+    public Guid CreateOrUpdate(IngredientDetailModel ingredientModel, IList<string> userRoles, string? ownerId = null)
     {
         return ingredientRepository.Exists(ingredientModel.Id)
-            ? Update(ingredientModel, ownerId)!.Value
-            : Create(ingredientModel, ownerId);
+            ? Update(ingredientModel, userRoles, ownerId)!.Value
+            : Create(ingredientModel, userRoles, ownerId);
     }
 
-    public Guid Create(IngredientDetailModel ingredientModel, string? ownerId = null)
+    public Guid Create(IngredientDetailModel ingredientModel, IList<string> userRoles, string? ownerId = null)
     {
         var ingredientEntity = mapper.ToEntity(ingredientModel, ownerId);
         return ingredientRepository.Insert(ingredientEntity);
     }
 
-    public Guid? Update(IngredientDetailModel ingredientModel, string? ownerId = null)
+    public Guid? Update(IngredientDetailModel ingredientModel, IList<string> userRoles, string? ownerId = null)
     {
-        ThrowIfWrongOwner(ingredientModel?.Id, ownerId);
+        ThrowIfWrongOwnerAndNotAdmin(ingredientModel.Id, userRoles, ownerId);
 
         var ingredientEntity = mapper.ToEntity(ingredientModel, ownerId);
         return ingredientRepository.Update(ingredientEntity);
     }
 
-    public void Delete(Guid id, string? ownerId = null)
+    public void Delete(Guid id, IList<string> userRoles, string? ownerId = null)
     {
-        ThrowIfWrongOwner(id, ownerId);
+        ThrowIfWrongOwnerAndNotAdmin(id, userRoles, ownerId);
 
         ingredientRepository.Remove(id);
     }

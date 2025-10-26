@@ -5,6 +5,7 @@ using CookBook.Common.Models;
 using CookBook.Common.Options;
 using CookBook.Common.Resources;
 using FluentValidation;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Options;
@@ -35,15 +36,19 @@ public class RecipeEndpoints(IOptions<IdentityOptions> identityOptions) : Endpoi
         recipeModifyingEndpoints.MapPost("", (RecipeDetailModel recipe, IRecipeFacade recipeFacade, IHttpContextAccessor httpContextAccessor) =>
         {
             var userId = GetUserId(httpContextAccessor);
-            return recipeFacade.Create(recipe, userId);
+            var userRoles = GetUserRoles(httpContextAccessor);
+
+            return recipeFacade.Create(recipe, userRoles, userId);
         }).AddEndpointFilter<ValidationFilter<RecipeDetailModel>>();
 
         recipeModifyingEndpoints.MapPut("", Results<Ok<Guid?>, ForbidHttpResult> (RecipeDetailModel recipe, IRecipeFacade recipeFacade, IHttpContextAccessor httpContextAccessor) =>
         {
             var userId = GetUserId(httpContextAccessor);
+            var userRoles = GetUserRoles(httpContextAccessor);
+
             try
             {
-                return TypedResults.Ok(recipeFacade.Update(recipe, userId));
+                return TypedResults.Ok(recipeFacade.Update(recipe, userRoles, userId));
             }
             catch (UnauthorizedAccessException)
             {
@@ -51,27 +56,23 @@ public class RecipeEndpoints(IOptions<IdentityOptions> identityOptions) : Endpoi
             }
         }).AddEndpointFilter<ValidationFilter<RecipeDetailModel>>();
 
-        recipeEndpoints.MapPost("upsert", async Task<Results<Ok<Guid>, ValidationProblem>> (RecipeDetailModel recipe, IRecipeFacade recipeFacade, IValidator<RecipeDetailModel> validator) =>
+        recipeEndpoints.MapPost("upsert", async Task<Results<Ok<Guid>, ValidationProblem>> (RecipeDetailModel recipe, IRecipeFacade recipeFacade, IValidator<RecipeDetailModel> validator, IHttpContextAccessor httpContextAccessor) =>
         {
-            var id = recipeFacade.CreateOrUpdate(recipe);
+            var userId = GetUserId(httpContextAccessor);
+            var userRoles = GetUserRoles(httpContextAccessor);
+
+            var id = recipeFacade.CreateOrUpdate(recipe, userRoles, userId);
             return TypedResults.Ok(id);
         }).AddEndpointFilter<ValidationFilter<RecipeDetailModel>>();
 
         var recipeDeleteEndpoint = recipeModifyingEndpoints.MapDelete("{id:guid}", Results<Ok, ForbidHttpResult> (Guid id, IRecipeFacade recipeFacade, IHttpContextAccessor httpContextAccessor) =>
         {
-            string? userId;
-            if (IsUserInRole(httpContextAccessor, UserRoles.Admin))
-            {
-                userId = null;
-            }
-            else
-            {
-                userId = GetUserId(httpContextAccessor);
-            }
-
+            var userId = GetUserId(httpContextAccessor);
+            var userRoles = GetUserRoles(httpContextAccessor);
+            
             try
             {
-                recipeFacade.Delete(id, userId);
+                recipeFacade.Delete(id, userRoles, userId);
                 return TypedResults.Ok();
             }
             catch (UnauthorizedAccessException)
