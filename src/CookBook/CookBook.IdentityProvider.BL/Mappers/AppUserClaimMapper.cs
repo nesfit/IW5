@@ -8,5 +8,7 @@ namespace CookBook.IdentityProvider.BL.Mappers;
 public partial class AppUserClaimMapper
 {
     [MapperIgnoreSource(nameof(Claim.Issuer))]
+    [MapProperty(nameof(Claim.Type), nameof(AppUserClaimListModel.ClaimType))]
+    [MapProperty(nameof(Claim.Value), nameof(AppUserClaimListModel.ClaimValue))]
     public partial AppUserClaimListModel ToListModel(Claim claim);
 }

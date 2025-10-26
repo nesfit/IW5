@@ -1,5 +1,6 @@
 ﻿using CookBook.Api.App.Filters;
 using CookBook.Api.BL.Facades;
+using CookBook.Common;
 using CookBook.Common.Models;
 using CookBook.Common.Options;
 using CookBook.Common.Resources;
@@ -58,7 +59,16 @@ public class RecipeEndpoints(IOptions<IdentityOptions> identityOptions) : Endpoi
 
         var recipeDeleteEndpoint = recipeModifyingEndpoints.MapDelete("{id:guid}", Results<Ok, ForbidHttpResult> (Guid id, IRecipeFacade recipeFacade, IHttpContextAccessor httpContextAccessor) =>
         {
-            var userId = GetUserId(httpContextAccessor);
+            string? userId;
+            if (IsUserInRole(httpContextAccessor, UserRoles.Admin))
+            {
+                userId = null;
+            }
+            else
+            {
+                userId = GetUserId(httpContextAccessor);
+            }
+
             try
             {
                 recipeFacade.Delete(id, userId);
@@ -72,7 +82,8 @@ public class RecipeEndpoints(IOptions<IdentityOptions> identityOptions) : Endpoi
 
         if (identityOptions.Value.IsIdentityEnabled)
         {
-            recipeDeleteEndpoint.RequireAuthorization(ApiPolicies.RecipeAdmin);
+            // // Uncomment this to only enable admins to delete recipes
+            // recipeDeleteEndpoint.RequireAuthorization(ApiPolicies.RecipeAdmin);
         }
 
         return endpointRouteBuilder;

@@ -13,7 +13,8 @@ public static class EndpointRouteBuilderExtensions
         .MapEndpoints(endpointRouteBuilder);
 
     public static IEndpointRouteBuilder UseRecipeEndpoints(
-        this IEndpointRouteBuilder endpointRouteBuilder)
-        => new RecipeEndpoints()
+        this IEndpointRouteBuilder endpointRouteBuilder,
+        IOptions<IdentityOptions> identityOptions)
+        => new RecipeEndpoints(identityOptions)
         .MapEndpoints(endpointRouteBuilder);
 }

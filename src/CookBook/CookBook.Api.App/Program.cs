@@ -43,7 +43,7 @@ app.Run();
 
 void ConfigureOptions(IServiceCollection serviceCollection)
 {
-    serviceCollection.Configure<IdentityOptions>(builder.Configuration.GetSection("IdentityOptions"));
+    serviceCollection.Configure<IdentityOptions>(builder.Configuration.GetSection(nameof(IdentityOptions)));
 }
 
 void ConfigureCors(IServiceCollection serviceCollection)
@@ -106,19 +106,20 @@ void ConfigureMapperly(IServiceCollection serviceCollection)
 
 void ConfigureAuthentication(IServiceCollection serviceCollection, IConfiguration configuration)
 {
-    var identityServerUrl = configuration.GetSection("IdentityOptions")["IdentityServerUrl"]
-        ?? throw new ArgumentException("IdentityServer:Url");
+    var identityOptions = configuration.GetSection("IdentityOptions").Get<IdentityOptions>();
 
     serviceCollection.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         .AddJwtBearer(options =>
         {
-            options.Authority = identityServerUrl;
+            options.Authority = identityOptions?.Authority;
             options.TokenValidationParameters.ValidateAudience = false;
         });
 
     serviceCollection.AddAuthorizationBuilder()
         .AddPolicy(ApiPolicies.IngredientAdmin, policy =>
-            policy.RequireAuthenticatedUser().RequireRole(UserRoles.Admin))
+            policy.RequireAuthenticatedUser()
+            .RequireRole(UserRoles.Admin)
+            )
         .AddPolicy(ApiPolicies.RecipeAdmin, policy =>
             policy.RequireAuthenticatedUser().RequireRole(UserRoles.Admin));
 
@@ -139,7 +140,7 @@ void UseEndpoints(WebApplication application)
     var identityOptions = application.Services.GetRequiredService<IOptions<IdentityOptions>>();
 
     endpointsBase.UseIngredientEndpoints(identityOptions);
-    endpointsBase.UseRecipeEndpoints();
+    endpointsBase.UseRecipeEndpoints(identityOptions);
 }
 
 void UseDevelopmentSettings(WebApplication application)

@@ -1,20 +1,26 @@
-﻿@using Microsoft.AspNetCore.Components.Authorization
+﻿@using CookBook.Common.Options
+@using Microsoft.AspNetCore.Components.Authorization
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using Microsoft.Extensions.Options
 @inject NavigationManager Navigation
+@inject IOptions<IdentityOptions> IdentityOptions
 
-<AuthorizeView>
-    <Authorized>
-        <div class="nav-link font-weight-bold">
-            Hello @context.User.FindFirst("sub")?.Value!
+@if (IdentityOptions.Value.IsIdentityEnabled)
+{
+	<AuthorizeView>
+		<Authorized>
+			<div class="nav-link font-weight-bold">
+				Hello @context.User.FindFirst("sub")?.Value!
 
-			<button class="nav-link btn btn-link" @onclick="BeginLogOut">Log out</button>
-        </div>
-    </Authorized>
+				<button class="nav-link btn btn-link" @onclick="BeginLogOut">Log out</button>
+			</div>
+		</Authorized>
 
-    <NotAuthorized>
-        <a href="authentication/login" class="nav-link font-weight-bold">Log in</a>
-    </NotAuthorized>
-</AuthorizeView>
+		<NotAuthorized>
+			<a href="authentication/login" class="nav-link font-weight-bold">Log in</a>
+		</NotAuthorized>
+	</AuthorizeView>
+}
 
 @code{
     private void BeginLogOut()

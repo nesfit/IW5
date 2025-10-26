@@ -1,18 +1,47 @@
-﻿<CascadingAuthenticationState>
+﻿@using CookBook.Web.App.Resources.Texts
+@using Microsoft.Extensions.Localization
+@using Microsoft.Extensions.Options
+@using CookBook.Common.Options
+@inject IOptions<IdentityOptions> IdentityOptions
+@inject IStringLocalizer<AppResources> AppResourcesLocalizer
+
+@if (IdentityOptions.Value.IsIdentityEnabled)
+{
+	<CascadingAuthenticationState>
+		<Router AppAssembly="@typeof(App).Assembly">
+			<Found Context="routeData">
+				<AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)">
+					<NotAuthorized>
+						@if (context.User.Identity?.IsAuthenticated != true)
+						{
+							<div class="alert alert-info">
+								<p>@AppResourcesLocalizer["YouNeeedToLogin_Label"]</p>
+								<a href="authentication/login" class="btn btn-primary">@AppResourcesLocalizer["LogIn_Button"]</a>
+							</div>
+						}
+						else
+						{
+							<p role="alert">You are not authorized to access this resource.</p>
+						}
+					</NotAuthorized>
+				</AuthorizeRouteView>
+				<FocusOnNavigate RouteData="@routeData" Selector="h1" />
+			</Found>
+			<NotFound>
+				<LayoutView Layout="@typeof(MainLayout)">
+					<div class="alert alert-warning">
+						<span>Sorry, there's nothing at this address.</span>
+					</div>
+				</LayoutView>
+			</NotFound>
+		</Router>
+	</CascadingAuthenticationState>
+}
+else
+{
 	<Router AppAssembly="@typeof(App).Assembly">
 		<Found Context="routeData">
-			<AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)">
-                <NotAuthorized>
-                    @if (context.User.Identity?.IsAuthenticated != true)
-                    {
-                        <RedirectToLogin />
-                    }
-                    else
-                    {
-                        <p role="alert">You are not authorized to access this resource.</p>
-                    }
-                </NotAuthorized>
-            </AuthorizeRouteView>
+			<RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
 			<FocusOnNavigate RouteData="@routeData" Selector="h1" />
 		</Found>
 		<NotFound>
@@ -23,4 +52,4 @@
 			</LayoutView>
 		</NotFound>
 	</Router>
-</CascadingAuthenticationState>
+}
