@@ -11,12 +11,15 @@ using CookBook.Api.DAL.Memory.Installers;
 using CookBook.Common;
 using CookBook.Common.Extensions;
 using CookBook.Common.Models;
+using CookBook.Common.Options;
 using FluentValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Localization;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder();
 
+ConfigureOptions(builder.Services);
 ConfigureCors(builder.Services);
 ConfigureLocalization(builder.Services);
 ConfigureValidation(builder.Services);
@@ -37,6 +40,11 @@ UseEndpoints(app);
 UseOpenApi(app);
 
 app.Run();
+
+void ConfigureOptions(IServiceCollection serviceCollection)
+{
+    serviceCollection.Configure<IdentityOptions>(builder.Configuration.GetSection("IdentityOptions"));
+}
 
 void ConfigureCors(IServiceCollection serviceCollection)
 {
@@ -109,7 +117,10 @@ void ConfigureAuthentication(IServiceCollection serviceCollection, IConfiguratio
         });
 
     serviceCollection.AddAuthorizationBuilder()
-        .AddPolicy(ApiPolicies.IngredientAdmin, policy => policy.RequireRole(UserRoles.Admin));
+        .AddPolicy(ApiPolicies.IngredientAdmin, policy =>
+            policy.RequireAuthenticatedUser().RequireRole(UserRoles.Admin))
+        .AddPolicy(ApiPolicies.RecipeAdmin, policy =>
+            policy.RequireAuthenticatedUser().RequireRole(UserRoles.Admin));
 
     serviceCollection.AddHttpContextAccessor();
 }
@@ -125,7 +136,9 @@ void UseEndpoints(WebApplication application)
     var endpointsBase = application.MapGroup("api")
         .WithOpenApi();
 
-    endpointsBase.UseIngredientEndpoints();
+    var identityOptions = application.Services.GetRequiredService<IOptions<IdentityOptions>>();
+
+    endpointsBase.UseIngredientEndpoints(identityOptions);
     endpointsBase.UseRecipeEndpoints();
 }
 

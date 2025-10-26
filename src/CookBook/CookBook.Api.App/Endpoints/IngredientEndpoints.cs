@@ -1,15 +1,18 @@
 ﻿using CookBook.Api.App.Filters;
 using CookBook.Api.BL.Facades;
 using CookBook.Common.Models;
+using CookBook.Common.Options;
 using CookBook.Common.Resources;
 using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.Extensions.Options;
 
 namespace CookBook.Api.App.Endpoints;
 
-public class IngredientEndpoints : EndpointsBase
+public class IngredientEndpoints(IOptions<IdentityOptions> identityOptions)
+    : EndpointsBase
 {
     public override IEndpointRouteBuilder MapEndpoints(IEndpointRouteBuilder endpointRouteBuilder)
-    {
+    {   
         var ingredientEndpoints = endpointRouteBuilder.MapGroup("ingredient")
             .WithTags("ingredient");
 
@@ -20,8 +23,12 @@ public class IngredientEndpoints : EndpointsBase
                 ? TypedResults.Ok(ingredient)
                 : TypedResults.NotFound(string.Format(IngredientEndpointsResources.GetById_NotFound, id)));
 
-        var ingredientModifyingEndpoints = ingredientEndpoints.MapGroup("")
-            .RequireAuthorization();
+        var ingredientModifyingEndpoints = ingredientEndpoints.MapGroup("");
+
+        if (identityOptions.Value.IsIdentityEnabled)
+        {
+            ingredientModifyingEndpoints.RequireAuthorization();
+        }
 
         ingredientModifyingEndpoints.MapPost("", (IngredientDetailModel ingredient, IIngredientFacade ingredientFacade, IHttpContextAccessor httpContextAccessor)
                 =>
@@ -59,7 +66,7 @@ public class IngredientEndpoints : EndpointsBase
             }
         }).AddEndpointFilter<ValidationFilter<IngredientDetailModel>>(); ;
 
-        ingredientModifyingEndpoints.MapDelete("{id:guid}", Results<Ok, ForbidHttpResult> (Guid id, IIngredientFacade ingredientFacade, IHttpContextAccessor httpContextAccessor) =>
+        var ingredientDeleteEndpoint = ingredientModifyingEndpoints.MapDelete("{id:guid}", Results<Ok, ForbidHttpResult> (Guid id, IIngredientFacade ingredientFacade, IHttpContextAccessor httpContextAccessor) =>
         {
             var userId = GetUserId(httpContextAccessor);
             try
@@ -71,7 +78,12 @@ public class IngredientEndpoints : EndpointsBase
             {
                 return TypedResults.Forbid();
             }
-        }).RequireAuthorization(ApiPolicies.IngredientAdmin);
+        });
+
+        if (identityOptions.Value.IsIdentityEnabled)
+        {
+            ingredientDeleteEndpoint.RequireAuthorization(ApiPolicies.IngredientAdmin);
+        }
 
         return endpointRouteBuilder;
     }

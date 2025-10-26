@@ -1,14 +1,16 @@
 ﻿using CookBook.Api.App.Filters;
 using CookBook.Api.BL.Facades;
 using CookBook.Common.Models;
+using CookBook.Common.Options;
 using CookBook.Common.Resources;
 using FluentValidation;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.Extensions.Localization;
+using Microsoft.Extensions.Options;
 
 namespace CookBook.Api.App.Endpoints;
 
-public class RecipeEndpoints : EndpointsBase
+public class RecipeEndpoints(IOptions<IdentityOptions> identityOptions) : EndpointsBase
 {
     public override IEndpointRouteBuilder MapEndpoints(IEndpointRouteBuilder endpointRouteBuilder)
     {
@@ -22,8 +24,12 @@ public class RecipeEndpoints : EndpointsBase
                 ? TypedResults.Ok(recipe)
                 : TypedResults.NotFound(recipeEndpointsLocalizer[nameof(RecipeEndpointsResources.GetById_NotFound), id].Value));
 
-        var recipeModifyingEndpoints = recipeEndpoints.MapGroup("")
-            .RequireAuthorization();
+        var recipeModifyingEndpoints = recipeEndpoints.MapGroup("");
+
+        if(identityOptions.Value.IsIdentityEnabled)
+        {
+            recipeModifyingEndpoints.RequireAuthorization();
+        }
 
         recipeModifyingEndpoints.MapPost("", (RecipeDetailModel recipe, IRecipeFacade recipeFacade, IHttpContextAccessor httpContextAccessor) =>
         {
@@ -50,7 +56,7 @@ public class RecipeEndpoints : EndpointsBase
             return TypedResults.Ok(id);
         }).AddEndpointFilter<ValidationFilter<RecipeDetailModel>>();
 
-        recipeModifyingEndpoints.MapDelete("{id:guid}", Results<Ok, ForbidHttpResult> (Guid id, IRecipeFacade recipeFacade, IHttpContextAccessor httpContextAccessor) =>
+        var recipeDeleteEndpoint = recipeModifyingEndpoints.MapDelete("{id:guid}", Results<Ok, ForbidHttpResult> (Guid id, IRecipeFacade recipeFacade, IHttpContextAccessor httpContextAccessor) =>
         {
             var userId = GetUserId(httpContextAccessor);
             try
@@ -63,6 +69,11 @@ public class RecipeEndpoints : EndpointsBase
                 return TypedResults.Forbid();
             }
         });
+
+        if (identityOptions.Value.IsIdentityEnabled)
+        {
+            recipeDeleteEndpoint.RequireAuthorization(ApiPolicies.RecipeAdmin);
+        }
 
         return endpointRouteBuilder;
     }
