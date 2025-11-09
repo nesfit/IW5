@@ -16,7 +16,7 @@ namespace CookBook.Api.BL.Mappers
 
         [MapperIgnoreTarget(nameof(RecipeEntity.IngredientAmounts))]
         [MapperIgnoreSource(nameof(RecipeDetailModel.IngredientAmounts))]
-        public partial RecipeEntity ToEntity(RecipeDetailModel model);
+        public partial RecipeEntity ToEntity(RecipeDetailModel model, string? ownerId = null);
 
         [MapperIgnoreSource(nameof(IngredientAmountEntity.RecipeId))]
         [MapperIgnoreSource(nameof(IngredientAmountEntity.Recipe))]

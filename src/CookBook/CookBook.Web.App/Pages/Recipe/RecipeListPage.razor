@@ -3,10 +3,10 @@
 @layout ListLayout
 @using CookBook.Web.App.Extensions
 @using CookBook.Web.App.Resources.Texts
+@using Microsoft.AspNetCore.Authorization
 @using Microsoft.Extensions.Localization
 @inherits PageBase
 @inject IStringLocalizer<RecipeListPageResources> RecipeListPageLocalizer
-
 
 <div class="d-flex flex-row justify-content-between align-items-center mb-4" >
     <h1>@RecipeListPageLocalizer["Page_Title"]</h1>
@@ -14,9 +14,13 @@
     <div class="text-center">
         <OnlineStatusIndicator>
             <OnlineFragment>
-                <NavLink href="@("/recipe/create")" class="btn btn-success">
-                    @RecipeListPageLocalizer["CreateNewRecipe_Button"]
-                </NavLink>
+				<AuthorizeView>
+					<Authorized>
+						<NavLink href="@("/recipe/create")" class="btn btn-success">
+							@RecipeListPageLocalizer["CreateNewRecipe_Button"]
+						</NavLink>
+					</Authorized>
+				</AuthorizeView>
             </OnlineFragment>
             <OfflineFragment>
                 <h1>You are offline. Cannot create new recipe when offline!</h1>

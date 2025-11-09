@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 18
-VisualStudioVersion = 18.0.11018.127 d18.0
+VisualStudioVersion = 18.0.11018.127
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookBook.Api.App", "CookBook.Api.App\CookBook.Api.App.csproj", "{29A8C5FE-6F4F-4E1A-9E47-9301618839EF}"
 EndProject
@@ -47,6 +47,14 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookBook.Api.App.EndToEndTests", "CookBook.Api.App.EndToEndTests\CookBook.Api.App.EndToEndTests.csproj", "{4087CC13-3279-4F7F-9723-4B86EC35FD39}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookBook.Web.App", "CookBook.Web.App\CookBook.Web.App.csproj", "{3E9D1C28-5A44-4AE2-B117-2DE376412B82}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Identity", "Identity", "{AF57E223-3FEE-4375-AA2C-08D8DD7822FE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CookBook.IdentityProvider.DAL", "CookBook.IdentityProvider.DAL\CookBook.IdentityProvider.DAL.csproj", "{5FC08BFC-3B22-D952-2D89-5178F129408B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CookBook.IdentityProvider.BL", "CookBook.IdentityProvider.BL\CookBook.IdentityProvider.BL.csproj", "{49E52BAD-BA88-811A-40C8-8FA68D2AA465}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CookBook.IdentityProvider.App", "CookBook.IdentityProvider.App\CookBook.IdentityProvider.App.csproj", "{E5D0FDD2-5BEC-7321-884A-FD44E5A146BF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -110,6 +118,18 @@ Global
 		{3E9D1C28-5A44-4AE2-B117-2DE376412B82}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E9D1C28-5A44-4AE2-B117-2DE376412B82}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E9D1C28-5A44-4AE2-B117-2DE376412B82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FC08BFC-3B22-D952-2D89-5178F129408B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FC08BFC-3B22-D952-2D89-5178F129408B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FC08BFC-3B22-D952-2D89-5178F129408B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FC08BFC-3B22-D952-2D89-5178F129408B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49E52BAD-BA88-811A-40C8-8FA68D2AA465}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49E52BAD-BA88-811A-40C8-8FA68D2AA465}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49E52BAD-BA88-811A-40C8-8FA68D2AA465}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49E52BAD-BA88-811A-40C8-8FA68D2AA465}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5D0FDD2-5BEC-7321-884A-FD44E5A146BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5D0FDD2-5BEC-7321-884A-FD44E5A146BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5D0FDD2-5BEC-7321-884A-FD44E5A146BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5D0FDD2-5BEC-7321-884A-FD44E5A146BF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -131,6 +151,9 @@ Global
 		{CDED4C89-4B14-4D77-8F6C-8E2889B706A0} = {DA7BE6FF-5E94-4000-9BD7-A7DA82EF224F}
 		{4087CC13-3279-4F7F-9723-4B86EC35FD39} = {CE4F5F83-8F08-4F26-A46D-52370701657D}
 		{3E9D1C28-5A44-4AE2-B117-2DE376412B82} = {777F05CE-DC73-46AE-BA0F-CCF368D381A1}
+		{5FC08BFC-3B22-D952-2D89-5178F129408B} = {AF57E223-3FEE-4375-AA2C-08D8DD7822FE}
+		{49E52BAD-BA88-811A-40C8-8FA68D2AA465} = {AF57E223-3FEE-4375-AA2C-08D8DD7822FE}
+		{E5D0FDD2-5BEC-7321-884A-FD44E5A146BF} = {AF57E223-3FEE-4375-AA2C-08D8DD7822FE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {10E5D329-1983-4C74-838B-CA0CFC4A2256}

@@ -1,23 +1,25 @@
 ﻿using System.Globalization;
+using CookBook.Api.App;
 using CookBook.Api.App.Extensions;
 using CookBook.Api.App.Processors;
-using CookBook.Api.BL.Facades;
 using CookBook.Api.BL.Installers;
 using CookBook.Api.BL.Mappers;
 using CookBook.Api.DAL.Common;
 using CookBook.Api.DAL.EF.Extensions;
 using CookBook.Api.DAL.EF.Installers;
 using CookBook.Api.DAL.Memory.Installers;
+using CookBook.Common;
 using CookBook.Common.Extensions;
 using CookBook.Common.Models;
-using CookBook.Common.Resources;
+using CookBook.Common.Options;
 using FluentValidation;
-using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Localization;
-using Microsoft.Extensions.Localization;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder();
 
+ConfigureOptions(builder.Services);
 ConfigureCors(builder.Services);
 ConfigureLocalization(builder.Services);
 ConfigureValidation(builder.Services);
@@ -25,6 +27,7 @@ ConfigureValidation(builder.Services);
 ConfigureOpenApiDocuments(builder.Services);
 ConfigureDependencies(builder.Services, builder.Configuration);
 ConfigureMapperly(builder.Services);
+ConfigureAuthentication(builder.Services, builder.Configuration);
 
 var app = builder.Build();
 
@@ -32,10 +35,16 @@ UseDevelopmentSettings(app);
 UseSecurityFeatures(app);
 UseLocalization(app);
 UseRouting(app);
+UseAuthenticationAndAuthorization(app);
 UseEndpoints(app);
 UseOpenApi(app);
 
 app.Run();
+
+void ConfigureOptions(IServiceCollection serviceCollection)
+{
+    serviceCollection.Configure<IdentityOptions>(builder.Configuration.GetSection(nameof(IdentityOptions)));
+}
 
 void ConfigureCors(IServiceCollection serviceCollection)
 {
@@ -95,21 +104,32 @@ void ConfigureMapperly(IServiceCollection serviceCollection)
     serviceCollection.AddSingleton<RecipeMapper>();
 }
 
-async Task<Dictionary<string, string[]>?> ValidateModelAsync<T>(T model, IValidator<T> validator)
+void ConfigureAuthentication(IServiceCollection serviceCollection, IConfiguration configuration)
 {
-    var validationResult = await validator.ValidateAsync(model);
+    var identityOptions = configuration.GetSection("IdentityOptions").Get<IdentityOptions>();
 
-    if (validationResult.IsValid)
-    {
-        return null;
-    }
+    serviceCollection.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+        .AddJwtBearer(options =>
+        {
+            options.Authority = identityOptions?.Authority;
+            options.TokenValidationParameters.ValidateAudience = false;
+        });
 
-    return validationResult.Errors
-        .GroupBy(e => e.PropertyName)
-        .ToDictionary(
-            g => g.Key,
-            g => g.Select(e => e.ErrorMessage).ToArray()
-        );
+    serviceCollection.AddAuthorizationBuilder()
+        .AddPolicy(ApiPolicies.IngredientAdmin, policy =>
+            policy.RequireAuthenticatedUser()
+            .RequireRole(UserRoles.Admin)
+            )
+        .AddPolicy(ApiPolicies.RecipeAdmin, policy =>
+            policy.RequireAuthenticatedUser().RequireRole(UserRoles.Admin));
+
+    serviceCollection.AddHttpContextAccessor();
+}
+
+void UseAuthenticationAndAuthorization(IApplicationBuilder application)
+{
+    application.UseAuthentication();
+    application.UseAuthorization();
 }
 
 void UseEndpoints(WebApplication application)
@@ -117,112 +137,11 @@ void UseEndpoints(WebApplication application)
     var endpointsBase = application.MapGroup("api")
         .WithOpenApi();
 
-    UseIngredientEndpoints(endpointsBase);
-    UseRecipeEndpoints(endpointsBase);
+    var identityOptions = application.Services.GetRequiredService<IOptions<IdentityOptions>>();
+
+    endpointsBase.UseIngredientEndpoints(identityOptions);
+    endpointsBase.UseRecipeEndpoints(identityOptions);
 }
-
-void UseIngredientEndpoints(RouteGroupBuilder routeGroupBuilder)
-{
-    var ingredientEndpoints = routeGroupBuilder.MapGroup("ingredient")
-        .WithTags("ingredient");
-
-    ingredientEndpoints.MapGet("", (IIngredientFacade ingredientFacade) => ingredientFacade.GetAll());
-
-    ingredientEndpoints.MapGet("{id:guid}", Results<Ok<IngredientDetailModel>, NotFound<string>> (Guid id, IIngredientFacade ingredientFacade, IStringLocalizer<IngredientEndpointsResources> ingredientEndpointsLocalizer)
-        => ingredientFacade.GetById(id) is { } ingredient
-            ? TypedResults.Ok(ingredient)
-            : TypedResults.NotFound(ingredientEndpointsLocalizer[nameof(IngredientEndpointsResources.GetById_NotFound), id].Value));
-
-    ingredientEndpoints.MapPost("", async Task<Results<Ok<Guid>, ValidationProblem>> (IngredientDetailModel ingredient, IIngredientFacade ingredientFacade, IValidator<IngredientDetailModel> validator) =>
-    {
-        var validationErrors = await ValidateModelAsync(ingredient, validator);
-        if (validationErrors != null)
-        {
-            return TypedResults.ValidationProblem(validationErrors);
-        }
-
-        var id = ingredientFacade.Create(ingredient);
-        return TypedResults.Ok(id);
-    });
-
-    ingredientEndpoints.MapPut("", async Task<Results<Ok<Guid?>, ValidationProblem>> (IngredientDetailModel ingredient, IIngredientFacade ingredientFacade, IValidator<IngredientDetailModel> validator) =>
-    {
-        var validationErrors = await ValidateModelAsync(ingredient, validator);
-        if (validationErrors != null)
-        {
-            return TypedResults.ValidationProblem(validationErrors);
-        }
-
-        var id = ingredientFacade.Update(ingredient);
-        return TypedResults.Ok(id);
-    });
-
-    ingredientEndpoints.MapPost("upsert", async Task<Results<Ok<Guid>, ValidationProblem>> (IngredientDetailModel ingredient, IIngredientFacade ingredientFacade, IValidator<IngredientDetailModel> validator) =>
-    {
-        var validationErrors = await ValidateModelAsync(ingredient, validator);
-        if (validationErrors != null)
-        {
-            return TypedResults.ValidationProblem(validationErrors);
-        }
-
-        var id = ingredientFacade.CreateOrUpdate(ingredient);
-        return TypedResults.Ok(id);
-    });
-
-    ingredientEndpoints.MapDelete("{id:guid}", (Guid id, IIngredientFacade ingredientFacade) => ingredientFacade.Delete(id));
-}
-
-void UseRecipeEndpoints(RouteGroupBuilder routeGroupBuilder)
-{
-    var recipeEndpoints = routeGroupBuilder.MapGroup("recipe")
-        .WithTags("recipe");
-
-    recipeEndpoints.MapGet("", (IRecipeFacade recipeFacade) => recipeFacade.GetAll());
-
-    recipeEndpoints.MapGet("{id:guid}", Results<Ok<RecipeDetailModel>, NotFound<string>> (Guid id, IRecipeFacade recipeFacade, IStringLocalizer<RecipeEndpointsResources> recipeEndpointsLocalizer)
-        => recipeFacade.GetById(id) is { } recipe
-            ? TypedResults.Ok(recipe)
-            : TypedResults.NotFound(recipeEndpointsLocalizer[nameof(RecipeEndpointsResources.GetById_NotFound), id].Value));
-
-    recipeEndpoints.MapPost("", async Task<Results<Ok<Guid>, ValidationProblem>> (RecipeDetailModel recipe, IRecipeFacade recipeFacade, IValidator<RecipeDetailModel> validator) =>
-    {
-        var validationErrors = await ValidateModelAsync(recipe, validator);
-        if (validationErrors != null)
-        {
-            return TypedResults.ValidationProblem(validationErrors);
-        }
-
-        var id = recipeFacade.Create(recipe);
-        return TypedResults.Ok(id);
-    });
-
-    recipeEndpoints.MapPut("", async Task<Results<Ok<Guid?>, ValidationProblem>> (RecipeDetailModel recipe, IRecipeFacade recipeFacade, IValidator<RecipeDetailModel> validator) =>
-    {
-        var validationErrors = await ValidateModelAsync(recipe, validator);
-        if (validationErrors != null)
-        {
-            return TypedResults.ValidationProblem(validationErrors);
-        }
-
-        var id = recipeFacade.Update(recipe);
-        return TypedResults.Ok(id);
-    });
-
-    recipeEndpoints.MapPost("upsert", async Task<Results<Ok<Guid>, ValidationProblem>> (RecipeDetailModel recipe, IRecipeFacade recipeFacade, IValidator<RecipeDetailModel> validator) =>
-    {
-        var validationErrors = await ValidateModelAsync(recipe, validator);
-        if (validationErrors != null)
-        {
-            return TypedResults.ValidationProblem(validationErrors);
-        }
-
-        var id = recipeFacade.CreateOrUpdate(recipe);
-        return TypedResults.Ok(id);
-    });
-
-    recipeEndpoints.MapDelete("{id:guid}", (Guid id, IRecipeFacade recipeFacade) => recipeFacade.Delete(id));
-}
-
 
 void UseDevelopmentSettings(WebApplication application)
 {
@@ -245,7 +164,7 @@ void UseLocalization(IApplicationBuilder application)
     application.UseRequestLocalization(new RequestLocalizationOptions
     {
         DefaultRequestCulture = new RequestCulture(new CultureInfo("en")),
-        SupportedCultures = new List<CultureInfo> { new("en"), new("cs") }
+        SupportedCultures = [new("en"), new("cs")]
     });
 
     application.UseRequestCulture();

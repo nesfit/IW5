@@ -38,6 +38,10 @@
         </div>
     </div>
     <div class="col-md">
-        <IngredientEditForm OnModification="@LoadData" />
+		<AuthorizeView>
+			<Authorized>
+				<IngredientEditForm OnModification="@LoadData" />
+			</Authorized>
+		</AuthorizeView>
     </div>
 </div>

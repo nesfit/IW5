@@ -1,10 +1,11 @@
-﻿using System.Reflection.Metadata;
-using CookBook.Common.Models;
+﻿using CookBook.Common.Models;
 using CookBook.Web.App.Resources.Texts;
 using CookBook.Web.BL.Api;
 using CookBook.Web.BL.Facades;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
+using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 
 namespace CookBook.Web.App
 {
@@ -53,7 +54,7 @@ namespace CookBook.Web.App
         public async Task Save()
         {
             GeneralErrorMessages.Clear();
-            
+
             // Clear any previous API validation errors
             validationMessageStore?.Clear();
 
@@ -81,9 +82,11 @@ namespace CookBook.Web.App
             {
                 HandleValidationErrors(ex.Result);
             }
-            catch (ApiException ex) when (ex.StatusCode == 400)
+            catch (ApiException ex) when (ex.StatusCode
+                                              is StatusCodes.Status400BadRequest
+                                              or StatusCodes.Status403Forbidden)
             {
-                HandleGenericValidationError(ex);
+                HandleGenericError(ex);
             }
             catch (Exception ex)
             {
@@ -159,7 +162,7 @@ namespace CookBook.Web.App
             StateHasChanged();
         }
 
-        private void HandleGenericValidationError(ApiException ex)
+        private void HandleGenericError(ApiException ex)
         {
             if (editContext == null)
             {
@@ -167,29 +170,32 @@ namespace CookBook.Web.App
                 return;
             }
 
-            // Try to parse validation errors from the response content
+            // Try to parse error details from the response content
             try
             {
-                var response = ex.Response;
-                if (!string.IsNullOrEmpty(response))
+                if (!string.IsNullOrEmpty(ex.Response))
                 {
-                    var validationProblem = System.Text.Json.JsonSerializer.Deserialize<HttpValidationProblemDetails>(response, new System.Text.Json.JsonSerializerOptions
-                    {
-                        PropertyNameCaseInsensitive = true
-                    });
+                    var httpValidationProblemDetailsResponse = JsonConvert.DeserializeObject<HttpValidationProblemDetails>(ex.Response);
 
-                    if (validationProblem?.Errors != null)
+                    if (httpValidationProblemDetailsResponse?.Errors is not null)
                     {
-                        HandleValidationErrors(validationProblem);
+                        HandleValidationErrors(httpValidationProblemDetailsResponse);
+                        return;
+                    }
+
+                    var httpProblemDetailsResponse = JsonConvert.DeserializeObject<HttpProblemDetails>(ex.Response);
+                    if (httpProblemDetailsResponse?.Detail is not null)
+                    {
+                        AddGeneralError(httpProblemDetailsResponse.Detail);
                         return;
                     }
                 }
             }
             catch (Exception)
             {
+                // If deserialization fails, fall back to general error handling
+                AddGeneralError(IngredientEditFormResources.ErrorMessage_General);
             }
-
-            AddGeneralError(IngredientEditFormResources.ErrorMessage_General);
         }
     }
 }
