@@ -1,4 +1,5 @@
-﻿using CookBook.IdentityProvider.BL.Mappers;
+﻿using System.Security.Claims;
+using CookBook.IdentityProvider.BL.Mappers;
 using CookBook.IdentityProvider.BL.Models;
 using CookBook.IdentityProvider.DAL.Entities;
 using Microsoft.AspNetCore.Identity;
@@ -21,7 +22,11 @@ public class AppUserClaimsFacade(
         else
         {
             var claims = await userManager.GetClaimsAsync(user);
-            return [.. claims.Select(appUserClaimMapper.ToListModel)];
+
+            var roles = await userManager.GetRolesAsync(user);
+            claims = [.. claims, .. roles.Select(role => new Claim("role", role))];
+
+            return claims.Select(appUserClaimMapper.ToListModel);
         }
     }
 }
