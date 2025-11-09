@@ -25,7 +25,7 @@ public class RecipeFacadeTests
 
         var itemId = Guid.NewGuid();
         //act
-        facade.Delete(itemId);
+        facade.Delete(itemId, []);
 
         //assert
         repositoryMock.Verify(recipeRepository => recipeRepository.Remove(itemId));

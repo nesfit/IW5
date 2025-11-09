@@ -120,4 +120,10 @@
   <data name="GetById_NotFound" xml:space="preserve">
     <value>Ingredience s id '{0}' nebyla nalezena</value>
   </data>
+  <data name="Upsert_Forbidden_Detail" xml:space="preserve">
+    <value>Nemáte oprávnění na přidání/editaci ingredience s id '{0}'</value>
+  </data>
+  <data name="Upsert_Forbidden_Title" xml:space="preserve">
+    <value>Nemáte oprávnění</value>
+  </data>
 </root>

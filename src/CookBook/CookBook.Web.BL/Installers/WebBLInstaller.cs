@@ -2,7 +2,7 @@
 using CookBook.Common.Options;
 using CookBook.Web.App.Options;
 using CookBook.Web.BL.Api;
-using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+using CookBook.Web.BL.MessageHandlers;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CookBook.Web.BL.Installers;
@@ -14,6 +14,8 @@ public class WebBLInstaller
         IdentityOptions identityOptions,
         ApiOptions apiOptions)
     {
+        serviceCollection.AddScoped<CustomAuthorizationMessageHandler>();
+
         AddApiClient<IIngredientApiClient, IngredientApiClient>(serviceCollection, identityOptions, apiOptions);
         AddApiClient<IRecipeApiClient, RecipeApiClient>(serviceCollection, identityOptions, apiOptions);
 
@@ -39,7 +41,7 @@ public class WebBLInstaller
         if (identityOptions.IsIdentityEnabled)
         {
             httpClient.AddHttpMessageHandler(serviceProvider
-                => serviceProvider.GetRequiredService<AuthorizationMessageHandler>()
+                => serviceProvider.GetRequiredService<CustomAuthorizationMessageHandler>()
                 .ConfigureHandler(
                     authorizedUrls: [apiOptions.BaseUrl],
                     scopes: identityOptions.DefaultScopes));

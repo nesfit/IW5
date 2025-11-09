@@ -13,11 +13,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>FoodTypeResources.resx</DependentUpon>
     </Compile>
-    <Compile Update="Resources\IngredientEndpointsResources.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>IngredientEndpointsResources.resx</DependentUpon>
-    </Compile>
     <Compile Update="Resources\RecipeEndpointsResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -34,10 +29,6 @@
     <EmbeddedResource Update="Resources\FoodTypeResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>FoodTypeResources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resources\IngredientEndpointsResources.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>IngredientEndpointsResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\RecipeEndpointsResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

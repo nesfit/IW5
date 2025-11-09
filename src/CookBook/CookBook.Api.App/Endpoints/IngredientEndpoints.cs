@@ -1,4 +1,5 @@
 ﻿using CookBook.Api.App.Filters;
+using CookBook.Api.App.Resources.Texts;
 using CookBook.Api.BL.Facades;
 using CookBook.Common;
 using CookBook.Common.Models;
@@ -55,7 +56,7 @@ public class IngredientEndpoints(IOptions<IdentityOptions> identityOptions)
             }
         }).AddEndpointFilter<ValidationFilter<IngredientDetailModel>>(); ;
 
-        ingredientModifyingEndpoints.MapPost("upsert", Results<Ok<Guid>, ForbidHttpResult> (IngredientDetailModel ingredient, IIngredientFacade ingredientFacade, IHttpContextAccessor httpContextAccessor)
+        ingredientModifyingEndpoints.MapPost("upsert", Results<Ok<Guid>, ProblemHttpResult> (IngredientDetailModel ingredient, IIngredientFacade ingredientFacade, IHttpContextAccessor httpContextAccessor)
             =>
         {
             var userId = GetUserId(httpContextAccessor);
@@ -67,8 +68,10 @@ public class IngredientEndpoints(IOptions<IdentityOptions> identityOptions)
             }
             catch (UnauthorizedAccessException)
             {
-
-                throw;
+                return TypedResults.Problem(
+                    statusCode: StatusCodes.Status403Forbidden,
+                    title: IngredientEndpointsResources.Upsert_Forbidden_Title,
+                    detail: string.Format(IngredientEndpointsResources.Upsert_Forbidden_Detail, ingredient.Id));
             }
         }).AddEndpointFilter<ValidationFilter<IngredientDetailModel>>(); ;
 

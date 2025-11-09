@@ -25,4 +25,17 @@
     <ItemGroup>
         <InternalsVisibleTo Include="CookBook.Api.App.EndToEndTests" />
     </ItemGroup>
+    <ItemGroup>
+      <Compile Update="Resources\Texts\IngredientEndpointsResources.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>IngredientEndpointsResources.resx</DependentUpon>
+      </Compile>
+    </ItemGroup>
+    <ItemGroup>
+      <EmbeddedResource Update="Resources\Texts\IngredientEndpointsResources.resx">
+        <Generator>PublicResXFileCodeGenerator</Generator>
+        <LastGenOutput>IngredientEndpointsResources.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+    </ItemGroup>
 </Project>

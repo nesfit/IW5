@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CookBook.Common.Resources {
+namespace CookBook.Api.App.Resources.Texts {
     using System;
     
     
@@ -19,7 +19,7 @@ namespace CookBook.Common.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "18.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class IngredientEndpointsResources {
@@ -39,7 +39,7 @@ namespace CookBook.Common.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CookBook.Common.Resources.IngredientEndpointsResources", typeof(IngredientEndpointsResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CookBook.Api.App.Resources.Texts.IngredientEndpointsResources", typeof(IngredientEndpointsResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -66,6 +66,24 @@ namespace CookBook.Common.Resources {
         public static string GetById_NotFound {
             get {
                 return ResourceManager.GetString("GetById_NotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You are not allowed to create/update ingredient with id &apos;{0}&apos;.
+        /// </summary>
+        public static string Upsert_Forbidden_Detail {
+            get {
+                return ResourceManager.GetString("Upsert_Forbidden_Detail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Forbidden.
+        /// </summary>
+        public static string Upsert_Forbidden_Title {
+            get {
+                return ResourceManager.GetString("Upsert_Forbidden_Title", resourceCulture);
             }
         }
     }
