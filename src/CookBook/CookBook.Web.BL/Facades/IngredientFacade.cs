@@ -37,7 +37,7 @@ namespace CookBook.Web.BL.Facades
             return ingredientsAll;
         }
 
-        public override async Task<IngredientDetailModel> GetByIdAsync(Guid id)
+        public override async Task<IngredientDetailModel?> GetByIdAsync(Guid id)
         {
             try
             {

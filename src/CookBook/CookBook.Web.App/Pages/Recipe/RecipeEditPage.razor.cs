@@ -77,7 +77,11 @@ namespace CookBook.Web.App.Pages
         {
             if (Id != Guid.Empty)
             {
-                Data = await RecipeFacade.GetByIdAsync(Id);
+                var recipe = await RecipeFacade.GetByIdAsync(Id);
+                if (recipe is not null)
+                {
+                    Data = recipe;
+                }
             }
 
             Ingredients = await IngredientFacade.GetAllAsync();

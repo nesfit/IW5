@@ -32,7 +32,11 @@ namespace CookBook.Web.App
         {
             if (Id != Guid.Empty)
             {
-                Data = await IngredientFacade.GetByIdAsync(Id);
+                var ingredient = await IngredientFacade.GetByIdAsync(Id);
+                if (ingredient is not null)
+                {
+                    Data = ingredient;
+                }
             }
 
             editContext = new EditContext(Data);
