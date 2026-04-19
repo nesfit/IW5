@@ -39,7 +39,14 @@ namespace CookBook.Web.BL.Facades
 
         public override async Task<IngredientDetailModel> GetByIdAsync(Guid id)
         {
-            return await apiClient.IngredientGetAsync(id, culture);
+            try
+            {
+                return await apiClient.IngredientGetAsync(id, culture);
+            }
+            catch (HttpRequestException exception) when (IsLocalDbEnabled && IsOfflineException(exception))
+            {
+                return await GetByIdFromLocalDbAsync(id);
+            }
         }
 
         protected override async Task<Guid> SaveToApiAsync(IngredientDetailModel data)

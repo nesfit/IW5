@@ -11,9 +11,8 @@ window.LocalDb = {
     GetAll: async function (tableName) {
         return await db.table(tableName).toArray();
     },
-    GetById: async function (id) {
-        let recipe = await db.table(tableName).get(id);
-        return recipe;
+    GetById: async function (tableName, id) {
+        return await db.table(tableName).get(id);
     },
     Insert: function (tableName, entity) {
         db.table(tableName).put(entity);

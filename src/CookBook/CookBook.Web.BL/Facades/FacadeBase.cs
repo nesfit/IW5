@@ -44,6 +44,11 @@ namespace CookBook.Web.BL.Facades
             return mapper.ToListModels(recipesLocal);
         }
 
+        protected async Task<TDetailModel> GetByIdFromLocalDbAsync(Guid id)
+        {
+            return await repository.GetByIdAsync(id);
+        }
+
         public abstract Task<TDetailModel> GetByIdAsync(Guid id);
 
         public virtual async Task SaveAsync(TDetailModel data)
