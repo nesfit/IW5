@@ -49,6 +49,28 @@ namespace CookBook.Web.BL.Facades
             return await repository.GetByIdAsync(id);
         }
 
+        public async Task<ISet<Guid>> GetLocalIdsAsync()
+        {
+            if (!IsLocalDbEnabled)
+            {
+                return new HashSet<Guid>();
+            }
+
+            return (await repository.GetAllAsync())
+                .Select(item => item.Id)
+                .ToHashSet();
+        }
+
+        public async Task<bool> IsLocalAsync(Guid id)
+        {
+            if (!IsLocalDbEnabled)
+            {
+                return false;
+            }
+
+            return await repository.GetByIdAsync(id) is not null;
+        }
+
         public abstract Task<TDetailModel?> GetByIdAsync(Guid id);
 
         public virtual async Task SaveAsync(TDetailModel data)

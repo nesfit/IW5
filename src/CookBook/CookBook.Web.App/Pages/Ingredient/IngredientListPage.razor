@@ -6,6 +6,7 @@
 @using Microsoft.Extensions.Options
 @inherits PageBase
 @layout ListLayout
+@inject IStringLocalizer<AppResources> AppResourcesLocalizer
 @inject IStringLocalizer<IngredientListPageResources> IngredientListPageLocalizer
 @inject IOptions<IdentityOptions> IdentityOptions
 
@@ -30,11 +31,15 @@
                                 <td style="vertical-align: middle;">
                                     <img src="@ingredient.ImageUrl" height="50"/>
                                 </td>
-                                <td style="vertical-align: middle;">
+                                 <td style="vertical-align: middle;">
                                     <NavLink href="@($"/ingredients/{ingredient.Id}")">@ingredient.Name</NavLink>
-                                </td>
-                            </tr>
-                        }
+                                    @if (IsLocalIngredient(ingredient))
+                                    {
+                                        <span class="text-danger ml-1" title="@AppResourcesLocalizer["LocalOnlyItem_Tooltip"]">&#9679;</span>
+                                    }
+                                 </td>
+                             </tr>
+                         }
                     </tbody>
                 </table>
             }

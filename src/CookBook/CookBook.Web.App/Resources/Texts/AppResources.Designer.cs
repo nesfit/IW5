@@ -61,6 +61,15 @@ namespace CookBook.Web.App.Resources.Texts {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Local-only item, not yet synced to the server..
+        /// </summary>
+        public static string LocalOnlyItem_Tooltip {
+            get {
+                return ResourceManager.GetString("LocalOnlyItem_Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Log in.
         /// </summary>
         public static string LogIn_Button {

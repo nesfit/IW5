@@ -38,7 +38,7 @@ namespace CookBook.Web.DAL
             return await jsRuntime.InvokeAsync<IList<T>>(GetAllInvokeName, tableName);
         }
 
-        public async Task<T> GetByIdAsync<T>(string tableName, Guid id)
+        public async Task<T?> GetByIdAsync<T>(string tableName, Guid id)
         {
             if (!isInitialized)
             {

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using CookBook.Common;
+﻿using CookBook.Common;
 
 namespace CookBook.Web.DAL.Repositories
 {
@@ -21,7 +18,7 @@ namespace CookBook.Web.DAL.Repositories
             return await localDb.GetAllAsync<T>(TableName);
         }
 
-        public async Task<T> GetByIdAsync(Guid id)
+        public async Task<T?> GetByIdAsync(Guid id)
         {
             return await localDb.GetByIdAsync<T>(TableName, id);
         }

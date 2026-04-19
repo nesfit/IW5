@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using CookBook.Common;
+﻿using CookBook.Common;
 
 namespace CookBook.Web.DAL.Repositories
 {
@@ -10,7 +7,7 @@ namespace CookBook.Web.DAL.Repositories
     {
         string TableName { get; }
         Task<IList<T>> GetAllAsync();
-        Task<T> GetByIdAsync(Guid id);
+        Task<T?> GetByIdAsync(Guid id);
         Task InsertAsync(T entity);
         Task RemoveAsync(Guid id);
     }

@@ -5,9 +5,16 @@
 @using Microsoft.AspNetCore.Authorization
 @using Microsoft.Extensions.Localization
 @inherits PageBase
+@inject IStringLocalizer<AppResources> AppResourcesLocalizer
 @inject IStringLocalizer<IngredientEditPageResources> IngredientEditPageLocalizer
 @attribute [Authorize]
 
-<h1 class="mb-4">@IngredientEditPageLocalizer["Page_Title"]</h1>
+<h1 class="mb-4">
+    @IngredientEditPageLocalizer["Page_Title"]
+    @if (IsLocalIngredient)
+    {
+        <span class="text-danger ml-1" title="@AppResourcesLocalizer["LocalOnlyItem_Tooltip"]">&#9679;</span>
+    }
+</h1>
 
 <IngredientEditForm Id="@Id" OnModification="NavigateBack" />

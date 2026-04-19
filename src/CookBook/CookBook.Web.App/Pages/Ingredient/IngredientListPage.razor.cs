@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using CookBook.Common.Models;
 using CookBook.Web.BL.Facades;
@@ -12,6 +13,7 @@ namespace CookBook.Web.App.Pages
         private IngredientFacade IngredientFacade { get; set; } = null!;
 
         private ICollection<IngredientListModel> Ingredients { get; set; } = new List<IngredientListModel>();
+        private ISet<Guid> LocalIngredientIds { get; set; } = new HashSet<Guid>();
 
         protected override async Task OnInitializedAsync()
         {
@@ -23,6 +25,12 @@ namespace CookBook.Web.App.Pages
         private async Task LoadData()
         {
             Ingredients = await IngredientFacade.GetAllAsync();
+            LocalIngredientIds = await IngredientFacade.GetLocalIdsAsync();
+        }
+
+        private bool IsLocalIngredient(IngredientListModel ingredient)
+        {
+            return LocalIngredientIds.Contains(ingredient.Id);
         }
     }
 }

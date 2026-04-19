@@ -120,6 +120,9 @@
   <data name="LogIn_Button" xml:space="preserve">
     <value>Log in</value>
   </data>
+  <data name="LocalOnlyItem_Tooltip" xml:space="preserve">
+    <value>Local-only item, not yet synced to the server.</value>
+  </data>
   <data name="YouNeeedToLogin_Label" xml:space="preserve">
     <value>You need to log in to access this page.</value>
   </data>
