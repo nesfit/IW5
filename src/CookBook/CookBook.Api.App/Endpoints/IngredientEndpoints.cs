@@ -27,7 +27,7 @@ public class IngredientEndpoints(IOptions<IdentityOptions> identityOptions)
 
         var ingredientModifyingEndpoints = ingredientEndpoints.MapGroup("");
 
-        if (identityOptions.Value.IsIdentityEnabled)
+        if (identityOptions.Value.IsEnabled)
         {
             ingredientModifyingEndpoints.RequireAuthorization();
         }
@@ -91,7 +91,7 @@ public class IngredientEndpoints(IOptions<IdentityOptions> identityOptions)
             }
         });
 
-        if (identityOptions.Value.IsIdentityEnabled)
+        if (identityOptions.Value.IsEnabled)
         {
             // Uncomment this to only enable admins to delete ingredients
             // ingredientDeleteEndpoint.RequireAuthorization(ApiPolicies.IngredientAdmin);

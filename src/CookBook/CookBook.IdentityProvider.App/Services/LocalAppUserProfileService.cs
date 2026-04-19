@@ -35,24 +35,21 @@ public class LocalAppUserProfileService : IProfileService
             user = await appUserFacade.GetUserByUserNameAsync(subjectId);
         }
 
-        if(user is not null)
+        if (user is not null)
         {
-            if (user is not null)
+            var appUserClaims = await appUserClaimsFacade.GetAppUserClaimsByUserIdAsync(user.Id);
+            var claims = appUserClaims.Select(claim =>
             {
-                var appUserClaims = await appUserClaimsFacade.GetAppUserClaimsByUserIdAsync(user.Id);
-                var claims = appUserClaims.Select(claim =>
+                if (claim.ClaimType is not null
+                    && claim.ClaimValue is not null)
                 {
-                    if (claim.ClaimType is not null
-                        && claim.ClaimValue is not null)
-                    {
-                        return new Claim(claim.ClaimType, claim.ClaimValue);
-                    }
-                    return null;
-                }).ToList();
+                    return new Claim(claim.ClaimType, claim.ClaimValue);
+                }
+                return null;
+            }).ToList();
 
-                claims.Add(new Claim("username", user.UserName));
-                context.AddRequestedClaims(claims);
-            }
+            claims.Add(new Claim("username", user.UserName));
+            context.AddRequestedClaims(claims);
         }
     }
 

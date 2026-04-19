@@ -5,7 +5,7 @@
 @inject NavigationManager Navigation
 @inject IOptions<IdentityOptions> IdentityOptions
 
-@if (IdentityOptions.Value.IsIdentityEnabled)
+@if (IdentityOptions.Value.IsEnabled)
 {
 	<AuthorizeView>
 		<Authorized>

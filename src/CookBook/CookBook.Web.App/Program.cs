@@ -51,7 +51,7 @@ builder.Services.AddValidatorsFromAssemblyContaining<IngredientDetailModel>();
 
 builder.Services.AddLocalization();
 
-if (identityOptions?.IsIdentityEnabled is true)
+if (identityOptions?.IsEnabled is true)
 {
     builder.Services.AddOidcAuthentication(options =>
     {

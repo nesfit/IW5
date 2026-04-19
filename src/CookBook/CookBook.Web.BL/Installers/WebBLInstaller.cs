@@ -38,7 +38,7 @@ public class WebBLInstaller
             client.BaseAddress = new Uri(apiOptions.BaseUrl);
         });
 
-        if (identityOptions.IsIdentityEnabled)
+        if (identityOptions.IsEnabled)
         {
             httpClient.AddHttpMessageHandler(serviceProvider
                 => serviceProvider.GetRequiredService<CustomAuthorizationMessageHandler>()
