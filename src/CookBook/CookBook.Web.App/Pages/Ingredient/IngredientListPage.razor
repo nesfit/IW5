@@ -1,10 +1,14 @@
 ﻿@page "/ingredients"
 @namespace CookBook.Web.App.Pages
+@using CookBook.Common.Options
 @using CookBook.Web.App.Resources.Texts
 @using Microsoft.Extensions.Localization
+@using Microsoft.Extensions.Options
 @inherits PageBase
 @layout ListLayout
+@inject IStringLocalizer<AppResources> AppResourcesLocalizer
 @inject IStringLocalizer<IngredientListPageResources> IngredientListPageLocalizer
+@inject IOptions<IdentityOptions> IdentityOptions
 
 <h1 class="mb-4">@IngredientListPageLocalizer["Page_Title"]</h1>
 
@@ -27,21 +31,32 @@
                                 <td style="vertical-align: middle;">
                                     <img src="@ingredient.ImageUrl" height="50"/>
                                 </td>
-                                <td style="vertical-align: middle;">
+                                 <td style="vertical-align: middle;">
                                     <NavLink href="@($"/ingredients/{ingredient.Id}")">@ingredient.Name</NavLink>
-                                </td>
-                            </tr>
-                        }
+                                    @if (IsLocalIngredient(ingredient))
+                                    {
+                                        <span class="text-danger ml-1" title="@AppResourcesLocalizer["LocalOnlyItem_Tooltip"]">&#9679;</span>
+                                    }
+                                 </td>
+                             </tr>
+                         }
                     </tbody>
                 </table>
             }
         </div>
     </div>
     <div class="col-md">
-		<AuthorizeView>
-			<Authorized>
-				<IngredientEditForm OnModification="@LoadData" />
-			</Authorized>
-		</AuthorizeView>
+        @if (IdentityOptions.Value.IsEnabled)
+        {
+			<AuthorizeView>
+				<Authorized>
+					<IngredientEditForm OnModification="@LoadData" />
+				</Authorized>
+			</AuthorizeView>
+        }
+        else
+        {
+            <IngredientEditForm OnModification="@LoadData" />
+        }
     </div>
 </div>

@@ -29,21 +29,34 @@ namespace CookBook.Web.BL.Facades
         {
             var recipesAll = await base.GetAllAsync();
 
-            var recipesFromApi = await apiClient.RecipeGetAsync(culture);
-            foreach (var recipeFromApi in recipesFromApi)
+            try
             {
-                if (recipesAll.Any(r => r.Id == recipeFromApi.Id) is false)
+                var recipesFromApi = await apiClient.RecipeGetAsync(culture);
+                foreach (var recipeFromApi in recipesFromApi)
                 {
-                    recipesAll.Add(recipeFromApi);
+                    if (recipesAll.Any(r => r.Id == recipeFromApi.Id) is false)
+                    {
+                        recipesAll.Add(recipeFromApi);
+                    }
                 }
+            }
+            catch (HttpRequestException exception) when (IsLocalDbEnabled && IsOfflineException(exception))
+            {
             }
 
             return recipesAll;
         }
 
-        public override async Task<RecipeDetailModel> GetByIdAsync(Guid id)
+        public override async Task<RecipeDetailModel?> GetByIdAsync(Guid id)
         {
-            return await apiClient.RecipeGetAsync(id, culture);
+            try
+            {
+                return await apiClient.RecipeGetAsync(id, culture);
+            }
+            catch (HttpRequestException exception) when (IsLocalDbEnabled && IsOfflineException(exception))
+            {
+                return await GetByIdFromLocalDbAsync(id);
+            }
         }
 
         protected override async Task<Guid> SaveToApiAsync(RecipeDetailModel data)

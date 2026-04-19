@@ -28,15 +28,24 @@ namespace CookBook.Web.App
         // Property to store general error messages that aren't tied to specific fields
         public List<string> GeneralErrorMessages { get; set; } = new();
 
+        protected override void OnInitialized()
+        {
+            ResetEditContext();
+            base.OnInitialized();
+        }
+
         protected override async Task OnInitializedAsync()
         {
             if (Id != Guid.Empty)
             {
-                Data = await IngredientFacade.GetByIdAsync(Id);
+                var ingredient = await IngredientFacade.GetByIdAsync(Id);
+                if (ingredient is not null)
+                {
+                    Data = ingredient;
+                    ResetEditContext();
+                }
             }
 
-            editContext = new EditContext(Data);
-            validationMessageStore = new ValidationMessageStore(editContext);
             await base.OnInitializedAsync();
         }
 
@@ -196,6 +205,12 @@ namespace CookBook.Web.App
                 // If deserialization fails, fall back to general error handling
                 AddGeneralError(IngredientEditFormResources.ErrorMessage_General);
             }
+        }
+
+        private void ResetEditContext()
+        {
+            editContext = new EditContext(Data);
+            validationMessageStore = new ValidationMessageStore(editContext);
         }
     }
 }

@@ -120,6 +120,9 @@
   <data name="LogIn_Button" xml:space="preserve">
     <value>Přihlásit se</value>
   </data>
+  <data name="LocalOnlyItem_Tooltip" xml:space="preserve">
+    <value>Tento záznam je pouze lokální, nebyl zatím synchronizován na server</value>
+  </data>
   <data name="YouNeeedToLogin_Label" xml:space="preserve">
     <value>Na přístup k této stránce se musíte přihlásit.</value>
   </data>

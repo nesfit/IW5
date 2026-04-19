@@ -15,6 +15,7 @@ namespace CookBook.Web.BL.Facades
         private readonly IMapper<TDetailModel, TListModel> mapper;
         private readonly LocalDbOptions localDbOptions;
         protected virtual string culture => CultureInfo.DefaultThreadCurrentCulture?.Name ?? "cs";
+        protected bool IsLocalDbEnabled => localDbOptions.IsEnabled;
 
         protected FacadeBase(
             RepositoryBase<TDetailModel> repository,
@@ -30,7 +31,7 @@ namespace CookBook.Web.BL.Facades
         {
             var itemsAll = new List<TListModel>();
 
-            if (localDbOptions.IsLocalDbEnabled)
+            if (IsLocalDbEnabled)
             {
                 itemsAll.AddRange(await GetAllFromLocalDbAsync());
             }
@@ -43,7 +44,34 @@ namespace CookBook.Web.BL.Facades
             return mapper.ToListModels(recipesLocal);
         }
 
-        public abstract Task<TDetailModel> GetByIdAsync(Guid id);
+        protected async Task<TDetailModel?> GetByIdFromLocalDbAsync(Guid id)
+        {
+            return await repository.GetByIdAsync(id);
+        }
+
+        public async Task<ISet<Guid>> GetLocalIdsAsync()
+        {
+            if (!IsLocalDbEnabled)
+            {
+                return new HashSet<Guid>();
+            }
+
+            return (await repository.GetAllAsync())
+                .Select(item => item.Id)
+                .ToHashSet();
+        }
+
+        public async Task<bool> IsLocalAsync(Guid id)
+        {
+            if (!IsLocalDbEnabled)
+            {
+                return false;
+            }
+
+            return await repository.GetByIdAsync(id) is not null;
+        }
+
+        public abstract Task<TDetailModel?> GetByIdAsync(Guid id);
 
         public virtual async Task SaveAsync(TDetailModel data)
         {
@@ -51,9 +79,9 @@ namespace CookBook.Web.BL.Facades
             {
                 await SaveToApiAsync(data);
             }
-            catch (HttpRequestException exception) when (exception.Message.Contains("Failed to fetch"))
+            catch (HttpRequestException exception) when (IsOfflineException(exception))
             {
-                if (localDbOptions.IsLocalDbEnabled)
+                if (IsLocalDbEnabled)
                 {
                     await repository.InsertAsync(data);
                 }
@@ -74,5 +102,8 @@ namespace CookBook.Web.BL.Facades
 
             return localItems.Any();
         }
+
+        protected static bool IsOfflineException(HttpRequestException exception)
+            => exception.Message.Contains("Failed to fetch", StringComparison.OrdinalIgnoreCase);
     }
 }

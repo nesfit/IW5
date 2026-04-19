@@ -5,7 +5,7 @@
 @inject IOptions<IdentityOptions> IdentityOptions
 @inject IStringLocalizer<AppResources> AppResourcesLocalizer
 
-@if (IdentityOptions.Value.IsIdentityEnabled)
+@if (IdentityOptions.Value.IsEnabled)
 {
 	<CascadingAuthenticationState>
 		<Router AppAssembly="@typeof(App).Assembly">

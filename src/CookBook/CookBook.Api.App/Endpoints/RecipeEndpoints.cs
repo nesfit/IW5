@@ -28,7 +28,7 @@ public class RecipeEndpoints(IOptions<IdentityOptions> identityOptions) : Endpoi
 
         var recipeModifyingEndpoints = recipeEndpoints.MapGroup("");
 
-        if(identityOptions.Value.IsIdentityEnabled)
+        if(identityOptions.Value.IsEnabled)
         {
             recipeModifyingEndpoints.RequireAuthorization();
         }
@@ -81,7 +81,7 @@ public class RecipeEndpoints(IOptions<IdentityOptions> identityOptions) : Endpoi
             }
         });
 
-        if (identityOptions.Value.IsIdentityEnabled)
+        if (identityOptions.Value.IsEnabled)
         {
             // // Uncomment this to only enable admins to delete recipes
             // recipeDeleteEndpoint.RequireAuthorization(ApiPolicies.RecipeAdmin);

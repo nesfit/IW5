@@ -2,7 +2,7 @@
 
 public class IdentityOptions
 {
-    public bool IsIdentityEnabled { get; set; }
+    public bool IsEnabled { get; set; }
     public required string Authority { get; set; }
     public IList<string> DefaultScopes { get; set; } = [];
 }

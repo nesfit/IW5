@@ -2,6 +2,6 @@
 {
     public record LocalDbOptions
     {
-        public bool IsLocalDbEnabled { get; set; }
+        public bool IsEnabled { get; set; }
     }
 }

@@ -51,7 +51,7 @@ builder.Services.AddValidatorsFromAssemblyContaining<IngredientDetailModel>();
 
 builder.Services.AddLocalization();
 
-if (identityOptions?.IsIdentityEnabled is true)
+if (identityOptions?.IsEnabled is true)
 {
     builder.Services.AddOidcAuthentication(options =>
     {
@@ -59,10 +59,10 @@ if (identityOptions?.IsIdentityEnabled is true)
     });
 }
 
-var localDbEnabledString = builder.Configuration.GetSection(nameof(LocalDbOptions))[nameof(LocalDbOptions.IsLocalDbEnabled)];
+var localDbEnabledString = builder.Configuration.GetSection(nameof(LocalDbOptions))[nameof(LocalDbOptions.IsEnabled)];
 builder.Services.Configure<LocalDbOptions>(options =>
 {
-    options.IsLocalDbEnabled = !string.IsNullOrEmpty(localDbEnabledString) && bool.Parse(localDbEnabledString);
+    options.IsEnabled = !string.IsNullOrEmpty(localDbEnabledString) && bool.Parse(localDbEnabledString);
 });
 
 var host = builder.Build();
