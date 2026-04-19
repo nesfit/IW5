@@ -75,6 +75,8 @@ namespace CookBook.Web.App.Pages
 
         protected override async Task OnInitializedAsync()
         {
+            ResetEditContext();
+
             if (Id != Guid.Empty)
             {
                 var recipe = await RecipeFacade.GetByIdAsync(Id);
@@ -85,9 +87,6 @@ namespace CookBook.Web.App.Pages
             }
 
             Ingredients = await IngredientFacade.GetAllAsync();
-
-            editContext = new EditContext(Data);
-            validationMessageStore = new ValidationMessageStore(editContext);
 
             await base.OnInitializedAsync();
         }
@@ -247,6 +246,12 @@ namespace CookBook.Web.App.Pages
             }
 
             AddGeneralError(RecipeEditPageResources.ErrorMessage_General);
+        }
+
+        private void ResetEditContext()
+        {
+            editContext = new EditContext(Data);
+            validationMessageStore = new ValidationMessageStore(editContext);
         }
     }
 }
