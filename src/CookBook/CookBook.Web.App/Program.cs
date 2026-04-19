@@ -59,10 +59,10 @@ if (identityOptions?.IsEnabled is true)
     });
 }
 
-var localDbEnabledString = builder.Configuration.GetSection(nameof(LocalDbOptions))[nameof(LocalDbOptions.IsLocalDbEnabled)];
+var localDbEnabledString = builder.Configuration.GetSection(nameof(LocalDbOptions))[nameof(LocalDbOptions.IsEnabled)];
 builder.Services.Configure<LocalDbOptions>(options =>
 {
-    options.IsLocalDbEnabled = !string.IsNullOrEmpty(localDbEnabledString) && bool.Parse(localDbEnabledString);
+    options.IsEnabled = !string.IsNullOrEmpty(localDbEnabledString) && bool.Parse(localDbEnabledString);
 });
 
 var host = builder.Build();

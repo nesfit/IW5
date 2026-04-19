@@ -25,8 +25,14 @@ namespace CookBook.Web.BL.Facades
         {
             var ingredientsAll = await base.GetAllAsync();
 
-            var ingredientsFromApi = await apiClient.IngredientGetAsync(culture);
-            ingredientsAll.AddRange(ingredientsFromApi);
+            try
+            {
+                var ingredientsFromApi = await apiClient.IngredientGetAsync(culture);
+                ingredientsAll.AddRange(ingredientsFromApi);
+            }
+            catch (HttpRequestException exception) when (IsLocalDbEnabled && IsOfflineException(exception))
+            {
+            }
 
             return ingredientsAll;
         }

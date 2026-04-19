@@ -29,13 +29,19 @@ namespace CookBook.Web.BL.Facades
         {
             var recipesAll = await base.GetAllAsync();
 
-            var recipesFromApi = await apiClient.RecipeGetAsync(culture);
-            foreach (var recipeFromApi in recipesFromApi)
+            try
             {
-                if (recipesAll.Any(r => r.Id == recipeFromApi.Id) is false)
+                var recipesFromApi = await apiClient.RecipeGetAsync(culture);
+                foreach (var recipeFromApi in recipesFromApi)
                 {
-                    recipesAll.Add(recipeFromApi);
+                    if (recipesAll.Any(r => r.Id == recipeFromApi.Id) is false)
+                    {
+                        recipesAll.Add(recipeFromApi);
+                    }
                 }
+            }
+            catch (HttpRequestException exception) when (IsLocalDbEnabled && IsOfflineException(exception))
+            {
             }
 
             return recipesAll;
