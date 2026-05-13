@@ -1,8 +1,9 @@
-﻿using CookBook.Common.BL.Facades;
+using CookBook.Common.BL.Facades;
 using CookBook.Common.Options;
 using CookBook.Web.App.Options;
 using CookBook.Web.BL.Api;
-using CookBook.Web.BL.MessageHandlers;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CookBook.Web.BL.Installers;
@@ -14,10 +15,7 @@ public class WebBLInstaller
         IdentityOptions identityOptions,
         ApiOptions apiOptions)
     {
-        serviceCollection.AddScoped<CustomAuthorizationMessageHandler>();
-
-        AddApiClient<IIngredientApiClient, IngredientApiClient>(serviceCollection, identityOptions, apiOptions);
-        AddApiClient<IRecipeApiClient, RecipeApiClient>(serviceCollection, identityOptions, apiOptions);
+        AddApiHttpClients(serviceCollection, identityOptions, apiOptions);
 
         serviceCollection.Scan(selector =>
             selector.FromAssemblyOf<WebBLInstaller>()
@@ -26,14 +24,17 @@ public class WebBLInstaller
                 .WithTransientLifetime());
     }
 
-    private void AddApiClient<TInterface, TImplementation>(
+    private static void AddApiHttpClients(
         IServiceCollection serviceCollection,
         IdentityOptions identityOptions,
         ApiOptions apiOptions)
-        where TInterface : class, IApiClient
-        where TImplementation : class, TInterface
     {
-        var httpClient = serviceCollection.AddHttpClient<TInterface, TImplementation>(client =>
+        serviceCollection.AddHttpClient(ApiHttpClientNames.Anonymous, client =>
+        {
+            client.BaseAddress = new Uri(apiOptions.BaseUrl);
+        });
+
+        var httpClient = serviceCollection.AddHttpClient(ApiHttpClientNames.Default, client =>
         {
             client.BaseAddress = new Uri(apiOptions.BaseUrl);
         });
@@ -41,10 +42,12 @@ public class WebBLInstaller
         if (identityOptions.IsEnabled)
         {
             httpClient.AddHttpMessageHandler(serviceProvider
-                => serviceProvider.GetRequiredService<CustomAuthorizationMessageHandler>()
-                .ConfigureHandler(
-                    authorizedUrls: [apiOptions.BaseUrl],
-                    scopes: identityOptions.DefaultScopes));
+                => new AuthorizationMessageHandler(
+                        serviceProvider.GetRequiredService<IAccessTokenProvider>(),
+                        serviceProvider.GetRequiredService<NavigationManager>())
+                    .ConfigureHandler(
+                     authorizedUrls: [apiOptions.BaseUrl],
+                     scopes: identityOptions.DefaultScopes));
         }
     }
 }

@@ -3,22 +3,25 @@ using CookBook.Web.BL.Api;
 using CookBook.Web.BL.Mappers;
 using CookBook.Web.BL.Options;
 using CookBook.Web.DAL.Repositories;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 
 namespace CookBook.Web.BL.Facades
 {
     public class IngredientFacade : FacadeBase<IngredientDetailModel, IngredientListModel>
     {
-        private readonly IIngredientApiClient apiClient;
+        private readonly IngredientApiClient authorizedApiClient;
+        private readonly IngredientApiClient anonymousApiClient;
 
         public IngredientFacade(
-            IIngredientApiClient apiClient,
+            IHttpClientFactory httpClientFactory,
             IngredientRepository ingredientRepository,
             IMapper<IngredientDetailModel, IngredientListModel> mapper,
             IOptions<LocalDbOptions> localDbOptions)
             : base(ingredientRepository, mapper, localDbOptions)
         {
-            this.apiClient = apiClient;
+            authorizedApiClient = new IngredientApiClient(httpClientFactory.CreateClient(ApiHttpClientNames.Default));
+            anonymousApiClient = new IngredientApiClient(httpClientFactory.CreateClient(ApiHttpClientNames.Anonymous));
         }
 
         public override async Task<List<IngredientListModel>> GetAllAsync()
@@ -27,7 +30,7 @@ namespace CookBook.Web.BL.Facades
 
             try
             {
-                var ingredientsFromApi = await apiClient.IngredientGetAsync(culture);
+                var ingredientsFromApi = await anonymousApiClient.IngredientGetAsync(culture);
                 ingredientsAll.AddRange(ingredientsFromApi);
             }
             catch (HttpRequestException exception) when (IsLocalDbEnabled && IsOfflineException(exception))
@@ -41,7 +44,7 @@ namespace CookBook.Web.BL.Facades
         {
             try
             {
-                return await apiClient.IngredientGetAsync(id, culture);
+                return await anonymousApiClient.IngredientGetAsync(id, culture);
             }
             catch (HttpRequestException exception) when (IsLocalDbEnabled && IsOfflineException(exception))
             {
@@ -51,12 +54,12 @@ namespace CookBook.Web.BL.Facades
 
         protected override async Task<Guid> SaveToApiAsync(IngredientDetailModel data)
         {
-            return await apiClient.UpsertAsync(culture, data);
+            return await authorizedApiClient.UpsertAsync(culture, data);
         }
 
         public override async Task DeleteAsync(Guid id)
         {
-            await apiClient.IngredientDeleteAsync(id, culture);
+            await authorizedApiClient.IngredientDeleteAsync(id, culture);
         }
     }
 }

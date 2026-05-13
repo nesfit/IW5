@@ -20,6 +20,10 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Configuration.AddJsonFile("appsettings.json");
 
+#if DEBUG
+builder.Configuration.AddJsonFile("appsettings.Development.json", optional: true);
+#endif
+
 var apiOptions = builder.Configuration.GetSection(nameof(ApiOptions)).Get<ApiOptions>();
 if (apiOptions is null)
 {

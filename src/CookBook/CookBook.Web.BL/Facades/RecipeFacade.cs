@@ -7,22 +7,25 @@ using CookBook.Web.BL.Api;
 using CookBook.Web.BL.Mappers;
 using CookBook.Web.BL.Options;
 using CookBook.Web.DAL.Repositories;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 
 namespace CookBook.Web.BL.Facades
 {
     public class RecipeFacade : FacadeBase<RecipeDetailModel, RecipeListModel>
     {
-        private readonly IRecipeApiClient apiClient;
+        private readonly RecipeApiClient authorizedApiClient;
+        private readonly RecipeApiClient anonymousApiClient;
 
         public RecipeFacade(
-            IRecipeApiClient apiClient,
+            IHttpClientFactory httpClientFactory,
             RecipeRepository recipeRepository,
             IMapper<RecipeDetailModel, RecipeListModel> mapper,
             IOptions<LocalDbOptions> localDbOptions)
             : base(recipeRepository, mapper, localDbOptions)
         {
-            this.apiClient = apiClient;
+            authorizedApiClient = new RecipeApiClient(httpClientFactory.CreateClient(ApiHttpClientNames.Default));
+            anonymousApiClient = new RecipeApiClient(httpClientFactory.CreateClient(ApiHttpClientNames.Anonymous));
         }
 
         public override async Task<List<RecipeListModel>> GetAllAsync()
@@ -31,7 +34,7 @@ namespace CookBook.Web.BL.Facades
 
             try
             {
-                var recipesFromApi = await apiClient.RecipeGetAsync(culture);
+                var recipesFromApi = await anonymousApiClient.RecipeGetAsync(culture);
                 foreach (var recipeFromApi in recipesFromApi)
                 {
                     if (recipesAll.Any(r => r.Id == recipeFromApi.Id) is false)
@@ -51,7 +54,7 @@ namespace CookBook.Web.BL.Facades
         {
             try
             {
-                return await apiClient.RecipeGetAsync(id, culture);
+                return await anonymousApiClient.RecipeGetAsync(id, culture);
             }
             catch (HttpRequestException exception) when (IsLocalDbEnabled && IsOfflineException(exception))
             {
@@ -61,12 +64,12 @@ namespace CookBook.Web.BL.Facades
 
         protected override async Task<Guid> SaveToApiAsync(RecipeDetailModel data)
         {
-            return await apiClient.UpsertAsync(culture, data);
+            return await authorizedApiClient.UpsertAsync(culture, data);
         }
 
         public override async Task DeleteAsync(Guid id)
         {
-            await apiClient.RecipeDeleteAsync(id, culture);
+            await authorizedApiClient.RecipeDeleteAsync(id, culture);
         }
     }
 }
