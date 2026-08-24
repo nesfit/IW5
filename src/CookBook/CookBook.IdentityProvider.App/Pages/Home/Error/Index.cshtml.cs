@@ -24,7 +24,7 @@ public class Index : PageModel
         View = new ViewModel();
 
         // retrieve error details from identityserver
-        var message = await _interaction.GetErrorContextAsync(errorId);
+        var message = await _interaction.GetErrorContextAsync(errorId, CancellationToken.None);
         if (message != null)
         {
             View.Error = message;

@@ -1,7 +1,7 @@
 ﻿using Duende.IdentityServer.Events;
 using Duende.IdentityServer.Extensions;
 using Duende.IdentityServer.Services;
-using IdentityModel;
+using Duende.IdentityModel;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -38,7 +38,7 @@ public class Index : PageModel
         }
         else
         {
-            var context = await _interaction.GetLogoutContextAsync(LogoutId);
+            var context = await _interaction.GetLogoutContextAsync(LogoutId, CancellationToken.None);
             if (context?.ShowSignoutPrompt == false)
             {
                 // it's safe to automatically sign-out
@@ -63,13 +63,13 @@ public class Index : PageModel
             // if there's no current logout context, we need to create one
             // this captures necessary info from the current logged in user
             // this can still return null if there is no context needed
-            LogoutId ??= await _interaction.CreateLogoutContextAsync();
+            LogoutId ??= await _interaction.CreateLogoutContextAsync(CancellationToken.None);
                 
             // delete local authentication cookie
             await HttpContext.SignOutAsync("Identity.Application");
 
             // raise the logout event
-            await _events.RaiseAsync(new UserLogoutSuccessEvent(User.GetSubjectId(), User.GetDisplayName()));
+            await _events.RaiseAsync(new UserLogoutSuccessEvent(User.GetSubjectId(), User.GetDisplayName()), CancellationToken.None);
 
             // see if we need to trigger federated logout
             var idp = User.FindFirst(JwtClaimTypes.IdentityProvider)?.Value;

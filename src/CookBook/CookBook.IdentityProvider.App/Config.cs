@@ -1,7 +1,7 @@
 ﻿using System.Security.Claims;
 using Duende.IdentityServer;
 using Duende.IdentityServer.Models;
-using IdentityModel;
+using Duende.IdentityModel;
 
 namespace CookBook.IdentityProvider.App
 {

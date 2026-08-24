@@ -1,6 +1,6 @@
 ﻿using CookBook.IdentityProvider.BL.Facades;
 using Duende.IdentityServer.Validation;
-using IdentityModel;
+using Duende.IdentityModel;
 
 namespace CookBook.IdentityProvider.App.Services;
 
