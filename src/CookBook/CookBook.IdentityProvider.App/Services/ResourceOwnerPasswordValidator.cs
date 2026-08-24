@@ -13,7 +13,7 @@ public class ResourceOwnerPasswordValidator : IResourceOwnerPasswordValidator
         this.appUserFacade = appUserFacade;
     }
 
-    public async Task ValidateAsync(ResourceOwnerPasswordValidationContext context)
+    public async Task ValidateAsync(ResourceOwnerPasswordValidationContext context, CancellationToken cancellationToken = default)
     {
         var areCredentialsValid = await appUserFacade.ValidateCredentialsAsync(context.UserName, context.Password);
 
