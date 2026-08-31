@@ -22,7 +22,7 @@ Organizace kurzu
 | 21. 09. | 2. [Inversion of Control, konfigurace, lokalizace](./Lectures/Lecture_02/) (Michal Mrnuštík)           |
 |         | **(cvičení)** ASP&#46;NET Core Web API, controller, swagger, Postman, middleware (Michal Mrnuštík)     |
 | 28. 09. | **STÁTNÍ SVÁTEK**                                                                                      |
-| 05. 10. | 3.[Web - Blazor](./Lectures/Lecture_03/) (Roman Jašek)                                                 |
+| 05. 10. | 3. [Web - Blazor](./Lectures/Lecture_03/) (Roman Jašek)                                                 |
 |         | **(cvičení)** Web - Blazor (Roman Jašek)                                                               |
 | 12. 10. | 4. [Web - Blazor](./Lectures/Lecture_04/) (Roman Jašek)                                                |
 |         | **(cvičení)** Testování, CI/CD, nasazování do Azure (Michal Tichý)                                     |
