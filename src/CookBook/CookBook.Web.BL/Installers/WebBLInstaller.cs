@@ -1,4 +1,5 @@
-﻿using CookBook.Common.BL.Facades;
+﻿using System.Text.Json;
+using CookBook.Common.BL.Facades;
 using CookBook.Common.Options;
 using CookBook.Web.App.Options;
 using CookBook.Web.BL.Api;
@@ -14,7 +15,16 @@ public class WebBLInstaller
         IdentityOptions identityOptions,
         ApiOptions apiOptions)
     {
-        serviceCollection.AddScoped<CustomAuthorizationMessageHandler>();
+        if (identityOptions.IsEnabled)
+        {
+            serviceCollection.AddScoped<CustomAuthorizationMessageHandler>();
+        }
+
+        serviceCollection.AddSingleton<JsonSerializerOptions>(new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true,
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+        });
 
         AddApiClient<IIngredientApiClient, IngredientApiClient>(serviceCollection, identityOptions, apiOptions);
         AddApiClient<IRecipeApiClient, RecipeApiClient>(serviceCollection, identityOptions, apiOptions);
