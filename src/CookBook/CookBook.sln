@@ -27,6 +27,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookBook.Api.DAL.Memory", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1B830E23-DE7F-451B-B5CC-EB70A66AD6BB}"
 	ProjectSection(SolutionItems) = preProject
+		Dependencies.props = Dependencies.props
+		Directory.Packages.props = Directory.Packages.props
 		.editorconfig = .editorconfig
 		Directory.Build.props = Directory.Build.props
 		NSwagStudioSettings.nswag = NSwagStudioSettings.nswag
