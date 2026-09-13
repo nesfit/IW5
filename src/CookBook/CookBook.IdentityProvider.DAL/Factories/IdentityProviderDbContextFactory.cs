@@ -21,9 +21,7 @@ public class IdentityProviderDbContextFactory : IDesignTimeDbContextFactory<Iden
     {
         var configuration = new ConfigurationBuilder()
             .AddJsonFile("appsettings.json")
-#if DEBUG
             .AddJsonFile("appsettings.Development.json", optional: true)
-#endif
             .AddUserSecrets<IdentityProviderDbContextFactory>(optional: true)
             .AddUserSecrets(startupAssembly, optional: true)
             .Build();

@@ -43,7 +43,7 @@ namespace CookBook.IdentityProvider.App.Pages.ServerSideSessions
                     DisplayName = DisplayNameFilter,
                     SessionId = SessionIdFilter,
                     SubjectId = SubjectIdFilter
-                });
+                }, CancellationToken.None);
             }
         }
 
@@ -54,7 +54,7 @@ namespace CookBook.IdentityProvider.App.Pages.ServerSideSessions
         {
             await _sessionManagementService.RemoveSessionsAsync(new RemoveSessionsContext { 
                 SessionId = SessionId,
-            });
+            }, CancellationToken.None);
             return RedirectToPage("/ServerSideSessions/Index", new { Token, DisplayNameFilter, SessionIdFilter, SubjectIdFilter, Prev });
         }
     }

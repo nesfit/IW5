@@ -1,4 +1,4 @@
-// Copyright (c) Duende Software. All rights reserved.
+﻿// Copyright (c) Duende Software. All rights reserved.
 // See LICENSE in the project root for license information.
 
 
@@ -27,28 +27,39 @@ public class SecurityHeadersAttribute : ActionFilterAttribute
             }
 
             // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy
-            var csp = "default-src 'self'; object-src 'none'; frame-ancestors 'none'; sandbox allow-forms allow-same-origin allow-scripts; base-uri 'self';";
+            // The client origin comes from config ("ContentSecurityPolicy:ClientOrigin")
+            var configuration = context.HttpContext.RequestServices.GetRequiredService<IConfiguration>();
+            var clientOrigin = configuration["ContentSecurityPolicy:ClientOrigin"];
+            var contentSecurityPolicy = $"default-src 'self'; object-src 'none'; frame-ancestors 'self' {clientOrigin}; sandbox allow-forms allow-same-origin allow-scripts; base-uri 'self';";
             // also consider adding upgrade-insecure-requests once you have HTTPS in place for production
             //csp += "upgrade-insecure-requests;";
             // also an example if you need client images to be displayed from twitter
             // csp += "img-src 'self' https://pbs.twimg.com;";
 
+            // Visual Studio's Browser Link (dev-only) opens a SignalR connection to a random
+            // localhost port. Allow it only when running in Development so production stays strict.
+            var env = context.HttpContext.RequestServices.GetService<IWebHostEnvironment>();
+            if (env?.IsDevelopment() is true)
+            {
+                contentSecurityPolicy += " connect-src 'self' http://localhost:* ws://localhost:*;";
+            }
+
             // once for standards compliant browsers
             if (!context.HttpContext.Response.Headers.ContainsKey("Content-Security-Policy"))
             {
-                context.HttpContext.Response.Headers.Add("Content-Security-Policy", csp);
+                context.HttpContext.Response.Headers.Add("Content-Security-Policy", contentSecurityPolicy);
             }
             // and once again for IE
             if (!context.HttpContext.Response.Headers.ContainsKey("X-Content-Security-Policy"))
             {
-                context.HttpContext.Response.Headers.Add("X-Content-Security-Policy", csp);
+                context.HttpContext.Response.Headers.Add("X-Content-Security-Policy", contentSecurityPolicy);
             }
 
             // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy
-            var referrer_policy = "no-referrer";
+            var referrerPolicy = "no-referrer";
             if (!context.HttpContext.Response.Headers.ContainsKey("Referrer-Policy"))
             {
-                context.HttpContext.Response.Headers.Add("Referrer-Policy", referrer_policy);
+                context.HttpContext.Response.Headers.Add("Referrer-Policy", referrerPolicy);
             }
         }
     }

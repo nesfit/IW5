@@ -20,7 +20,7 @@ public class LocalAppUserProfileService : IProfileService
         this.appUserClaimsFacade = appUserClaimsFacade;
     }
 
-    public async Task GetProfileDataAsync(ProfileDataRequestContext context)
+    public async Task GetProfileDataAsync(ProfileDataRequestContext context, CancellationToken cancellationToken = default)
     {
         var subjectId = context.Subject.GetSubjectId();
 
@@ -53,8 +53,9 @@ public class LocalAppUserProfileService : IProfileService
         }
     }
 
-    public async Task IsActiveAsync(IsActiveContext context)
+    public Task IsActiveAsync(IsActiveContext context, CancellationToken cancellationToken = default)
     {
         context.IsActive = true;
+        return Task.CompletedTask;
     }
 }

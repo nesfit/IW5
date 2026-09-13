@@ -33,15 +33,15 @@ public class Index : PageModel
         
     public async Task OnGet()
     {
-        var grants = await _interaction.GetAllUserGrantsAsync();
+        var grants = await _interaction.GetAllUserGrantsAsync(CancellationToken.None);
 
         var list = new List<GrantViewModel>();
         foreach (var grant in grants)
         {
-            var client = await _clients.FindClientByIdAsync(grant.ClientId);
+            var client = await _clients.FindClientByIdAsync(grant.ClientId, CancellationToken.None);
             if (client != null)
             {
-                var resources = await _resources.FindResourcesByScopeAsync(grant.Scopes);
+                var resources = await _resources.FindResourcesByScopeAsync(grant.Scopes, CancellationToken.None);
 
                 var item = new GrantViewModel()
                 {
@@ -72,8 +72,8 @@ public class Index : PageModel
 
     public async Task<IActionResult> OnPost()
     {
-        await _interaction.RevokeUserConsentAsync(ClientId);
-        await _events.RaiseAsync(new GrantsRevokedEvent(User.GetSubjectId(), ClientId));
+        await _interaction.RevokeUserConsentAsync(ClientId, CancellationToken.None);
+        await _events.RaiseAsync(new GrantsRevokedEvent(User.GetSubjectId(), ClientId), CancellationToken.None);
 
         return RedirectToPage("/Grants/Index");
     }

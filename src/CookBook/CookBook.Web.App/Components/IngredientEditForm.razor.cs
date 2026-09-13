@@ -4,7 +4,6 @@ using CookBook.Web.BL.Api;
 using CookBook.Web.BL.Facades;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
-using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 
 namespace CookBook.Web.App
@@ -91,9 +90,7 @@ namespace CookBook.Web.App
             {
                 HandleValidationErrors(ex.Result);
             }
-            catch (ApiException ex) when (ex.StatusCode
-                                              is StatusCodes.Status400BadRequest
-                                              or StatusCodes.Status403Forbidden)
+            catch (ApiException ex) when (ex.StatusCode is 400 or 403)
             {
                 HandleGenericError(ex);
             }

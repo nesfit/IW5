@@ -1,6 +1,6 @@
 ﻿using CookBook.IdentityProvider.BL.Facades;
 using Duende.IdentityServer.Validation;
-using IdentityModel;
+using Duende.IdentityModel;
 
 namespace CookBook.IdentityProvider.App.Services;
 
@@ -13,7 +13,7 @@ public class ResourceOwnerPasswordValidator : IResourceOwnerPasswordValidator
         this.appUserFacade = appUserFacade;
     }
 
-    public async Task ValidateAsync(ResourceOwnerPasswordValidationContext context)
+    public async Task ValidateAsync(ResourceOwnerPasswordValidationContext context, CancellationToken cancellationToken = default)
     {
         var areCredentialsValid = await appUserFacade.ValidateCredentialsAsync(context.UserName, context.Password);
 

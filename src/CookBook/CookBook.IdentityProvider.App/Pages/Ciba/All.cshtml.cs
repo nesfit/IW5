@@ -30,6 +30,6 @@ public class AllModel : PageModel
 
     public async Task OnGet()
     {
-        Logins = await _backchannelAuthenticationInteraction.GetPendingLoginRequestsForCurrentUserAsync();
+        Logins = await _backchannelAuthenticationInteraction.GetPendingLoginRequestsForCurrentUserAsync(CancellationToken.None);
     }
 }
