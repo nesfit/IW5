@@ -264,3 +264,6 @@ __pycache__/
 
 appsettings.*.json
 /src/CookBook/CookBook.IdentityProvider.App/keys
+
+# Downloaded .NET install helper, never commit it
+dotnet-install.sh

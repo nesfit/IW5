@@ -1,158 +1,236 @@
 # IW5 projekt
 
-## Důležité upozornění
-Pro hodnocení projektu (a úspěšné absolvování předmětu) je nutno dokončit **obě 2 fáze projektu** a projekt **obhájit**. Pokud projekt nebude při obhajobě obsahovat základní funkcionalitu uvedenou v zadání, bude obhajoba hodnocena 0 body. **Nespokojíme se tedy s nedokončeným projektem**. Tuhle poznámku sem dáváme proto, že se v předchozích ročnících vyskytly týmy, které po dosáhnutí součtu 50 bodů za předmět po 1. fázi rozhodly nedokončit projekt a poté byly nemile překvapeni, když se po nich vyžadovala plná funkcionalita při obhajobě. Dejte si na to tedy prosím pozor.
+> :warning: **Upozornění**  
+> Toto zadání je z minulého akademického roku. V průběhu prvních 14 dní semestru bude upraveno pro aktuální ročník. Informaci o finalizaci zadání se dozvíte na přednášce.
 
-# Cíl
-Cílem je vytvořit použitelnou a snadno rozšiřitelnou aplikaci, která splňuje požadavky zadání. Aplikace nemá padat nebo zamrzávat.
-
-Zadání úmyslně není striktní, je Vám ponechána volnost, pro vlastní realizaci. Při hodnocení je kladen důraz na technické zpracování a kvalitu kódu, ale hodnotíme i použitelnost a grafické zpracování aplikace. Pokud Vám přijde, že v zadání chybí nějaká funkcionalita, neváhejte ji doplnit. Pište aplikaci tak, abyste ji sami chtěli používat.
-
-# Zadání - Webová aplikace "Flash cards"
-Výsledná aplikace má sloužit jako jednoduchá webová stránka pro vytváření a správu pomocného nástroje na výuku - tzv. flash cards. Pro inspiraci se můžete podívat třeba na aplikace jako Quizlet, Flashcards World...
+## Tl;dr
+- Téma: webová aplikace pro tvorbu a procvičování výukových kartiček (flash cards) ve stylu Quizlet.
+- Povinné entity: Karta, Kolekce karet, Uživatel, Absolvovaná lekce.
+- Povinné operace: CRUD nad všemi entitami, seznamy s filtrací, řazením a stránkováním, textové vyhledávání, procvičení kolekce.
+- Perzistence: databáze přes Entity Framework Core. In-memory úložiště není akceptovatelné.
+- Architektura: více projektů a vrstev. Jediný projekt je neakceptovatelný.
+- Týmy po 3 studentech, kód v Azure DevOps, nasazení do Azure.
+- Fáze 1 (50 bodů): Web API s OpenAPI/Swagger, testy, CI + CD. Odevzdává se, hodnotí se poslední commit před deadlinem.
+- Fáze 2 (50 bodů): Blazor WebAssembly frontend napojený na API, uživatelské role. Neodevzdává se, hodnotí se při obhajobě.
+- Pro absolvování musí být obě fáze hodnoceny alespoň 1 bodem.
 
 ---
-## Data
-V rámci dat, se kterými se bude pracovat budeme požadovat minimálně následující data.
+
+## Cíl
+Cílem je vytvořit použitelnou a snadno rozšiřitelnou aplikaci, která splňuje požadavky zadání. Aplikace nesmí padat ani zamrzávat a chybný vstup uživatele hlásí validační hláškou.
+
+Zadání ponechává volnost pro vlastní realizaci. Důraz je kladen na technické zpracování a kvalitu kódu, hodnotí se ale i použitelnost. Pište aplikaci tak, abyste ji sami chtěli používat. Chybějící funkcionalitu můžete doplnit, rozšíření zdokumentujte v `README.md` Vašeho repozitáře.
+
+---
+
+## Téma projektu
+Aplikace slouží jako jednoduchá webová stránka pro tvorbu a procvičování výukových kartiček (flash cards), viz Quizlet nebo Flashcards World.
+
+Uživatel vytváří karty s otázkou a odpovědí, sdružuje je do kolekcí a kolekce procvičuje formou lekcí. Aplikace si pamatuje, jak uživatel v lekci odpovídal, a zobrazuje mu statistiky.
+
+Možná rozšíření:
+- sdílení kolekcí mezi uživateli
+- různé režimy procvičování (výběr z možností, psaní odpovědi)
+- opakování podle úspěšnosti (spaced repetition)
+
+---
+
+## Data a entity
+Požadujeme minimálně následující položky. Zvažte, co je třeba ukládat a co lze dopočítat při dotazování.
 
 ### Karta
 - Typ otázky (textová, obrázková)
-- Typ odpovědi
-- Otázka - Text/URL obrázku
-- Správná odpověď - Text/URL obrázku
-- Doplňující popis (nemusí být uveden u každé karty)
+- Typ odpovědi (textová, obrázková)
+- Otázka - text nebo URL obrázku
+- Správná odpověď - text nebo URL obrázku
+- [Doplňující popis]
+- (Kolekce karet)
+- (Uživatel - autor)
+
+### Kolekce karet
+- Název
+- Datum a čas začátku pro akceptování odpovědí
+- Datum a čas konce pro akceptování odpovědí
+- (Karty)
+- (Uživatel - autor)
 
 ### Uživatel
 - Jméno
 - Fotografie (postačí URL)
 - Role
+- (Karty, Kolekce karet)
+- (Absolvované lekce)
 
-### Kolekce karet
-- Název
-- Karty
-- Datum a čas začátku pro akceptování odpovědí
-- Datum a čas konce pro akceptování odpovědí
-
-### Absolvované lekce
+### Absolvovaná lekce
 - Záznam správných a nesprávných odpovědí
 - Statistiky uživatele
+- (Uživatel)
+- (Kolekce karet)
+
+Poznámky:
+- `()` označuje možné/doporučené vazby mezi entitami
+- `[]` označuje volitelné položky
 
 ---
-## Funkcionalita
-Webová aplikace bude obsahovat několik stránek pro zobrazování a zadávání dat.
 
-V zadání není požadováno perzistentní uložení dat. To znamená, že když se aplikace restartuje, tak může o data přijít. Nicméně bude nutno data ukládat za běhu aplikace, aby bylo možno demonstrovat, že když se například pomocí aplikace přidá nový záznam, tak se tento zobrazí v příslušném seznamu záznamů, dá se editovat, smazat atd.
-
-Minimální rozsah, který je požadován v rámci projektu je popsán v této kapitole.
-
-## Stránka typu "seznam" pro každou datovou entitu
-Seznam bude obsahovat všechny typy záznamů kde dává smysl zobrazovat všechny položky. Bude možno se z něj překliknout na detail záznamu a na pohled pro přidání nového záznamu.
-Tyto stránky budou podporovat filtraci, řazení a stránkování záznamů.
-
-Aplikace podporuje textové vyhledávání vyhledávání minimálně v těchto datech:
-- Karta
-   - Text
-   - Popis
-- Uživatel
-   - Jméno
-- Kolekce karet
-   - Název
- 
-## Stránka typu "detail" pro každou datovou entitu
-Zobrazuje detail daného typu záznamu se všemi informacemi o něm. Editace záznamu může být implementována na stránce "detail", nebo na samostatné stránce.
-
-### Práce s uživatelskými účty
-Jelikož práce s přihlašováním a uživatelskými účty je v předmětu zařazená až v 2. části semestru a bude se řešiť až po odevzdání první fáze projektu (API) není v API v první fázi projektu nutno pracovat s uživatelskými rolemi. V první fázi tedy vytvořte aplikaci, která bude obsahovat práci s daty ale není nutno řešit omezení uživatelů na jednotlivé akce. Práce s uživatelskými rolemi bude hodnocena až ve 2. fázi projektu.
-
-V 2. fázi můžete použít přihlašování pomocí .NET Identity tak jak, bude ukazovánú v předmětu, nebo řešit změnu uživatele jenom přepnutím uživatelského účtu - v tom případě budete potřebovat vyřešit práci s uživatelskými rolemi vlastním řešením.
-
-V systému budou vystupovat minimálně role uživatel a administrátor.
-**Uživatel** může:
-- Vytvářet karty a kolekce karet
-- Editovat a mazat karty a kolekce karet, které vytvořil
-
-**Administrátor** může:
-- Vytvářet, editovat a mazat libovolné karty a kolekce karet
-- Vytvářet a mazat uživatele
+## Důležitá upozornění
+- Pro absolvování předmětu musí být každá fáze hodnocena alespoň 1 bodem. Fázi 2 hodnotíme při obhajobě, a pokud aplikace nepředvede základní funkcionalitu dle zadání, je hodnocena 0 body. **Nespokojíme se s nedokončeným projektem.** V minulosti týmy po 50 bodech z fáze 1 přestaly pracovat a u obhajoby neuspěly.
+- Uživatelské role se hodnotí až ve fázi 2. Ve fázi 1 API nemusí omezovat akce podle uživatele, entita Uživatel a její data ale musí existovat.
 
 ---
-## Správa projektu - Azure DevOps
-Projekt řeší studenti v týmech. V každém týmu jsou **3 studenti**.
 
-Při řešení projektu týmy využívají Azure DevOps a využívají GIT na sdílení kódu. Do svého projektu přidělte přístup vyučujícím; tj. do Vašeho týmového projektu si v části Members přidejte účet **uciteliw5@vutbr.cz**
+## Základní funkcionalita
 
-Účet **uciteliw5@vutbr.cz** budou používat vyučující pro přístup k odevzdávaným souborům. Bez přidání tohoto účtu není možné přistoupit k vašemu projektu, a tedy není možné jej ze strany vyučujících hodnotit.
+### Pohledy
+Pro každou entitu aplikace obsahuje:
+- **Seznam** - stránkovaný přehled záznamů s filtrací a řazením, s odkazem na detail a na vytvoření nového záznamu.
+- **Detail** - všechny informace o záznamu.
+- **Vytvoření a editace** - buď na stránce detailu, nebo na samostatné stránce.
+- **Smazání.**
 
-Návod na přidání člena projektu můžete najít zde: *https://docs.microsoft.com/en-us/vsts/accounts/add-team-members-vs*
+Pokud pro některou entitu seznam nedává smysl (např. lekce bez vazby na uživatele), rozhodnutí zdůvodněte v `README.md`.
 
-Z GITu *musí být viditelná postupná práce na projektu a spolupráce týmu*. Pokud uvidíme, že existuje malé množství nelogických a nepřeložitelných commitů tak nás bude zajímat, jak jste spolupracovali a může to vést na snížení bodového hodnocení. Organizaci pojmenujte **iw5-2025-team-\<xlogin00\>** dle Vašeho názvu týmu (xlogin00 je xlogin vedoucího týmu - máte jej v názvu týmu ve VUT IS) a projekt **project** tak, že výsledné URL pro přístup pro tento imaginární tým by bylo https://dev.azure.com/iw5-2025-team-xlogin00/project. Nezapomeňte nastavit **Work item process** template na **Scrum**.
+### Vyhledávání
+Textové vyhledávání minimálně v těchto datech:
+- Karta - textová otázka, doplňující popis
+- Uživatel - jméno
+- Kolekce karet - název
+
+### Procvičování
+Uživatel může projít kolekci kartu po kartě a odpovídat. Odpovědi jsou přijímány pouze v časovém okně kolekce. Výsledek se uloží jako Absolvovaná lekce a uživatel vidí své statistiky.
+
+### Uživatelské role
+Minimálně role **uživatel** a **administrátor**.
+
+Uživatel může:
+- vytvářet karty a kolekce karet
+- editovat a mazat karty a kolekce karet, které vytvořil
+
+Administrátor může:
+- vytvářet, editovat a mazat libovolné karty a kolekce karet
+- vytvářet a mazat uživatele
+
+Přihlašování řešte pomocí ASP.NET Core Identity tak, jak bude ukázáno v předmětu, nebo přepínáním uživatelského účtu v UI s vlastním řešením rolí. V obou případech musí být oprávnění rolí vynucena, ne pouze skryta v UI.
+
+### Perzistence
+- Data musí přežít restart aplikace. In-memory úložiště (kolekce v paměti, EF Core InMemory provider) není akceptovatelné, ani ve fázi 1.
+- Použijte Entity Framework Core (Code First, migrace) a relační databázi (např. SQL Server, Azure SQL, SQLite).
+- Filtrace, řazení, vyhledávání a stránkování probíhají v databázi, ne nad daty v paměti.
+
+---
 
 ## Architektura projektu
+Ve výuce ukazujeme rozdělení kódu do logických vrstev a projektů s využitím návrhových vzorů a vysvětlujeme proč. Stejné rozvržení chceme i po Vás. Uspořádání vzorového projektu ze cvičení můžete převzít bez ztráty bodů; vlastní uspořádání musíte umět zdůvodnit.
 
-Ve výuce Vám ukazujeme nějakou strukturu organizace kódu do logických vrstev a projektů se zapojením návrhových vzorů. Pokoušíme se vysvětlit proč je vzorový projekt takhle organizovaný a proč jsou zvoleny jednotlivá rozhodnutí.
+Řešení musí obsahovat více projektů a vrstev (např. API, BL, DAL, Web, Common). Řešení s jediným projektem není akceptovatelné. Architektura se hodnotí v obou fázích. Jinou architekturu (např. Clean Architecture) předem konzultujte.
 
-Budeme tedy i po Vás chtít logické rozvržení projektu. Můžete využít to, jak je organizovaný vzorový projekt probíraný na cvičeních a inspirovat se tímto uspořádáním (můžete ho mít stejné, za to Vám rozhodně body nestrhnem). Nebo můžete využít i vlastní uspořádání - v tom případě ale po Vás budeme chtít vysvětlit proč jste němu přistoupili a čím se jeho jednotlivé aspekty řídí.
-
-V každém případě ale budeme chtít, aby výsledné řešení obsahovalo víc projektů a vrstev. Snažíme se Vám na tomto projektu ukázat nějakou základní architekturu SW projektu, abyste si odnesli i něco víc než jen to, že budete znát syntax jazyka C#. Na tenhle aspekt tedy rozhodně bude brán zřetel ve všech fázích hodnocení projektu.
-
-## Nasazení do Azure
-
-V rámci přednášek se budeme věnovat také nasazení celého řešení do prostředí Azure. Zkusíte si tedy nasadit všechny části Vašeho řešení a také automatizaci nasazování celého systému. Při pojmenování webů, databáze (pokud ji budete používat) a dalších částí, které budete vytvářet vycházejte z návodu, který máte k dispozici v rámci 1. přednášky. Také nezapomeňte přiřadit přístup k projektové části Azure pro učitelský účet (dle pokynů v 1. přednášce).
-
-Schéma pojmenování věcí, které budete potřebovat založit v Azure je ukázána v prezentaci k 1. přednášce - prosím držte se tohoto schématu.
-
-# Odevzdávání
-Odevzdávání projektu má **2 fáze**. V každé fázi se hodnotí jiné vlastnosti projektu. Nicméně fáze na sebe navzájem následují a studenti pokračují v práci na svém kódu i po jeho odevzdání v rámci následující fáze.
-
-Pokud se týmově rozhodnete, že všichni členové nepřispěli rovnoměrně k vypracování projektu. Přidejte do kořene repositáře textový soubor s názvem ROZDELENI.txt, ve kterém uveďte loginy všech členů týmu a poměrné rozdělení bodů v procentech (struktura není pevně daná). V případě, že soubor nepřiložíte nebo nebude srozumitelný tak implicitně uvažujeme rovnoměrné rozdělení bodů. Pro rovnoměrné rozložení bodů tedy není nutné soubor přikládat.
-
-**Kontroluje se kód, který je nahrán v GIT** ve větvi `master` nebo `main`. Vždy se kontroluje **poslední commit před časem odevzdávání** dané fáze projektu. Na commity nahrány po času odevzdávání nebo v jiných větvích nebude brán zřetel. Pokud commit, který máme hodnotit otagujete, např. `v1, v2`, usnadníte nám orientaci při hodnocení.
-
-Je silně doporučováno projekty v průběhu semestru konzultovat po přednášce/cvičení, předejdete tak případným komplikacím při odevzdání.
- 
 ---
-### Fáze 1 – API (50 bodů)
-V první fázi se zaměříme na vytvoření Web API služby. Výstupem tedy bude spustitelný projekt, který obsahuje Web API, poskytuje specifikaci ve standardu OpenAPI (výběr verze necháme na vás) a poskytuje přístup k API pomocí Swagger inspektoru. API obsahuje minimálně metody pro:
-- Získání dat pro stránky typu "seznam" pro každou obrazovku se seznamem. Endpointy musí podporovat filtrování, řazení a stránkování.
-- Získáni dat pro stránku typu "detail" pro každou datovou entitu
-- Vytvoření záznamu pro každou datovou entitu
-- Upravení existujícího záznamu pro každou datovou entitu
-- Smazání záznamu pro každou datovou entitu
-- Získání výsledků vyhledávání
 
-Vzorové API, dle kterého se můžete inspirovat bude ukazováno na přednáškách/cvičeních.
+## Odevzdávání
+Projekt řešíte v týmech po **3 studentech** a má 2 fáze, které na sebe navazují. Odevzdává se pouze **fáze 1**. **Fáze 2** se hodnotí při obhajobě podle stavu repozitáře.
 
-V 1. fázi bude také požadováno pokrytí API testy. Minimálně musí být pokryty všechny API endpointy dostatečným počtem testů, aby se pomocí nich dala ověřit správnost funkcionality API.
+Kontroluje se kód ve větvi `main`:
+- Fáze 1 - poslední commit před časem odevzdání, otagujte jej `review1`.
+- Fáze 2 - poslední commit do konce dne před obhajobou, otagujte jej `final`.
+- Pozdější commity a jiné větve nebereme v potaz.
 
-Počítáme tedy s tím, že budete mít vytvořeny testy, které můžeme spustit jak lokálně, tak v rámci Azure DevOps a tyto testy testují správnost Vašeho řešení. To, jak psát testy bude ukázáno v rámci přednášek/cvičení.
+Je povoleno:
+- použít libovolnou knihovnu z NuGet
+- převzít kód z libovolného zdroje včetně LLM (ChatGPT, Copilot, ...), vyjma projektů ostatních týmů, pokud je řádně označen a zdroj uveden
+- převzatému kódu musíte rozumět a umět jej u obhajoby vysvětlit; ověřte, že kód i knihovny neporušují licence
 
-Budeme tedy kontrolovat jak to, že máte napsány správné testy tak to, že aplikace funguje.
+Týmová spolupráce:
+- Z GITu musí být viditelná postupná práce a spolupráce týmu. Malý počet commitů, nelogické commity nebo commity s nepřeložitelným kódem mohou vést ke snížení hodnocení.
+- Doporučujeme Conventional Commits a ["GIT Branching strategy"](https://medium.com/@sreekanth.thummala/choosing-the-right-git-branching-strategy-a-comparative-analysis-f5e635443423).
+- Pokud členové nepřispěli rovnoměrně, přidejte do kořene repozitáře soubor `ROZDELENI.txt` s loginy a poměrným rozdělením bodů v procentech. Bez souboru (nebo pokud je nesrozumitelný) bereme rovnoměrné rozdělení.
+
+Projekt v průběhu semestru konzultujte po přednášce nebo cvičení, předejdete komplikacím při odevzdání.
+
+---
+
+## Fáze 1 – API (50 bodů)
+Vytvořte spustitelnou Web API službu se specifikací OpenAPI (verzi necháme na Vás) a Swagger UI. Vzorové API bude ukázáno na přednáškách a cvičeních.
+
+Požadavky:
+- Endpointy pokrývající celou [Základní funkcionalitu](#základní-funkcionalita) pro každou entitu: seznam s filtrací, řazením a stránkováním, detail, vytvoření, úprava, smazání, vyhledávání, procvičování.
+- Perzistence přes Entity Framework Core s migracemi (alespoň InitialMigration).
+- Testy všech endpointů v rozsahu, který ověří správnost API, spustitelné lokálně i v Azure DevOps.
+- CI (build + testy) a CD s automatizovaným nasazením do Azure z Azure DevOps (viz [Nasazení do Azure](#nasazení-do-azure)).
 
 Hodnotíme:
-- logický návrh tříd
-- splnění funkcionality
+- logický návrh tříd a splnění funkcionality
+- perzistenci dat a využití Entity Framework Core
 - využití abstrakce, zapouzdření, polymorfismu
 - čistotu kódu
 - verzování v GITu po logických částech
 - testy
-- automatizované nasazení do Azure (CI + CD) z Azure DevOps
-- logické rozšíření datového návrhu nad rámec zadání (bonusové body)
+- CI + CD do Azure
+- rozšíření datového návrhu nad rámec zadání (bonusové body, přiznávají se až u obhajoby, pokud je rozšíření kompletně implementováno)
 
 ---
-### Fáze 2 - Web (50 bodů)
-V druhé fázi se od vás bude požadovat vytvoření webové aplikace pomocí technologie Blazor WebAssembly. Webová aplikace bude napojena na API vytvořeno v první fázi projektu. Do aplikace se také přidá práce s uživatelskými rolemi.
+
+## Fáze 2 – Web a obhajoba (50 bodů)
+Vytvořte Blazor WebAssembly aplikaci napojenou na API z fáze 1 a doplňte uživatelské role. Fázi uzavírá [obhajoba](#obhajoba).
+
+Požadavky:
+- Pohledy dle [Základní funkcionality](#základní-funkcionalita) pro každou entitu.
+- Uživatelské role dle zadání.
+- Nasazení webu do Azure vedle API.
+- Oprava chyb a připomínek z hodnocení fáze 1.
 
 Hodnotíme:
-- opravení chyb a zapracování připomínek, které jsme vám dali v rámci hodnocení fáze 1
-- funkčnost celé výsledné aplikace
-- zobrazení jednotlivých informací dle zadání – seznam, detail, vytváření, editace, mazání…
-- čistotu kódu
-- vytvoření dobře vypadající aplikace (bonusové body)
+- zapracování připomínek z fáze 1
+- funkčnost celé aplikace a zobrazení informací dle zadání
+- práci s uživatelskými rolemi
+- čistotu kódu a validaci vstupů
+- funkčnost testů a CI/CD
+- grafické zpracování a UX nad rámec zadání (bonusové body)
 
 ---
+
 ## Obhajoba
-Obhajoby projektů budou probíhat v **posledním týdnu** semestru. Termíny obhajob budou vyhlášeny v průběhu semestru.
+Obhajoba uzavírá fázi 2 a její výsledek je hodnocením této fáze. Probíhá na konci semestru, termíny vyhlásíme v IS.
 
-Na obhajobu se dostaví **celý tým**. Z členů týmu bude cvičícími vybrán 1 student, který obhajobu povede. Na obhajobu **není nutné** mít prezentaci (Powerpoint nebo PDF). Budete nám muset ukázat, jak funguje váš kód, že je správně navržen. Obhajoby budou probíhat osobně, nebo online dle aktuálních omezení v době obhajob.
+- Dostaví se **celý tým**; výjimkou je řádně omluvená nepřítomnost dle studijního řádu.
+- Část členů může být v nutném případě online, alespoň jeden člen je fyzicky přítomný. Za připojení a technické potíže odpovídá tým.
+- Obhajobu vede **náhodně vybraný člen týmu**.
+- Prezentace není nutná. Předvedete funkčnost aplikace dle zadání, následuje technická rozprava nad kódem: funkce jednotlivých tříd a důvody jejich členění.
 
-Připravte se na naše otázky k funkcionalitě jednotlivých tříd a k důvodům jejich členění.
+---
+
+## Správa projektu – Azure DevOps
+Kód sdílejte v GITu v Azure DevOps.
+
+- Organizaci pojmenujte `iw5-2026-team-xlogin00` (xlogin00 je login vedoucího týmu z názvu týmu ve VUT IS) a projekt `project`, tj. `https://dev.azure.com/iw5-2026-team-xlogin00/project`.
+- Nastavte **Work item process** na **Scrum**.
+- Nastavte CI tak, aby při pushnutí do libovolné větve proběhl build a testy. Nenechávejte to na poslední chvíli, aktivace CI runnerů může vyžadovat formulář a trvat několik dní.
+
+> :warning: **Velmi důležité upozornění**  
+> Přidejte do projektu vyučující účet **uciteliw5@vutbr.cz**, a to jako posledního člena, s oprávněním **Stakeholder**.  
+> Zároveň jej přidejte do **Project Collection Administrator** v nastavení organizace.  
+> Bez splnění obou bodů není možné projekt hodnotit.
+
+Návody a odkazy:
+- [Přidání člena projektu](https://docs.microsoft.com/en-us/vsts/accounts/add-team-members-vs)
+- [Scrum workflow](https://docs.microsoft.com/en-us/azure/devops/boards/work-items/guidance/scrum-process-workflow?view=azure-devops)
+- [Burndown chart](https://docs.microsoft.com/en-us/azure/devops/report/sql-reports/sprint-burndown-scrum?view=azure-devops-2019&viewFallbackFrom=azure-devops-2019)
+- [Azure Pipelines video](https://www.youtube.com/watch?v=yr6PJxfACNc)
+
+---
+
+## Nasazení do Azure
+- Nasaďte všechny části řešení do Azure a nasazování automatizujte z Azure DevOps.
+- Weby, databázi a další zdroje pojmenujte podle schématu z 1. přednášky.
+- Ke všem zdrojům přiřaďte přístup účtu **uciteliw5@vutbr.cz** dle pokynů v 1. přednášce.
+
+---
+
+## Konvence
+- Identifikátory, třídy a komentáře pojmenovávejte anglicky.
+- Dodržujte zásady Clean Code.
+- Používejte `.editorconfig` dle domluvy v týmu.
+
+---
+
+## Doporučení (bonusové body)
+- Využijte Scrum v Azure DevOps: sprinty na jednotlivé fáze, práci rozdělenou na PBI, Tasks a Bugs, Boards a Burndown chart.
