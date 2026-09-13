@@ -66,11 +66,12 @@ LXY - přednáška | EXY - democvičení | P0X - projekt
 # Projekt
 * Zadání projektu: [Project/README.md](./Project/README.md)
 * Projekt bude vypracovaný v 3-členném týmu.
+* Odevzdává se pouze 1. fáze, 2. fázi uzavírá obhajoba.
 
 | Fáze | Deadline                    | Obsah                                         | Body |
 | ---- | --------------------------- | --------------------------------------------- | ---- |
 | 1    | viz IS                      | API                                           | 50   |
-| 2    | viz IS (den před obhajobou) | Web - finalizace aplikace a následná obhajoba | 50   |
+| 2    | Obhajoba (dle IS)           | Web - finalizace aplikace a následná obhajoba | 50   |
 
 * Při obhajobě:
   * musí být přítomni všichni členové týmu (výjimka je řádně omluvená nepřítomnost dle studijního řádu),
