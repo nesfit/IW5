@@ -39,6 +39,32 @@ namespace CookBook.IdentityProvider.App
                     ClientName = "CookBook Client",
                     ClientId = "cookbookclient",
                     AllowOfflineAccess = true,
+                    AllowedScopes =
+                    [
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        "cookbookapi"
+                    ],
+                    // Option 1 - use for Client Credentials and Resource Owner Password demonstration
+                    //AllowedGrantTypes =
+                    //[
+                    //    GrantType.ClientCredentials,
+                    //    GrantType.ResourceOwnerPassword,
+                    //],
+                    //ClientSecrets =
+                    //{
+                    //    new Secret("secret".Sha256())
+                    //},
+                    //RequirePkce = false,
+                    //RequireClientSecret = true,
+
+                    // Option 2 - use for final deployment with PKCE and no client secret
+                    AllowedGrantTypes =
+                    [
+                        GrantType.AuthorizationCode
+                    ],
+                    RequirePkce = true,
+                    RequireClientSecret = false,
                     RedirectUris =
                     [
                         "https://oauth.pstmn.io/v1/callback",
@@ -48,24 +74,6 @@ namespace CookBook.IdentityProvider.App
                     [
                         "https://localhost:44355"
                     ],
-                    AllowedGrantTypes =
-                    [
-                        GrantType.ClientCredentials,
-                        GrantType.ResourceOwnerPassword,
-                        GrantType.AuthorizationCode
-                    ],
-                    RequirePkce = true,
-                    AllowedScopes =
-                    [
-                        IdentityServerConstants.StandardScopes.OpenId,
-                        IdentityServerConstants.StandardScopes.Profile,
-                        "cookbookapi"
-                    ],
-                    ClientSecrets =
-                    {
-                        new Secret("secret".Sha256())
-                    },
-                    RequireClientSecret = false
                 }
         ];
     }
