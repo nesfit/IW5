@@ -105,7 +105,7 @@ Administrátor může:
 - vytvářet, editovat a mazat libovolné záznamy
 - vytvářet a mazat uživatele
 
-Přihlašování řešte pomocí ASP.NET Core Identity tak, jak bude ukázáno v předmětu. Minimální požadavky na práci s uživateli budou vysvětleny v přednáškách zaměřených na téma Identity management.
+Přihlašování řešte tak, jak bude ukázáno v předmětu. V rámci tématu Identity management se budeme věnovat použití externích identity providerů, implementace práce s lokálními uživatelskými účty i kombinaci těchto přístupů. Necháme na vás, který přístup zvolíte, ale minimálně jeden z nich si musíte zvolit a demonstrovat práci s uživatelskými účty a rolemi pomocí něj při obhajobách.
 
 ### Perzistence
 - Použijte Entity Framework Core (Code First, migrace) a relační databázi (např. SQL Server, Azure SQL, SQLite).
