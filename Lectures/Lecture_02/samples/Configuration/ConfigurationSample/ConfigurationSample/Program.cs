@@ -5,7 +5,8 @@ using Microsoft.Extensions.Options;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOpenApi();
-builder.Services.Configure<ServerNameConfiguration>(builder.Configuration.GetSection("ServerName"));
+builder.Services.Configure<ServerNameConfiguration>(
+    builder.Configuration.GetSection("ServerName"));
 
 var app = builder.Build();
 
@@ -27,9 +28,9 @@ app.MapGet("/configuration", ([FromServices] IOptions<ServerNameConfiguration> o
     return options.Value.Name;
 });
 
-app.MapGet("/configuration/root", ([FromServices] IConfigurationRoot configurationRoot) =>
+app.MapGet("/configuration/root", ([FromServices] IConfiguration configuration) =>
 {
-    return configurationRoot.GetChildren();
+    return configuration.GetChildren();
 });
 
 app.Run();
