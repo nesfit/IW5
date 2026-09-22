@@ -22,7 +22,7 @@ Zadání ponechává volnost pro vlastní realizaci. Důraz je kladen na technic
 
 ## Téma projektu
 Aplikace slouží jako jednoduchá webová stránka pro správu domácích zásob. Jde o zásoby potravin i například čistících prostředků. Položky se můžou nacházet v různých úložných prostorech.
-Zároveň je součástí aplikace i jednoduchých nákupních seznamů.
+Součástí aplikace jsou také jednoduché nákupní seznamy
 
 Uživatel vytváří položky, nastavuje kde jsou umístěny a může sledovat stav položek v jednotlivých úložných prostorech i v celé domácnosti. Zároveň si může naplánovat nákup docházejících položek přímo z aplikace.
 
