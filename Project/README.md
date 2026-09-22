@@ -1,13 +1,10 @@
 # IW5 projekt
 
-> :warning: **Upozornění**  
-> Toto zadání je z minulého akademického roku. V průběhu prvních 14 dní semestru bude upraveno pro aktuální ročník. Informaci o finalizaci zadání se dozvíte na přednášce.
-
 ## Tl;dr
-- Téma: webová aplikace pro tvorbu a procvičování výukových kartiček (flash cards) ve stylu Quizlet.
-- Povinné entity: Karta, Kolekce karet, Uživatel, Absolvovaná lekce.
-- Povinné operace: CRUD nad všemi entitami, seznamy s filtrací, řazením a stránkováním, textové vyhledávání, procvičení kolekce.
-- Perzistence: databáze přes Entity Framework Core. In-memory úložiště není akceptovatelné.
+- Téma: webová aplikace pro správu domácího skladu/spíže.
+- Povinné entity: Položka, Úložný prostor, Uživatel, Nákupní seznam.
+- Povinné operace: CRUD nad všemi entitami, seznamy s filtrací, řazením a stránkováním, textové vyhledávání.
+- Perzistence: databáze přes Entity Framework Core nebo in-memory úložiště.
 - Architektura: více projektů a vrstev. Jediný projekt je neakceptovatelný.
 - Týmy po 3 studentech, kód v Azure DevOps, nasazení do Azure.
 - Fáze 1 (50 bodů): Web API s OpenAPI/Swagger, testy, CI + CD. Odevzdává se, hodnotí se poslední commit před deadlinem.
@@ -24,48 +21,47 @@ Zadání ponechává volnost pro vlastní realizaci. Důraz je kladen na technic
 ---
 
 ## Téma projektu
-Aplikace slouží jako jednoduchá webová stránka pro tvorbu a procvičování výukových kartiček (flash cards), viz Quizlet nebo Flashcards World.
+Aplikace slouží jako jednoduchá webová stránka pro správu domácích zásob. Jde o zásoby potravin i například čistících prostředků. Položky se můžou nacházet v různých úložných prostorech.
+Zároveň je součástí aplikace i jednoduchých nákupních seznamů.
 
-Uživatel vytváří karty s otázkou a odpovědí, sdružuje je do kolekcí a kolekce procvičuje formou lekcí. Aplikace si pamatuje, jak uživatel v lekci odpovídal, a zobrazuje mu statistiky.
+Uživatel vytváří položky, nastavuje kde jsou umístěny a může sledovat stav položek v jednotlivých úložných prostorech i v celé domácnosti. Zároveň si může naplánovat nákup docházejících položek přímo z aplikace.
 
 Možná rozšíření:
-- sdílení kolekcí mezi uživateli
-- různé režimy procvičování (výběr z možností, psaní odpovědi)
-- opakování podle úspěšnosti (spaced repetition)
+- organizace/filtrování úložných prostor dle místností (lednice, mražák, skříňka - všechny můžou být v kuchyni)
+- podpora pro víc domácností
+- nahrávání obrázků
+- notifikace na blížící se datum spotřeby
 
 ---
 
 ## Data a entity
 Požadujeme minimálně následující položky. Zvažte, co je třeba ukládat a co lze dopočítat při dotazování.
 
-### Karta
-- Typ otázky (textová, obrázková)
-- Typ odpovědi (textová, obrázková)
-- Otázka - text nebo URL obrázku
-- Správná odpověď - text nebo URL obrázku
+### Položka
+- Název
+- Obrázek (postačí URL)
+- Datum spotřeby
 - [Doplňující popis]
-- (Kolekce karet)
 - (Uživatel - autor)
 
-### Kolekce karet
-- Název
-- Datum a čas začátku pro akceptování odpovědí
-- Datum a čas konce pro akceptování odpovědí
-- (Karty)
+### Úložný prostor
+- Název 
+- Obrázek (postačí URL)
+- [Doplňující popis]
+- (Položky)
 - (Uživatel - autor)
 
 ### Uživatel
 - Jméno
 - Fotografie (postačí URL)
 - Role
-- (Karty, Kolekce karet)
-- (Absolvované lekce)
 
-### Absolvovaná lekce
-- Záznam správných a nesprávných odpovědí
-- Statistiky uživatele
-- (Uživatel)
-- (Kolekce karet)
+### Nákupní seznam
+- Název
+- Obchod
+- [Doplňující popis]
+- (Položky)
+- (Uživatel - autor)
 
 Poznámky:
 - `()` označuje možné/doporučené vazby mezi entitami
@@ -92,30 +88,28 @@ Pokud pro některou entitu seznam nedává smysl (např. lekce bez vazby na uži
 
 ### Vyhledávání
 Textové vyhledávání minimálně v těchto datech:
-- Karta - textová otázka, doplňující popis
+- Položka - název, [doplňující popis]
+- Úložný prostor - název, [doplňující popis]
 - Uživatel - jméno
-- Kolekce karet - název
-
-### Procvičování
-Uživatel může projít kolekci kartu po kartě a odpovídat. Odpovědi jsou přijímány pouze v časovém okně kolekce. Výsledek se uloží jako Absolvovaná lekce a uživatel vidí své statistiky.
+- Nákupní seznam - název, [doplňující popis]
 
 ### Uživatelské role
 Minimálně role **uživatel** a **administrátor**.
 
 Uživatel může:
-- vytvářet karty a kolekce karet
-- editovat a mazat karty a kolekce karet, které vytvořil
+- vytvářet záznamy
+- editovat a mazat záznamy, které vytvořil
 
 Administrátor může:
-- vytvářet, editovat a mazat libovolné karty a kolekce karet
+- vytvářet, editovat a mazat libovolné záznamy
 - vytvářet a mazat uživatele
 
-Přihlašování řešte pomocí ASP.NET Core Identity tak, jak bude ukázáno v předmětu, nebo přepínáním uživatelského účtu v UI s vlastním řešením rolí. V obou případech musí být oprávnění rolí vynucena, ne pouze skryta v UI.
+Přihlašování řešte pomocí ASP.NET Core Identity tak, jak bude ukázáno v předmětu. Minimální požadavky na práci s uživateli budou vysvětleny v přednáškách zaměřených na téma Identity management.
 
 ### Perzistence
-- Data musí přežít restart aplikace. In-memory úložiště (kolekce v paměti, EF Core InMemory provider) není akceptovatelné, ani ve fázi 1.
 - Použijte Entity Framework Core (Code First, migrace) a relační databázi (např. SQL Server, Azure SQL, SQLite).
-- Filtrace, řazení, vyhledávání a stránkování probíhají v databázi, ne nad daty v paměti.
+- Alternativně je povolené použití in-memory úložiště. V takovém případě je potřeba ošetřit stejné situace jaké můžou nastat při ukládání dat do databáze tak, aby API vracelo příslušné chybové stavy a srozumitelné chybové hlášky.
+- Filtrace, řazení, vyhledávání a stránkování probíhají v databázi/in-memory úložišti na serveru (API), ne nad daty na straně klientské aplikace (Web).
 
 ---
 
@@ -153,14 +147,15 @@ Vytvořte spustitelnou Web API službu se specifikací OpenAPI (verzi necháme n
 
 Požadavky:
 - Endpointy pokrývající celou [Základní funkcionalitu](#základní-funkcionalita) pro každou entitu: seznam s filtrací, řazením a stránkováním, detail, vytvoření, úprava, smazání, vyhledávání, procvičování.
-- Perzistence přes Entity Framework Core s migracemi (alespoň InitialMigration).
+- Perzistence přes Entity Framework Core s migracemi (alespoň InitialMigration). Nebo perzistence pomocí in-memory storage.
 - Testy všech endpointů v rozsahu, který ověří správnost API, spustitelné lokálně i v Azure DevOps.
 - CI (build + testy) a CD s automatizovaným nasazením do Azure z Azure DevOps (viz [Nasazení do Azure](#nasazení-do-azure)).
 
 Hodnotíme:
 - logický návrh tříd a splnění funkcionality
-- perzistenci dat a využití Entity Framework Core
+- perzistenci dat a využití Entity Framework Core/in-memory storage
 - využití abstrakce, zapouzdření, polymorfismu
+- validaci vstupů, řešení chybových stavů, správné návratové status kódy 
 - čistotu kódu
 - verzování v GITu po logických částech
 - testy
