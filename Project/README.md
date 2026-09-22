@@ -147,7 +147,7 @@ Projekt v průběhu semestru konzultujte po přednášce nebo cvičení, předej
 Vytvořte spustitelnou Web API službu se specifikací OpenAPI (verzi necháme na Vás) a Swagger UI. Vzorové API bude ukázáno na přednáškách a cvičeních.
 
 Požadavky:
-- Endpointy pokrývající celou [Základní funkcionalitu](#základní-funkcionalita) pro každou entitu: seznam s filtrací, řazením a stránkováním, detail, vytvoření, úprava, smazání, vyhledávání, procvičování.
+- Endpointy pokrývající celou [Základní funkcionalitu](#základní-funkcionalita) pro každou entitu: seznam s filtrací, řazením a stránkováním, detail, vytvoření, úprava, smazání, vyhledávání.
 - Perzistence přes Entity Framework Core s migracemi (alespoň InitialMigration). Nebo perzistence pomocí in-memory storage.
 - Testy všech endpointů v rozsahu, který ověří správnost API, spustitelné lokálně i v Azure DevOps.
 - CI (build + testy) a CD s automatizovaným nasazením do Azure z Azure DevOps (viz [Nasazení do Azure](#nasazení-do-azure)).
