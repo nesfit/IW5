@@ -41,7 +41,6 @@ Požadujeme minimálně následující položky. Zvažte, co je třeba ukládat 
 - Název
 - Obrázek (postačí URL)
 - Datum spotřeby
-- Počet (množství)
 - Kategorie (potraviny, drogerie...)
 - [Doplňující popis]
 - (Uživatel - autor)
