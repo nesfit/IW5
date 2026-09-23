@@ -2,7 +2,7 @@
 
 ## Tl;dr
 - Téma: webová aplikace pro správu domácího skladu/spíže.
-- Povinné entity: Položka, Úložný prostor, Uživatel, Nákupní seznam.
+- Povinné entity: Položka, Místo, Uživatel, Nákupní seznam.
 - Povinné operace: CRUD nad všemi entitami, seznamy s filtrací, řazením a stránkováním, textové vyhledávání.
 - Perzistence: databáze přes Entity Framework Core nebo in-memory úložiště.
 - Architektura: více projektů a vrstev. Jediný projekt je neakceptovatelný.
@@ -21,13 +21,10 @@ Zadání ponechává volnost pro vlastní realizaci. Důraz je kladen na technic
 ---
 
 ## Téma projektu
-Aplikace slouží jako jednoduchá webová stránka pro správu domácích zásob. Jde o zásoby potravin i například čistících prostředků. Položky se můžou nacházet v různých úložných prostorech.
-Součástí aplikace jsou také jednoduché nákupní seznamy
-
-Uživatel vytváří položky, nastavuje kde jsou umístěny a může sledovat stav položek v jednotlivých úložných prostorech i v celé domácnosti. Zároveň si může naplánovat nákup docházejících položek přímo z aplikace.
+Webová aplikace pro správu domácích zásob, například potravin nebo čisticích prostředků. Uživatel eviduje položky a místa, kde jsou uložené (lednice, spíž, skříňka…), a sleduje zásoby na jednotlivých místech i v celé domácnosti. Docházející položky může rovnou přidat do nákupního seznamu.
 
 Možná rozšíření:
-- organizace/filtrování úložných prostor dle místností (lednice, mražák, skříňka - všechny můžou být v kuchyni)
+- organizace/filtrování míst dle místností (lednice, mrazák, skříňka - všechny můžou být v kuchyni)
 - podpora pro víc domácností
 - nahrávání obrázků
 - notifikace na blížící se datum spotřeby
@@ -35,17 +32,18 @@ Možná rozšíření:
 ---
 
 ## Data a entity
-Požadujeme minimálně následující položky. Zvažte, co je třeba ukládat a co lze dopočítat při dotazování.
+Požadujeme minimálně následující údaje. Zvažte, co je třeba ukládat a co lze dopočítat při dotazování.
 
 ### Položka
 - Název
 - Obrázek (postačí URL)
+- Množství
 - Datum spotřeby
 - Kategorie (potraviny, drogerie...)
 - [Doplňující popis]
 - (Uživatel - autor)
 
-### Úložný prostor
+### Místo
 - Název 
 - Obrázek (postačí URL)
 - [Doplňující popis]
@@ -66,7 +64,7 @@ Požadujeme minimálně následující položky. Zvažte, co je třeba ukládat 
 
 Poznámky:
 - `()` označuje možné/doporučené vazby mezi entitami
-- `[]` označuje volitelné položky
+- `[]` označuje volitelné údaje
 
 ---
 
@@ -85,12 +83,12 @@ Pro každou entitu aplikace obsahuje:
 - **Vytvoření a editace** - buď na stránce detailu, nebo na samostatné stránce.
 - **Smazání.**
 
-Pokud pro některou entitu seznam nedává smysl (např. lekce bez vazby na uživatele), rozhodnutí zdůvodněte v `README.md`.
+Pokud pro některou entitu seznam nedává smysl, rozhodnutí zdůvodněte v `README.md`.
 
 ### Vyhledávání
 Textové vyhledávání minimálně v těchto datech:
 - Položka - název, [doplňující popis]
-- Úložný prostor - název, [doplňující popis]
+- Místo - název, [doplňující popis]
 - Uživatel - jméno
 - Nákupní seznam - název, [doplňující popis]
 
@@ -105,11 +103,11 @@ Administrátor může:
 - vytvářet, editovat a mazat libovolné záznamy
 - vytvářet a mazat uživatele
 
-Přihlašování řešte tak, jak bude ukázáno v předmětu. V rámci tématu Identity management se budeme věnovat použití externích identity providerů, implementace práce s lokálními uživatelskými účty i kombinaci těchto přístupů. Necháme na vás, který přístup zvolíte, ale minimálně jeden z nich si musíte zvolit a demonstrovat práci s uživatelskými účty a rolemi pomocí něj při obhajobách.
+Přihlašování řešte tak, jak bude ukázáno v předmětu. V rámci tématu Identity management se budeme věnovat použití externích identity providerů, implementaci práce s lokálními uživatelskými účty i kombinaci těchto přístupů. Necháme na vás, který přístup zvolíte, ale minimálně jeden z nich si musíte zvolit a demonstrovat práci s uživatelskými účty a rolemi pomocí něj při obhajobách.
 
 ### Perzistence
 - Použijte Entity Framework Core (Code First, migrace) a relační databázi (např. SQL Server, Azure SQL, SQLite).
-- Alternativně je povolené použití in-memory úložiště. V takovém případě je potřeba ošetřit stejné situace jaké můžou nastat při ukládání dat do databáze tak, aby API vracelo příslušné chybové stavy a srozumitelné chybové hlášky.
+- Alternativně je povolené použití in-memory úložiště. V takovém případě je potřeba ošetřit stejné situace, jaké můžou nastat při ukládání dat do databáze, tak, aby API vracelo příslušné chybové stavy a srozumitelné chybové hlášky.
 - Filtrace, řazení, vyhledávání a stránkování probíhají v databázi/in-memory úložišti na serveru (API), ne nad daty na straně klientské aplikace (Web).
 
 ---
