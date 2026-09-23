@@ -108,7 +108,7 @@ Téma se v základní funkcionalitě promítá takto:
 - O tom, že položka dochází, rozhoduje uživatel. Automatické určování docházejících položek patří mezi možná rozšíření.
 
 ### Uživatelské role
-Minimálně role **uživatel** a **administrátor**. Domácnost může být sdílená mezi všemi uživateli (pokud budete implementovat rozšíření pro víc domácností, rozšiřte také o určování členů domácnosti).
+Minimálně role **uživatel** a **administrátor**. Domácnost může být sdílená mezi všemi uživateli (pokud budete implementovat rozšíření pro víc domácností, rozšiřte také o určování členů domácnosti - tedy, že například do domácnosti A patří členové X a Y, a do domácnosti B patří členové X a Z).
 
 Uživatel může:
 - prohlížet všechny záznamy
