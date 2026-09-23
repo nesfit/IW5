@@ -4,12 +4,12 @@
 - Téma: webová aplikace pro správu domácích zásob.
 - Povinné entity: Položka, Místo, Uživatel, Nákupní seznam.
 - Povinné operace: CRUD nad všemi entitami, seznamy s filtrací, řazením a stránkováním, textové vyhledávání, přehled zásob po místech, přidání položky do nákupního seznamu.
-- Perzistence: relační databáze přes Entity Framework Core (doporučujeme SQLite, pro zájemce Azure SQL Database). In-memory úložiště není povoleno.
+- Perzistence: relační databáze přes Entity Framework Core (doporučujeme SQLite, pro zájemce Azure SQL Database). In-memory úložiště v aplikaci není povoleno.
 - Architektura: více projektů a vrstev. Jediný projekt je neakceptovatelný.
 - Platforma: .NET 10 (LTS).
 - Týmy po 3 studentech, kód v Azure DevOps, nasazení do Azure.
-- Fáze 1 (50 bodů): Web API s OpenAPI/Swagger, testy, CI + CD. Odevzdává se, hodnotí se poslední commit pushnutý do `main` před termínem.
-- Fáze 2 (50 bodů): Blazor WebAssembly frontend napojený na API, uživatelské role vynucené v API. Neodevzdává se, hodnotí se při obhajobě.
+- Fáze 1 (50 bodů): Web API s OpenAPI/Swagger, testy, CI + CD. Odevzdává se pushnutím do `main` a tagem `review1` do termínu vyhlášeného v IS.
+- Fáze 2 (50 bodů): Blazor WebAssembly frontend napojený na API, uživatelské role vynucené v API. Odevzdává se pushnutím do `main` a tagem `final` do konce dne před obhajobou, hodnotí se při obhajobě.
 - Pro absolvování musí být obě fáze hodnoceny alespoň 1 bodem.
 - Do Azure DevOps přidejte účet **uciteliw5@vutbr.cz** (viz [Správa projektu](#správa-projektu--azure-devops)), jinak projekt nelze hodnotit.
 
@@ -127,9 +127,11 @@ Přihlašování řešte tak, jak bude ukázáno v předmětu. V rámci tématu 
 
 ### Perzistence
 - Data ukládejte perzistentně: použijte Entity Framework Core (Code First, migrace) a relační databázi. Data musí přežít restart i nové nasazení aplikace.
-- Doporučujeme SQLite. Soubor databáze v Azure App Service uložte mimo složku nasazené aplikace (např. do `/home/data`), jinak jej nové nasazení přepíše nebo nebude zapisovatelný.
-- Zájemci mohou místo SQLite použít nativní databázi v Azure, např. Azure SQL Database.
-- In-memory úložiště (vlastní kolekce v paměti ani poskytovatel EF Core InMemory) v aplikaci použít nelze. Nedoporučujeme ho ani v testech, protože nekontroluje integritu cizích klíčů; i pro testy použijte SQLite.
+- Doporučujeme SQLite. V Azure App Service uložte soubor databáze mimo složku nasazené aplikace (`site/wwwroot`), do podsložky adresáře z proměnné prostředí `HOME` (např. `/home/data` na Linuxu, `%HOME%\data` na Windows). Ve složce aplikace by jej nové nasazení přepsalo, nebo by do něj aplikace nemohla zapisovat.
+- Adresář `HOME` je síťové úložiště sdílené všemi instancemi aplikace. Microsoft na něm souborové databáze jako SQLite v App Service pro Linux nedoporučuje, protože zamykání souboru nemusí spolehlivě fungovat ([FAQ](https://learn.microsoft.com/en-us/troubleshoot/azure/app-service/faqs-app-service-linux-new)). Pro projekt to stačí, pokud aplikace běží na jediné instanci (nezapínejte scale-out). Nasazení se SQLite vyzkoušejte včas; pokud narazíte na chybu `database is locked`, použijte Azure SQL Database.
+- Poskytovatel EF Core pro SQLite neumí řadit ani porovnávat hodnoty typu `DateTimeOffset`. Datum spotřeby proto ukládejte jako `DateOnly` nebo `DateTime`.
+- Zájemci mohou místo SQLite použít spravovanou relační databázi v Azure, např. Azure SQL Database. Migrace EF Core se generují pro konkrétního poskytovatele databáze, vytvářejte je proto pro databázi, kterou používá nasazená aplikace. Bezplatná nabídka Azure SQL Database se po vyčerpání měsíčního limitu ve výchozím nastavení uspí až do dalšího měsíce a nasazené API pak přestane fungovat.
+- In-memory úložiště (vlastní kolekce v paměti ani poskytovatel EF Core InMemory) v aplikaci použít nelze. Nedoporučujeme ho ani v testech, protože nekontroluje integritu cizích klíčů. Pro testy doporučujeme SQLite (klidně v režimu `Data Source=:memory:`), případně stejnou databázi, jakou používá nasazená aplikace.
 - API musí vracet správné chybové stavy a srozumitelné hlášky alespoň pro neexistující záznam (404), odkaz na neexistující entitu (400) a smazání záznamu, na který vedou vazby (409, nebo kaskádové mazání popsané v `README.md`). Kaskádové mazání nesmí odstranit položky, místa ani nákupní seznamy, které by uživatel podle [uživatelských rolí](#uživatelské-role) nesměl smazat sám; v takovém případě vraťte 409. Co se stane se záznamy smazaného uživatele (např. převedou se na administrátora), navrhněte sami a popište v `README.md`.
 - Filtrace, řazení, vyhledávání a stránkování probíhají na serveru (API), ne ve webu. Provádějte je v databázovém dotazu (nad `IQueryable`), ne až po načtení celé tabulky do paměti.
 
@@ -143,11 +145,11 @@ Ve výuce ukazujeme rozdělení kódu do logických vrstev a projektů s využit
 ---
 
 ## Odevzdávání
-Projekt řešíte v týmech po **3 studentech**. Má 2 fáze, které na sebe navazují. Odevzdává se pouze **fáze 1**, a to pushnutím do větve `main` před termínem, který vyhlásíme v IS. **Fáze 2** se hodnotí při obhajobě.
+Projekt řešíte v týmech po **3 studentech**. Má 2 fáze, které na sebe navazují. Obě fáze se odevzdávají pushnutím do větve `main` a otagováním hodnoceného commitu: **fáze 1** do termínu, který vyhlásíme v IS, **fáze 2** do konce dne před obhajobou. Fázi 2 hodnotíme při obhajobě.
 
 Kontroluje se kód ve větvi `main` v Azure DevOps. Rozhoduje čas pushnutí do Azure Repos (*Repos → Pushes*), ne datum commitu uvedené v Gitu.
-- Fáze 1 – poslední commit pushnutý do `main` před termínem odevzdání. Otagujte jej `review1` a tag pushněte (`git push origin review1`).
-- Fáze 2 – poslední commit pushnutý do `main` do konce dne před obhajobou. Otagujte jej `final` a tag pushněte.
+- Fáze 1 – poslední commit pushnutý do `main` před termínem odevzdání fáze 1. Otagujte jej `review1` a tag pushněte (`git push origin review1`).
+- Fáze 2 – poslední commit pushnutý do `main` před termínem odevzdání fáze 2, tj. do konce dne před obhajobou. Otagujte jej `final` a tag pushněte.
 - Tagy pushněte nejpozději v termínu a poté je neměňte. Pokud tag chybí nebo ukazuje na jiný commit, hodnotíme commit určený podle času pushnutí. Kde dále píšeme `review1` nebo `final`, myslíme tím vždy takto určený hodnocený commit fáze 1, resp. fáze 2.
 - Funkčnost a kvalitu kódu z pozdějších commitů a z jiných větví nehodnotíme; historii větví posuzujeme jen u týmové spolupráce.
 
@@ -178,7 +180,7 @@ Vytvořte spustitelnou Web API službu se specifikací OpenAPI (verzi necháme n
 
 Požadavky:
 - Endpointy pokrývající celou [základní funkcionalitu](#základní-funkcionalita): pro každou entitu seznam s filtrací, řazením a stránkováním, detail, vytvoření, úpravu, smazání a vyhledávání, dále funkce ze sekce [Zásoby a nákup](#zásoby-a-nákup).
-- Perzistence přes Entity Framework Core s migracemi (alespoň InitialMigration) do relační databáze (viz [Perzistence](#perzistence)).
+- Ukládání dat do relační databáze přes Entity Framework Core s migracemi (alespoň InitialMigration), viz [Perzistence](#perzistence).
 - Testy všech endpointů v rozsahu, který ověří správnost API; testy musí být spustitelné lokálně i v Azure DevOps.
 - CI (build + testy) a CD s automatizovaným nasazením do Azure z Azure DevOps (viz [Nasazení do Azure](#nasazení-do-azure)).
 
@@ -252,7 +254,7 @@ Návody a odkazy:
 
 ## Nasazení do Azure
 - Nasaďte všechny části řešení do Azure a nasazování automatizujte z Azure DevOps.
-- Weby, databázi a další zdroje pojmenujte podle schématu z 1. přednášky.
+- Weby, případnou databázi (např. Azure SQL Database) a další zdroje pojmenujte podle schématu z 1. přednášky.
 - Ke všem zdrojům přiřaďte přístup účtu **uciteliw5@vutbr.cz** dle pokynů v 1. přednášce: ke zdrojům fáze 1 nejpozději do termínu jejího odevzdání, ke zdrojům vytvořeným později (např. pro web) hned po jejich vytvoření.
 - Adresy nasazeného API (Swagger UI) a webu uveďte v `README.md` repozitáře.
 - Nasazené API musí být dostupné od termínu odevzdání fáze 1 do zveřejnění jejího hodnocení, API i web pak v den obhajoby. Zdroje nemažte dříve, než bude hodnocení fáze 2 zapsané v IS. Předplatné a úrovně služeb volte podle pokynů v 1. přednášce tak, aby vám kredit vystačil do konce semestru.
