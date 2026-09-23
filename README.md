@@ -19,37 +19,37 @@
 ## Cvičení
 Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení, na kterém se budete moct cvičení aktivně zúčastnit. Bude potřeba vývojové prostředí, ideálně Visual Studio 2026 / Rider / VSCode.
 
-| Typ                             | Místnost  | Čas            |
-| ------------------------------- | --------- | -------------- |
+| Typ                  | Místnost  | Čas            |
+| -------------------- | --------- | -------------- |
 | Demonstrační cvičení | **D0207** | Po 18:00-19:50 |
 
 +++
 
 ## Plán semestru
 
-| Datum  | Typ | Vyučující       | Téma                                                                                    |
-| ------ | --- | --------------- | --------------------------------------------------------------------------------------- |
-| 14.09. | L01 | Roman Jašek     | [Úvod, představení předmětu, projektu, setup prostředí](./Lectures/Lecture_01/)         |
-|        | E01 | Roman Jašek     | Minimal API, routing                                                                    |
-| 21.09. | L02 | Michal Mrnuštík | [Inversion of Control, konfigurace, lokalizace](./Lectures/Lecture_02/)                 |
-|        | E02 | Michal Mrnuštík | ASP&#46;NET Core Web API, controller, swagger, Postman, middleware                      |
-| 28.09. |     |                 | **Státní svátek**                                                                       |
-| 05.10. | L03 | Roman Jašek     | [Web - Blazor](./Lectures/Lecture_03/)                                                  |
-|        | E03 | Roman Jašek     | Web - Blazor                                                                            |
-| 12.10. | L04 | Roman Jašek     | [Web - Blazor](./Lectures/Lecture_04/)                                                  |
-|        | E04 | Michal Tichý    | Testování, CI/CD, nasazování do Azure                                                   |
-| 19.10. | L05 | Roman Jašek     | [Web - napojení na API](./Lectures/Lecture_05/)                                         |
-|        | E05 | Roman Jašek     | Takhle napište projekt?!                                                                |
-| Dle IS | P01 |                 | **Odevzdání první fáze projektu - API**                                                 |
-| 26.10. | L06 | Roman Jašek     | [Identity Management - část 1](./Lectures/Lecture_06/)                                  |
-| 02.11. | L07 | Roman Jašek     | [Identity Management - část 2](./Lectures/Lecture_07/)                                  |
-| 09.11. | L08 | Maroš Janota    | [Web - frontend](./Lectures/Lecture_08/)                                                |
-|        | E06 | Maroš Janota    | Web - frontend                                                                          |
-| 16.11. | L09 | Roman Jašek     | [Identity Management overflow/Serverless](./Lectures/Lecture_09/)                       |
-| 23.11. | L10 | Martin Dybal    | [Clean Architecture](./Lectures/Lecture_10/)                                            |
-| 30.11. | L11 | Michal Tichý    | Clean Code                                                                              |
-| 07.12. | L12 | Jan Pluskal     | .NET Aspire                                                                             |
-| Dle IS | P02 |                 | **Obhajoby projektu**                                                                   |
+| Datum  | Typ | Vyučující       | Téma                                                                            |
+| ------ | --- | --------------- | ------------------------------------------------------------------------------- |
+| 14.09. | L01 | Roman Jašek     | [Úvod, představení předmětu, projektu, setup prostředí](./Lectures/Lecture_01/) |
+|        | E01 | Roman Jašek     | Minimal API, routing                                                            |
+| 21.09. | L02 | Michal Mrnuštík | [Inversion of Control, konfigurace, lokalizace](./Lectures/Lecture_02/)         |
+|        | E02 | Michal Mrnuštík | ASP&#46;NET Core Web API, controller, swagger, Postman, middleware              |
+| 28.09. |     |                 | **Státní svátek**                                                               |
+| 05.10. | L03 | Roman Jašek     | [Web - Blazor](./Lectures/Lecture_03/)                                          |
+|        | E03 | Roman Jašek     | Web - Blazor                                                                    |
+| 12.10. | L04 | Roman Jašek     | [Web - Blazor](./Lectures/Lecture_04/)                                          |
+|        | E04 | Michal Tichý    | Testování, CI/CD, nasazování do Azure                                           |
+| 19.10. | L05 | Roman Jašek     | [Web - napojení na API](./Lectures/Lecture_05/)                                 |
+|        | E05 | Roman Jašek     | Takhle napište projekt?!                                                        |
+| Dle IS | P01 |                 | **Odevzdání první fáze projektu - API**                                         |
+| 26.10. | L06 | Roman Jašek     | [Identity Management - část 1](./Lectures/Lecture_06/)                          |
+| 02.11. | L07 | Roman Jašek     | [Identity Management - část 2](./Lectures/Lecture_07/)                          |
+| 09.11. | L08 | Maroš Janota    | [Web - frontend](./Lectures/Lecture_08/)                                        |
+|        | E06 | Maroš Janota    | Web - frontend                                                                  |
+| 16.11. | L09 | Roman Jašek     | [Identity Management overflow/Serverless](./Lectures/Lecture_09/)               |
+| 23.11. | L10 | Martin Dybal    | [Clean Architecture](./Lectures/Lecture_10/)                                    |
+| 30.11. | L11 | Michal Tichý    | Clean Code                                                                      |
+| 07.12. | L12 | Miroslav Šafář  | .NET Aspire                                                                     |
+| Dle IS | P02 |                 | **Obhajoby projektu**                                                           |
 
 LXY - přednáška | EXY - democvičení | P0X - projekt
 
@@ -68,10 +68,10 @@ LXY - přednáška | EXY - democvičení | P0X - projekt
 * Projekt bude vypracovaný v 3-členném týmu.
 * Odevzdává se pouze 1. fáze, 2. fázi uzavírá obhajoba.
 
-| Fáze | Deadline                    | Obsah                                         | Body |
-| ---- | --------------------------- | --------------------------------------------- | ---- |
-| 1    | viz IS                      | API                                           | 50   |
-| 2    | Obhajoba (dle IS)           | Web - finalizace aplikace a následná obhajoba | 50   |
+| Fáze | Deadline          | Obsah                                         | Body |
+| ---- | ----------------- | --------------------------------------------- | ---- |
+| 1    | viz IS            | API                                           | 50   |
+| 2    | Obhajoba (dle IS) | Web - finalizace aplikace a následná obhajoba | 50   |
 
 * Při obhajobě:
   * musí být přítomni všichni členové týmu (výjimka je řádně omluvená nepřítomnost dle studijního řádu),
