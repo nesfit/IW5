@@ -4,7 +4,7 @@
 - Téma: webová aplikace pro správu domácích zásob.
 - Povinné entity: Položka, Místo, Uživatel, Nákupní seznam.
 - Povinné operace: CRUD nad všemi entitami, seznamy s filtrací, řazením a stránkováním, textové vyhledávání, přehled zásob po místech, přidání položky do nákupního seznamu.
-- Perzistence: databáze přes Entity Framework Core nebo in-memory úložiště.
+- Perzistence: relační databáze přes Entity Framework Core (doporučujeme SQLite, pro zájemce Azure SQL Database). In-memory úložiště není povoleno.
 - Architektura: více projektů a vrstev. Jediný projekt je neakceptovatelný.
 - Platforma: .NET 10 (LTS).
 - Týmy po 3 studentech, kód v Azure DevOps, nasazení do Azure.
@@ -126,10 +126,12 @@ Oprávnění musí vynucovat API, ne pouze web. Endpointy, které mění data, v
 Přihlašování řešte tak, jak bude ukázáno v předmětu. V rámci tématu Identity management probereme externí poskytovatele identit (identity providers), lokální uživatelské účty i kombinaci obou přístupů. Zvolte alespoň jeden z nich a při obhajobě s ním předveďte práci s uživatelskými účty a rolemi.
 
 ### Perzistence
-- Použijte Entity Framework Core (Code First, migrace) a relační databázi (např. SQL Server, Azure SQL, SQLite).
-- Alternativně je povoleno in-memory úložiště: vlastní kolekce v paměti, nebo poskytovatel EF Core InMemory (`UseInMemoryDatabase`), u kterého se migrace nevyžadují. Po startu aplikace naplňte úložiště ukázkovými daty (seed), aby bylo možné aplikaci předvést i po restartu v Azure.
-- Bez ohledu na zvolené úložiště musí API vracet správné chybové stavy a srozumitelné hlášky alespoň pro neexistující záznam (404), odkaz na neexistující entitu (400) a smazání záznamu, na který vedou vazby (409, nebo kaskádové mazání popsané v `README.md`). Kaskádové mazání nesmí odstranit položky, místa ani nákupní seznamy, které by uživatel podle [uživatelských rolí](#uživatelské-role) nesměl smazat sám; v takovém případě vraťte 409. Co se stane se záznamy smazaného uživatele (např. převedou se na administrátora), navrhněte sami a popište v `README.md`.
-- Filtrace, řazení, vyhledávání a stránkování probíhají na serveru (API), ne ve webu. S EF Core je provádějte v databázovém dotazu (nad `IQueryable`), ne až po načtení celé tabulky do paměti.
+- Data ukládejte perzistentně: použijte Entity Framework Core (Code First, migrace) a relační databázi. Data musí přežít restart i nové nasazení aplikace.
+- Doporučujeme SQLite. Soubor databáze v Azure App Service uložte mimo složku nasazené aplikace (např. do `/home/data`), jinak jej nové nasazení přepíše nebo nebude zapisovatelný.
+- Zájemci mohou místo SQLite použít nativní databázi v Azure, např. Azure SQL Database.
+- In-memory úložiště (vlastní kolekce v paměti ani poskytovatel EF Core InMemory) v aplikaci použít nelze. Nedoporučujeme ho ani v testech, protože nekontroluje integritu cizích klíčů; i pro testy použijte SQLite.
+- API musí vracet správné chybové stavy a srozumitelné hlášky alespoň pro neexistující záznam (404), odkaz na neexistující entitu (400) a smazání záznamu, na který vedou vazby (409, nebo kaskádové mazání popsané v `README.md`). Kaskádové mazání nesmí odstranit položky, místa ani nákupní seznamy, které by uživatel podle [uživatelských rolí](#uživatelské-role) nesměl smazat sám; v takovém případě vraťte 409. Co se stane se záznamy smazaného uživatele (např. převedou se na administrátora), navrhněte sami a popište v `README.md`.
+- Filtrace, řazení, vyhledávání a stránkování probíhají na serveru (API), ne ve webu. Provádějte je v databázovém dotazu (nad `IQueryable`), ne až po načtení celé tabulky do paměti.
 
 ---
 
@@ -176,13 +178,13 @@ Vytvořte spustitelnou Web API službu se specifikací OpenAPI (verzi necháme n
 
 Požadavky:
 - Endpointy pokrývající celou [základní funkcionalitu](#základní-funkcionalita): pro každou entitu seznam s filtrací, řazením a stránkováním, detail, vytvoření, úpravu, smazání a vyhledávání, dále funkce ze sekce [Zásoby a nákup](#zásoby-a-nákup).
-- Perzistence přes Entity Framework Core s migracemi (alespoň InitialMigration), nebo pomocí in-memory úložiště (viz [Perzistence](#perzistence)).
+- Perzistence přes Entity Framework Core s migracemi (alespoň InitialMigration) do relační databáze (viz [Perzistence](#perzistence)).
 - Testy všech endpointů v rozsahu, který ověří správnost API; testy musí být spustitelné lokálně i v Azure DevOps.
 - CI (build + testy) a CD s automatizovaným nasazením do Azure z Azure DevOps (viz [Nasazení do Azure](#nasazení-do-azure)).
 
 Hodnotíme:
 - logický návrh tříd a splnění funkcionality
-- perzistenci dat (Entity Framework Core, případně in-memory úložiště)
+- perzistenci dat a využití Entity Framework Core
 - využití abstrakce, zapouzdření, polymorfismu
 - validaci vstupů, řešení chybových stavů, správné návratové status kódy
 - čistotu kódu
