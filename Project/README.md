@@ -108,7 +108,7 @@ Téma se v základní funkcionalitě promítá takto:
 - O tom, že položka dochází, rozhoduje uživatel. Automatické určování docházejících položek patří mezi možná rozšíření.
 
 ### Uživatelské role
-Minimálně role **uživatel** a **administrátor**. Domácnost je sdílená.
+Minimálně role **uživatel** a **administrátor**. Domácnost může být sdílená mezi všemi uživateli (pokud budete implementovat rozšíření pro víc domácností, rozšiřte také o určování členů domácnosti).
 
 Uživatel může:
 - prohlížet všechny záznamy
@@ -119,24 +119,20 @@ Uživatel může:
 
 Administrátor může:
 - vytvářet, editovat a mazat libovolné položky, místa a nákupní seznamy
-- vytvářet, editovat a mazat uživatele a měnit jejich role (při použití externího poskytovatele identit tím rozumíme založení či odstranění uživatelského profilu v aplikaci a přiřazení role)
+- vytvářet, editovat a mazat uživatele a měnit jejich role (při použití externího poskytovatele identit tím rozumíme jejich správu v externím systému)
 
-Oprávnění musí vynucovat API, ne pouze web. Endpointy, které mění data, vyžadují přihlášeného uživatele: nepřihlášenému vracejí 401 Unauthorized, přihlášenému bez dostatečného oprávnění 403 Forbidden. Autora nového záznamu určuje API podle přihlášeného uživatele, ne podle údaje v požadavku. Samotné skrytí ovládacích prvků ve webu nestačí.
+Pro výsledném řešení platí:
+- Oprávnění musí vynucovat API, ne pouze web. Endpointy, které mění data, vyžadují přihlášeného uživatele: nepřihlášenému vracejí 401 Unauthorized, přihlášenému bez dostatečného oprávnění 403 Forbidden. Autora nového záznamu určuje API podle přihlášeného uživatele, ne podle údaje v požadavku. Samotné skrytí ovládacích prvků ve webu nestačí.
+V první části (API), kde ještě samostatná správa uživatelů není implementována je možné v požadavcích posílat id uživatele a roli a akce vyhodnocovat na základě těchto údajů.
 
 Přihlašování řešte tak, jak bude ukázáno v předmětu. V rámci tématu Identity management probereme externí poskytovatele identit (identity providers), lokální uživatelské účty i kombinaci obou přístupů. Zvolte alespoň jeden z nich a při obhajobě s ním předveďte práci s uživatelskými účty a rolemi.
 
 ### Perzistence
 - Doporučujeme ukládat data do relační databáze přes Entity Framework Core (Code First, migrace). Data pak přežijí restart i nové nasazení aplikace.
-- Doporučujeme SQLite. V Azure App Service uložte soubor databáze mimo složku nasazené aplikace (`site/wwwroot`), do podsložky adresáře z proměnné prostředí `HOME` (např. `/home/data` na Linuxu, `%HOME%\data` na Windows). Ve složce aplikace by jej nové nasazení přepsalo, nebo by do něj aplikace nemohla zapisovat.
-- Adresář `HOME` je síťové úložiště sdílené všemi instancemi aplikace. Microsoft na něm souborové databáze jako SQLite v App Service pro Linux nedoporučuje, protože zamykání souboru nemusí spolehlivě fungovat ([FAQ](https://learn.microsoft.com/en-us/troubleshoot/azure/app-service/faqs-app-service-linux-new)). Pro projekt to stačí, pokud aplikace běží na jediné instanci (nezapínejte scale-out). Nasazení se SQLite vyzkoušejte včas; pokud narazíte na chybu `database is locked`, použijte Azure SQL Database.
-- Poskytovatel EF Core pro SQLite neumí řadit ani porovnávat hodnoty typu `DateTimeOffset`. Datum spotřeby proto ukládejte jako `DateOnly` nebo `DateTime`.
-- Zájemci mohou místo SQLite použít spravovanou relační databázi v Azure, např. Azure SQL Database. Migrace EF Core se generují pro konkrétního poskytovatele databáze, vytvářejte je proto pro databázi, kterou používá nasazená aplikace. Bezplatná nabídka Azure SQL Database se po vyčerpání měsíčního limitu ve výchozím nastavení uspí až do dalšího měsíce a nasazené API pak přestane fungovat.
 - Alternativně je povolené in-memory úložiště (vlastní kolekce v paměti nebo poskytovatel EF Core InMemory), ale nedoporučujeme ho. Počítejte s těmito problémy:
   - Data zmizí při každém restartu a novém nasazení. App Service aplikaci restartuje i sama (např. při údržbě platformy nebo po změně nastavení aplikace) a bez zapnuté volby *Always On*, kterou bezplatná úroveň F1 nenabízí, ji po 20 minutách bez požadavků uvolní z paměti. Zmizí i uživatelé a role uložené v aplikaci, takže po restartu nemusí existovat žádný administrátor. Po startu proto úložiště naplňte ukázkovými daty (seed) včetně uživatelů a rolí, jinak bude aplikace při hodnocení i u obhajoby prázdná. Při scale-out by navíc každá instance měla vlastní data.
-  - Úložiště nekontroluje cizí klíče ani unikátnost hodnot (poskytovatel EF Core InMemory hlídá jen primární klíč) a samo kaskádově nemaže. Odkaz na neexistující záznam, smazání záznamu, na který vedou vazby, i duplicity musíte ošetřit sami v kódu, jinak API uloží nekonzistentní data, zatímco relační databáze by takovou změnu odmítla.
-  - Poskytovatel EF Core InMemory nepodporuje migrace ani transakce (zahájení transakce ve výchozím nastavení skončí výjimkou). Podle Microsoftu není určen pro produkční provoz a nedoporučuje se ani pro testy ([In-memory provider](https://learn.microsoft.com/en-us/ef/core/providers/in-memory/)). Dotazy vyhodnocuje v paměti jako běžný C# kód, takže projde i dotaz, který do SQL přeložit nelze, a naopak nefungují `ExecuteDelete` ani `ExecuteUpdate`. Při pozdějším přechodu na relační databázi se proto část dotazů zachová jinak.
+  - Úložiště in-memory nekontroluje cizí klíče ani unikátnost hodnot a samo kaskádově nemaže. Odkaz na neexistující záznam, smazání záznamu, na který vedou vazby, i duplicity musíte ošetřit sami v kódu, jinak API uloží nekonzistentní data, zatímco relační databáze by takovou změnu odmítla.
   - Běžné kolekce (např. `List<T>`, `Dictionary<TKey, TValue>`) sdílené mezi požadavky nejsou bezpečné pro souběžný zápis a bez zámků může dojít ke ztrátě nebo poškození dat. `ConcurrentDictionary` chrání jen jednotlivé operace, ne operace o více krocích (např. kontrolu vazby a následný zápis). Úložiště musí žít po celou dobu běhu aplikace (služba registrovaná jako singleton; ve scoped službě by data zmizela po každém požadavku). Generování identifikátorů a udržování vazeb mezi entitami navíc implementujete sami.
-  - Nevyzkoušíte si migrace ani konfiguraci relačního modelu v EF Core, které probíráme ve výuce.
 - Pokud aplikace používá relační databázi, nedoporučujeme ji v testech nahrazovat in-memory úložištěm, které nekontroluje integritu cizích klíčů. Pro testy doporučujeme SQLite (klidně v režimu `Data Source=:memory:`; databáze zanikne se zavřením spojení, proto ho otevřete sami a nechte otevřené po celý test), případně stejnou databázi, jakou používá nasazená aplikace.
 - API musí vracet správné chybové stavy a srozumitelné hlášky alespoň pro neexistující záznam (404), odkaz na neexistující entitu (400) a smazání záznamu, na který vedou vazby (409, nebo kaskádové mazání popsané v `README.md`). Kaskádové mazání nesmí odstranit položky, místa ani nákupní seznamy, které by uživatel podle [uživatelských rolí](#uživatelské-role) nesměl smazat sám; v takovém případě vraťte 409. Co se stane se záznamy smazaného uživatele (např. převedou se na administrátora), navrhněte sami a popište v `README.md`.
 - Filtrace, řazení, vyhledávání a stránkování probíhají na serveru (API), ne ve webu. S EF Core je provádějte v databázovém dotazu (nad `IQueryable`), ne až po načtení celé tabulky do paměti.
