@@ -3,30 +3,59 @@
     "Id": "fabde0cd-eefe-443f-baf6-3d96cc2cbf2e",
     "Name": "Míchaná vejce",
     "Description": "Popis míchaných vajec",
-    "Duration": "00:35:00",
+    "Duration": "00:15:00",
     "FoodType": 1,
-    "ImageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Scrambled_eggs-01.jpg/320px-Scrambled_eggs-01.jpg",
+    "ImageUrl": "https://i.ibb.co/mJgrX6B/Scrambled-eggs-01.jpg",
     "IngredientAmounts": [
       {
+        "Id": "0d4fa150-ad80-4d46-a511-4c666166ec5e",
         "Ingredient": {
           "Id": "df935095-8709-4040-a2bb-b6f97cb416dc",
           "Name": "Vejce",
-          "ImageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Chicken_egg_2009-06-04.jpg/428px-Chicken_egg_2009-06-04.jpg"
+          "ImageUrl": "https://i.ibb.co/d7mZWGN/image.jpg"
         },
         "Amount": 4,
         "Unit": 5,
         "UnitText": "kusy"
       },
       {
+        "Id": "87833e66-05ba-4d6b-900b-fe5ace88dbd8",
         "Ingredient": {
           "Id": "23b3902d-7d4f-4213-9cf0-112348f56238",
           "Name": "Cibule",
-          "ImageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Onion_on_White.JPG/480px-Onion_on_White.JPG"
+          "ImageUrl": "https://i.ibb.co/sbXC0rS/480px-Onion-on-White.jpg"
         },
         "Amount": 1,
         "Unit": 5,
         "UnitText": "kusy"
       }
     ]
+  },
+  {
+    "Id": "a8ee7ce8-9903-4f42-afb4-b2c34dfb7ccf",
+    "Name": "Miso polévka",
+    "Description": "Polévka!",
+    "Duration": "01:00:00",
+    "FoodType": 2,
+    "ImageUrl": "https://i.ibb.co/RY1XKmL/recipe-2.jpg",
+    "IngredientAmounts": []
+  },
+  {
+    "Id": "c3542130-589c-4302-a441-a110fcadd45a",
+    "Name": "Vykoštěné kuře s citronem a bylinkami",
+    "Description": "Popis kuřete",
+    "Duration": "01:00:00",
+    "FoodType": 1,
+    "ImageUrl": "https://i.ibb.co/QJF2ZxX/recipe-1.jpg",
+    "IngredientAmounts": []
+  },
+  {
+    "Id": "2caa29d8-61f0-4c1d-850d-4d70003e6aef",
+    "Name": "Citronový sorbet",
+    "Description": "Zákusek",
+    "Duration": "00:30:00",
+    "FoodType": 3,
+    "ImageUrl": null,
+    "IngredientAmounts": []
   }
 ]
