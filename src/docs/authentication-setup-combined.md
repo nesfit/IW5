@@ -41,9 +41,23 @@ In [Entra admin center](https://entra.microsoft.com/), select your tenant:
    production credentials where practical; record expiry and plan rotation.
 6. **App roles > Create app role**: display `CookBook Administrator`, member
    types **Users/Groups**, exact value `admin`, enabled.
-7. **Entra ID > Enterprise applications > IW5 CookBook IdentityProvider >
-   Users and groups > Add user/group**: assign your demonstration user to
-   `CookBook Administrator`.
+7. Create another enabled app role: display `CookBook User`, member types
+   **Users/Groups**, exact value `user`.
+8. **Entra ID > Users > All users > New user > Create new user**: create two
+   demo accounts, or use two existing accounts. Complete first-login password
+   changes before testing.
+9. **Entra ID > Enterprise applications > IW5 CookBook IdentityProvider >
+   Users and groups > Add user/group**: assign each account:
+
+   | Account | Selected app role | Expected Entra ID-token `roles` |
+   |---|---|---|
+   | Administrator demo | `CookBook Administrator` | Contains `admin` |
+   | Non-admin demo | `CookBook User` | Contains `user`, not `admin` |
+
+Ensure the non-admin has no direct or group-based `admin` assignment here.
+These assignments also satisfy this enterprise application's **Assignment
+required?** policy when enabled. Both role definitions use **Users/Groups**;
+assign individuals for this demonstration. These are not Entra directory roles.
 
 The registration does not need a delegated CookBook API permission. Entra
 authenticates the user to IdentityProvider, which issues its own API tokens.
@@ -124,6 +138,31 @@ Use separate private sessions to test local credentials and the Entra button.
 For each, return to Web, confirm a readable name, create an ingredient, then
 log out. API tokens in both cases have the **CookBook IdentityProvider** issuer
 and `cookbookclientaudience`, not an Entra issuer or Entra API audience.
+
+Test the Entra button with both demo accounts in separate private sessions.
+IdentityProvider accepts the `user` and `admin` values from the validated Entra
+ID token and forwards roles into its downstream API token. Check that the final
+**CookBook API access token** contains `admin` for the admin account and `user`
+without `admin` for the non-admin. Local roles are also merged: a linked account
+with local `admin` membership is still an admin, so remove that membership from
+the non-admin demo account through your trusted Identity provisioning process.
+No Web/API configuration change is needed to distinguish the two users.
+
+For a clear role-policy demonstration, uncomment the existing
+`ingredientDeleteEndpoint.RequireAuthorization(ApiPolicies.IngredientAdmin)`
+line in `CookBook.Api.App\Endpoints\IngredientEndpoints.cs` and rebuild/redeploy
+API with identity enabled. The admin can delete a disposable ingredient;
+the non-admin must receive **403** when deleting another disposable ingredient,
+even one they created. Other operations retain their own ownership/policy
+rules; a `user` account is not necessarily read-only. Without this policy,
+delete behavior alone does not prove an admin-role check.
+
+These Entra assignments apply to both local and Azure callbacks of this
+registration; repeat them if production uses a separate registration. After
+changing roles, sign out of Web and IdentityProvider and perform a fresh Entra
+login, rather than silently reusing the IdentityProvider session. Existing
+cookies/tokens retain old roles. Test local-account roles separately using
+ASP.NET Identity role membership, not Entra assignments.
 
 For external-only login through IdentityProvider, set
 `CookBookIdentityProviderOptions:Local:IsEnabled=false` locally (Azure:
