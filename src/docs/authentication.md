@@ -133,6 +133,14 @@ Add an `AuthenticationProviderType`, provider-specific registration adapter, and
 
 - **AADSTS redirect mismatch:** redirect URI and URI type must exactly match the app registration.
 - **401 from API:** inspect `iss` and `aud`; both must match one configured trusted issuer entry.
+- **401 after CookBook IdentityProvider login:** the `cookbookapi` scope must
+  belong to the `cookbookclientaudience` API resource in IdentityProvider's
+  `Config.cs`. The API trusts that resource name as its audience, not the Web
+  client ID. An unassociated scope does not produce this audience; with static
+  audience emission enabled, the token can instead contain only the generic
+  `<issuer>/resources` audience. Keep audience validation enabled, correct the
+  resource/scope association, restart IdentityProvider, and obtain a new access
+  token by signing out and back in.
 - **403 for admin action:** assign `admin` on the app registration that emits the relevant token (API registration for direct mode, IdentityProvider registration for federated mode).
 - **Immediate login after logout:** upstream logout is disabled or the external provider retained its session.
 - **No external login button:** the provider registration is disabled or local-only mode is configured.
