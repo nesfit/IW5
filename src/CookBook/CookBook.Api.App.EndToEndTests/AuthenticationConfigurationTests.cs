@@ -1,4 +1,6 @@
+using CookBook.Common.Options;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
@@ -7,16 +9,22 @@ namespace CookBook.Api.App.EndToEndTests;
 public class AuthenticationConfigurationTests
 {
     [Fact]
-    public async Task AllConfiguredTrustedIssuersAreRegistered_WhenIdentityIsDisabled()
+    public async Task AllConfiguredTrustedIssuersAreRegistered()
     {
         await using var application = new CookBookApiApplicationFactory();
         using var scope = application.Services.CreateScope();
+        var configuredIssuers = scope.ServiceProvider.GetRequiredService<IConfiguration>()
+            .GetSection(nameof(TrustedIssuersOptions)).Get<TrustedIssuersOptions>();
         var schemes = await scope.ServiceProvider
             .GetRequiredService<IAuthenticationSchemeProvider>()
             .GetAllSchemesAsync();
 
-        Assert.Contains(schemes, scheme => scheme.Name == "CookBookIdentityProvider");
-        Assert.Contains(schemes, scheme => scheme.Name == "Entra");
+        Assert.NotNull(configuredIssuers);
+        Assert.NotEmpty(configuredIssuers.Issuers);
+        foreach (var issuer in configuredIssuers.Issuers)
+        {
+            Assert.Contains(schemes, scheme => scheme.Name == issuer.Scheme);
+        }
     }
 
     [Fact]

@@ -13,7 +13,19 @@ CookBook supports identity-disabled demonstrations, direct Microsoft Entra ID au
 
 The API always registers every entry in `TrustedIssuersOptions`, even when endpoint authorization is disabled. `IdentityOptions:IsEnabled` only determines whether modifying endpoint groups require authorization.
 
+Direct Entra login uses MSAL; CookBook IdentityProvider uses generic OIDC.
+Web loads only the JavaScript adapter for the selected provider. Both paths
+continue to supply API tokens through `IAccessTokenProvider`.
+
+The login header displays `username` for CookBook accounts or
+`preferred_username` for Entra accounts, falling back to a display name or email.
+Opaque subject/object identifiers remain account identifiers, not UI labels;
+readable claims are never used as authorization identifiers.
+
 ## Entra app registrations
+
+For detailed portal steps, configuration examples, and current implementation
+limitations, see [Entra ID portal setup](entra-id-portal-setup.md).
 
 Create three single-tenant registrations.
 
@@ -28,7 +40,7 @@ Create three single-tenant registrations.
 
 1. Configure it as a public SPA client.
 2. Add `https://localhost:44355/authentication/login-callback` as a SPA redirect URI.
-3. Add `https://localhost:44355/` as the post-logout URI.
+3. Add `https://localhost:44355/` as an additional SPA redirect URI for the configured logout return destination; this is not the front-channel logout URL.
 4. Grant delegated permission to the CookBook API `access_as_user` scope.
 5. Put its client ID, tenant authority, and API scope into the Web `Entra` provider registration.
 
@@ -53,6 +65,11 @@ The IdentityProvider first looks up an existing external login by immutable prov
 - exactly one local account has that normalized email.
 
 Username matches and unverified email claims are never used for linking. If there is no match, a passwordless shadow account is provisioned. An existing matched account keeps its password, subject, profile, and local roles, so either login path reaches the same account.
+
+Standard workforce Entra tokens generally do not contain `email_verified=true`.
+Adding an optional `email` claim does not satisfy this check. See the
+[account-linking limitation](entra-id-portal-setup.md#8-account-linking-limitation)
+before demonstrating linking with Entra.
 
 ## Test users versus persistent users
 
@@ -88,3 +105,17 @@ Add an `AuthenticationProviderType`, provider-specific registration adapter, and
 - **Account not linked:** the email claim is absent/unverified, or more than one normalized local email matches.
 
 Never place client secrets in checked-in `appsettings.json`.
+
+## Authentication regression tests
+
+From the repository root:
+
+```powershell
+dotnet test src\CookBook\CookBook.Web.BL.UnitTests\CookBook.Web.BL.UnitTests.csproj
+node --test src\CookBook\CookBook.Web.BL.UnitTests\authentication-loader.test.cjs
+```
+
+The .NET tests cover provider registration, API scopes, and matching JavaScript
+selection. The Node tests use the built-in test runner to cover script loading,
+adapter isolation, and explicit load failures. They do not replace a live
+tenant login test.

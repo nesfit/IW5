@@ -78,31 +78,7 @@ builder.Services.AddLocalization();
 
 if (identityOptions.IsEnabled && selectedProvider is not null)
 {
-    // Only the selected, enabled provider's registration is bound. Adding a future provider
-    // (Microsoft, Google, Facebook, ...) means adding a new AuthenticationProviderType plus its own
-    // adapter branch here; it does not change WebAuthenticationOptions itself.
-    builder.Services.AddOidcAuthentication(options =>
-    {
-        options.ProviderOptions.Authority = selectedProvider.Authority;
-        options.ProviderOptions.ClientId = selectedProvider.ClientId;
-        options.ProviderOptions.ResponseType = selectedProvider.ResponseType;
-
-        if (!string.IsNullOrWhiteSpace(selectedProvider.RedirectUri))
-        {
-            options.ProviderOptions.RedirectUri = selectedProvider.RedirectUri;
-        }
-
-        if (!string.IsNullOrWhiteSpace(selectedProvider.PostLogoutRedirectUri))
-        {
-            options.ProviderOptions.PostLogoutRedirectUri = selectedProvider.PostLogoutRedirectUri;
-        }
-
-        options.ProviderOptions.DefaultScopes.Clear();
-        foreach (var scope in selectedProvider.DefaultScopes)
-        {
-            options.ProviderOptions.DefaultScopes.Add(scope);
-        }
-    });
+    builder.Services.AddCookBookAuthentication(selectedProvider);
 }
 
 var localDbEnabledString = builder.Configuration.GetSection(nameof(LocalDbOptions))[nameof(LocalDbOptions.IsEnabled)];
@@ -115,6 +91,11 @@ var host = builder.Build();
 
 // Initialize culture from localStorage
 var jsRuntime = host.Services.GetRequiredService<IJSRuntime>();
+if (identityOptions.IsEnabled && selectedProvider is not null)
+{
+    await jsRuntime.InvokeVoidAsync("cookBookAuthentication.load", selectedProvider.GetAuthenticationScriptPath());
+}
+
 var jsInProcessRuntime = (IJSInProcessRuntime)jsRuntime;
 
 try
