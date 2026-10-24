@@ -1,7 +1,10 @@
 # Programování v .NET a C# - IW5, Organizační pokyny
 
-CookBook authentication setup: [identity disabled, direct Microsoft Entra ID,
-and CookBook IdentityProvider scenarios](src/docs/authentication.md).
+CookBook authentication setup (local and Azure):
+[direct Entra](src/docs/authentication-setup-entra.md),
+[local accounts](src/docs/authentication-setup-local.md),
+[combined login](src/docs/authentication-setup-combined.md).
+See [scenario selection and shared settings](src/docs/authentication-overview.md).
 
 ---
 
