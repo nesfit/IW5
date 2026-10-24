@@ -1,138 +1,169 @@
 using System.Security.Claims;
+using CookBook.Common;
+using CookBook.IdentityProvider.App.Options;
+using CookBook.IdentityProvider.App.Services;
+using Duende.IdentityModel;
 using Duende.IdentityServer;
 using Duende.IdentityServer.Events;
 using Duende.IdentityServer.Services;
-using Duende.IdentityServer.Test;
-using Duende.IdentityModel;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Options;
 
 namespace CookBook.IdentityProvider.App.Pages.ExternalLogin;
 
 [AllowAnonymous]
 [SecurityHeaders]
-public class Callback : PageModel
+public class Callback(
+    IIdentityServerInteractionService interaction,
+    IEventService events,
+    ILogger<Callback> logger,
+    IExternalUserService users,
+    IOptions<CookBookIdentityProviderOptions> options) : PageModel
 {
-    private readonly TestUserStore _users;
-    private readonly IIdentityServerInteractionService _interaction;
-    private readonly ILogger<Callback> _logger;
-    private readonly IEventService _events;
-
-    public Callback(
-        IIdentityServerInteractionService interaction,
-        IEventService events,
-        ILogger<Callback> logger,
-        TestUserStore users = null)
+    public async Task<IActionResult> OnGet(CancellationToken cancellationToken)
     {
-        // this is where you would plug in your own custom identity management library (e.g. ASP.NET Identity)
-        _users = users ?? throw new Exception("Please call 'AddTestUsers(TestUsers.Users)' on the IIdentityServerBuilder in Startup or remove the TestUserStore from the AccountController.");
-
-        _interaction = interaction;
-        _logger = logger;
-        _events = events;
-    }
-        
-    public async Task<IActionResult> OnGet()
-    {
-        // read external identity from the temporary cookie
-        var result = await HttpContext.AuthenticateAsync(IdentityServerConstants.ExternalCookieAuthenticationScheme);
-        if (result?.Succeeded != true)
+        var result = await HttpContext.AuthenticateAsync(
+            IdentityServerConstants.ExternalCookieAuthenticationScheme);
+        if (result.Succeeded != true || result.Principal is null)
         {
-            throw new Exception("External authentication error");
+            logger.LogWarning("External authentication callback did not contain a successful external cookie.");
+            return RedirectToPage("/Account/Login/Index");
         }
 
-        var externalUser = result.Principal;
-
-        if (_logger.IsEnabled(LogLevel.Debug))
+        if (!result.Properties.Items.TryGetValue("scheme", out var scheme)
+            || string.IsNullOrWhiteSpace(scheme))
         {
-            var externalClaims = externalUser.Claims.Select(c => $"{c.Type}: {c.Value}");
-            _logger.LogDebug("External claims: {@claims}", externalClaims);
+            logger.LogWarning("External authentication callback did not contain a provider scheme.");
+            return BadRequest("External authentication state is invalid.");
         }
 
-        // lookup our user and external provider info
-        // try to determine the unique id of the external user (issued by the provider)
-        // the most common claim type for that are the sub claim and the NameIdentifier
-        // depending on the external provider, some other claim type might be used
-        var userIdClaim = externalUser.FindFirst(JwtClaimTypes.Subject) ??
-                          externalUser.FindFirst(ClaimTypes.NameIdentifier) ??
-                          throw new Exception("Unknown userid");
-
-        var provider = result.Properties.Items["scheme"];
-        var providerUserId = userIdClaim.Value;
-
-        // find external user
-        var user = _users.FindByExternalProvider(provider, providerUserId);
-        if (user == null)
+        var providerOptions = options.Value.ExternalProviders.SingleOrDefault(provider =>
+            provider.IsEnabled && string.Equals(provider.Scheme, scheme, StringComparison.Ordinal));
+        if (providerOptions is null)
         {
-            // this might be where you might initiate a custom workflow for user registration
-            // in this sample we don't show how that would be done, as our sample implementation
-            // simply auto-provisions new external user
-            //
-            // remove the user id claim so we don't include it as an extra claim if/when we provision the user
-            var claims = externalUser.Claims.ToList();
-            claims.Remove(userIdClaim);
-            user = _users.AutoProvisionUser(provider, providerUserId, claims.ToList());
+            logger.LogWarning("External authentication callback referenced unknown scheme {Scheme}.", scheme);
+            return BadRequest("External authentication provider is not enabled.");
         }
 
-        // this allows us to collect any additional claims or properties
-        // for the specific protocols used and store them in the local auth cookie.
-        // this is typically used to store data needed for signout from those protocols.
-        var additionalLocalClaims = new List<Claim>();
-        var localSignInProps = new AuthenticationProperties();
-        CaptureExternalLoginContext(result, additionalLocalClaims, localSignInProps);
-            
-        // issue authentication cookie for user
-        var isuser = new IdentityServerUser(user.SubjectId)
-        {
-            DisplayName = user.Username,
-            IdentityProvider = provider,
-            AdditionalClaims = additionalLocalClaims
-        };
+        var principal = result.Principal;
+        var providerSubject = GetProviderSubject(principal, providerOptions);
+        var verifiedEmail = GetVerifiedEmail(principal, providerOptions);
+        var user = await users.FindOrProvisionAsync(
+            scheme,
+            providerSubject,
+            verifiedEmail,
+            principal,
+            cancellationToken);
 
-        await HttpContext.SignInAsync(isuser, localSignInProps);
+        var additionalClaims = BuildSessionClaims(principal, providerOptions, user.SessionClaims);
+        var signInProperties = new AuthenticationProperties();
+        CaptureExternalLoginContext(result, providerOptions, additionalClaims, signInProperties);
 
-        // delete temporary cookie used during external authentication
+        await HttpContext.SignInAsync(
+            new IdentityServerUser(user.SubjectId)
+            {
+                DisplayName = user.DisplayName,
+                IdentityProvider = scheme,
+                AdditionalClaims = additionalClaims
+            },
+            signInProperties);
+
         await HttpContext.SignOutAsync(IdentityServerConstants.ExternalCookieAuthenticationScheme);
 
-        // retrieve return URL
-        var returnUrl = result.Properties.Items["returnUrl"] ?? "~/";
-
-        // check if external login is in the context of an OIDC request
-        var context = await _interaction.GetAuthorizationContextAsync(returnUrl, CancellationToken.None);
-        await _events.RaiseAsync(new UserLoginSuccessEvent(provider, providerUserId, user.SubjectId, user.Username, true, context?.Client.ClientId), CancellationToken.None);
-
-        if (context != null)
+        var returnUrl = result.Properties.Items.TryGetValue("returnUrl", out var storedReturnUrl)
+            ? storedReturnUrl ?? "~/"
+            : "~/";
+        if (!Url.IsLocalUrl(returnUrl) && !interaction.IsValidReturnUrl(returnUrl))
         {
-            if (context.IsNativeClient())
-            {
-                // The client is native, so this change in how to
-                // return the response is for better UX for the end user.
-                return this.LoadingPage(returnUrl);
-            }
+            logger.LogWarning("External authentication callback contained an invalid return URL.");
+            return BadRequest("External authentication return URL is invalid.");
         }
 
-        return Redirect(returnUrl);
+        var context = await interaction.GetAuthorizationContextAsync(returnUrl, cancellationToken);
+        await events.RaiseAsync(
+            new UserLoginSuccessEvent(
+                scheme,
+                providerSubject,
+                user.SubjectId,
+                user.DisplayName,
+                true,
+                context?.Client.ClientId),
+            cancellationToken);
+
+        return context?.IsNativeClient() == true
+            ? this.LoadingPage(returnUrl)
+            : Redirect(returnUrl);
     }
 
-    // if the external login is OIDC-based, there are certain things we need to preserve to make logout work
-    // this will be different for WS-Fed, SAML2p or other protocols
-    private void CaptureExternalLoginContext(AuthenticateResult externalResult, List<Claim> localClaims, AuthenticationProperties localSignInProps)
+    private static string GetProviderSubject(
+        ClaimsPrincipal principal,
+        ExternalProviderOptions provider)
     {
-        // if the external system sent a session id claim, copy it over
-        // so we can use it for single sign-out
-        var sid = externalResult.Principal.Claims.FirstOrDefault(x => x.Type == JwtClaimTypes.SessionId);
-        if (sid != null)
+        var subject = principal.FindFirst(provider.SubjectClaimType)?.Value
+            ?? principal.FindFirst(JwtClaimTypes.Subject)?.Value
+            ?? principal.FindFirst(ClaimTypes.NameIdentifier)?.Value
+            ?? throw new InvalidOperationException("External provider did not issue a stable subject claim.");
+
+        var tenant = principal.FindFirst(provider.TenantClaimType)?.Value;
+        return string.IsNullOrWhiteSpace(tenant) ? subject : $"{tenant}:{subject}";
+    }
+
+    private static string? GetVerifiedEmail(
+        ClaimsPrincipal principal,
+        ExternalProviderOptions provider)
+    {
+        var email = principal.FindFirst(provider.EmailClaimType)?.Value;
+        var verified = principal.FindFirst(provider.EmailVerifiedClaimType)?.Value;
+        return !string.IsNullOrWhiteSpace(email)
+               && bool.TryParse(verified, out var isVerified)
+               && isVerified
+            ? email
+            : null;
+    }
+
+    private static List<Claim> BuildSessionClaims(
+        ClaimsPrincipal principal,
+        ExternalProviderOptions provider,
+        IReadOnlyCollection<Claim> userClaims)
+    {
+        var knownRoles = new HashSet<string>(
+            [UserRoles.User, UserRoles.Admin],
+            StringComparer.Ordinal);
+
+        return principal.FindAll(provider.RoleClaimType)
+            .Concat(userClaims.Where(claim => claim.Type is "role" or "roles" or ClaimTypes.Role))
+            .Select(claim => claim.Value)
+            .Where(knownRoles.Contains)
+            .Distinct(StringComparer.Ordinal)
+            .Select(role => new Claim(JwtClaimTypes.Role, role))
+            .ToList();
+    }
+
+    private static void CaptureExternalLoginContext(
+        AuthenticateResult externalResult,
+        ExternalProviderOptions provider,
+        ICollection<Claim> localClaims,
+        AuthenticationProperties localSignInProperties)
+    {
+        var sessionId = externalResult.Principal?.FindFirst(JwtClaimTypes.SessionId);
+        if (sessionId is not null)
         {
-            localClaims.Add(new Claim(JwtClaimTypes.SessionId, sid.Value));
+            localClaims.Add(new Claim(JwtClaimTypes.SessionId, sessionId.Value));
         }
 
-        // if the external provider issued an id_token, we'll keep it for signout
-        var idToken = externalResult.Properties.GetTokenValue("id_token");
-        if (idToken != null)
+        if (!provider.UpstreamLogoutIsEnabled)
         {
-            localSignInProps.StoreTokens(new[] { new AuthenticationToken { Name = "id_token", Value = idToken } });
+            return;
+        }
+
+        var idToken = externalResult.Properties?.GetTokenValue("id_token");
+        if (!string.IsNullOrWhiteSpace(idToken))
+        {
+            localSignInProperties.StoreTokens(
+                [new AuthenticationToken { Name = "id_token", Value = idToken }]);
         }
     }
 }

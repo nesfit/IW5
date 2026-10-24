@@ -4,6 +4,8 @@
 @using Microsoft.Extensions.Options
 @inject NavigationManager Navigation
 @inject IOptions<IdentityOptions> IdentityOptions
+@inject IOptions<WebAuthenticationOptions> WebAuthenticationOptions
+@inject SignOutSessionStateManager SignOutManager
 
 @if (IdentityOptions.Value.IsEnabled)
 {
@@ -23,8 +25,19 @@
 }
 
 @code{
-    private void BeginLogOut()
+    private async Task BeginLogOut()
     {
+        var provider = WebAuthenticationOptions.Value.Providers.FirstOrDefault(candidate =>
+            candidate.IsEnabled
+            && candidate.ProviderType == WebAuthenticationOptions.Value.SelectedProvider);
+
+        if (provider?.UpstreamLogoutIsEnabled == false)
+        {
+            await SignOutManager.SetSignOutState();
+            Navigation.NavigateTo("authentication/logout-callback");
+            return;
+        }
+
         Navigation.NavigateToLogout("authentication/logout?logoutUrl=");
     }
 }   

@@ -61,6 +61,12 @@ public class AppUserFacade(
         return appUserMapper.ToDetailModel(user);
     }
 
+    public async Task<AppUserDetailModel?> GetUserBySubjectAsync(string subject)
+    {
+        var user = await appUserRepository.GetBySubjectAsync(subject);
+        return user is null ? null : appUserMapper.ToDetailModel(user);
+    }
+
     public async Task<AppUserDetailModel?> GetUserByUserNameAsync(string userName)
     {
         var user = await userManager.FindByNameAsync(userName);

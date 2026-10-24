@@ -10,6 +10,7 @@ public interface IAppUserFacade : IAppFacade
     Task<bool> ValidateCredentialsAsync(string userName, string password);
     Task<Guid> GetUserIdByUserNameAsync(string userName);
     public Task<AppUserDetailModel?> GetUserByIdAsync(Guid id);
+    Task<AppUserDetailModel?> GetUserBySubjectAsync(string subject);
 
     Task<IList<AppUserListModel>> SearchAsync(string searchString);
     Task<AppUserDetailModel?> GetUserByUserNameAsync(string userName);

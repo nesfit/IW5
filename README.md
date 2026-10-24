@@ -1,5 +1,8 @@
 # Programování v .NET a C# - IW5, Organizační pokyny
 
+CookBook authentication setup: [identity disabled, direct Microsoft Entra ID,
+and CookBook IdentityProvider scenarios](src/docs/authentication.md).
+
 ---
 
 ## [FAQ - Frequently Asked Questions](https://github.com/nesfit/IW5/wiki)

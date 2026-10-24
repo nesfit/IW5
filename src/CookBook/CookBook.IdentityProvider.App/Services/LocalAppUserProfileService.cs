@@ -1,6 +1,7 @@
 ﻿using System.Security.Claims;
 using CookBook.IdentityProvider.BL.Facades;
 using CookBook.IdentityProvider.BL.Models;
+using Duende.IdentityModel;
 using Duende.IdentityServer.Extensions;
 using Duende.IdentityServer.Models;
 using Duende.IdentityServer.Services;
@@ -24,16 +25,8 @@ public class LocalAppUserProfileService : IProfileService
     {
         var subjectId = context.Subject.GetSubjectId();
 
-        AppUserDetailModel? user;
-
-        if(Guid.TryParse(subjectId, out var id))
-        {
-            user = await appUserFacade.GetUserByIdAsync(id);
-        }
-        else
-        {
-            user = await appUserFacade.GetUserByUserNameAsync(subjectId);
-        }
+        var user = await appUserFacade.GetUserBySubjectAsync(subjectId)
+            ?? await appUserFacade.GetUserByUserNameAsync(subjectId);
 
         if (user is not null)
         {
@@ -46,9 +39,14 @@ public class LocalAppUserProfileService : IProfileService
                     return new Claim(claim.ClaimType, claim.ClaimValue);
                 }
                 return null;
-            }).ToList();
+            }).Where(claim => claim is not null).Cast<Claim>().ToList();
 
             claims.Add(new Claim("username", user.UserName));
+            claims.AddRange(
+                context.Subject.FindAll(JwtClaimTypes.Role)
+                    .Where(externalRole => claims.All(localClaim =>
+                        localClaim.Type != JwtClaimTypes.Role
+                        || !string.Equals(localClaim.Value, externalRole.Value, StringComparison.Ordinal))));
             context.AddRequestedClaims(claims);
         }
     }

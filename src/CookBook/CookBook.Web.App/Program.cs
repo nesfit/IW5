@@ -27,17 +27,41 @@ if (apiOptions is null)
     throw new ArgumentNullException("Failed to load ApiOptions from configuration.");
 }
 
-var identityOptions = builder.Configuration.GetSection(nameof(IdentityOptions)).Get<IdentityOptions>();
-if (identityOptions is null)
+var identityOptions = builder.Configuration.GetSection(nameof(IdentityOptions)).Get<IdentityOptions>()
+    ?? throw new ArgumentNullException("Failed to load IdentityOptions from configuration.");
+
+var webAuthenticationOptions = builder.Configuration.GetSection(nameof(WebAuthenticationOptions)).Get<WebAuthenticationOptions>()
+    ?? new WebAuthenticationOptions();
+
+WebAuthenticationProviderOptions? selectedProvider = null;
+if (identityOptions.IsEnabled)
 {
-    throw new ArgumentNullException("Failed to load IdentityOptions from configuration.");
+    selectedProvider = webAuthenticationOptions.Providers
+        .FirstOrDefault(p => p.ProviderType == webAuthenticationOptions.SelectedProvider && p.IsEnabled);
+
+    if (selectedProvider is null)
+    {
+        throw new InvalidOperationException(
+            $"WebAuthenticationOptions:SelectedProvider is '{webAuthenticationOptions.SelectedProvider}', " +
+            "but no enabled provider registration with that ProviderType was found under WebAuthenticationOptions:Providers.");
+    }
+
+    if (string.IsNullOrWhiteSpace(selectedProvider.Authority)
+        || string.IsNullOrWhiteSpace(selectedProvider.ClientId)
+        || selectedProvider.DefaultScopes.Count == 0)
+    {
+        throw new InvalidOperationException(
+            $"The selected WebAuthenticationOptions provider '{selectedProvider.ProviderType}' is missing Authority, ClientId, or DefaultScopes.");
+    }
 }
 
 builder.Services.Configure<IdentityOptions>(builder.Configuration.GetSection(nameof(IdentityOptions)));
+builder.Services.Configure<WebAuthenticationOptions>(
+    builder.Configuration.GetSection(nameof(WebAuthenticationOptions)));
 builder.Services.AddInstaller<WebDALInstaller>();
 if (apiOptions != null)
 {
-    builder.Services.AddInstaller<WebBLInstaller>(identityOptions, apiOptions);
+    builder.Services.AddInstaller<WebBLInstaller>(identityOptions, selectedProvider, apiOptions);
 }
 
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
@@ -52,11 +76,32 @@ builder.Services.AddValidatorsFromAssemblyContaining<IngredientDetailModel>();
 
 builder.Services.AddLocalization();
 
-if (identityOptions?.IsEnabled is true)
+if (identityOptions.IsEnabled && selectedProvider is not null)
 {
+    // Only the selected, enabled provider's registration is bound. Adding a future provider
+    // (Microsoft, Google, Facebook, ...) means adding a new AuthenticationProviderType plus its own
+    // adapter branch here; it does not change WebAuthenticationOptions itself.
     builder.Services.AddOidcAuthentication(options =>
     {
-        builder.Configuration.Bind(nameof(IdentityOptions), options.ProviderOptions);
+        options.ProviderOptions.Authority = selectedProvider.Authority;
+        options.ProviderOptions.ClientId = selectedProvider.ClientId;
+        options.ProviderOptions.ResponseType = selectedProvider.ResponseType;
+
+        if (!string.IsNullOrWhiteSpace(selectedProvider.RedirectUri))
+        {
+            options.ProviderOptions.RedirectUri = selectedProvider.RedirectUri;
+        }
+
+        if (!string.IsNullOrWhiteSpace(selectedProvider.PostLogoutRedirectUri))
+        {
+            options.ProviderOptions.PostLogoutRedirectUri = selectedProvider.PostLogoutRedirectUri;
+        }
+
+        options.ProviderOptions.DefaultScopes.Clear();
+        foreach (var scope in selectedProvider.DefaultScopes)
+        {
+            options.ProviderOptions.DefaultScopes.Add(scope);
+        }
     });
 }
 
