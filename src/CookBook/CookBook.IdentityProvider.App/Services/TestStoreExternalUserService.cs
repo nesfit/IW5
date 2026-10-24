@@ -22,9 +22,15 @@ public sealed class TestStoreExternalUserService(TestUserStore users) : IExterna
             user = users.AutoProvisionUser(provider, providerSubject, claims);
         }
 
+        var displayName = ExternalUserDisplayName.GetDisplayName(externalPrincipal);
+        user.Claims = user.Claims
+            .Where(claim => claim.Type is not "username" and not JwtClaimTypes.Name)
+            .Concat([new Claim("username", displayName), new Claim(JwtClaimTypes.Name, displayName)])
+            .ToList();
+
         return Task.FromResult(new ExternalUser(
             user.SubjectId,
-            user.Username,
+            displayName,
             user.Claims.ToList()));
     }
 }

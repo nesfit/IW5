@@ -2,6 +2,7 @@
 using CookBook.IdentityProvider.BL.Facades;
 using CookBook.IdentityProvider.BL.Models;
 using Duende.IdentityModel;
+using Duende.IdentityServer;
 using Duende.IdentityServer.Extensions;
 using Duende.IdentityServer.Models;
 using Duende.IdentityServer.Services;
@@ -41,7 +42,26 @@ public class LocalAppUserProfileService : IProfileService
                 return null;
             }).Where(claim => claim is not null).Cast<Claim>().ToList();
 
-            claims.Add(new Claim("username", user.UserName));
+            var provider = context.Subject.FindFirst(JwtClaimTypes.IdentityProvider)?.Value;
+            var externalDisplayName = context.Subject.FindFirst(JwtClaimTypes.Name)?.Value;
+            var storedDisplayName = claims
+                .FirstOrDefault(claim => claim.Type == ExternalUserDisplayName.StoredClaimType)?.Value;
+            claims.RemoveAll(claim => claim.Type == ExternalUserDisplayName.StoredClaimType);
+            var username = user.UserName;
+            // UserInfo subjects may contain only sub, without the login cookie's name/idp.
+            var displayName = !string.IsNullOrWhiteSpace(provider)
+                && !string.IsNullOrWhiteSpace(externalDisplayName)
+                    ? externalDisplayName
+                    : storedDisplayName;
+            if (provider != IdentityServerConstants.LocalIdentityProvider
+                && !string.IsNullOrWhiteSpace(displayName))
+            {
+                username = displayName;
+                claims.RemoveAll(claim => claim.Type == JwtClaimTypes.Name);
+                claims.Add(new Claim(JwtClaimTypes.Name, displayName));
+            }
+            claims.RemoveAll(claim => claim.Type == "username");
+            claims.Add(new Claim("username", username));
             claims.AddRange(
                 context.Subject.FindAll(JwtClaimTypes.Role)
                     .Where(externalRole => claims.All(localClaim =>

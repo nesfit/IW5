@@ -22,6 +22,25 @@ The login header displays `username` for CookBook accounts or
 Opaque subject/object identifiers remain account identifiers, not UI labels;
 readable claims are never used as authorization identifiers.
 
+For external login through IdentityProvider, both the IdentityProvider header
+and the federated Web session use the current provider's `preferred_username`,
+falling back to `name` or email, or `signed-in user` when none is available.
+The generated shadow-account username stays internal; no database rename is
+needed for existing users. Each external login saves or refreshes a display-only
+`cookbook:external_display_name` claim in the existing user-claims store. This
+allows UserInfo/profile requests containing only `sub` to resolve the readable
+name without relying on login-cookie claims. The internal claim is not returned
+to clients; the profile service emits the usual `name` and `username` labels.
+A profile request with an explicit local identity provider keeps the stored
+local username; a subject-only request uses the last saved external label.
+These labels do not verify an email or link accounts.
+After updating, restart IdentityProvider and sign out and back in to replace
+the old display name stored in the login cookie and downstream tokens.
+Existing users receive the display claim on their next external login; do not
+delete or recreate them. The local database `Id` and IdentityProvider `Subject`
+are intentionally separate from Entra's identifiers. The external-login mapping
+stores the provider scheme and `tid:oid` key.
+
 ## Entra app registrations
 
 For detailed portal steps, configuration examples, and current implementation
@@ -49,13 +68,28 @@ Create three single-tenant registrations.
 1. Configure it as a confidential web client.
 2. Add the configured `/signin-entra` callback and `/signout-callback-entra` signed-out callback.
 3. Add an app role with value `admin`; this role is emitted in the ID token used for federated login.
-4. Store the client secret outside source control:
+4. Right-click **CookBook.IdentityProvider.App > Manage User Secrets** in Visual
+   Studio. Merge this object into the existing `secrets.json`, preserving database
+   connection settings, and replace the placeholders:
 
-   ```powershell
-   dotnet user-secrets --project src\CookBook\CookBook.IdentityProvider.App set "CookBookIdentityProviderOptions:ExternalProviders:0:ClientSecret" "<secret>"
+   ```json
+   {
+     "CookBookIdentityProviderOptions:ExternalProviders:0": {
+       "IsEnabled": true,
+       "Authority": "https://login.microsoftonline.com/TENANT_ID/v2.0",
+       "ClientId": "IDP_CLIENT_ID",
+       "ClientSecret": "YOUR_SECRET_VALUE",
+       "UpstreamLogoutIsEnabled": true
+     }
+   }
    ```
 
-5. Set the Entra external provider's `IsEnabled` to `true`.
+5. Run IdentityProvider in **Development** and restart after changing secrets.
+   Use this secrets store for all local IdentityProvider overrides instead of
+   editing shared `appsettings.json`. The object overrides individual fields of
+   external provider index `0`; other fields are inherited. See
+   [the complete user-secrets instructions](entra-id-portal-setup.md#identityprovider-user-secrets)
+   for local-login settings and configuration precedence.
 
 ## External account linking
 
@@ -112,6 +146,7 @@ From the repository root:
 
 ```powershell
 dotnet test src\CookBook\CookBook.Web.BL.UnitTests\CookBook.Web.BL.UnitTests.csproj
+dotnet test src\CookBook\CookBook.IdentityProvider.App.UnitTests\CookBook.IdentityProvider.App.UnitTests.csproj
 node --test src\CookBook\CookBook.Web.BL.UnitTests\authentication-loader.test.cjs
 ```
 

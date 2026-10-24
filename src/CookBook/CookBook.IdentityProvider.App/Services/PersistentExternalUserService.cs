@@ -79,6 +79,35 @@ public sealed class PersistentExternalUserService(
             throw new InvalidOperationException("The linked local account is inactive.");
         }
 
+        var displayName = ExternalUserDisplayName.GetDisplayName(externalPrincipal);
+        var storedClaims = await userManager.GetClaimsAsync(user);
+        var displayClaims = storedClaims
+            .Where(claim => claim.Type == ExternalUserDisplayName.StoredClaimType)
+            .ToList();
+        if (displayClaims.Count != 1 || displayClaims[0].Value != displayName)
+        {
+            var displayClaim = new Claim(ExternalUserDisplayName.StoredClaimType, displayName);
+            if (displayClaims.Count == 1)
+            {
+                EnsureSucceeded(
+                    await userManager.ReplaceClaimAsync(user, displayClaims[0], displayClaim),
+                    "replace the stored external display name");
+            }
+            else
+            {
+                if (displayClaims.Count > 0)
+                {
+                    EnsureSucceeded(
+                        await userManager.RemoveClaimsAsync(user, displayClaims),
+                        "remove duplicate external display names");
+                }
+
+                EnsureSucceeded(
+                    await userManager.AddClaimAsync(user, displayClaim),
+                    "store the external display name");
+            }
+        }
+
         var roles = await userManager.GetRolesAsync(user);
         var sessionClaims = externalPrincipal.Claims
             .Where(claim => claim.Type is "role" or "roles")
@@ -87,7 +116,7 @@ public sealed class PersistentExternalUserService(
 
         return new ExternalUser(
             user.Subject,
-            user.UserName ?? verifiedEmail ?? user.Subject,
+            displayName,
             sessionClaims);
     }
 

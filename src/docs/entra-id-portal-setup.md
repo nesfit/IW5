@@ -57,7 +57,8 @@ The checked-in configuration uses the same placeholder names as this guide:
 
 These are literal placeholders, not automatically substituted environment variables.
 Keep shared `appsettings.json` files unchanged when configuring your own tenant:
-use API user secrets and Web's local development file as described in section 5.
+use API user secrets and Web's local development file as described in section 5,
+and IdentityProvider user secrets as described in section 7.
 Never put a client secret in the browser application's configuration.
 
 ## 2. Register CookBook API
@@ -381,13 +382,11 @@ Do not register Blazor's `/authentication/login-callback` here. In this flow Ent
 5. Select **Add**.
 6. Immediately copy the secret's **Value**; it will not be displayed again.
 
-Use the **Value**, not the **Secret ID**. Store it outside the repository. From the repository root:
-
-```powershell
-dotnet user-secrets set "CookBookIdentityProviderOptions:ExternalProviders:0:ClientSecret" "<secret-value>" --project src\CookBook\CookBook.IdentityProvider.App
-```
-
-Index `0` matches the current configuration, where Entra is the first external provider. If the project lacks a `UserSecretsId`, initialize user secrets first. Use protected hosting configuration or Key Vault for deployment, and plan credential rotation before expiry.
+Use the **Value**, not the **Secret ID**. Store it in the complete external-provider
+override object in IdentityProvider user secrets, as shown in section 7, rather
+than configuring only `ClientSecret`. Do not put the value in `appsettings.json`.
+Use protected hosting configuration or Key Vault for deployment, and plan
+credential rotation before expiry.
 
 ### Configure federated administrator roles
 
@@ -406,20 +405,65 @@ The IdentityProvider registration does not need the CookBook API delegated scope
 
 ## 7. Configure federated login in CookBook
 
-In `src\CookBook\CookBook.IdentityProvider.App\appsettings.json`, update the existing external provider:
+### IdentityProvider user secrets
 
-| Setting | Value |
-|---|---|
-| `IsEnabled` | `true` |
-| `Authority` | `https://login.microsoftonline.com/TENANT_ID/v2.0` |
-| `ClientId` | `IDP_CLIENT_ID` |
-| `CallbackPath` | `/signin-entra` |
-| `SignedOutCallbackPath` | `/signout-callback-entra` |
-| `UpstreamLogoutIsEnabled` | `true` initially |
+Use **.NET user secrets for all local IdentityProvider overrides**, not edits to
+`src\CookBook\CookBook.IdentityProvider.App\appsettings.json`.
 
-Keep the checked-in `ClientSecret` empty; user secrets supplies its real value.
+1. In Visual Studio, right-click **CookBook.IdentityProvider.App > Manage User
+   Secrets**. Select the App project, not IdentityProvider.DAL or CookBook.Api.App:
+   each project has its own secrets store.
+2. The App project already declares `UserSecretsId`
+   `31fe5f25-e562-4895-8a2d-98f3c032c123`, so no initialization is required.
+   On Windows its file is
+   `%APPDATA%\Microsoft\UserSecrets\31fe5f25-e562-4895-8a2d-98f3c032c123\secrets.json`.
+3. Merge this example into that file. Preserve existing entries, particularly
+   `ConnectionStrings:DefaultConnection` for your identity database.
+4. Replace `TENANT_ID`, `IDP_CLIENT_ID`, and `YOUR_SECRET_VALUE` with the actual
+   values from the IdentityProvider Web registration:
 
-Set `CookBookIdentityProviderOptions:Local:IsEnabled` to `true` for hybrid login. Set it to `false`, while leaving Entra enabled, for external-only login through IdentityProvider.
+```json
+{
+  "CookBookIdentityProviderOptions:Local:IsEnabled": true,
+  "CookBookIdentityProviderOptions:ExternalProviders:0": {
+    "IsEnabled": true,
+    "Authority": "https://login.microsoftonline.com/TENANT_ID/v2.0",
+    "ClientId": "IDP_CLIENT_ID",
+    "ClientSecret": "YOUR_SECRET_VALUE",
+    "UpstreamLogoutIsEnabled": true
+  }
+}
+```
+
+5. Save and restart IdentityProvider with its **SelfHost** launch profile.
+   That profile sets `ASPNETCORE_ENVIRONMENT=Development`, enabling automatic
+   loading of the App project's user secrets.
+
+The colon-delimited object key targets provider index `0`, while its nested
+properties override that provider's individual settings. It does **not** replace
+the entire provider entry or collection. `Scheme`, `ProviderType`, display name,
+claim mappings, and callback paths are inherited from shared configuration.
+The inherited callback paths remain `/signin-entra` and
+`/signout-callback-entra`, matching section 6's portal registration.
+
+Index `0` assumes Entra remains the first external provider. Configuration merges
+arrays by index, not by scheme. If you already have flattened keys such as
+`CookBookIdentityProviderOptions:ExternalProviders:0:ClientSecret`, consolidate
+them into the object above rather than defining the same effective property
+twice in one JSON file.
+
+For hybrid login, keep `CookBookIdentityProviderOptions:Local:IsEnabled` set to
+`true` in **user secrets**. Set it to `false` there for external-only login,
+leaving Entra enabled. For the logout demonstration, change
+`UpstreamLogoutIsEnabled` inside the same secret object and restart the app.
+Keep the checked-in `ClientSecret` empty.
+
+User secrets override the shared JSON configuration in Development; environment
+variables and command-line settings can override them in turn. User secrets are
+not encrypted and are not a production vault. Never copy the real secret into
+Web's `wwwroot`, source control, screenshots, or shared diagnostic output.
+
+### Web and API local overrides
 
 In Web's local `wwwroot\appsettings.Development.json`, select
 `CookBookIdentityProvider`, ensure that provider is enabled, and update its entry:
@@ -471,7 +515,8 @@ Check that login returns to Web, API reads load, and authenticated modifying req
 For the upstream-logout demonstration:
 
 1. Keep Web's logout directed at CookBook IdentityProvider so its server session is cleared.
-2. Change the external provider's `UpstreamLogoutIsEnabled` in IdentityProvider.
+2. Change the external provider's `UpstreamLogoutIsEnabled` in IdentityProvider
+   user secrets (the override object in section 7).
 3. Restart IdentityProvider.
 4. Establish a new login session before testing logout.
 5. Compare the next login with upstream logout enabled versus disabled.
