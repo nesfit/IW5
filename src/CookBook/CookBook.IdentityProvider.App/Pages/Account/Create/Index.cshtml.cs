@@ -81,6 +81,7 @@ public class Index : PageModel
                 UserName = Input.Username,
                 Password = Input.Password,
                 Email = Input.Email,
+                Name = Input.Name,
                 Subject = Input.Username,
             };
             var user = await appUserFacade.CreateAppUserAsync(appUserCreateModel);

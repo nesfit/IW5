@@ -21,12 +21,29 @@ public class UserDisplayNameTests
     }
 
     [Fact]
-    public void PrefersUsernameToDisplayName()
+    public void PrefersPersonNameToUsername()
     {
         var user = new ClaimsPrincipal(new ClaimsIdentity(
-            [new Claim("name", "Demo Teacher"), new Claim("preferred_username", "teacher@example.com")], "test"));
+            [
+                new Claim("username", "cookbook-user"),
+                new Claim("preferred_username", "teacher@example.com"),
+                new Claim("name", "Demo Teacher")
+            ], "test"));
 
-        Assert.Equal("teacher@example.com", user.GetDisplayName());
+        Assert.Equal("Demo Teacher", user.GetDisplayName());
+    }
+
+    [Fact]
+    public void CombinesGivenAndFamilyNamesWhenFullNameIsMissing()
+    {
+        var user = new ClaimsPrincipal(new ClaimsIdentity(
+            [
+                new Claim("preferred_username", "teacher@example.com"),
+                new Claim("given_name", "Demo"),
+                new Claim("family_name", "Teacher")
+            ], "test"));
+
+        Assert.Equal("Demo Teacher", user.GetDisplayName());
     }
 
     [Fact]

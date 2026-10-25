@@ -1,4 +1,6 @@
-﻿using CookBook.IdentityProvider.App.Options;
+﻿using System.Security.Claims;
+using CookBook.IdentityProvider.App.Options;
+using CookBook.IdentityProvider.App.Services;
 using CookBook.IdentityProvider.BL.Facades;
 using Duende.IdentityServer;
 using Duende.IdentityServer.Events;
@@ -21,6 +23,7 @@ public class Index : PageModel
     private readonly IIdentityServerInteractionService _interaction;
     private readonly IEventService _events;
     private readonly IAppUserFacade appUserFacade;
+    private readonly IAppUserClaimsFacade appUserClaimsFacade;
     private readonly IAuthenticationSchemeProvider _schemeProvider;
     private readonly IIdentityProviderStore _identityProviderStore;
     private readonly CookBookIdentityProviderOptions _loginOptions;
@@ -36,6 +39,7 @@ public class Index : PageModel
         IIdentityProviderStore identityProviderStore,
         IEventService events,
         IAppUserFacade appUserFacade,
+        IAppUserClaimsFacade appUserClaimsFacade,
         IOptions<CookBookIdentityProviderOptions> loginOptions)
     {
         _interaction = interaction;
@@ -43,7 +47,17 @@ public class Index : PageModel
         _identityProviderStore = identityProviderStore;
         _events = events;
         this.appUserFacade = appUserFacade;
+        this.appUserClaimsFacade = appUserClaimsFacade;
         _loginOptions = loginOptions.Value;
+    }
+
+    private async Task<string> GetLocalDisplayNameAsync(Guid userId, string userName)
+    {
+        var claims = (await appUserClaimsFacade.GetAppUserClaimsByUserIdAsync(userId))
+            .Where(claim => claim.ClaimType is not null && claim.ClaimValue is not null)
+            .Select(claim => new Claim(claim.ClaimType!, claim.ClaimValue!));
+        return ExternalUserDisplayName.GetDisplayName(
+            new ClaimsPrincipal(new ClaimsIdentity(claims)), userName);
     }
 
     public async Task<IActionResult> OnGet(string returnUrl)
@@ -130,7 +144,7 @@ public class Index : PageModel
                 // issue authentication cookie with subject ID and username
                 var issuer = new IdentityServerUser(user.Subject)
                 {
-                    DisplayName = user.UserName
+                    DisplayName = await GetLocalDisplayNameAsync(user.Id, user.UserName)
                 };
 
                 await HttpContext.SignInAsync(issuer, props);

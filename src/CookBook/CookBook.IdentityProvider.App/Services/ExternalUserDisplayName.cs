@@ -6,21 +6,32 @@ internal static class ExternalUserDisplayName
 {
     public const string StoredClaimType = "cookbook:external_display_name";
 
-    public static string GetDisplayName(ClaimsPrincipal principal)
+    public static string GetDisplayName(ClaimsPrincipal principal, string fallback = "signed-in user")
     {
         // These claims are display labels only, never account-linking keys.
-        string[] claimTypes = ["preferred_username", "name", ClaimTypes.Name, "email", ClaimTypes.Email];
-        foreach (var claimType in claimTypes)
+        var fullName = FindFirst(principal, "name");
+        if (fullName is not null)
         {
-            var value = principal.FindAll(claimType)
-                .Select(claim => claim.Value)
-                .FirstOrDefault(value => !string.IsNullOrWhiteSpace(value));
-            if (value is not null)
-            {
-                return value;
-            }
+            return fullName;
         }
 
-        return "signed-in user";
+        var personName = string.Join(" ", new[]
+        {
+            FindFirst(principal, "given_name", ClaimTypes.GivenName),
+            FindFirst(principal, "family_name", ClaimTypes.Surname)
+        }.Where(part => part is not null));
+        if (!string.IsNullOrWhiteSpace(personName))
+        {
+            return personName;
+        }
+
+        return FindFirst(principal, ClaimTypes.Name, "preferred_username", "email", ClaimTypes.Email)
+            ?? fallback;
     }
+
+    private static string? FindFirst(ClaimsPrincipal principal, params string[] claimTypes)
+        => claimTypes
+            .SelectMany(principal.FindAll)
+            .Select(claim => claim.Value.Trim())
+            .FirstOrDefault(value => value.Length > 0);
 }

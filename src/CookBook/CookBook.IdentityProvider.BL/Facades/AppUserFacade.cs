@@ -1,4 +1,5 @@
-﻿using CookBook.Common.Models.User;
+﻿using System.Security.Claims;
+using CookBook.Common.Models.User;
 using CookBook.IdentityProvider.BL.Mappers;
 using CookBook.IdentityProvider.BL.Models;
 using CookBook.IdentityProvider.DAL.Entities;
@@ -20,7 +21,11 @@ public class AppUserFacade(
         }
 
         var appUserEntity = appUserMapper.ToEntity(appUserModel);
-        await userManager.CreateAsync(appUserEntity, appUserModel.Password);
+        var createResult = await userManager.CreateAsync(appUserEntity, appUserModel.Password);
+        if (createResult.Succeeded && !string.IsNullOrWhiteSpace(appUserModel.Name))
+        {
+            await userManager.AddClaimAsync(appUserEntity, new Claim("name", appUserModel.Name.Trim()));
+        }
         return (await userManager.FindByNameAsync(appUserModel.UserName))?.Id;
     }
 

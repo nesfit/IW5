@@ -142,7 +142,7 @@ public class ExternalUserDisplayNameTests
     [Theory]
     [InlineData(null, "Demo Teacher", "Demo Teacher")]
     [InlineData("   ", "Demo Teacher", "Demo Teacher")]
-    [InlineData("teacher@example.com", "Demo Teacher", "teacher@example.com")]
+    [InlineData("teacher@example.com", "Demo Teacher", "Demo Teacher")]
     [InlineData(null, null, "signed-in user")]
     public async Task TestStoreSelectsReadableLabelInsteadOfOpaqueSubject(
         string? preferredUsername, string? name, string expectedName)
@@ -174,6 +174,30 @@ public class ExternalUserDisplayNameTests
             new ClaimsPrincipal(new ClaimsIdentity(claims, "Entra")), CancellationToken.None);
 
         Assert.Equal(expectedName, result.DisplayName);
+    }
+
+    [Fact]
+    public async Task TestStoreCombinesGivenAndFamilyNamesBeforeUsername()
+    {
+        var user = new TestUser
+        {
+            SubjectId = "stable-test-subject",
+            Username = "Entra-tenant-object",
+            ProviderName = "Entra",
+            ProviderSubjectId = "tenant:object"
+        };
+        var service = new TestStoreExternalUserService(new TestUserStore([user]));
+        var principal = new ClaimsPrincipal(new ClaimsIdentity(
+            [
+                new Claim("preferred_username", "teacher@example.com"),
+                new Claim("given_name", "Demo"),
+                new Claim("family_name", "Teacher")
+            ], "Entra"));
+
+        var result = await service.FindOrProvisionAsync(
+            "Entra", "tenant:object", null, principal, CancellationToken.None);
+
+        Assert.Equal("Demo Teacher", result.DisplayName);
     }
 
     [Fact]
