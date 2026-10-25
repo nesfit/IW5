@@ -1,7 +1,14 @@
-# Scenario 1: Direct Entra login
+# Scenario 2: Direct Entra login
 
 [Choose another scenario](authentication-overview.md). Run/deploy **Web and API only**.
 Entra manages users; CookBook IdentityProvider and its database are not needed.
+
+After [scenario 1: local IdentityProvider](authentication-setup-local.md)
+explains the internals, this example delegates them to a managed provider.
+It is an equally valid project choice with fewer application components to
+configure and operate. You do not need to implement scenario 1 before following
+this guide. [Scenario 3: combined login](authentication-setup-combined.md)
+connects local and external login through IdentityProvider.
 
 ## 1. Create two Entra registrations
 

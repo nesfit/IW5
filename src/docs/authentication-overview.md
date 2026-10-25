@@ -1,12 +1,31 @@
 # Choose an authentication scenario
 
-Follow one setup guide. Each covers local development and Azure App Service.
+The teaching order is **local IdentityProvider, direct Entra, then combined
+login**: first inspect how authentication and authorization work, then use a
+managed provider, and finally connect both approaches.
+
+Choose the implementation that suits your project. All three are valid ways
+to reach the same authentication and authorization goals; the teaching order
+does not require implementing all three. Each guide covers local development
+and Azure App Service.
 
 | Scenario | Guide | Applications to deploy |
 |---|---|---|
-| Entra manages users; no CookBook IdentityProvider | [Direct Entra](authentication-setup-entra.md) | Web + API |
-| CookBook manages local usernames/passwords | [Local accounts](authentication-setup-local.md) | Web + API + IdentityProvider |
-| Local accounts plus an Entra login button | [Combined login](authentication-setup-combined.md) | Web + API + IdentityProvider |
+| 1. CookBook manages local usernames/passwords | [Local accounts](authentication-setup-local.md) | Web + API + IdentityProvider |
+| 2. Entra manages users; no CookBook IdentityProvider | [Direct Entra](authentication-setup-entra.md) | Web + API |
+| 3. Local accounts plus an Entra login button | [Combined login](authentication-setup-combined.md) | Web + API + IdentityProvider |
+
+**Local IdentityProvider** gives you control over users, claims, roles, and token
+issuance, with more setup and operational responsibility. Choose it to explore
+those internals directly. **Direct Entra** delegates user management and token
+issuance to Microsoft, reducing application setup while still requiring correct
+Web/API configuration and authorization. **Combined login** demonstrates
+federation and supports both local and external accounts.
+
+You can complete the identity implementation with local IdentityProvider or
+direct Entra; combined login is another choice when both login methods are
+useful. The shared outcome is a working login, correctly validated API access
+tokens, and enforced authorization, locally and after deployment.
 
 For the identity-disabled demonstration, set `IdentityOptions:IsEnabled=false`
 in both API and Web. No IdentityProvider is needed. API reads remain public;

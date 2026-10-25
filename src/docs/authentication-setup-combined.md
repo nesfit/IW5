@@ -4,6 +4,10 @@
 IdentityProvider**. Web always logs in through CookBook IdentityProvider;
 IdentityProvider offers local credentials and an Entra button.
 
+This third teaching example connects the two earlier approaches. It is a
+project choice for applications needing both login methods, not a required
+upgrade from either local IdentityProvider or direct Entra.
+
 ## 1. Complete the local-account setup
 
 Follow [Local accounts](authentication-setup-local.md), including its Azure steps:

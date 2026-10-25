@@ -1,8 +1,16 @@
-# Scenario 2: Local CookBook accounts
+# Scenario 1: Local CookBook accounts
 
 [Choose another scenario](authentication-overview.md). Run/deploy **Web, API, and
 IdentityProvider**. No Entra registrations or Entra secrets are needed.
 Web uses the Duende client `cookbookclient`, not an Entra client ID.
+
+This is the first teaching example: user storage, credential validation, claims,
+and token issuance are visible in your own application. It is a valid project
+choice, not just preparation for Entra. If you prefer delegated user management
+and fewer deployed components, [scenario 2: direct Entra](authentication-setup-entra.md)
+reaches the same authentication/authorization goals without this server.
+[Scenario 3: combined login](authentication-setup-combined.md) extends this setup
+with an external login option.
 
 ## 1. IdentityProvider: database and local login
 
