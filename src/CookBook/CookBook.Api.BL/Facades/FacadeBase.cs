@@ -1,6 +1,6 @@
-﻿using CookBook.Api.DAL.Common.Entities.Interfaces;
+using CookBook.Api.BL.Models;
+using CookBook.Api.DAL.Common.Entities.Interfaces;
 using CookBook.Api.DAL.Common.Repositories;
-using CookBook.Common;
 
 namespace CookBook.Api.BL.Facades;
 
@@ -9,15 +9,8 @@ public class FacadeBase<TRepository, TEntity>(
     where TRepository : IApiRepository<TEntity>
     where TEntity : IEntity
 {
-    protected void ThrowIfWrongOwnerAndNotAdmin(Guid? id, IList<string> userRoles, string? ownerId)
-    {
-        if (id is not null
-            && userRoles is not null
-            && !userRoles.Contains(UserRoles.Admin)
-            && ownerId is not null
-            && repository.GetById(id.Value)?.OwnerId != ownerId)
-        {
-            throw new UnauthorizedAccessException();
-        }
-    }
+    public ResourceOwnership? GetOwnership(Guid id)
+        => repository.GetById(id) is { } entity
+            ? new ResourceOwnership(entity.Id, entity.OwnerId)
+            : null;
 }

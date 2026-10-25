@@ -1,4 +1,4 @@
-﻿using CookBook.Api.DAL.Common.Entities;
+using CookBook.Api.DAL.Common.Entities;
 using CookBook.Api.DAL.Common.Mappers;
 using CookBook.Api.DAL.Common.Repositories;
 
@@ -53,8 +53,11 @@ namespace CookBook.Api.DAL.Memory.Repositories
                 ingredientAmounts.Remove(ingredientAmountToRemove);
             }
 
-            var ingredientToRemove = ingredients.Single(ingredient => ingredient.Id.Equals(id));
-            ingredients.Remove(ingredientToRemove);
+            var ingredientToRemove = ingredients.SingleOrDefault(ingredient => ingredient.Id.Equals(id));
+            if (ingredientToRemove is not null)
+            {
+                ingredients.Remove(ingredientToRemove);
+            }
         }
 
         public bool Exists(Guid id)

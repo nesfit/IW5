@@ -1,18 +1,19 @@
-﻿using CookBook.Api.App.Filters;
+using System.Security.Claims;
+using CookBook.Api.App.Authorization;
+using CookBook.Api.App.Filters;
 using CookBook.Api.BL.Facades;
-using CookBook.Common;
 using CookBook.Common.Models;
 using CookBook.Common.Options;
 using CookBook.Common.Resources;
-using FluentValidation;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Options;
 
 namespace CookBook.Api.App.Endpoints;
 
-public class RecipeEndpoints(IOptions<IdentityOptions> identityOptions) : EndpointsBase
+public class RecipeEndpoints(IOptions<IdentityOptions> identityOptions)
+    : EndpointsBase(identityOptions)
 {
     public override IEndpointRouteBuilder MapEndpoints(IEndpointRouteBuilder endpointRouteBuilder)
     {
@@ -24,69 +25,68 @@ public class RecipeEndpoints(IOptions<IdentityOptions> identityOptions) : Endpoi
         recipeEndpoints.MapGet("{id:guid}", Results<Ok<RecipeDetailModel>, NotFound<string>> (Guid id, IRecipeFacade recipeFacade, IStringLocalizer<RecipeEndpointsResources> recipeEndpointsLocalizer)
             => recipeFacade.GetById(id) is { } recipe
                 ? TypedResults.Ok(recipe)
-                : TypedResults.NotFound(recipeEndpointsLocalizer[nameof(RecipeEndpointsResources.GetById_NotFound), id].Value));
+                : NotFound(recipeEndpointsLocalizer, id));
 
         var recipeModifyingEndpoints = recipeEndpoints.MapGroup("");
 
-        if(identityOptions.Value.IsEnabled)
+        if (IsIdentityEnabled)
         {
             recipeModifyingEndpoints.RequireAuthorization();
         }
 
-        recipeModifyingEndpoints.MapPost("", (RecipeDetailModel recipe, IRecipeFacade recipeFacade, IHttpContextAccessor httpContextAccessor) =>
+        recipeModifyingEndpoints.MapPost("", (RecipeDetailModel recipe, IRecipeFacade recipeFacade, ClaimsPrincipal user)
+            => recipeFacade.Create(recipe, GetUserId(user)))
+            .AddEndpointFilter<ValidationFilter<RecipeDetailModel>>();
+
+        recipeModifyingEndpoints.MapPut("", async Task<Results<Ok<Guid?>, NotFound<string>, ForbidHttpResult>> (RecipeDetailModel recipe, IRecipeFacade recipeFacade, IAuthorizationService authorizationService, ClaimsPrincipal user, IStringLocalizer<RecipeEndpointsResources> recipeEndpointsLocalizer) =>
         {
-            var userId = GetUserId(httpContextAccessor);
-            var userRoles = GetUserRoles(httpContextAccessor);
-
-            return recipeFacade.Create(recipe, userRoles, userId);
-        }).AddEndpointFilter<ValidationFilter<RecipeDetailModel>>();
-
-        recipeModifyingEndpoints.MapPut("", Results<Ok<Guid?>, ForbidHttpResult> (RecipeDetailModel recipe, IRecipeFacade recipeFacade, IHttpContextAccessor httpContextAccessor) =>
-        {
-            var userId = GetUserId(httpContextAccessor);
-            var userRoles = GetUserRoles(httpContextAccessor);
-
-            try
+            if (recipeFacade.GetOwnership(recipe.Id) is not { } ownership)
             {
-                return TypedResults.Ok(recipeFacade.Update(recipe, userRoles, userId));
+                return NotFound(recipeEndpointsLocalizer, recipe.Id);
             }
-            catch (UnauthorizedAccessException)
+
+            if (!await IsAuthorizedAsync(authorizationService, user, ownership, OwnerOrAdminRequirement.Instance))
             {
                 return TypedResults.Forbid();
             }
+
+            return TypedResults.Ok(recipeFacade.Update(recipe));
         }).AddEndpointFilter<ValidationFilter<RecipeDetailModel>>();
 
-        recipeEndpoints.MapPost("upsert", async Task<Results<Ok<Guid>, ValidationProblem>> (RecipeDetailModel recipe, IRecipeFacade recipeFacade, IValidator<RecipeDetailModel> validator, IHttpContextAccessor httpContextAccessor) =>
+        recipeModifyingEndpoints.MapPost("upsert", async Task<Results<Ok<Guid>, ForbidHttpResult>> (RecipeDetailModel recipe, IRecipeFacade recipeFacade, IAuthorizationService authorizationService, ClaimsPrincipal user) =>
         {
-            var userId = GetUserId(httpContextAccessor);
-            var userRoles = GetUserRoles(httpContextAccessor);
-
-            var id = recipeFacade.CreateOrUpdate(recipe, userRoles, userId);
-            return TypedResults.Ok(id);
-        }).AddEndpointFilter<ValidationFilter<RecipeDetailModel>>();
-
-        var recipeDeleteEndpoint = recipeModifyingEndpoints.MapDelete("{id:guid}", Results<Ok, ForbidHttpResult> (Guid id, IRecipeFacade recipeFacade, IHttpContextAccessor httpContextAccessor) =>
-        {
-            var userId = GetUserId(httpContextAccessor);
-            var userRoles = GetUserRoles(httpContextAccessor);
-            
-            try
+            if (recipeFacade.GetOwnership(recipe.Id) is not { } ownership)
             {
-                recipeFacade.Delete(id, userRoles, userId);
-                return TypedResults.Ok();
+                return TypedResults.Ok(recipeFacade.Create(recipe, GetUserId(user)));
             }
-            catch (UnauthorizedAccessException)
+
+            if (!await IsAuthorizedAsync(authorizationService, user, ownership, OwnerOrAdminRequirement.Instance))
             {
                 return TypedResults.Forbid();
             }
+
+            return TypedResults.Ok(recipeFacade.Update(recipe)!.Value);
+        }).AddEndpointFilter<ValidationFilter<RecipeDetailModel>>();
+
+        recipeModifyingEndpoints.MapDelete("{id:guid}", async Task<Results<Ok, NotFound<string>, ForbidHttpResult>> (Guid id, IRecipeFacade recipeFacade, IAuthorizationService authorizationService, ClaimsPrincipal user, IStringLocalizer<RecipeEndpointsResources> recipeEndpointsLocalizer) =>
+        {
+            if (recipeFacade.GetOwnership(id) is not { } ownership)
+            {
+                return NotFound(recipeEndpointsLocalizer, id);
+            }
+
+            if (!await IsAuthorizedAsync(authorizationService, user, ownership, OwnerOrAdminRequirement.Instance))
+            {
+                return TypedResults.Forbid();
+            }
+
+            recipeFacade.Delete(id);
+            return TypedResults.Ok();
         });
-
-        if (identityOptions.Value.IsEnabled)
-        {
-            // // Uncomment this to only enable admins to delete recipes
-            // recipeDeleteEndpoint.RequireAuthorization(ApiPolicies.RecipeAdmin);
-        }
 
         return endpointRouteBuilder;
     }
+
+    private static NotFound<string> NotFound(IStringLocalizer<RecipeEndpointsResources> recipeEndpointsLocalizer, Guid id)
+        => TypedResults.NotFound(recipeEndpointsLocalizer[nameof(RecipeEndpointsResources.GetById_NotFound), id].Value);
 }

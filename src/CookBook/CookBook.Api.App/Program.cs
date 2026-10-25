@@ -1,7 +1,8 @@
-﻿using System.Globalization;
+using System.Globalization;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using CookBook.Api.App;
+using CookBook.Api.App.Authorization;
 using CookBook.Api.App.Extensions;
 using CookBook.Api.App.Processors;
 using CookBook.Api.BL.Installers;
@@ -16,6 +17,7 @@ using CookBook.Common.Models;
 using CookBook.Common.Options;
 using FluentValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Options;
 
@@ -167,6 +169,8 @@ void ConfigureAuthentication(IServiceCollection serviceCollection, IConfiguratio
         .AddPolicy(ApiPolicies.RecipeAdmin, policy =>
             policy.RequireAuthenticatedUser().RequireRole(UserRoles.Admin));
 
+    serviceCollection.AddSingleton<IAuthorizationHandler, OwnerOrAdminAuthorizationHandler>();
+    serviceCollection.AddSingleton<IAuthorizationHandler, AdminOnlyAuthorizationHandler>();
     serviceCollection.AddHttpContextAccessor();
 }
 

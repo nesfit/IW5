@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using CookBook.Api.DAL.Common.Entities.Interfaces;
@@ -36,18 +36,18 @@ namespace CookBook.Api.DAL.EF.Repositories
 
         public virtual Guid? Update(TEntity entity)
         {
-            if (Exists(entity.Id))
-            {
-                dbContext.Set<TEntity>().Attach(entity);
-                var updatedEntity = dbContext.Set<TEntity>().Update(entity);
-                dbContext.SaveChanges();
-
-                return updatedEntity.Entity.Id;
-            }
-            else
+            var existingEntity = dbContext.Set<TEntity>().Find(entity.Id);
+            if (existingEntity is null)
             {
                 return null;
             }
+
+            var ownerId = existingEntity.OwnerId;
+            dbContext.Entry(existingEntity).CurrentValues.SetValues(entity);
+            existingEntity.OwnerId = ownerId;
+            dbContext.SaveChanges();
+
+            return existingEntity.Id;
         }
 
         public virtual void Remove(Guid id)

@@ -1,4 +1,4 @@
-﻿using CookBook.Api.BL.Mappers;
+using CookBook.Api.BL.Mappers;
 using CookBook.Api.DAL.Common.Entities;
 using CookBook.Api.DAL.Common.Repositories;
 using CookBook.Common.Models;
@@ -27,31 +27,20 @@ public class IngredientFacade(
             : mapper.ToDetailModel(ingredientEntity);
     }
 
-    public Guid CreateOrUpdate(IngredientDetailModel ingredientModel, IList<string> userRoles, string? ownerId = null)
-    {
-        return ingredientRepository.Exists(ingredientModel.Id)
-            ? Update(ingredientModel, userRoles, ownerId)!.Value
-            : Create(ingredientModel, userRoles, ownerId);
-    }
-
-    public Guid Create(IngredientDetailModel ingredientModel, IList<string> userRoles, string? ownerId = null)
+    public Guid Create(IngredientDetailModel ingredientModel, string? ownerId)
     {
         var ingredientEntity = mapper.ToEntity(ingredientModel, ownerId);
         return ingredientRepository.Insert(ingredientEntity);
     }
 
-    public Guid? Update(IngredientDetailModel ingredientModel, IList<string> userRoles, string? ownerId = null)
+    public Guid? Update(IngredientDetailModel ingredientModel)
     {
-        ThrowIfWrongOwnerAndNotAdmin(ingredientModel.Id, userRoles, ownerId);
-
-        var ingredientEntity = mapper.ToEntity(ingredientModel, ownerId);
+        var ingredientEntity = mapper.ToEntity(ingredientModel);
         return ingredientRepository.Update(ingredientEntity);
     }
 
-    public void Delete(Guid id, IList<string> userRoles, string? ownerId = null)
+    public void Delete(Guid id)
     {
-        ThrowIfWrongOwnerAndNotAdmin(id, userRoles, ownerId);
-
         ingredientRepository.Remove(id);
     }
 }

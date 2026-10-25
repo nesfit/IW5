@@ -121,8 +121,19 @@ Do not disable signature, issuer, or audience validation to resolve a `401`.
 Do not share tokens, cookies, client secrets, or an unredacted HAR.
 
 The sample's named admin endpoint policies may be commented out; assigning
-`admin` does not itself enable those policies. Business-layer ownership checks
-can also return `403`.
+`admin` does not itself enable those policies.
+
+Updates and deletes use ASP.NET Core resource-based authorization. The endpoint
+loads the record's owner (`404` if missing), then calls
+`IAuthorizationService.AuthorizeAsync` with a requirement:
+
+| Operation | Requirement | Handler |
+|---|---|---|
+| Update recipe / ingredient | `OwnerOrAdminRequirement` | `OwnerOrAdminAuthorizationHandler` |
+| Delete recipe | `OwnerOrAdminRequirement` | `OwnerOrAdminAuthorizationHandler` |
+| Delete ingredient | `AdminOnlyRequirement` | `AdminOnlyAuthorizationHandler` |
+
+Failing the requirement returns `403`. Records without an owner are admin-only.
 
 ## Regression checks
 
