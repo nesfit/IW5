@@ -41,7 +41,8 @@ In [Entra admin center](https://entra.microsoft.com/), select your tenant:
 4. Leave implicit grants disabled. Leave **Front-channel logout URL** empty
    for this setup; it is not a logout-return setting.
 5. **Certificates & secrets > Client secrets > New client secret**: choose an
-   expiry, then copy its **Value**, not Secret ID. Use separate local and
+   expiry, then copy its **Value**, not Secret ID, as `IDP_CLIENT_SECRET`.
+   Use separate local and
    production credentials where practical; record expiry and plan rotation.
 6. **App roles > Create app role**: display `CookBook Administrator`, member
    types **Users/Groups**, exact value `admin`, enabled.
@@ -81,14 +82,18 @@ object alongside your existing SQL connection string:
     "IsEnabled": true,
     "Authority": "https://login.microsoftonline.com/TENANT_ID/v2.0",
     "ClientId": "IDP_CLIENT_ID",
-    "ClientSecret": "YOUR_LOCAL_SECRET_VALUE",
+    "ClientSecret": "IDP_CLIENT_SECRET",
     "UpstreamLogoutIsEnabled": true
   }
 }
 ```
 
 Replace all placeholders. Keep all local overrides here, not in shared
-`appsettings.json`. Index `0` inherits scheme `Entra`, provider type, callback
+`appsettings.json`. In particular, replace `IDP_CLIENT_SECRET` with the client
+secret **Value** copied from Entra. The same searchable placeholder appears in
+`CookBook.IdentityProvider.App/appsettings.json`; override it through user
+secrets locally or App Service settings in Azure, never commit the real value.
+Index `0` inherits scheme `Entra`, provider type, callback
 paths, and claim mappings. Do not also define flattened keys targeting the same
 properties. Restart with the Development `SelfHost` profile.
 
@@ -117,7 +122,7 @@ Environment variables > App settings**, add/update:
 | `CookBookIdentityProviderOptions__ExternalProviders__0__IsEnabled` | `true` |
 | `CookBookIdentityProviderOptions__ExternalProviders__0__Authority` | `https://login.microsoftonline.com/TENANT_ID/v2.0` |
 | `CookBookIdentityProviderOptions__ExternalProviders__0__ClientId` | `IDP_CLIENT_ID` |
-| `CookBookIdentityProviderOptions__ExternalProviders__0__ClientSecret` | Production secret Value, preferably a Key Vault reference |
+| `CookBookIdentityProviderOptions__ExternalProviders__0__ClientSecret` | Replace `IDP_CLIENT_SECRET` with the production secret **Value**, preferably using a Key Vault reference |
 | `CookBookIdentityProviderOptions__ExternalProviders__0__UpstreamLogoutIsEnabled` | `true` |
 
 Save/apply and restart. Never put the server credential in Web, source control,
