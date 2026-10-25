@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="theme-color" content="#04173D" />
+    <title>CookBook.Web</title>
+    <base href="/" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="apple-touch-icon" sizes="180x180" href="~/images/apple-touch-icon.png">
+    <link rel="stylesheet" href="styles/vendor/bootstrap-4.5.3.min.css">
+    <link href="styles/vendor/noto-color-emoji.css" rel="stylesheet">
+    <script src="scripts/vendor/jquery-3.5.1.slim.min.js"></script>
+    <script src="scripts/vendor/bootstrap-4.5.3.bundle.min.js"></script>
+    <script src="scripts/vendor/dexie.js"></script>
+    <script src="scripts/authentication.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div class="align-items-center d-flex fixed-bottom h-100 justify-content-center position-fixed">
+            <div class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+    </div>
+    <script src="_framework/blazor.webassembly.js"></script>
+
+    <script src="scripts/local-storage.js"></script>
+    <script src="scripts/online-status.js"></script>
+    <script src="scripts/local-db.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('service-worker.js');
+        }
+    </script>
+</body>
+
+</html>

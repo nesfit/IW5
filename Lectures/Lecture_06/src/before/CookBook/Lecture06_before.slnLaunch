@@ -1,0 +1,17 @@
+[
+  {
+    "Name": "API + Web",
+    "Projects": [
+      {
+        "Path": "CookBook.Api.App\\CookBook.Api.App.csproj",
+        "Action": "Start",
+        "DebugTarget": "CookBook.Api"
+      },
+      {
+        "Path": "CookBook.Web.App\\CookBook.Web.App.csproj",
+        "Action": "Start",
+        "DebugTarget": "https"
+      }
+    ]
+  }
+]

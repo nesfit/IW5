@@ -1,0 +1,67 @@
+﻿@namespace CookBook.Web.App
+@using CookBook.Web.App.Resources.Texts
+@using Blazored.FluentValidation
+@using Microsoft.Extensions.Localization
+@inherits CookBook.Web.App.Pages.PageBase
+@inject IStringLocalizer<IngredientEditFormResources> IngredientEditFormLocalizer
+
+<EditForm EditContext="@editContext">
+    <FluentValidationValidator />
+
+    @* Display general error messages that aren't tied to specific fields *@
+    @if (GeneralErrorMessages.Any())
+    {
+        <div class="alert alert-danger" role="alert">
+            <h6 class="alert-heading">Error</h6>
+            @foreach (var errorMessage in GeneralErrorMessages)
+            {
+                <div>@errorMessage</div>
+            }
+        </div>
+    }
+
+    <div class="form-group">
+        <label class="w-100">
+            @IngredientEditFormLocalizer["Name_FormLabel"]
+            <InputText @bind-Value="@Data.Name" class="form-control" />
+            <small class="form-text text-danger">
+                <ValidationMessage For="@(() => Data.Name)"/>
+            </small>
+        </label>
+    </div>
+
+    <div class="form-group">
+        <label class="w-100">
+            @IngredientEditFormLocalizer["Description_FormLabel"]
+            <InputTextArea @bind-Value="@Data.Description" class="form-control" />
+            <small class="form-text text-danger">
+                <ValidationMessage For="@(() => Data.Description)"/>
+            </small>
+        </label>
+    </div>
+	
+    <div class="form-group">
+        <label class="w-100">
+            @IngredientEditFormLocalizer["ImageUrl_FormLabel"]
+            <InputText @bind-Value="@Data.ImageUrl" class="form-control" />
+            <small class="form-text text-danger">
+                <ValidationMessage For="@(() => Data.ImageUrl)"/>
+            </small>
+        </label>
+        @if (!string.IsNullOrEmpty(Data.ImageUrl))
+        {
+            <img src="@Data.ImageUrl" height="100px" alt="Ingredient image"/>
+        }
+    </div>
+
+    <button type="submit" class="btn btn-success" @onclick="@Save">
+        @IngredientEditFormLocalizer["Save_Button"]
+    </button>
+
+    @if (Id != Guid.Empty)
+    {
+        <button @onclick="@Delete" class="btn btn-danger ml-1">
+            @IngredientEditFormLocalizer["Delete_Button"]
+        </button>
+    }
+</EditForm>
