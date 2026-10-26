@@ -2,6 +2,7 @@ using System.Net;
 using System.Net.Http.Json;
 using System.Security.Claims;
 using System.Text.Encodings.Web;
+using CookBook.Api.App.Authorization;
 using CookBook.Common;
 using CookBook.Common.Enums;
 using CookBook.Common.Models;
@@ -155,6 +156,21 @@ public class ResourceAuthorizationTests : IAsyncDisposable
     }
 
     [Fact]
+    public async Task SameSubjectFromDifferentIssuerIsNotOwner()
+    {
+        var recipe = NewRecipe();
+        (await CreateClient("shared-subject", issuer: "Entra").PostAsJsonAsync("/api/recipe", recipe))
+            .EnsureSuccessStatusCode();
+
+        var impostor = CreateClient("shared-subject", issuer: "CookBookIdentityProvider");
+        var update = await impostor.PutAsJsonAsync("/api/recipe", recipe with { Name = "Stolen" });
+        var delete = await impostor.DeleteAsync($"/api/recipe/{recipe.Id}");
+
+        Assert.Equal(HttpStatusCode.Forbidden, update.StatusCode);
+        Assert.Equal(HttpStatusCode.Forbidden, delete.StatusCode);
+    }
+
+    [Fact]
     public async Task AnonymousRecipeUpsertRequiresAuthentication()
     {
         var response = await application.CreateClient().PostAsJsonAsync("/api/recipe/upsert", NewRecipe());
@@ -164,13 +180,17 @@ public class ResourceAuthorizationTests : IAsyncDisposable
 
     public async ValueTask DisposeAsync() => await application.DisposeAsync();
 
-    private HttpClient CreateClient(string? userId, string? role = null)
+    private HttpClient CreateClient(string? userId, string? role = null, string? issuer = null)
     {
         var client = application.CreateClient();
         client.DefaultRequestHeaders.Add(TestAuthenticationHandler.UserHeader, userId ?? TestAuthenticationHandler.NoUserId);
         if (role is not null)
         {
             client.DefaultRequestHeaders.Add(TestAuthenticationHandler.RoleHeader, role);
+        }
+        if (issuer is not null)
+        {
+            client.DefaultRequestHeaders.Add(TestAuthenticationHandler.IssuerHeader, issuer);
         }
         return client;
     }
@@ -226,6 +246,8 @@ public class ResourceAuthorizationTests : IAsyncDisposable
         public const string SchemeName = "Test";
         public const string UserHeader = "X-Test-User";
         public const string RoleHeader = "X-Test-Role";
+        public const string IssuerHeader = "X-Test-Issuer";
+        public const string DefaultIssuer = "CookBookIdentityProvider";
         public const string NoUserId = "<none>";
 
         protected override Task<AuthenticateResult> HandleAuthenticateAsync()
@@ -238,7 +260,13 @@ public class ResourceAuthorizationTests : IAsyncDisposable
             var claims = new List<Claim>();
             if (userId != NoUserId)
             {
+                var issuer = Request.Headers.TryGetValue(IssuerHeader, out var issuerHeader)
+                    ? issuerHeader.ToString()
+                    : DefaultIssuer;
                 claims.Add(new Claim(ClaimTypes.NameIdentifier, userId.ToString()));
+                claims.Add(new Claim(
+                    ResourceOwnerClaims.OwnerIdClaimType,
+                    ResourceOwnerClaims.CreateOwnerId(issuer, userId.ToString())));
             }
             if (Request.Headers.TryGetValue(RoleHeader, out var role))
             {

@@ -260,6 +260,15 @@ Task NormalizeIssuerClaims(Microsoft.AspNetCore.Authentication.JwtBearer.TokenVa
         }
 
         identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, nameClaim.Value));
+
+        foreach (var existing in identity.FindAll(ResourceOwnerClaims.OwnerIdClaimType).ToList())
+        {
+            identity.RemoveClaim(existing);
+        }
+
+        identity.AddClaim(new Claim(
+            ResourceOwnerClaims.OwnerIdClaimType,
+            ResourceOwnerClaims.CreateOwnerId(issuer.Scheme, nameClaim.Value)));
     }
 
     foreach (var roleClaim in identity.FindAll(issuer.RoleClaimType).ToList())

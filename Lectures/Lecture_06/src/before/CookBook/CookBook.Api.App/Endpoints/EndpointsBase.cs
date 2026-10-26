@@ -1,4 +1,5 @@
 using System.Security.Claims;
+using CookBook.Api.App.Authorization;
 using CookBook.Api.BL.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Options;
@@ -13,7 +14,7 @@ public abstract class EndpointsBase(IOptions<IdentityOptions> identityOptions)
     protected bool IsIdentityEnabled => identityOptions.Value.IsEnabled;
 
     protected static string? GetUserId(ClaimsPrincipal user)
-        => user.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        => user.GetOwnerId();
 
     protected async Task<bool> IsAuthorizedAsync(
         IAuthorizationService authorizationService,

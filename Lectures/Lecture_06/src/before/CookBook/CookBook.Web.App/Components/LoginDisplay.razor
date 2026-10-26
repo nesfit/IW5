@@ -2,11 +2,13 @@
 @using CookBook.Web.BL.Extensions
 @using Microsoft.AspNetCore.Components.Authorization
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using Microsoft.Extensions.DependencyInjection
 @using Microsoft.Extensions.Options
 @inject NavigationManager Navigation
 @inject IOptions<IdentityOptions> IdentityOptions
 @inject IOptions<WebAuthenticationOptions> WebAuthenticationOptions
-@inject SignOutSessionStateManager SignOutManager
+@* SignOutSessionStateManager is registered only when authentication is enabled, so it is resolved lazily on logout. *@
+@inject IServiceProvider Services
 
 @if (IdentityOptions.Value.IsEnabled)
 {
@@ -34,7 +36,7 @@
 
         if (provider?.UpstreamLogoutIsEnabled == false)
         {
-            await SignOutManager.SetSignOutState();
+            await Services.GetRequiredService<SignOutSessionStateManager>().SetSignOutState();
             Navigation.NavigateTo("authentication/logout-callback");
             return;
         }
