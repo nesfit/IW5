@@ -10,7 +10,7 @@
       {
         "Path": "CookBook.Web.App\\CookBook.Web.App.csproj",
         "Action": "Start",
-        "DebugTarget": "https"
+        "DebugTarget": "CookBook.Web.App"
       }
     ]
   }

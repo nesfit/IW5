@@ -32,15 +32,7 @@ public class RecipeFacade(
     {
         MergeIngredientAmounts(recipeModel);
         var recipeEntity = mapper.ToEntity(recipeModel, ownerId);
-        recipeEntity.IngredientAmounts = recipeModel.IngredientAmounts.Select(t =>
-            new IngredientAmountEntity
-            {
-                Id = t.Id,
-                Amount = t.Amount,
-                Unit = t.Unit,
-                RecipeId = recipeEntity.Id,
-                IngredientId = t.Ingredient.Id
-            }).ToList();
+        recipeEntity.IngredientAmounts = ToIngredientAmountEntities(recipeModel, recipeEntity.Id, new HashSet<Guid>());
         return recipeRepository.Insert(recipeEntity);
     }
 
@@ -48,19 +40,31 @@ public class RecipeFacade(
     {
         MergeIngredientAmounts(recipeModel);
 
+        var existingIngredientAmountIds = recipeRepository.GetById(recipeModel.Id)?.IngredientAmounts
+            .Select(ingredientAmount => ingredientAmount.Id)
+            .ToHashSet() ?? new HashSet<Guid>();
+
         var recipeEntity = mapper.ToEntity(recipeModel);
-        recipeEntity.IngredientAmounts = recipeModel.IngredientAmounts.Select(t =>
-            new IngredientAmountEntity
-            {
-                Id = t.Id,
-                Amount = t.Amount,
-                Unit = t.Unit,
-                RecipeId = recipeEntity.Id,
-                IngredientId = t.Ingredient.Id
-            }).ToList();
+        recipeEntity.IngredientAmounts = ToIngredientAmountEntities(recipeModel, recipeEntity.Id, existingIngredientAmountIds);
         var result = recipeRepository.Update(recipeEntity);
         return result;
     }
+
+    // Client-supplied ingredient amount ids are kept only if they already belong to this recipe;
+    // anything else gets a fresh id so a request can never address another recipe's ingredient amounts.
+    private static List<IngredientAmountEntity> ToIngredientAmountEntities(
+        RecipeDetailModel recipeModel,
+        Guid recipeId,
+        IReadOnlySet<Guid> existingIngredientAmountIds)
+        => recipeModel.IngredientAmounts.Select(ingredientAmount =>
+            new IngredientAmountEntity
+            {
+                Id = existingIngredientAmountIds.Contains(ingredientAmount.Id) ? ingredientAmount.Id : Guid.NewGuid(),
+                Amount = ingredientAmount.Amount,
+                Unit = ingredientAmount.Unit,
+                RecipeId = recipeId,
+                IngredientId = ingredientAmount.Ingredient.Id
+            }).ToList();
 
     public void MergeIngredientAmounts(RecipeDetailModel recipe)
     {

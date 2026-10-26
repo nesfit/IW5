@@ -20,25 +20,27 @@ public sealed class PersistentExternalUserService(
         var user = await userManager.FindByLoginAsync(provider, providerSubject);
         if (user is null && verifiedEmail is not null)
         {
+            // Auto-link only to a single local account whose ownership of the email was confirmed;
+            // otherwise anyone who registered the address locally could inherit the external identity.
             var normalizedEmail = normalizer.NormalizeEmail(verifiedEmail);
             var matches = await userManager.Users
-                .Where(candidate => candidate.NormalizedEmail == normalizedEmail)
+                .Where(candidate => candidate.NormalizedEmail == normalizedEmail && candidate.EmailConfirmed)
                 .Take(2)
                 .ToListAsync(cancellationToken);
 
-            if (matches.Count > 1)
+            if (matches.Count == 1)
             {
-                throw new InvalidOperationException(
-                    "External login cannot be linked because more than one local account has the verified email.");
-            }
-
-            user = matches.SingleOrDefault();
-            if (user is not null)
-            {
+                user = matches[0];
                 var linkResult = await userManager.AddLoginAsync(
                     user,
                     new UserLoginInfo(provider, providerSubject, provider));
                 EnsureSucceeded(linkResult, "link the external login to the existing local account");
+            }
+            else if (matches.Count > 1)
+            {
+                logger.LogWarning(
+                    "External login for provider {Provider} was not auto-linked because several local accounts share its email.",
+                    provider);
             }
         }
 
@@ -131,7 +133,7 @@ public sealed class PersistentExternalUserService(
             baseName = $"{provider}-{providerSubject}";
         }
 
-        baseName = new string(baseName.Where(character => char.IsLetterOrDigit(character) || character is '-' or '_').ToArray());
+        baseName = new string(baseName.Where(character => char.IsAsciiLetterOrDigit(character) || character is '-' or '_').ToArray());
         if (string.IsNullOrWhiteSpace(baseName))
         {
             baseName = "external-user";

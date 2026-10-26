@@ -28,4 +28,10 @@ public class TrustedIssuerOptions
 
     /// <summary>Claim type mapped to the ASP.NET Core role claim (e.g. "role" or Entra's "roles").</summary>
     public string RoleClaimType { get; set; } = "role";
+
+    /// <summary>
+    /// Delegated scopes (`scp`/`scope`) of which a token must contain at least one unless it carries an
+    /// application role (e.g. Entra's "access_as_user"). Empty disables the check.
+    /// </summary>
+    public IList<string> RequiredScopes { get; set; } = [];
 }

@@ -35,10 +35,11 @@ public class AppUserFacadeTests
         {
             UserName = "teacher",
             Password = "password",
-            Subject = "teacher",
             Email = "teacher@example.com",
             Name = enteredName
         });
+
+        Assert.True(Guid.TryParse(createdUser!.Subject, out _));
 
         manager.Verify(candidate => candidate.AddClaimAsync(It.IsAny<AppUserEntity>(), It.IsAny<Claim>()),
             expectedClaim is null ? Times.Never() : Times.Once());

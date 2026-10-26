@@ -10,4 +10,14 @@ public class IdentityProviderDbContext : IdentityDbContext<AppUserEntity, AppRol
         : base(options)
     {
     }
+
+    protected override void OnModelCreating(ModelBuilder builder)
+    {
+        base.OnModelCreating(builder);
+
+        // Subject is the token `sub` and resolves users in the profile service, so it must be unique.
+        builder.Entity<AppUserEntity>()
+            .HasIndex(user => user.Subject)
+            .IsUnique();
+    }
 }

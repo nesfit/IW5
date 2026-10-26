@@ -34,8 +34,10 @@ public class RecipeEndpoints(IOptions<IdentityOptions> identityOptions)
             recipeModifyingEndpoints.RequireAuthorization();
         }
 
-        recipeModifyingEndpoints.MapPost("", (RecipeDetailModel recipe, IRecipeFacade recipeFacade, ClaimsPrincipal user)
-            => recipeFacade.Create(recipe, GetUserId(user)))
+        recipeModifyingEndpoints.MapPost("", Results<Ok<Guid>, Conflict<string>> (RecipeDetailModel recipe, IRecipeFacade recipeFacade, ClaimsPrincipal user)
+            => recipeFacade.GetOwnership(recipe.Id) is not null
+                ? TypedResults.Conflict($"Recipe with id '{recipe.Id}' already exists.")
+                : TypedResults.Ok(recipeFacade.Create(recipe, GetUserId(user))))
             .AddEndpointFilter<ValidationFilter<RecipeDetailModel>>();
 
         recipeModifyingEndpoints.MapPut("", async Task<Results<Ok<Guid?>, NotFound<string>, ForbidHttpResult>> (RecipeDetailModel recipe, IRecipeFacade recipeFacade, IAuthorizationService authorizationService, ClaimsPrincipal user, IStringLocalizer<RecipeEndpointsResources> recipeEndpointsLocalizer) =>
@@ -53,7 +55,7 @@ public class RecipeEndpoints(IOptions<IdentityOptions> identityOptions)
             return TypedResults.Ok(recipeFacade.Update(recipe));
         }).AddEndpointFilter<ValidationFilter<RecipeDetailModel>>();
 
-        recipeModifyingEndpoints.MapPost("upsert", async Task<Results<Ok<Guid>, ForbidHttpResult>> (RecipeDetailModel recipe, IRecipeFacade recipeFacade, IAuthorizationService authorizationService, ClaimsPrincipal user) =>
+        recipeModifyingEndpoints.MapPost("upsert", async Task<Results<Ok<Guid>, NotFound<string>, ForbidHttpResult>> (RecipeDetailModel recipe, IRecipeFacade recipeFacade, IAuthorizationService authorizationService, ClaimsPrincipal user, IStringLocalizer<RecipeEndpointsResources> recipeEndpointsLocalizer) =>
         {
             if (recipeFacade.GetOwnership(recipe.Id) is not { } ownership)
             {
@@ -65,7 +67,9 @@ public class RecipeEndpoints(IOptions<IdentityOptions> identityOptions)
                 return TypedResults.Forbid();
             }
 
-            return TypedResults.Ok(recipeFacade.Update(recipe)!.Value);
+            return recipeFacade.Update(recipe) is { } updatedId
+                ? TypedResults.Ok(updatedId)
+                : NotFound(recipeEndpointsLocalizer, recipe.Id);
         }).AddEndpointFilter<ValidationFilter<RecipeDetailModel>>();
 
         recipeModifyingEndpoints.MapDelete("{id:guid}", async Task<Results<Ok, NotFound<string>, ForbidHttpResult>> (Guid id, IRecipeFacade recipeFacade, IAuthorizationService authorizationService, ClaimsPrincipal user, IStringLocalizer<RecipeEndpointsResources> recipeEndpointsLocalizer) =>

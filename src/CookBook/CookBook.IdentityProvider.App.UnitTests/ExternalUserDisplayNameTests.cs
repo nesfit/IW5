@@ -237,6 +237,7 @@ public class ExternalUserDisplayNameTests
         var result = await service.FindOrProvisionAsync("Entra", "tenant:object", null, secondLogin, CancellationToken.None);
 
         Assert.DoesNotContain(result.SessionClaims, claim => claim.Value == "admin");
-        Assert.Contains(result.SessionClaims, claim => claim.Type == "roles" && claim.Value == "user");
+        Assert.Contains(result.SessionClaims, claim => claim.Type == "role" && claim.Value == "user");
+        Assert.DoesNotContain(result.SessionClaims, claim => claim.Type == "roles");
     }
 }

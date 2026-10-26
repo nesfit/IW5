@@ -24,9 +24,12 @@ public sealed class TestStoreExternalUserService(TestUserStore users) : IExterna
 
         var displayName = ExternalUserDisplayName.GetDisplayName(externalPrincipal);
         // Provider roles are authorization data owned by the provider, so they are replaced on every login.
+        // They are stored as JwtClaimTypes.Role because the test profile service only emits requested claim types.
         var currentProviderRoles = externalPrincipal.Claims
             .Where(claim => IsRoleClaim(claim.Type))
-            .Select(claim => new Claim(claim.Type, claim.Value));
+            .Select(claim => claim.Value)
+            .Distinct(StringComparer.Ordinal)
+            .Select(role => new Claim(JwtClaimTypes.Role, role));
         user.Claims = user.Claims
             .Where(claim => claim.Type is not "username" and not JwtClaimTypes.Name && !IsRoleClaim(claim.Type))
             .Concat([new Claim("username", displayName), new Claim(JwtClaimTypes.Name, displayName)])

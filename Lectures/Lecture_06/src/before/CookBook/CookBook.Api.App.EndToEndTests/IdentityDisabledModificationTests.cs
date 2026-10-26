@@ -66,6 +66,31 @@ public class IdentityDisabledModificationTests : IAsyncDisposable
         Assert.Equal(HttpStatusCode.OK, delete.StatusCode);
     }
 
+    [Fact]
+    public async Task CreatingWithExistingIdReturnsConflictAndKeepsRecord()
+    {
+        var client = application.CreateClient();
+        var seeded = await GetFirstIngredientAsync(client);
+
+        var create = await client.PostAsJsonAsync("/api/ingredient", seeded with { Name = "Overwritten" });
+        var stored = await client.GetFromJsonAsync<IngredientDetailModel>($"/api/ingredient/{seeded.Id}");
+
+        Assert.Equal(HttpStatusCode.Conflict, create.StatusCode);
+        Assert.Equal(seeded.Name, stored!.Name);
+    }
+
+    [Fact]
+    public async Task CreatingRecipeWithExistingIdReturnsConflict()
+    {
+        var client = application.CreateClient();
+        var recipes = await client.GetFromJsonAsync<List<RecipeListModel>>("/api/recipe");
+        var seeded = await client.GetFromJsonAsync<RecipeDetailModel>($"/api/recipe/{recipes!.First().Id}");
+
+        var create = await client.PostAsJsonAsync("/api/recipe", seeded! with { Name = "Overwritten" });
+
+        Assert.Equal(HttpStatusCode.Conflict, create.StatusCode);
+    }
+
     private static async Task<IngredientDetailModel> GetFirstIngredientAsync(HttpClient client)
     {
         var ingredients = await client.GetFromJsonAsync<List<IngredientListModel>>("/api/ingredient");

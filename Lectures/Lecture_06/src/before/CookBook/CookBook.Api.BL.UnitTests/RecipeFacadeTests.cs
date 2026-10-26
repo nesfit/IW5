@@ -58,6 +58,43 @@ public class RecipeFacadeTests
     }
 
     [Fact]
+    public void Update_Replaces_IngredientAmount_Ids_Not_Belonging_To_Recipe()
+    {
+        var recipeId = Guid.NewGuid();
+        var ingredientId = Guid.NewGuid();
+        var ownAmountId = Guid.NewGuid();
+        var foreignAmountId = Guid.NewGuid();
+        RecipeEntity? updatedEntity = null;
+        var repositoryMock = new Mock<IRecipeRepository>(MockBehavior.Strict);
+        repositoryMock.Setup(repository => repository.GetById(recipeId))
+            .Returns(new RecipeEntity
+            {
+                Id = recipeId, Name = "Name", Description = "Description", Duration = TimeSpan.FromMinutes(5), FoodType = FoodType.Dessert,
+                IngredientAmounts = [new IngredientAmountEntity { Id = ownAmountId, Amount = 1, Unit = Unit.Pieces, RecipeId = recipeId, IngredientId = ingredientId }]
+            });
+        repositoryMock.Setup(repository => repository.Update(It.IsAny<RecipeEntity>()))
+            .Callback<RecipeEntity>(entity => updatedEntity = entity)
+            .Returns(recipeId);
+        var facade = new RecipeFacade(repositoryMock.Object, new RecipeMapper());
+
+        facade.Update(new RecipeDetailModel
+        {
+            Id = recipeId, Name = "Name", Description = "Description", Duration = TimeSpan.FromMinutes(5), FoodType = FoodType.Dessert,
+            IngredientAmounts =
+            [
+                new RecipeDetailIngredientModel { Id = ownAmountId, Amount = 2, Unit = Unit.Pieces, Ingredient = new IngredientListModel { Id = ingredientId, Name = "Own" } },
+                new RecipeDetailIngredientModel { Id = foreignAmountId, Amount = 3, Unit = Unit.Kg, Ingredient = new IngredientListModel { Id = Guid.NewGuid(), Name = "Foreign" } }
+            ]
+        });
+
+        Assert.NotNull(updatedEntity);
+        var ids = updatedEntity.IngredientAmounts.Select(ingredientAmount => ingredientAmount.Id).ToList();
+        Assert.Contains(ownAmountId, ids);
+        Assert.DoesNotContain(foreignAmountId, ids);
+        Assert.All(updatedEntity.IngredientAmounts, ingredientAmount => Assert.Equal(recipeId, ingredientAmount.RecipeId));
+    }
+
+    [Fact]
     public void MergeIngredientAmounts_Merges_Recipe_With_Multiple_IngredientAmounts_Of_Same_Ingredient_And_Unit()
     {
         //arrange

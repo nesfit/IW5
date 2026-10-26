@@ -63,6 +63,7 @@ namespace CookBook.IdentityProvider.App
                                 options.ClientSecret = provider.ClientSecret;
                                 options.CallbackPath = provider.CallbackPath;
                                 options.SignedOutCallbackPath = provider.SignedOutCallbackPath;
+                                options.RemoteSignOutPath = GetRemoteSignOutPath(provider);
                                 options.ResponseType = "code";
                                 options.UsePkce = true;
                                 options.SaveTokens = provider.UpstreamLogoutIsEnabled;
@@ -116,7 +117,24 @@ namespace CookBook.IdentityProvider.App
                         $"Enabled CookBookIdentityProviderOptions external provider '{provider.Scheme}' is missing Scheme, DisplayName, Authority, ClientId, or ClientSecret.");
                 }
             }
+
+            // Each OIDC handler claims its callback paths; two enabled providers sharing one would
+            // make the first handler process (and reject) the other provider's responses.
+            var duplicatePaths = enabledProviders
+                .SelectMany(provider => new[] { provider.CallbackPath, provider.SignedOutCallbackPath, GetRemoteSignOutPath(provider) })
+                .GroupBy(path => path, StringComparer.OrdinalIgnoreCase)
+                .Where(group => group.Count() > 1)
+                .Select(group => group.Key)
+                .ToList();
+            if (duplicatePaths.Count > 0)
+            {
+                throw new InvalidOperationException(
+                    $"Enabled CookBookIdentityProviderOptions:ExternalProviders must use unique CallbackPath/SignedOutCallbackPath values; duplicates: {string.Join(", ", duplicatePaths)}.");
+            }
         }
+
+        private static string GetRemoteSignOutPath(ExternalProviderOptions provider)
+            => $"/signout-oidc-{provider.Scheme.ToLowerInvariant()}";
 
         public static WebApplication ConfigurePipeline(this WebApplication app)
         {

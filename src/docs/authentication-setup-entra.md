@@ -123,8 +123,7 @@ Create/merge `src\CookBook\CookBook.Web.App\wwwroot\appsettings.Development.json
         "ResponseType": "code",
         "RedirectUri": "https://localhost:44355/authentication/login-callback",
         "PostLogoutRedirectUri": "https://localhost:44355/",
-        "DefaultScopes": [ "openid", "profile", "api://API_CLIENT_ID/access_as_user" ],
-        "UpstreamLogoutIsEnabled": true
+        "DefaultScopes": [ "openid", "profile", "api://API_CLIENT_ID/access_as_user" ]
       }
     ]
   }
@@ -185,16 +184,17 @@ the non-admin must have `user` and no `admin`. The same assignments work locally
 and in Azure when sharing registrations; repeat them on separate production
 registrations if you use those.
 
-For an explicit role-policy demonstration, uncomment the existing
-`ingredientDeleteEndpoint.RequireAuthorization(ApiPolicies.IngredientAdmin)`
-line in `CookBook.Api.App\Endpoints\IngredientEndpoints.cs` and rebuild/redeploy
-API with identity enabled. Delete a disposable ingredient as admin: it should
-succeed. Create a separate disposable ingredient as the non-admin, then try to
-delete it: expect **403**, even though that user owns it. Other authenticated
-operations remain governed by their own policies/ownership checks; `user` does
-not mean read-only. Without enabling the admin policy, deletion alone does not
-demonstrate a role restriction. After changing assignments, obtain fresh tokens
-by signing out and back in; an already-issued token retains its old roles.
+Ingredient deletion is admin-only (`AdminOnlyRequirement` in
+`CookBook.Api.App\Endpoints\IngredientEndpoints.cs`). Delete a disposable
+ingredient as admin: it should succeed. Create a separate disposable ingredient
+as the non-admin, then try to delete it: expect **403**, even though that user
+owns it. Updating ingredients/recipes and deleting recipes require owner or
+admin; `user` does not mean read-only. After changing assignments, obtain fresh
+tokens by signing out and back in; an already-issued token retains its old roles.
+
+The API also rejects Entra tokens that carry neither the `access_as_user`
+delegated scope nor an app role (`TrustedIssuersOptions:Issuers:1:RequiredScopes`),
+so a token issued for the API but another scope cannot be used.
 
 References: [Register apps](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app),
 [Expose an API](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-configure-app-expose-web-apis),

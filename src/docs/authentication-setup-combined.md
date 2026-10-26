@@ -157,14 +157,11 @@ with local `admin` membership is still an admin, so remove that membership from
 the non-admin demo account through your trusted Identity provisioning process.
 No Web/API configuration change is needed to distinguish the two users.
 
-For a clear role-policy demonstration, uncomment the existing
-`ingredientDeleteEndpoint.RequireAuthorization(ApiPolicies.IngredientAdmin)`
-line in `CookBook.Api.App\Endpoints\IngredientEndpoints.cs` and rebuild/redeploy
-API with identity enabled. The admin can delete a disposable ingredient;
-the non-admin must receive **403** when deleting another disposable ingredient,
-even one they created. Other operations retain their own ownership/policy
-rules; a `user` account is not necessarily read-only. Without this policy,
-delete behavior alone does not prove an admin-role check.
+Ingredient deletion is admin-only (`AdminOnlyRequirement` in
+`CookBook.Api.App\Endpoints\IngredientEndpoints.cs`). The admin can delete a
+disposable ingredient; the non-admin must receive **403** when deleting another
+disposable ingredient, even one they created. Updating ingredients/recipes and
+deleting recipes require owner or admin; a `user` account is not read-only.
 
 These Entra assignments apply to both local and Azure callbacks of this
 registration; repeat them if production uses a separate registration. After

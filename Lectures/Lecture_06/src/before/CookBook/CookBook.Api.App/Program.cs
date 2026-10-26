@@ -119,7 +119,19 @@ void ConfigureAuthentication(IServiceCollection serviceCollection, IConfiguratio
     var identityOptions = configuration.GetSection(nameof(IdentityOptions)).Get<IdentityOptions>()
         ?? new IdentityOptions();
 
-    ValidateTrustedIssuers(trustedIssuersOptions, identityOptions);
+    TrustedIssuerTokenValidation.ValidateOptions(trustedIssuersOptions, identityOptions);
+
+    serviceCollection.AddAuthorization();
+    serviceCollection.AddSingleton<IAuthorizationHandler, OwnerOrAdminAuthorizationHandler>();
+    serviceCollection.AddSingleton<IAuthorizationHandler, AdminOnlyAuthorizationHandler>();
+    serviceCollection.AddHttpContextAccessor();
+
+    if (trustedIssuersOptions.Issuers.Count == 0)
+    {
+        // Step 0 (no identity): register authentication without a default scheme so requests stay anonymous.
+        serviceCollection.AddAuthentication();
+        return;
+    }
 
     const string policySchemeName = "TrustedIssuerSelector";
 
@@ -156,58 +168,18 @@ void ConfigureAuthentication(IServiceCollection serviceCollection, IConfiguratio
 
             options.Events = new JwtBearerEvents
             {
-                OnTokenValidated = context => NormalizeIssuerClaims(context, issuer)
+                OnTokenValidated = context =>
+                {
+                    if (context.Principal?.Identity is ClaimsIdentity identity
+                        && TrustedIssuerTokenValidation.NormalizeClaims(identity, issuer) is { } failure)
+                    {
+                        context.Fail(failure);
+                    }
+
+                    return Task.CompletedTask;
+                }
             };
         });
-    }
-
-    serviceCollection.AddAuthorizationBuilder()
-        .AddPolicy(ApiPolicies.IngredientAdmin, policy =>
-            policy.RequireAuthenticatedUser()
-            .RequireRole(UserRoles.Admin)
-            )
-        .AddPolicy(ApiPolicies.RecipeAdmin, policy =>
-            policy.RequireAuthenticatedUser().RequireRole(UserRoles.Admin));
-
-    serviceCollection.AddSingleton<IAuthorizationHandler, OwnerOrAdminAuthorizationHandler>();
-    serviceCollection.AddSingleton<IAuthorizationHandler, AdminOnlyAuthorizationHandler>();
-    serviceCollection.AddHttpContextAccessor();
-}
-
-void ValidateTrustedIssuers(
-    TrustedIssuersOptions trustedIssuersOptions,
-    IdentityOptions identityOptions)
-{
-    if (identityOptions.IsEnabled && trustedIssuersOptions.Issuers.Count == 0)
-    {
-        throw new InvalidOperationException(
-            "TrustedIssuersOptions:Issuers must contain at least one entry when IdentityOptions:IsEnabled is true.");
-    }
-
-    foreach (var issuer in trustedIssuersOptions.Issuers)
-    {
-        if (string.IsNullOrWhiteSpace(issuer.Scheme)
-            || string.IsNullOrWhiteSpace(issuer.Authority)
-            || issuer.ValidIssuers.Count == 0
-            || issuer.ValidAudiences.Count == 0
-            || string.IsNullOrWhiteSpace(issuer.NameClaimType)
-            || string.IsNullOrWhiteSpace(issuer.RoleClaimType))
-        {
-            throw new InvalidOperationException(
-                $"TrustedIssuersOptions entry for provider '{issuer.ProviderType}' is missing Scheme, Authority, ValidIssuers, ValidAudiences, NameClaimType, or RoleClaimType.");
-        }
-    }
-
-    var duplicateSchemes = trustedIssuersOptions.Issuers
-        .GroupBy(i => i.Scheme, StringComparer.Ordinal)
-        .Where(g => g.Count() > 1)
-        .Select(g => g.Key)
-        .ToList();
-
-    if (duplicateSchemes.Count > 0)
-    {
-        throw new InvalidOperationException(
-            $"TrustedIssuersOptions contains duplicate Scheme values: {string.Join(", ", duplicateSchemes)}");
     }
 }
 
@@ -239,47 +211,9 @@ string SelectSchemeByIssuer(HttpContext context, IList<TrustedIssuerOptions> iss
     }
 
     // No configured issuer matches the token's unvalidated `iss` (or no bearer token is present).
-    // Forward to any registered scheme so authentication fails closed with 401 rather than silently
+    // Forward to a registered scheme so authentication fails closed with 401 rather than silently
     // succeeding or picking an unrelated issuer's validated identity.
-    return issuers.Count > 0 ? issuers[0].Scheme : JwtBearerDefaults.AuthenticationScheme;
-}
-
-Task NormalizeIssuerClaims(Microsoft.AspNetCore.Authentication.JwtBearer.TokenValidatedContext context, TrustedIssuerOptions issuer)
-{
-    if (context.Principal?.Identity is not ClaimsIdentity identity)
-    {
-        return Task.CompletedTask;
-    }
-
-    var nameClaim = identity.FindFirst(issuer.NameClaimType);
-    if (nameClaim is not null)
-    {
-        foreach (var existing in identity.FindAll(ClaimTypes.NameIdentifier).ToList())
-        {
-            identity.RemoveClaim(existing);
-        }
-
-        identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, nameClaim.Value));
-
-        foreach (var existing in identity.FindAll(ResourceOwnerClaims.OwnerIdClaimType).ToList())
-        {
-            identity.RemoveClaim(existing);
-        }
-
-        identity.AddClaim(new Claim(
-            ResourceOwnerClaims.OwnerIdClaimType,
-            ResourceOwnerClaims.CreateOwnerId(issuer.Scheme, nameClaim.Value)));
-    }
-
-    foreach (var roleClaim in identity.FindAll(issuer.RoleClaimType).ToList())
-    {
-        if (!identity.HasClaim(ClaimTypes.Role, roleClaim.Value))
-        {
-            identity.AddClaim(new Claim(ClaimTypes.Role, roleClaim.Value));
-        }
-    }
-
-    return Task.CompletedTask;
+    return issuers[0].Scheme;
 }
 
 void UseAuthenticationAndAuthorization(IApplicationBuilder application)

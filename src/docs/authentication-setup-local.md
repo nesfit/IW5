@@ -49,15 +49,15 @@ on IdentityProvider (`https://localhost:5001/api/user`), with a JSON body:
 {
   "userName": "student",
   "password": "REPLACE_WITH_A_STRONG_LOCAL_DEMO_PASSWORD",
-  "subject": "REPLACE_WITH_A_NEW_UNIQUE_GUID",
   "email": "student@example.com",
   "givenName": "Demo",
   "familyName": "Student"
 }
 ```
 
-Generate a unique subject with `[guid]::NewGuid().ToString()`. Never reuse it for
-another account, manually hash passwords, or change existing subjects.
+The server generates the account's token subject (`sub`); clients cannot choose
+it, and a unique database index prevents duplicates. Never manually hash
+passwords or change existing subjects.
 For managed provisioning, use ASP.NET Identity `UserManager` / `RoleManager`,
 check every `IdentityResult`, and assign local roles there. There is no seeded
 production administrator. The sample's anonymous user-management endpoints
@@ -101,8 +101,7 @@ Create/merge `src\CookBook\CookBook.Web.App\wwwroot\appsettings.Development.json
         "ResponseType": "code",
         "RedirectUri": "https://localhost:44355/authentication/login-callback",
         "PostLogoutRedirectUri": "https://localhost:44355",
-        "DefaultScopes": [ "openid", "profile", "cookbookapi" ],
-        "UpstreamLogoutIsEnabled": true
+        "DefaultScopes": [ "openid", "profile", "cookbookapi" ]
       },
       { "ProviderType": "Entra", "IsEnabled": false }
     ]
