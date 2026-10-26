@@ -185,16 +185,12 @@ the non-admin must have `user` and no `admin`. The same assignments work locally
 and in Azure when sharing registrations; repeat them on separate production
 registrations if you use those.
 
-For an explicit role-policy demonstration, uncomment the existing
-`ingredientDeleteEndpoint.RequireAuthorization(ApiPolicies.IngredientAdmin)`
-line in `CookBook.Api.App\Endpoints\IngredientEndpoints.cs` and rebuild/redeploy
-API with identity enabled. Delete a disposable ingredient as admin: it should
-succeed. Create a separate disposable ingredient as the non-admin, then try to
-delete it: expect **403**, even though that user owns it. Other authenticated
-operations remain governed by their own policies/ownership checks; `user` does
-not mean read-only. Without enabling the admin policy, deletion alone does not
-demonstrate a role restriction. After changing assignments, obtain fresh tokens
-by signing out and back in; an already-issued token retains its old roles.
+Ingredient deletion is always admin-only through `AdminOnlyRequirement` and
+`AdminOnlyAuthorizationHandler`. Delete a disposable ingredient as admin: it
+should succeed. Try deleting another ingredient as the non-admin: expect
+**403**, even if that user owns it. Updates and recipe deletion use their own
+owner-or-admin authorization checks. After changing assignments, obtain fresh
+tokens by signing out and back in; an already-issued token retains its old roles.
 
 References: [Register apps](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app),
 [Expose an API](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-configure-app-expose-web-apis),

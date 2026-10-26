@@ -135,6 +135,12 @@ loads the record's owner (`404` if missing), then calls
 
 Failing the requirement returns `403`. Records without an owner are admin-only.
 
+Owner identifiers are persisted as `{authentication-scheme}:{subject}` to keep
+identities from different issuers separate. Existing records created before this
+format was introduced retain their bare subject in `OwnerId`; those test records
+must be deleted or updated to the matching scheme-qualified value before the
+original user can edit or delete them.
+
 ## Regression checks
 
 From the repository root:
