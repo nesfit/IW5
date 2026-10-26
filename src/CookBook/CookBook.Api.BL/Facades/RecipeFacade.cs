@@ -32,6 +32,15 @@ public class RecipeFacade(
     {
         MergeIngredientAmounts(recipeModel);
         var recipeEntity = mapper.ToEntity(recipeModel, ownerId);
+        recipeEntity.IngredientAmounts = recipeModel.IngredientAmounts.Select(t =>
+            new IngredientAmountEntity
+            {
+                Id = t.Id,
+                Amount = t.Amount,
+                Unit = t.Unit,
+                RecipeId = recipeEntity.Id,
+                IngredientId = t.Ingredient.Id
+            }).ToList();
         return recipeRepository.Insert(recipeEntity);
     }
 
