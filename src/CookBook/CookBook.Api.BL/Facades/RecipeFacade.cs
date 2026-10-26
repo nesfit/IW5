@@ -62,6 +62,10 @@ public class RecipeFacade(
         return result;
     }
 
+    public bool HasIngredientAmountOwnedByAnotherRecipe(RecipeDetailModel recipeModel)
+        => recipeModel.IngredientAmounts.Any(amount =>
+            recipeRepository.IngredientAmountBelongsToDifferentRecipe(amount.Id, recipeModel.Id));
+
     public void MergeIngredientAmounts(RecipeDetailModel recipe)
     {
         var result = new List<RecipeDetailIngredientModel>();

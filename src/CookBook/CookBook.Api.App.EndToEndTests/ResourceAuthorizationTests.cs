@@ -59,6 +59,84 @@ public class ResourceAuthorizationTests : IAsyncDisposable
     }
 
     [Fact]
+    public async Task CreatingRecipePersistsIngredientAmounts()
+    {
+        var owner = CreateClient("owner");
+        var ingredient = NewIngredient();
+        await CreateIngredientAsync(owner, ingredient);
+        var recipe = NewRecipe() with
+        {
+            IngredientAmounts =
+            [
+                new RecipeDetailIngredientModel
+                {
+                    Id = Guid.NewGuid(),
+                    Amount = 2,
+                    Unit = Unit.Pieces,
+                    Ingredient = new IngredientListModel { Id = ingredient.Id, Name = ingredient.Name }
+                }
+            ]
+        };
+
+        (await owner.PostAsJsonAsync("/api/recipe", recipe)).EnsureSuccessStatusCode();
+        var saved = await owner.GetFromJsonAsync<RecipeDetailModel>($"/api/recipe/{recipe.Id}");
+
+        var amount = Assert.Single(Assert.IsType<RecipeDetailModel>(saved).IngredientAmounts);
+        Assert.Equal(2, amount.Amount);
+        Assert.Equal(ingredient.Id, amount.Ingredient.Id);
+    }
+
+    [Fact]
+    public async Task CreatingResourcesWithExistingIdsReturnsConflict()
+    {
+        var owner = CreateClient("owner");
+        var other = CreateClient("other");
+        var ingredient = NewIngredient();
+        var recipe = NewRecipe();
+        await CreateIngredientAsync(owner, ingredient);
+        (await owner.PostAsJsonAsync("/api/recipe", recipe)).EnsureSuccessStatusCode();
+
+        var duplicateIngredient = await other.PostAsJsonAsync("/api/ingredient", ingredient);
+        var duplicateRecipe = await other.PostAsJsonAsync("/api/recipe", recipe);
+
+        Assert.Equal(HttpStatusCode.Conflict, duplicateIngredient.StatusCode);
+        Assert.Equal(HttpStatusCode.Conflict, duplicateRecipe.StatusCode);
+    }
+
+    [Fact]
+    public async Task UpdatingRecipeCannotReuseIngredientAmountFromAnotherRecipe()
+    {
+        var owner = CreateClient("owner");
+        var ingredient = NewIngredient();
+        await CreateIngredientAsync(owner, ingredient);
+        var victimRecipe = NewRecipe() with
+        {
+            IngredientAmounts =
+            [
+                new RecipeDetailIngredientModel
+                {
+                    Id = Guid.NewGuid(),
+                    Amount = 2,
+                    Unit = Unit.Pieces,
+                    Ingredient = new IngredientListModel { Id = ingredient.Id, Name = ingredient.Name }
+                }
+            ]
+        };
+        var editedRecipe = NewRecipe();
+        (await owner.PostAsJsonAsync("/api/recipe", victimRecipe)).EnsureSuccessStatusCode();
+        (await owner.PostAsJsonAsync("/api/recipe", editedRecipe)).EnsureSuccessStatusCode();
+
+        var attempt = await owner.PutAsJsonAsync("/api/recipe", editedRecipe with
+        {
+            IngredientAmounts = victimRecipe.IngredientAmounts
+        });
+
+        Assert.Equal(HttpStatusCode.BadRequest, attempt.StatusCode);
+        var stillOwned = await owner.GetFromJsonAsync<RecipeDetailModel>($"/api/recipe/{victimRecipe.Id}");
+        Assert.Single(Assert.IsType<RecipeDetailModel>(stillOwned).IngredientAmounts);
+    }
+
+    [Fact]
     public async Task OtherUserCannotDeleteRecipe()
     {
         var recipe = NewRecipe();

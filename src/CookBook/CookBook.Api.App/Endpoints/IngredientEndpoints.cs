@@ -33,11 +33,18 @@ public class IngredientEndpoints(IOptions<IdentityOptions> identityOptions)
             ingredientModifyingEndpoints.RequireAuthorization();
         }
 
-        ingredientModifyingEndpoints.MapPost("", (IngredientDetailModel ingredient, IIngredientFacade ingredientFacade, ClaimsPrincipal user)
-            => TypedResults.Ok(ingredientFacade.Create(ingredient, GetUserId(user))))
+        ingredientModifyingEndpoints.MapPost("", Results<Ok<Guid>, Conflict> (IngredientDetailModel ingredient, IIngredientFacade ingredientFacade, ClaimsPrincipal user) =>
+        {
+            if (ingredientFacade.GetOwnership(ingredient.Id) is not null)
+            {
+                return TypedResults.Conflict();
+            }
+
+            return TypedResults.Ok(ingredientFacade.Create(ingredient, GetUserId(user)));
+        })
             .AddEndpointFilter<ValidationFilter<IngredientDetailModel>>();
 
-        ingredientModifyingEndpoints.MapPut("", async Task<Results<Ok<Guid?>, NotFound<string>, ForbidHttpResult>> (IngredientDetailModel ingredient, IIngredientFacade ingredientFacade, IAuthorizationService authorizationService, ClaimsPrincipal user) =>
+        ingredientModifyingEndpoints.MapPut("", async Task<Results<Ok<Guid>, NotFound<string>, ForbidHttpResult>> (IngredientDetailModel ingredient, IIngredientFacade ingredientFacade, IAuthorizationService authorizationService, ClaimsPrincipal user) =>
         {
             if (ingredientFacade.GetOwnership(ingredient.Id) is not { } ownership)
             {
@@ -49,10 +56,12 @@ public class IngredientEndpoints(IOptions<IdentityOptions> identityOptions)
                 return TypedResults.Forbid();
             }
 
-            return TypedResults.Ok(ingredientFacade.Update(ingredient));
+            return ingredientFacade.Update(ingredient) is { } id
+                ? TypedResults.Ok(id)
+                : NotFound(ingredient.Id);
         }).AddEndpointFilter<ValidationFilter<IngredientDetailModel>>();
 
-        ingredientModifyingEndpoints.MapPost("upsert", async Task<Results<Ok<Guid>, ProblemHttpResult>> (IngredientDetailModel ingredient, IIngredientFacade ingredientFacade, IAuthorizationService authorizationService, ClaimsPrincipal user) =>
+        ingredientModifyingEndpoints.MapPost("upsert", async Task<Results<Ok<Guid>, ProblemHttpResult, NotFound<string>>> (IngredientDetailModel ingredient, IIngredientFacade ingredientFacade, IAuthorizationService authorizationService, ClaimsPrincipal user) =>
         {
             if (ingredientFacade.GetOwnership(ingredient.Id) is not { } ownership)
             {
@@ -67,7 +76,9 @@ public class IngredientEndpoints(IOptions<IdentityOptions> identityOptions)
                     detail: string.Format(IngredientEndpointsResources.Upsert_Forbidden_Detail, ingredient.Id));
             }
 
-            return TypedResults.Ok(ingredientFacade.Update(ingredient)!.Value);
+            return ingredientFacade.Update(ingredient) is { } id
+                ? TypedResults.Ok(id)
+                : NotFound(ingredient.Id);
         }).AddEndpointFilter<ValidationFilter<IngredientDetailModel>>();
 
         ingredientModifyingEndpoints.MapDelete("{id:guid}", async Task<Results<Ok, NotFound<string>, ForbidHttpResult>> (Guid id, IIngredientFacade ingredientFacade, IAuthorizationService authorizationService, ClaimsPrincipal user) =>

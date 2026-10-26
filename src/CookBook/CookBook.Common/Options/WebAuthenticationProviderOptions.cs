@@ -17,7 +17,4 @@ public class WebAuthenticationProviderOptions
     public string? PostLogoutRedirectUri { get; set; }
     public IList<string> DefaultScopes { get; set; } = [];
 
-    /// <summary>Whether upstream (provider-side) logout should be triggered on sign-out. When false,
-    /// only the local Blazor authentication state is cleared, leaving the user signed in upstream.</summary>
-    public bool UpstreamLogoutIsEnabled { get; set; } = true;
 }

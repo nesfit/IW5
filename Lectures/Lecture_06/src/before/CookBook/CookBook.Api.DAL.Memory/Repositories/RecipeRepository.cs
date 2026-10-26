@@ -167,5 +167,10 @@ namespace CookBook.Api.DAL.Memory.Repositories
         {
             return recipes.Any(recipe => recipe.Id == id);
         }
+
+        public bool IngredientAmountBelongsToDifferentRecipe(Guid ingredientAmountId, Guid recipeId)
+        {
+            return ingredientAmounts.Any(amount => amount.Id == ingredientAmountId && amount.RecipeId != recipeId);
+        }
     }
 }

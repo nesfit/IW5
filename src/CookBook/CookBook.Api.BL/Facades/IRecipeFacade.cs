@@ -9,6 +9,7 @@ public interface IRecipeFacade : IAppFacade
     List<RecipeListModel> GetAll();
     RecipeDetailModel? GetById(Guid id);
     ResourceOwnership? GetOwnership(Guid id);
+    bool HasIngredientAmountOwnedByAnotherRecipe(RecipeDetailModel recipeModel);
     Guid Create(RecipeDetailModel recipeModel, string? ownerId);
     Guid? Update(RecipeDetailModel recipeModel);
     void Delete(Guid id);
