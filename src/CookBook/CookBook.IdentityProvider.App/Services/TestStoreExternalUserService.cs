@@ -23,9 +23,14 @@ public sealed class TestStoreExternalUserService(TestUserStore users) : IExterna
         }
 
         var displayName = ExternalUserDisplayName.GetDisplayName(externalPrincipal);
+        // Provider roles are authorization data owned by the provider, so they are replaced on every login.
+        var currentProviderRoles = externalPrincipal.Claims
+            .Where(claim => IsRoleClaim(claim.Type))
+            .Select(claim => new Claim(claim.Type, claim.Value));
         user.Claims = user.Claims
-            .Where(claim => claim.Type is not "username" and not JwtClaimTypes.Name)
+            .Where(claim => claim.Type is not "username" and not JwtClaimTypes.Name && !IsRoleClaim(claim.Type))
             .Concat([new Claim("username", displayName), new Claim(JwtClaimTypes.Name, displayName)])
+            .Concat(currentProviderRoles)
             .ToList();
 
         return Task.FromResult(new ExternalUser(
@@ -33,4 +38,7 @@ public sealed class TestStoreExternalUserService(TestUserStore users) : IExterna
             displayName,
             user.Claims.ToList()));
     }
+
+    private static bool IsRoleClaim(string claimType)
+        => claimType is JwtClaimTypes.Role or "roles" or ClaimTypes.Role;
 }

@@ -223,4 +223,20 @@ public class ExternalUserDisplayNameTests
         Assert.Equal("teacher@example.com", Assert.Single(user.Claims, claim => claim.Type == "username").Value);
         Assert.Equal("teacher@example.com", Assert.Single(user.Claims, claim => claim.Type == "name").Value);
     }
+
+    [Fact]
+    public async Task TestStoreRefreshesProviderRolesForReturningExternalUser()
+    {
+        var service = new TestStoreExternalUserService(new TestUserStore([]));
+        var firstLogin = new ClaimsPrincipal(new ClaimsIdentity(
+            [new Claim("name", "Teacher"), new Claim("roles", "admin"), new Claim("roles", "user")], "Entra"));
+        var secondLogin = new ClaimsPrincipal(new ClaimsIdentity(
+            [new Claim("name", "Teacher"), new Claim("roles", "user")], "Entra"));
+
+        await service.FindOrProvisionAsync("Entra", "tenant:object", null, firstLogin, CancellationToken.None);
+        var result = await service.FindOrProvisionAsync("Entra", "tenant:object", null, secondLogin, CancellationToken.None);
+
+        Assert.DoesNotContain(result.SessionClaims, claim => claim.Value == "admin");
+        Assert.Contains(result.SessionClaims, claim => claim.Type == "roles" && claim.Value == "user");
+    }
 }
