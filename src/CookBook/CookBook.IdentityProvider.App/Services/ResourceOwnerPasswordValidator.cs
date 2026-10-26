@@ -19,9 +19,12 @@ public class ResourceOwnerPasswordValidator : IResourceOwnerPasswordValidator
 
         if (areCredentialsValid)
         {
-            var userId = await appUserFacade.GetUserIdByUserNameAsync(context.UserName);
+            var user = await appUserFacade.GetUserByUserNameAsync(context.UserName);
 
-            context.Result = new GrantValidationResult(userId.ToString(), OidcConstants.AuthenticationMethods.Password);
+            if (user is not null)
+            {
+                context.Result = new GrantValidationResult(user.Subject, OidcConstants.AuthenticationMethods.Password);
+            }
         }
     }
 }

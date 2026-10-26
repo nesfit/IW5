@@ -148,8 +148,9 @@ namespace CookBook.IdentityProvider.DAL.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Subject")
+                        .HasMaxLength(450)
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
@@ -167,6 +168,9 @@ namespace CookBook.IdentityProvider.DAL.Migrations
                         .IsUnique()
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.HasIndex("Subject")
+                        .IsUnique();
 
                     b.ToTable("AspNetUsers", (string)null);
                 });

@@ -63,6 +63,7 @@ namespace CookBook.IdentityProvider.App
                                 options.ClientSecret = provider.ClientSecret;
                                 options.CallbackPath = provider.CallbackPath;
                                 options.SignedOutCallbackPath = provider.SignedOutCallbackPath;
+                                options.RemoteSignOutPath = provider.RemoteSignOutPath;
                                 options.ResponseType = "code";
                                 options.UsePkce = true;
                                 options.SaveTokens = provider.UpstreamLogoutIsEnabled;
@@ -104,16 +105,36 @@ namespace CookBook.IdentityProvider.App
                     $"CookBookIdentityProviderOptions:ExternalProviders contains duplicate Scheme values: {string.Join(", ", duplicateSchemes)}.");
             }
 
+            var duplicatePaths = enabledProviders
+                .SelectMany(provider => new[]
+                {
+                    provider.CallbackPath,
+                    provider.SignedOutCallbackPath,
+                    provider.RemoteSignOutPath
+                })
+                .GroupBy(path => path, StringComparer.OrdinalIgnoreCase)
+                .Where(group => group.Count() > 1)
+                .Select(group => group.Key)
+                .ToList();
+            if (duplicatePaths.Count > 0)
+            {
+                throw new InvalidOperationException(
+                    $"CookBookIdentityProviderOptions:ExternalProviders contains duplicate callback paths: {string.Join(", ", duplicatePaths)}.");
+            }
+
             foreach (var provider in enabledProviders)
             {
                 if (string.IsNullOrWhiteSpace(provider.Scheme)
                     || string.IsNullOrWhiteSpace(provider.DisplayName)
                     || string.IsNullOrWhiteSpace(provider.Authority)
                     || string.IsNullOrWhiteSpace(provider.ClientId)
-                    || string.IsNullOrWhiteSpace(provider.ClientSecret))
+                    || string.IsNullOrWhiteSpace(provider.ClientSecret)
+                    || string.IsNullOrWhiteSpace(provider.CallbackPath)
+                    || string.IsNullOrWhiteSpace(provider.SignedOutCallbackPath)
+                    || string.IsNullOrWhiteSpace(provider.RemoteSignOutPath))
                 {
                     throw new InvalidOperationException(
-                        $"Enabled CookBookIdentityProviderOptions external provider '{provider.Scheme}' is missing Scheme, DisplayName, Authority, ClientId, or ClientSecret.");
+                        $"Enabled CookBookIdentityProviderOptions external provider '{provider.Scheme}' is missing Scheme, DisplayName, Authority, ClientId, ClientSecret, or a callback path.");
                 }
             }
         }

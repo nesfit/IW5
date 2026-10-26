@@ -22,17 +22,11 @@ public sealed class PersistentExternalUserService(
         {
             var normalizedEmail = normalizer.NormalizeEmail(verifiedEmail);
             var matches = await userManager.Users
-                .Where(candidate => candidate.NormalizedEmail == normalizedEmail)
+                .Where(candidate => candidate.EmailConfirmed && candidate.NormalizedEmail == normalizedEmail)
                 .Take(2)
                 .ToListAsync(cancellationToken);
 
-            if (matches.Count > 1)
-            {
-                throw new InvalidOperationException(
-                    "External login cannot be linked because more than one local account has the verified email.");
-            }
-
-            user = matches.SingleOrDefault();
+            user = matches.Count == 1 ? matches[0] : null;
             if (user is not null)
             {
                 var linkResult = await userManager.AddLoginAsync(
@@ -131,7 +125,7 @@ public sealed class PersistentExternalUserService(
             baseName = $"{provider}-{providerSubject}";
         }
 
-        baseName = new string(baseName.Where(character => char.IsLetterOrDigit(character) || character is '-' or '_').ToArray());
+        baseName = new string(baseName.Where(character => char.IsAsciiLetterOrDigit(character) || character is '-' or '_').ToArray());
         if (string.IsNullOrWhiteSpace(baseName))
         {
             baseName = "external-user";

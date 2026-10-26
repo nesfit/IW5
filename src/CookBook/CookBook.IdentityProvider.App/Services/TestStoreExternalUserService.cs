@@ -26,7 +26,7 @@ public sealed class TestStoreExternalUserService(TestUserStore users) : IExterna
         // Provider roles are authorization data owned by the provider, so they are replaced on every login.
         var currentProviderRoles = externalPrincipal.Claims
             .Where(claim => IsRoleClaim(claim.Type))
-            .Select(claim => new Claim(claim.Type, claim.Value));
+            .Select(claim => new Claim(JwtClaimTypes.Role, claim.Value));
         user.Claims = user.Claims
             .Where(claim => claim.Type is not "username" and not JwtClaimTypes.Name && !IsRoleClaim(claim.Type))
             .Concat([new Claim("username", displayName), new Claim(JwtClaimTypes.Name, displayName)])

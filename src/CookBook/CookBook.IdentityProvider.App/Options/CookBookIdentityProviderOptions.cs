@@ -24,6 +24,7 @@ public class ExternalProviderOptions
     public required string ClientSecret { get; set; }
     public string CallbackPath { get; set; } = "/signin-entra";
     public string SignedOutCallbackPath { get; set; } = "/signout-callback-entra";
+    public string RemoteSignOutPath { get; set; } = "/signout-entra";
     public bool UpstreamLogoutIsEnabled { get; set; } = true;
     public string SubjectClaimType { get; set; } = "oid";
     public string TenantClaimType { get; set; } = "tid";

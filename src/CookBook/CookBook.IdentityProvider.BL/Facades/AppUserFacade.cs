@@ -21,6 +21,7 @@ public class AppUserFacade(
         }
 
         var appUserEntity = appUserMapper.ToEntity(appUserModel);
+        appUserEntity.Subject = Guid.NewGuid().ToString();
         var createResult = await userManager.CreateAsync(appUserEntity, appUserModel.Password);
         if (createResult.Succeeded && !string.IsNullOrWhiteSpace(appUserModel.Name))
         {
