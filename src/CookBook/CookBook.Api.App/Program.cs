@@ -121,6 +121,14 @@ void ConfigureAuthentication(IServiceCollection serviceCollection, IConfiguratio
 
     ValidateTrustedIssuers(trustedIssuersOptions, identityOptions);
 
+    if (trustedIssuersOptions.Issuers.Count == 0)
+    {
+        serviceCollection.AddAuthentication();
+        serviceCollection.AddAuthorization();
+        serviceCollection.AddHttpContextAccessor();
+        return;
+    }
+
     const string policySchemeName = "TrustedIssuerSelector";
 
     var authenticationBuilder = serviceCollection.AddAuthentication(options =>
@@ -161,13 +169,7 @@ void ConfigureAuthentication(IServiceCollection serviceCollection, IConfiguratio
         });
     }
 
-    serviceCollection.AddAuthorizationBuilder()
-        .AddPolicy(ApiPolicies.IngredientAdmin, policy =>
-            policy.RequireAuthenticatedUser()
-            .RequireRole(UserRoles.Admin)
-            )
-        .AddPolicy(ApiPolicies.RecipeAdmin, policy =>
-            policy.RequireAuthenticatedUser().RequireRole(UserRoles.Admin));
+    serviceCollection.AddAuthorizationBuilder();
 
     serviceCollection.AddSingleton<IAuthorizationHandler, OwnerOrAdminAuthorizationHandler>();
     serviceCollection.AddSingleton<IAuthorizationHandler, AdminOnlyAuthorizationHandler>();
@@ -208,6 +210,18 @@ void ValidateTrustedIssuers(
     {
         throw new InvalidOperationException(
             $"TrustedIssuersOptions contains duplicate Scheme values: {string.Join(", ", duplicateSchemes)}");
+    }
+
+    var duplicateIssuers = trustedIssuersOptions.Issuers
+        .SelectMany(issuer => issuer.ValidIssuers.Select(validIssuer => (validIssuer, issuer.Scheme)))
+        .GroupBy(entry => entry.validIssuer, StringComparer.Ordinal)
+        .Where(group => group.Select(entry => entry.Scheme).Distinct(StringComparer.Ordinal).Count() > 1)
+        .Select(group => group.Key)
+        .ToList();
+    if (duplicateIssuers.Count > 0)
+    {
+        throw new InvalidOperationException(
+            $"TrustedIssuersOptions contains ValidIssuer values assigned to multiple schemes: {string.Join(", ", duplicateIssuers)}");
     }
 }
 
@@ -251,32 +265,45 @@ Task NormalizeIssuerClaims(Microsoft.AspNetCore.Authentication.JwtBearer.TokenVa
         return Task.CompletedTask;
     }
 
+    if (issuer.ProviderType == AuthenticationProviderType.Entra)
+    {
+        if (!EntraTokenAuthorization.HasApiAccess(identity, issuer.RoleClaimType))
+        {
+            context.Fail("The Entra token must contain the access_as_user scope or an application role.");
+            return Task.CompletedTask;
+        }
+    }
+
+    var roleValues = identity.FindAll(issuer.RoleClaimType)
+        .Select(claim => claim.Value)
+        .ToList();
+    foreach (var existing in identity.FindAll(ClaimTypes.NameIdentifier).ToList())
+    {
+        identity.RemoveClaim(existing);
+    }
+
+    foreach (var existing in identity.FindAll(ResourceOwnerClaims.OwnerIdClaimType).ToList())
+    {
+        identity.RemoveClaim(existing);
+    }
+
     var nameClaim = identity.FindFirst(issuer.NameClaimType);
     if (nameClaim is not null)
     {
-        foreach (var existing in identity.FindAll(ClaimTypes.NameIdentifier).ToList())
-        {
-            identity.RemoveClaim(existing);
-        }
-
         identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, nameClaim.Value));
-
-        foreach (var existing in identity.FindAll(ResourceOwnerClaims.OwnerIdClaimType).ToList())
-        {
-            identity.RemoveClaim(existing);
-        }
-
         identity.AddClaim(new Claim(
             ResourceOwnerClaims.OwnerIdClaimType,
             ResourceOwnerClaims.CreateOwnerId(issuer.Scheme, nameClaim.Value)));
     }
 
-    foreach (var roleClaim in identity.FindAll(issuer.RoleClaimType).ToList())
+    foreach (var existing in identity.FindAll(ClaimTypes.Role).ToList())
     {
-        if (!identity.HasClaim(ClaimTypes.Role, roleClaim.Value))
-        {
-            identity.AddClaim(new Claim(ClaimTypes.Role, roleClaim.Value));
-        }
+        identity.RemoveClaim(existing);
+    }
+
+    foreach (var roleValue in roleValues.Distinct(StringComparer.Ordinal))
+    {
+        identity.AddClaim(new Claim(ClaimTypes.Role, roleValue));
     }
 
     return Task.CompletedTask;
