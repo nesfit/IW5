@@ -49,4 +49,31 @@ public class AppUserFacadeTests
                 claim.Type == "name" && claim.Value == expectedClaim)), Times.Once());
         }
     }
+
+    [Fact]
+    public async Task CreateGeneratesUniqueSubjectInsteadOfUsingClientSubject()
+    {
+        var createdUsers = new List<AppUserEntity>();
+        var manager = new Mock<UserManager<AppUserEntity>>(
+            Mock.Of<IUserStore<AppUserEntity>>(), null!, null!, null!, null!, null!, null!, null!, null!);
+        manager.Setup(candidate => candidate.FindByNameAsync(It.IsAny<string>()))
+            .ReturnsAsync((string userName) => createdUsers.SingleOrDefault(user => user.UserName == userName));
+        manager.Setup(candidate => candidate.CreateAsync(It.IsAny<AppUserEntity>(), "password"))
+            .Callback<AppUserEntity, string>((user, _) => createdUsers.Add(user))
+            .ReturnsAsync(IdentityResult.Success);
+        var facade = new AppUserFacade(manager.Object, Mock.Of<IAppUserRepository>(), new AppUserMapper());
+
+        foreach (var userName in new[] { "alice", "bob" })
+        {
+            await facade.CreateAppUserAsync(new AppUserCreateModel
+            {
+                UserName = userName,
+                Password = "password",
+                Email = $"{userName}@example.com"
+            });
+        }
+
+        Assert.Equal(2, createdUsers.Select(user => user.Subject).Distinct().Count());
+        Assert.DoesNotContain(createdUsers, user => user.Subject == "shared-subject");
+    }
 }

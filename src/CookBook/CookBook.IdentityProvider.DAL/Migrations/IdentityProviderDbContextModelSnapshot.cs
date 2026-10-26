@@ -148,6 +148,7 @@ namespace CookBook.IdentityProvider.DAL.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Subject")
+                        .HasMaxLength(450)
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 

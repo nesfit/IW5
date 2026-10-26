@@ -34,13 +34,23 @@ public class RecipeEndpoints(IOptions<IdentityOptions> identityOptions)
             recipeModifyingEndpoints.RequireAuthorization();
         }
 
-        recipeModifyingEndpoints.MapPost("", Results<Ok<Guid>, Conflict<string>> (RecipeDetailModel recipe, IRecipeFacade recipeFacade, ClaimsPrincipal user)
-            => recipeFacade.GetOwnership(recipe.Id) is not null
-                ? TypedResults.Conflict($"Recipe with id '{recipe.Id}' already exists.")
-                : TypedResults.Ok(recipeFacade.Create(recipe, GetUserId(user))))
+        recipeModifyingEndpoints.MapPost("", Results<Ok<Guid>, Conflict, BadRequest<string>> (RecipeDetailModel recipe, IRecipeFacade recipeFacade, ClaimsPrincipal user) =>
+        {
+            if (recipeFacade.GetOwnership(recipe.Id) is not null)
+            {
+                return TypedResults.Conflict();
+            }
+
+            if (recipeFacade.HasIngredientAmountOwnedByAnotherRecipe(recipe))
+            {
+                return TypedResults.BadRequest("An ingredient amount belongs to another recipe.");
+            }
+
+            return TypedResults.Ok(recipeFacade.Create(recipe, GetUserId(user)));
+        })
             .AddEndpointFilter<ValidationFilter<RecipeDetailModel>>();
 
-        recipeModifyingEndpoints.MapPut("", async Task<Results<Ok<Guid?>, NotFound<string>, ForbidHttpResult>> (RecipeDetailModel recipe, IRecipeFacade recipeFacade, IAuthorizationService authorizationService, ClaimsPrincipal user, IStringLocalizer<RecipeEndpointsResources> recipeEndpointsLocalizer) =>
+        recipeModifyingEndpoints.MapPut("", async Task<Results<Ok<Guid>, NotFound<string>, ForbidHttpResult, BadRequest<string>>> (RecipeDetailModel recipe, IRecipeFacade recipeFacade, IAuthorizationService authorizationService, ClaimsPrincipal user, IStringLocalizer<RecipeEndpointsResources> recipeEndpointsLocalizer) =>
         {
             if (recipeFacade.GetOwnership(recipe.Id) is not { } ownership)
             {
@@ -52,13 +62,25 @@ public class RecipeEndpoints(IOptions<IdentityOptions> identityOptions)
                 return TypedResults.Forbid();
             }
 
-            return TypedResults.Ok(recipeFacade.Update(recipe));
+            if (recipeFacade.HasIngredientAmountOwnedByAnotherRecipe(recipe))
+            {
+                return TypedResults.BadRequest("An ingredient amount belongs to another recipe.");
+            }
+
+            return recipeFacade.Update(recipe) is { } id
+                ? TypedResults.Ok(id)
+                : NotFound(recipeEndpointsLocalizer, recipe.Id);
         }).AddEndpointFilter<ValidationFilter<RecipeDetailModel>>();
 
-        recipeModifyingEndpoints.MapPost("upsert", async Task<Results<Ok<Guid>, NotFound<string>, ForbidHttpResult>> (RecipeDetailModel recipe, IRecipeFacade recipeFacade, IAuthorizationService authorizationService, ClaimsPrincipal user, IStringLocalizer<RecipeEndpointsResources> recipeEndpointsLocalizer) =>
+        recipeModifyingEndpoints.MapPost("upsert", async Task<Results<Ok<Guid>, ForbidHttpResult, NotFound<string>, BadRequest<string>>> (RecipeDetailModel recipe, IRecipeFacade recipeFacade, IAuthorizationService authorizationService, ClaimsPrincipal user, IStringLocalizer<RecipeEndpointsResources> recipeEndpointsLocalizer) =>
         {
             if (recipeFacade.GetOwnership(recipe.Id) is not { } ownership)
             {
+                if (recipeFacade.HasIngredientAmountOwnedByAnotherRecipe(recipe))
+                {
+                    return TypedResults.BadRequest("An ingredient amount belongs to another recipe.");
+                }
+
                 return TypedResults.Ok(recipeFacade.Create(recipe, GetUserId(user)));
             }
 
@@ -67,8 +89,13 @@ public class RecipeEndpoints(IOptions<IdentityOptions> identityOptions)
                 return TypedResults.Forbid();
             }
 
-            return recipeFacade.Update(recipe) is { } updatedId
-                ? TypedResults.Ok(updatedId)
+            if (recipeFacade.HasIngredientAmountOwnedByAnotherRecipe(recipe))
+            {
+                return TypedResults.BadRequest("An ingredient amount belongs to another recipe.");
+            }
+
+            return recipeFacade.Update(recipe) is { } id
+                ? TypedResults.Ok(id)
                 : NotFound(recipeEndpointsLocalizer, recipe.Id);
         }).AddEndpointFilter<ValidationFilter<RecipeDetailModel>>();
 

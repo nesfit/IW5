@@ -63,7 +63,7 @@ namespace CookBook.IdentityProvider.App
                                 options.ClientSecret = provider.ClientSecret;
                                 options.CallbackPath = provider.CallbackPath;
                                 options.SignedOutCallbackPath = provider.SignedOutCallbackPath;
-                                options.RemoteSignOutPath = GetRemoteSignOutPath(provider);
+                                options.RemoteSignOutPath = provider.RemoteSignOutPath;
                                 options.ResponseType = "code";
                                 options.UsePkce = true;
                                 options.SaveTokens = provider.UpstreamLogoutIsEnabled;
@@ -105,23 +105,13 @@ namespace CookBook.IdentityProvider.App
                     $"CookBookIdentityProviderOptions:ExternalProviders contains duplicate Scheme values: {string.Join(", ", duplicateSchemes)}.");
             }
 
-            foreach (var provider in enabledProviders)
-            {
-                if (string.IsNullOrWhiteSpace(provider.Scheme)
-                    || string.IsNullOrWhiteSpace(provider.DisplayName)
-                    || string.IsNullOrWhiteSpace(provider.Authority)
-                    || string.IsNullOrWhiteSpace(provider.ClientId)
-                    || string.IsNullOrWhiteSpace(provider.ClientSecret))
-                {
-                    throw new InvalidOperationException(
-                        $"Enabled CookBookIdentityProviderOptions external provider '{provider.Scheme}' is missing Scheme, DisplayName, Authority, ClientId, or ClientSecret.");
-                }
-            }
-
-            // Each OIDC handler claims its callback paths; two enabled providers sharing one would
-            // make the first handler process (and reject) the other provider's responses.
             var duplicatePaths = enabledProviders
-                .SelectMany(provider => new[] { provider.CallbackPath, provider.SignedOutCallbackPath, GetRemoteSignOutPath(provider) })
+                .SelectMany(provider => new[]
+                {
+                    provider.CallbackPath,
+                    provider.SignedOutCallbackPath,
+                    provider.RemoteSignOutPath
+                })
                 .GroupBy(path => path, StringComparer.OrdinalIgnoreCase)
                 .Where(group => group.Count() > 1)
                 .Select(group => group.Key)
@@ -129,12 +119,26 @@ namespace CookBook.IdentityProvider.App
             if (duplicatePaths.Count > 0)
             {
                 throw new InvalidOperationException(
-                    $"Enabled CookBookIdentityProviderOptions:ExternalProviders must use unique CallbackPath/SignedOutCallbackPath values; duplicates: {string.Join(", ", duplicatePaths)}.");
+                    $"CookBookIdentityProviderOptions:ExternalProviders contains duplicate callback paths: {string.Join(", ", duplicatePaths)}.");
             }
-        }
 
-        private static string GetRemoteSignOutPath(ExternalProviderOptions provider)
-            => $"/signout-oidc-{provider.Scheme.ToLowerInvariant()}";
+            foreach (var provider in enabledProviders)
+            {
+                if (string.IsNullOrWhiteSpace(provider.Scheme)
+                    || string.IsNullOrWhiteSpace(provider.DisplayName)
+                    || string.IsNullOrWhiteSpace(provider.Authority)
+                    || string.IsNullOrWhiteSpace(provider.ClientId)
+                    || string.IsNullOrWhiteSpace(provider.ClientSecret)
+                    || string.IsNullOrWhiteSpace(provider.CallbackPath)
+                    || string.IsNullOrWhiteSpace(provider.SignedOutCallbackPath)
+                    || string.IsNullOrWhiteSpace(provider.RemoteSignOutPath))
+                {
+                    throw new InvalidOperationException(
+                        $"Enabled CookBookIdentityProviderOptions external provider '{provider.Scheme}' is missing Scheme, DisplayName, Authority, ClientId, ClientSecret, or a callback path.");
+                }
+            }
+
+        }
 
         public static WebApplication ConfigurePipeline(this WebApplication app)
         {

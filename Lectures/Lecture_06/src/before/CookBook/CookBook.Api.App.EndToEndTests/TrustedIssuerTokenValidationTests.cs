@@ -58,6 +58,30 @@ public class TrustedIssuerTokenValidationTests
         Assert.Null(TrustedIssuerTokenValidation.NormalizeClaims(identity, issuer));
     }
 
+    [Theory]
+    [InlineData(null, null, false)]
+    [InlineData(null, " ", false)]
+    [InlineData("access_as_user", null, true)]
+    [InlineData(null, "user", true)]
+    public void NormalizeClaims_Enforces_Entra_Default_When_RequiredScopes_Is_Empty(
+        string? scope, string? role, bool accepted)
+    {
+        var issuer = CreateIssuer("entra", nameClaimType: "oid", roleClaimType: "roles");
+        issuer.ProviderType = AuthenticationProviderType.Entra;
+        issuer.RequiredScopes = [];
+        var identity = new ClaimsIdentity([new Claim("oid", "user")], "test");
+        if (scope is not null)
+        {
+            identity.AddClaim(new Claim("scp", scope));
+        }
+        if (role is not null)
+        {
+            identity.AddClaim(new Claim("roles", role));
+        }
+
+        Assert.Equal(accepted, TrustedIssuerTokenValidation.NormalizeClaims(identity, issuer) is null);
+    }
+
     [Fact]
     public void ValidateOptions_Rejects_ValidIssuer_Shared_By_Two_Schemes()
     {

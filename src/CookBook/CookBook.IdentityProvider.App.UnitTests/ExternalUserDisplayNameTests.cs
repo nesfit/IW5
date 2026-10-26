@@ -1,4 +1,5 @@
 using System.Security.Claims;
+using System.Linq.Expressions;
 using CookBook.IdentityProvider.App.Services;
 using CookBook.IdentityProvider.DAL.Entities;
 using Duende.IdentityServer.Test;
@@ -139,6 +140,92 @@ public class ExternalUserDisplayNameTests
                 login.LoginProvider == "Entra" && login.ProviderKey == "tenant:object")), Times.Once);
     }
 
+    [Fact]
+    public async Task VerifiedEmailDoesNotLinkToAnUnconfirmedLocalAccount()
+    {
+        var unconfirmedUser = new AppUserEntity
+        {
+            Id = Guid.NewGuid(),
+            Subject = "local-subject",
+            UserName = "victim",
+            Email = "victim@example.com",
+            NormalizedEmail = "VICTIM@EXAMPLE.COM",
+            EmailConfirmed = false,
+            Active = true
+        };
+        AppUserEntity? createdUser = null;
+        var manager = new Mock<UserManager<AppUserEntity>>(
+            Mock.Of<IUserStore<AppUserEntity>>(), null!, null!, null!, null!, null!, null!, null!, null!);
+        manager.Setup(candidate => candidate.FindByLoginAsync("Entra", "tenant:object"))
+            .ReturnsAsync((AppUserEntity?)null);
+        manager.SetupGet(candidate => candidate.Users)
+            .Returns(new TestAsyncEnumerable<AppUserEntity>([unconfirmedUser]));
+        manager.Setup(candidate => candidate.FindByNameAsync(It.IsAny<string>()))
+            .ReturnsAsync((AppUserEntity?)null);
+        manager.Setup(candidate => candidate.CreateAsync(It.IsAny<AppUserEntity>()))
+            .Callback<AppUserEntity>(user => createdUser = user)
+            .ReturnsAsync(IdentityResult.Success);
+        manager.Setup(candidate => candidate.AddLoginAsync(It.IsAny<AppUserEntity>(), It.IsAny<UserLoginInfo>()))
+            .ReturnsAsync(IdentityResult.Success);
+        manager.Setup(candidate => candidate.GetRolesAsync(It.IsAny<AppUserEntity>()))
+            .ReturnsAsync(new List<string>());
+        manager.Setup(candidate => candidate.GetClaimsAsync(It.IsAny<AppUserEntity>()))
+            .ReturnsAsync(new List<Claim>());
+        manager.Setup(candidate => candidate.AddClaimAsync(It.IsAny<AppUserEntity>(), It.IsAny<Claim>()))
+            .ReturnsAsync(IdentityResult.Success);
+        var service = new PersistentExternalUserService(
+            manager.Object, new UpperInvariantLookupNormalizer(),
+            NullLogger<PersistentExternalUserService>.Instance);
+
+        await service.FindOrProvisionAsync(
+            "Entra", "tenant:object", "victim@example.com",
+            new ClaimsPrincipal(new ClaimsIdentity([new Claim("name", "Victim")], "Entra")),
+            CancellationToken.None);
+
+        Assert.NotNull(createdUser);
+        Assert.NotSame(unconfirmedUser, createdUser);
+        Assert.True(createdUser.EmailConfirmed);
+        manager.Verify(candidate => candidate.AddLoginAsync(unconfirmedUser, It.IsAny<UserLoginInfo>()), Times.Never);
+        manager.Verify(candidate => candidate.AddLoginAsync(createdUser, It.IsAny<UserLoginInfo>()), Times.Once);
+    }
+
+    [Fact]
+    public async Task ExternalUsernameUsesOnlyAllowedAsciiCharacters()
+    {
+        AppUserEntity? createdUser = null;
+        var manager = new Mock<UserManager<AppUserEntity>>(
+            Mock.Of<IUserStore<AppUserEntity>>(), null!, null!, null!, null!, null!, null!, null!, null!);
+        manager.Setup(candidate => candidate.FindByLoginAsync("Entra", "tenant:object"))
+            .ReturnsAsync((AppUserEntity?)null);
+        manager.SetupGet(candidate => candidate.Users)
+            .Returns(new TestAsyncEnumerable<AppUserEntity>([]));
+        manager.Setup(candidate => candidate.FindByNameAsync(It.IsAny<string>()))
+            .ReturnsAsync((AppUserEntity?)null);
+        manager.Setup(candidate => candidate.CreateAsync(It.IsAny<AppUserEntity>()))
+            .Callback<AppUserEntity>(user => createdUser = user)
+            .ReturnsAsync(IdentityResult.Success);
+        manager.Setup(candidate => candidate.AddLoginAsync(It.IsAny<AppUserEntity>(), It.IsAny<UserLoginInfo>()))
+            .ReturnsAsync(IdentityResult.Success);
+        manager.Setup(candidate => candidate.GetRolesAsync(It.IsAny<AppUserEntity>()))
+            .ReturnsAsync(new List<string>());
+        manager.Setup(candidate => candidate.GetClaimsAsync(It.IsAny<AppUserEntity>()))
+            .ReturnsAsync(new List<Claim>());
+        manager.Setup(candidate => candidate.AddClaimAsync(It.IsAny<AppUserEntity>(), It.IsAny<Claim>()))
+            .ReturnsAsync(IdentityResult.Success);
+        var service = new PersistentExternalUserService(
+            manager.Object, new UpperInvariantLookupNormalizer(),
+            NullLogger<PersistentExternalUserService>.Instance);
+
+        await service.FindOrProvisionAsync(
+            "Entra", "tenant:object", "jiří@example.com",
+            new ClaimsPrincipal(new ClaimsIdentity([new Claim("name", "Teacher")], "Entra")),
+            CancellationToken.None);
+
+        Assert.NotNull(createdUser);
+        Assert.Equal("ji", createdUser.UserName);
+        Assert.All(createdUser.UserName, character => Assert.True(char.IsAsciiLetterOrDigit(character) || character is '-' or '_'));
+    }
+
     [Theory]
     [InlineData(null, "Demo Teacher", "Demo Teacher")]
     [InlineData("   ", "Demo Teacher", "Demo Teacher")]
@@ -240,4 +327,51 @@ public class ExternalUserDisplayNameTests
         Assert.Contains(result.SessionClaims, claim => claim.Type == "role" && claim.Value == "user");
         Assert.DoesNotContain(result.SessionClaims, claim => claim.Type == "roles");
     }
+}
+
+internal sealed class TestAsyncEnumerable<T> : EnumerableQuery<T>, IAsyncEnumerable<T>, IQueryable<T>
+{
+    public TestAsyncEnumerable(IEnumerable<T> enumerable) : base(enumerable)
+    {
+    }
+
+    public TestAsyncEnumerable(Expression expression) : base(expression)
+    {
+    }
+
+    IAsyncEnumerator<T> IAsyncEnumerable<T>.GetAsyncEnumerator(CancellationToken cancellationToken)
+        => new TestAsyncEnumerator<T>(((IEnumerable<T>)this).GetEnumerator());
+
+    IQueryProvider IQueryable.Provider => new TestAsyncQueryProvider();
+}
+
+internal sealed class TestAsyncEnumerator<T>(IEnumerator<T> inner) : IAsyncEnumerator<T>
+{
+    public T Current => inner.Current;
+
+    public ValueTask<bool> MoveNextAsync() => ValueTask.FromResult(inner.MoveNext());
+
+    public ValueTask DisposeAsync()
+    {
+        inner.Dispose();
+        return ValueTask.CompletedTask;
+    }
+}
+
+internal sealed class TestAsyncQueryProvider : IQueryProvider
+{
+    public IQueryable CreateQuery(Expression expression)
+    {
+        var elementType = expression.Type.GetGenericArguments()[0];
+        return (IQueryable)Activator.CreateInstance(typeof(TestAsyncEnumerable<>).MakeGenericType(elementType), expression)!;
+    }
+
+    public IQueryable<TElement> CreateQuery<TElement>(Expression expression)
+        => new TestAsyncEnumerable<TElement>(expression);
+
+    public object? Execute(Expression expression)
+        => ((IQueryable)new EnumerableQuery<object>(expression)).Provider.Execute(expression);
+
+    public TResult Execute<TResult>(Expression expression)
+        => ((IQueryable<TResult>)new EnumerableQuery<TResult>(expression)).Provider.Execute<TResult>(expression);
 }

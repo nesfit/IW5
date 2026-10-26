@@ -31,7 +31,8 @@ public class TrustedIssuerOptions
 
     /// <summary>
     /// Delegated scopes (`scp`/`scope`) of which a token must contain at least one unless it carries an
-    /// application role (e.g. Entra's "access_as_user"). Empty disables the check.
+    /// application role (e.g. Entra's "access_as_user"). Empty disables the check for other providers;
+    /// Entra still requires "access_as_user" or an application role.
     /// </summary>
     public IList<string> RequiredScopes { get; set; } = [];
 }

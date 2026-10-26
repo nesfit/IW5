@@ -64,8 +64,16 @@ public static class TrustedIssuerTokenValidation
     {
         var roleValues = identity.FindAll(issuer.RoleClaimType)
             .Select(claim => claim.Value)
+            .Where(value => !string.IsNullOrWhiteSpace(value))
             .Distinct(StringComparer.Ordinal)
             .ToList();
+
+        if (issuer.ProviderType == AuthenticationProviderType.Entra
+            && issuer.RequiredScopes.Count == 0
+            && !EntraTokenAuthorization.HasApiAccess(identity, issuer.RoleClaimType))
+        {
+            return "The Entra token must contain the access_as_user scope or an application role.";
+        }
 
         if (issuer.RequiredScopes.Count > 0 && roleValues.Count == 0)
         {
