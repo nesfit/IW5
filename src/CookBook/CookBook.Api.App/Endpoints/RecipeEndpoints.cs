@@ -38,7 +38,7 @@ public class RecipeEndpoints(IOptions<IdentityOptions> identityOptions)
         {
             if (recipeFacade.HasInvalidIngredientAmountIds(recipe))
             {
-                return TypedResults.BadRequest("Ingredient amount ids must be non-empty and unique.");
+                return TypedResults.BadRequest("Ingredient amount ids must be unique.");
             }
 
             if (recipeFacade.GetOwnership(recipe.Id) is not null)
@@ -59,7 +59,7 @@ public class RecipeEndpoints(IOptions<IdentityOptions> identityOptions)
         {
             if (recipeFacade.HasInvalidIngredientAmountIds(recipe))
             {
-                return TypedResults.BadRequest("Ingredient amount ids must be non-empty and unique.");
+                return TypedResults.BadRequest("Ingredient amount ids must be unique.");
             }
 
             if (recipeFacade.GetOwnership(recipe.Id) is not { } ownership)
@@ -86,7 +86,7 @@ public class RecipeEndpoints(IOptions<IdentityOptions> identityOptions)
         {
             if (recipeFacade.HasInvalidIngredientAmountIds(recipe))
             {
-                return TypedResults.BadRequest("Ingredient amount ids must be non-empty and unique.");
+                return TypedResults.BadRequest("Ingredient amount ids must be unique.");
             }
 
             if (recipeFacade.GetOwnership(recipe.Id) is not { } ownership)

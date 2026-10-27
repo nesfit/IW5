@@ -141,9 +141,11 @@ public class ResourceAuthorizationTests : IAsyncDisposable
     [InlineData("post")]
     [InlineData("put")]
     [InlineData("upsert")]
-    public async Task RecipeEndpointsRejectEmptyIngredientAmountIds(string operation)
+    public async Task RecipeEndpointsAssignServerIdsToEmptyIngredientAmountIds(string operation)
     {
         var owner = CreateClient("owner");
+        var ingredient = NewIngredient();
+        await CreateIngredientAsync(owner, ingredient);
         var recipe = NewRecipe();
         if (operation != "post")
         {
@@ -159,14 +161,17 @@ public class ResourceAuthorizationTests : IAsyncDisposable
                     Id = Guid.Empty,
                     Amount = 1,
                     Unit = Unit.Pieces,
-                    Ingredient = new IngredientListModel { Id = Guid.NewGuid(), Name = "Ingredient" }
+                    Ingredient = new IngredientListModel { Id = ingredient.Id, Name = ingredient.Name }
                 }
             ]
         };
 
         var response = await SendRecipeWriteAsync(owner, operation, invalidRecipe);
 
-        Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+        response.EnsureSuccessStatusCode();
+        var saved = await owner.GetFromJsonAsync<RecipeDetailModel>($"/api/recipe/{recipe.Id}");
+        var amount = Assert.Single(Assert.IsType<RecipeDetailModel>(saved).IngredientAmounts);
+        Assert.NotEqual(Guid.Empty, amount.Id);
     }
 
     [Theory]
@@ -176,13 +181,34 @@ public class ResourceAuthorizationTests : IAsyncDisposable
     public async Task RecipeEndpointsRejectDuplicateIngredientAmountIds(string operation)
     {
         var owner = CreateClient("owner");
+        var ingredient = NewIngredient();
+        await CreateIngredientAsync(owner, ingredient);
         var recipe = NewRecipe();
+        Guid amountId;
         if (operation != "post")
         {
+            recipe = recipe with
+            {
+                IngredientAmounts =
+                [
+                    new RecipeDetailIngredientModel
+                    {
+                        Id = Guid.NewGuid(),
+                        Amount = 1,
+                        Unit = Unit.Pieces,
+                        Ingredient = new IngredientListModel { Id = ingredient.Id, Name = ingredient.Name }
+                    }
+                ]
+            };
             (await owner.PostAsJsonAsync("/api/recipe", recipe)).EnsureSuccessStatusCode();
+            var saved = await owner.GetFromJsonAsync<RecipeDetailModel>($"/api/recipe/{recipe.Id}");
+            amountId = Assert.Single(Assert.IsType<RecipeDetailModel>(saved).IngredientAmounts).Id;
+        }
+        else
+        {
+            amountId = Guid.NewGuid();
         }
 
-        var amountId = Guid.NewGuid();
         var invalidRecipe = recipe with
         {
             IngredientAmounts =
@@ -192,7 +218,7 @@ public class ResourceAuthorizationTests : IAsyncDisposable
                     Id = amountId,
                     Amount = 1,
                     Unit = Unit.Pieces,
-                    Ingredient = new IngredientListModel { Id = Guid.NewGuid(), Name = "Ingredient A" }
+                    Ingredient = new IngredientListModel { Id = ingredient.Id, Name = "Ingredient A" }
                 },
                 new RecipeDetailIngredientModel
                 {

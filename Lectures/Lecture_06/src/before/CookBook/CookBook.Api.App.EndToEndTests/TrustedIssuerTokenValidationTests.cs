@@ -74,6 +74,36 @@ public class TrustedIssuerTokenValidationTests
     }
 
     [Fact]
+    public void NormalizeClaims_Rejects_Delegated_Token_With_Role_But_Wrong_Scope()
+    {
+        var issuer = CreateIssuer("entra", nameClaimType: "oid", roleClaimType: "roles");
+        issuer.ProviderType = AuthenticationProviderType.Entra;
+        var identity = new ClaimsIdentity(
+        [
+            new Claim("oid", "user"),
+            new Claim("scp", "Recipes.Read"),
+            new Claim("roles", "user")
+        ], "test");
+
+        Assert.NotNull(TrustedIssuerTokenValidation.NormalizeClaims(identity, issuer));
+    }
+
+    [Fact]
+    public void NormalizeClaims_Accepts_App_Role_Token_Without_Scope_Claims()
+    {
+        var issuer = CreateIssuer("entra", nameClaimType: "oid", roleClaimType: "roles");
+        issuer.ProviderType = AuthenticationProviderType.Entra;
+        var identity = new ClaimsIdentity(
+        [
+            new Claim("oid", "application"),
+            new Claim("roles", "CookBook.Write")
+        ], "test");
+
+        Assert.Null(TrustedIssuerTokenValidation.NormalizeClaims(identity, issuer));
+        Assert.Equal("CookBook.Write", Assert.Single(identity.FindAll(ClaimTypes.Role)).Value);
+    }
+
+    [Fact]
     public void ValidateOptions_Rejects_ValidIssuer_Shared_By_Two_Schemes()
     {
         var options = new TrustedIssuersOptions

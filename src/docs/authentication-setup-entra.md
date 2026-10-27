@@ -192,9 +192,11 @@ owns it. Updating ingredients/recipes and deleting recipes require owner or
 admin; `user` does not mean read-only. After changing assignments, obtain fresh
 tokens by signing out and back in; an already-issued token retains its old roles.
 
-The API also rejects Entra tokens that carry neither the `access_as_user`
-delegated scope nor an app role (`TrustedIssuersOptions:Issuers:1:RequiredScopes`),
-so a token issued for the API but another scope cannot be used.
+The API requires the configured `access_as_user` scope when an Entra token has
+a delegated-scope claim (`scp` or `scope`), even if that token also contains
+app-role assignments. An app-only token with no delegated-scope claim may use
+an app role instead. A token carrying another delegated scope cannot be used
+for API access.
 
 References: [Register apps](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app),
 [Expose an API](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-configure-app-expose-web-apis),

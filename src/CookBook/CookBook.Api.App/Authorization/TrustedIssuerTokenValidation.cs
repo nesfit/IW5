@@ -83,10 +83,10 @@ public static class TrustedIssuerTokenValidation
             return "The Entra token must contain the access_as_user scope or an application role.";
         }
 
-        if (issuer.RequiredScopes.Count > 0 && roleValues.Count == 0)
+        var scopeClaims = ScopeClaimTypes.SelectMany(identity.FindAll).ToList();
+        if (issuer.RequiredScopes.Count > 0 && (scopeClaims.Count > 0 || roleValues.Count == 0))
         {
-            var grantedScopes = ScopeClaimTypes
-                .SelectMany(identity.FindAll)
+            var grantedScopes = scopeClaims
                 .SelectMany(claim => claim.Value.Split(' ', StringSplitOptions.RemoveEmptyEntries));
 
             if (!grantedScopes.Intersect(issuer.RequiredScopes, StringComparer.Ordinal).Any())
