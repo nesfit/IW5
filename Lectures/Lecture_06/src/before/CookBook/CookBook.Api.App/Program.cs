@@ -1,6 +1,4 @@
 using System.Globalization;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
 using CookBook.Api.App;
 using CookBook.Api.App.Authorization;
 using CookBook.Api.App.Extensions;
@@ -16,7 +14,6 @@ using CookBook.Common.Extensions;
 using CookBook.Common.Models;
 using CookBook.Common.Options;
 using FluentValidation;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Options;
@@ -31,7 +28,11 @@ ConfigureValidation(builder.Services);
 ConfigureOpenApiDocuments(builder.Services);
 ConfigureDependencies(builder.Services, builder.Configuration);
 ConfigureMapperly(builder.Services);
-ConfigureAuthentication(builder.Services, builder.Configuration);
+var trustedIssuersOptions = builder.Configuration.GetSection(nameof(TrustedIssuersOptions)).Get<TrustedIssuersOptions>()
+    ?? new TrustedIssuersOptions();
+var identityOptions = builder.Configuration.GetSection(nameof(IdentityOptions)).Get<IdentityOptions>()
+    ?? new IdentityOptions();
+TrustedIssuerAuthenticationConfiguration.Configure(builder.Services, trustedIssuersOptions, identityOptions);
 
 var app = builder.Build();
 
@@ -106,114 +107,6 @@ void ConfigureMapperly(IServiceCollection serviceCollection)
 {
     serviceCollection.AddSingleton<IngredientMapper>();
     serviceCollection.AddSingleton<RecipeMapper>();
-}
-
-void ConfigureAuthentication(IServiceCollection serviceCollection, IConfiguration configuration)
-{
-    // IdentityOptions.IsEnabled only controls whether protected endpoints call RequireAuthorization()
-    // (see UseEndpoints/IngredientEndpoints/RecipeEndpoints below). Every trusted issuer below is always
-    // registered and strictly validated, regardless of that switch, so toggling the demonstration
-    // authorization requirement never rebuilds or loosens token validation.
-    var trustedIssuersOptions = configuration.GetSection(nameof(TrustedIssuersOptions)).Get<TrustedIssuersOptions>()
-        ?? new TrustedIssuersOptions();
-    var identityOptions = configuration.GetSection(nameof(IdentityOptions)).Get<IdentityOptions>()
-        ?? new IdentityOptions();
-
-    TrustedIssuerTokenValidation.ValidateOptions(trustedIssuersOptions, identityOptions);
-
-    serviceCollection.AddAuthorization();
-    serviceCollection.AddSingleton<IAuthorizationHandler, OwnerOrAdminAuthorizationHandler>();
-    serviceCollection.AddSingleton<IAuthorizationHandler, AdminOnlyAuthorizationHandler>();
-    serviceCollection.AddHttpContextAccessor();
-
-    if (trustedIssuersOptions.Issuers.Count == 0)
-    {
-        // Step 0 (no identity): register authentication without a default scheme so requests stay anonymous.
-        serviceCollection.AddAuthentication();
-        return;
-    }
-
-    const string policySchemeName = "TrustedIssuerSelector";
-
-    var authenticationBuilder = serviceCollection.AddAuthentication(options =>
-    {
-        options.DefaultScheme = policySchemeName;
-        options.DefaultChallengeScheme = policySchemeName;
-    });
-
-    authenticationBuilder.AddPolicyScheme(policySchemeName, "Selects a trusted issuer scheme by the token's iss claim", options =>
-    {
-        options.ForwardDefaultSelector = context => SelectSchemeByIssuer(context, trustedIssuersOptions.Issuers);
-    });
-
-    foreach (var issuer in trustedIssuersOptions.Issuers)
-    {
-        authenticationBuilder.AddJwtBearer(issuer.Scheme, options =>
-        {
-            options.Authority = issuer.Authority;
-
-            // Disable ASP.NET Core's legacy inbound claim renaming so claim types stay exactly as
-            // configured; normalization to ClaimTypes.NameIdentifier/ClaimTypes.Role below is then
-            // explicit and identical for every current and future issuer.
-            options.MapInboundClaims = false;
-
-            options.TokenValidationParameters.ValidateIssuer = true;
-            options.TokenValidationParameters.ValidIssuers = issuer.ValidIssuers;
-            options.TokenValidationParameters.ValidateAudience = true;
-            options.TokenValidationParameters.ValidAudiences = issuer.ValidAudiences;
-            options.TokenValidationParameters.ValidateLifetime = true;
-            options.TokenValidationParameters.ValidateIssuerSigningKey = true;
-            options.TokenValidationParameters.NameClaimType = issuer.NameClaimType;
-            options.TokenValidationParameters.RoleClaimType = issuer.RoleClaimType;
-
-            options.Events = new JwtBearerEvents
-            {
-                OnTokenValidated = context =>
-                {
-                    if (context.Principal?.Identity is ClaimsIdentity identity
-                        && TrustedIssuerTokenValidation.NormalizeClaims(identity, issuer) is { } failure)
-                    {
-                        context.Fail(failure);
-                    }
-
-                    return Task.CompletedTask;
-                }
-            };
-        });
-    }
-}
-
-string SelectSchemeByIssuer(HttpContext context, IList<TrustedIssuerOptions> issuers)
-{
-    var authorizationHeader = context.Request.Headers.Authorization.ToString();
-    if (!string.IsNullOrEmpty(authorizationHeader)
-        && authorizationHeader.StartsWith("Bearer ", StringComparison.OrdinalIgnoreCase))
-    {
-        var token = authorizationHeader["Bearer ".Length..].Trim();
-        var handler = new JwtSecurityTokenHandler();
-        if (handler.CanReadToken(token))
-        {
-            try
-            {
-                var jwt = handler.ReadJwtToken(token);
-                var matchingIssuer = issuers.FirstOrDefault(i =>
-                    i.ValidIssuers.Contains(jwt.Issuer, StringComparer.Ordinal));
-                if (matchingIssuer is not null)
-                {
-                    return matchingIssuer.Scheme;
-                }
-            }
-            catch (ArgumentException)
-            {
-                // The selected real JWT handler returns the authentication failure.
-            }
-        }
-    }
-
-    // No configured issuer matches the token's unvalidated `iss` (or no bearer token is present).
-    // Forward to a registered scheme so authentication fails closed with 401 rather than silently
-    // succeeding or picking an unrelated issuer's validated identity.
-    return issuers[0].Scheme;
 }
 
 void UseAuthenticationAndAuthorization(IApplicationBuilder application)

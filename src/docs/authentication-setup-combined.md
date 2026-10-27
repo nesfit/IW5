@@ -189,9 +189,11 @@ Entra's IDs. Existing accounts keep their stored username; external login
 refreshes a display-only claim for the UI and UserInfo endpoint.
 
 Automatic linking to a local account requires **exactly one normalized email
-match and explicit `email_verified=true`**. Ordinary workforce Entra tokens
-usually lack that claim, so a separate passwordless shadow account is normally
-created. `email` or `preferred_username` alone is not proof of email ownership.
+match on an active account with `EmailConfirmed=true`, and explicit
+`email_verified=true` from the external provider**. Ordinary workforce Entra
+tokens usually lack that claim, so a separate passwordless shadow account is
+normally created. `email` or `preferred_username` alone is not proof of email
+ownership.
 There is no normal portal checkbox that safely enables this linking; proving
 ownership of the existing local account needs additional application logic.
 Do not delete users or loosen linking rules to make names match.

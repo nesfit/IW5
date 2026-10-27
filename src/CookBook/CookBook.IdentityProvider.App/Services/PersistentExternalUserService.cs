@@ -24,7 +24,10 @@ public sealed class PersistentExternalUserService(
             // otherwise anyone who registered the address locally could inherit the external identity.
             var normalizedEmail = normalizer.NormalizeEmail(verifiedEmail);
             var matches = await userManager.Users
-                .Where(candidate => candidate.NormalizedEmail == normalizedEmail && candidate.EmailConfirmed)
+                .Where(candidate =>
+                    candidate.NormalizedEmail == normalizedEmail
+                    && candidate.EmailConfirmed
+                    && candidate.Active)
                 .Take(2)
                 .ToListAsync(cancellationToken);
 

@@ -1,14 +1,11 @@
 using CookBook.IdentityProvider.DAL;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace CookBook.IdentityProvider.DAL.Migrations;
 
-[DbContext(typeof(IdentityProviderDbContext))]
-[Migration("20261026111000_EnsureUniqueAppUserSubjects")]
 public partial class EnsureUniqueAppUserSubjects : Migration
 {
     protected override void Up(MigrationBuilder migrationBuilder)
@@ -19,7 +16,9 @@ public partial class EnsureUniqueAppUserSubjects : Migration
             WHERE LEN(Subject) > 450;
 
             WITH DuplicateSubjects AS (
-                SELECT Id, ROW_NUMBER() OVER (PARTITION BY Subject ORDER BY Id) AS SubjectNumber
+                SELECT Id, ROW_NUMBER() OVER (
+                    PARTITION BY Subject
+                    ORDER BY CASE WHEN Subject = UserName THEN 0 ELSE 1 END, Id) AS SubjectNumber
                 FROM AspNetUsers
             )
             UPDATE AspNetUsers

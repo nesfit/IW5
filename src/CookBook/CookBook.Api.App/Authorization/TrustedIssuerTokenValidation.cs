@@ -17,7 +17,9 @@ public static class TrustedIssuerTokenValidation
 
         foreach (var issuer in trustedIssuersOptions.Issuers)
         {
-            if (string.IsNullOrWhiteSpace(issuer.Scheme)
+            if (issuer.ProviderType is null
+                || !Enum.IsDefined(issuer.ProviderType.Value)
+                || string.IsNullOrWhiteSpace(issuer.Scheme)
                 || string.IsNullOrWhiteSpace(issuer.Authority)
                 || issuer.ValidIssuers.Count == 0
                 || issuer.ValidAudiences.Count == 0
@@ -25,7 +27,13 @@ public static class TrustedIssuerTokenValidation
                 || string.IsNullOrWhiteSpace(issuer.RoleClaimType))
             {
                 throw new InvalidOperationException(
-                    $"TrustedIssuersOptions entry for provider '{issuer.ProviderType}' is missing Scheme, Authority, ValidIssuers, ValidAudiences, NameClaimType, or RoleClaimType.");
+                    $"TrustedIssuersOptions entry for provider '{issuer.ProviderType}' is missing a valid ProviderType, Scheme, Authority, ValidIssuers, ValidAudiences, NameClaimType, or RoleClaimType.");
+            }
+
+            if (issuer.ProviderType == AuthenticationProviderType.Entra && issuer.RequiredScopes.Count == 0)
+            {
+                throw new InvalidOperationException(
+                    $"TrustedIssuersOptions Entra entry '{issuer.Scheme}' must define at least one RequiredScopes value.");
             }
         }
 

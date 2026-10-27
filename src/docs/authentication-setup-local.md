@@ -36,6 +36,9 @@ Set-Location src\CookBook\CookBook.IdentityProvider.App
 dotnet ef database update --project ..\CookBook.IdentityProvider.DAL --startup-project .
 ```
 
+If the database contained duplicate subjects, invalidate all IdentityProvider
+sessions after migration and sign users in again.
+
 Install a `dotnet-ef` version matching the project's EF Core major version if
 missing. The design-time factory must resolve your database connection; if the
 tool host does not discover App user secrets, also set the same connection in

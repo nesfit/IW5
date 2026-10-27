@@ -120,8 +120,7 @@ Old cookies and access tokens retain old names, roles, and audiences.
 Do not disable signature, issuer, or audience validation to resolve a `401`.
 Do not share tokens, cookies, client secrets, or an unredacted HAR.
 
-The sample's named admin endpoint policies may be commented out; assigning
-`admin` does not itself enable those policies.
+Ingredient delete is always admin-only (`AdminOnlyRequirement`).
 
 Updates and deletes use ASP.NET Core resource-based authorization. The endpoint
 loads the record's owner (`404` if missing), then calls
@@ -143,12 +142,13 @@ original user can edit or delete them.
 
 ## Regression checks
 
-From the repository root:
+Run from `src/CookBook` so the solution's `global.json` selects the pinned SDK:
 
 ```powershell
-dotnet test src\CookBook\CookBook.IdentityProvider.App.UnitTests\CookBook.IdentityProvider.App.UnitTests.csproj
-dotnet test src\CookBook\CookBook.Web.BL.UnitTests\CookBook.Web.BL.UnitTests.csproj
-node --test src\CookBook\CookBook.Web.BL.UnitTests\authentication-loader.test.cjs
+Set-Location src\CookBook
+dotnet test CookBook.IdentityProvider.App.UnitTests\CookBook.IdentityProvider.App.UnitTests.csproj
+dotnet test CookBook.Web.BL.UnitTests\CookBook.Web.BL.UnitTests.csproj
+node --test CookBook.Web.BL.UnitTests\authentication-loader.test.cjs
 ```
 
 These do not replace a live login and authenticated API write in each deployed

@@ -36,6 +36,11 @@ public class RecipeEndpoints(IOptions<IdentityOptions> identityOptions)
 
         recipeModifyingEndpoints.MapPost("", Results<Ok<Guid>, Conflict, BadRequest<string>> (RecipeDetailModel recipe, IRecipeFacade recipeFacade, ClaimsPrincipal user) =>
         {
+            if (recipeFacade.HasInvalidIngredientAmountIds(recipe))
+            {
+                return TypedResults.BadRequest("Ingredient amount ids must be non-empty and unique.");
+            }
+
             if (recipeFacade.GetOwnership(recipe.Id) is not null)
             {
                 return TypedResults.Conflict();
@@ -52,6 +57,11 @@ public class RecipeEndpoints(IOptions<IdentityOptions> identityOptions)
 
         recipeModifyingEndpoints.MapPut("", async Task<Results<Ok<Guid>, NotFound<string>, ForbidHttpResult, BadRequest<string>>> (RecipeDetailModel recipe, IRecipeFacade recipeFacade, IAuthorizationService authorizationService, ClaimsPrincipal user, IStringLocalizer<RecipeEndpointsResources> recipeEndpointsLocalizer) =>
         {
+            if (recipeFacade.HasInvalidIngredientAmountIds(recipe))
+            {
+                return TypedResults.BadRequest("Ingredient amount ids must be non-empty and unique.");
+            }
+
             if (recipeFacade.GetOwnership(recipe.Id) is not { } ownership)
             {
                 return NotFound(recipeEndpointsLocalizer, recipe.Id);
@@ -74,6 +84,11 @@ public class RecipeEndpoints(IOptions<IdentityOptions> identityOptions)
 
         recipeModifyingEndpoints.MapPost("upsert", async Task<Results<Ok<Guid>, ForbidHttpResult, NotFound<string>, BadRequest<string>>> (RecipeDetailModel recipe, IRecipeFacade recipeFacade, IAuthorizationService authorizationService, ClaimsPrincipal user, IStringLocalizer<RecipeEndpointsResources> recipeEndpointsLocalizer) =>
         {
+            if (recipeFacade.HasInvalidIngredientAmountIds(recipe))
+            {
+                return TypedResults.BadRequest("Ingredient amount ids must be non-empty and unique.");
+            }
+
             if (recipeFacade.GetOwnership(recipe.Id) is not { } ownership)
             {
                 if (recipeFacade.HasIngredientAmountOwnedByAnotherRecipe(recipe))

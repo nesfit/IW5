@@ -40,6 +40,7 @@ public class AppUserFacadeTests
         });
 
         Assert.True(Guid.TryParse(createdUser!.Subject, out _));
+        Assert.True(createdUser.Active);
 
         manager.Verify(candidate => candidate.AddClaimAsync(It.IsAny<AppUserEntity>(), It.IsAny<Claim>()),
             expectedClaim is null ? Times.Never() : Times.Once());

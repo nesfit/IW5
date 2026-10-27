@@ -11,8 +11,8 @@ public class TrustedIssuerOptions
     /// <summary>Unique authentication scheme name used to register and select this issuer's JWT bearer handler.</summary>
     public required string Scheme { get; set; }
 
-    /// <summary>Provider type this issuer belongs to (used only for logging/diagnostics, not for validation).</summary>
-    public AuthenticationProviderType ProviderType { get; set; }
+    /// <summary>Provider type this issuer belongs to; required for provider-specific token validation.</summary>
+    public AuthenticationProviderType? ProviderType { get; set; }
 
     /// <summary>OIDC authority/metadata address used to resolve signing keys.</summary>
     public required string Authority { get; set; }
@@ -31,8 +31,8 @@ public class TrustedIssuerOptions
 
     /// <summary>
     /// Delegated scopes (`scp`/`scope`) of which a token must contain at least one unless it carries an
-    /// application role (e.g. Entra's "access_as_user"). Empty disables the check for other providers;
-    /// Entra still requires "access_as_user" or an application role.
+    /// application role (e.g. Entra's "access_as_user"). Entra entries must configure at least one
+    /// required scope; an application role also satisfies that requirement.
     /// </summary>
     public IList<string> RequiredScopes { get; set; } = [];
 }

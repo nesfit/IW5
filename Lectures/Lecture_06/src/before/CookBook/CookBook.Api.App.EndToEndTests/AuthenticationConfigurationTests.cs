@@ -2,9 +2,9 @@ using System.Security.Claims;
 using CookBook.Api.App.Authorization;
 using CookBook.Common.Options;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using Xunit;
 
 namespace CookBook.Api.App.EndToEndTests;
@@ -63,29 +63,21 @@ public class AuthenticationConfigurationTests
     }
 
     [Fact]
-    public async Task EmptyTrustedIssuerListWorksWhenIdentityIsDisabled()
+    public async Task EmptyTrustedIssuerListConfiguresAnonymousAuthentication()
     {
-        await using var application = new EmptyIssuerApiApplicationFactory();
-        using var client = application.CreateClient();
+        var services = new ServiceCollection();
 
-        var response = await client.GetAsync("/api/recipe");
+        TrustedIssuerAuthenticationConfiguration.Configure(
+            services,
+            new TrustedIssuersOptions(),
+            new IdentityOptions { IsEnabled = false });
 
-        response.EnsureSuccessStatusCode();
-    }
+        using var serviceProvider = services.BuildServiceProvider();
+        var schemes = await serviceProvider
+            .GetRequiredService<IAuthenticationSchemeProvider>()
+            .GetAllSchemesAsync();
 
-    private sealed class EmptyIssuerApiApplicationFactory : CookBookApiApplicationFactory
-    {
-        protected override void ConfigureWebHost(IWebHostBuilder builder)
-        {
-            builder.ConfigureAppConfiguration((_, configuration) =>
-            {
-                configuration.Sources.Clear();
-                configuration.AddInMemoryCollection(new Dictionary<string, string?>
-                {
-                    ["DALSelectionOptions:Type"] = "Memory",
-                    ["IdentityOptions:IsEnabled"] = "false"
-                });
-            });
-        }
+        Assert.Empty(schemes);
+        Assert.Null(serviceProvider.GetRequiredService<IOptions<AuthenticationOptions>>().Value.DefaultScheme);
     }
 }

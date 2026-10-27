@@ -11,6 +11,7 @@ public class TrustedIssuerTokenValidationTests
     public void NormalizeClaims_Replaces_Spoofed_Internal_Claims()
     {
         var issuer = CreateIssuer("entra", nameClaimType: "oid", roleClaimType: "roles");
+        issuer.ProviderType = AuthenticationProviderType.Entra;
         var identity = new ClaimsIdentity(
         [
             new Claim("oid", "real-object-id"),
@@ -58,28 +59,18 @@ public class TrustedIssuerTokenValidationTests
         Assert.Null(TrustedIssuerTokenValidation.NormalizeClaims(identity, issuer));
     }
 
-    [Theory]
-    [InlineData(null, null, false)]
-    [InlineData(null, " ", false)]
-    [InlineData("access_as_user", null, true)]
-    [InlineData(null, "user", true)]
-    public void NormalizeClaims_Enforces_Entra_Default_When_RequiredScopes_Is_Empty(
-        string? scope, string? role, bool accepted)
+    [Fact]
+    public void NormalizeClaims_Rejects_Entra_Token_Without_Required_Access()
     {
         var issuer = CreateIssuer("entra", nameClaimType: "oid", roleClaimType: "roles");
         issuer.ProviderType = AuthenticationProviderType.Entra;
-        issuer.RequiredScopes = [];
-        var identity = new ClaimsIdentity([new Claim("oid", "user")], "test");
-        if (scope is not null)
-        {
-            identity.AddClaim(new Claim("scp", scope));
-        }
-        if (role is not null)
-        {
-            identity.AddClaim(new Claim("roles", role));
-        }
+        var identity = new ClaimsIdentity(
+        [
+            new Claim("oid", "user"),
+            new Claim("scp", "User.Read")
+        ], "test");
 
-        Assert.Equal(accepted, TrustedIssuerTokenValidation.NormalizeClaims(identity, issuer) is null);
+        Assert.NotNull(TrustedIssuerTokenValidation.NormalizeClaims(identity, issuer));
     }
 
     [Fact]
@@ -102,10 +93,38 @@ public class TrustedIssuerTokenValidationTests
             new TrustedIssuersOptions(), new IdentityOptions { IsEnabled = true }));
     }
 
+    [Fact]
+    public void ValidateOptions_Rejects_Entra_Issuer_Without_Required_Scopes()
+    {
+        var issuer = CreateIssuer("entra");
+        issuer.ProviderType = AuthenticationProviderType.Entra;
+        issuer.RequiredScopes = [];
+
+        var exception = Assert.Throws<InvalidOperationException>(
+            () => TrustedIssuerTokenValidation.ValidateOptions(
+                new TrustedIssuersOptions { Issuers = [issuer] },
+                new IdentityOptions { IsEnabled = true }));
+
+        Assert.Contains("RequiredScopes", exception.Message);
+    }
+
+    [Fact]
+    public void ValidateOptions_Rejects_Issuer_Without_Explicit_ProviderType()
+    {
+        var issuer = CreateIssuer("issuer");
+        issuer.ProviderType = null;
+
+        Assert.Throws<InvalidOperationException>(
+            () => TrustedIssuerTokenValidation.ValidateOptions(
+                new TrustedIssuersOptions { Issuers = [issuer] },
+                new IdentityOptions { IsEnabled = true }));
+    }
+
     private static TrustedIssuerOptions CreateIssuer(string scheme, string nameClaimType = "sub", string roleClaimType = "role")
         => new()
         {
             Scheme = scheme,
+            ProviderType = AuthenticationProviderType.CookBookIdentityProvider,
             Authority = "https://issuer.example",
             ValidIssuers = ["https://issuer.example"],
             ValidAudiences = ["api"],

@@ -190,6 +190,55 @@ public class ExternalUserDisplayNameTests
     }
 
     [Fact]
+    public async Task VerifiedEmailDoesNotLinkToAnInactiveLocalAccount()
+    {
+        var inactiveUser = new AppUserEntity
+        {
+            Id = Guid.NewGuid(),
+            Subject = "local-subject",
+            UserName = "victim",
+            Email = "victim@example.com",
+            NormalizedEmail = "VICTIM@EXAMPLE.COM",
+            EmailConfirmed = true,
+            Active = false
+        };
+        AppUserEntity? createdUser = null;
+        var manager = new Mock<UserManager<AppUserEntity>>(
+            Mock.Of<IUserStore<AppUserEntity>>(), null!, null!, null!, null!, null!, null!, null!, null!);
+        manager.Setup(candidate => candidate.FindByLoginAsync("Entra", "tenant:object"))
+            .ReturnsAsync((AppUserEntity?)null);
+        manager.SetupGet(candidate => candidate.Users)
+            .Returns(new TestAsyncEnumerable<AppUserEntity>([inactiveUser]));
+        manager.Setup(candidate => candidate.FindByNameAsync(It.IsAny<string>()))
+            .ReturnsAsync((AppUserEntity?)null);
+        manager.Setup(candidate => candidate.CreateAsync(It.IsAny<AppUserEntity>()))
+            .Callback<AppUserEntity>(user => createdUser = user)
+            .ReturnsAsync(IdentityResult.Success);
+        manager.Setup(candidate => candidate.AddLoginAsync(It.IsAny<AppUserEntity>(), It.IsAny<UserLoginInfo>()))
+            .ReturnsAsync(IdentityResult.Success);
+        manager.Setup(candidate => candidate.GetRolesAsync(It.IsAny<AppUserEntity>()))
+            .ReturnsAsync(new List<string>());
+        manager.Setup(candidate => candidate.GetClaimsAsync(It.IsAny<AppUserEntity>()))
+            .ReturnsAsync(new List<Claim>());
+        manager.Setup(candidate => candidate.AddClaimAsync(It.IsAny<AppUserEntity>(), It.IsAny<Claim>()))
+            .ReturnsAsync(IdentityResult.Success);
+        var service = new PersistentExternalUserService(
+            manager.Object, new UpperInvariantLookupNormalizer(),
+            NullLogger<PersistentExternalUserService>.Instance);
+
+        await service.FindOrProvisionAsync(
+            "Entra", "tenant:object", "victim@example.com",
+            new ClaimsPrincipal(new ClaimsIdentity([new Claim("name", "Victim")], "Entra")),
+            CancellationToken.None);
+
+        Assert.NotNull(createdUser);
+        Assert.NotSame(inactiveUser, createdUser);
+        Assert.True(createdUser.Active);
+        manager.Verify(candidate => candidate.AddLoginAsync(inactiveUser, It.IsAny<UserLoginInfo>()), Times.Never);
+        manager.Verify(candidate => candidate.AddLoginAsync(createdUser, It.IsAny<UserLoginInfo>()), Times.Once);
+    }
+
+    [Fact]
     public async Task ExternalUsernameUsesOnlyAllowedAsciiCharacters()
     {
         AppUserEntity? createdUser = null;

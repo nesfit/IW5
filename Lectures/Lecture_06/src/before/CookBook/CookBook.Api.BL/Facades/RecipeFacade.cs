@@ -70,6 +70,12 @@ public class RecipeFacade(
         => recipeModel.IngredientAmounts.Any(amount =>
             recipeRepository.IngredientAmountBelongsToDifferentRecipe(amount.Id, recipeModel.Id));
 
+    public bool HasInvalidIngredientAmountIds(RecipeDetailModel recipeModel)
+    {
+        var ids = recipeModel.IngredientAmounts.Select(amount => amount.Id).ToList();
+        return ids.Contains(Guid.Empty) || ids.Count != ids.Distinct().Count();
+    }
+
     public void MergeIngredientAmounts(RecipeDetailModel recipe)
     {
         var result = new List<RecipeDetailIngredientModel>();
