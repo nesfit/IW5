@@ -30,9 +30,9 @@ public class TrustedIssuerOptions
     public string RoleClaimType { get; set; } = "role";
 
     /// <summary>
-    /// Delegated scopes (`scp`/`scope`) of which a token must contain at least one unless it carries an
-    /// application role (e.g. Entra's "access_as_user"). Entra entries must configure at least one
-    /// required scope; an application role also satisfies that requirement.
+    /// A token with a delegated-scope claim (`scp`/`scope`) must contain at least one configured scope,
+    /// even if it also carries an application role. When no scope claim is present, an application role
+    /// satisfies the access requirement. Entra entries must configure at least one required scope.
     /// </summary>
     public IList<string> RequiredScopes { get; set; } = [];
 }

@@ -76,13 +76,6 @@ public static class TrustedIssuerTokenValidation
             .Distinct(StringComparer.Ordinal)
             .ToList();
 
-        if (issuer.ProviderType == AuthenticationProviderType.Entra
-            && issuer.RequiredScopes.Count == 0
-            && !EntraTokenAuthorization.HasApiAccess(identity, issuer.RoleClaimType))
-        {
-            return "The Entra token must contain the access_as_user scope or an application role.";
-        }
-
         var scopeClaims = ScopeClaimTypes.SelectMany(identity.FindAll).ToList();
         if (issuer.RequiredScopes.Count > 0 && (scopeClaims.Count > 0 || roleValues.Count == 0))
         {
@@ -91,7 +84,7 @@ public static class TrustedIssuerTokenValidation
 
             if (!grantedScopes.Intersect(issuer.RequiredScopes, StringComparer.Ordinal).Any())
             {
-                return $"Token for scheme '{issuer.Scheme}' has neither a required scope ({string.Join(", ", issuer.RequiredScopes)}) nor an application role.";
+                return $"Token for scheme '{issuer.Scheme}' must contain a required scope when a scope claim is present, or an application role when it is not.";
             }
         }
 
