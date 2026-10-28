@@ -36,8 +36,18 @@ Set-Location src\CookBook\CookBook.IdentityProvider.App
 dotnet ef database update --project ..\CookBook.IdentityProvider.DAL --startup-project .
 ```
 
-If the database contained duplicate subjects, invalidate all IdentityProvider
-sessions after migration and sign users in again.
+After migration, check whether any duplicate subjects were renamed:
+
+```sql
+SELECT Id, UserName, Subject
+FROM AspNetUsers
+WHERE Subject LIKE 'legacy-duplicate-%';
+```
+
+If this query returns rows, invalidate existing IdentityProvider authentication
+cookies by rotating the Data Protection key ring and retiring its previous keys,
+or by renaming the authentication cookie. The IdentityProvider has no server-side
+sessions. Require affected users to sign in again.
 
 Install a `dotnet-ef` version matching the project's EF Core major version if
 missing. The design-time factory must resolve your database connection; if the
@@ -121,7 +131,19 @@ Complete the [common Azure settings](authentication-overview.md#common-azure-set
 Provision Azure SQL for identity users; allow the IdentityProvider App Service
 to reach it using your chosen firewall/private-network configuration.
 Apply identity migrations to that database in a controlled deployment step
-before serving traffic. Keep identity and recipe databases separate.
+before serving traffic. Then check whether any duplicate subjects were renamed:
+
+```sql
+SELECT Id, UserName, Subject
+FROM AspNetUsers
+WHERE Subject LIKE 'legacy-duplicate-%';
+```
+
+If this query returns rows, invalidate existing IdentityProvider authentication
+cookies by rotating the Data Protection key ring and retiring its previous keys,
+or by renaming the authentication cookie. The IdentityProvider has no server-side
+sessions; require affected users to sign in again. Keep identity and recipe
+databases separate.
 
 **Required code prerequisite:** the current
 `IdentityProvider.DAL\Factories\IdentityProviderDbContextFactory.cs` creates a

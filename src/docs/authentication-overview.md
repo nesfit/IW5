@@ -120,7 +120,8 @@ Old cookies and access tokens retain old names, roles, and audiences.
 Do not disable signature, issuer, or audience validation to resolve a `401`.
 Do not share tokens, cookies, client secrets, or an unredacted HAR.
 
-Ingredient delete is always admin-only (`AdminOnlyRequirement`).
+When `IdentityOptions:IsEnabled` is true, ingredient delete is admin-only
+(`AdminOnlyRequirement`). With identity disabled, every request is allowed.
 
 Updates and deletes use ASP.NET Core resource-based authorization. The endpoint
 loads the record's owner (`404` if missing), then calls
