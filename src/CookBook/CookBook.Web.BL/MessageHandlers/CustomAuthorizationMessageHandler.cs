@@ -19,8 +19,7 @@ public class CustomAuthorizationMessageHandler(
 
         if (accessTokenResult.TryGetToken(out var token))
         {
-            logger.LogInformation("Access token: '{AccessToken}', expires: '{AcccessTokenExpires}', granted scopes: '{AccessTokenGrantedScopes}'",
-                token.Value,
+            logger.LogDebug("Access token acquired; expires: '{AccessTokenExpires}', granted scopes: '{AccessTokenGrantedScopes}'",
                 token.Expires,
                 token.GrantedScopes);
 

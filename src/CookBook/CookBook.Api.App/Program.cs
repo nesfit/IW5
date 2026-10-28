@@ -1,5 +1,6 @@
-﻿using System.Globalization;
+using System.Globalization;
 using CookBook.Api.App;
+using CookBook.Api.App.Authorization;
 using CookBook.Api.App.Extensions;
 using CookBook.Api.App.Processors;
 using CookBook.Api.BL.Installers;
@@ -13,7 +14,7 @@ using CookBook.Common.Extensions;
 using CookBook.Common.Models;
 using CookBook.Common.Options;
 using FluentValidation;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Options;
 
@@ -27,7 +28,11 @@ ConfigureValidation(builder.Services);
 ConfigureOpenApiDocuments(builder.Services);
 ConfigureDependencies(builder.Services, builder.Configuration);
 ConfigureMapperly(builder.Services);
-ConfigureAuthentication(builder.Services, builder.Configuration);
+var trustedIssuersOptions = builder.Configuration.GetSection(nameof(TrustedIssuersOptions)).Get<TrustedIssuersOptions>()
+    ?? new TrustedIssuersOptions();
+var identityOptions = builder.Configuration.GetSection(nameof(IdentityOptions)).Get<IdentityOptions>()
+    ?? new IdentityOptions();
+TrustedIssuerAuthenticationConfiguration.Configure(builder.Services, trustedIssuersOptions, identityOptions);
 
 var app = builder.Build();
 
@@ -102,28 +107,6 @@ void ConfigureMapperly(IServiceCollection serviceCollection)
 {
     serviceCollection.AddSingleton<IngredientMapper>();
     serviceCollection.AddSingleton<RecipeMapper>();
-}
-
-void ConfigureAuthentication(IServiceCollection serviceCollection, IConfiguration configuration)
-{
-    var identityOptions = configuration.GetSection("IdentityOptions").Get<IdentityOptions>();
-
-    serviceCollection.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-        .AddJwtBearer(options =>
-        {
-            options.Authority = identityOptions?.Authority;
-            options.TokenValidationParameters.ValidateAudience = false;
-        });
-
-    serviceCollection.AddAuthorizationBuilder()
-        .AddPolicy(ApiPolicies.IngredientAdmin, policy =>
-            policy.RequireAuthenticatedUser()
-            .RequireRole(UserRoles.Admin)
-            )
-        .AddPolicy(ApiPolicies.RecipeAdmin, policy =>
-            policy.RequireAuthenticatedUser().RequireRole(UserRoles.Admin));
-
-    serviceCollection.AddHttpContextAccessor();
 }
 
 void UseAuthenticationAndAuthorization(IApplicationBuilder application)

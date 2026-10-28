@@ -25,6 +25,9 @@ namespace CookBook.IdentityProvider.App
         public static IEnumerable<ApiResource> ApiResources =>
         [
             new ("cookbookclientaudience")
+            {
+                Scopes = { "cookbookapi" }
+            }
         ];
 
         public static IEnumerable<ApiScope> ApiScopes =>

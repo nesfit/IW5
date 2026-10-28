@@ -1,5 +1,11 @@
 # Programování v .NET a C# - IW5, Organizační pokyny
 
+CookBook authentication setup (local and Azure):
+[local accounts](src/docs/authentication-setup-local.md),
+[direct Entra](src/docs/authentication-setup-entra.md),
+[combined login](src/docs/authentication-setup-combined.md).
+See [scenario selection and shared settings](src/docs/authentication-overview.md).
+
 ---
 
 ## [FAQ - Frequently Asked Questions](https://github.com/nesfit/IW5/wiki)

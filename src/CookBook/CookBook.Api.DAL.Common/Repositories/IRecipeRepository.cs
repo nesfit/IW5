@@ -4,5 +4,6 @@ namespace CookBook.Api.DAL.Common.Repositories
 {
     public interface IRecipeRepository : IApiRepository<RecipeEntity>
     {
+        bool IngredientAmountBelongsToDifferentRecipe(Guid ingredientAmountId, Guid recipeId);
     }
 }

@@ -1,4 +1,7 @@
-﻿using CookBook.IdentityProvider.BL.Facades;
+﻿using System.Security.Claims;
+using CookBook.IdentityProvider.App.Options;
+using CookBook.IdentityProvider.App.Services;
+using CookBook.IdentityProvider.BL.Facades;
 using Duende.IdentityServer;
 using Duende.IdentityServer.Events;
 using Duende.IdentityServer.Models;
@@ -9,6 +12,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Options;
 
 namespace CookBook.IdentityProvider.App.Pages.Login;
 
@@ -19,8 +23,10 @@ public class Index : PageModel
     private readonly IIdentityServerInteractionService _interaction;
     private readonly IEventService _events;
     private readonly IAppUserFacade appUserFacade;
+    private readonly IAppUserClaimsFacade appUserClaimsFacade;
     private readonly IAuthenticationSchemeProvider _schemeProvider;
     private readonly IIdentityProviderStore _identityProviderStore;
+    private readonly CookBookIdentityProviderOptions _loginOptions;
 
     public ViewModel View { get; set; }
 
@@ -32,13 +38,26 @@ public class Index : PageModel
         IAuthenticationSchemeProvider schemeProvider,
         IIdentityProviderStore identityProviderStore,
         IEventService events,
-        IAppUserFacade appUserFacade)
+        IAppUserFacade appUserFacade,
+        IAppUserClaimsFacade appUserClaimsFacade,
+        IOptions<CookBookIdentityProviderOptions> loginOptions)
     {
         _interaction = interaction;
         _schemeProvider = schemeProvider;
         _identityProviderStore = identityProviderStore;
         _events = events;
         this.appUserFacade = appUserFacade;
+        this.appUserClaimsFacade = appUserClaimsFacade;
+        _loginOptions = loginOptions.Value;
+    }
+
+    private async Task<string> GetLocalDisplayNameAsync(Guid userId, string userName)
+    {
+        var claims = (await appUserClaimsFacade.GetAppUserClaimsByUserIdAsync(userId))
+            .Where(claim => claim.ClaimType is not null && claim.ClaimValue is not null)
+            .Select(claim => new Claim(claim.ClaimType!, claim.ClaimValue!));
+        return ExternalUserDisplayName.GetDisplayName(
+            new ClaimsPrincipal(new ClaimsIdentity(claims)), userName);
     }
 
     public async Task<IActionResult> OnGet(string returnUrl)
@@ -56,6 +75,11 @@ public class Index : PageModel
 
     public async Task<IActionResult> OnPost()
     {
+        if (!_loginOptions.Local.IsEnabled)
+        {
+            return Forbid();
+        }
+
         // check if we are in the context of an authorization request
         var context = await _interaction.GetAuthorizationContextAsync(Input.ReturnUrl, CancellationToken.None);
 
@@ -120,7 +144,7 @@ public class Index : PageModel
                 // issue authentication cookie with subject ID and username
                 var issuer = new IdentityServerUser(user.Subject)
                 {
-                    DisplayName = user.UserName
+                    DisplayName = await GetLocalDisplayNameAsync(user.Id, user.UserName)
                 };
 
                 await HttpContext.SignInAsync(issuer, props);
@@ -178,7 +202,7 @@ public class Index : PageModel
             // this is meant to short circuit the UI and only trigger the one external IdP
             View = new ViewModel
             {
-                EnableLocalLogin = local,
+                EnableLocalLogin = local && _loginOptions.Local.IsEnabled,
             };
 
             Input.Username = context?.LoginHint;
@@ -225,7 +249,7 @@ public class Index : PageModel
         View = new ViewModel
         {
             AllowRememberLogin = LoginOptions.AllowRememberLogin,
-            EnableLocalLogin = allowLocal && LoginOptions.AllowLocalLogin,
+            EnableLocalLogin = allowLocal && LoginOptions.AllowLocalLogin && _loginOptions.Local.IsEnabled,
             ExternalProviders = providers.ToArray()
         };
     }

@@ -1,0 +1,38 @@
+﻿namespace CookBook.Common.Options;
+
+/// <summary>
+/// One trusted bearer-token issuer the API validates against. The API registers one JWT bearer
+/// authentication scheme per entry, regardless of <see cref="IdentityOptions.IsEnabled"/>: turning
+/// authorization off only stops requiring authorization on endpoints, it never removes or loosens
+/// token validation.
+/// </summary>
+public class TrustedIssuerOptions
+{
+    /// <summary>Unique authentication scheme name used to register and select this issuer's JWT bearer handler.</summary>
+    public required string Scheme { get; set; }
+
+    /// <summary>Provider type this issuer belongs to; required for provider-specific token validation.</summary>
+    public AuthenticationProviderType? ProviderType { get; set; }
+
+    /// <summary>OIDC authority/metadata address used to resolve signing keys.</summary>
+    public required string Authority { get; set; }
+
+    /// <summary>Issuer values (`iss`) this scheme accepts. Must not be empty.</summary>
+    public IList<string> ValidIssuers { get; set; } = [];
+
+    /// <summary>Audience values (`aud`) this scheme accepts. Must not be empty; audience validation is always enabled.</summary>
+    public IList<string> ValidAudiences { get; set; } = [];
+
+    /// <summary>Claim type mapped to the ASP.NET Core name/subject claim (e.g. "sub" or Entra's "oid").</summary>
+    public string NameClaimType { get; set; } = "sub";
+
+    /// <summary>Claim type mapped to the ASP.NET Core role claim (e.g. "role" or Entra's "roles").</summary>
+    public string RoleClaimType { get; set; } = "role";
+
+    /// <summary>
+    /// A token with a delegated-scope claim (`scp`/`scope`) must contain at least one configured scope,
+    /// even if it also carries an application role. When no scope claim is present, an application role
+    /// satisfies the access requirement. Entra entries must configure at least one required scope.
+    /// </summary>
+    public IList<string> RequiredScopes { get; set; } = [];
+}

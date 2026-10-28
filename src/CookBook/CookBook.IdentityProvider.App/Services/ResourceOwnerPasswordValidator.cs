@@ -17,11 +17,11 @@ public class ResourceOwnerPasswordValidator : IResourceOwnerPasswordValidator
     {
         var areCredentialsValid = await appUserFacade.ValidateCredentialsAsync(context.UserName, context.Password);
 
-        if (areCredentialsValid)
+        if (areCredentialsValid
+            && await appUserFacade.GetUserByUserNameAsync(context.UserName) is { } user)
         {
-            var userId = await appUserFacade.GetUserIdByUserNameAsync(context.UserName);
-
-            context.Result = new GrantValidationResult(userId.ToString(), OidcConstants.AuthenticationMethods.Password);
+            // Same `sub` as interactive login (Login page, profile service): the stable Subject, not the database id.
+            context.Result = new GrantValidationResult(user.Subject, OidcConstants.AuthenticationMethods.Password);
         }
     }
 }
