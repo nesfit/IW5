@@ -72,7 +72,10 @@ public class RecipeFacade(
 
     public bool HasInvalidIngredientAmountIds(RecipeDetailModel recipeModel)
     {
-        var ids = recipeModel.IngredientAmounts.Select(amount => amount.Id).ToList();
+        var ids = recipeModel.IngredientAmounts
+            .Select(amount => amount.Id)
+            .Where(id => id != Guid.Empty)
+            .ToList();
         return ids.Count != ids.Distinct().Count();
     }
 

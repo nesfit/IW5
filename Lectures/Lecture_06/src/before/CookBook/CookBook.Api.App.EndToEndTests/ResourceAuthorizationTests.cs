@@ -141,11 +141,15 @@ public class ResourceAuthorizationTests : IAsyncDisposable
     [InlineData("post")]
     [InlineData("put")]
     [InlineData("upsert")]
-    public async Task RecipeEndpointsAssignServerIdsToEmptyIngredientAmountIds(string operation)
+    public async Task RecipeEndpointsAssignDistinctServerIdsToMultipleEmptyIngredientAmountIds(string operation)
     {
         var owner = CreateClient("owner");
-        var ingredient = NewIngredient();
-        await CreateIngredientAsync(owner, ingredient);
+        var ingredients = new[] { NewIngredient(), NewIngredient() };
+        foreach (var ingredient in ingredients)
+        {
+            await CreateIngredientAsync(owner, ingredient);
+        }
+
         var recipe = NewRecipe();
         if (operation != "post")
         {
@@ -156,13 +160,13 @@ public class ResourceAuthorizationTests : IAsyncDisposable
         {
             IngredientAmounts =
             [
-                new RecipeDetailIngredientModel
+                .. ingredients.Select(ingredient => new RecipeDetailIngredientModel
                 {
                     Id = Guid.Empty,
                     Amount = 1,
                     Unit = Unit.Pieces,
                     Ingredient = new IngredientListModel { Id = ingredient.Id, Name = ingredient.Name }
-                }
+                })
             ]
         };
 
@@ -170,8 +174,10 @@ public class ResourceAuthorizationTests : IAsyncDisposable
 
         response.EnsureSuccessStatusCode();
         var saved = await owner.GetFromJsonAsync<RecipeDetailModel>($"/api/recipe/{recipe.Id}");
-        var amount = Assert.Single(Assert.IsType<RecipeDetailModel>(saved).IngredientAmounts);
-        Assert.NotEqual(Guid.Empty, amount.Id);
+        var amounts = Assert.IsType<RecipeDetailModel>(saved).IngredientAmounts;
+        Assert.Equal(2, amounts.Count);
+        Assert.All(amounts, amount => Assert.NotEqual(Guid.Empty, amount.Id));
+        Assert.Equal(2, amounts.Select(amount => amount.Id).Distinct().Count());
     }
 
     [Theory]
