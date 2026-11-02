@@ -13,21 +13,21 @@ public class WebBLInstaller
     public void Install(
         IServiceCollection serviceCollection,
         IdentityOptions identityOptions,
+        WebAuthenticationProviderOptions? selectedProvider,
         ApiOptions apiOptions)
     {
-        if (identityOptions.IsEnabled)
+        if (identityOptions.IsEnabled && selectedProvider is not null)
         {
             serviceCollection.AddScoped<CustomAuthorizationMessageHandler>();
         }
-
         serviceCollection.AddSingleton<JsonSerializerOptions>(new JsonSerializerOptions
         {
             PropertyNameCaseInsensitive = true,
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
         });
 
-        AddApiClient<IIngredientApiClient, IngredientApiClient>(serviceCollection, identityOptions, apiOptions);
-        AddApiClient<IRecipeApiClient, RecipeApiClient>(serviceCollection, identityOptions, apiOptions);
+        AddApiClient<IIngredientApiClient, IngredientApiClient>(serviceCollection, identityOptions, selectedProvider, apiOptions);
+        AddApiClient<IRecipeApiClient, RecipeApiClient>(serviceCollection, identityOptions, selectedProvider, apiOptions);
 
         serviceCollection.Scan(selector =>
             selector.FromAssemblyOf<WebBLInstaller>()
@@ -39,6 +39,7 @@ public class WebBLInstaller
     private void AddApiClient<TInterface, TImplementation>(
         IServiceCollection serviceCollection,
         IdentityOptions identityOptions,
+        WebAuthenticationProviderOptions? selectedProvider,
         ApiOptions apiOptions)
         where TInterface : class, IApiClient
         where TImplementation : class, TInterface
@@ -48,13 +49,13 @@ public class WebBLInstaller
             client.BaseAddress = new Uri(apiOptions.BaseUrl);
         });
 
-        if (identityOptions.IsEnabled)
+        if (identityOptions.IsEnabled && selectedProvider is not null)
         {
             httpClient.AddHttpMessageHandler(serviceProvider
                 => serviceProvider.GetRequiredService<CustomAuthorizationMessageHandler>()
                 .ConfigureHandler(
                     authorizedUrls: [apiOptions.BaseUrl],
-                    scopes: identityOptions.DefaultScopes));
+                    scopes: selectedProvider.DefaultScopes));
         }
     }
 }

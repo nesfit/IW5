@@ -1,20 +1,26 @@
-﻿using System.Security.Claims;
+using System.Security.Claims;
+using CookBook.Api.App.Authorization;
+using CookBook.Api.BL.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Options;
+using IdentityOptions = CookBook.Common.Options.IdentityOptions;
 
-public abstract class EndpointsBase
+namespace CookBook.Api.App.Endpoints;
+
+public abstract class EndpointsBase(IOptions<IdentityOptions> identityOptions)
 {
-    abstract public IEndpointRouteBuilder MapEndpoints(IEndpointRouteBuilder endpointRouteBuilder);
+    public abstract IEndpointRouteBuilder MapEndpoints(IEndpointRouteBuilder endpointRouteBuilder);
 
-    public string? GetUserId(IHttpContextAccessor httpContextAccessor)
-        => httpContextAccessor.HttpContext?.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+    protected bool IsIdentityEnabled => identityOptions.Value.IsEnabled;
 
-    public bool IsUserInRole(IHttpContextAccessor httpContextAccessor, string role)
-        => httpContextAccessor.HttpContext?.User.IsInRole(role)
-        ?? false;
+    protected static string? GetUserId(ClaimsPrincipal user)
+        => user.GetOwnerId();
 
-    public IList<string> GetUserRoles(IHttpContextAccessor httpContextAccessor)
-        => httpContextAccessor.HttpContext?.User.Claims
-            .Where(c => c.Type == ClaimTypes.Role)
-            .Select(c => c.Value)
-            .ToList()
-        ?? [];
+    protected async Task<bool> IsAuthorizedAsync(
+        IAuthorizationService authorizationService,
+        ClaimsPrincipal user,
+        ResourceOwnership resource,
+        IAuthorizationRequirement requirement)
+        => !IsIdentityEnabled
+           || (await authorizationService.AuthorizeAsync(user, resource, requirement)).Succeeded;
 }

@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using CookBook.IdentityProvider.App.Options;
+using Microsoft.Extensions.Options;
 
 namespace CookBook.IdentityProvider.App.Pages.Logout;
 
@@ -15,14 +17,19 @@ public class Index : PageModel
 {
     private readonly IIdentityServerInteractionService _interaction;
     private readonly IEventService _events;
+    private readonly CookBookIdentityProviderOptions _options;
 
     [BindProperty] 
     public string LogoutId { get; set; }
 
-    public Index(IIdentityServerInteractionService interaction, IEventService events)
+    public Index(
+        IIdentityServerInteractionService interaction,
+        IEventService events,
+        IOptions<CookBookIdentityProviderOptions> options)
     {
         _interaction = interaction;
         _events = events;
+        _options = options.Value;
     }
 
     public async Task<IActionResult> OnGet(string logoutId)
@@ -77,6 +84,15 @@ public class Index : PageModel
             // if it's a local login we can ignore this workflow
             if (idp != null && idp != Duende.IdentityServer.IdentityServerConstants.LocalIdentityProvider)
             {
+                var externalProvider = _options.ExternalProviders.SingleOrDefault(provider =>
+                    provider.IsEnabled
+                    && string.Equals(provider.Scheme, idp, StringComparison.Ordinal));
+
+                if (externalProvider?.UpstreamLogoutIsEnabled != true)
+                {
+                    return RedirectToPage("/Account/Logout/LoggedOut", new { logoutId = LogoutId });
+                }
+
                 // we need to see if the provider supports external logout
                 if (await HttpContext.GetSchemeSupportsSignOutAsync(idp))
                 {

@@ -57,6 +57,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CookBook.IdentityProvider.B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CookBook.IdentityProvider.App", "CookBook.IdentityProvider.App\CookBook.IdentityProvider.App.csproj", "{E5D0FDD2-5BEC-7321-884A-FD44E5A146BF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CookBook.Web.BL.UnitTests", "CookBook.Web.BL.UnitTests\CookBook.Web.BL.UnitTests.csproj", "{1EC8EE80-701C-4EED-B346-65153778E715}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CookBook.IdentityProvider.App.UnitTests", "CookBook.IdentityProvider.App.UnitTests\CookBook.IdentityProvider.App.UnitTests.csproj", "{B712693E-4982-4D5E-92D1-8613F30ADFC4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -131,6 +135,14 @@ Global
 		{E5D0FDD2-5BEC-7321-884A-FD44E5A146BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E5D0FDD2-5BEC-7321-884A-FD44E5A146BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E5D0FDD2-5BEC-7321-884A-FD44E5A146BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EC8EE80-701C-4EED-B346-65153778E715}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EC8EE80-701C-4EED-B346-65153778E715}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EC8EE80-701C-4EED-B346-65153778E715}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EC8EE80-701C-4EED-B346-65153778E715}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B712693E-4982-4D5E-92D1-8613F30ADFC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B712693E-4982-4D5E-92D1-8613F30ADFC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B712693E-4982-4D5E-92D1-8613F30ADFC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B712693E-4982-4D5E-92D1-8613F30ADFC4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -155,6 +167,7 @@ Global
 		{5FC08BFC-3B22-D952-2D89-5178F129408B} = {AF57E223-3FEE-4375-AA2C-08D8DD7822FE}
 		{49E52BAD-BA88-811A-40C8-8FA68D2AA465} = {AF57E223-3FEE-4375-AA2C-08D8DD7822FE}
 		{E5D0FDD2-5BEC-7321-884A-FD44E5A146BF} = {AF57E223-3FEE-4375-AA2C-08D8DD7822FE}
+		{B712693E-4982-4D5E-92D1-8613F30ADFC4} = {AF57E223-3FEE-4375-AA2C-08D8DD7822FE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {10E5D329-1983-4C74-838B-CA0CFC4A2256}

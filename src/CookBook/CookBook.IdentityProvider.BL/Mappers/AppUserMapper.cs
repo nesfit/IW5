@@ -8,6 +8,7 @@ namespace CookBook.IdentityProvider.BL.Mappers;
 [Mapper]
 public partial class AppUserMapper
 {
+    [MapperIgnoreTarget(nameof(AppUserEntity.Subject))]
     public partial AppUserEntity ToEntity(AppUserCreateModel appUserCreateModel);
 
     public partial AppUserListModel ToListModel(AppUserEntity appUserEntity);

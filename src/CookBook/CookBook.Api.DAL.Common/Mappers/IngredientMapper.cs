@@ -1,4 +1,4 @@
-﻿using CookBook.Api.DAL.Common.Entities;
+using CookBook.Api.DAL.Common.Entities;
 using Riok.Mapperly.Abstractions;
 
 namespace CookBook.Api.DAL.Common.Mappers
@@ -7,6 +7,8 @@ namespace CookBook.Api.DAL.Common.Mappers
     public partial class IngredientMapper
     {
         [MapperIgnoreSource(nameof(IngredientEntity.Id))]
+        [MapperIgnoreSource(nameof(IngredientEntity.OwnerId))]
+        [MapperIgnoreTarget(nameof(IngredientEntity.OwnerId))]
         public partial void UpdateEntity(IngredientEntity source, IngredientEntity destination);
     }
 }

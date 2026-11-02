@@ -5,4 +5,5 @@ namespace CookBook.IdentityProvider.DAL.Repositories;
 public interface IAppUserRepository
 {
     Task<IList<AppUserEntity>> SearchAsync(string searchString);
+    Task<AppUserEntity?> GetBySubjectAsync(string subject);
 }

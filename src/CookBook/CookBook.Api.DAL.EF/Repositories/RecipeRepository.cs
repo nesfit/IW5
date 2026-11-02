@@ -37,5 +37,11 @@ namespace CookBook.Api.DAL.EF.Repositories
                 return null;
             }
         }
+
+        public bool IngredientAmountBelongsToDifferentRecipe(Guid ingredientAmountId, Guid recipeId)
+        {
+            return dbContext.IngredientAmounts.Any(amount =>
+                amount.Id == ingredientAmountId && amount.RecipeId != recipeId);
+        }
     }
 }

@@ -8,4 +8,7 @@ public class AppUserRepository(IdentityProviderDbContext identityProviderDbConte
     public async Task<IList<AppUserEntity>> SearchAsync(string searchString)
         => await identityProviderDbContext.Users.Where(user => EF.Functions.Like(user.UserName, $"%{searchString}%"))
         .ToListAsync();
+
+    public Task<AppUserEntity?> GetBySubjectAsync(string subject)
+        => identityProviderDbContext.Users.SingleOrDefaultAsync(user => user.Subject == subject);
 }

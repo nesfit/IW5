@@ -1,8 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using CookBook.Api.BL.Facades;
 using CookBook.Api.BL.Mappers;
+using CookBook.Api.BL.Models;
+using CookBook.Api.DAL.Common.Entities;
 using CookBook.Api.DAL.Common.Repositories;
 using CookBook.Common.Enums;
 using CookBook.Common.Models;
@@ -25,10 +27,71 @@ public class RecipeFacadeTests
 
         var itemId = Guid.NewGuid();
         //act
-        facade.Delete(itemId, []);
+        facade.Delete(itemId);
 
         //assert
         repositoryMock.Verify(recipeRepository => recipeRepository.Remove(itemId));
+    }
+
+    [Fact]
+    public void GetOwnership_Returns_Owner_Of_Existing_Recipe()
+    {
+        var recipeId = Guid.NewGuid();
+        var repositoryMock = new Mock<IRecipeRepository>(MockBehavior.Strict);
+        repositoryMock.Setup(repository => repository.GetById(recipeId))
+            .Returns(new RecipeEntity { Id = recipeId, Name = "Name", Description = "Description", Duration = TimeSpan.FromMinutes(5), FoodType = FoodType.Dessert, OwnerId = "owner" });
+        var facade = new RecipeFacade(repositoryMock.Object, new RecipeMapper());
+
+        var ownership = facade.GetOwnership(recipeId);
+
+        Assert.Equal(new ResourceOwnership(recipeId, "owner"), ownership);
+    }
+
+    [Fact]
+    public void GetOwnership_Returns_Null_For_Missing_Recipe()
+    {
+        var repositoryMock = new Mock<IRecipeRepository>(MockBehavior.Strict);
+        repositoryMock.Setup(repository => repository.GetById(It.IsAny<Guid>())).Returns((RecipeEntity?)null);
+        var facade = new RecipeFacade(repositoryMock.Object, new RecipeMapper());
+
+        Assert.Null(facade.GetOwnership(Guid.NewGuid()));
+    }
+
+    [Fact]
+    public void Update_Replaces_IngredientAmount_Ids_Not_Belonging_To_Recipe()
+    {
+        var recipeId = Guid.NewGuid();
+        var ingredientId = Guid.NewGuid();
+        var ownAmountId = Guid.NewGuid();
+        var foreignAmountId = Guid.NewGuid();
+        RecipeEntity? updatedEntity = null;
+        var repositoryMock = new Mock<IRecipeRepository>(MockBehavior.Strict);
+        repositoryMock.Setup(repository => repository.GetById(recipeId))
+            .Returns(new RecipeEntity
+            {
+                Id = recipeId, Name = "Name", Description = "Description", Duration = TimeSpan.FromMinutes(5), FoodType = FoodType.Dessert,
+                IngredientAmounts = [new IngredientAmountEntity { Id = ownAmountId, Amount = 1, Unit = Unit.Pieces, RecipeId = recipeId, IngredientId = ingredientId }]
+            });
+        repositoryMock.Setup(repository => repository.Update(It.IsAny<RecipeEntity>()))
+            .Callback<RecipeEntity>(entity => updatedEntity = entity)
+            .Returns(recipeId);
+        var facade = new RecipeFacade(repositoryMock.Object, new RecipeMapper());
+
+        facade.Update(new RecipeDetailModel
+        {
+            Id = recipeId, Name = "Name", Description = "Description", Duration = TimeSpan.FromMinutes(5), FoodType = FoodType.Dessert,
+            IngredientAmounts =
+            [
+                new RecipeDetailIngredientModel { Id = ownAmountId, Amount = 2, Unit = Unit.Pieces, Ingredient = new IngredientListModel { Id = ingredientId, Name = "Own" } },
+                new RecipeDetailIngredientModel { Id = foreignAmountId, Amount = 3, Unit = Unit.Kg, Ingredient = new IngredientListModel { Id = Guid.NewGuid(), Name = "Foreign" } }
+            ]
+        });
+
+        Assert.NotNull(updatedEntity);
+        var ids = updatedEntity.IngredientAmounts.Select(ingredientAmount => ingredientAmount.Id).ToList();
+        Assert.Contains(ownAmountId, ids);
+        Assert.DoesNotContain(foreignAmountId, ids);
+        Assert.All(updatedEntity.IngredientAmounts, ingredientAmount => Assert.Equal(recipeId, ingredientAmount.RecipeId));
     }
 
     [Fact]

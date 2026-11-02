@@ -27,17 +27,41 @@ if (apiOptions is null)
     throw new ArgumentNullException("Failed to load ApiOptions from configuration.");
 }
 
-var identityOptions = builder.Configuration.GetSection(nameof(IdentityOptions)).Get<IdentityOptions>();
-if (identityOptions is null)
+var identityOptions = builder.Configuration.GetSection(nameof(IdentityOptions)).Get<IdentityOptions>()
+    ?? throw new ArgumentNullException("Failed to load IdentityOptions from configuration.");
+
+var webAuthenticationOptions = builder.Configuration.GetSection(nameof(WebAuthenticationOptions)).Get<WebAuthenticationOptions>()
+    ?? new WebAuthenticationOptions();
+
+WebAuthenticationProviderOptions? selectedProvider = null;
+if (identityOptions.IsEnabled)
 {
-    throw new ArgumentNullException("Failed to load IdentityOptions from configuration.");
+    selectedProvider = webAuthenticationOptions.Providers
+        .FirstOrDefault(p => p.ProviderType == webAuthenticationOptions.SelectedProvider && p.IsEnabled);
+
+    if (selectedProvider is null)
+    {
+        throw new InvalidOperationException(
+            $"WebAuthenticationOptions:SelectedProvider is '{webAuthenticationOptions.SelectedProvider}', " +
+            "but no enabled provider registration with that ProviderType was found under WebAuthenticationOptions:Providers.");
+    }
+
+    if (string.IsNullOrWhiteSpace(selectedProvider.Authority)
+        || string.IsNullOrWhiteSpace(selectedProvider.ClientId)
+        || selectedProvider.DefaultScopes.Count == 0)
+    {
+        throw new InvalidOperationException(
+            $"The selected WebAuthenticationOptions provider '{selectedProvider.ProviderType}' is missing Authority, ClientId, or DefaultScopes.");
+    }
 }
 
 builder.Services.Configure<IdentityOptions>(builder.Configuration.GetSection(nameof(IdentityOptions)));
+builder.Services.Configure<WebAuthenticationOptions>(
+    builder.Configuration.GetSection(nameof(WebAuthenticationOptions)));
 builder.Services.AddInstaller<WebDALInstaller>();
 if (apiOptions != null)
 {
-    builder.Services.AddInstaller<WebBLInstaller>(identityOptions, apiOptions);
+    builder.Services.AddInstaller<WebBLInstaller>(identityOptions, selectedProvider, apiOptions);
 }
 
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
@@ -52,12 +76,9 @@ builder.Services.AddValidatorsFromAssemblyContaining<IngredientDetailModel>();
 
 builder.Services.AddLocalization();
 
-if (identityOptions?.IsEnabled is true)
+if (identityOptions.IsEnabled && selectedProvider is not null)
 {
-    builder.Services.AddOidcAuthentication(options =>
-    {
-        builder.Configuration.Bind(nameof(IdentityOptions), options.ProviderOptions);
-    });
+    builder.Services.AddCookBookAuthentication(selectedProvider);
 }
 
 var localDbEnabledString = builder.Configuration.GetSection(nameof(LocalDbOptions))[nameof(LocalDbOptions.IsEnabled)];
@@ -70,6 +91,11 @@ var host = builder.Build();
 
 // Initialize culture from localStorage
 var jsRuntime = host.Services.GetRequiredService<IJSRuntime>();
+if (identityOptions.IsEnabled && selectedProvider is not null)
+{
+    await jsRuntime.InvokeVoidAsync("cookBookAuthentication.load", selectedProvider.GetAuthenticationScriptPath());
+}
+
 var jsInProcessRuntime = (IJSInProcessRuntime)jsRuntime;
 
 try

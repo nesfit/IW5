@@ -1,4 +1,5 @@
-﻿@using CookBook.Common.Options
+@using CookBook.Common.Options
+@using CookBook.Web.BL.Extensions
 @using Microsoft.AspNetCore.Components.Authorization
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 @using Microsoft.Extensions.Options
@@ -10,7 +11,7 @@
 	<AuthorizeView>
 		<Authorized>
 			<div class="nav-link font-weight-bold">
-				Hello @context.User.FindFirst("sub")?.Value!
+				Hello @context.User.GetDisplayName()!
 
 				<button class="nav-link btn btn-link" @onclick="BeginLogOut">Log out</button>
 			</div>
@@ -24,7 +25,5 @@
 
 @code{
     private void BeginLogOut()
-    {
-        Navigation.NavigateToLogout("authentication/logout?logoutUrl=");
-    }
-}   
+        => Navigation.NavigateToLogout("authentication/logout?logoutUrl=");
+}

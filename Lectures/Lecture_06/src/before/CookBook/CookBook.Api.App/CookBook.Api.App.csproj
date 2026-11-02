@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <UserSecretsId>70e22f70-c609-4d6a-9be8-b462915b90e5</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation.AspNetCore" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" />
+    <PackageReference Include="NSwag.AspNetCore" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CookBook.Api.BL\CookBook.Api.BL.csproj" />
+    <ProjectReference Include="..\CookBook.Api.DAL.EF\CookBook.Api.DAL.EF.csproj" />
+    <ProjectReference Include="..\CookBook.Api.DAL.Memory\CookBook.Api.DAL.Memory.csproj" />
+  </ItemGroup>
+    <ItemGroup>
+        <InternalsVisibleTo Include="CookBook.Api.App.EndToEndTests" />
+    </ItemGroup>
+    <ItemGroup>
+      <Compile Update="Resources\Texts\IngredientEndpointsResources.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>IngredientEndpointsResources.resx</DependentUpon>
+      </Compile>
+    </ItemGroup>
+    <ItemGroup>
+      <EmbeddedResource Update="Resources\Texts\IngredientEndpointsResources.resx">
+        <Generator>PublicResXFileCodeGenerator</Generator>
+        <LastGenOutput>IngredientEndpointsResources.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+    </ItemGroup>
+</Project>

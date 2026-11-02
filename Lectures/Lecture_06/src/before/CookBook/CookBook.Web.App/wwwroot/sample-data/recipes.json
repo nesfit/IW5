@@ -1,0 +1,29 @@
+﻿[
+  {
+    "Id": "fabde0cd-eefe-443f-baf6-3d96cc2cbf2e",
+    "Name": "Míchaná vejce",
+    "Description": "Popis míchaných vajec",
+    "Duration": "00:35:00",
+    "FoodType": 1,
+    "Ingredients": [
+      {
+        "Ingredient": {
+          "Id": "df935095-8709-4040-a2bb-b6f97cb416dc",
+          "Name": "Vejce"
+        },
+        "Amount": 4,
+        "Unit": 5,
+        "UnitText": "kusy"
+      },
+      {
+        "Ingredient": {
+          "Id": "23b3902d-7d4f-4213-9cf0-112348f56238",
+          "Name": "Cibule"
+        },
+        "Amount": 1,
+        "Unit": 5,
+        "UnitText": "kusy"
+      }
+    ]
+  }
+]

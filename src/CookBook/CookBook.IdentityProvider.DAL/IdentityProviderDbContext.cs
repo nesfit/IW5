@@ -10,4 +10,5 @@ public class IdentityProviderDbContext : IdentityDbContext<AppUserEntity, AppRol
         : base(options)
     {
     }
+
 }

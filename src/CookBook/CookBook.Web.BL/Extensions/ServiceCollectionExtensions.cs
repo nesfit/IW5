@@ -8,11 +8,14 @@ namespace CookBook.Web.BL.Extensions
     public static class ServiceCollectionExtensions
     {
         public static void AddInstaller<TInstaller>(
-            this IServiceCollection serviceCollection, IdentityOptions identityOptions, ApiOptions apiOptions)
+            this IServiceCollection serviceCollection,
+            IdentityOptions identityOptions,
+            WebAuthenticationProviderOptions? selectedProvider,
+            ApiOptions apiOptions)
             where TInstaller : WebBLInstaller, new()
         {
             var installer = new TInstaller();
-            installer.Install(serviceCollection, identityOptions, apiOptions);
+            installer.Install(serviceCollection, identityOptions, selectedProvider, apiOptions);
         }
     }
 }
