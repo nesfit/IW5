@@ -89,6 +89,21 @@ public class TrustedIssuerTokenValidationTests
     }
 
     [Fact]
+    public void EntraScopeClaimAndRoleMustStillContainRequiredScope()
+    {
+        var issuer = CreateIssuer("entra", nameClaimType: "oid", roleClaimType: "roles");
+        issuer.ProviderType = AuthenticationProviderType.Entra;
+        var identity = new ClaimsIdentity(
+        [
+            new Claim("oid", "user"),
+            new Claim("scope", "Recipes.Read"),
+            new Claim("roles", "user")
+        ], "test");
+
+        Assert.NotNull(TrustedIssuerTokenValidation.NormalizeClaims(identity, issuer));
+    }
+
+    [Fact]
     public void NormalizeClaims_Accepts_App_Role_Token_Without_Scope_Claims()
     {
         var issuer = CreateIssuer("entra", nameClaimType: "oid", roleClaimType: "roles");
