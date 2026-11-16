@@ -6,6 +6,8 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
+#nullable disable
+
 namespace CookBook.Api.DAL.EF.Migrations
 {
     [DbContext(typeof(CookBookDbContext))]
@@ -15,9 +17,10 @@ namespace CookBook.Api.DAL.EF.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "6.0.0-preview.7.21378.4")
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("ProductVersion", "10.0.11")
+                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
             modelBuilder.Entity("CookBook.Api.DAL.Common.Entities.IngredientAmountEntity", b =>
                 {
@@ -30,6 +33,9 @@ namespace CookBook.Api.DAL.EF.Migrations
 
                     b.Property<Guid>("IngredientId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("OwnerId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("RecipeId")
                         .HasColumnType("uniqueidentifier");
@@ -63,6 +69,9 @@ namespace CookBook.Api.DAL.EF.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("OwnerId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Ingredients");
@@ -89,6 +98,9 @@ namespace CookBook.Api.DAL.EF.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OwnerId")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
