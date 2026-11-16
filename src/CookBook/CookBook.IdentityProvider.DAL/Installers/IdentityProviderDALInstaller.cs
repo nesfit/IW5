@@ -5,6 +5,7 @@ using CookBook.IdentityProvider.DAL.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CookBook.IdentityProvider.DAL.Installers;
@@ -20,10 +21,15 @@ public class IdentityProviderDALInstaller : IInstaller
 
         serviceCollection.AddTransient<IAppUserRepository, AppUserRepository>();
 
-        serviceCollection.AddTransient(serviceProvider =>
+        serviceCollection.AddDbContext<IdentityProviderDbContext>((serviceProvider, options) =>
         {
-            var dbContextFactory = serviceProvider.GetRequiredService<IDbContextFactory<IdentityProviderDbContext>>();
-            return dbContextFactory.CreateDbContext();
+            var configuration = serviceProvider.GetRequiredService<IConfiguration>();
+            var connectionString = configuration.GetConnectionString("DefaultConnection");
+            if (string.IsNullOrWhiteSpace(connectionString))
+            {
+                throw new InvalidOperationException("ConnectionStrings:DefaultConnection is required for the identity database.");
+            }
+            options.UseSqlServer(connectionString);
         });
     }
 }

@@ -1,11 +1,14 @@
 ﻿using System.Security.Claims;
+using CookBook.Common;
 using CookBook.IdentityProvider.BL.Facades;
 using CookBook.IdentityProvider.BL.Models;
+using CookBook.IdentityProvider.DAL.Entities;
 using Duende.IdentityModel;
 using Duende.IdentityServer;
 using Duende.IdentityServer.Extensions;
 using Duende.IdentityServer.Models;
 using Duende.IdentityServer.Services;
+using Microsoft.AspNetCore.Identity;
 
 namespace CookBook.IdentityProvider.App.Services;
 
@@ -13,13 +16,16 @@ public class LocalAppUserProfileService : IProfileService
 {
     private readonly IAppUserFacade appUserFacade;
     private readonly IAppUserClaimsFacade appUserClaimsFacade;
+    private readonly UserManager<AppUserEntity> userManager;
 
     public LocalAppUserProfileService(
         IAppUserFacade appUserFacade,
-        IAppUserClaimsFacade appUserClaimsFacade)
+        IAppUserClaimsFacade appUserClaimsFacade,
+        UserManager<AppUserEntity> userManager)
     {
         this.appUserFacade = appUserFacade;
         this.appUserClaimsFacade = appUserClaimsFacade;
+        this.userManager = userManager;
     }
 
     public async Task GetProfileDataAsync(ProfileDataRequestContext context, CancellationToken cancellationToken = default)
@@ -67,6 +73,22 @@ public class LocalAppUserProfileService : IProfileService
                     .Where(externalRole => claims.All(localClaim =>
                         localClaim.Type != JwtClaimTypes.Role
                         || !string.Equals(localClaim.Value, externalRole.Value, StringComparison.Ordinal))));
+            var identityUser = await userManager.FindByIdAsync(user.Id.ToString());
+            if (identityUser is null)
+            {
+                throw new InvalidOperationException($"Identity user '{user.Id}' no longer exists.");
+            }
+
+            foreach (var role in await userManager.GetRolesAsync(identityUser))
+            {
+                var roleClaim = string.Equals(role, UserRoles.Admin, StringComparison.OrdinalIgnoreCase)
+                    ? UserRoles.Admin
+                    : string.Equals(role, UserRoles.User, StringComparison.OrdinalIgnoreCase) ? UserRoles.User : role;
+                if (claims.All(claim => claim.Type != JwtClaimTypes.Role || claim.Value != roleClaim))
+                {
+                    claims.Add(new Claim(JwtClaimTypes.Role, roleClaim));
+                }
+            }
             context.AddRequestedClaims(claims);
         }
     }

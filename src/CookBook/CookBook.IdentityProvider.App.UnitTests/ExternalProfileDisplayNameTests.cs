@@ -2,9 +2,11 @@ using System.Security.Claims;
 using CookBook.IdentityProvider.App.Services;
 using CookBook.IdentityProvider.BL.Facades;
 using CookBook.IdentityProvider.BL.Models;
+using CookBook.IdentityProvider.DAL.Entities;
 using Duende.IdentityServer;
 using Duende.IdentityServer.Models;
 using Moq;
+using Microsoft.AspNetCore.Identity;
 using Xunit;
 
 namespace CookBook.IdentityProvider.App.UnitTests;
@@ -29,7 +31,7 @@ public class ExternalProfileDisplayNameTests
             {
                 ClaimType = "cookbook:external_display_name", ClaimValue = "teacher@example.com"
             }]);
-        var service = new LocalAppUserProfileService(users.Object, claims.Object);
+        var service = new LocalAppUserProfileService(users.Object, claims.Object, CreateUserManager(user.Id).Object);
         var subjectClaims = new List<Claim> { new("sub", user.Subject) };
         if (provider is not null)
         {
@@ -62,7 +64,7 @@ public class ExternalProfileDisplayNameTests
         var claims = new Mock<IAppUserClaimsFacade>();
         claims.Setup(facade => facade.GetAppUserClaimsByUserIdAsync(user.Id))
             .ReturnsAsync(Array.Empty<AppUserClaimListModel>());
-        var service = new LocalAppUserProfileService(users.Object, claims.Object);
+        var service = new LocalAppUserProfileService(users.Object, claims.Object, CreateUserManager(user.Id).Object);
         var principal = new ClaimsPrincipal(new ClaimsIdentity(
             [
                 new Claim("sub", user.Subject),
@@ -80,5 +82,48 @@ public class ExternalProfileDisplayNameTests
             Assert.Equal("teacher@example.com",
                 Assert.Single(context.IssuedClaims, claim => claim.Type == "name").Value);
         }
+    }
+
+    [Theory]
+    [InlineData(true)]
+    [InlineData(false)]
+    public async Task ProfileEmitsCurrentIdentityRolesWithoutDuplicates(bool cookieHasRole)
+    {
+    var user = new AppUserDetailModel
+    {
+        Id = Guid.NewGuid(), Subject = "subject", UserName = "local-admin"
+    };
+    var users = new Mock<IAppUserFacade>();
+    users.Setup(facade => facade.GetUserBySubjectAsync(user.Subject)).ReturnsAsync(user);
+    var claims = new Mock<IAppUserClaimsFacade>();
+    claims.Setup(facade => facade.GetAppUserClaimsByUserIdAsync(user.Id))
+        .ReturnsAsync(Array.Empty<AppUserClaimListModel>());
+    var manager = CreateUserManager(user.Id);
+    manager.Setup(m => m.GetRolesAsync(It.IsAny<AppUserEntity>()))
+        .ReturnsAsync(new List<string> { "Admin" });
+    var service = new LocalAppUserProfileService(users.Object, claims.Object, manager.Object);
+    var subjectClaims = new List<Claim> { new("sub", user.Subject) };
+    if (cookieHasRole)
+    {
+        subjectClaims.Add(new Claim("role", "admin"));
+    }
+    var context = new ProfileDataRequestContext(
+        new ClaimsPrincipal(new ClaimsIdentity(subjectClaims, "cookie")),
+        new Client(), "test", ["role"]);
+
+    await service.GetProfileDataAsync(context);
+
+    Assert.Equal("admin", Assert.Single(context.IssuedClaims, claim => claim.Type == "role").Value);
+    }
+
+    private static Mock<UserManager<AppUserEntity>> CreateUserManager(Guid userId)
+    {
+    var manager = new Mock<UserManager<AppUserEntity>>(
+        Mock.Of<IUserStore<AppUserEntity>>(), null!, null!, null!, null!, null!, null!, null!, null!);
+    manager.Setup(m => m.FindByIdAsync(userId.ToString()))
+        .ReturnsAsync(new AppUserEntity { Id = userId });
+    manager.Setup(m => m.GetRolesAsync(It.IsAny<AppUserEntity>()))
+        .ReturnsAsync(new List<string>());
+    return manager;
     }
 }
