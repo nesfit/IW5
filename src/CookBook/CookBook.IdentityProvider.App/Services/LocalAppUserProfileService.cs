@@ -2,13 +2,11 @@
 using CookBook.Common;
 using CookBook.IdentityProvider.BL.Facades;
 using CookBook.IdentityProvider.BL.Models;
-using CookBook.IdentityProvider.DAL.Entities;
 using Duende.IdentityModel;
 using Duende.IdentityServer;
 using Duende.IdentityServer.Extensions;
 using Duende.IdentityServer.Models;
 using Duende.IdentityServer.Services;
-using Microsoft.AspNetCore.Identity;
 
 namespace CookBook.IdentityProvider.App.Services;
 
@@ -16,16 +14,13 @@ public class LocalAppUserProfileService : IProfileService
 {
     private readonly IAppUserFacade appUserFacade;
     private readonly IAppUserClaimsFacade appUserClaimsFacade;
-    private readonly UserManager<AppUserEntity> userManager;
 
     public LocalAppUserProfileService(
         IAppUserFacade appUserFacade,
-        IAppUserClaimsFacade appUserClaimsFacade,
-        UserManager<AppUserEntity> userManager)
+        IAppUserClaimsFacade appUserClaimsFacade)
     {
         this.appUserFacade = appUserFacade;
         this.appUserClaimsFacade = appUserClaimsFacade;
-        this.userManager = userManager;
     }
 
     public async Task GetProfileDataAsync(ProfileDataRequestContext context, CancellationToken cancellationToken = default)
@@ -69,27 +64,8 @@ public class LocalAppUserProfileService : IProfileService
             claims.RemoveAll(claim => claim.Type == "username");
             claims.Add(new Claim("username", username));
             claims.AddRange(
-                context.Subject.FindAll(JwtClaimTypes.Role)
-                    .Where(externalRole => claims.All(localClaim =>
-                        localClaim.Type != JwtClaimTypes.Role
-                        || !string.Equals(localClaim.Value, externalRole.Value, StringComparison.Ordinal))));
-            var identityUser = await userManager.FindByIdAsync(user.Id.ToString());
-            if (identityUser is null)
-            {
-                throw new InvalidOperationException($"Identity user '{user.Id}' no longer exists.");
-            }
-
-            foreach (var role in await userManager.GetRolesAsync(identityUser))
-            {
-                var roleClaim = string.Equals(role, UserRoles.Admin, StringComparison.OrdinalIgnoreCase)
-                    ? UserRoles.Admin
-                    : string.Equals(role, UserRoles.User, StringComparison.OrdinalIgnoreCase) ? UserRoles.User : role;
-                if (claims.All(claim => claim.Type != JwtClaimTypes.Role || claim.Value != roleClaim))
-                {
-                    claims.Add(new Claim(JwtClaimTypes.Role, roleClaim));
-                }
-            }
-            context.AddRequestedClaims(claims);
+                context.Subject.FindAll(JwtClaimTypes.Role));
+            context.AddRequestedClaims(NormalizeAndDeduplicateRoleClaims(claims));
         }
     }
 
@@ -98,4 +74,22 @@ public class LocalAppUserProfileService : IProfileService
         context.IsActive = true;
         return Task.CompletedTask;
     }
+
+    private static List<Claim> NormalizeAndDeduplicateRoleClaims(IEnumerable<Claim> claims)
+    {
+        var roleValues = new HashSet<string>(StringComparer.Ordinal);
+        return
+        [
+            .. claims
+                .Select(claim => claim.Type == JwtClaimTypes.Role
+                    ? new Claim(claim.Type, NormalizeRole(claim.Value))
+                    : claim)
+                .Where(claim => claim.Type != JwtClaimTypes.Role || roleValues.Add(claim.Value))
+        ];
+    }
+
+    private static string NormalizeRole(string role)
+        => string.Equals(role, UserRoles.Admin, StringComparison.OrdinalIgnoreCase)
+            ? UserRoles.Admin 
+            : string.Equals(role, UserRoles.User, StringComparison.OrdinalIgnoreCase) ? UserRoles.User : role;
 }
