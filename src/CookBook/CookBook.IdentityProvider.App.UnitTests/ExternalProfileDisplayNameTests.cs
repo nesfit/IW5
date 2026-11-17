@@ -81,4 +81,33 @@ public class ExternalProfileDisplayNameTests
                 Assert.Single(context.IssuedClaims, claim => claim.Type == "name").Value);
         }
     }
+
+    [Theory]
+    [InlineData(true)]
+    [InlineData(false)]
+    public async Task ProfileEmitsFacadeRolesWithoutDuplicates(bool cookieHasRole)
+    {
+        var user = new AppUserDetailModel
+        {
+            Id = Guid.NewGuid(), Subject = "subject", UserName = "local-admin"
+        };
+        var users = new Mock<IAppUserFacade>();
+        users.Setup(facade => facade.GetUserBySubjectAsync(user.Subject)).ReturnsAsync(user);
+        var claims = new Mock<IAppUserClaimsFacade>();
+        claims.Setup(facade => facade.GetAppUserClaimsByUserIdAsync(user.Id))
+            .ReturnsAsync([new AppUserClaimListModel { ClaimType = "role", ClaimValue = "Admin" }]);
+        var service = new LocalAppUserProfileService(users.Object, claims.Object);
+        var subjectClaims = new List<Claim> { new("sub", user.Subject) };
+        if (cookieHasRole)
+        {
+            subjectClaims.Add(new Claim("role", "admin"));
+        }
+        var context = new ProfileDataRequestContext(
+            new ClaimsPrincipal(new ClaimsIdentity(subjectClaims, "cookie")),
+            new Client(), "test", ["role"]);
+
+        await service.GetProfileDataAsync(context);
+
+        Assert.Equal("admin", Assert.Single(context.IssuedClaims, claim => claim.Type == "role").Value);
+    }
 }

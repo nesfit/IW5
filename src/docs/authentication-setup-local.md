@@ -55,27 +55,81 @@ tool host does not discover App user secrets, also set the same connection in
 the DAL project's **Manage User Secrets** for migration tooling only. Do not
 commit it to JSON. Return to the repository root after running the command.
 
-Create a demonstration account using the existing `POST /api/user` endpoint
-on IdentityProvider (`https://localhost:5001/api/user`), with a JSON body:
+### Create the local admin and user
+
+After applying the identity migrations, create an admin and a regular user with
+the opt-in **Development** seeder. Add
+these settings to the App project's user secrets, using your own distinct
+usernames and strong passwords:
 
 ```json
 {
-  "userName": "student",
-  "password": "REPLACE_WITH_A_STRONG_LOCAL_DEMO_PASSWORD",
-  "email": "student@example.com",
-  "givenName": "Demo",
-  "familyName": "Student"
+  "DevelopmentSeed:Enabled": true,
+  "DevelopmentSeed:Admin:UserName": "local-admin",
+  "DevelopmentSeed:Admin:Password": "REPLACE_WITH_A_LOCAL_SECRET",
+  "DevelopmentSeed:User:UserName": "local-user",
+  "DevelopmentSeed:User:Password": "REPLACE_WITH_A_DIFFERENT_LOCAL_SECRET"
 }
 ```
 
-The server generates the account's token subject (`sub`); clients cannot choose
-it, and a unique database index prevents duplicates. Never manually hash
-passwords or change existing subjects.
-For managed provisioning, use ASP.NET Identity `UserManager` / `RoleManager`,
-check every `IdentityResult`, and assign local roles there. There is no seeded
-production administrator. The sample's anonymous user-management endpoints
-are teaching infrastructure: restrict/protect them before exposing a real
-production identity service.
+Start or restart **CookBook.IdentityProvider.App** using its `SelfHost` launch
+profile, which sets `ASPNETCORE_ENVIRONMENT` to `Development`. Alternatively,
+from the App directory run:
+
+```sh
+dotnet run --launch-profile SelfHost
+```
+
+Look for `Development provisioning: 2 created, 0 existing accounts left unchanged.`
+in the startup output. Start API and Web as described below, then use the Web
+app's login to sign in as `local-admin` or `local-user` with the corresponding
+password from user secrets. No HTTP request to create users is needed: the
+`POST /api/user` and `POST /user` endpoints have been removed.
+
+The `admin` and `user` roles are assigned through ASP.NET Identity and included
+in access tokens. Existing usernames are skipped unchanged, including their
+passwords and roles. Creation is transactional and fails the startup if it
+fails. This seeder never runs outside Development. Use a separate local identity
+database: a Development process pointed at a production database can still
+write to it.
+
+If either username already exists (for example, from the old API), it is not
+upgraded to the requested role or given a new password. Choose fresh usernames
+in the seed settings to create the role-bearing accounts. After creation, you
+can set `DevelopmentSeed:Enabled` to `false` and remove the seed passwords from
+user secrets; the accounts remain in the database.
+
+Provisioning generates each account's stable token subject (`sub`) and hashes
+passwords through ASP.NET Identity `UserManager` / `RoleManager`. Never manually
+hash passwords or change existing subjects. The anonymous `/Account/Create`
+registration page and user-search endpoints remain teaching infrastructure:
+restrict/protect them before exposing a real production identity service.
+
+### One-time production account provisioning
+
+For production, there is no automatic account seeding. To create one account,
+run the IdentityProvider as a one-time command from its application directory,
+after applying migrations and providing its production configuration:
+
+```sh
+dotnet CookBook.IdentityProvider.App.dll provision-user
+```
+
+Supply `ConnectionStrings__DefaultConnection`, `ProvisionUser__UserName`,
+`ProvisionUser__Password`, and `ProvisionUser__Role` (`admin` or `user`)
+through the host's protected configuration/secret store, such as a Key Vault
+reference. Do not put passwords in Git, command-line arguments, shell history,
+or deployment logs. An optional `ProvisionUser__Email` is stored **unconfirmed**;
+verify its ownership separately before marking it confirmed. This prevents
+unverified email addresses from being used to link external identities.
+Repeat the command with different settings for the second account, and remove
+the temporary provisioning secrets afterward. The command refuses an existing
+username rather than resetting its password or granting it a role. It exits
+nonzero on failure and does not start the web server.
+
+Use appropriately strong passwords and tighten the sample Identity password
+policy before production. Restrict who can invoke provisioning or access its
+secrets: the `admin` role grants administrative access.
 
 ## 2. Local API: user secrets
 

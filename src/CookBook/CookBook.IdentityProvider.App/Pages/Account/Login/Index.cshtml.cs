@@ -60,7 +60,7 @@ public class Index : PageModel
             new ClaimsPrincipal(new ClaimsIdentity(claims)), userName);
     }
 
-    public async Task<IActionResult> OnGet(string returnUrl)
+    public async Task<IActionResult> OnGet(string? returnUrl)
     {
         await BuildModelAsync(returnUrl);
 
@@ -81,7 +81,9 @@ public class Index : PageModel
         }
 
         // check if we are in the context of an authorization request
-        var context = await _interaction.GetAuthorizationContextAsync(Input.ReturnUrl, CancellationToken.None);
+        var context = string.IsNullOrEmpty(Input.ReturnUrl)
+            ? null
+            : await _interaction.GetAuthorizationContextAsync(Input.ReturnUrl, CancellationToken.None);
 
         // the user clicked the "cancel" button
         if (Input.Button != "login")
@@ -187,14 +189,16 @@ public class Index : PageModel
         return Page();
     }
 
-    private async Task BuildModelAsync(string returnUrl)
+    private async Task BuildModelAsync(string? returnUrl)
     {
         Input = new InputModel
         {
             ReturnUrl = returnUrl
         };
 
-        var context = await _interaction.GetAuthorizationContextAsync(returnUrl, CancellationToken.None);
+        var context = string.IsNullOrEmpty(returnUrl)
+            ? null
+            : await _interaction.GetAuthorizationContextAsync(returnUrl, CancellationToken.None);
         if (context?.IdP != null && await _schemeProvider.GetSchemeAsync(context.IdP) != null)
         {
             var local = context.IdP == Duende.IdentityServer.IdentityServerConstants.LocalIdentityProvider;

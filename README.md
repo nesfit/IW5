@@ -6,6 +6,21 @@ CookBook authentication setup (local and Azure):
 [combined login](src/docs/authentication-setup-combined.md).
 See [scenario selection and shared settings](src/docs/authentication-overview.md).
 
+CookBook's SQL Server provider includes the same sample ingredients and recipes as
+the memory provider. Set `ConnectionStrings:DefaultConnection` in the
+`CookBook.Api.DAL.EF` project's user secrets for EF tooling and configure the
+API's connection string and `DALSelectionOptions:Type` as `EntityFramework`.
+Then, from `src/CookBook`, apply the migrations:
+
+```sh
+dotnet ef database update --project CookBook.Api.DAL.EF --startup-project CookBook.Api.App --context CookBookDbContext
+```
+
+The sample data is inserted once when the seed migration is applied; it is not
+recreated on subsequent app starts. Seed records have no owner. With identity
+enabled, only an administrator can modify them. Rolling back the seed migration
+deletes the seeded records and may also delete dependent ingredient amounts.
+
 ---
 
 ## [FAQ - Frequently Asked Questions](https://github.com/nesfit/IW5/wiki)
